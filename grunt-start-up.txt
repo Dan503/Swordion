@@ -1,0 +1,2 @@
+cd C:\Users\daniel.tonon\Documents\00 - projects\00-SWORDION\swordion
+grunt

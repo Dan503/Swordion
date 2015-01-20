@@ -1,0 +1,6 @@
+$lt-ie9: true;
+$fix-mqs: 1060px;//prevents media queries from being rendered in the css if they are for screen resolutions lower than this
+$main-sheet: true;//set to false if not the main style sheet
+
+@import "../_04-main-stitching-file.scss";
+

@@ -1,0 +1,26 @@
+
+//Holds the imports for all variables and mixins
+@import "_03-vars-mixins-stitching-file.scss";
+
+//contains the icon font @font face, any other @font face also go here
+@import "helpers/_@font-face.scss";
+
+@import "helpers/_normalize.custom.scss";
+@import "helpers/_helper-classes.scss";
+
+//primary style sheet, affects everything
+@import "_01-MAIN-STYLES.scss";
+
+//Remove this when starting a new project
+@import "starter-kit-only.scss";
+
+// jQuery Custombox v1.1.3
+@import "helpers/_jquery.custombox"; //needs to be added to starter kit
+
+
+// Print styles
+@media print { @import "_print.scss"; }
+
+
+
+/*! Built by Daniel Tonon - UX Developer - Reading Room Australia - August 2014 */
