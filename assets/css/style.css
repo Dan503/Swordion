@@ -1,21 +1,21 @@
 @charset "UTF-8";
-.icon-pdf:before { content: "\e600"; }
+.icon-pdf { content: ""; }
 
-.icon-word:before { content: "\e601"; }
+.icon-word { content: ""; }
 
-.icon-excel:before { content: "\e602"; }
+.icon-excel { content: ""; }
 
-.icon-powerpoint:before { content: "\e603"; }
+.icon-powerpoint { content: ""; }
 
-.icon-text_file:before { content: "\e604"; }
+.icon-text { content: ""; }
 
-.icon-audio:before { content: "\e605"; }
+.icon-audio { content: ""; }
 
-.icon-podcast:before { content: "\e606"; }
+.icon-podcast { content: ""; }
 
-.icon-globe:before { content: "\e607"; }
+.icon-globe { content: ""; }
 
-.icon-external:before { content: "\e608"; }
+.icon-external { content: ""; }
 
 .mobile-only, .tablet-only, .desktop-only { display: none; }
 
@@ -317,7 +317,7 @@ select option { font-weight: 100; }
 
 .js select, .js input[type="file"] { visibility: hidden; }
 
-.styled-select { width: 100%; overflow: hidden; background-color: #fff; border: 1px solid #ccc; border-radius: 0; position: relative; cursor: pointer; z-index: 0; display: inline-block; -webkit-transition: all 0.25s background; -moz-transition: all 0.25s background; -o-transition: all 0.25s background; transition: all 0.25s background; /*@include M-icon($icon-arrow-down, 5px){
+.styled-select { width: 100%; overflow: hidden; background-color: #fff; border: 1px solid #ccc; border-radius: 0; position: relative; cursor: pointer; z-index: 0; display: inline-block; -webkit-transition: all 0.25s background; -moz-transition: all 0.25s background; -o-transition: all 0.25s background; transition: all 0.25s background; /*@include M-icon(arrow-down, 5px){
 	color: #000;
 	z-index: 0;
 	@include M-centered(v);

@@ -49,12 +49,12 @@
 
 // GOOD FOR MOST CIRCUMSTANCES
 // Moves majority of static icon styles into a single rule to cut down css bulk
-@mixin M-icon($icon:'', $color: inherit, $height: false, $width:$height, $display: inline-block, $pos:before) {
+@mixin M-icon($icon, $color: inherit, $height: false, $width:$height, $display: inline-block, $pos:before) {
 
 
 	@if ($pos == before){
 		&:before {
-			content: $icon;
+			content: map-get($icons, $icon);
 			display: $display;
 			@if ( $color != inherit ){
 				color: $color;
@@ -66,7 +66,7 @@
 
 	} @else if ($pos == after){
 		&:after {
-			content: $icon;
+			content: map-get($icons, $icon);
 			display: $display;
 			@if ( $color != inherit ){
 				color: $color;
@@ -84,7 +84,7 @@
 
 	@if ($pos == before){
 		&:before {
-			content: $icon;
+			content: map-get($icons, $icon);
 			display: $display;
 			@if ( $colour != inherit ){
 				color: $colour;
@@ -95,7 +95,7 @@
 		}
 	} @else if ($pos == after){
 		&:after {
-			content: $icon;
+			content: map-get($icons, $icon);
 			display: $display;
 			@if ( $colour != inherit ){
 				color: $colour;

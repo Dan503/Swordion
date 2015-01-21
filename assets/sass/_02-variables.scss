@@ -40,46 +40,28 @@ $darkGrey:	 #E83628;
 //* ICONS
 //*******************************************/
 
-$icon-pdf: "\e600";
-$icon-word: "\e601";
-$icon-excel: "\e602";
-$icon-powerpoint: "\e603";
-$icon-text: "\e604";
-$icon-audio: "\e605";
-$icon-podcast: "\e606";
-$icon-globe: "\e607";
-$icon-external: "\e608";
+//list of icon names and they're reference keys
+$icons: (
+	pdf: "\e600",
+	word: "\e601",
+	excel: "\e602",
+	powerpoint: "\e603",
+	text: "\e604",
+	audio: "\e605",
+	podcast: "\e606",
+	globe: "\e607",
+	external: "\e608",
+);
+
 
 @if ($main-sheet == true){
 
-//generated from icomoon, don't bother linking up variables
-.icon-pdf:before {
-	content: "\e600";
-}
-.icon-word:before {
-	content: "\e601";
-}
-.icon-excel:before {
-	content: "\e602";
-}
-.icon-powerpoint:before {
-	content: "\e603";
-}
-.icon-text_file:before {
-	content: "\e604";
-}
-.icon-audio:before {
-	content: "\e605";
-}
-.icon-podcast:before {
-	content: "\e606";
-}
-.icon-globe:before {
-	content: "\e607";
-}
-.icon-external:before {
-	content: "\e608";
-}
+	//generates the .icon-XXX class associations
+	@each $icon, $referenceKey in $icons {
+	    .icon-#{$icon} {
+	        content: $referenceKey;
+	    }
+	}
 
 }
 

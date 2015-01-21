@@ -9,7 +9,7 @@
 #logo {
 	padding: 50px;
 	margin: 0;
-	@include M-icon($icon-pdf){
+	@include M-icon(pdf){
 		color: #000;
 	};
 }
