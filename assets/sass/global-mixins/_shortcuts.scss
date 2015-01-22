@@ -70,14 +70,14 @@
 }
 
 //don't forget about appearance: none; to clear defaults particularly on submit buttons
-@mixin M-appearance_none {
+@mixin M-appearanceNone {
    -webkit-appearance: none;
    -moz-appearance:    none;
    appearance:         none;
    //necessary for iOS 7
    border-radius:0;
 }
-%appearance_none { @include M-appearance_none; }
+%appearanceNone { @include M-appearanceNone; }
 
 //allows the styling of placeholder text
 @mixin M-placeholder($color:#767676) {
@@ -196,8 +196,8 @@
 }
 //use these over the mixin if possible
 %centered { @include M-centered; }
-%centered-h { @include M-centered(h); }
-%centered-v { @include M-centered(v); }
+%centered--h { @include M-centered(h); }
+%centered--v { @include M-centered(v); }
 
 //Use this if parent is smaller than the target element
 //(the regular centered mixin works in chrome when parent is smaller but not in Fire fox)

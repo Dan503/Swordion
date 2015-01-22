@@ -35,9 +35,6 @@
 	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 	<link rel="icon" href="/favicon.ico" type="image/x-icon">
 
-	<!-- fonts -->
-	<link href='http://fonts.googleapis.com/css?family=Gudea' rel='stylesheet' type='text/css'>
-
 	<!--[if gt IE 8]><!-->
 		<link rel="stylesheet" type="text/css" href="/assets/css/style.css" />
 	<?php /* Minified CSS (For use during production phase)

@@ -1,0 +1,66 @@
+/*================================================*\
+	COLUMNS STYLING FILE
+----------------------------------------------------
+	This file holds all the classes that handle
+	general site structure. A three column module
+	would have the column
+\*================================================*/
+
+.column { float: left; padding: 0; margin: 0; }
+
+.full { width: 100%; }
+.halves { width: 50%;
+	@include M-mq(max,$bp-mobile){
+		width: 100%;
+	}
+}
+.thirds { width: 33.33%;
+	@include M-mq(max,$bp-mobile){
+		width: 100%;
+	}
+	&.colspan2 { width: 66.66%;
+		@include M-mq(max,$bp-mobile){
+			width: 100%;
+		}
+	}
+}
+.quarters { width: 25%;
+	@include M-mq(max,$bp-tablet){
+		width: 50%;
+	}
+	@include M-mq(max,$bp-mobile){
+		width: 100%;
+	}
+}
+.fiths { width: 20%;
+	@include M-mq(max,$bp-tablet){
+		width: 100%;
+	}
+	&.colspan2 { width: 40%;
+		@include M-mq(max,$bp-tablet){
+			width: 100%;
+		}
+	}
+	&.colspan3 { width: 60%;
+		@include M-mq(max,$bp-tablet){
+			width: 100%;
+		}
+	}
+	&.colspan4 { width: 80%;
+		@include M-mq(max,$bp-tablet){
+			width: 100%;
+		}
+	}
+}
+.sixths { width: 16.66%;
+	@include M-mq(max,$bp-tablet){
+		width: 50%;
+	}
+	@include M-mq(max,$bp-mobile){
+		width: 100%;
+	}
+	//colspan2 = 1/3
+	//colspan3 = 1/2
+	//colspan4 = 2/3
+	&.colspan5 { width: 83.33%; }
+}
