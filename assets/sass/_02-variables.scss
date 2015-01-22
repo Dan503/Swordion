@@ -33,8 +33,13 @@ $text_inputs: unquote('input[type=text], input[type=email], input[type=tel], inp
 //******************************************
 //* COLORS
 //*******************************************/
-$darkGrey:	 #E83628;
+//$col- for $color-
+$col-primary: #E83628;
+$col-secondary: #000000;
+$col-bodyText: #070707;
 
+$col-header: $col-primary;
+$col-nav: $col-secondary;
 
 //******************************************
 //* ICONS
