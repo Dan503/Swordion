@@ -5,42 +5,6 @@ These notes are going to be out of date but I want to put something up here to g
 
 --------------------
 
-PHP related
-Sorry if this section of the doc is a bit rushed.
-Includes
-The idea with my includes is that site wide stuff like header and footer go straight into the includes folder. One off modules that only occur on one or more pages are placed in the modules folder.
-
-The $body_classes variable
-This adds classes to the body element for page specific styling.
-Usage: <?php $body_classes = ‘body_class’; ?>
- You probably aren’t going to be needing to use that though
-
-Editing the Nav
-•	The nav is located in the site-side-bar.php file.
-•	I generate the nav using two arrays ($chapters_col1 and $chapters_col2).
-•	It generates the numbers and all the repetitive stuff for you.
-•	It does not generate active classes (yet)
-•	All you need to do to edit the links is change the arrays. The first value is the link text, the second value is the link url.
-
-Styling rules
-Font size:
-The base font size for the site has been lowered to 10px. This makes it easy to convert the pixel font sizes in the design into em font sizes on the site. If the font is 24px in the design, then on the site you would set the font size for that element to 2.4em.
-
-Do not place font sizes on parent elements this throws off the system. Only ever apply font sizes to the base level elements unless it’s not really possible/practical. Apply font size to a parent only as a last resort.
-Element width:
-The box-sizing: border-box; css rule has been applied to every single element on the site. This means that instead of having to do things like { width: 96%; padding: 10px 2%; } we can do this instead: { width: 100%; padding: 10px; }. Trust me, it makes life sooooooooo much easier 
-
-Don’t worry about browser compatibility issues. It references a HTC file that forces old browsers to accept the box-sizing: border-box; rule.
-Background images are a last resort
-If an element can be styled using a css triangle for example but you built it using a background image, I’m going to send it back and get you to re-do it.
-Hex codes in RGBA
-If using rgba colours, use sass’s rgb colour conversion functionality. Eg. for rgba( 0, 0, 0, 0.5), use rgba(#000,0.5); or even better rgba($colour_variable,0.5);
-
-Shapes made by css are preferable over icons and background images
-Lines, boxes, circles and triangles are all easily done with css. In general, don’t use icon-font icons for them.
-Avoid empty divs as much as possible
-You can do loads of stuff with :before and :after elements and it cuts down the amount of html you need. Try to avoid using extra html by using :before and :after instead.
-
 Super useful SASS mixins guide
 
 (All my mixins start with "M-" because my editor doesn't like ending keyboard shortcut code snippets with a space)
@@ -265,7 +229,6 @@ _02-variables .scss holds all the global variables for the site including icon n
 
 _01-MAIN-STYLES.scss is the file that holds all custom styling for the site. I don’t separate the main styles into modules like other people because I find that frustrating to maintain when trying to find the rule you’re looking for. The down side is that it makes the file REEEEAALLY long but I’d prefer that over having to worry about what file I’m looking in as well as the line number. This way, 99% of the time, the only thing I need to worry about is the line number.
 
-_04-INFOGRAPHICS.scss is a newly added one. I made an exception to the “all main styles go in main styles sheet” rule I have. All infographic styles go in the infographics style sheet.
 Making the Icon-font
 
 This project is using the icomoon app to generate the icon font. It's a rather slow way of doing it, so if you can find a way to get grunt to generate the icon font for us in a way THAT WORKS ON PC then that would be very helpful :)
