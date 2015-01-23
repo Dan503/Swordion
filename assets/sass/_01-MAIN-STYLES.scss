@@ -321,7 +321,7 @@ $background-hover: #F0F0F0;
 				content: '';
 				display: block;
 				position: absolute;
-				@extend %animate-hover;
+				@extend %animate--fast !optional;
 			}
 			//background
 			&:before {

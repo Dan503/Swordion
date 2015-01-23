@@ -9,11 +9,12 @@
 	    transition:  $var $settings $ease;
 	}
 }
-//requires this usage if used because of the IE test:
+
+//The animation @extend requires this usage if used because of the IE style sheet split:
 //@extend %animate !optional;
-%animate { @include M-animate; }
-%animate-hover { @include M-animate(0.2s,ease-out); }//hover requires faster animation to feel responsive
-%animate-long { @include M-animate(1s); }
+%animate { @include M-animate; } //basic animation (0.5s)
+%animate--fast { @include M-animate(0.2s,ease-out); }//Ideal for animating hover states (0.2s)
+%animate--slow { @include M-animate(1s); }//Drawn out animation for a more majestic effect (1s)
 
 //Removes animation from elements with animation set
 @mixin M-anti-animate($important: true) {
@@ -30,6 +31,14 @@
 //requires this usage if used because of the IE test:
 //@extend %anti-animate !optional;
 %anti-animate { @include M-anti-animate; }
+
+@if ($main-sheet == true){
+	.animate { @extend %animate !optional; }
+	.animate--fast { @extend %animate--fast !optional; }
+	.animate--slow { @extend %animate--slow !optional; }
+	.anti-animate { @extend %anti-animate !optional; }
+}
+
 
 ///////////////////////////////
 //	Keyframe animations		//

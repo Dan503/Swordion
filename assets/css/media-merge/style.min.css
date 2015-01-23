@@ -123,12 +123,14 @@ a[href*=itunes]:before {
 	-moz-osx-font-smoothing: grayscale;
 }
 
+.animate,
 .js-alpha-count+*,
 .js-count-up+* {
 	-webkit-transition: all .5s ease-in-out;
 	transition: all .5s ease-in-out;
 }
 
+.animate--fast,
 input[type=checkbox]+label:after,
 input[type=checkbox]+label:before,
 input[type=radio]+label:after,
@@ -137,15 +139,46 @@ input[type=radio]+label:before {
 	transition: all .2s ease-out;
 }
 
-.simple-animation-example.activate .simple1 {
+.animate--slow {
 	-webkit-transition: all 1s ease-in-out;
 	transition: all 1s ease-in-out;
 }
 
+.anti-animate,
 .forced-visible.js-alpha-count,
 .js-count-up.forced-visible {
 	-webkit-transition: none!important;
 	transition: none!important;
+}
+
+.rumble,
+.rumble--onHover:hover {
+	-webkit-animation: rumble .5s infinite linear;
+	animation: rumble .5s infinite linear;
+}
+
+.rumbleSingle,
+.rumbleSingle--onHover:hover {
+	-webkit-animation: rumble .5s 1 linear;
+	animation: rumble .5s 1 linear;
+}
+
+.spin,
+.spin--onHover:hover {
+	-webkit-animation: spin .5s infinite linear;
+	animation: spin .5s infinite linear;
+}
+
+.spinSingle,
+.spinSingle--onHover:hover {
+	-webkit-animation: spin .5s 1 linear;
+	animation: spin .5s 1 linear;
+}
+
+.pulseSingle,
+.pulseSingle--onHover:hover {
+	-webkit-animation: pulse 1s 1 linear;
+	animation: pulse 1s 1 linear;
 }
 
 a.htmlDownload:before,
@@ -176,10 +209,17 @@ a[href*=itunes]:before {
 	font-size: 10px;
 }
 
-.js-popins__piece.js-popins__piece--pop {
+.js-popins__piece.js-popins__piece--pop,
+.popin {
 	opacity: 1;
 	-webkit-animation: popin .5s 1 ease-out;
 	animation: popin .5s 1 ease-out;
+}
+
+.pulse,
+.pulse--onHover:hover {
+	-webkit-animation: pulse 1s infinite linear;
+	animation: pulse 1s infinite linear;
 }
 
 @font-face {
@@ -2101,6 +2141,200 @@ h3 {
 
 .oldie * {
 	box-sizing: content-box!important;
+}
+
+}
+
+@-webkit-keyframes rumble {
+
+0%,16.66667% {
+	-webkit-transform: rotate(0deg);
+	-ms-transform: rotate(0deg);
+	transform: rotate(0deg);
+}
+
+33.33333% {
+	-webkit-transform: rotate(-5deg);
+	-ms-transform: rotate(-5deg);
+	transform: rotate(-5deg);
+}
+
+50% {
+	-webkit-transform: rotate(5deg);
+	-ms-transform: rotate(5deg);
+	transform: rotate(5deg);
+}
+
+66.66667% {
+	-webkit-transform: rotate(-5deg);
+	-ms-transform: rotate(-5deg);
+	transform: rotate(-5deg);
+}
+
+100%,83.33333% {
+	-webkit-transform: rotate(0deg);
+	-ms-transform: rotate(0deg);
+	transform: rotate(0deg);
+}
+
+}
+
+@keyframes rumble {
+
+0%,16.66667% {
+	-webkit-transform: rotate(0deg);
+	-ms-transform: rotate(0deg);
+	transform: rotate(0deg);
+}
+
+33.33333% {
+	-webkit-transform: rotate(-5deg);
+	-ms-transform: rotate(-5deg);
+	transform: rotate(-5deg);
+}
+
+50% {
+	-webkit-transform: rotate(5deg);
+	-ms-transform: rotate(5deg);
+	transform: rotate(5deg);
+}
+
+66.66667% {
+	-webkit-transform: rotate(-5deg);
+	-ms-transform: rotate(-5deg);
+	transform: rotate(-5deg);
+}
+
+100%,83.33333% {
+	-webkit-transform: rotate(0deg);
+	-ms-transform: rotate(0deg);
+	transform: rotate(0deg);
+}
+
+}
+
+@-webkit-keyframes spin {
+
+0% {
+	-webkit-transform: rotate(0deg);
+	-ms-transform: rotate(0deg);
+	transform: rotate(0deg);
+}
+
+100% {
+	-webkit-transform: rotate(360deg);
+	-ms-transform: rotate(360deg);
+	transform: rotate(360deg);
+}
+
+}
+
+@keyframes spin {
+
+0% {
+	-webkit-transform: rotate(0deg);
+	-ms-transform: rotate(0deg);
+	transform: rotate(0deg);
+}
+
+100% {
+	-webkit-transform: rotate(360deg);
+	-ms-transform: rotate(360deg);
+	transform: rotate(360deg);
+}
+
+}
+
+@-webkit-keyframes popin {
+
+0% {
+	-webkit-transform: scale(0);
+	-ms-transform: scale(0);
+	transform: scale(0);
+	opacity: 0;
+}
+
+70% {
+	-webkit-transform: scale(1.2);
+	-ms-transform: scale(1.2);
+	transform: scale(1.2);
+	opacity: 1;
+}
+
+100% {
+	-webkit-transform: scale(1);
+	-ms-transform: scale(1);
+	transform: scale(1);
+	opacity: 1;
+}
+
+}
+
+@keyframes popin {
+
+0% {
+	-webkit-transform: scale(0);
+	-ms-transform: scale(0);
+	transform: scale(0);
+	opacity: 0;
+}
+
+70% {
+	-webkit-transform: scale(1.2);
+	-ms-transform: scale(1.2);
+	transform: scale(1.2);
+	opacity: 1;
+}
+
+100% {
+	-webkit-transform: scale(1);
+	-ms-transform: scale(1);
+	transform: scale(1);
+	opacity: 1;
+}
+
+}
+
+@-webkit-keyframes pulse {
+
+0% {
+	-webkit-transform: scale(1);
+	-ms-transform: scale(1);
+	transform: scale(1);
+}
+
+30% {
+	-webkit-transform: scale(1.1);
+	-ms-transform: scale(1.1);
+	transform: scale(1.1);
+}
+
+100%,50% {
+	-webkit-transform: scale(1);
+	-ms-transform: scale(1);
+	transform: scale(1);
+}
+
+}
+
+@keyframes pulse {
+
+0% {
+	-webkit-transform: scale(1);
+	-ms-transform: scale(1);
+	transform: scale(1);
+}
+
+30% {
+	-webkit-transform: scale(1.1);
+	-ms-transform: scale(1.1);
+	transform: scale(1.1);
+}
+
+100%,50% {
+	-webkit-transform: scale(1);
+	-ms-transform: scale(1);
+	transform: scale(1);
 }
 
 }

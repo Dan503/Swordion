@@ -121,12 +121,14 @@ a.external-link:after,
 	-moz-osx-font-smoothing: grayscale;
 }
 
+.animate,
 .js-count-up + *,
 .js-alpha-count + * {
 	-webkit-transition: all 0.5s ease-in-out;
 	transition: all 0.5s ease-in-out;
 }
 
+.animate--fast,
 input[type="radio"] + label:before,
 input[type="radio"] + label:after,
 input[type="checkbox"] + label:before,
@@ -135,11 +137,12 @@ input[type="checkbox"] + label:after {
 	transition: all 0.2s ease-out;
 }
 
-.simple-animation-example.activate .simple1 {
+.animate--slow {
 	-webkit-transition: all 1s ease-in-out;
 	transition: all 1s ease-in-out;
 }
 
+.anti-animate,
 .js-count-up.forced-visible,
 .forced-visible.js-alpha-count {
 	-webkit-transition: none !important;

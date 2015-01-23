@@ -151,7 +151,8 @@ a[href*=itunes]:before {
 	font-size: 10px;
 }
 
-.js-popins__piece.js-popins__piece--pop {
+.js-popins__piece.js-popins__piece--pop,
+.popin {
 	opacity: 1;
 }
 

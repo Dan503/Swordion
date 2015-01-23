@@ -39,13 +39,13 @@ input[type="radio"]:checked + label:after, input[type="checkbox"]:checked + labe
 
 [class^="icon-"]:before, [class^="icon-"]:after, [class*=" icon-"]:before, [class*=" icon-"]:after, a[href$=".pdf"]:before, a[href$=".PDF"]:before, a[href$=".doc"]:before, a[href$=".docx"]:before, a[href$=".DOC"]:before, a[href$=".DOCX"]:before, a[href$=".xls"]:before, a[href$=".xlsx"]:before, a[href$=".XLS"]:before, a[href$=".XLSX"]:before, a[href$=".ppt"]:before, a[href$=".pptx"]:before, a[href$=".PPT"]:before, a[href$=".PPTX"]:before, a[href$=".txt"]:before, a[href$=".TXT"]:before, a[href$=".mp3"]:before, a[href$=".MP3"]:before, a[href*="itunes"]:before, a.htmlDownload:before, a.external-link:after, #logo:before { font-family: 'icons'; speak: none; font-style: normal; font-weight: normal; font-variant: normal; text-transform: none; line-height: 1; display: inline-block; text-align: center; vertical-align: middle; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
 
-.js-count-up + *, .js-alpha-count + * { -webkit-transition: all 0.5s ease-in-out; transition: all 0.5s ease-in-out; }
+.animate, .js-count-up + *, .js-alpha-count + * { -webkit-transition: all 0.5s ease-in-out; transition: all 0.5s ease-in-out; }
 
-input[type="radio"] + label:before, input[type="radio"] + label:after, input[type="checkbox"] + label:before, input[type="checkbox"] + label:after { -webkit-transition: all 0.2s ease-out; transition: all 0.2s ease-out; }
+.animate--fast, input[type="radio"] + label:before, input[type="radio"] + label:after, input[type="checkbox"] + label:before, input[type="checkbox"] + label:after { -webkit-transition: all 0.2s ease-out; transition: all 0.2s ease-out; }
 
-.simple-animation-example.activate .simple1 { -webkit-transition: all 1s ease-in-out; transition: all 1s ease-in-out; }
+.animate--slow { -webkit-transition: all 1s ease-in-out; transition: all 1s ease-in-out; }
 
-.js-count-up.forced-visible, .forced-visible.js-alpha-count { -webkit-transition: none !important; transition: none !important; }
+.anti-animate, .js-count-up.forced-visible, .forced-visible.js-alpha-count { -webkit-transition: none !important; transition: none !important; }
 
 /*   SHARED ANIMATION EFFECTS   */
 /*******************************************\
