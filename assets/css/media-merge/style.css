@@ -124,8 +124,6 @@ a.external-link:after,
 .js-count-up + *,
 .js-alpha-count + * {
 	-webkit-transition: all 0.5s ease-in-out;
-	-moz-transition: all 0.5s ease-in-out;
-	-o-transition: all 0.5s ease-in-out;
 	transition: all 0.5s ease-in-out;
 }
 
@@ -134,24 +132,90 @@ input[type="radio"] + label:after,
 input[type="checkbox"] + label:before,
 input[type="checkbox"] + label:after {
 	-webkit-transition: all 0.2s ease-out;
-	-moz-transition: all 0.2s ease-out;
-	-o-transition: all 0.2s ease-out;
 	transition: all 0.2s ease-out;
 }
 
 .simple-animation-example.activate .simple1 {
 	-webkit-transition: all 1s ease-in-out;
-	-moz-transition: all 1s ease-in-out;
-	-o-transition: all 1s ease-in-out;
 	transition: all 1s ease-in-out;
 }
 
 .js-count-up.forced-visible,
 .forced-visible.js-alpha-count {
-	-moz-transition: none !important;
 	-webkit-transition: none !important;
-	-o-transition: color 0 ease-in !important;
 	transition: none !important;
+}
+
+/*   SHARED ANIMATION EFFECTS   */
+
+/*******************************************\
+	RUMBLE EFFECT
+---------------------------------------------
+	Element jitteres from side to side
+\*******************************************/
+
+.rumble,
+.rumble--onHover:hover {
+	-webkit-animation: rumble 0.5s infinite linear;
+	animation: rumble 0.5s infinite linear;
+}
+
+.rumbleSingle,
+.rumbleSingle--onHover:hover {
+	-webkit-animation: rumble 0.5s 1 linear;
+	animation: rumble 0.5s 1 linear;
+}
+
+/*******************************************\
+	SPIN EFFECT
+---------------------------------------------
+	Element spins around in one spot
+\*******************************************/
+
+.spin,
+.spin--onHover:hover {
+	-webkit-animation: spin 0.5s infinite linear;
+	animation: spin 0.5s infinite linear;
+}
+
+.spinSingle,
+.spinSingle--onHover:hover {
+	-webkit-animation: spin 0.5s 1 linear;
+	animation: spin 0.5s 1 linear;
+}
+
+/*******************************************\
+	POP IN EFFECT
+---------------------------------------------
+	Element starts off hidden, then quickly
+	grows large, then snaps to normal size
+	(requires element to start at opacity:0)
+\*******************************************/
+
+.popin,
+.js-popins__piece.js-popins__piece--pop {
+	opacity: 1;
+	-webkit-animation: popin 0.5s 1 ease-out;
+	animation: popin 0.5s 1 ease-out;
+}
+
+/*******************************************\
+	PULSE EFFECT
+---------------------------------------------
+	Element periodically grows slightly and
+	then shrinks again.
+\*******************************************/
+
+.pulse,
+.pulse--onHover:hover {
+	-webkit-animation: pulse 1s infinite linear;
+	animation: pulse 1s infinite linear;
+}
+
+.pulseSingle,
+.pulseSingle--onHover:hover {
+	-webkit-animation: pulse 1s 1 linear;
+	animation: pulse 1s 1 linear;
 }
 
 a[href$=".pdf"]:before,
@@ -185,12 +249,17 @@ a.htmlDownload:before {
 
 /*   SHARED ANIMATION EFFECTS   */
 
+.popin,
 .js-popins__piece.js-popins__piece--pop {
 	opacity: 1;
 	-webkit-animation: popin 0.5s 1 ease-out;
-	-moz-animation: popin 0.5s 1 ease-out;
-	-o-animation: popin 0.5s 1 ease-out;
 	animation: popin 0.5s 1 ease-out;
+}
+
+.pulse,
+.pulse--onHover:hover {
+	-webkit-animation: pulse 1s infinite linear;
+	animation: pulse 1s infinite linear;
 }
 
 /*icon font*/
@@ -611,6 +680,13 @@ table tbody th {
 		Tools
 ************************/
 
+.noDots,
+.columns {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
 .clear {
 	clear: both;
 }
@@ -618,8 +694,6 @@ table tbody th {
 .js-count-up,
 .js-alpha-count {
 	-webkit-transition: all 2s ease-in-out;
-	-moz-transition: all 2s ease-in-out;
-	-o-transition: all 2s ease-in-out;
 	transition: all 2s ease-in-out;
 	white-space: nowrap;
 }
@@ -650,8 +724,6 @@ table tbody th {
 
 .js-alpha-count {
 	-webkit-transition: all 1s ease-in-out;
-	-moz-transition: all 1s ease-in-out;
-	-o-transition: all 1s ease-in-out;
 	transition: all 1s ease-in-out;
 }
 
@@ -676,8 +748,6 @@ table tbody th {
 	-ms-transform-origin: bottom center;
 	transform-origin: bottom center;
 	-webkit-transition: all 0.2s ease-in-out;
-	-moz-transition: all 0.2s ease-in-out;
-	-o-transition: all 0.2s ease-in-out;
 	transition: all 0.2s ease-in-out;
 	position: absolute;
 	text-align: center;
@@ -835,12 +905,6 @@ a.htmlDownload:before {
 	Column styling
 \***********************/
 
-.columns {
-	margin: 0;
-	padding: 0;
-	list-style: none;
-}
-
 .column {
 	float: left;
 	padding: 0;
@@ -924,8 +988,6 @@ select option {
 	z-index: 0;
 	display: inline-block;
 	-webkit-transition: all 0.25s background;
-	-moz-transition: all 0.25s background;
-	-o-transition: all 0.25s background;
 	transition: all 0.25s background; /*@include M-icon(arrow-down, 5px){
 	color: #000;
 	z-index: 0;
@@ -1134,8 +1196,6 @@ input[type="radio"] + label:before {
 	-ms-transform: rotate(45deg);
 	transform: rotate(45deg);
 	-webkit-transition: all 0.3s ease-in-out;
-	-moz-transition: all 0.3s ease-in-out;
-	-o-transition: all 0.3s ease-in-out;
 	transition: all 0.3s ease-in-out;
 	border-radius: 50%;
 	display: block;
@@ -1425,8 +1485,6 @@ input[type="radio"] + label:before {
 
 .simple-animation-example.stage2 .simple2 {
 	-webkit-transition: all 0.5s ease-in-out;
-	-moz-transition: all 0.5s ease-in-out;
-	-o-transition: all 0.5s ease-in-out;
 	transition: all 0.5s ease-in-out;
 	bottom: 0;
 	left: 0;
@@ -1434,8 +1492,6 @@ input[type="radio"] + label:before {
 
 .simple-animation-example.stage3 .simple3 {
 	-webkit-transition: all 2s ease-in-out;
-	-moz-transition: all 2s ease-in-out;
-	-o-transition: all 2s ease-in-out;
 	transition: all 2s ease-in-out;
 	-webkit-transform: scale(1);
 	-ms-transform: scale(1);
@@ -2342,57 +2398,131 @@ h3 {
 
 }
 
+@-webkit-keyframes rumble {
+
+0% {
+	-webkit-transform: rotate(0deg);
+	-ms-transform: rotate(0deg);
+	transform: rotate(0deg);
+}
+
+16.66667% {
+	-webkit-transform: rotate(0deg);
+	-ms-transform: rotate(0deg);
+	transform: rotate(0deg);
+}
+
+33.33333% {
+	-webkit-transform: rotate(-5deg);
+	-ms-transform: rotate(-5deg);
+	transform: rotate(-5deg);
+}
+
+50% {
+	-webkit-transform: rotate(5deg);
+	-ms-transform: rotate(5deg);
+	transform: rotate(5deg);
+}
+
+66.66667% {
+	-webkit-transform: rotate(-5deg);
+	-ms-transform: rotate(-5deg);
+	transform: rotate(-5deg);
+}
+
+83.33333% {
+	-webkit-transform: rotate(0deg);
+	-ms-transform: rotate(0deg);
+	transform: rotate(0deg);
+}
+
+100% {
+	-webkit-transform: rotate(0deg);
+	-ms-transform: rotate(0deg);
+	transform: rotate(0deg);
+}
+
+}
+
+@keyframes rumble {
+
+0% {
+	-webkit-transform: rotate(0deg);
+	-ms-transform: rotate(0deg);
+	transform: rotate(0deg);
+}
+
+16.66667% {
+	-webkit-transform: rotate(0deg);
+	-ms-transform: rotate(0deg);
+	transform: rotate(0deg);
+}
+
+33.33333% {
+	-webkit-transform: rotate(-5deg);
+	-ms-transform: rotate(-5deg);
+	transform: rotate(-5deg);
+}
+
+50% {
+	-webkit-transform: rotate(5deg);
+	-ms-transform: rotate(5deg);
+	transform: rotate(5deg);
+}
+
+66.66667% {
+	-webkit-transform: rotate(-5deg);
+	-ms-transform: rotate(-5deg);
+	transform: rotate(-5deg);
+}
+
+83.33333% {
+	-webkit-transform: rotate(0deg);
+	-ms-transform: rotate(0deg);
+	transform: rotate(0deg);
+}
+
+100% {
+	-webkit-transform: rotate(0deg);
+	-ms-transform: rotate(0deg);
+	transform: rotate(0deg);
+}
+
+}
+
+@-webkit-keyframes spin {
+
+0% {
+	-webkit-transform: rotate(0deg);
+	-ms-transform: rotate(0deg);
+	transform: rotate(0deg);
+}
+
+100% {
+	-webkit-transform: rotate(360deg);
+	-ms-transform: rotate(360deg);
+	transform: rotate(360deg);
+}
+
+}
+
+@keyframes spin {
+
+0% {
+	-webkit-transform: rotate(0deg);
+	-ms-transform: rotate(0deg);
+	transform: rotate(0deg);
+}
+
+100% {
+	-webkit-transform: rotate(360deg);
+	-ms-transform: rotate(360deg);
+	transform: rotate(360deg);
+}
+
+}
+
 @-webkit-keyframes popin {
-
-0% {
-	-webkit-transform: scale(0);
-	-ms-transform: scale(0);
-	transform: scale(0);
-	opacity: 0;
-}
-
-70% {
-	-webkit-transform: scale(1.2);
-	-ms-transform: scale(1.2);
-	transform: scale(1.2);
-	opacity: 1;
-}
-
-100% {
-	-webkit-transform: scale(1);
-	-ms-transform: scale(1);
-	transform: scale(1);
-	opacity: 1;
-}
-
-}
-
-@-moz-keyframes popin {
-
-0% {
-	-webkit-transform: scale(0);
-	-ms-transform: scale(0);
-	transform: scale(0);
-	opacity: 0;
-}
-
-70% {
-	-webkit-transform: scale(1.2);
-	-ms-transform: scale(1.2);
-	transform: scale(1.2);
-	opacity: 1;
-}
-
-100% {
-	-webkit-transform: scale(1);
-	-ms-transform: scale(1);
-	transform: scale(1);
-	opacity: 1;
-}
-
-}
-
-@-o-keyframes popin {
 
 0% {
 	-webkit-transform: scale(0);
@@ -2470,7 +2600,7 @@ h3 {
 
 }
 
-@-moz-keyframes pulse {
+@keyframes pulse {
 
 0% {
 	-webkit-transform: scale(1);
@@ -2498,7 +2628,57 @@ h3 {
 
 }
 
-@-o-keyframes pulse {
+@-webkit-keyframes popin {
+
+0% {
+	-webkit-transform: scale(0);
+	-ms-transform: scale(0);
+	transform: scale(0);
+	opacity: 0;
+}
+
+70% {
+	-webkit-transform: scale(1.2);
+	-ms-transform: scale(1.2);
+	transform: scale(1.2);
+	opacity: 1;
+}
+
+100% {
+	-webkit-transform: scale(1);
+	-ms-transform: scale(1);
+	transform: scale(1);
+	opacity: 1;
+}
+
+}
+
+@keyframes popin {
+
+0% {
+	-webkit-transform: scale(0);
+	-ms-transform: scale(0);
+	transform: scale(0);
+	opacity: 0;
+}
+
+70% {
+	-webkit-transform: scale(1.2);
+	-ms-transform: scale(1.2);
+	transform: scale(1.2);
+	opacity: 1;
+}
+
+100% {
+	-webkit-transform: scale(1);
+	-ms-transform: scale(1);
+	transform: scale(1);
+	opacity: 1;
+}
+
+}
+
+@-webkit-keyframes pulse {
 
 0% {
 	-webkit-transform: scale(1);

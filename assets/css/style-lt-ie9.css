@@ -31,10 +31,36 @@
 
 [class^="icon-"]:before, [class^="icon-"]:after, [class*=" icon-"]:before, [class*=" icon-"]:after, a[href$=".pdf"]:before, a[href$=".PDF"]:before, a[href$=".doc"]:before, a[href$=".docx"]:before, a[href$=".DOC"]:before, a[href$=".DOCX"]:before, a[href$=".xls"]:before, a[href$=".xlsx"]:before, a[href$=".XLS"]:before, a[href$=".XLSX"]:before, a[href$=".ppt"]:before, a[href$=".pptx"]:before, a[href$=".PPT"]:before, a[href$=".PPTX"]:before, a[href$=".txt"]:before, a[href$=".TXT"]:before, a[href$=".mp3"]:before, a[href$=".MP3"]:before, a[href*="itunes"]:before, a.htmlDownload:before, a.external-link:after, #logo:before { font-family: 'icons'; speak: none; font-style: normal; font-weight: normal; font-variant: normal; text-transform: none; line-height: 1; display: inline-block; text-align: center; vertical-align: middle; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
 
+/*   SHARED ANIMATION EFFECTS   */
+/*******************************************\
+	RUMBLE EFFECT
+---------------------------------------------
+	Element jitteres from side to side
+\*******************************************/
+/*******************************************\
+	SPIN EFFECT
+---------------------------------------------
+	Element spins around in one spot
+\*******************************************/
+/*******************************************\
+	POP IN EFFECT
+---------------------------------------------
+	Element starts off hidden, then quickly
+	grows large, then snaps to normal size
+	(requires element to start at opacity:0)
+\*******************************************/
+.popin, .js-popins__piece.js-popins__piece--pop { opacity: 1; }
+
+/*******************************************\
+	PULSE EFFECT
+---------------------------------------------
+	Element periodically grows slightly and
+	then shrinks again.
+\*******************************************/
 a[href$=".pdf"]:before, a[href$=".PDF"]:before, a[href$=".doc"]:before, a[href$=".docx"]:before, a[href$=".DOC"]:before, a[href$=".DOCX"]:before, a[href$=".xls"]:before, a[href$=".xlsx"]:before, a[href$=".XLS"]:before, a[href$=".XLSX"]:before, a[href$=".ppt"]:before, a[href$=".pptx"]:before, a[href$=".PPT"]:before, a[href$=".PPTX"]:before, a[href$=".txt"]:before, a[href$=".TXT"]:before, a[href$=".mp3"]:before, a[href$=".MP3"]:before, a[href*="itunes"]:before, a.htmlDownload:before { border: 1px solid #b9282b; padding: 2px 0; content: ""; margin-right: 5px; width: 18px; text-align: center; font-size: 10px; }
 
 /*   SHARED ANIMATION EFFECTS   */
-.js-popins__piece.js-popins__piece--pop { opacity: 1; }
+.popin, .js-popins__piece.js-popins__piece--pop { opacity: 1; }
 
 /*icon font*/
 @font-face { font-family: 'icons'; src: url("fonts/icons.eot?-nx4lre"); src: url("fonts/icons.eot?#iefix-nx4lre") format("embedded-opentype"), url("fonts/icons.woff?-nx4lre") format("woff"), url("fonts/icons.ttf?-nx4lre") format("truetype"), url("fonts/icons.svg?-nx4lre#icons") format("svg"); font-weight: normal; font-style: normal; }
@@ -183,6 +209,8 @@ table tbody th { font-weight: bold; }
 /************************
 		Tools
 ************************/
+.noDots, .columns { margin: 0; padding: 0; list-style: none; }
+
 .clear { clear: both; }
 
 .js-count-up, .js-alpha-count { white-space: nowrap; }
@@ -226,8 +254,6 @@ a.htmlDownload:before { content: ""; display: inline-block; color: #4469CE; b
 /***********************\
 	Column styling
 \***********************/
-.columns { margin: 0; padding: 0; list-style: none; }
-
 .column { float: left; padding: 0; margin: 0; }
 
 .full { width: 100%; }

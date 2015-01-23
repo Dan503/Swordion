@@ -39,24 +39,88 @@ input[type="radio"]:checked + label:after, input[type="checkbox"]:checked + labe
 
 [class^="icon-"]:before, [class^="icon-"]:after, [class*=" icon-"]:before, [class*=" icon-"]:after, a[href$=".pdf"]:before, a[href$=".PDF"]:before, a[href$=".doc"]:before, a[href$=".docx"]:before, a[href$=".DOC"]:before, a[href$=".DOCX"]:before, a[href$=".xls"]:before, a[href$=".xlsx"]:before, a[href$=".XLS"]:before, a[href$=".XLSX"]:before, a[href$=".ppt"]:before, a[href$=".pptx"]:before, a[href$=".PPT"]:before, a[href$=".PPTX"]:before, a[href$=".txt"]:before, a[href$=".TXT"]:before, a[href$=".mp3"]:before, a[href$=".MP3"]:before, a[href*="itunes"]:before, a.htmlDownload:before, a.external-link:after, #logo:before { font-family: 'icons'; speak: none; font-style: normal; font-weight: normal; font-variant: normal; text-transform: none; line-height: 1; display: inline-block; text-align: center; vertical-align: middle; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
 
-.js-count-up + *, .js-alpha-count + * { -webkit-transition: all 0.5s ease-in-out; -moz-transition: all 0.5s ease-in-out; -o-transition: all 0.5s ease-in-out; transition: all 0.5s ease-in-out; }
+.js-count-up + *, .js-alpha-count + * { -webkit-transition: all 0.5s ease-in-out; transition: all 0.5s ease-in-out; }
 
-input[type="radio"] + label:before, input[type="radio"] + label:after, input[type="checkbox"] + label:before, input[type="checkbox"] + label:after { -webkit-transition: all 0.2s ease-out; -moz-transition: all 0.2s ease-out; -o-transition: all 0.2s ease-out; transition: all 0.2s ease-out; }
+input[type="radio"] + label:before, input[type="radio"] + label:after, input[type="checkbox"] + label:before, input[type="checkbox"] + label:after { -webkit-transition: all 0.2s ease-out; transition: all 0.2s ease-out; }
 
-.simple-animation-example.activate .simple1 { -webkit-transition: all 1s ease-in-out; -moz-transition: all 1s ease-in-out; -o-transition: all 1s ease-in-out; transition: all 1s ease-in-out; }
+.simple-animation-example.activate .simple1 { -webkit-transition: all 1s ease-in-out; transition: all 1s ease-in-out; }
 
-.js-count-up.forced-visible, .forced-visible.js-alpha-count { -moz-transition: none !important; -webkit-transition: none !important; -o-transition: color 0 ease-in !important; transition: none !important; }
+.js-count-up.forced-visible, .forced-visible.js-alpha-count { -webkit-transition: none !important; transition: none !important; }
+
+/*   SHARED ANIMATION EFFECTS   */
+/*******************************************\
+	RUMBLE EFFECT
+---------------------------------------------
+	Element jitteres from side to side
+\*******************************************/
+@-webkit-keyframes rumble { 0% { -webkit-transform: rotate(0deg); -ms-transform: rotate(0deg); transform: rotate(0deg); }
+  16.66667% { -webkit-transform: rotate(0deg); -ms-transform: rotate(0deg); transform: rotate(0deg); }
+  33.33333% { -webkit-transform: rotate(-5deg); -ms-transform: rotate(-5deg); transform: rotate(-5deg); }
+  50% { -webkit-transform: rotate(5deg); -ms-transform: rotate(5deg); transform: rotate(5deg); }
+  66.66667% { -webkit-transform: rotate(-5deg); -ms-transform: rotate(-5deg); transform: rotate(-5deg); }
+  83.33333% { -webkit-transform: rotate(0deg); -ms-transform: rotate(0deg); transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(0deg); -ms-transform: rotate(0deg); transform: rotate(0deg); } }
+@keyframes rumble { 0% { -webkit-transform: rotate(0deg); -ms-transform: rotate(0deg); transform: rotate(0deg); }
+  16.66667% { -webkit-transform: rotate(0deg); -ms-transform: rotate(0deg); transform: rotate(0deg); }
+  33.33333% { -webkit-transform: rotate(-5deg); -ms-transform: rotate(-5deg); transform: rotate(-5deg); }
+  50% { -webkit-transform: rotate(5deg); -ms-transform: rotate(5deg); transform: rotate(5deg); }
+  66.66667% { -webkit-transform: rotate(-5deg); -ms-transform: rotate(-5deg); transform: rotate(-5deg); }
+  83.33333% { -webkit-transform: rotate(0deg); -ms-transform: rotate(0deg); transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(0deg); -ms-transform: rotate(0deg); transform: rotate(0deg); } }
+.rumble, .rumble--onHover:hover { -webkit-animation: rumble 0.5s infinite linear; animation: rumble 0.5s infinite linear; }
+
+.rumbleSingle, .rumbleSingle--onHover:hover { -webkit-animation: rumble 0.5s 1 linear; animation: rumble 0.5s 1 linear; }
+
+/*******************************************\
+	SPIN EFFECT
+---------------------------------------------
+	Element spins around in one spot
+\*******************************************/
+@-webkit-keyframes spin { 0% { -webkit-transform: rotate(0deg); -ms-transform: rotate(0deg); transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); -ms-transform: rotate(360deg); transform: rotate(360deg); } }
+@keyframes spin { 0% { -webkit-transform: rotate(0deg); -ms-transform: rotate(0deg); transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); -ms-transform: rotate(360deg); transform: rotate(360deg); } }
+.spin, .spin--onHover:hover { -webkit-animation: spin 0.5s infinite linear; animation: spin 0.5s infinite linear; }
+
+.spinSingle, .spinSingle--onHover:hover { -webkit-animation: spin 0.5s 1 linear; animation: spin 0.5s 1 linear; }
+
+/*******************************************\
+	POP IN EFFECT
+---------------------------------------------
+	Element starts off hidden, then quickly
+	grows large, then snaps to normal size
+	(requires element to start at opacity:0)
+\*******************************************/
+@-webkit-keyframes popin { 0% { -webkit-transform: scale(0); -ms-transform: scale(0); transform: scale(0); opacity: 0; }
+  70% { -webkit-transform: scale(1.2); -ms-transform: scale(1.2); transform: scale(1.2); opacity: 1; }
+  100% { -webkit-transform: scale(1); -ms-transform: scale(1); transform: scale(1); opacity: 1; } }
+@keyframes popin { 0% { -webkit-transform: scale(0); -ms-transform: scale(0); transform: scale(0); opacity: 0; }
+  70% { -webkit-transform: scale(1.2); -ms-transform: scale(1.2); transform: scale(1.2); opacity: 1; }
+  100% { -webkit-transform: scale(1); -ms-transform: scale(1); transform: scale(1); opacity: 1; } }
+.popin, .js-popins__piece.js-popins__piece--pop { opacity: 1; -webkit-animation: popin 0.5s 1 ease-out; animation: popin 0.5s 1 ease-out; }
+
+/*******************************************\
+	PULSE EFFECT
+---------------------------------------------
+	Element periodically grows slightly and
+	then shrinks again.
+\*******************************************/
+@-webkit-keyframes pulse { 0% { -webkit-transform: scale(1); -ms-transform: scale(1); transform: scale(1); }
+  30% { -webkit-transform: scale(1.1); -ms-transform: scale(1.1); transform: scale(1.1); }
+  50% { -webkit-transform: scale(1); -ms-transform: scale(1); transform: scale(1); }
+  100% { -webkit-transform: scale(1); -ms-transform: scale(1); transform: scale(1); } }
+@keyframes pulse { 0% { -webkit-transform: scale(1); -ms-transform: scale(1); transform: scale(1); }
+  30% { -webkit-transform: scale(1.1); -ms-transform: scale(1.1); transform: scale(1.1); }
+  50% { -webkit-transform: scale(1); -ms-transform: scale(1); transform: scale(1); }
+  100% { -webkit-transform: scale(1); -ms-transform: scale(1); transform: scale(1); } }
+.pulse, .pulse--onHover:hover { -webkit-animation: pulse 1s infinite linear; animation: pulse 1s infinite linear; }
+
+.pulseSingle, .pulseSingle--onHover:hover { -webkit-animation: pulse 1s 1 linear; animation: pulse 1s 1 linear; }
 
 a[href$=".pdf"]:before, a[href$=".PDF"]:before, a[href$=".doc"]:before, a[href$=".docx"]:before, a[href$=".DOC"]:before, a[href$=".DOCX"]:before, a[href$=".xls"]:before, a[href$=".xlsx"]:before, a[href$=".XLS"]:before, a[href$=".XLSX"]:before, a[href$=".ppt"]:before, a[href$=".pptx"]:before, a[href$=".PPT"]:before, a[href$=".PPTX"]:before, a[href$=".txt"]:before, a[href$=".TXT"]:before, a[href$=".mp3"]:before, a[href$=".MP3"]:before, a[href*="itunes"]:before, a.htmlDownload:before { border: 1px solid #b9282b; padding: 2px 0; content: ""; margin-right: 5px; width: 18px; text-align: center; font-size: 10px; }
 
 /*   SHARED ANIMATION EFFECTS   */
 @-webkit-keyframes popin { 0% { -webkit-transform: scale(0); -ms-transform: scale(0); transform: scale(0); opacity: 0; }
-  70% { -webkit-transform: scale(1.2); -ms-transform: scale(1.2); transform: scale(1.2); opacity: 1; }
-  100% { -webkit-transform: scale(1); -ms-transform: scale(1); transform: scale(1); opacity: 1; } }
-@-moz-keyframes popin { 0% { -webkit-transform: scale(0); -ms-transform: scale(0); transform: scale(0); opacity: 0; }
-  70% { -webkit-transform: scale(1.2); -ms-transform: scale(1.2); transform: scale(1.2); opacity: 1; }
-  100% { -webkit-transform: scale(1); -ms-transform: scale(1); transform: scale(1); opacity: 1; } }
-@-o-keyframes popin { 0% { -webkit-transform: scale(0); -ms-transform: scale(0); transform: scale(0); opacity: 0; }
   70% { -webkit-transform: scale(1.2); -ms-transform: scale(1.2); transform: scale(1.2); opacity: 1; }
   100% { -webkit-transform: scale(1); -ms-transform: scale(1); transform: scale(1); opacity: 1; } }
 @keyframes popin { 0% { -webkit-transform: scale(0); -ms-transform: scale(0); transform: scale(0); opacity: 0; }
@@ -66,19 +130,13 @@ a[href$=".pdf"]:before, a[href$=".PDF"]:before, a[href$=".doc"]:before, a[href$=
   30% { -webkit-transform: scale(1.1); -ms-transform: scale(1.1); transform: scale(1.1); }
   50% { -webkit-transform: scale(1); -ms-transform: scale(1); transform: scale(1); }
   100% { -webkit-transform: scale(1); -ms-transform: scale(1); transform: scale(1); } }
-@-moz-keyframes pulse { 0% { -webkit-transform: scale(1); -ms-transform: scale(1); transform: scale(1); }
-  30% { -webkit-transform: scale(1.1); -ms-transform: scale(1.1); transform: scale(1.1); }
-  50% { -webkit-transform: scale(1); -ms-transform: scale(1); transform: scale(1); }
-  100% { -webkit-transform: scale(1); -ms-transform: scale(1); transform: scale(1); } }
-@-o-keyframes pulse { 0% { -webkit-transform: scale(1); -ms-transform: scale(1); transform: scale(1); }
-  30% { -webkit-transform: scale(1.1); -ms-transform: scale(1.1); transform: scale(1.1); }
-  50% { -webkit-transform: scale(1); -ms-transform: scale(1); transform: scale(1); }
-  100% { -webkit-transform: scale(1); -ms-transform: scale(1); transform: scale(1); } }
 @keyframes pulse { 0% { -webkit-transform: scale(1); -ms-transform: scale(1); transform: scale(1); }
   30% { -webkit-transform: scale(1.1); -ms-transform: scale(1.1); transform: scale(1.1); }
   50% { -webkit-transform: scale(1); -ms-transform: scale(1); transform: scale(1); }
   100% { -webkit-transform: scale(1); -ms-transform: scale(1); transform: scale(1); } }
-.js-popins__piece.js-popins__piece--pop { opacity: 1; -webkit-animation: popin 0.5s 1 ease-out; -moz-animation: popin 0.5s 1 ease-out; -o-animation: popin 0.5s 1 ease-out; animation: popin 0.5s 1 ease-out; }
+.popin, .js-popins__piece.js-popins__piece--pop { opacity: 1; -webkit-animation: popin 0.5s 1 ease-out; animation: popin 0.5s 1 ease-out; }
+
+.pulse, .pulse--onHover:hover { -webkit-animation: pulse 1s infinite linear; animation: pulse 1s infinite linear; }
 
 /*icon font*/
 @font-face { font-family: 'icons'; src: url("fonts/icons.eot?-nx4lre"); src: url("fonts/icons.eot?#iefix-nx4lre") format("embedded-opentype"), url("fonts/icons.woff?-nx4lre") format("woff"), url("fonts/icons.ttf?-nx4lre") format("truetype"), url("fonts/icons.svg?-nx4lre#icons") format("svg"); font-weight: normal; font-style: normal; }
@@ -227,15 +285,17 @@ table tbody th { font-weight: bold; }
 /************************
 		Tools
 ************************/
+.noDots, .columns { margin: 0; padding: 0; list-style: none; }
+
 .clear { clear: both; }
 
-.js-count-up, .js-alpha-count { -webkit-transition: all 2s ease-in-out; -moz-transition: all 2s ease-in-out; -o-transition: all 2s ease-in-out; transition: all 2s ease-in-out; white-space: nowrap; }
+.js-count-up, .js-alpha-count { -webkit-transition: all 2s ease-in-out; transition: all 2s ease-in-out; white-space: nowrap; }
 .js .js-count-up, .js .js-alpha-count { opacity: 0; }
 .js-count-up + *, .js-alpha-count + * { opacity: 0; }
 .js-count-up.activate, .activate.js-alpha-count, .js-count-up.forced-visible, .forced-visible.js-alpha-count { opacity: 1; }
 .js-count-up.activate + *, .activate.js-alpha-count + *, .js-count-up.forced-visible + *, .forced-visible.js-alpha-count + * { opacity: 1; }
 
-.js-alpha-count { -webkit-transition: all 1s ease-in-out; -moz-transition: all 1s ease-in-out; -o-transition: all 1s ease-in-out; transition: all 1s ease-in-out; }
+.js-alpha-count { -webkit-transition: all 1s ease-in-out; transition: all 1s ease-in-out; }
 
 .js-popins__piece { opacity: 0; }
 
@@ -244,7 +304,7 @@ table tbody th { font-weight: bold; }
 .tooltip { position: relative; }
 @media screen and (min-width: 961px) { .tooltip:hover .tooltip-text, .tooltip:focus .tooltip-text { -webkit-transform: scale(1); -ms-transform: scale(1); transform: scale(1); opacity: 1; } }
 
-.tooltip-text { -webkit-transform: scale(0); -ms-transform: scale(0); transform: scale(0); opacity: 0; -webkit-transform-origin: bottom center; -ms-transform-origin: bottom center; transform-origin: bottom center; -webkit-transition: all 0.2s ease-in-out; -moz-transition: all 0.2s ease-in-out; -o-transition: all 0.2s ease-in-out; transition: all 0.2s ease-in-out; position: absolute; text-align: center; bottom: 150%; left: 50%; margin-left: -150px; background: #000; color: #fff; width: 300px; font-size: 1.3em; padding: 10px; z-index: 5; }
+.tooltip-text { -webkit-transform: scale(0); -ms-transform: scale(0); transform: scale(0); opacity: 0; -webkit-transform-origin: bottom center; -ms-transform-origin: bottom center; transform-origin: bottom center; -webkit-transition: all 0.2s ease-in-out; transition: all 0.2s ease-in-out; position: absolute; text-align: center; bottom: 150%; left: 50%; margin-left: -150px; background: #000; color: #fff; width: 300px; font-size: 1.3em; padding: 10px; z-index: 5; }
 .tooltip-text:before { content: ""; display: block; display: block; width: 0 !important; height: 0 !important; overflow: hidden; border-bottom: none; border-right: 8px solid transparent; border-left: 8px solid transparent; border-top: 10px solid #000; top: 100%; }
 .tooltip-text.bellow { -webkit-transform-origin: top center; -ms-transform-origin: top center; transform-origin: top center; bottom: auto; top: 150%; }
 .tooltip-text.bellow:before { display: block; width: 0 !important; height: 0 !important; overflow: hidden; border-top: none; border-left: 8px solid transparent; border-right: 8px solid transparent; border-bottom: 10px solid #000; top: auto; bottom: 100%; }
@@ -273,8 +333,6 @@ a.htmlDownload:before { content: ""; display: inline-block; color: #4469CE; b
 /***********************\
 	Column styling
 \***********************/
-.columns { margin: 0; padding: 0; list-style: none; }
-
 .column { float: left; padding: 0; margin: 0; }
 
 .full { width: 100%; }
@@ -317,7 +375,7 @@ select option { font-weight: 100; }
 
 .js select, .js input[type="file"] { visibility: hidden; }
 
-.styled-select { width: 100%; overflow: hidden; background-color: #fff; border: 1px solid #ccc; border-radius: 0; position: relative; cursor: pointer; z-index: 0; display: inline-block; -webkit-transition: all 0.25s background; -moz-transition: all 0.25s background; -o-transition: all 0.25s background; transition: all 0.25s background; /*@include M-icon(arrow-down, 5px){
+.styled-select { width: 100%; overflow: hidden; background-color: #fff; border: 1px solid #ccc; border-radius: 0; position: relative; cursor: pointer; z-index: 0; display: inline-block; -webkit-transition: all 0.25s background; transition: all 0.25s background; /*@include M-icon(arrow-down, 5px){
 	color: #000;
 	z-index: 0;
 	@include M-centered(v);
@@ -359,7 +417,7 @@ input[type="radio"] + label:after, input[type="radio"] + label:before { border-r
 
 .custombox-overlay { background: rgba(255, 255, 255, 0.5) !important; }
 
-.close-info-btn { position: relative; -webkit-transform: rotate(45deg); -ms-transform: rotate(45deg); transform: rotate(45deg); -webkit-transition: all 0.3s ease-in-out; -moz-transition: all 0.3s ease-in-out; -o-transition: all 0.3s ease-in-out; transition: all 0.3s ease-in-out; border-radius: 50%; display: block; height: 20px; width: 20px; background-color: #fff; position: absolute; top: 15px; right: 15px; }
+.close-info-btn { position: relative; -webkit-transform: rotate(45deg); -ms-transform: rotate(45deg); transform: rotate(45deg); -webkit-transition: all 0.3s ease-in-out; transition: all 0.3s ease-in-out; border-radius: 50%; display: block; height: 20px; width: 20px; background-color: #fff; position: absolute; top: 15px; right: 15px; }
 .close-info-btn:before, .close-info-btn:after { display: block; content: ''; position: absolute; top: 0; bottom: 0; left: 0; right: 0; margin: auto; border: 0px solid #939393; }
 .close-info-btn:before { height: 0px; width: 12px; border-bottom-width: 2px; }
 .close-info-btn:after { height: 12px; width: 0px; border-left-width: 2px; }
@@ -422,8 +480,8 @@ input[type="radio"] + label:after, input[type="radio"] + label:before { border-r
 .simple-animation-example .simple2 { bottom: 100%; left: 100%; }
 .simple-animation-example .simple3 { -webkit-transform: scale(0); -ms-transform: scale(0); transform: scale(0); }
 .simple-animation-example.activate .simple1 { opacity: 1; }
-.simple-animation-example.stage2 .simple2 { -webkit-transition: all 0.5s ease-in-out; -moz-transition: all 0.5s ease-in-out; -o-transition: all 0.5s ease-in-out; transition: all 0.5s ease-in-out; bottom: 0; left: 0; }
-.simple-animation-example.stage3 .simple3 { -webkit-transition: all 2s ease-in-out; -moz-transition: all 2s ease-in-out; -o-transition: all 2s ease-in-out; transition: all 2s ease-in-out; -webkit-transform: scale(1); -ms-transform: scale(1); transform: scale(1); }
+.simple-animation-example.stage2 .simple2 { -webkit-transition: all 0.5s ease-in-out; transition: all 0.5s ease-in-out; bottom: 0; left: 0; }
+.simple-animation-example.stage3 .simple3 { -webkit-transition: all 2s ease-in-out; transition: all 2s ease-in-out; -webkit-transform: scale(1); -ms-transform: scale(1); transform: scale(1); }
 
 /* jQuery Custombox v1.1.3 - 2014/02/18 jQuery Modal Window Effects. http://dixso.github.io/custombox/ (c) 2014 Julio De La Calle - http://dixso.net - @dixso9  Under MIT License - http://www.opensource.org/licenses/mit-license.php */
 /* -------------------------------------------------

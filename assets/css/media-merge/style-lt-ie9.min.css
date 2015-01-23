@@ -1,39 +1,39 @@
 /* Simmilar mediaqueries have been merged and CSS has been Minified in this file (Not to be loaded into the browser during site development) */
 
-.icon-pdf:before {
-	content: "\e600";
+.icon-pdf {
+	content: "";
 }
 
-.icon-word:before {
-	content: "\e601";
+.icon-word {
+	content: "";
 }
 
-.icon-excel:before {
-	content: "\e602";
+.icon-excel {
+	content: "";
 }
 
-.icon-powerpoint:before {
-	content: "\e603";
+.icon-powerpoint {
+	content: "";
 }
 
-.icon-text_file:before {
-	content: "\e604";
+.icon-text {
+	content: "";
 }
 
-.icon-audio:before {
-	content: "\e605";
+.icon-audio {
+	content: "";
 }
 
-.icon-podcast:before {
-	content: "\e606";
+.icon-podcast {
+	content: "";
 }
 
-.icon-globe:before {
-	content: "\e607";
+.icon-globe {
+	content: "";
 }
 
-.icon-external:before {
-	content: "\e608";
+.icon-external {
+	content: "";
 }
 
 .desktop-only,
@@ -555,6 +555,13 @@ table thead th {
 	font-weight: 700;
 }
 
+.columns,
+.noDots {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
 .clear {
 	clear: both;
 }
@@ -731,12 +738,6 @@ a.htmlDownload:before {
 	border-color: #4469CE;
 	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#bdcaee', endColorstr='white', GradientType=0);
 	background: #fff;
-}
-
-.columns {
-	margin: 0;
-	padding: 0;
-	list-style: none;
 }
 
 .column {

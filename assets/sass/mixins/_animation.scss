@@ -6,8 +6,6 @@
 @mixin M-animate($settings: 0.5s, $ease: ease-in-out, $var: all){
 	@include M-gt-ie8 {
 	    -webkit-transition: $var $settings $ease;
-	    -moz-transition:  $var $settings $ease;
-	    -o-transition:  $var $settings $ease;
 	    transition:  $var $settings $ease;
 	}
 }
@@ -21,14 +19,10 @@
 @mixin M-anti-animate($important: true) {
 	@include M-gt-ie8 {
 		@if ($important == true){
-		    -moz-transition: none !important;
 		    -webkit-transition: none !important;
-		    -o-transition: color 0 ease-in !important;
 		    transition: none !important;
 		} @else {
-		    -moz-transition: none;
 		    -webkit-transition: none;
-		    -o-transition: color 0 ease-in;
 		    transition: none;
 		}
 	}
@@ -71,12 +65,6 @@
 			//@include M-keyframes-loop($keyframes, $rules);
 			@include M-kf-animation-loop($animation_set);
 		}
-		@-moz-keyframes #{$animation_name} {
-			@include M-kf-animation-loop($animation_set);
-		}
-		@-o-keyframes #{$animation_name} {
-			@include M-kf-animation-loop($animation_set);
-		}
 		@keyframes #{$animation_name} {
 			@include M-kf-animation-loop($animation_set);
 		}
@@ -89,8 +77,6 @@
 @mixin M-kf-predefined($animation_name, $settings: 1s, $loops: infinite, $ease: linear){
 	@include M-gt-ie8 {
 		-webkit-animation: $animation_name $settings $loops $ease; //* Safari 4+ */
-		-moz-animation:    $animation_name $settings $loops $ease; //* Fx 5+ */
-		-o-animation:      $animation_name $settings $loops $ease; //* Opera 12+ */
 		animation:         $animation_name $settings $loops $ease; //* IE 10+, Fx 29+ */
 
 	}

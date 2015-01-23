@@ -1,0 +1,185 @@
+///////////////////////////////////
+/*   SHARED ANIMATION EFFECTS   */
+/////////////////////////////////
+
+
+/*******************************************\
+	RUMBLE EFFECT
+---------------------------------------------
+	Element jitteres from side to side
+\*******************************************/
+
+@function rumble_generator($rotation){
+	@return
+		((rotate, 0),),
+		((rotate, -$rotation),),
+		((rotate, $rotation),),
+		((rotate, -$rotation),),
+		((rotate, 0),),
+		((rotate, 0),),
+	;
+}
+
+$rumble:rumble_generator(5);
+
+@if ($main-sheet == true){@include M-kf-definition( rumble, kf_generator($rumble) );}
+
+//////////////// Use the following //////////////////////////
+
+//Mixin for custom functionality
+
+//eg. @include M-rumble(animation_name, 2); would rumble the element 2 degrees either side
+//if changing rotation distance, unique animation name is required
+
+@mixin M-rumble($name: rumble, $rotation: 5, $settings: 0.5s, $loops:infinite){
+	@if ($name == rumble){
+		@include M-kf-predefined(rumble, $settings, $loops);
+	} @else {
+		@include M-kf-animate($name, kf_generator(rumble_generator($rotation)), $settings, $loops);
+	}
+}
+
+//@extends for base functionality
+%rumble { @include M-rumble; }
+%rumbleSingle { @include M-rumble(rumble, 5, 0.5s, 1); }
+
+//classes for canned functionality
+@if ($main-sheet == true){
+	.rumble,
+	.rumble--onHover:hover { @extend %rumble !optional; }
+
+	.rumbleSingle,
+	.rumbleSingle--onHover:hover { @extend %rumbleSingle !optional; }
+}
+
+
+
+/*******************************************\
+	SPIN EFFECT
+---------------------------------------------
+	Element spins around in one spot
+\*******************************************/
+$spin:
+	(
+		(rotate, 0),
+	) 0%, (
+		(rotate, 360),
+	) 100%
+;
+@if ($main-sheet == true){@include M-kf-definition(spin,$spin);}
+
+//////////////// Use the following //////////////////////////
+
+//mixin for custom functionality (changes how fast it spins)
+@mixin M-spin($settings: 0.5s, $loops: infinite){
+	@include M-kf-predefined(spin,$settings, $loops, linear);
+}
+
+//@extend for base functionality
+%spin { @include M-spin; }
+%spinSingle { @include M-spin(0.5s, 1) }
+
+//classes for canned functionality
+@if ($main-sheet == true){
+	.spin,
+	.spin--onHover:hover { @extend %spin !optional; }
+
+	.spinSingle,
+	.spinSingle--onHover:hover { @extend %spinSingle !optional; }
+}
+
+
+/*******************************************\
+	POP IN EFFECT
+---------------------------------------------
+	Element starts off hidden, then quickly
+	grows large, then snaps to normal size
+	(requires element to start at opacity:0)
+\*******************************************/
+
+@function popin_generator($scale){
+	@return (
+			(scale, 0),
+			(opacity, 0),
+		) 0%, (
+			(scale, $scale),
+			(opacity, 1),
+		) 70%, (
+			(scale, 1),
+			(opacity, 1),
+		) 100%,
+	;
+}
+
+$popin: popin_generator(1.2);
+@if ($main-sheet == true){@include M-kf-definition(popin,$popin);}
+
+//////////////// Use the following //////////////////////////
+
+//mixin for custom functionality
+@mixin M-popin($settings: 0.5s, $name:popin, $growth:1.2 ){
+	opacity: 1;
+	@if ($name == popin){
+		@include M-kf-predefined(popin,$settings,1,ease-out);
+	} @else {
+		@include M-kf-animate($name, kf_generator(popin_generator($growth)), $settings, 1);
+	}
+}
+
+
+//@extend for base functionality
+%popin { @include M-popin; }
+
+//class for canned functionality
+@if ($main-sheet == true){
+	.popin { @extend %popin !optional; }
+}
+
+/*******************************************\
+	PULSE EFFECT
+---------------------------------------------
+	Element periodically grows slightly and
+	then shrinks again.
+\*******************************************/
+
+@function pulse_generator($scale, $stop1: 30%, $stop2: 50%){
+	@return (
+			(scale, 1),
+		) 0%, (
+			(scale, $scale),
+		) $stop1, (
+			(scale, 1),
+		) $stop2, (
+			(scale, 1),
+		) 100%
+	;
+}
+
+$pulse: pulse_generator(1.1);
+
+@if ($main-sheet == true){@include M-kf-definition(pulse,$pulse);}
+
+//////////////// Use the following //////////////////////////
+
+//mixin for custom functionality
+@mixin M-pulse($name: pulse,$settings: 1s, $loops:infinite, $scale:1.1, $stop1: 30%, $stop2: 50%){
+	@if ($name == pulse){
+		@include M-kf-predefined(pulse,$settings,$loops);
+	} @else {
+		@include M-kf-animate($name, kf_generator(pulse_generator($scale, $stop1, $stop2)), $settings, 1);
+	}
+}
+
+//@extend for base functionality
+%pulse { @include M-pulse; }
+%pulseSingle { @include M-pulse(pulse,1s,1); }
+
+
+//classes for canned functionality
+@if ($main-sheet == true){
+	.pulse,
+	.pulse--onHover:hover { @extend %pulse !optional; }
+
+	.pulseSingle,
+	.pulseSingle--onHover:hover { @extend %pulseSingle !optional; }
+}

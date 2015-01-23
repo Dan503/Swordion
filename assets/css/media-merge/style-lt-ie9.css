@@ -121,6 +121,40 @@ a.external-link:after,
 	-moz-osx-font-smoothing: grayscale;
 }
 
+/*   SHARED ANIMATION EFFECTS   */
+
+/*******************************************\
+	RUMBLE EFFECT
+---------------------------------------------
+	Element jitteres from side to side
+\*******************************************/
+
+/*******************************************\
+	SPIN EFFECT
+---------------------------------------------
+	Element spins around in one spot
+\*******************************************/
+
+/*******************************************\
+	POP IN EFFECT
+---------------------------------------------
+	Element starts off hidden, then quickly
+	grows large, then snaps to normal size
+	(requires element to start at opacity:0)
+\*******************************************/
+
+.popin,
+.js-popins__piece.js-popins__piece--pop {
+	opacity: 1;
+}
+
+/*******************************************\
+	PULSE EFFECT
+---------------------------------------------
+	Element periodically grows slightly and
+	then shrinks again.
+\*******************************************/
+
 a[href$=".pdf"]:before,
 a[href$=".PDF"]:before,
 a[href$=".doc"]:before,
@@ -152,6 +186,7 @@ a.htmlDownload:before {
 
 /*   SHARED ANIMATION EFFECTS   */
 
+.popin,
 .js-popins__piece.js-popins__piece--pop {
 	opacity: 1;
 }
@@ -576,6 +611,13 @@ table tbody th {
 		Tools
 ************************/
 
+.noDots,
+.columns {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
 .clear {
 	clear: both;
 }
@@ -777,12 +819,6 @@ a.htmlDownload:before {
 /***********************\
 	Column styling
 \***********************/
-
-.columns {
-	margin: 0;
-	padding: 0;
-	list-style: none;
-}
 
 .column {
 	float: left;

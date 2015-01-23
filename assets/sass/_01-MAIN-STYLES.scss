@@ -60,6 +60,10 @@ table{text-align:left; width:100%;
 		Tools
 ************************/
 
+//prevent list items showing dot points
+%noDots{ margin: 0; padding: 0; list-style: none }
+.noDots { @extend %noDots }
+
 .clear { clear: both; }
 
 .js-count-up {
@@ -157,7 +161,7 @@ a.htmlDownload { @include M-download_icons(globe,#4469CE,30%); }
 	Column styling
 \***********************/
 
-.columns { 	margin: 0; padding: 0; list-style: none; @extend .clearfix; }
+.columns { 	@extend %noDots; @extend %clearfix; }
 
 .column { float: left; padding: 0; margin: 0; }
 

@@ -1,39 +1,39 @@
 /* Simmilar mediaqueries have been merged and CSS has been Minified in this file (Not to be loaded into the browser during site development) */
 
-.icon-pdf:before {
-	content: "\e600";
+.icon-pdf {
+	content: "";
 }
 
-.icon-word:before {
-	content: "\e601";
+.icon-word {
+	content: "";
 }
 
-.icon-excel:before {
-	content: "\e602";
+.icon-excel {
+	content: "";
 }
 
-.icon-powerpoint:before {
-	content: "\e603";
+.icon-powerpoint {
+	content: "";
 }
 
-.icon-text_file:before {
-	content: "\e604";
+.icon-text {
+	content: "";
 }
 
-.icon-audio:before {
-	content: "\e605";
+.icon-audio {
+	content: "";
 }
 
-.icon-podcast:before {
-	content: "\e606";
+.icon-podcast {
+	content: "";
 }
 
-.icon-globe:before {
-	content: "\e607";
+.icon-globe {
+	content: "";
 }
 
-.icon-external:before {
-	content: "\e608";
+.icon-external {
+	content: "";
 }
 
 .desktop-only,
@@ -126,8 +126,6 @@ a[href*=itunes]:before {
 .js-alpha-count+*,
 .js-count-up+* {
 	-webkit-transition: all .5s ease-in-out;
-	-moz-transition: all .5s ease-in-out;
-	-o-transition: all .5s ease-in-out;
 	transition: all .5s ease-in-out;
 }
 
@@ -136,23 +134,17 @@ input[type=checkbox]+label:before,
 input[type=radio]+label:after,
 input[type=radio]+label:before {
 	-webkit-transition: all .2s ease-out;
-	-moz-transition: all .2s ease-out;
-	-o-transition: all .2s ease-out;
 	transition: all .2s ease-out;
 }
 
 .simple-animation-example.activate .simple1 {
 	-webkit-transition: all 1s ease-in-out;
-	-moz-transition: all 1s ease-in-out;
-	-o-transition: all 1s ease-in-out;
 	transition: all 1s ease-in-out;
 }
 
 .forced-visible.js-alpha-count,
 .js-count-up.forced-visible {
-	-moz-transition: none!important;
 	-webkit-transition: none!important;
-	-o-transition: color 0 ease-in!important;
 	transition: none!important;
 }
 
@@ -187,8 +179,6 @@ a[href*=itunes]:before {
 .js-popins__piece.js-popins__piece--pop {
 	opacity: 1;
 	-webkit-animation: popin .5s 1 ease-out;
-	-moz-animation: popin .5s 1 ease-out;
-	-o-animation: popin .5s 1 ease-out;
 	animation: popin .5s 1 ease-out;
 }
 
@@ -590,6 +580,13 @@ table thead th {
 	font-weight: 700;
 }
 
+.columns,
+.noDots {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
 .clear {
 	clear: both;
 }
@@ -597,8 +594,6 @@ table thead th {
 .js-alpha-count,
 .js-count-up {
 	-webkit-transition: all 2s ease-in-out;
-	-moz-transition: all 2s ease-in-out;
-	-o-transition: all 2s ease-in-out;
 	transition: all 2s ease-in-out;
 	white-space: nowrap;
 }
@@ -623,8 +618,6 @@ table thead th {
 
 .js-alpha-count {
 	-webkit-transition: all 1s ease-in-out;
-	-moz-transition: all 1s ease-in-out;
-	-o-transition: all 1s ease-in-out;
 	transition: all 1s ease-in-out;
 }
 
@@ -649,8 +642,6 @@ table thead th {
 	-ms-transform-origin: bottom center;
 	transform-origin: bottom center;
 	-webkit-transition: all .2s ease-in-out;
-	-moz-transition: all .2s ease-in-out;
-	-o-transition: all .2s ease-in-out;
 	transition: all .2s ease-in-out;
 	position: absolute;
 	text-align: center;
@@ -798,12 +789,6 @@ a.htmlDownload:before {
 	background: linear-gradient(to bottom,#bdcaee 0,#fff 100%);
 }
 
-.columns {
-	margin: 0;
-	padding: 0;
-	list-style: none;
-}
-
 .column {
 	float: left;
 	padding: 0;
@@ -879,8 +864,6 @@ select option {
 	z-index: 0;
 	display: inline-block;
 	-webkit-transition: all .25s background;
-	-moz-transition: all .25s background;
-	-o-transition: all .25s background;
 	transition: all .25s background;
 }
 
@@ -1074,8 +1057,6 @@ input[type=radio]+label:before {
 	-ms-transform: rotate(45deg);
 	transform: rotate(45deg);
 	-webkit-transition: all .3s ease-in-out;
-	-moz-transition: all .3s ease-in-out;
-	-o-transition: all .3s ease-in-out;
 	transition: all .3s ease-in-out;
 	border-radius: 50%;
 	display: block;
@@ -1340,8 +1321,6 @@ input[type=radio]+label:before {
 
 .simple-animation-example.stage2 .simple2 {
 	-webkit-transition: all .5s ease-in-out;
-	-moz-transition: all .5s ease-in-out;
-	-o-transition: all .5s ease-in-out;
 	transition: all .5s ease-in-out;
 	bottom: 0;
 	left: 0;
@@ -1349,8 +1328,6 @@ input[type=radio]+label:before {
 
 .simple-animation-example.stage3 .simple3 {
 	-webkit-transition: all 2s ease-in-out;
-	-moz-transition: all 2s ease-in-out;
-	-o-transition: all 2s ease-in-out;
 	transition: all 2s ease-in-out;
 	-webkit-transform: scale(1);
 	-ms-transform: scale(1);
@@ -2153,56 +2130,6 @@ h3 {
 
 }
 
-@-moz-keyframes popin {
-
-0% {
-	-webkit-transform: scale(0);
-	-ms-transform: scale(0);
-	transform: scale(0);
-	opacity: 0;
-}
-
-70% {
-	-webkit-transform: scale(1.2);
-	-ms-transform: scale(1.2);
-	transform: scale(1.2);
-	opacity: 1;
-}
-
-100% {
-	-webkit-transform: scale(1);
-	-ms-transform: scale(1);
-	transform: scale(1);
-	opacity: 1;
-}
-
-}
-
-@-o-keyframes popin {
-
-0% {
-	-webkit-transform: scale(0);
-	-ms-transform: scale(0);
-	transform: scale(0);
-	opacity: 0;
-}
-
-70% {
-	-webkit-transform: scale(1.2);
-	-ms-transform: scale(1.2);
-	transform: scale(1.2);
-	opacity: 1;
-}
-
-100% {
-	-webkit-transform: scale(1);
-	-ms-transform: scale(1);
-	transform: scale(1);
-	opacity: 1;
-}
-
-}
-
 @keyframes popin {
 
 0% {
@@ -2229,50 +2156,6 @@ h3 {
 }
 
 @-webkit-keyframes pulse {
-
-0% {
-	-webkit-transform: scale(1);
-	-ms-transform: scale(1);
-	transform: scale(1);
-}
-
-30% {
-	-webkit-transform: scale(1.1);
-	-ms-transform: scale(1.1);
-	transform: scale(1.1);
-}
-
-100%,50% {
-	-webkit-transform: scale(1);
-	-ms-transform: scale(1);
-	transform: scale(1);
-}
-
-}
-
-@-moz-keyframes pulse {
-
-0% {
-	-webkit-transform: scale(1);
-	-ms-transform: scale(1);
-	transform: scale(1);
-}
-
-30% {
-	-webkit-transform: scale(1.1);
-	-ms-transform: scale(1.1);
-	transform: scale(1.1);
-}
-
-100%,50% {
-	-webkit-transform: scale(1);
-	-ms-transform: scale(1);
-	transform: scale(1);
-}
-
-}
-
-@-o-keyframes pulse {
 
 0% {
 	-webkit-transform: scale(1);
