@@ -6,11 +6,13 @@
 	and loading functionality
 \*================================================*/
 
-//Google font importation
+@if ($main-sheet == true){
+
+//All Google fonts are imported here
 @import "http://fonts.googleapis.com/css?family=Gudea";
 
 
-//Icon font
+//Loads the icon font
 @font-face {
 	font-family: 'icons';
 	src:url('fonts/icons.eot?-nx4lre');
@@ -21,7 +23,6 @@
 	font-weight: normal;
 	font-style: normal;
 }
-
 
 
 // If we need to load a font manually, we can use this placeholder
@@ -40,3 +41,5 @@ $fontName: xxxxxxxxxxxxxx;
     font-style: normal;
 }
 */
+
+}
