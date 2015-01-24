@@ -71,9 +71,9 @@
     	<p>Please <a href="http://www.enable-javascript.com/">enable javascript</a> to access the full functionality of this site</p>
     </div>
 
-	<div id="sitecontainer" class="container">
+	<div id="siteContainer" class="container">
 		<div id="skipLinks">
-			<a href="#content-start" class="vh focusable" title="">Skip to content</a>
+			<a href="#contentStart" class="vh focusable" title="">Skip to content</a>
 		</div>
 		<header>
 

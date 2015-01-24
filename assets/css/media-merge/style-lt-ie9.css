@@ -144,7 +144,7 @@ a.external-link:after,
 \*******************************************/
 
 .popin,
-.js-popins__piece.js-popins__piece--pop {
+.js-popins-piece.js-popins-piece--pop {
 	opacity: 1;
 }
 
@@ -182,13 +182,6 @@ a.htmlDownload:before {
 	width: 18px;
 	text-align: center;
 	font-size: 10px;
-}
-
-/*   SHARED ANIMATION EFFECTS   */
-
-.popin,
-.js-popins__piece.js-popins__piece--pop {
-	opacity: 1;
 }
 
 /*icon font*/
@@ -622,6 +615,12 @@ table tbody th {
 	clear: both;
 }
 
+.container {
+	margin: 0 auto;
+	max-width: 1200px;
+	float: none;
+}
+
 .js-count-up,
 .js-alpha-count {
 	white-space: nowrap;
@@ -651,7 +650,7 @@ table tbody th {
 	opacity: 1;
 }
 
-.js-popins__piece {
+.js-popins-piece {
 	opacity: 0;
 }
 
@@ -1109,11 +1108,6 @@ input[type="checkbox"] {
 			WHOLE PAGE
 **********************************/
 
-.container {
-	margin: 0 auto;
-	max-width: 1200px;
-}
-
 /**********************************
 			HEADER
 **********************************/
@@ -1283,7 +1277,7 @@ input[type="checkbox"] {
 		Animations
 **********************************/
 
-.animation-demo-item {
+.animationDemoItem {
 	margin: 5px;
 	padding: 20px;
 	background: #000;
@@ -1292,28 +1286,28 @@ input[type="checkbox"] {
 	font-size: 1.3em;
 }
 
-.simple-animation-example {
+.simpleAnimationExample {
 	overflow: hidden;
 }
 
-.simple-animation-example .simple-example-piece {
+.simpleAnimationExample .simpleAnimationExample-piece {
 	position: relative;
 }
 
-.simple-animation-example .simple1 {
+.simpleAnimationExample .simple1 {
 	opacity: 0;
 }
 
-.simple-animation-example .simple2 {
+.simpleAnimationExample .simple2 {
 	bottom: 100%;
 	left: 100%;
 }
 
-.simple-animation-example.activate .simple1 {
+.simpleAnimationExample.activate .simple1 {
 	opacity: 1;
 }
 
-.simple-animation-example.stage2 .simple2 {
+.simpleAnimationExample.stage2 .simple2 {
 	bottom: 0;
 	left: 0;
 }

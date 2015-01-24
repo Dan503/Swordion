@@ -105,7 +105,7 @@ $('#ig-home-sme .man').each(function(i){
 //you can add as many stages as you want, just keep adding higher and higher times to the array
 
 //simple usage
-$('#js-simple-example-element').addStages([
+$('#js-simpleExampleElement').addStages([
 
 	//stage 1: [description] (animation activates when the element scrolls into view)
 
@@ -230,22 +230,22 @@ $('#js-rapid-stage-example').rapidStages(
 
 //adds popin stages for basic content
 $('.js-popins').each(function(){
-	if ($(this).find('.js-popins__piece') > 1){
-		$(this).rapidStages('.js-popins__piece', [], 0, 200, []);
+	if ($(this).find('.js-popins-piece') > 1){
+		$(this).rapidStages('.js-popins-piece', [], 0, 200, []);
 	}
 });
 
 
 //popin pieces
 $('.js-popins').on('activated',function(i){
-	var pieces = $(this).find('.js-popins__piece');
+	var pieces = $(this).find('.js-popins-piece');
 	var count = pieces.length;
 	var increment = 100;
 	if (count > 1){
 		pieces.each(function(i){
 			var _this = $(this);
 			setTimeout(function(){
-				_this.addClass('js-popins__piece--pop');
+				_this.addClass('js-popins-piece--pop');
 			}, (increment * i))
 		});
 	}

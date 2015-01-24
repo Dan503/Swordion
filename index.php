@@ -13,7 +13,7 @@ include 'header.php';
 	<p>Scroll down to see more content</p>
 </div>
 
-				<a href="javascript:void(0)" id="content-start"></a>
+				<a href="javascript:void(0)" id="contentStart"></a>
 				<div id="content">
 					<div class="standard-content">
 						<h2>To do list:</h2>
@@ -76,24 +76,24 @@ include 'header.php';
 
 <h3>Simple re-usable pop-in animation</h3>
 
-<ul class="popin-demo js-popins columns">
+<ul class="popinDemo js-popins columns">
 <?php
 	for ($i = 0; $i < 4; $i++) {
 		echo
-		'<li class="popin-demo__piece js-popins__piece column column--quarters">
-			<p class="animation-demo-item">Pop-in item '.($i+1).'</p>
+		'<li class="popinDemo-piece js-popins-piece column quarters">
+			<p class="animationDemoItem">Pop-in item '.($i+1).'</p>
 		</li>';
 	}
 ?>
 </ul>
 
 <h3>Simple multistage animation</h3>
-<ul id="js-simple-example-element" class="columns simple-animation-example">
+<ul id="js-simpleExampleElement" class="columns simpleAnimationExample">
 <?php
 	for ($i = 0; $i < 4; $i++) {
 		echo
-		'<li class="simple'.($i+1).' simple-example-piece column column--halves">
-			<p class="animation-demo-item">Staged animation item '.($i+1).'</p>
+		'<li class="simple'.($i+1).' simpleAnimationExample-piece column halves">
+			<p class="animationDemoItem">Staged animation item '.($i+1).'</p>
 		</li>';
 	}
 ?>

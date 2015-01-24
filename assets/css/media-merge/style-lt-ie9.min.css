@@ -123,6 +123,11 @@ a[href*=itunes]:before {
 	-moz-osx-font-smoothing: grayscale;
 }
 
+.js-popins-piece.js-popins-piece--pop,
+.popin {
+	opacity: 1;
+}
+
 a.htmlDownload:before,
 a[href$=".pdf"]:before,
 a[href$=".PDF"]:before,
@@ -149,11 +154,6 @@ a[href*=itunes]:before {
 	width: 18px;
 	text-align: center;
 	font-size: 10px;
-}
-
-.js-popins__piece.js-popins__piece--pop,
-.popin {
-	opacity: 1;
 }
 
 @font-face {
@@ -567,6 +567,11 @@ table thead th {
 	clear: both;
 }
 
+.container {
+	margin: 0 auto;
+	max-width: 1200px;
+}
+
 .js-alpha-count,
 .js-count-up {
 	white-space: nowrap;
@@ -590,7 +595,7 @@ table thead th {
 	opacity: 1;
 }
 
-.js-popins__piece {
+.js-popins-piece {
 	opacity: 0;
 }
 
@@ -1002,11 +1007,6 @@ input[type=radio] {
 	color: #fff;
 }
 
-.container {
-	margin: 0 auto;
-	max-width: 1200px;
-}
-
 .standard-content ol,
 .standard-content ul {
 	padding-left: 20px;
@@ -1155,7 +1155,7 @@ input[type=radio] {
 	border-left: none;
 }
 
-.animation-demo-item {
+.animationDemoItem {
 	margin: 5px;
 	padding: 20px;
 	background: #000;
@@ -1164,28 +1164,28 @@ input[type=radio] {
 	font-size: 1.3em;
 }
 
-.simple-animation-example {
+.simpleAnimationExample {
 	overflow: hidden;
 }
 
-.simple-animation-example .simple-example-piece {
+.simpleAnimationExample .simpleAnimationExample-piece {
 	position: relative;
 }
 
-.simple-animation-example .simple1 {
+.simpleAnimationExample .simple1 {
 	opacity: 0;
 }
 
-.simple-animation-example .simple2 {
+.simpleAnimationExample .simple2 {
 	bottom: 100%;
 	left: 100%;
 }
 
-.simple-animation-example.activate .simple1 {
+.simpleAnimationExample.activate .simple1 {
 	opacity: 1;
 }
 
-.simple-animation-example.stage2 .simple2 {
+.simpleAnimationExample.stage2 .simple2 {
 	bottom: 0;
 	left: 0;
 }

@@ -175,6 +175,19 @@ input[type=radio]+label:before {
 	animation: spin .5s 1 linear;
 }
 
+.js-popins-piece.js-popins-piece--pop,
+.popin {
+	opacity: 1;
+	-webkit-animation: popin .5s 1 ease-out;
+	animation: popin .5s 1 ease-out;
+}
+
+.pulse,
+.pulse--onHover:hover {
+	-webkit-animation: pulse 1s infinite linear;
+	animation: pulse 1s infinite linear;
+}
+
 .pulseSingle,
 .pulseSingle--onHover:hover {
 	-webkit-animation: pulse 1s 1 linear;
@@ -207,19 +220,6 @@ a[href*=itunes]:before {
 	width: 18px;
 	text-align: center;
 	font-size: 10px;
-}
-
-.js-popins__piece.js-popins__piece--pop,
-.popin {
-	opacity: 1;
-	-webkit-animation: popin .5s 1 ease-out;
-	animation: popin .5s 1 ease-out;
-}
-
-.pulse,
-.pulse--onHover:hover {
-	-webkit-animation: pulse 1s infinite linear;
-	animation: pulse 1s infinite linear;
 }
 
 @font-face {
@@ -631,6 +631,11 @@ table thead th {
 	clear: both;
 }
 
+.container {
+	margin: 0 auto;
+	max-width: 1200px;
+}
+
 .js-alpha-count,
 .js-count-up {
 	-webkit-transition: all 2s ease-in-out;
@@ -661,7 +666,7 @@ table thead th {
 	transition: all 1s ease-in-out;
 }
 
-.js-popins__piece {
+.js-popins-piece {
 	opacity: 0;
 }
 
@@ -1146,11 +1151,6 @@ input[type=radio]+label:before {
 	color: #fff;
 }
 
-.container {
-	margin: 0 auto;
-	max-width: 1200px;
-}
-
 .standard-content ol,
 .standard-content ul {
 	padding-left: 20px;
@@ -1323,7 +1323,7 @@ input[type=radio]+label:before {
 	transform-origin: bottom right;
 }
 
-.animation-demo-item {
+.animationDemoItem {
 	margin: 5px;
 	padding: 20px;
 	background: #000;
@@ -1332,41 +1332,41 @@ input[type=radio]+label:before {
 	font-size: 1.3em;
 }
 
-.simple-animation-example {
+.simpleAnimationExample {
 	overflow: hidden;
 }
 
-.simple-animation-example .simple-example-piece {
+.simpleAnimationExample .simpleAnimationExample-piece {
 	position: relative;
 }
 
-.simple-animation-example .simple1 {
+.simpleAnimationExample .simple1 {
 	opacity: 0;
 }
 
-.simple-animation-example .simple2 {
+.simpleAnimationExample .simple2 {
 	bottom: 100%;
 	left: 100%;
 }
 
-.simple-animation-example .simple3 {
+.simpleAnimationExample .simple3 {
 	-webkit-transform: scale(0);
 	-ms-transform: scale(0);
 	transform: scale(0);
 }
 
-.simple-animation-example.activate .simple1 {
+.simpleAnimationExample.activate .simple1 {
 	opacity: 1;
 }
 
-.simple-animation-example.stage2 .simple2 {
+.simpleAnimationExample.stage2 .simple2 {
 	-webkit-transition: all .5s ease-in-out;
 	transition: all .5s ease-in-out;
 	bottom: 0;
 	left: 0;
 }
 
-.simple-animation-example.stage3 .simple3 {
+.simpleAnimationExample.stage3 .simple3 {
 	-webkit-transition: all 2s ease-in-out;
 	transition: all 2s ease-in-out;
 	-webkit-transform: scale(1);
@@ -2071,6 +2071,7 @@ input[type=radio]+label:before {
 .halves,
 .quarters,
 .sixths,
+.sixths.colspan5,
 .thirds,
 .thirds.colspan2 {
 	width: 100%;
@@ -2241,100 +2242,6 @@ h3 {
 	-webkit-transform: rotate(360deg);
 	-ms-transform: rotate(360deg);
 	transform: rotate(360deg);
-}
-
-}
-
-@-webkit-keyframes popin {
-
-0% {
-	-webkit-transform: scale(0);
-	-ms-transform: scale(0);
-	transform: scale(0);
-	opacity: 0;
-}
-
-70% {
-	-webkit-transform: scale(1.2);
-	-ms-transform: scale(1.2);
-	transform: scale(1.2);
-	opacity: 1;
-}
-
-100% {
-	-webkit-transform: scale(1);
-	-ms-transform: scale(1);
-	transform: scale(1);
-	opacity: 1;
-}
-
-}
-
-@keyframes popin {
-
-0% {
-	-webkit-transform: scale(0);
-	-ms-transform: scale(0);
-	transform: scale(0);
-	opacity: 0;
-}
-
-70% {
-	-webkit-transform: scale(1.2);
-	-ms-transform: scale(1.2);
-	transform: scale(1.2);
-	opacity: 1;
-}
-
-100% {
-	-webkit-transform: scale(1);
-	-ms-transform: scale(1);
-	transform: scale(1);
-	opacity: 1;
-}
-
-}
-
-@-webkit-keyframes pulse {
-
-0% {
-	-webkit-transform: scale(1);
-	-ms-transform: scale(1);
-	transform: scale(1);
-}
-
-30% {
-	-webkit-transform: scale(1.1);
-	-ms-transform: scale(1.1);
-	transform: scale(1.1);
-}
-
-100%,50% {
-	-webkit-transform: scale(1);
-	-ms-transform: scale(1);
-	transform: scale(1);
-}
-
-}
-
-@keyframes pulse {
-
-0% {
-	-webkit-transform: scale(1);
-	-ms-transform: scale(1);
-	transform: scale(1);
-}
-
-30% {
-	-webkit-transform: scale(1.1);
-	-ms-transform: scale(1.1);
-	transform: scale(1.1);
-}
-
-100%,50% {
-	-webkit-transform: scale(1);
-	-ms-transform: scale(1);
-	transform: scale(1);
 }
 
 }

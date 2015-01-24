@@ -31,7 +31,7 @@
 /**********************************
 		Animations
 **********************************/
-.animation-demo-item {
+.animationDemoItem {
 	margin: 5px;
 	padding: 20px;
 	background: #000;
@@ -40,9 +40,9 @@
 	font-size: $body-font-size;
 }
 
-.simple-animation-example {
+.simpleAnimationExample {
 	overflow: hidden;
-	.simple-example-piece { position: relative; }
+	.simpleAnimationExample-piece { position: relative; }
 
 	////////////////////////////
 	//Starting state settings//

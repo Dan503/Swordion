@@ -66,6 +66,10 @@ table{text-align:left; width:100%;
 
 .clear { clear: both; }
 
+//a wrapping element with a width equal to the page width that is centered in the middle of the browser window
+.container { margin:0 auto; max-width:$bp-large; float: none; }
+
+
 .js-count-up {
 	@include M-animate(2s);
 	white-space: nowrap;
@@ -82,8 +86,8 @@ table{text-align:left; width:100%;
 	@include M-animate(1s);
 }
 
-.js-popins__piece { opacity: 0;
-	&.js-popins__piece--pop { @extend %popin; }
+.js-popins-piece { opacity: 0;
+	&.js-popins-piece--pop { @extend %popin; }
 }
 
 .js .lightbox-info { display: none; }
@@ -219,7 +223,11 @@ a.htmlDownload { @include M-download_icons(globe,#4469CE,30%); }
 	//colspan2 = 1/3
 	//colspan3 = 1/2
 	//colspan4 = 2/3
-	&.colspan5 { width: 83.33%; }
+	&.colspan5 { width: 83.33%;
+		@include M-mq(max,$bp-mobile){
+			width: 100%;
+		}
+	}
 }
 
 
@@ -463,7 +471,6 @@ $background-hover: #F0F0F0;
 			WHOLE PAGE
 **********************************/
 
-.container { margin:0 auto; max-width:$bp-large; }
 
 
 /**********************************
