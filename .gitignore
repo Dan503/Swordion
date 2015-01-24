@@ -1,2 +1,6 @@
 .sass-cache/**/*
 node_modules/**/*
+*.map
+*.css
+!style.css
+!style-lt-ie9.css
