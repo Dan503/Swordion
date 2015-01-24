@@ -1,86 +1,13 @@
-/*********************************************\
 
-	GLOBAL VARIABLES
-
-\*******************************************/
-
-
-/******************\
-   Break Points
-\******************/
-var
-bp_x_small = 350, //essentially iphones in portrait only
-
-bp_small = 450,
-
-bp_mobile = 600, //maximum for strict mobile view
-
-bp_phablet = 770,
-
-bp_tablet = 960,//maximum for tablets in portrait
-
-bp_desktop = 1024,//point at which desktop content reaches the edge of of the screen
-
-bp_large = 1200;//point at which desktop content reaches the edge of of the screen
+///*================================================*\
+//	CONDITIONAL JS LOADER
+//----------------------------------------------------
+//	JS files that are loded onto the page only under
+//	certain conditions will be loaded with this.
+//	These files will be loaded first
+//*================================================*/
 
 
-/****************************************\
- Always know current screen width & height
-\****************************************/
-
-var screen_width = $(window).width();
-var screen_height = $(window).height();
-
-//determines how far down the screen animations start (0.66 = 66% down the screen)
-var x_high_buffer = parseInt(screen_height * 0.25);
-var high_buffer = parseInt(screen_height * 0.33);
-var low_buffer = parseInt(screen_height * 0.66);
-var x_low_buffer = parseInt(screen_height * 0.75);
-
-$(window).resize(function(){
-	screen_width = $(window).width();
-	screen_height = $(window).height();
-	screen_buffer = parseInt(screen_height * 0.66);
-});
-
-
-/****************************************\
-   Allow time for css animations
-\****************************************/
-
-var animationTimer;
-function set_animation_timer(time){
-	if ($('html.csstransitions').length){
-		animationTimer = time;
-	} else {
-		animationTimer = 0;
-	};
-}
-//default animation timer set at 0.5s
-set_animation_timer(500);
-
-
-/****************************************\
-   IE safe version of preventDefault
-\****************************************/
-function preventDefault(e){
-	(e.preventDefault) ? e.preventDefault() : e.returnValue = false;
-}
-
-
-//Not sure what this does. It has something to do with the browser console.
-// usage: log('inside coolFunc', this, arguments);
-window.log=function(){log.history=log.history||[];log.history.push(arguments);this.console&&(arguments.callee=arguments.callee.caller,console.log(Array.prototype.slice.call(arguments)))};
-(function(b){function c(){}for(var d="assert,count,debug,dir,dirxml,error,exception,group,groupCollapsed,groupEnd,info,log,markTimeline,profile,profileEnd,time,timeEnd,trace,warn".split(","),a;a=d.pop();)b[a]=b[a]||c})(window.console=window.console||{});
-
-jQuery(function($){//acts as a document.ready function and prevents $ from interfearing with other scripts
-
-
-/*********************************************\
-
-	JS LOADING
-
-\*******************************************/
 
 
 	//JS root defined in html for easy build integration
@@ -232,7 +159,9 @@ jQuery(function($){//acts as a document.ready function and prevents $ from inter
 		//Write code here first, then turn it
 		//into a segment if it starts getting really big.
 	  	load : js_root + '_main.js'
+	  },
+	  {
+	  	//loads in all the constant js files
+	  	load : js_root + 'merged.js'
 	  }
 	]);
-
-});// end document.ready function

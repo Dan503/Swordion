@@ -341,7 +341,7 @@ $.fn.alphaCount = function() {
 //////////////////////////////////////////////////////////
 
 
-//screen_buffer defined in global variables
+//low_buffer defined in global variables
 $.fn.inView = function(buffer) {
 	var ac_seg = this.closest('.ac-segment');
 

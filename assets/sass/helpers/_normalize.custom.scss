@@ -1,11 +1,3 @@
-//all elements are given border box box-sizing
-*, *:before, *:after {
-	font-smoothing: antialiased;
-	//supposedly makes font cleaner but makes fonts not appear in safari
-	//text-rendering: optimizeLegibility;
-	@include M-box-sizing(border-box);
-}
-
 
 /*! normalize.css v2.1.3 | MIT License | git.io/normalize */
 
@@ -319,14 +311,3 @@ table {
     border-spacing: 0;
 }
 
-//   ==========================================================================
-//     Custom additions
-//   ==========================================================================
-
-h1,h2,h3,h4,h5,h6,p,ul,ol,li {
-	&:first-child { margin-top: 0 }//allows body elements to sit hard up against the top border of their parent element without causing spacing issues later in the text.
-}
-
-nav ul { margin: 0; padding: 0; list-style: none; }
-
-label, input[type=radio], input[type=checkbox] { cursor: pointer; }

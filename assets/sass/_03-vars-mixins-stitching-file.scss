@@ -1,20 +1,32 @@
 
+///*================================================*\
+//	CONFIG STITCHING FILE
+//----------------------------------------------------
+//	All global variables, mixins and functions
+//	are imported from this file.
+//	Any file that is imported here must not output
+//	css code unless wrapped in
+//	if ($main-sheet == true) { ... }
+//*================================================*/
+
+
 //only mixins and variables (ie. things that do not directly generate css) may be imported with this file
 
 //This is so if you bring in more sperate style sheets, you can easily import all the variables and mixins for use in those style sheets
 
-//all global variables go in here
-@import "_02-variables.scss";
+//all global variables go in these files
+@import "00-configfiles/*.scss";
 
 //Global functions that extend SASS functionality
-@import "mixins/_functions.scss";
+@import "01-global-mixins/_functions.scss";
 
 //Global mixins are listed here
-@import "mixins/_media-queries.scss";
-@import "mixins/_css3-shortening.scss";
-@import "mixins/_shortcuts.scss";
-@import "mixins/_icons.scss";
-@import "mixins/_backgrounds.scss";
-@import "mixins/_css-shapes.scss";
-@import "mixins/_animation.scss";
-@import "mixins/_project-specific.scss";
+//order is important
+@import "01-global-mixins/_media-queries.scss";
+@import "01-global-mixins/_css3-shortening.scss";
+@import "01-global-mixins/_shortcuts.scss";
+@import "01-global-mixins/_icons.scss";
+@import "01-global-mixins/_backgrounds.scss";
+@import "01-global-mixins/_css-shapes.scss";
+@import "01-global-mixins/_animation.scss";
+@import "01-global-mixins/_project-specific.scss";

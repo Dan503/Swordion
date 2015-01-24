@@ -1,0 +1,51 @@
+
+/*================================================*\
+	Base Element Styling
+----------------------------------------------------
+	This file holds base styling for elements resets.
+	NO CLASSES ALLOWED!
+\*================================================*/
+
+
+//all elements are given border box box-sizing
+*, *:before, *:after {
+	font-smoothing: antialiased;
+	//supposedly makes font cleaner but makes fonts not appear in safari
+	//text-rendering: optimizeLegibility;
+	@include M-box-sizing(border-box);
+}
+
+html {
+	font-size: 62.5%; //Makes it easier to alter font size with em's. 1.3em = 13px
+}
+
+body { @include M-font-size(13); }//sets base font size
+
+h1,h2,h3,h4,h5,h6,p,ul,ol,li {
+	//allows body elements to sit hard up against the top border of their parent element without causing spacing issues later in the text.
+	&:first-child { margin-top: 0 }
+}
+
+/*HEADINGS*/
+h1, h2, h3, h4, h5, h6 { color: $col-heading-txt-1; font-weight: bold; }
+h1 { @include M-font-size(40); }
+h2 { @include M-font-size(30); color: $col-heading-txt-2; }
+h3 { @include M-font-size(25); }
+h4 { @include M-font-size(20); }
+h5 { @include M-font-size(17); font-style: italic;}
+h6 { @include M-font-size(15); font-weight: normal; font-style: italic; }
+
+
+p, li { @include M-line-height(15); }
+p { margin: 0 0 1em; }
+
+//adds pre-loader background to images
+img { background: url(../images/design/pre-loader.gif) center center no-repeat transparent; }
+
+a { text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+
+nav ul { @extend %noDots; }
+
+label, input[type=radio], input[type=checkbox] { cursor: pointer; }

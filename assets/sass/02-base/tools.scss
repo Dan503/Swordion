@@ -75,4 +75,5 @@
 	&:active,:focus { @extend %anti-vh }
 }
 
+//remove default styling (good for submit buttons)
 .appearanceNone { @extend %appearanceNone; }

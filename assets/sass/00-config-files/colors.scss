@@ -1,0 +1,51 @@
+﻿///*================================================*\
+//	COLORS - (Experimental)
+//----------------------------------------------------
+//	All color variables are listed here
+//	$c- for $color-
+//	format: $c-element-txt/bg-prominence
+//	1 = primary color for that element
+//	2 = secondary color for that element
+//  3 = tertiary color etc.
+//
+//	txt = text color
+//	bg = background color
+//*================================================*/
+
+
+// NOTE: I have not tried this system out yet.
+// 		 I need to see how it works in a real project but I think it's promising
+
+
+//////////////////////////////////////
+// Primary colours used frequently //
+// throughout the whole site	  //
+///////////////////////////////////
+
+$c1: #E83628;
+$c2: #474747;
+$c3: #EBEBEB;
+
+
+/////////////////////////////////////
+// Colors assigned to elements	  //
+///////////////////////////////////
+
+$c-window-bg-1: $c3;
+$c-header-bg-1: $c1;
+
+$c-nav-bg-1: $c1;
+$c-nav-bg-2: $c2;
+$c-nav-bg-3: $c3;
+$c-nav-bg-4: #ccc;
+
+$c-nav-txt-1: #fff;
+
+$c-heading-txt-1: #000;
+$c-heading-txt-2: #ccc;
+
+$c-paragragh-txt-1: #070707;
+$c-paragragh-txt-2: $c2;
+
+$c-error-txt-1: #882525;
+$c-error-bg-1: #FFD1D1;
