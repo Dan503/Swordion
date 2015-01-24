@@ -1,24 +1,4 @@
 
-//******************************************
-//* BREAKPOINTS
-//*******************************************/
-
-//browser spec min-supported width: 320px (iPhones)
-
-//break points
-$bp-x-small: 350px; //essentially iphones in portrait view only
-
-$bp-small: 480px;
-
-$bp-mobile: 600px; //Maximum for strict mobile view
-
-$bp-phablet: 770px; //Maximum for really large phones or really small tablets
-
-$bp-tablet: 960px; //maximum for tablets in portrait
-
-$bp-desktop: 1024px; //maximum for tablets in portrait landscape
-
-$bp-large: 1200px; // Point at which the edge of the page meets the edge of the screen.
 
 //******************************************
 //* advanced selectors
@@ -30,45 +10,7 @@ $text_inputs: unquote('input[type=text], input[type=email], input[type=tel], inp
 	//...(content)...
 //}
 
-//******************************************
-//* COLORS
-//*******************************************/
-//$col- for $color-
-$col-primary: #E83628;
-$col-secondary: #000000;
-$col-bodyText: #070707;
 
-$col-header: $col-primary;
-$col-nav: $col-secondary;
-
-//******************************************
-//* ICONS
-//*******************************************/
-
-//list of icon names and they're reference keys
-$icons: (
-	pdf: "\e600",
-	word: "\e601",
-	excel: "\e602",
-	powerpoint: "\e603",
-	text: "\e604",
-	audio: "\e605",
-	podcast: "\e606",
-	globe: "\e607",
-	external: "\e608",
-);
-
-
-@if ($main-sheet == true){
-
-	//generates the .icon-XXX class associations
-	@each $icon, $referenceKey in $icons {
-	    .icon-#{$icon} {
-	        content: $referenceKey;
-	    }
-	}
-
-}
 
 
 
@@ -89,7 +31,7 @@ $body-font-family:  $gudea, $sans-serif;
 
 // Font sizes
 $reset-font-size:   62.5%; // sets to 10px so easier to scale up to required size i.e. 13px = 1.3em;
-$body-font-size:    1.3em;
+$body-font-size:    13;
 $body-font-weight:  400;
 
 
