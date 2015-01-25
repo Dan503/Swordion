@@ -1,0 +1,70 @@
+﻿///*================================================*\
+//	THEMES - (Experimental)
+//----------------------------------------------------
+//	All theme related css goes here.
+//
+//	Change theme by giving the body a class called:
+//	theme-THEME_NAME
+//
+//	Apply theme styling to elements by giving the
+//	affected elements a class called:
+//	themed-CLASS_NAME
+//
+//	Add your css rules exactly as you would normaly
+//	inside the css attributes section of the array
+//*================================================*/
+
+//list of themes
+$themes: (
+
+	//*theme name*/
+	dark: (
+
+		//*themed element class name*/
+		nav: (
+
+			///*css attributes*/
+			background: #000,
+			color: #fff,
+			border: 2px solid #ccc,
+		),
+		header: (
+			background: #000,
+			color: #E0E0E0,
+		),
+		footer: (
+			background: #6E6E6E,
+			color: #fff,
+		),
+	),
+
+	light: (
+		nav: (
+			background: #fff,
+			color: #000,
+			border: 2px dotted #000,
+		),
+		header: (
+			background: #fff,
+			color: #000,
+		),
+		footer: (
+			background: #fff,
+			color: #000,
+		),
+	),
+);
+
+@if ($main-sheet == true){
+	@each $theme, $elements in $themes {
+		body.theme-#{$theme} {
+			@each $class, $attributes in $elements {
+				.themed-#{$class} {
+					@each $attribute, $value in $attributes {
+						#{$attribute}: $value;
+					}
+				}
+			}
+		}
+	}
+}
