@@ -469,6 +469,8 @@ body.theme-light .themed-nav { background: #fff; color: #000; border: 2px dotted
 body.theme-light .themed-header { background: #fff; color: #000; }
 body.theme-light .themed-footer { background: #fff; color: #000; }
 
+[class^="themed-"] { -webkit-transition: all 0.5s ease-in-out; -moz-transition: all 0.5s ease-in-out; -o-transition: all 0.5s ease-in-out; transition: all 0.5s ease-in-out; }
+
 @media print { /************************\  	Print styles  \***********************/
   * { background: transparent !important; color: black !important; text-shadow: none !important; filter: none !important; -ms-filter: none !important; }
   /*Black prints faster: sanbeiji.com/archives/953*/

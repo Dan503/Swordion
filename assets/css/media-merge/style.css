@@ -1713,6 +1713,13 @@ body.theme-light .themed-footer {
 	color: #000;
 }
 
+[class^="themed-"] {
+	-webkit-transition: all 0.5s ease-in-out;
+	-moz-transition: all 0.5s ease-in-out;
+	-o-transition: all 0.5s ease-in-out;
+	transition: all 0.5s ease-in-out;
+}
+
 /*! Built by Daniel Tonon - UX Developer - Reading Room Australia - August 2014 */
 
 /*# sourceMappingURL=style.css.map */

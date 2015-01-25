@@ -68,3 +68,7 @@ $themes: (
 		}
 	}
 }
+
+
+//optional: animate theme transitions :)
+[class^="themed-"] { @include M-animate; }
