@@ -26,10 +26,11 @@
 //hide element on page load
 .hide { display:none; }
 
-//hide element only when js is enabled
+//HIDE the element if JS is ENABLED,
+//SHOW the element if JS is DISABLED
 .jsHide {
-	display: block;
-	.js & { display: none; }
+	display: none;
+	.no-js & { display: block;  }
 }
 
 //visually hidden element so that screen readers can see it but normal users cant

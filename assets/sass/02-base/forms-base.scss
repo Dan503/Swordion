@@ -5,6 +5,25 @@
 	general forms (NOT specific forms)
 \*================================================*/
 
+//all text input types (including the new HTML5 ones)
+input[type=text],
+input[type=email],
+input[type=tel],
+input[type=password],
+input[type="time"],
+input[type="date"],
+input[type="datetime-local"],
+input[type="month"],
+input[type="number"],
+input[type="range"],
+input[type="search"],
+input[type="url"],
+input[type="week"],
+textarea {
+	//sets the placeholder color to the lightest possible grey against white that is AA complient
+	@include M-placeholder;
+}
+
 
 select, input[type="file"] { cursor: pointer;}
 select option { font-weight: 100; }

@@ -13,9 +13,7 @@
 	box-shadow: 3px 3px 3px #999;
 	z-index: 9999;
 	position: relative;
-	display: none;
 
-	.no-js & { display: block;  }
 	p { margin: 0; }
 	a { color: darken(#8c1717, 15%); text-decoration: underline;
 		&:hover, &:focus { text-decoration: none; }
@@ -24,15 +22,6 @@
 
 //.icon { @include M-icon(''); } //Not sure if I like having this or not :/
 
-/************\
-    Tables
-\************/
-
-table{text-align:left; width:100%;
-	th, td { padding: 5px; }
-	thead th {font-weight:bold;}
-	tbody th{font-weight:bold;}
-}
 
 /************************
 		Tools

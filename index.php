@@ -5,6 +5,7 @@ $home = true;
 include 'header.php';
 ?>
 
+
 		<section id="main" role="main">
 				<div class="wrapper">
 

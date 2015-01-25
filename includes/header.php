@@ -23,7 +23,7 @@
 	<meta charset="utf-8">
 
     <title><?php
-        if ($home == true) print 'Template Starter Kit';
+        if ($home == true) print 'Swordion Starter Kit';
         else print $page_title . ' | Website name goes here' ?>
     </title>
 	<meta name="description" content="">
@@ -64,11 +64,11 @@
 <body class="<?php echo $body_classes ?>">
 
 	<!-- I've found the <noscript> tag to not always work properly -->
-    <div class="noscript-message">
+    <div class="noscript-message jsHide">
     	<p>Please <a href="http://www.enable-javascript.com/">enable javascript</a> to access the full functionality of this site</p>
     </div>
 
-	<div id="sitecontainer" class="container">
+	<div id="sitecontainer" class="container jsHide">
 		<div id="skipLinks">
 			<a href="#content-start" class="vh focusable" title="">Skip to content</a>
 		</div>
