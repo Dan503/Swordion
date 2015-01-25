@@ -47,6 +47,11 @@ module.exports = function (grunt) {
 			dist: {
 				options: {
 					style: "compact",
+
+					//'sass-globbing' allows sass to bulk import files
+					//you need to install the 'sass-globbing' gem before use (gem install sass-globbing)
+					//require: 'sass-globbing',// Doesn't work on Windows :'(
+
 					//sourcemap: true, //deprecated in latest SASS version
 					compass: false // I don't like compass >:(
 					//compass: true

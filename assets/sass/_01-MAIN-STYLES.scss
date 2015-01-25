@@ -75,12 +75,12 @@
 	background: #000;
 	color: #fff;
 	width: 300px;
-	font-size: $body-font-size;
+	@include M-font-size(13);
 	padding: 10px;
 	z-index: 5;
 
 	@include M-before {
-		@extend %centered-h;
+		@extend %centered--h;
 		@include M-tri(down,#000,10px);
 		top: 100%;
 	}
@@ -206,18 +206,6 @@ header {}
 
 #main{ }
 
-.standard-content {//never attach styles directly to the standard-content class
-	ol, ul { padding-left: 20px; }
-	ol ol { list-style: lower-alpha; }
-	ol ol ol { list-style: lower-roman; }
-	ol ol ol ol { list-style: decimal; }
-	li { font-size: $body-font-size; margin-top: 0.5em;
-		&:first-child { margin-top: 0; }
-	}
-	li li { font-size: 1em;
-		&:first-child { margin-top: 0.5em; }
-	}
-}
 
 /**********************************
 			FOOTER

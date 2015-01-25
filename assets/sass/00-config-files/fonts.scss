@@ -64,8 +64,8 @@ $ultra-bold: 900;
 // If we need to load in a font manually, we can use this placeholder
 
 //Manual @font-face
-/*
 $fontName: xxxxxxxxxxxxxx;
+/*
 @font-face {
     font-family: '#{$fontName}';
     src: url('fonts/#{$fontName}.eot');

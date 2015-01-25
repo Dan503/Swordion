@@ -7,15 +7,20 @@
 //	Any file that is imported here must not output
 //	css code unless wrapped in
 //	if ($main-sheet == true) { ... }
+//
+//	This is so if you bring in more sperate style
+//	sheets, you can easily import all the variables
+//	and mixins for use in those style sheets.
+//	Without duplicating css rules
 //*================================================*/
 
 
-//only mixins and variables (ie. things that do not directly generate css) may be imported with this file
-
-//This is so if you bring in more sperate style sheets, you can easily import all the variables and mixins for use in those style sheets
-
 //all global variables go in these files
-@import "00-configfiles/*.scss";
+@import "00-config-files/break-points.scss";
+@import "00-config-files/colors.scss";
+@import "00-config-files/fonts.scss";
+@import "00-config-files/icons.scss";
+@import "00-config-files/sprites.scss";
 
 //Global functions that extend SASS functionality
 @import "01-global-mixins/_functions.scss";

@@ -1,12 +1,11 @@
 
-//Holds the imports for all variables and mixins
+//Holds the imports for all variables, mixins and functions
 @import "_03-vars-mixins-stitching-file.scss";
 
-//contains the icon font @font face, any other @font face also go here
-@import "helpers/_@font-face.scss";
+//any plugin style css gets loaded here (css you aren't meant to edit)
+@import "plugins/jquery.custombox.scss"; // jQuery Custombox v1.1.3
+@import "plugins/normalize.scss"; // css reset file
 
-@import "helpers/_normalize.custom.scss";
-@import "helpers/_helper-classes.scss";
 
 //primary style sheet, affects everything
 @import "_01-MAIN-STYLES.scss";
@@ -14,9 +13,8 @@
 //Remove this when starting a new project
 @import "starter-kit-only.scss";
 
-// jQuery Custombox v1.1.3
-@import "helpers/_jquery.custombox"; //needs to be added to starter kit
-
+//all theming based css goes here
+@import "00-config-files/themes.scss";
 
 // Print styles
 @media print { @import "_print.scss"; }
