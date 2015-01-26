@@ -42,6 +42,20 @@ module.exports = function (grunt) {
 			}
 		},*/
 
+		//allows sass to import a whole directory at a time
+		sass_globbing: {
+			your_target: {
+				files: {
+					'assets/sass/import-maps/config-map.scss': 'assets/sass/00-config-files/**/*.scss',
+					'assets/sass/import-maps/base-map.scss': 'assets/sass/02-base/**/*.scss',
+					'assets/sass/import-maps/global-modules-map.scss': 'assets/sass/03-global-modules/**/*.scss',
+					'assets/sass/import-maps/content-modules-map.scss': 'assets/sass/04-content-modules/**/*.scss',
+					'assets/sass/import-maps/animation-map.scss': 'assets/sass/05-staged-animations/**/*.scss',
+				}
+			}
+		},
+
+
 		//compiles the SASS
 		sass: {
 			dist: {
@@ -185,6 +199,7 @@ module.exports = function (grunt) {
 			scss: {
 				files: ["**/*.scss"],
 				tasks: [
+					"sass_globbing",//generates import maps for SASS modules
 					"sass:dist", //compile the SASS
 					//"autoprefixer", //add prefixing (I do it with mixins)
 					"cmq", //merge media queries
@@ -217,6 +232,7 @@ module.exports = function (grunt) {
 	//list the tasks in the order you want them done in
 	grunt.registerTask("default", [
 		//"uglify",
+		"sass_globbing",
 		"sass:dist",
 		//"autoprefixer",
 		"cmq",
