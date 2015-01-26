@@ -3,14 +3,21 @@
 //----------------------------------------------------
 //	All color variables are listed here
 //	$c- for $color-
-//	format: $c-element-txt/bg-prominence
-//	1 = primary color for that element
-//	2 = secondary color for that element
+//	format: $c-element-txt/bg/bdr-number-state
+//	1 = primary color
+//	2 = secondary color
 //  3 = tertiary color etc.
 //
 //	txt = text color
 //	bg = background color
 //	bdr = border color
+//
+//	The idea is that you should never write a
+//	color directly into a style. All colors for the
+//	whole site should be listed in this file.
+//
+//	I haven't tried this on a real site yet.
+//	I'm not sure how well this system works yet.
 //*================================================*/
 
 
@@ -26,6 +33,7 @@
 $c1: #E83628;
 $c2: #474747;
 $c3: #EBEBEB;
+$c4: #ccc;
 
 
 /////////////////////////////////////
@@ -38,14 +46,21 @@ $c-header-bg-1: $c1;
 $c-nav-bg-1: $c1;
 $c-nav-bg-2: $c2;
 $c-nav-bdr-1: $c3;
-$c-nav-bdr-2: #ccc;
+$c-nav-bdr-2: $c4;
 $c-nav-txt-1: #fff;
 
+$c-btn-bg-1: #000;
+$c-btn-txt-1: #fff;
+$c-btn-bg-1-hover: $c-btn-bg-1 + 50;
+$c-btn-txt-1-hover: $c-btn-txt-1 - 10;
+
 $c-heading-txt-1: #000;
-$c-heading-txt-2: #ccc;
+$c-heading-txt-2: $c4;
 
 $c-paragragh-txt-1: #070707;
 $c-paragragh-txt-2: $c2;
 
 $c-error-txt-1: #882525;
 $c-error-bg-1: #FFD1D1;
+
+$c-listing-bdr-1: $c4;

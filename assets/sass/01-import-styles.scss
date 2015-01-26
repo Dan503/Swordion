@@ -1,6 +1,6 @@
 
 //Holds the imports for all variables, mixins and functions
-@import "_03-vars-mixins-stitching-file.scss";
+@import "00-import-functions.scss";
 
 //any plugin style css gets loaded here (css you aren't meant to edit)
 @import "plugins/jquery.custombox.scss"; // jQuery Custombox v1.1.3

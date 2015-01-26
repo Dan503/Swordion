@@ -1,15 +1,15 @@
 
 /*================================================*\
 	THE TOOL KIT
-----------------------------------------------------
-	This file holds one off classes designed to be
-	used globally for a specific function
+//----------------------------------------------------
+//	This file holds one off classes designed to be
+//	used globally for a specific function
 \*================================================*/
 
 //remove dot points from a list
 .noDots { list-style: none; margin: 0; padding: 0; }
 
-//Image Replacement. For when you are using a sprite and you don't want the text to appear
+//Image Replacement. For when you are using a sprite or icon on an element and you don't want the text to appear
 .ir { @extend %ir;
 	br {display:none;}
 }

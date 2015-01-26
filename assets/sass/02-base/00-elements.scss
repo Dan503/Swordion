@@ -1,9 +1,10 @@
 
 /*================================================*\
-	Base Element Styling
-----------------------------------------------------
-	This file holds base styling for elements.
-	NO CLASSES ALLOWED!
+	BASE ELEMENT STYLING
+//----------------------------------------------------
+//	This file holds base styling for elements.
+//	NO CLASSES ALLOWED!
+//	these are essentially site resets
 \*================================================*/
 
 *, *:before, *:after {
@@ -13,7 +14,7 @@
 	//supposedly this makes fonts cleaner but it makes fonts not appear in safari
 	//text-rendering: optimizeLegibility;
 
-	//all elements are given border box box-sizing
+	//all elements are given border-box box-sizing
 	@include M-box-sizing(border-box);
 }
 
@@ -48,7 +49,7 @@ img { background: url(../images/design/pre-loader.gif) center center no-repeat t
 a { text-decoration: none; }
 a:hover { text-decoration: underline; }
 
-
+//makes nav default to not having dot points
 nav ul { @extend %noDots; }
 
 label, input[type=radio], input[type=checkbox] { cursor: pointer; }

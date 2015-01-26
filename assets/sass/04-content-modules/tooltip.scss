@@ -1,4 +1,11 @@
 
+/*================================================*\
+	TOOLTIP STYLES
+//-----------------------------------------------
+//	Holds the styles for the css tooltip
+\*================================================*/
+
+
 .tooltip { position: relative;
 	@include M-mq(min,$bp-tablet){
 		&:hover, &:focus {
