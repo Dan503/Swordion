@@ -74,7 +74,7 @@ select option { font-weight: 100; }
 	&.error:after { border-color: red; }
 
 	select {
-		@include M-appearance_none;
+		@include M-appearance-none;
 		width: 115%;
 		border: none;
 		background: transparent;
@@ -84,9 +84,10 @@ select option { font-weight: 100; }
 		padding: 6px 0 5px 5px;
 		position: relative;
 		z-index: 2;
+		color: $c-paragragh-txt-1; 
 		//stops IE10+ getting a colored background after making a selection
 		//unfortunately this doesn't work on IE<10 :(
-		&:focus::-ms-value {background: transparent; color: $darkGrey; }
+		&:focus::-ms-value {background: transparent;}
 	}
 }
 

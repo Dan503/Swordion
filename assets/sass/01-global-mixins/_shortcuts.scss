@@ -2,6 +2,8 @@
 //	HELPERS
 //************/
 
+%noDots { margin: 0; padding: 0; list-style: none; }
+
 ///////////////////////
 //laziness shortcuts//
 /////////////////////
@@ -47,10 +49,17 @@
 
 //Allows you to use rem fontsize instead of ems (much easier to develop with)
 //font size given to mixin in pixels, mixin converts it
-@mixin M-font-size($sizeValue: 16) {
+@mixin M-font-size($sizeValue) {
 	font-size: $sizeValue + px; //fallback for browsers that don't support REM
 	@if ($lt-ie9 == false){
 		font-size: ($sizeValue / 10) + rem;//only renders rem in modern style sheet
+	}
+}
+
+@mixin M-line-height($sizeValue) {
+	line-height: $sizeValue + px; //fallback for browsers that don't support REM
+	@if ($lt-ie9 == false){
+		line-height: ($sizeValue / 10) + rem;//only renders rem in modern style sheet
 	}
 }
 
@@ -70,14 +79,14 @@
 }
 
 //don't forget about appearance: none; to clear defaults particularly on submit buttons
-@mixin M-appearanceNone {
+@mixin M-appearance-none {
    -webkit-appearance: none;
    -moz-appearance:    none;
    appearance:         none;
    //necessary for iOS 7
    border-radius:0;
 }
-%appearanceNone { @include M-appearanceNone; }
+%appearanceNone { @include M-appearance-none; }
 
 //allows the styling of placeholder text
 @mixin M-placeholder($color:#767676) {
@@ -148,6 +157,7 @@
 	position: static;
 	@include M-opacity(1);
 }
+%anti-vh { @include M-anti-vh; }
 
 //a less favorable version of visually hidden since browsers still have to render it way off screen
 @mixin M-offscreen { position: absolute; left: -999em; }

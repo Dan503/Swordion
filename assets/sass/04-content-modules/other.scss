@@ -30,10 +30,10 @@
 }
 
 .js-alphaCount {
-	@extend .js-count-up;
+	@extend .js-countUp;
 	@include M-animate(1s);
 }
 
 .js-popins-piece { opacity: 0;
-	&.js-popins-piece--pop { @extend %popin; }
+	&.js-popins-piece--pop { @extend %popin !optional; }
 }
