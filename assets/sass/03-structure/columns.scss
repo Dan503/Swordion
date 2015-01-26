@@ -3,8 +3,16 @@
 ----------------------------------------------------
 	This file holds all the classes that handle
 	general site structure. A three column module
-	would have the column
+	would have the "column" and "thirds"
+	class on it
 \*================================================*/
+
+//The styling for the central box that holds the whole page content
+.container { margin:0 auto; max-width:$bp-large; }
+
+//place on an element holding columns to contain them
+//and also remove dot points
+.columns { @extend %clearfix; @extend %noDots; }
 
 .column { float: left; padding: 0; margin: 0; }
 

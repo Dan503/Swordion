@@ -45,6 +45,13 @@
 //Force a non-floating parent element to contain it's floating child elements
 .clearFix { @extend %clearfix; }
 
+//simple clear classes for clearing floats
+.clear { clear: both;
+	&-left { clear: left; }
+	&-right { clear: right; }
+}
+
+
 //both vertically and horizontally center align an element that has fixed height and width
 .centered {
 	@extend %centered;

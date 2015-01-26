@@ -10,6 +10,7 @@
 //
 //	txt = text color
 //	bg = background color
+//	bdr = border color
 //*================================================*/
 
 
@@ -36,9 +37,8 @@ $c-header-bg-1: $c1;
 
 $c-nav-bg-1: $c1;
 $c-nav-bg-2: $c2;
-$c-nav-bg-3: $c3;
-$c-nav-bg-4: #ccc;
-
+$c-nav-bdr-1: $c3;
+$c-nav-bdr-2: #ccc;
 $c-nav-txt-1: #fff;
 
 $c-heading-txt-1: #000;

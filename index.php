@@ -16,7 +16,7 @@ include 'header.php';
 
 				<a href="javascript:void(0)" id="content-start"></a>
 				<div id="content">
-					<div class="standard-content">
+
 						<h2>To do list:</h2>
 						<ol>
 							<li>Add the animation Javascript stuff from the DoC project</li>
@@ -71,7 +71,7 @@ include 'header.php';
 		<li>Right arrow <span class="arrow right"></span></li>
 	</ul>
 
-					</div>
+
 
 <h2>Animations</h2>
 

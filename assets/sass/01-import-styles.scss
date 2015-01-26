@@ -14,7 +14,7 @@
 @import "starter-kit-only.scss";
 
 //all theming based css goes here
-@import "00-config-files/themes.scss";
+@import "themes.scss";
 
 // Print styles
 @media print { @import "_print.scss"; }

@@ -1,0 +1,30 @@
+
+.skipLink-primary {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	background: #000;
+	color: #fff;
+	text-decoration: underline;
+}
+
+.js-countUp {
+	@include M-animate(2s);
+	white-space: nowrap;
+	.js & { opacity: 0;}
+	&.forced-visible { @extend %anti-animate !optional; }
+	& + * { opacity: 0; @extend %animate !optional; }
+	&.activate, &.forced-visible { opacity: 1;
+		& + * { opacity: 1; }
+	}
+}
+
+.js-alphaCount {
+	@extend .js-count-up;
+	@include M-animate(1s);
+}
+
+.js-popins-piece { opacity: 0;
+	&.js-popins-piece--pop { @extend %popin; }
+}
