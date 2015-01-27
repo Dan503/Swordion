@@ -697,6 +697,9 @@ a.htmlDownload:before { content: ""; display: inline-block; color: #4469CE; b
 .simple-animation-example.stage2 .simple2 { -webkit-transition: all 0.5s ease-in-out; -moz-transition: all 0.5s ease-in-out; -o-transition: all 0.5s ease-in-out; transition: all 0.5s ease-in-out; bottom: 0; left: 0; }
 .simple-animation-example.stage3 .simple3 { -webkit-transition: all 2s ease-in-out; -moz-transition: all 2s ease-in-out; -o-transition: all 2s ease-in-out; transition: all 2s ease-in-out; -webkit-transform: scale(1); -ms-transform: scale(1); transform: scale(1); }
 
+/*================================================*\
+	THEMES
+\*================================================*/
 body.theme-dark .themed-nav { background: #000; color: #fff; border: 2px solid #ccc; }
 body.theme-dark .themed-header { background: #000; color: #E0E0E0; }
 body.theme-dark .themed-footer { background: #6E6E6E; color: #fff; }

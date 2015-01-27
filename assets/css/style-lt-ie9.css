@@ -651,6 +651,9 @@ a.htmlDownload:before { content: ""; display: inline-block; color: #4469CE; b
 .simple-animation-example.stage2 .simple2 { bottom: 0; left: 0; }
 
 /*this should appear in the IE8 style sheet but not the regular one*/
+/*================================================*\
+	THEMES
+\*================================================*/
 body.theme-dark .themed-nav { background: #000; color: #fff; border: 2px solid #ccc; }
 body.theme-dark .themed-header { background: #000; color: #E0E0E0; }
 body.theme-dark .themed-footer { background: #6E6E6E; color: #fff; }

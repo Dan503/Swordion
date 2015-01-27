@@ -52,13 +52,14 @@
 	<![endif]-->
 	*/ ?>
 
-	<script src="/assets/js/plugins/_modernizr.2.7.1.min.js"></script>
+	<script src="/assets/js/vendor/_modernizr.2.7.1.min.js"></script>
 	<!--[if lt IE 9]>
 		<script src="http://html5shiv.googlecode.com/svn/trunk/_html5.js"></script>
-		<script src="/assets/js/plugins/_selectivizr.min.js"></script>
+		<script src="/assets/js/plugins/conditional/_selectivizr.min.js"></script>
 	<![endif]-->
 	<!-- 1. Allows IE to style HTML5 elements -->
-	<!-- 2. Allows IE to use CSS3 selectors -->
+	<!-- 2. Allows IE to use CSS3 selectors (eg. :nth-child(odd) ) -->
+	<?php /* I haven't seen selectivizr work yet :( */ ?>
 
 </head>
 <body class="<?php echo $body_classes ?>">

@@ -5,6 +5,9 @@
 
 //usage: jQuery('#myId').scrollToMe([speed],[after animation funciton]);
 
+//allows you to easily scroll to particular elements on the page
+
+
 jQuery.fn.scrollToMe = function(speed,callFunc) {
 	var that = $(this);
 	//setTimeout(function() {

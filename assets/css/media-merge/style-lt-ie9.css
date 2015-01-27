@@ -2212,6 +2212,10 @@ a.htmlDownload:before {
 
 /*this should appear in the IE8 style sheet but not the regular one*/
 
+/*================================================*\
+	THEMES
+\*================================================*/
+
 body.theme-dark .themed-nav {
 	background: #000;
 	color: #fff;

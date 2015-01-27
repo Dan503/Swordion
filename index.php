@@ -9,7 +9,7 @@ include 'header.php';
 		<section id="main" role="main">
 				<div class="wrapper">
 
-<div class="full-screen-div-example">
+<div class="full-screen-div-example js-fullScreen">
 	<h2>Full screen div example</h2>
 	<p>Scroll down to see more content</p>
 </div>

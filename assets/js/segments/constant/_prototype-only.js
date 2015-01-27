@@ -1,4 +1,3 @@
-$(document).ready(function() {
 
 	/******************************************************
 		Prototype only code
@@ -16,4 +15,4 @@ $(document).ready(function() {
 		}
 	});
 
-});//end of document.ready function
+

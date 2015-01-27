@@ -2464,6 +2464,10 @@ a.htmlDownload:before {
 	transform: scale(1);
 }
 
+/*================================================*\
+	THEMES
+\*================================================*/
+
 body.theme-dark .themed-nav {
 	background: #000;
 	color: #fff;

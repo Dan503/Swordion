@@ -17,3 +17,5 @@ $.fn.fullScreen = function(subtraction){
 		fillScreen(_this)
 	});
 }
+
+$('.js-fullScreen').fullScreen('header');

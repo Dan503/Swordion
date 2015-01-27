@@ -1,4 +1,14 @@
 
+/*================================================*\
+	ANIMATION JS FILE
+  ================================================
+
+The JS file that handles staged and skrollr animations
+for the website
+
+\*=================================================*/
+
+
 var scroll_pos = $(document).scrollTop();
 var skrollr_max = $('body').height() - screen_height;
 
