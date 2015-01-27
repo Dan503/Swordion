@@ -634,6 +634,7 @@ table thead th {
 .container {
 	margin: 0 auto;
 	max-width: 1200px;
+	float: none;
 }
 
 .js-alpha-count,
