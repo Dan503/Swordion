@@ -84,7 +84,7 @@ select option { font-weight: 100; }
 		padding: 6px 0 5px 5px;
 		position: relative;
 		z-index: 2;
-		color: $c-paragragh-txt-1;
+		color: $grey-1;
 		//stops IE10+ getting a colored background after making a selection
 		//unfortunately this doesn't work on IE<10 :(
 		&:focus::-ms-value {background: transparent;}
@@ -94,9 +94,9 @@ select option { font-weight: 100; }
 
 /********* Custom checkbox and radio buttons **********/
 
-$primary-color: #00959C;
-$primary-hover: #006DA9;
-$background-hover: #F0F0F0;
+$primary-color: $purple-1;
+$primary-hover: $purple-3;
+$background-hover: $grey-2;
 
 //ensures IE8 doesn't get the custom radios and check boxes (IE8 doesn't support ":checked")
 @include M-gt-ie8 {

@@ -31,9 +31,9 @@ h1,h2,h3,h4,h5,h6,p,ul,ol,li {
 }
 
 /*HEADINGS*/
-h1, h2, h3, h4, h5, h6 { color: $c-heading-txt-1; font-weight: $bold; }
+h1, h2, h3, h4, h5, h6 { color: $grey-1; font-weight: $bold; }
 h1 { @include M-font-size(40); }
-h2 { @include M-font-size(30); color: $c-heading-txt-2; }
+h2 { @include M-font-size(30); }
 h3 { @include M-font-size(25); }
 h4 { @include M-font-size(20); }
 h5 { @include M-font-size(17); font-style: italic;}

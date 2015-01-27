@@ -11,7 +11,7 @@ $itemPadding: 10px;
 	&-item {
 		position: relative;
 		padding: $itemPadding;
-		border-top: 1px solid $c-listing-bdr-1;
+		border-top: 1px solid $grey-2;
 		&:first-child { border: none; }
 	}
 	&-thumbnail {

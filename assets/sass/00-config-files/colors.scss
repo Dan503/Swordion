@@ -1,66 +1,43 @@
 ﻿///*================================================*\
-//	COLORS - (Experimental)
+//	COLORS
 //----------------------------------------------------
 //	All color variables are listed here
-//	$c- for $color-
-//	format: $c-element-txt/bg/bdr-number-state
-//	1 = primary color
-//	2 = secondary color
-//  3 = tertiary color etc.
 //
-//	txt = text color
-//	bg = background color
-//	bdr = border color
+//	first in line = lightest
+//	last in line = darkest
 //
-//	The idea is that you should never write a
-//	color directly into a style. All colors for the
-//	whole site should be listed in this file.
+//	Number = prominence/reference
+//	Don't stress about the number too much but
+//	1 should be the most used version of that
+//	color on the site
 //
-//	I haven't tried this on a real site yet.
-//	I'm not sure how well this system works yet.
 //*================================================*/
 
 
-// NOTE: I have not tried this system out yet.
-// 		 I need to see how it works in a real project but I think it's promising
+//Purple
+$purple-2: #C4A6CF;
+$purple-1: #742890;
+$purple-3: #350044;
+
+//Green
+$green-2: #B7D84B;
+$green-3: #98B732;
+$green-1: #74A330;
+
+//red
+$red-4: #FFD1D1;
+$red-3: #F15F3F;
+$red-2: #CD492B;
+$red-1: #A22709;
+
+//orange
+$orange-1: #F6971D;
+
+//grey
+$grey-3: #F5F5F5;
+$grey-2: #CCCCCC;
+$grey-5: #999999;
+$grey-4: #6F6F6F;
+$grey-1: #333333;
 
 
-//////////////////////////////////////
-// Primary colours used frequently //
-// throughout the whole site	  //
-///////////////////////////////////
-
-$c1: #E83628;
-$c2: #474747;
-$c3: #EBEBEB;
-$c4: #ccc;
-
-
-/////////////////////////////////////
-// Colors assigned to elements	  //
-///////////////////////////////////
-
-$c-window-bg-1: $c3;
-$c-header-bg-1: $c1;
-
-$c-nav-bg-1: $c1;
-$c-nav-bg-2: $c2;
-$c-nav-bdr-1: $c3;
-$c-nav-bdr-2: $c4;
-$c-nav-txt-1: #fff;
-
-$c-btn-bg-1: #000;
-$c-btn-txt-1: #fff;
-$c-btn-bg-1-hover: $c-btn-bg-1 + 50;
-$c-btn-txt-1-hover: $c-btn-txt-1 - 10;
-
-$c-heading-txt-1: #000;
-$c-heading-txt-2: $c4;
-
-$c-paragragh-txt-1: #070707;
-$c-paragragh-txt-2: $c2;
-
-$c-error-txt-1: #882525;
-$c-error-bg-1: #FFD1D1;
-
-$c-listing-bdr-1: $c4;
