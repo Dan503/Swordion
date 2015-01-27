@@ -1,34 +1,17 @@
-jQuery(function($){//document.ready function and prevents $ interfearing with other scripts (can't inherit from plugins.js :( )
+/*================================================*\
+	MAIN JS FILE
+\*================================================*/
 
-	//allows skip links to continue tabing from the jump-to point
-	$('a.vh.focusable').click(function () {
-		var anchor = $(this).attr('href');
-		$(anchor).focus();
-	});
+//Small bits and pieces of code go here.
+//Write code here first, then turn it
+//into a segment if it starts getting really big.
 
-	$('#equalTest div').equalHeights();
-	
+//=================================================
 
-	//make any element take up the full screen height minus the header
-	function fullScreenDiv (element){
-		function fullScreen(target){
-			var windowHeight = $(window).height();
-			var headerHeight = $('header').height();
-			$(target).height(windowHeight - headerHeight);
-		};
 
-		fullScreen(element);
+$('#equalTest div').equalHeights();
 
-		$(window).resize(function(){
-			fullScreen(element)
-		});
-	};
+if ($('#element').length){
 
-	fullScreenDiv($('.full-screen-div-example'));
-
-	if ($('#element').length){
-
-	}
-
-});//end of document.ready function
+}
 

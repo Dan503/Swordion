@@ -23,7 +23,7 @@
 	<meta charset="utf-8">
 
     <title><?php
-        if ($home == true) print 'Template Starter Kit';
+        if ($home == true) print 'Swordion Starter Kit';
         else print $page_title . ' | Website name goes here' ?>
     </title>
 	<meta name="description" content="">
@@ -34,9 +34,6 @@
     <!-- favicon -->
 	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 	<link rel="icon" href="/favicon.ico" type="image/x-icon">
-
-	<!-- fonts -->
-	<link href='http://fonts.googleapis.com/css?family=Gudea' rel='stylesheet' type='text/css'>
 
 	<!--[if gt IE 8]><!-->
 		<link rel="stylesheet" type="text/css" href="/assets/css/style.css" />
@@ -55,19 +52,20 @@
 	<![endif]-->
 	*/ ?>
 
-	<script src="/assets/js/plugins/_modernizr.2.7.1.min.js"></script>
+	<script src="/assets/js/vendor/_modernizr.2.7.1.min.js"></script>
 	<!--[if lt IE 9]>
 		<script src="http://html5shiv.googlecode.com/svn/trunk/_html5.js"></script>
-		<script src="/assets/js/plugins/_selectivizr.min.js"></script>
+		<script src="/assets/js/plugins/conditional/_selectivizr.min.js"></script>
 	<![endif]-->
 	<!-- 1. Allows IE to style HTML5 elements -->
-	<!-- 2. Allows IE to use CSS3 selectors -->
+	<!-- 2. Allows IE to use CSS3 selectors (eg. :nth-child(odd) ) -->
+	<?php /* I haven't seen selectivizr work yet :( */ ?>
 
 </head>
 <body class="<?php echo $body_classes ?>">
 
 	<!-- I've found the <noscript> tag to not always work properly -->
-    <div class="noscript-message">
+    <div class="noscript-message jsHide">
     	<p>Please <a href="http://www.enable-javascript.com/">enable javascript</a> to access the full functionality of this site</p>
     </div>
 

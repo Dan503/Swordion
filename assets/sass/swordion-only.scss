@@ -1,0 +1,92 @@
+/**************************************************\
+	Styles for styling the Swordion site.
+	Remove this at the start of the project.
+\*************************************************/
+
+//for testing selectivizr
+.downloads li:nth-child(2) { color: red!important;}
+
+#logo {
+	padding: 50px;
+	margin: 0;
+	@include M-icon(pdf){
+		color: #000;
+	};
+}
+
+
+#equalTest {
+	div { border: 20px solid green; width: 50%; background: #FFB2B2; float: left; }
+}
+
+.full-screen-div-example { background: #F1F49F; }
+
+.arrow {
+	&.up { @include M-arrow(up,green,50px);  margin: 0 30px; }
+	&.down { @include M-arrow(down,green,50px); margin: 0 30px; }
+	&.left { @include M-arrow(left,green,50px); margin: 30px 0; }
+	&.right { @include M-arrow(right,green,50px); margin: 30px 0; }
+}
+
+/**********************************
+		Animations
+**********************************/
+.animationDemoItem {
+	margin: 5px;
+	padding: 20px;
+	background: #000;
+	color: #fff;
+	text-align: center;
+}
+
+.simpleAnimationExample {
+	overflow: hidden;
+	.simpleAnimationExample-piece { position: relative; }
+
+	////////////////////////////
+	//Starting state settings//
+	//////////////////////////
+	.simple1 {
+		opacity: 0;
+	}
+	.simple2 {
+		bottom: 100%;
+		left: 100%;
+	}
+	.simple3 {
+		@include M-scale(0);
+	}
+
+	///////////////////////
+	//End state settings//
+	/////////////////////
+
+	//first box fades in
+	&.activate {
+		.simple1 {
+			//since the animations won't play backwards, put the animation timings in the stage to control timings easier
+			@extend %animate-long !optional; //(goes for 1s)
+			opacity: 1;
+		}
+	}
+	//2nd box slides in from top right corner
+	&.stage2 {
+		.simple2 {
+			@include M-animate(0.5s);
+			bottom: 0;
+			left: 0;
+		}
+	}
+	//3rd box grows in
+	&.stage3 {
+		.simple3 {
+			//if using one of the default settings for animation duration, the @extend version instead
+			@include M-animate(2s); //(goes for 0.5s)
+			@include M-scale(1);
+		}
+	}
+}
+
+@include M-lt-ie9 {
+	/*this should appear in the IE8 style sheet but not the regular one*/
+}

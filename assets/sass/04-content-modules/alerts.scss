@@ -1,0 +1,51 @@
+
+/*================================================*\
+	ALERT STYLES
+//-----------------------------------------------
+//	Holds styles for alert boxes. These are elements
+//	designed to bring the users attention to
+//	something.
+\*================================================*/
+
+.alert {
+
+//alert box for people that have JS disabled
+	&-nojs {
+		padding: 20px;
+		background-color: #ecb2b2;
+		border: 1px solid #8c1717;
+		color: #8c1717;
+		box-shadow: 3px 3px 3px #999;
+		z-index: 9999;
+		position: relative;
+
+		p { margin: 0; }
+		a { color: darken(#8c1717, 15%); text-decoration: underline;
+			&:hover, &:focus { text-decoration: none; }
+		}
+	}
+
+//alert box for error messages
+	&-error {
+		//
+	}
+
+//alert box to warn the user of something dangerous
+	&-warning {
+		//
+	}
+
+//alert box for when something has been done successfully
+	&-success {
+		//
+	}
+
+//alert box for when the user should know something
+	&-info {
+		//
+	}
+
+//prevent the margin on p tags from increasing the spacing at the bottom of an alert box
+	p:last-child { margin-bottom: 0; }
+}
+

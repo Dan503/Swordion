@@ -5,17 +5,18 @@ $home = true;
 include 'header.php';
 ?>
 
+
 		<section id="main" role="main">
 				<div class="wrapper">
 
-<div class="full-screen-div-example">
+<div class="full-screen-div-example js-fullScreen">
 	<h2>Full screen div example</h2>
 	<p>Scroll down to see more content</p>
 </div>
 
 				<a href="javascript:void(0)" id="contentStart"></a>
 				<div id="content">
-					<div class="standard-content">
+
 						<h2>To do list:</h2>
 						<ol>
 							<li>Add the animation Javascript stuff from the DoC project</li>
@@ -70,7 +71,7 @@ include 'header.php';
 		<li>Right arrow <span class="arrow right"></span></li>
 	</ul>
 
-					</div>
+
 
 <h2>Animations</h2>
 

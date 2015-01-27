@@ -1,4 +1,15 @@
 
+var js_merge_files = [
+	'assets/js/plugins/constant/*.js',
+	'assets/js/config-files/doc.ready-open.js',
+	'assets/js/config-files/config.js',
+	'assets/js/js-loader.js',
+	'assets/js/_main.js',
+	'assets/js/segments/constant/*.js',
+	'assets/js/config-files/doc.ready-close.js',
+];
+
+
 //needed for the copy function
 //var server_root = '//CAN1DEV002/wwwroot/___SITE_FOLDER_NAME___/';
 
@@ -16,19 +27,31 @@ module.exports = function (grunt) {
 	grunt.initConfig({
 		pkg: grunt.file.readJSON("package.json"),
 
-		//Minimises JS.
-		//First I need to find a way to easily switch between min and non min js for debugging before I start using this.
-		/*uglify: {
+
+		//Merges all constant JS files into a single file
+		concat: {
+			options: {
+				banner: '/* This is a generated file. Do not edit */'
+			},
+			dist: {
+				src: js_merge_files,
+				dest: 'assets/js/merged.js',
+			},
+		},
+
+		//Minimises the JS
+		//I need to find a way to uglify without removing the MIT licences
+		uglify: {
 			my_target: {
 				options: {
-					sourceMap: true
+					sourceMap: false
 				},
 				files: {
-					"assets/js/_main.min.js": ["assets/js/_main.js"],
+					"assets/js/merged.min.js": ["assets/js/merged.js"],
 					"assets/js/js-loader.min.js": ["assets/js/js-loader.js"]
 				}
 			}
-		},*/
+		},
 
 		//For generating iconfonts... doesn't work on PC :(
 		/*webfont: {
@@ -42,11 +65,30 @@ module.exports = function (grunt) {
 			}
 		},*/
 
+		//allows sass to import a whole directory at a time
+		sass_globbing: {
+			your_target: {
+				files: {
+					'assets/sass/import-maps/config-map.scss': 'assets/sass/00-config-files/**/*.scss',
+					'assets/sass/import-maps/base-map.scss': 'assets/sass/02-base/**/*.scss',
+					'assets/sass/import-maps/global-modules-map.scss': 'assets/sass/03-global-modules/**/*.scss',
+					'assets/sass/import-maps/content-modules-map.scss': 'assets/sass/04-content-modules/**/*.scss',
+					'assets/sass/import-maps/animation-map.scss': 'assets/sass/05-staged-animations/**/*.scss',
+				}
+			}
+		},
+
+
 		//compiles the SASS
 		sass: {
 			dist: {
 				options: {
 					style: "compact",
+
+					//'sass-globbing' allows sass to bulk import files
+					//you need to install the 'sass-globbing' gem before use (gem install sass-globbing)
+					//require: 'sass-globbing',// Doesn't work on Windows :'(
+
 					//sourcemap: true, //deprecated in latest SASS version
 					compass: false // I don't like compass >:(
 					//compass: true
@@ -97,22 +139,6 @@ module.exports = function (grunt) {
 		      ext: '.min.css'
 		    }]
 		  }
-		},
-		notify: {
-			css: {
-				options: {
-					enabled: true,
-					title: "Grunt task complete",
-					message: "[sass:dist] finished"
-				}
-			},
-			js: {
-				options: {
-					enabled: true,
-					title: "Grunt task complete",
-					message: "[js] finished"
-				}
-			}
 		},
 
 		//Copy files to server on save. Extreamly useful at build stage!
@@ -167,11 +193,11 @@ module.exports = function (grunt) {
 				livereload: true
 			},
 			scripts: {
-				files: ["assets/js/*.js"],
+				files: ["assets/js/**/*.js"],
 				tasks: [
+					"concat" //merges constant js files into one file
 					//"uglify", //minimise JS
-					//"copy:js", //copy js to canberra server
-					//"notify:js"
+					//"copy:js", //copy js to server
 				],
 				options: {
 					spawn: false
@@ -180,12 +206,12 @@ module.exports = function (grunt) {
 			scss: {
 				files: ["**/*.scss"],
 				tasks: [
+					"sass_globbing",//generates import maps for SASS modules
 					"sass:dist", //compile the SASS
 					//"autoprefixer", //add prefixing (I do it with mixins)
 					"cmq", //merge media queries
 					"cssmin",
-					//"copy:css", //copy css to canberra server
-					"notify:css",//notify successfull sass compilation
+					//"copy:css", //copy css to server
 				],
 				options: {
 					spawn: false
@@ -211,12 +237,13 @@ module.exports = function (grunt) {
 
 	//list the tasks in the order you want them done in
 	grunt.registerTask("default", [
+		"concat",
 		//"uglify",
+		"sass_globbing",
 		"sass:dist",
 		//"autoprefixer",
 		"cmq",
 		"cssmin",
-		"notify:css",
 		//"copy",
 		"watch"
 	]);

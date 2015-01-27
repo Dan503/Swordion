@@ -1,0 +1,55 @@
+
+/*================================================*\
+	TOOLTIP STYLES
+//-----------------------------------------------
+//	Holds the styles for the css tooltip
+\*================================================*/
+
+
+.tooltip { position: relative;
+	@include M-mq(min,$bp-tablet){
+		&:hover, &:focus {
+			.tooltip-text {
+				//can't use @extend, inside media query
+				@include M-scale(1);
+				@include M-opacity(1);
+			}
+		}
+	}
+
+	&-text {
+		@include M-scale(0);
+		@include M-opacity(0);
+		@include M-origin(bottom center);
+		@include M-animate(0.2s);
+		position: absolute;
+		text-align: center;
+		bottom: 150%;
+		left: 50%;
+		margin-left: -150px;
+		background: #000;
+		color: #fff;
+		width: 300px;
+		@include M-font-size(13);
+		padding: 10px;
+		z-index: 5;
+
+		@include M-before {
+			@extend %centered--h;
+			@include M-tri(down,#000,10px);
+			top: 100%;
+		}
+	}
+
+	&-bellow {
+		@include M-origin(top center);
+		bottom: auto;
+		top: 150%;
+		&:before {
+			@include M-tri(up,#000,10px);
+			top: auto;
+			bottom: 100%;
+		}
+	}
+}
+

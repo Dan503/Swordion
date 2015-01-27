@@ -1,0 +1,38 @@
+
+///*================================================*\
+//	FUNCTIONS IMPORT FILE
+//----------------------------------------------------
+//	All global variables, mixins and functions
+//	are imported from this file.
+//	Any file that is imported here must not output
+//	css code unless wrapped in
+//	if ($main-sheet == true) { ... }
+//
+//	This is so if you bring in more sperate style
+//	sheets, you can easily import all the variables
+//	and mixins for use in those style sheets
+//	without duplicating css rules.
+//*================================================*/
+
+
+//all global variables go in these files
+//@import "import-maps/config-map.scss"; //for when the grunt bug is fixed
+@import "00-config-files/break-points.scss";
+@import "00-config-files/colors.scss";
+@import "00-config-files/fonts.scss";
+@import "00-config-files/icons.scss";
+@import "00-config-files/sprites.scss";
+
+//Global functions that extend SASS functionality
+@import "01-global-mixins/_functions.scss";
+
+//Global mixins are listed here
+//order is important
+@import "01-global-mixins/_media-queries.scss";
+@import "01-global-mixins/_css3-shortening.scss";
+@import "01-global-mixins/_shortcuts.scss";
+@import "01-global-mixins/_icons.scss";
+@import "01-global-mixins/_backgrounds.scss";
+@import "01-global-mixins/_css-shapes.scss";
+@import "01-global-mixins/_animation.scss";
+@import "01-global-mixins/_animation-effects.scss";
