@@ -15,13 +15,8 @@
 //*================================================*/
 
 
-//all global variables go in these files
-//@import "import-maps/config-map.scss"; //for when the grunt bug is fixed
-@import "00-config-files/break-points.scss";
-@import "00-config-files/colors.scss";
-@import "00-config-files/fonts.scss";
-@import "00-config-files/icons.scss";
-@import "00-config-files/sprites.scss";
+//all global variables go in the files listed in here
+@import "import-maps/config-map.scss";
 
 //Global functions that extend SASS functionality
 @import "01-global-mixins/_functions.scss";

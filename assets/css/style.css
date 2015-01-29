@@ -69,7 +69,7 @@ nav ul, .columns { margin: 0; padding: 0; list-style: none; }
 
 .animate, .js-countUp + *, .js-alphaCount + * { -webkit-transition: all 0.5s ease-in-out; transition: all 0.5s ease-in-out; }
 
-.animate--fast, input[type="radio"] + label:before, input[type="radio"] + label:after, input[type="checkbox"] + label:before, input[type="checkbox"] + label:after { -webkit-transition: all 0.2s ease-out; transition: all 0.2s ease-out; }
+.animate--fast, .btn, input[type="radio"] + label:before, input[type="radio"] + label:after, input[type="checkbox"] + label:before, input[type="checkbox"] + label:after { -webkit-transition: all 0.2s ease-out; transition: all 0.2s ease-out; }
 
 .animate--slow { -webkit-transition: all 1s ease-in-out; transition: all 1s ease-in-out; }
 
@@ -145,273 +145,6 @@ nav ul, .columns { margin: 0; padding: 0; list-style: none; }
 
 .pulseSingle, .pulseSingle--onHover:hover { -webkit-animation: pulse 1s 1 linear; animation: pulse 1s 1 linear; }
 
-/* jQuery Custombox v1.1.3 - 2014/02/18 jQuery Modal Window Effects. http://dixso.github.io/custombox/ (c) 2014 Julio De La Calle - http://dixso.net - @dixso9  Under MIT License - http://www.opensource.org/licenses/mit-license.php */
-/* -------------------------------------------------
-				Functional styles -------------------------------------------------
-*/
-.custombox-overlay { position: fixed; width: 100%; height: 100%; top: 0; left: 0; opacity: 0; }
-
-.custombox-modal { position: fixed; top: 50%; left: 50%; -webkit-backface-visibility: hidden; -moz-backface-visibility: hidden; -ms-backface-visibility: hidden; backface-visibility: hidden; -webkit-transform: translateY(-50%); -ms-transform: translateY(-50%); transform: translateY(-50%); height: auto; width: 600px; visibility: hidden; }
-
-.custombox-error { padding: 20px; text-align: center; color: #F00; font-weight: bold; font-size: 14px; background-color: #FFF; border-radius: 5px; }
-
-/* ------------------------------------------------- Actions ------------------------------------------------- */
-.custombox-show { visibility: visible; }
-.custombox-show ~ .custombox-overlay { opacity: 1; visibility: visible; }
-
-.custombox-perspective { height: 100%; overflow: hidden; }
-.custombox-perspective body { height: 100%; overflow: hidden; -webkit-perspective: 600px; perspective: 600px; }
-
-.custombox-container { min-height: 100%; }
-
-.custombox-hide-scrollbar { overflow-y: hidden; }
-.custombox-hide-scrollbar body { position: relative; overflow: hidden; }
-
-/* ------------------------------------------------- Fade in and scale up ------------------------------------------------- */
-.custombox-fadein .custombox-modal-content { -webkit-transform: scale(0.7); -ms-transform: scale(0.7); transform: scale(0.7); -webkit-transition-property: all; -ms-transition-property: all; transition-property: all; opacity: 0; }
-
-.custombox-show.custombox-fadein .custombox-modal-content { -webkit-transform: scale(1); transform: scale(1); opacity: 1; }
-
-/* -------------------------------------------------
-Slide and stick to top ------------------------------------------------- */
-.custombox-slide-top { top: 0; }
-.custombox-slide-top .custombox-modal-content { -webkit-transform: translateY(-200%); -ms-transform: translateY(-200%); transform: translateY(-200%); -webkit-transition-property: all; -ms-transition-property: all; transition-property: all; opacity: 0; }
-
-.custombox-close.custombox-slide-left-top .custombox-modal-content, .custombox-close.custombox-slide-right-top .custombox-modal-content { -webkit-transform: translateY(-200%); -ms-transform: translateY(-200%); transform: translateY(-200%); -webkit-transition-property: all; -ms-transition-property: all; transition-property: all; opacity: 0; }
-
-.custombox-show.custombox-slide-top .custombox-modal-content { -webkit-transform: translateY(0%); -ms-transform: translateY(0%); transform: translateY(0%); border-radius: 0 0 3px 3px; opacity: 1; }
-
-.custombox-close.custombox-slide-top-bottom .custombox-modal-content, .custombox-close.custombox-slide-right-bottom .custombox-modal-content, .custombox-close.custombox-slide-bottom-bottom .custombox-modal-content, .custombox-close.custombox-slide-left-bottom .custombox-modal-content { -webkit-transform: translateY(200%); -ms-transform: translateY(200%); transform: translateY(200%); }
-
-/* ------------------------------------------------- Slide from the right ------------------------------------------------- */
-.custombox-slide-right .custombox-modal-content { -webkit-transform: translateX(20%); -ms-transform: translateX(20%); transform: translateX(20%); opacity: 0; -webkit-transition-timing-function: cubic-bezier(0.25, 0.5, 0.5, 0.9); -ms-transition-timing-function: cubic-bezier(0.25, 0.5, 0.5, 0.9); transition-timing-function: cubic-bezier(0.25, 0.5, 0.5, 0.9); -webkit-transition-property: all; -ms-transition-property: all; transition-property: all; }
-
-.custombox-close.custombox-slide-bottom-right .custombox-modal-content, .custombox-close.custombox-slide-top-right .custombox-modal-content, .custombox-close.custombox-slide-center-right .custombox-modal-content { -webkit-transform: translateX(20%); -ms-transform: translateX(20%); transform: translateX(20%); opacity: 0; -webkit-transition-timing-function: cubic-bezier(0.25, 0.5, 0.5, 0.9); -ms-transition-timing-function: cubic-bezier(0.25, 0.5, 0.5, 0.9); transition-timing-function: cubic-bezier(0.25, 0.5, 0.5, 0.9); -webkit-transition-property: all; -ms-transition-property: all; transition-property: all; }
-
-.custombox-show.custombox-slide-right .custombox-modal-content { -webkit-transform: translateX(0); -ms-transform: translateX(0); transform: translateX(0); opacity: 1; }
-
-.custombox-close.custombox-slide-right-left .custombox-modal-content { -webkit-transform: translateX(-20%); -ms-transform: translateX(-20%); transform: translateX(-20%); }
-
-/* -------------------------------------------------
-Slide from the bottom ------------------------------------------------- */
-.custombox-slide-bottom .custombox-modal-content { -webkit-transform: translateY(20%); -ms-transform: translateY(20%); transform: translateY(20%); opacity: 0; -webkit-transition-property: all; -ms-transition-property: all; transition-property: all; }
-
-.custombox-show.custombox-slide-bottom .custombox-modal-content { -webkit-transform: translateY(0); -ms-transform: translateY(0); transform: translateY(0); opacity: 1; }
-
-.custombox-close.custombox-slide-bottom-top .custombox-modal-content { -webkit-transform: translateY(-20%); -ms-transform: translateY(-20%); transform: translateY(-20%); }
-
-/* ------------------------------------------------- Slide from the left ------------------------------------------------- */
-.custombox-slide-left .custombox-modal-content { -webkit-transform: translateX(-20%); -ms-transform: translateX(-20%); transform: translateX(-20%); opacity: 0; -webkit-transition-timing-function: cubic-bezier(0.25, 0.5, 0.5, 0.9); -ms-transition-timing-function: cubic-bezier(0.25, 0.5, 0.5, 0.9); transition-timing-function: cubic-bezier(0.25, 0.5, 0.5, 0.9); -webkit-transition-property: all; -ms-transition-property: all; transition-property: all; }
-
-.custombox-close.custombox-slide-top-left .custombox-modal-content, .custombox-close.custombox-slide-center-left .custombox-modal-content { -webkit-transform: translateX(-20%); -ms-transform: translateX(-20%); transform: translateX(-20%); opacity: 0; -webkit-transition-timing-function: cubic-bezier(0.25, 0.5, 0.5, 0.9); -ms-transition-timing-function: cubic-bezier(0.25, 0.5, 0.5, 0.9); transition-timing-function: cubic-bezier(0.25, 0.5, 0.5, 0.9); -webkit-transition-property: all; -ms-transition-property: all; transition-property: all; }
-
-.custombox-show.custombox-slide-left .custombox-modal-content { -webkit-transform: translateX(0); -ms-transform: translateX(0); transform: translateX(0); opacity: 1; }
-
-.custombox-close.custombox-slide-left-right .custombox-modal-content { -webkit-transform: translateX(20%); -ms-transform: translateX(20%); transform: translateX(20%); }
-
-/* -------------------------------------------------
-Slide and stick to center ------------------------------------------------- */
-.custombox-slide-center .custombox-modal-content { -webkit-transform: translateY(-200%); -ms-transform: translateY(-200%); transform: translateY(-200%); -webkit-transition-property: all; -ms-transition-property: all; transition-property: all; opacity: 0; }
-
-.custombox-show.custombox-slide-center .custombox-modal-content { -webkit-transform: translateY(0%); -ms-transform: translateY(0%); transform: translateY(0%); border-radius: 0 0 3px 3px; opacity: 1; }
-
-/* -------------------------------------------------
-Newspaper ------------------------------------------------- */
-.custombox-newspaper .custombox-modal-content { -webkit-transform: scale(0) rotate(720deg); -ms-transform: scale(0) rotate(720deg); transform: scale(0) rotate(720deg); opacity: 0; }
-
-.custombox-show.custombox-newspaper ~ .custombox-overlay, .custombox-newspaper .custombox-modal-content { -webkit-transition-property: all; -ms-transition-property: all; transition-property: all; }
-
-.custombox-show.custombox-newspaper .custombox-modal-content { -webkit-transform: scale(1) rotate(0deg); -ms-transform: scale(1) rotate(0deg); transform: scale(1) rotate(0deg); opacity: 1; }
-
-/* -------------------------------------------------
-Fall ------------------------------------------------- */
-.custombox-fall.custombox-modal { -webkit-perspective: 1300px; -ms-perspective: 1300px; perspective: 1300px; }
-.custombox-fall .custombox-modal-content { -webkit-transform-style: preserve-3d; -ms-transform-style: preserve-3d; transform-style: preserve-3d; -webkit-transform: translateZ(600px) rotateX(20deg); -ms-transform: translateZ(600px) rotateX(20deg); transform: translateZ(600px) rotateX(20deg); opacity: 0; }
-
-.custombox-show.custombox-fall .custombox-modal-content { -webkit-transition-timing-function: ease-in; -ms-transition-timing-function: ease-in; transition-timing-function: ease-in; -webkit-transition-property: all; -ms-transition-property: all; transition-property: all; -webkit-transform: translateZ(0) rotateX(0deg); -ms-transform: translateZ(0) rotateX(0deg); transform: translateZ(0) rotateX(0deg); opacity: 1; }
-
-/* -------------------------------------------------
-Side fall ------------------------------------------------- */
-.custombox-sidefall.custombox-modal { -webkit-perspective: 1300px; -ms-perspective: 1300px; perspective: 1300px; }
-.custombox-sidefall .custombox-modal-content { -webkit-transform-style: preserve-3d; -ms-transform-style: preserve-3d; transform-style: preserve-3d; -webkit-transform: translate(30%) translateZ(600px) rotate(10deg); -ms-transform: translate(30%) translateZ(600px) rotate(10deg); transform: translate(30%) translateZ(600px) rotate(10deg); opacity: 0; }
-
-.custombox-show.custombox-sidefall .custombox-modal-content { -webkit-transition-timing-function: ease-in; -ms-transition-timing-function: ease-in; transition-timing-function: ease-in; -webkit-transition-property: all; -ms-transition-property: all; transition-property: all; -webkit-transform: translate(0%) translateZ(0) rotate(0deg); -ms-transform: translate(0%) translateZ(0) rotate(0deg); transform: translate(0%) translateZ(0) rotate(0deg); opacity: 1; }
-.custombox-show.custombox-blur ~ .custombox-container * { text-shadow: 0 0 5px rgba(0, 0, 0, 0.5); color: transparent; }
-.custombox-show.custombox-blur ~ .custombox-container img { -webkit-filter: blur(10px); -moz-filter: blur(10px); -ms-filter: blur(10px); filter: blur(10px); }
-
-/* -------------------------------------------------
-Blur ------------------------------------------------- */
-.custombox-blur .custombox-modal-content { -webkit-transform: translateY(-5%); -ms-transform: translateY(-5%); transform: translateY(-5%); opacity: 0; -webkit-transition-property: all; -ms-transition-property: all; transition-property: all; }
-
-.custombox-show.custombox-blur ~ .custombox-container { -webkit-transition-property: all; -ms-transition-property: all; transition-property: all; }
-.custombox-show.custombox-blur .custombox-modal-content { -webkit-transform: translateY(0); -ms-transform: translateY(0); transform: translateY(0); opacity: 1; }
-
-/* -------------------------------------------------
-3D Flip horizontal ------------------------------------------------- */
-.custombox-flip-horizontal.custombox-modal { -webkit-perspective: 1300px; -ms-perspective: 1300px; perspective: 1300px; }
-.custombox-flip-horizontal .custombox-modal-content { -webkit-transform-style: preserve-3d; -ms-transform-style: preserve-3d; transform-style: preserve-3d; -webkit-transform: rotateY(-70deg); transform: rotateY(-70deg); -webkit-transition-property: all; -ms-transition-property: all; transition-property: all; opacity: 0; }
-
-.custombox-show.custombox-flip-horizontal .custombox-modal-content { -webkit-transform: rotateY(0deg); -ms-transform: rotateY(0deg); transform: rotateY(0deg); opacity: 1; }
-
-/* -------------------------------------------------
-3D Flip vertical ------------------------------------------------- */
-.custombox-flip-vertical.custombox-modal { -webkit-perspective: 1300px; -ms-perspective: 1300px; perspective: 1300px; }
-.custombox-flip-vertical .custombox-modal-content { -webkit-transform-style: preserve-3d; -ms-transform-style: preserve-3d; transform-style: preserve-3d; -webkit-transform: rotateX(-70deg); -ms-transform: rotateX(-70deg); transform: rotateX(-70deg); -webkit-transition-property: all; -ms-transition-property: all; transition-property: all; opacity: 0; }
-
-.custombox-show.custombox-flip-vertical .custombox-modal-content { -webkit-transform: rotateX(0deg); -ms-transform: rotateX(0deg); transform: rotateX(0deg); opacity: 1; }
-
-/* -------------------------------------------------
-3D Sign ------------------------------------------------- */
-.custombox-sign.custombox-modal { -webkit-perspective: 1300px; -ms-perspective: 1300px; perspective: 1300px; }
-.custombox-sign .custombox-modal-content { -webkit-transform-style: preserve-3d; -ms-transform-style: preserve-3d; transform-style: preserve-3d; -webkit-transform: rotateX(-60deg); -ms-transform: rotateX(-60deg); transform: rotateX(-60deg); -webkit-transform-origin: 50% 0; -ms-transform-origin: 50% 0; transform-origin: 50% 0; opacity: 0; -webkit-transition-property: all; -ms-transition-property: all; transition-property: all; }
-
-.custombox-show.custombox-sign .custombox-modal-content { -webkit-transform: rotateX(0deg); -ms-transform: rotateX(0deg); transform: rotateX(0deg); opacity: 1; }
-
-/* -------------------------------------------------
-Super scaled ------------------------------------------------- */
-.custombox-superscaled .custombox-modal-content { -webkit-transform: scale(2); -ms-transform: scale(2); transform: scale(2); opacity: 0; -webkit-transition-property: all; -ms-transition-property: all; transition-property: all; }
-
-.custombox-show.custombox-superscaled .custombox-modal-content { -webkit-transform: scale(1); -ms-transform: scale(1); transform: scale(1); opacity: 1; }
-
-/* -------------------------------------------------
-3D Slit ------------------------------------------------- */
-.custombox-slit.custombox-modal { -webkit-perspective: 1300px; -ms-perspective: 1300px; perspective: 1300px; }
-.custombox-slit .custombox-modal-content { -webkit-transform-style: preserve-3d; -ms-transform-style: preserve-3d; transform-style: preserve-3d; -webkit-transform: translateZ(-3000px) rotateY(90deg); -ms-transform: translateZ(-3000px) rotateY(90deg); transform: translateZ(-3000px) rotateY(90deg); opacity: 0; }
-
-.custombox-show.custombox-slit .custombox-modal-content { -webkit-animation: slit .7s forwards ease-out; -ms-animation: slit .7s forwards ease-out; animation: slit .7s forwards ease-out; }
-
-@-webkit-keyframes slit { 50% { -webkit-transform: translateZ(-250px) rotateY(89deg); opacity: .5; -webkit-animation-timing-function: ease-out; }
-  100% { -webkit-transform: translateZ(0) rotateY(0deg); opacity: 1; } }
-@-ms-keyframes slit { 50% { -ms-transform: translateZ(-250px) rotateY(89deg); opacity: .5; -ms-animation-timing-function: ease-out; }
-  100% { -ms-transform: translateZ(0) rotateY(0deg); opacity: 1; } }
-@keyframes slit { 50% { transform: translateZ(-250px) rotateY(89deg); opacity: 1; animation-timing-function: ease-out; }
-  100% { transform: translateZ(0) rotateY(0deg); opacity: 1; } }
-/* -------------------------------------------------
-3D Rotate from bottom ------------------------------------------------- */
-.custombox-rotate-bottom.custombox-modal { -webkit-perspective: 1300px; -ms-perspective: 1300px; perspective: 1300px; }
-.custombox-rotate-bottom .custombox-modal-content { -webkit-transform-style: preserve-3d; -ms-transform-style: preserve-3d; transform-style: preserve-3d; -webkit-transform: translateY(100%) rotateX(90deg); -ms-transform: translateY(100%) rotateX(90deg); transform: translateY(100%) rotateX(90deg); -webkit-transform-origin: 0 100%; -ms-transform-origin: 0 100%; transform-origin: 0 100%; opacity: 0; -webkit-transition-timing-function: ease-out; -ms-transition-timing-function: ease-out; transition-timing-function: ease-out; -webkit-transition-property: all; -ms-transition-property: all; transition-property: all; }
-
-.custombox-show.custombox-rotate-bottom .custombox-modal-content { -webkit-transform: translateY(0%) rotateX(0deg); -ms-transform: translateY(0%) rotateX(0deg); transform: translateY(0%) rotateX(0deg); opacity: 1; }
-
-/* -------------------------------------------------
-3D Rotate in from left ------------------------------------------------- */
-.custombox-rotate-left.custombox-modal { -webkit-perspective: 1300px; -ms-perspective: 1300px; perspective: 1300px; }
-.custombox-rotate-left .custombox-modal-content { -webkit-transform-style: preserve-3d; -ms-transform-style: preserve-3d; transform-style: preserve-3d; -webkit-transform: translateZ(100px) translateX(-30%) rotateY(90deg); -ms-transform: translateZ(100px) translateX(-30%) rotateY(90deg); transform: translateZ(100px) translateX(-30%) rotateY(90deg); -webkit-transform-origin: 0 100%; -ms-transform-origin: 0 100%; transform-origin: 0 100%; opacity: 0; -webkit-transition-property: all; -ms-transition-property: all; transition-property: all; }
-
-.custombox-show.custombox-rotate-left .custombox-modal-content { -webkit-transform: translateZ(0px) translateX(0%) rotateY(0deg); -ms-transform: translateZ(0px) translateX(0%) rotateY(0deg); transform: translateZ(0px) translateX(0%) rotateY(0deg); opacity: 1; }
-.custombox-show.custombox-letmein ~ .custombox-container { height: 100%; overflow: hidden; -webkit-transition-property: -webkit-transform; -ms-transition-property: -ms-transform; transition-property: transform; -webkit-transform: rotateX(-2deg); -ms-transform: rotateX(-2deg); transform: rotateX(-2deg); -webkit-transform-origin: 50% 0%; -ms-transform-origin: 50% 0%; transform-origin: 50% 0%; -webkit-transform-style: preserve-3d; -ms-transform-style: preserve-3d; transform-style: preserve-3d; }
-.custombox-show.custombox-letmein ~ .custombox-overlay { -webkit-transform: rotateX(-2deg); -ms-transform: rotateX(-2deg); transform: rotateX(-2deg); -webkit-transform-origin: 50% 0%; -ms-transform-origin: 50% 0%; transform-origin: 50% 0%; -webkit-transform-style: preserve-3d; -ms-transform-style: preserve-3d; transform-style: preserve-3d; }
-
-/* -------------------------------------------------
-Slide in from bottom with perspective on container ------------------------------------------------- */
-.custombox-letmein .custombox-modal-content { opacity: 0; -webkit-transform: translateY(200%); -ms-transform: translateY(200%); transform: translateY(200%); }
-
-.custombox-show.custombox-letmein .custombox-modal-content { -webkit-transform: translateY(0); -ms-transform: translateY(0); transform: translateY(0); opacity: 1; -webkit-transition-property: all; -ms-transition-property: all; transition-property: all; }
-.custombox-show.custombox-makeway ~ .custombox-container { height: 100%; overflow: hidden; }
-.custombox-show.custombox-makeway ~ .custombox-overlay { background: rgba(143, 27, 15, 0.8); -webkit-transition-property: all; -ms-transition-property: all; transition-property: all; }
-.custombox-show.custombox-makeway ~ .custombox-container, .custombox-show.custombox-makeway ~ .custombox-overlay { -webkit-transform-style: preserve-3d; -webkit-transform-origin: 0% 50%; -webkit-animation: rotateRightSideFirst 0.5s forwards ease-in; -ms-transform-style: preserve-3d; -ms-transform-origin: 0% 50%; -ms-animation: rotateRightSideFirst 0.5s forwards ease-in; transform-style: preserve-3d; transform-origin: 0% 50%; animation: rotateRightSideFirst 0.5s forwards ease-in; }
-
-/* -------------------------------------------------
-Slide from right with perspective on container ------------------------------------------------- */
-@-webkit-keyframes rotateRightSideFirst { 50% { -webkit-transform: translateZ(-50px) rotateY(5deg); -webkit-animation-timing-function: ease-out; }
-  100% { -webkit-transform: translateZ(-200px); } }
-@-ms-keyframes rotateRightSideFirst { 50% { -ms-transform: translateZ(-50px) rotateY(5deg); -ms-animation-timing-function: ease-out; }
-  100% { -ms-transform: translateZ(-200px); } }
-@keyframes rotateRightSideFirst { 50% { transform: translateZ(-50px) rotateY(5deg); animation-timing-function: ease-out; }
-  100% { transform: translateZ(-200px); } }
-.custombox-makeway .custombox-modal-content { -webkit-transform: translateX(200%); -ms-transform: translateX(200%); transform: translateX(200%); opacity: 0; }
-
-.custombox-show.custombox-makeway .custombox-modal-content { -webkit-transform: translateX(0); -ms-transform: translateX(0); transform: translateX(0); opacity: 1; -webkit-transition-property: all; -ms-transition-property: all; transition-property: all; }
-.custombox-show.custombox-slip ~ .custombox-container { height: 100%; overflow: hidden; }
-.custombox-show.custombox-slip ~ .custombox-overlay { -webkit-transition-property: all; -ms-transition-property: all; transition-property: all; }
-.custombox-show.custombox-slip ~ .custombox-container, .custombox-show.custombox-slip ~ .custombox-overlay { -webkit-transform-style: preserve-3d; -webkit-transform-origin: 50% 100%; -webkit-animation: OpenTop 0.5s forwards ease-in; -ms-transform-style: preserve-3d; -ms-transform-origin: 50% 100%; -ms-animation: OpenTop 0.5s forwards ease-in; transform-style: preserve-3d; transform-origin: 50% 100%; animation: OpenTop 0.5s forwards ease-in; }
-
-/* -------------------------------------------------
-Slip in from the top with perspective on container ------------------------------------------------- */
-@-webkit-keyframes OpenTop { 50% { -webkit-transform: rotateX(10deg); -webkit-animation-timing-function: ease-out; } }
-@-ms-keyframes OpenTop { 50% { -ms-transform: rotateX(10deg); -ms-animation-timing-function: ease-out; } }
-@keyframes OpenTop { 50% { transform: rotateX(10deg); animation-timing-function: ease-out; } }
-.custombox-slip .custombox-modal-content { -webkit-transform: translateY(-200%); -ms-transform: translateY(-200%); transform: translateY(-200%); opacity: 0; }
-
-.custombox-show.custombox-slip .custombox-modal-content { -webkit-transform: translateY(0); -ms-transform: translateY(0); transform: translateY(0); opacity: 1; -webkit-transition-property: all; -ms-transition-property: all; transition-property: all; }
-
-/*! normalize.css v2.1.3 | MIT License | git.io/normalize */
-article, aside, details, figcaption, figure, footer, header, hgroup, main, nav, section, summary { display: block; }
-
-audio, canvas, video { display: inline-block; }
-
-audio:not([controls]) { display: none; height: 0; }
-
-[hidden], template { display: none; }
-
-html { font-family: sans-serif; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; }
-
-body { margin: 0; word-wrap: break-word; }
-
-a { background: transparent; }
-
-a:focus { outline: 1px dotted #000; }
-
-a:active, a:hover { outline: none; }
-
-h1 { font-size: 2em; margin: 0.67em 0; }
-
-abbr[title] { border-bottom: 1px dotted; }
-
-b, strong { font-weight: 700; }
-
-dfn { font-style: italic; }
-
-hr { height: 0; -webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content-box; }
-
-mark { background: #ff0; color: #000; }
-
-code, kbd, pre, samp { font-family: monospace, serif; font-size: 1em; }
-
-pre { white-space: pre-wrap; }
-
-q { quotes: "\201C" "\201D" "\2018" "\2019"; }
-
-small { font-size: 75%; }
-
-sub, sup { font-size: 75%; line-height: 0; position: relative; vertical-align: baseline; }
-
-sup { top: -0.5em; }
-
-sub { bottom: -0.25em; }
-
-img { border: 0; max-width: 100%; }
-
-svg:not(:root) { overflow: hidden; }
-
-figure { margin: 0; }
-
-fieldset { border: none; margin: 0; padding: 0; min-width: 0; }
-
-legend { border: 0; padding: 0; }
-
-button, input, select, textarea { font-family: inherit; font-size: 100%; margin: 0; }
-
-button, input { line-height: normal; }
-
-button, select { text-transform: none; }
-
-button, html input[type="button"], input[type="reset"], input[type="submit"] { -webkit-appearance: button; cursor: pointer; }
-
-button[disabled], html input[disabled] { cursor: default; }
-
-input[type="checkbox"], input[type="radio"] { padding: 0; }
-
-input[type="search"] { -webkit-appearance: textfield; }
-
-input[type="search"]::-webkit-search-cancel-button, input[type="search"]::-webkit-search-decoration { -webkit-appearance: none; }
-
-button::-moz-focus-inner, input::-moz-focus-inner { border: 0; padding: 0; }
-
-textarea { overflow: auto; vertical-align: top; }
-
-table { border-collapse: collapse; border-spacing: 0; }
-
 /*================================================*\
 	BASE ELEMENT STYLING
 //----------------------------------------------------
@@ -428,11 +161,11 @@ body { font-size: 13px; font-size: 1.3rem; }
 h1:first-child, h2:first-child, h3:first-child, h4:first-child, h5:first-child, h6:first-child, p:first-child, ul:first-child, ol:first-child, li:first-child { margin-top: 0; }
 
 /*HEADINGS*/
-h1, h2, h3, h4, h5, h6 { color: #000; font-weight: 700; }
+h1, h2, h3, h4, h5, h6 { color: #333333; font-weight: 700; }
 
 h1 { font-size: 40px; font-size: 4rem; }
 
-h2 { font-size: 30px; font-size: 3rem; color: #ccc; }
+h2 { font-size: 30px; font-size: 3rem; }
 
 h3 { font-size: 25px; font-size: 2.5rem; }
 
@@ -496,8 +229,8 @@ table tbody th { font-weight: 700; }
 //	This file holds the base styling for buttons
 //	around the site
 \*================================================*/
-.btn { padding: 5px 10px; background: #000; color: #fff; }
-.btn:hover, .btn:focus { background: #323232; color: whitesmoke; }
+.btn { padding: 5px 10px; background: #742890; color: #fff; }
+.btn:hover, .btn:focus { background: #350044; }
 
 .btn-pdf:before { content: ""; display: inline-block; }
 
@@ -571,16 +304,16 @@ select option { font-weight: 100; }
 .styled-select:before { content: ""; display: block; display: block; width: 0 !important; height: 0 !important; overflow: hidden; border-bottom: none; border-right: 3px solid transparent; border-left: 3px solid transparent; border-top: 5px solid #000; right: 12px; }
 .styled-select:after { content: ""; display: block; position: absolute; top: 20%; right: -1px; height: 60%; width: 32px; border-radius: 0; z-index: 0; border-left: 1px solid #ccc; }
 .styled-select.error:after { border-color: red; }
-.styled-select select { width: 115%; border: none; background: transparent; background: rgba(255, 255, 255, 0.0001); visibility: visible; padding: 6px 0 5px 5px; position: relative; z-index: 2; color: #070707; }
+.styled-select select { width: 115%; border: none; background: transparent; background: rgba(255, 255, 255, 0.0001); visibility: visible; padding: 6px 0 5px 5px; position: relative; z-index: 2; color: #333333; }
 .styled-select select:focus::-ms-value { background: transparent; }
 
 /********* Custom checkbox and radio buttons **********/
 input[type="radio"] + label, input[type="checkbox"] + label { padding-left: 25px; position: relative; cursor: pointer; }
 input[type="radio"] + label:before, input[type="radio"] + label:after, input[type="checkbox"] + label:before, input[type="checkbox"] + label:after { content: ''; display: block; position: absolute; }
-input[type="radio"] + label:before, input[type="checkbox"] + label:before { height: 15px; width: 15px; background-color: #fff; border: 1px solid #00959C; top: 2px; left: 0px; }
-input[type="radio"] + label:after, input[type="checkbox"] + label:after { height: 9px; width: 9px; left: 3px; top: 5px; background-color: #00959C; opacity: 0; }
-input[type="radio"]:focus + label:before, input[type="radio"] + label:hover:before, input[type="checkbox"]:focus + label:before, input[type="checkbox"] + label:hover:before { background-color: #F0F0F0; border-color: #006DA9; }
-input[type="radio"]:focus + label:after, input[type="radio"] + label:hover:after, input[type="checkbox"]:focus + label:after, input[type="checkbox"] + label:hover:after { background-color: #006DA9; }
+input[type="radio"] + label:before, input[type="checkbox"] + label:before { height: 15px; width: 15px; background-color: #fff; border: 1px solid #742890; top: 2px; left: 0px; }
+input[type="radio"] + label:after, input[type="checkbox"] + label:after { height: 9px; width: 9px; left: 3px; top: 5px; background-color: #742890; opacity: 0; }
+input[type="radio"]:focus + label:before, input[type="radio"] + label:hover:before, input[type="checkbox"]:focus + label:before, input[type="checkbox"] + label:hover:before { background-color: #CCCCCC; border-color: #350044; }
+input[type="radio"]:focus + label:after, input[type="radio"] + label:hover:after, input[type="checkbox"]:focus + label:after, input[type="checkbox"] + label:hover:after { background-color: #350044; }
 
 input[type="radio"] + label:after, input[type="radio"] + label:before { border-radius: 50%; }
 
@@ -592,6 +325,11 @@ input[type="radio"] + label:after, input[type="radio"] + label:before { border-r
 .js .styled-browse-button input { position: absolute; top: 0; left: 0; right: 0; bottom: 0; height: 100%; width: 100%; cursor: pointer; visibility: visible; }
 .js .styled-browse-button .styled-browse-preview { font-size: 1.6em; line-height: 2.1em; float: left; }
 
+/*================================================*\
+	FOOTER
+//-----------------------------------------------
+//	Holds styles for the site footer
+\*================================================*/
 /*================================================*\
 	HEADER
 //-----------------------------------------------
@@ -607,11 +345,6 @@ input[type="radio"] + label:after, input[type="radio"] + label:before { border-r
 //-----------------------------------------------
 //	Holds styles for the side bar. Most likely
 //	this will mean the secondary navigation.
-\*================================================*/
-/*================================================*\
-	FOOTER
-//-----------------------------------------------
-//	Holds styles for the site footer
 \*================================================*/
 /*================================================*\
 	ALERT STYLES
@@ -686,7 +419,7 @@ a.htmlDownload:before { content: ""; display: inline-block; color: #4469CE; b
 //-----------------------------------------------
 //	Holds the styles for listing related elements
 \*================================================*/
-.listing-item { position: relative; padding: 10px; border-top: 1px solid #ccc; }
+.listing-item { position: relative; padding: 10px; border-top: 1px solid #CCCCCC; }
 .listing-item:first-child { border: none; }
 .listing-thumbnail { height: 100px; width: 100px; position: absolute; top: 10px; left: 10px; overflow: hidden; }
 .listing-thumbnail img { display: block; width: 100%; }
@@ -695,24 +428,6 @@ a.htmlDownload:before { content: ""; display: inline-block; color: #4469CE; b
 .pagination { text-align: center; }
 .pagination-item { display: inline-block; }
 .pagination-link--active { cursor: default; }
-
-/*================================================*\
-	ROTATOR STYLES
-//-----------------------------------------------
-//	Put any styles associated with a rotator
-//	in this file
-\*================================================*/
-/*================================================*\
-	TOOLTIP STYLES
-//-----------------------------------------------
-//	Holds the styles for the css tooltip
-\*================================================*/
-.tooltip { position: relative; }
-@media screen and (min-width: 961px) { .tooltip:hover .tooltip-text, .tooltip:focus .tooltip-text { -webkit-transform: scale(1); -ms-transform: scale(1); transform: scale(1); opacity: 1; } }
-.tooltip-text { -webkit-transform: scale(0); -ms-transform: scale(0); transform: scale(0); opacity: 0; -webkit-transform-origin: bottom center; -ms-transform-origin: bottom center; transform-origin: bottom center; -webkit-transition: all 0.2s ease-in-out; transition: all 0.2s ease-in-out; position: absolute; text-align: center; bottom: 150%; left: 50%; margin-left: -150px; background: #000; color: #fff; width: 300px; font-size: 13px; font-size: 1.3rem; padding: 10px; z-index: 5; }
-.tooltip-text:before { content: ""; display: block; display: block; width: 0 !important; height: 0 !important; overflow: hidden; border-bottom: none; border-right: 8px solid transparent; border-left: 8px solid transparent; border-top: 10px solid #000; top: 100%; }
-.tooltip-bellow { -webkit-transform-origin: top center; -ms-transform-origin: top center; transform-origin: top center; bottom: auto; top: 150%; }
-.tooltip-bellow:before { display: block; width: 0 !important; height: 0 !important; overflow: hidden; border-top: none; border-left: 8px solid transparent; border-right: 8px solid transparent; border-bottom: 10px solid #000; top: auto; bottom: 100%; }
 
 /*================================================*\
 	OTHER MODULES
@@ -732,6 +447,24 @@ a.htmlDownload:before { content: ""; display: inline-block; color: #4469CE; b
 .js-alphaCount { -webkit-transition: all 1s ease-in-out; transition: all 1s ease-in-out; }
 
 .js-popins-piece { opacity: 0; }
+
+/*================================================*\
+	ROTATOR STYLES
+//-----------------------------------------------
+//	Put any styles associated with a rotator
+//	in this file
+\*================================================*/
+/*================================================*\
+	TOOLTIP STYLES
+//-----------------------------------------------
+//	Holds the styles for the css tooltip
+\*================================================*/
+.tooltip { position: relative; }
+@media screen and (min-width: 961px) { .tooltip:hover .tooltip-text, .tooltip:focus .tooltip-text { -webkit-transform: scale(1); -ms-transform: scale(1); transform: scale(1); opacity: 1; } }
+.tooltip-text { -webkit-transform: scale(0); -ms-transform: scale(0); transform: scale(0); opacity: 0; -webkit-transform-origin: bottom center; -ms-transform-origin: bottom center; transform-origin: bottom center; -webkit-transition: all 0.2s ease-in-out; transition: all 0.2s ease-in-out; position: absolute; text-align: center; bottom: 150%; left: 50%; margin-left: -150px; background: #000; color: #fff; width: 300px; font-size: 13px; font-size: 1.3rem; padding: 10px; z-index: 5; }
+.tooltip-text:before { content: ""; display: block; display: block; width: 0 !important; height: 0 !important; overflow: hidden; border-bottom: none; border-right: 8px solid transparent; border-left: 8px solid transparent; border-top: 10px solid #000; top: 100%; }
+.tooltip-bellow { -webkit-transform-origin: top center; -ms-transform-origin: top center; transform-origin: top center; bottom: auto; top: 150%; }
+.tooltip-bellow:before { display: block; width: 0 !important; height: 0 !important; overflow: hidden; border-top: none; border-left: 8px solid transparent; border-right: 8px solid transparent; border-bottom: 10px solid #000; top: auto; bottom: 100%; }
 
 /**************************************************\
 	Styles for styling the Swordion site.
