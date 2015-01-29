@@ -22,8 +22,8 @@
 html { font-size: 62.5%; }
 
 //Sets default font size for the site to 1.3rem with a 13px backup.
-//Setting the font-size using the mixin is the best way to set fonts.
-body { @include M-font-size(13); }
+//Setting the font-size using the mixin is the best way to set font size (and line height using line height mixin).
+body { @include M-font-size(16); font-family: $roboto; }
 
 h1,h2,h3,h4,h5,h6,p,ul,ol,li {
 	//allows body elements to sit hard up against the top border of their parent element without causing spacing issues later in the text.

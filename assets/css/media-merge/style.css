@@ -330,8 +330,9 @@ html {
 }
 
 body {
-	font-size: 13px;
-	font-size: 1.3rem;
+	font-size: 16px;
+	font-size: 1.6rem;
+	font-family: "Roboto", Arial, Helvetica, sans-serif;
 }
 
 h1:first-child,
