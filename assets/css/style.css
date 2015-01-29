@@ -161,9 +161,9 @@ body { font-size: 16px; font-size: 1.6rem; font-family: "Roboto", Arial, Helveti
 h1:first-child, h2:first-child, h3:first-child, h4:first-child, h5:first-child, h6:first-child, p:first-child, ul:first-child, ol:first-child, li:first-child { margin-top: 0; }
 
 /*HEADINGS*/
-h1, h2, h3, h4, h5, h6 { color: #333333; font-weight: 700; }
+h1, h2, h3, h4, h5, h6 { color: #6F6F6F; font-weight: 700; }
 
-h1 { font-size: 40px; font-size: 4rem; }
+h1 { font-size: 40px; font-size: 4rem; color: #fff; }
 
 h2 { font-size: 30px; font-size: 3rem; }
 
@@ -230,7 +230,7 @@ table tbody th { font-weight: 700; }
 //	around the site
 \*================================================*/
 .btn { padding: 5px 10px; background: #742890; color: #fff; }
-.btn:hover, .btn:focus { background: #350044; }
+.btn:hover, .btn:focus { background: #341240; }
 
 .btn-pdf:before { content: ""; display: inline-block; }
 
@@ -302,7 +302,7 @@ select option { font-weight: 100; }
 	right: 10px;
 }*/ }
 .styled-select:before { content: ""; display: block; display: block; width: 0 !important; height: 0 !important; overflow: hidden; border-bottom: none; border-right: 3px solid transparent; border-left: 3px solid transparent; border-top: 5px solid #000; right: 12px; }
-.styled-select:after { content: ""; display: block; position: absolute; top: 20%; right: -1px; height: 60%; width: 32px; border-radius: 0; z-index: 0; border-left: 1px solid #ccc; }
+.styled-select:after { content: ""; display: block; position: absolute; top: 20%; right: -1px; height: 60%; width: 32px; border-radius: 0; z-index: 0; border-left: 1px solid #CCCCCC; }
 .styled-select.error:after { border-color: red; }
 .styled-select select { width: 115%; border: none; background: transparent; background: rgba(255, 255, 255, 0.0001); visibility: visible; padding: 6px 0 5px 5px; position: relative; z-index: 2; color: #333333; }
 .styled-select select:focus::-ms-value { background: transparent; }
@@ -312,16 +312,16 @@ input[type="radio"] + label, input[type="checkbox"] + label { padding-left: 25px
 input[type="radio"] + label:before, input[type="radio"] + label:after, input[type="checkbox"] + label:before, input[type="checkbox"] + label:after { content: ''; display: block; position: absolute; }
 input[type="radio"] + label:before, input[type="checkbox"] + label:before { height: 15px; width: 15px; background-color: #fff; border: 1px solid #742890; top: 2px; left: 0px; }
 input[type="radio"] + label:after, input[type="checkbox"] + label:after { height: 9px; width: 9px; left: 3px; top: 5px; background-color: #742890; opacity: 0; }
-input[type="radio"]:focus + label:before, input[type="radio"] + label:hover:before, input[type="checkbox"]:focus + label:before, input[type="checkbox"] + label:hover:before { background-color: #CCCCCC; border-color: #350044; }
-input[type="radio"]:focus + label:after, input[type="radio"] + label:hover:after, input[type="checkbox"]:focus + label:after, input[type="checkbox"] + label:hover:after { background-color: #350044; }
+input[type="radio"]:focus + label:before, input[type="radio"] + label:hover:before, input[type="checkbox"]:focus + label:before, input[type="checkbox"] + label:hover:before { background-color: #CCCCCC; border-color: #341240; }
+input[type="radio"]:focus + label:after, input[type="radio"] + label:hover:after, input[type="checkbox"]:focus + label:after, input[type="checkbox"] + label:hover:after { background-color: #341240; }
 
 input[type="radio"] + label:after, input[type="radio"] + label:before { border-radius: 50%; }
 
 /********* Custom check browse button **********/
 .js .styled-browse-button { overflow: hidden; cursor: pointer; }
 .js .styled-browse-button a { float: left; position: relative; overflow: hidden; margin-right: 10px; padding: 7px 40px; border: 1px solid #000; }
-.js .styled-browse-button a.error { color: #7A0000; background-color: #FFE9DF; }
-.js .styled-browse-button a.error:hover { color: #FFE9DF; background-color: #7A0000; }
+.js .styled-browse-button a.error { color: #6A1A06; background-color: #F15F3F; }
+.js .styled-browse-button a.error:hover { background-color: #f8ae9e; }
 .js .styled-browse-button input { position: absolute; top: 0; left: 0; right: 0; bottom: 0; height: 100%; width: 100%; cursor: pointer; visibility: visible; }
 .js .styled-browse-button .styled-browse-preview { font-size: 1.6em; line-height: 2.1em; float: left; }
 

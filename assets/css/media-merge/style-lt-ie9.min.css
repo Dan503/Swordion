@@ -208,6 +208,7 @@ a[href*=itunes]:before {
 *,
 :after,
 :before {
+	font-smoothing: antialiased;
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
@@ -218,8 +219,7 @@ html {
 }
 
 body {
-	font-size: 16px;
-	font-family: Roboto,Arial,Helvetica,sans-serif;
+	font-size: 13px;
 }
 
 h1:first-child,
@@ -241,12 +241,13 @@ h3,
 h4,
 h5,
 h6 {
-	color: #333;
+	color: #6F6F6F;
 	font-weight: 700;
 }
 
 h1 {
 	font-size: 40px;
+	color: #fff;
 }
 
 h2 {
@@ -368,7 +369,7 @@ table thead th {
 
 .btn:focus,
 .btn:hover {
-	background: #350044;
+	background: #341240;
 }
 
 .btn-pdf:before {
@@ -503,7 +504,7 @@ select option {
 	width: 32px;
 	border-radius: 0;
 	z-index: 0;
-	border-left: 1px solid #ccc;
+	border-left: 1px solid #CCC;
 }
 
 .styled-select.error:after {
@@ -546,13 +547,12 @@ input[type=radio] {
 }
 
 .js .styled-browse-button a.error {
-	color: #7A0000;
-	background-color: #FFE9DF;
+	color: #6A1A06;
+	background-color: #F15F3F;
 }
 
 .js .styled-browse-button a.error:hover {
-	color: #FFE9DF;
-	background-color: #7A0000;
+	background-color: #f8ae9e;
 }
 
 .js .styled-browse-button input {

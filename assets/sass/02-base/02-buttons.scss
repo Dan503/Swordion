@@ -7,11 +7,11 @@
 
 .btn {
 	padding: 5px 10px;
-	background: $purple-1;
+	background: $c-primary;
 	color: #fff;
 	@extend %animate--fast !optional;
 	&:hover, &:focus {
-		background: $purple-3;
+		background: $c-primary-hover;
 	}
 }
 

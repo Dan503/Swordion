@@ -69,7 +69,7 @@ select option { font-weight: 100; }
 		width: 32px;
 		border-radius: 0;
 		z-index: 0;
-		border-left: 1px solid #ccc;
+		border-left: 1px solid $c-border1;
 	}
 	&.error:after { border-color: red; }
 
@@ -84,7 +84,7 @@ select option { font-weight: 100; }
 		padding: 6px 0 5px 5px;
 		position: relative;
 		z-index: 2;
-		color: $grey-1;
+		color: $c-paragraph;
 		//stops IE10+ getting a colored background after making a selection
 		//unfortunately this doesn't work on IE<10 :(
 		&:focus::-ms-value {background: transparent;}
@@ -93,10 +93,6 @@ select option { font-weight: 100; }
 
 
 /********* Custom checkbox and radio buttons **********/
-
-$primary-color: $purple-1;
-$primary-hover: $purple-3;
-$background-hover: $grey-2;
 
 //ensures IE8 doesn't get the custom radios and check boxes (IE8 doesn't support ":checked")
 @include M-gt-ie8 {
@@ -118,7 +114,7 @@ $background-hover: $grey-2;
 			&:before {
 				@include M-size(15px);
 				background-color: #fff;
-				border: 1px solid $primary-color;
+				border: 1px solid $c-checkbox-primary;
 				top: 2px;
 				left: 0px;
 			}
@@ -127,18 +123,18 @@ $background-hover: $grey-2;
 				@include M-size(9px);
 				left: 3px;
 				top: 5px;
-				background-color: $primary-color;
+				background-color: $c-checkbox-primary;
 				opacity: 0;
 			}
 		}
 
 		&:focus + label, & + label:hover {
 			&:before {
-				background-color: $background-hover;
-				border-color: $primary-hover;
+				background-color: $c-checkbox-bg-hover;
+				border-color: $c-checkbox-primary-hover;
 			}
 			&:after {
-				background-color: $primary-hover;
+				background-color: $c-checkbox-primary-hover;
 			}
 		}
 		&:checked + label:after { @extend %opacity-1; }
@@ -169,8 +165,8 @@ $background-hover: $grey-2;
 		margin-right: 10px;
 		padding: 7px 40px;
 		border: 1px solid #000;
-		&.error { color: #7A0000; background-color: #FFE9DF; }
-		&.error:hover { color: #FFE9DF; background-color: #7A0000; }
+		&.error { color: $red-dark; background-color: $red-light; }
+		&.error:hover { background-color: $red-light-hover; }
 	}
 	input {
 		position: absolute;

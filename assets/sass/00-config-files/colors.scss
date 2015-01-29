@@ -2,42 +2,88 @@
 //	COLORS
 //----------------------------------------------------
 //	All color variables are listed here
-//
-//	first in line = lightest
-//	last in line = darkest
-//
-//	Number = prominence/reference
-//	Don't stress about the number too much but
-//	1 should be the most used version of that
-//	color on the site
-//
 //*================================================*/
 
 
+///////////////////////////
+// Name color variables //
+/////////////////////////
+
+$hover_modifier: 20%; //changes the intensity of color change on hover
+
 //Purple
-$purple-2: #C4A6CF;
-$purple-1: #742890;
-$purple-3: #350044;
+$purple-pale: #E7DBEB;
+$purple-light: #C4A6CF;
+$purple-mid: #742890;
+$purple-dim: #541D68;
+$purple-dark: #350044;
+	//purple hover states
+	$purple-pale-hover: lighten($purple-pale, $hover_modifier);
+	$purple-light-hover: lighten($purple-light, $hover_modifier);
+	$purple-mid-hover: darken($purple-mid, $hover_modifier);
+	$purple-dim-hover: darken($purple-dim, $hover_modifier);
+	$purple-dark-hover: darken($purple-dark, $hover_modifier);
 
 //Green
-$green-2: #B7D84B;
-$green-3: #98B732;
-$green-1: #74A330;
+$green-pale: #DDEDAB;
+$green-light: #B7D84B;
+$green-mid: #98B732;
+$green-dim: #74A330;
+$green-dark: #46631D;
+	//green hover states
+	$green-pale: lighten($green-pale, $hover_modifier);
+	$green-light-hover: lighten($green-light, $hover_modifier);
+	$green-mid-hover: darken($green-mid, $hover_modifier);
+	$green-dim-hover: darken($green-dim, $hover_modifier);
+	$green-dark-hover: darken($green-dark, $hover_modifier);
 
 //red
-$red-4: #FFD1D1;
-$red-3: #F15F3F;
-$red-2: #CD492B;
-$red-1: #A22709;
-
-//orange
-$orange-1: #F6971D;
+$red-pale: #FFD1D1;
+$red-light: #F15F3F;
+$red-mid: #CD492B;
+$red-dim: #A22709;
+$red-dark: #6A1A06;
+	//red hover states
+	$red-pale-hover: lighten($red-pale, $hover_modifier);
+	$red-light-hover: lighten($red-light, $hover_modifier);
+	$red-mid-hover: darken($red-mid, $hover_modifier);
+	$red-dim-hover: darken($red-dim, $hover_modifier);
+	$red-dark-hover: darken($red-dark, $hover_modifier);
 
 //grey
-$grey-3: #F5F5F5;
-$grey-2: #CCCCCC;
-$grey-5: #999999;
-$grey-4: #6F6F6F;
-$grey-1: #333333;
+$grey-pale: #F5F5F5;
+$grey-light: #CCCCCC;
+$grey-mid: #999999;
+$grey-dim: #6F6F6F;
+$grey-dark: #333333;
+	//grey hover states
+	$grey-pale-hover: lighten($grey-pale, $hover_modifier);
+	$grey-light-hover: lighten($grey-light, $hover_modifier);
+	$grey-mid-hover: darken($grey-mid, $hover_modifier);
+	$grey-dim-hover: darken($grey-dim, $hover_modifier);
+	$grey-dark-hover: darken($grey-dark, $hover_modifier);
 
 
+/////////////////////////////////
+// functional color variables //
+///////////////////////////////
+//c- for color-
+
+$c-primary: $purple-mid;
+$c-primary-hover: $purple-mid-hover;
+
+$c-border1: $grey-light;
+$c-border2: $purple-light;
+
+$c-h1: #fff;
+
+$c-heading: $grey-dim;
+
+$c-paragraph: $grey-dark;
+
+$c-checkbox-primary: $c-primary;
+$c-checkbox-primary-hover: $c-primary-hover;
+$c-checkbox-bg: #fff;
+$c-checkbox-bg-hover: $grey-light;
+
+$c-footer-bg: $grey-pale;

@@ -292,12 +292,13 @@ h3,
 h4,
 h5,
 h6 {
-	color: #333333;
+	color: #6F6F6F;
 	font-weight: 700;
 }
 
 h1 {
 	font-size: 40px;
+	color: #fff;
 }
 
 h2 {
@@ -442,7 +443,7 @@ table tbody th {
 
 .btn:hover,
 .btn:focus {
-	background: #350044;
+	background: #341240;
 }
 
 .btn-pdf:before {
@@ -602,7 +603,7 @@ select option {
 	width: 32px;
 	border-radius: 0;
 	z-index: 0;
-	border-left: 1px solid #ccc;
+	border-left: 1px solid #CCCCCC;
 }
 
 .styled-select.error:after {
@@ -649,13 +650,12 @@ input[type="checkbox"] {
 }
 
 .js .styled-browse-button a.error {
-	color: #7A0000;
-	background-color: #FFE9DF;
+	color: #6A1A06;
+	background-color: #F15F3F;
 }
 
 .js .styled-browse-button a.error:hover {
-	color: #FFE9DF;
-	background-color: #7A0000;
+	background-color: #f8ae9e;
 }
 
 .js .styled-browse-button input {

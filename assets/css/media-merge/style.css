@@ -356,13 +356,14 @@ h3,
 h4,
 h5,
 h6 {
-	color: #333333;
+	color: #6F6F6F;
 	font-weight: 700;
 }
 
 h1 {
 	font-size: 40px;
 	font-size: 4rem;
+	color: #fff;
 }
 
 h2 {
@@ -528,7 +529,7 @@ table tbody th {
 
 .btn:hover,
 .btn:focus {
-	background: #350044;
+	background: #341240;
 }
 
 .btn-pdf:before {
@@ -758,7 +759,7 @@ select option {
 	width: 32px;
 	border-radius: 0;
 	z-index: 0;
-	border-left: 1px solid #ccc;
+	border-left: 1px solid #CCCCCC;
 }
 
 .styled-select.error:after {
@@ -824,14 +825,14 @@ input[type="radio"] + label:hover:before,
 input[type="checkbox"]:focus + label:before,
 input[type="checkbox"] + label:hover:before {
 	background-color: #CCCCCC;
-	border-color: #350044;
+	border-color: #341240;
 }
 
 input[type="radio"]:focus + label:after,
 input[type="radio"] + label:hover:after,
 input[type="checkbox"]:focus + label:after,
 input[type="checkbox"] + label:hover:after {
-	background-color: #350044;
+	background-color: #341240;
 }
 
 input[type="radio"] + label:after,
@@ -856,13 +857,12 @@ input[type="radio"] + label:before {
 }
 
 .js .styled-browse-button a.error {
-	color: #7A0000;
-	background-color: #FFE9DF;
+	color: #6A1A06;
+	background-color: #F15F3F;
 }
 
 .js .styled-browse-button a.error:hover {
-	color: #FFE9DF;
-	background-color: #7A0000;
+	background-color: #f8ae9e;
 }
 
 .js .styled-browse-button input {
