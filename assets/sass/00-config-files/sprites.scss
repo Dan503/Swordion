@@ -1,16 +1,112 @@
+/*
+SCSS variables are information about icon's compiled state, stored under its original file name
 
-//*================================================*\
-//	SPRITES FILE
-//----------------------------------------------------
-//	This file holds the references to any sprite images
-//	The @include M-sprite() mixin ties in heavily
-//	with these variables
-//*================================================*/
+.icon-home {
+  width: map-get($icon-home, 'width');
+}
 
-//main sprite
-$sprite: url(../images/design/sprite.png);
-$sprite2x: url(../images/design/sprite@2x.png);
-$sprite_width: 50px;
+At the bottom of this section, we provide information about the spritesheet itself
+*/
+$excel: (
+  name: 'excel',
+  x: 0px,
+  y: 34px,
+  offset_x: 0px,
+  offset_y: -34px,
+  width: 30px,
+  height: 29px,
+  total_width: 64px,
+  total_height: 63px,
+  image: '../../images/auto-sprite/HD-auto-spritesheet.png'
+);
+$pdf: (
+  name: 'pdf',
+  x: 0px,
+  y: 0px,
+  offset_x: 0px,
+  offset_y: 0px,
+  width: 30px,
+  height: 30px,
+  total_width: 64px,
+  total_height: 63px,
+  image: '../../images/auto-sprite/HD-auto-spritesheet.png'
+);
+$powerpoint: (
+  name: 'powerpoint',
+  x: 34px,
+  y: 34px,
+  offset_x: -34px,
+  offset_y: -34px,
+  width: 30px,
+  height: 29px,
+  total_width: 64px,
+  total_height: 63px,
+  image: '../../images/auto-sprite/HD-auto-spritesheet.png'
+);
+$word: (
+  name: 'word',
+  x: 34px,
+  y: 0px,
+  offset_x: -34px,
+  offset_y: 0px,
+  width: 30px,
+  height: 30px,
+  total_width: 64px,
+  total_height: 63px,
+  image: '../../images/auto-sprite/HD-auto-spritesheet.png'
+);
+$spritesheet: (
+  width: 64px,
+  height: 63px,
+  image: '../../images/auto-sprite/HD-auto-spritesheet.png',
+  sprites: $excel $pdf $powerpoint $word
+);
 
-$wide_sprite: url(../images/design/wide-sprite.png);
-$wide_sprite2x: url(../images/design/wide-sprite@2x.png);
+/*
+The provided mixins are intended to be used with variables directly
+
+.icon-home {
+  @include sprite-width($icon-home);
+}
+
+.icon-email {
+  @include sprite($icon-email);
+}
+*/
+@mixin sprite-width($sprite) {
+  width: map-get($sprite, 'width');
+}
+
+@mixin sprite-height($sprite) {
+  height: map-get($sprite, 'height');
+}
+
+@mixin sprite-position($sprite) {
+  background-position: map-get($sprite, 'offset_x') map-get($sprite, 'offset_y');
+}
+
+@mixin sprite-image($sprite) {
+  background-image: url(map-get($sprite, 'image'));
+}
+
+@mixin sprite($sprite) {
+  @include sprite-image($sprite);
+  @include sprite-position($sprite);
+  @include sprite-width($sprite);
+  @include sprite-height($sprite);
+}
+
+/*
+The `sprites` mixin generates identical output to the CSS template
+  but can be overridden inside of SCSS
+
+@include sprites(map-get($spritesheet, 'sprites'));
+*/
+@mixin sprites($sprites) {
+  @each $sprite in $sprites {
+    $sprite-name: map-get($sprite, 'name');
+    .#{$sprite-name} {
+      @include sprite($sprite);
+    }
+  }
+}

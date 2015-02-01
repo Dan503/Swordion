@@ -2,6 +2,7 @@
   "name": "projectname",
   "version": "1.0.0",
   "devDependencies": {
+    "gm": "^1.17.0",
     "grunt": "~0.4.5",
     "grunt-autoprefixer": "~0.8.2",
     "grunt-browser-sync": "~1.1.2",
@@ -16,7 +17,8 @@
     "grunt-notify": "~0.3.0",
     "grunt-sass": "~0.14.0",
     "grunt-sass-globbing": "^1.0.3",
-    "grunt-webfont": "^0.4.7",
+    "grunt-spritesmith": "^3.6.0",
+    "grunt-spritesmith-hd": "^0.3.5",
     "jit-grunt": "^0.9.0"
   }
 }

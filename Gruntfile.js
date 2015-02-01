@@ -22,6 +22,8 @@ module.exports = function (grunt) {
 		// task_name: "grunt_plugin_name",
 		cmq: "grunt-combine-media-queries",
 		watch: "grunt-contrib-watch",
+		sprite: "grunt-spritesmith",
+		spriteHD: 'grunt-spritesmith-hd',
 	});
 
 	grunt.initConfig({
@@ -64,6 +66,27 @@ module.exports = function (grunt) {
 				}
 			}
 		},*/
+
+		//Able to auto-sprite without compass! :D
+		//https://www.npmjs.com/package/grunt-spritesmith-hd
+		spriteHD:{
+			options: {
+				cssFormat: 'scss_maps',
+				cssSelector: 'sprite',
+				padding: 4,
+				//cssOpts: { functions: false }, //will disable mixins being exported :)
+			},
+			all: {
+				src: 'assets/images/auto-sprite/source-files/*.png',
+				spriteName: 'autosprite',
+				options: {
+					destImg: 'assets/images/auto-sprite/',
+					destCss: 'assets/sass/00-config-files/',
+					imgPath: '../images/auto-sprite/',
+				},
+				//tasks: ['sass'],
+			},
+		},
 
 		//allows sass to import a whole directory at a time
 		sass_globbing: {
@@ -199,9 +222,7 @@ module.exports = function (grunt) {
 					//"uglify", //minimise JS
 					//"copy:js", //copy js to server
 				],
-				options: {
-					spawn: false
-				}
+				options: { spawn: false }
 			},
 			scss: {
 				files: ["**/*.scss"],
@@ -213,9 +234,14 @@ module.exports = function (grunt) {
 					"cssmin",
 					//"copy:css", //copy css to server
 				],
-				options: {
-					spawn: false
-				}
+				options: { spawn: false }
+			},
+			spriteHD: {
+				files: ["assets/images/auto-sprite/source-files/*.png"],
+				tasks: [
+					"spriteHD",
+				],
+				options: { spawn: false }
 			},
 			html: {
 				options: {
@@ -240,12 +266,13 @@ module.exports = function (grunt) {
 		"concat",
 		//"uglify",
 		"sass_globbing",
-		"sass:dist",
+		"spriteHD", //includes sass task
+		//"sass:dist",
 		//"autoprefixer",
 		"cmq",
 		"cssmin",
 		//"copy",
-		"watch"
+		//"watch"
 	]);
 
 };
