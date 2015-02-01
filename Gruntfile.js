@@ -71,18 +71,23 @@ module.exports = function (grunt) {
 		//https://www.npmjs.com/package/grunt-spritesmith-hd
 		spriteHD:{
 			options: {
+				hd: false,
+				destImg: 'assets/images/auto-sprite',
+				destCss: 'assets/sass/00-config-files',
+				imgPath: '../images/auto-sprite',
 				cssFormat: 'scss_maps',
 				cssSelector: 'sprite',
 				padding: 4,
-				//cssOpts: { functions: false }, //will disable mixins being exported :)
+				engine: require('pixelsmith'),
+				//requires you to install ImageMagic http://www.imagemagick.org/
+				//then do an npm install: npm install im
+				resizeEngine: 'im',
+				//cssOpts: { functions: false }, //will disable mixins being exported
 			},
 			all: {
-				src: 'assets/images/auto-sprite/source-files/*.png',
+				src: 'assets/images/auto-sprite/source-files/*',
 				spriteName: 'autosprite',
 				options: {
-					destImg: 'assets/images/auto-sprite/',
-					destCss: 'assets/sass/00-config-files/',
-					imgPath: '../images/auto-sprite/',
 				},
 				//tasks: ['sass'],
 			},
@@ -263,14 +268,14 @@ module.exports = function (grunt) {
 
 	//list the tasks in the order you want them done in
 	grunt.registerTask("default", [
-		"concat",
+			//"concat",
 		//"uglify",
-		"sass_globbing",
-		"spriteHD", //includes sass task
-		//"sass:dist",
+			//"sass_globbing",
+		"spriteHD",
+			//"sass:dist",
 		//"autoprefixer",
-		"cmq",
-		"cssmin",
+			//"cmq",
+			//"cssmin",
 		//"copy",
 		//"watch"
 	]);
