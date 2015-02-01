@@ -23,7 +23,7 @@ module.exports = function (grunt) {
 		cmq: "grunt-combine-media-queries",
 		watch: "grunt-contrib-watch",
 		sprite: "grunt-spritesmith",
-		spriteHD: 'grunt-spritesmith-hd',
+		//spriteHD: 'grunt-spritesmith-hd',
 	});
 
 	grunt.initConfig({
@@ -68,28 +68,19 @@ module.exports = function (grunt) {
 		},*/
 
 		//Able to auto-sprite without compass! :D
-		//https://www.npmjs.com/package/grunt-spritesmith-hd
-		spriteHD:{
-			options: {
-				hd: false,
-				destImg: 'assets/images/auto-sprite',
-				destCss: 'assets/sass/00-config-files',
-				imgPath: '../images/auto-sprite',
+		sprite:{
+			LowDef: {
+				src: 'assets/images/auto-sprite/LowDef-source-files/*.png',
+				//spriteName: 'autosprite',
+				dest: 'assets/images/auto-sprite/LowDef-autosprite.png',
+				destCss: 'assets/sass/00-config-files/LowDef-sprites.scss',
 				cssFormat: 'scss_maps',
-				cssSelector: 'sprite',
+				imgPath: '../images/auto-sprite/LowDef-autosprite.png',
 				padding: 4,
-				engine: require('pixelsmith'),
-				//requires you to install ImageMagic http://www.imagemagick.org/
-				//then do an npm install: npm install im
-				resizeEngine: 'im',
-				//cssOpts: { functions: false }, //will disable mixins being exported
-			},
-			all: {
-				src: 'assets/images/auto-sprite/source-files/*',
-				spriteName: 'autosprite',
-				options: {
+				cssOpts: {
+					functions: false,
+					spritesheet_name: 'lowdef',//can't get this to work, it's esential for retina sprite stage :(
 				},
-				//tasks: ['sass'],
 			},
 		},
 
@@ -241,10 +232,10 @@ module.exports = function (grunt) {
 				],
 				options: { spawn: false }
 			},
-			spriteHD: {
-				files: ["assets/images/auto-sprite/source-files/*.png"],
+			sprite: {
+				files: ["assets/images/auto-sprite/LowDef-source-files/*.png"],
 				tasks: [
-					"spriteHD",
+					"sprite",
 				],
 				options: { spawn: false }
 			},
@@ -268,16 +259,16 @@ module.exports = function (grunt) {
 
 	//list the tasks in the order you want them done in
 	grunt.registerTask("default", [
-			//"concat",
+		"concat",
 		//"uglify",
-			//"sass_globbing",
-		"spriteHD",
-			//"sass:dist",
+		"sass_globbing",
+		"sprite",
+		"sass:dist",
 		//"autoprefixer",
-			//"cmq",
-			//"cssmin",
+		"cmq",
+		"cssmin",
 		//"copy",
-		//"watch"
+		"watch"
 	]);
 
 };

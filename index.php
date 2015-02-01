@@ -15,7 +15,7 @@ include 'header.php';
 </div>
 
 				<a href="javascript:void(0)" id="contentStart"></a>
-				<div id="content">
+				<div class="content sprite-pdf">
 
 						<h2>To do list:</h2>
 						<ol>

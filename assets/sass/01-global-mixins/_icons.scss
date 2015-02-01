@@ -27,6 +27,7 @@
 
 	[class^="icon-"], [class*=" icon-"] {
 		&:before, &:after {
+			display: block;
 			@extend %M-icon-static-styles;
 		}
 	}

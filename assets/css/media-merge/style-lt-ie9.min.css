@@ -8,39 +8,39 @@
 	font-style: normal;
 }
 
-.icon-pdf {
+.icon-pdf:before {
 	content: "";
 }
 
-.icon-word {
+.icon-word:before {
 	content: "";
 }
 
-.icon-excel {
+.icon-excel:before {
 	content: "";
 }
 
-.icon-powerpoint {
+.icon-powerpoint:before {
 	content: "";
 }
 
-.icon-text {
+.icon-text:before {
 	content: "";
 }
 
-.icon-audio {
+.icon-audio:before {
 	content: "";
 }
 
-.icon-podcast {
+.icon-podcast:before {
 	content: "";
 }
 
-.icon-globe {
+.icon-globe:before {
 	content: "";
 }
 
-.icon-external {
+.icon-external:before {
 	content: "";
 }
 
@@ -200,6 +200,44 @@ a[href*=itunes]:before {
 	-moz-osx-font-smoothing: grayscale;
 }
 
+[class*=" icon-"]:after,
+[class*=" icon-"]:before,
+[class^=icon-]:after,
+[class^=icon-]:before {
+	display: block;
+}
+
+[class*=" sprite-"]:before,
+[class^=sprite-]:before {
+	content: "";
+	display: block;
+	background-image: url(../images/auto-sprite/LD-autosprite.png);
+}
+
+.sprite-excel:before {
+	background-position: 0 -34px;
+	width: 30px;
+	height: 29px;
+}
+
+.sprite-pdf:before {
+	background-position: 0 0;
+	width: 30px;
+	height: 30px;
+}
+
+.sprite-powerpoint:before {
+	background-position: -34px -34px;
+	width: 30px;
+	height: 29px;
+}
+
+.sprite-word:before {
+	background-position: -34px 0;
+	width: 30px;
+	height: 30px;
+}
+
 .js-popins-piece.js-popins-piece--pop,
 .popin {
 	opacity: 1;
@@ -219,7 +257,8 @@ html {
 }
 
 body {
-	font-size: 13px;
+	font-size: 16px;
+	font-family: Roboto,Arial,Helvetica,sans-serif;
 }
 
 h1:first-child,

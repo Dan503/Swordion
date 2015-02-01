@@ -37,7 +37,7 @@ $icons: (
 
 	//generates the .icon-XXX classes
 	@each $icon, $referenceKey in $icons {
-	    .icon-#{$icon} {
+	    .icon-#{$icon}:before {
 	        content: $referenceKey;
 	    }
 	}

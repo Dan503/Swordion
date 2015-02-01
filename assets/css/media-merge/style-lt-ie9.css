@@ -5,6 +5,15 @@
 //	IE8 and below
 \*================================================*/
 
+/*
+SCSS variables are information about icon's compiled state, stored under its original file name
+
+.icon-home { width: map-get($icon-home, 'width');
+}
+
+At the bottom of this section, we provide information about the spritesheet itself
+*/
+
 @font-face {
 	font-family: 'icons';
 	src: url("fonts/icons.eot?-nx4lre");
@@ -18,39 +27,39 @@
 }
 */
 
-.icon-pdf {
+.icon-pdf:before {
 	content: "";
 }
 
-.icon-word {
+.icon-word:before {
 	content: "";
 }
 
-.icon-excel {
+.icon-excel:before {
 	content: "";
 }
 
-.icon-powerpoint {
+.icon-powerpoint:before {
 	content: "";
 }
 
-.icon-text {
+.icon-text:before {
 	content: "";
 }
 
-.icon-audio {
+.icon-audio:before {
 	content: "";
 }
 
-.icon-podcast {
+.icon-podcast:before {
 	content: "";
 }
 
-.icon-globe {
+.icon-globe:before {
 	content: "";
 }
 
-.icon-external {
+.icon-external:before {
 	content: "";
 }
 
@@ -208,6 +217,50 @@ a.external-link:after,
 	vertical-align: middle;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
+}
+
+[class^="icon-"]:before,
+[class^="icon-"]:after,
+[class*=" icon-"]:before,
+[class*=" icon-"]:after {
+	display: block;
+}
+
+/*
+The `sprites` mixin generates identical output to the CSS template but can be overridden inside of SCSS
+
+@include sprites(map-get($spritesheet, 'sprites'));
+*/
+
+[class*=" sprite-"]:before,
+[class^="sprite-"]:before {
+	content: "";
+	display: block;
+	background-image: url("../images/auto-sprite/LowDef-autosprite.png");
+}
+
+.sprite-excel:before {
+	background-position: 0px -34px;
+	width: 30px;
+	height: 29px;
+}
+
+.sprite-pdf:before {
+	background-position: 0px 0px;
+	width: 30px;
+	height: 30px;
+}
+
+.sprite-powerpoint:before {
+	background-position: -34px -34px;
+	width: 30px;
+	height: 29px;
+}
+
+.sprite-word:before {
+	background-position: -34px 0px;
+	width: 30px;
+	height: 30px;
 }
 
 /*   SHARED ANIMATION EFFECTS   */
