@@ -67,22 +67,51 @@ module.exports = function (grunt) {
 			}
 		},*/
 
+		//requires you to install imageMagik
+		//http://www.imagemagick.org/script/binary-releases.php
+		//THEN install with "npm install grunt-image-resize"
+		image_resize: {
+			resize: {
+				options: {
+					width: '50%',
+					height: '50%',
+				},
+				files: {
+					//destination
+					'assets/images/auto-sprite/LowDef-source-files/':
+					//source
+					'assets/images/auto-sprite/HighDef-source-files/*.png'
+				}
+			}
+		},
+
 		//Able to auto-sprite without compass! :D
 		sprite:{
-			LowDef: {
-				src: 'assets/images/auto-sprite/LowDef-source-files/*.png',
-				//spriteName: 'autosprite',
-				dest: 'assets/images/auto-sprite/LowDef-autosprite.png',
-				destCss: 'assets/sass/00-config-files/LowDef-sprites.scss',
-				cssFormat: 'scss_maps',
-				imgPath: '../images/auto-sprite/LowDef-autosprite.png',
-				padding: 4,
-				cssOpts: {
-					functions: false,
-					spritesheet_name: 'lowdef',//can't get this to work, it's esential for retina sprite stage :(
-				},
-			},
-		},
+	        LowDef: {
+	            src: 'assets/images/auto-sprite/LowDef-source-files/*.png',
+	            dest: 'assets/images/auto-sprite/LowDef-autosprite.png',
+	            destCss: 'assets/sass/00-config-files/LowDef-sprites.scss',
+	            cssFormat: 'scss_maps',
+	            imgPath: '../images/auto-sprite/LowDef-autosprite.png',
+	            padding: 4,
+				cssSpritesheetName: 'spritesheet-lowdef',
+	            cssOpts: {
+	                functions: false,
+	            },
+	        },
+	        HighDef: {
+	            src: 'assets/images/auto-sprite/HighDef-source-files/*.png',
+	            dest: 'assets/images/auto-sprite/HighDef-autosprite.png',
+	            destCss: 'assets/sass/00-config-files/HighDef-sprites.scss',
+	            cssFormat: 'scss_maps',
+	            imgPath: '../images/auto-sprite/HighDef-autosprite.png',
+	            padding: 4,
+				cssSpritesheetName: 'spritesheet-highdef',
+	            cssOpts: {
+	                functions: false,
+	            },
+	        },
+	    },
 
 		//allows sass to import a whole directory at a time
 		sass_globbing: {
@@ -232,7 +261,15 @@ module.exports = function (grunt) {
 				],
 				options: { spawn: false }
 			},
-			sprite: {
+			HD_sprite: {
+				files: ["assets/images/auto-sprite/HighDef-source-files/*.png"],
+				tasks: [
+					"image_resize",
+					"sprite",
+				],
+				options: { spawn: false }
+			},
+			LD_sprite: {
 				files: ["assets/images/auto-sprite/LowDef-source-files/*.png"],
 				tasks: [
 					"sprite",
@@ -262,6 +299,7 @@ module.exports = function (grunt) {
 		"concat",
 		//"uglify",
 		"sass_globbing",
+		"image_resize",
 		"sprite",
 		"sass:dist",
 		//"autoprefixer",

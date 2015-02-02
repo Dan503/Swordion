@@ -13,6 +13,14 @@ SCSS variables are information about icon's compiled state, stored under its ori
 
 At the bottom of this section, we provide information about the spritesheet itself
 */
+/*
+SCSS variables are information about icon's compiled state, stored under its original file name
+
+.icon-home { width: map-get($icon-home, 'width');
+}
+
+At the bottom of this section, we provide information about the spritesheet itself
+*/
 @import url(http://fonts.googleapis.com/css?family=Roboto);
 @font-face { font-family: 'icons'; src: url("fonts/icons.eot?-nx4lre"); src: url("fonts/icons.eot?#iefix-nx4lre") format("embedded-opentype"), url("fonts/icons.woff?-nx4lre") format("woff"), url("fonts/icons.ttf?-nx4lre") format("truetype"), url("fonts/icons.svg?-nx4lre#icons") format("svg"); font-weight: normal; font-style: normal; }
 /*
@@ -76,13 +84,13 @@ The `sprites` mixin generates identical output to the CSS template but can be ov
 */
 [class*=" sprite-"]:before, [class^="sprite-"]:before { content: ""; display: block; background-image: url("../images/auto-sprite/LowDef-autosprite.png"); }
 
-.sprite-excel:before { background-position: 0px -34px; width: 30px; height: 29px; }
+.sprite-excel:before { background-position: 0px 0px; width: 15px; height: 15px; }
 
-.sprite-pdf:before { background-position: 0px 0px; width: 30px; height: 30px; }
+.sprite-pdf:before { background-position: -19px 0px; width: 15px; height: 15px; }
 
-.sprite-powerpoint:before { background-position: -34px -34px; width: 30px; height: 29px; }
+.sprite-powerpoint:before { background-position: 0px -19px; width: 15px; height: 15px; }
 
-.sprite-word:before { background-position: -34px 0px; width: 30px; height: 30px; }
+.sprite-word:before { background-position: -19px -19px; width: 15px; height: 15px; }
 
 /*   SHARED ANIMATION EFFECTS   */
 /*******************************************\

@@ -207,31 +207,31 @@ a[href*=itunes]:before {
 [class^=sprite-]:before {
 	content: "";
 	display: block;
-	background-image: url(../images/auto-sprite/LD-autosprite.png);
+	background-image: url(../images/auto-sprite/LowDef-autosprite.png);
 }
 
 .sprite-excel:before {
-	background-position: 0 -34px;
-	width: 30px;
-	height: 29px;
+	background-position: 0 0;
+	width: 15px;
+	height: 15px;
 }
 
 .sprite-pdf:before {
-	background-position: 0 0;
-	width: 30px;
-	height: 30px;
+	background-position: -19px 0;
+	width: 15px;
+	height: 15px;
 }
 
 .sprite-powerpoint:before {
-	background-position: -34px -34px;
-	width: 30px;
-	height: 29px;
+	background-position: 0 -19px;
+	width: 15px;
+	height: 15px;
 }
 
 .sprite-word:before {
-	background-position: -34px 0;
-	width: 30px;
-	height: 30px;
+	background-position: -19px -19px;
+	width: 15px;
+	height: 15px;
 }
 
 .animate,

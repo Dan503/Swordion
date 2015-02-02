@@ -42,8 +42,8 @@ The `sprites` mixin generates identical output to the CSS template
 @if ($main-sheet == true){
 	[class*=" sprite-"], [class^="sprite-"] {
 		@include M-before{
-			@include M-sprite-image($spritesheet);
+			@include M-sprite-image($spritesheet-lowdef);
 		}
 	}
-	@include M-sprites($spritesheet);
+	@include M-sprites($spritesheet-lowdef);
 }
