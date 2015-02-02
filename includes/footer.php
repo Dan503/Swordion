@@ -7,8 +7,8 @@
 	<!-- @#sitecontainer-->
 
 	<!-- jQuery loader (make sure it's the latest version when starting) -->
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-	<script>window.jQuery || document.write('<script src="assets/js/vendor/_jquery-1.11.1.min.js"><\/script>')</script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<script>window.jQuery || document.write('<script src="/assets/js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
 
 	<script type="text/javascript">
 		var js_root = "/assets/js/";
