@@ -1,0 +1,45 @@
+
+///*================================================*\
+//	STYLES IMPORT FILE
+//----------------------------------------------------
+//	This file is what stitches the whole project
+//	together. All scss files must be loaded in through
+//	this file.
+//*================================================*/
+
+//Holds the imports for all variables, mixins and functions
+@import "00-import-functions.scss";
+
+//any plugin style css gets loaded here (css you aren't meant to edit)
+@import "import-maps/plugins-map.scss";
+
+//Styles that are essentially resets and tools to help make developing easier
+//order is important, use numbers on files, forms-base must be last.
+@import "import-maps/base-map.scss";
+
+//Holds rules for modules that are visible on essentially every page (header, footer, etc.)
+//These are essentially modules OUTSIDE the main content area
+//order shouldn't be very important as long as they are self contained
+@import "import-maps/global-modules-map.scss";
+
+//Holds rules for modules that are only visible on certain pages or under certain circumstances
+//These are essentially modules INSIDE the main content area
+//order shouldn't be very important as long as they are self contained
+@import "import-maps/content-modules-map.scss";
+
+//Holds the animation stages for elements that are animated using the .addStages() javascript function
+//order shouldn't be important
+//@import "import-maps/animation-map.scss";
+
+//Remove this when starting a new project
+@import "swordion-only.scss";
+
+//all theming based css goes here
+@import "02-themes.scss";
+
+//All print styles go here
+@media print { @import "03-print.scss"; }
+
+
+
+/*! Built by Daniel Tonon - UX Developer - Reading Room Australia - January 2015 !*/

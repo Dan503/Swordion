@@ -1,0 +1,87 @@
+﻿///*================================================*\
+//	COLORS
+//----------------------------------------------------
+//	All color variables are listed here
+//
+//*================================================*/
+
+
+///////////////////////////
+// Name color variables //
+/////////////////////////
+
+//x = not part of official color scheme. Be careful of usage.
+
+$hoverModifier: 20%; //changes the intensity of some hover colors
+
+//Purple
+$purple-pale: #E7DBEB;//x
+$purple-light: #C4A6CF;
+$purple-mid: #742890;
+$purple-dark: #350044;
+	//purple hover states
+	$purple-light-hover: $purple-pale;
+	$purple-mid-hover: $purple-dark;
+	$purple-dark-hover: darken($purple-dark, $hoverModifier);
+
+//Green
+$green-pale: #DDEDAB;//x
+$green-light: #B7D84B;
+$green-mid: #98B732;
+$green-dim: #74A330;
+	//green hover states
+	$green-light-hover: $green-pale;
+	$green-mid-hover: $green-light;
+	$green-dim-hover: darken($green-dim, $hoverModifier);
+
+//red
+$red-pale: #FFD1D1;//x
+$red-light: #F15F3F;
+$red-mid: #CD492B;
+$red-dim: #A22709;
+$red-dark: #6A1A06;//x
+	//green hover states
+	$red-light-hover: lighten($red-light, $hoverModifier);
+	$red-mid-hover: $red-dim;
+	$red-dim-hover: darken($red-dim, $hoverModifier);
+
+//orange
+$orange-mid: #F6971D;
+	//orange hover states
+	$orange-mid-hover: #CE7809; //x
+
+//grey
+$grey-pale: #F5F5F5;
+$grey-light: #CCCCCC;
+$grey-mid: #999999;
+$grey-dim: #6F6F6F;
+$grey-dark: #333333;
+	//grey hover states
+	$grey-pale-hover: #fff;
+	$grey-light-hover: $grey-pale;
+	$grey-mid-hover: $grey-dim;
+	$grey-dim-hover: $grey-dark;
+	$grey-dark-hover: #000;
+
+
+/////////////////////////////////
+// functional color variables //
+///////////////////////////////
+//c- for color-
+
+$c-primary: $purple-mid;
+$c-primary-hover: $purple-mid-hover;
+
+$c-border1: $grey-light;
+$c-border2: $purple-light;
+
+$c-h1: #fff;
+
+$c-paragraph: $grey-dark;
+
+$c-checkbox-primary: $c-primary;
+$c-checkbox-primary-hover: $c-primary-hover;
+$c-checkbox-bg: #fff;
+$c-checkbox-bg-hover: $grey-light;
+
+$c-footer-bg: $grey-pale;

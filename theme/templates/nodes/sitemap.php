@@ -1,0 +1,1 @@
+<div id="sitemap"><?php echo $bp->get_menu(); ?></div>

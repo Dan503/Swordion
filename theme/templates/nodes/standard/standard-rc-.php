@@ -1,0 +1,1 @@
+This is a standard page with a right column.
