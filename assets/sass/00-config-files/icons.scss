@@ -18,6 +18,15 @@
 //	it does not style the icon
 //*================================================*/
 
+//Use this regular expression to find/replace the css icomoon generates
+//find: \.icon-([a-zA-Z-]*):before\s{\r\n\tcontent:\s("\\[a-zA-Z0-9]*");\r\n}\r\n
+//replace with: \1: \2,
+
+//expects this css format:
+//.icon-ICON_NAME {
+//	content: "\e123";
+//}
+
 
 //list of icon names and they're reference keys
 $icons: (
