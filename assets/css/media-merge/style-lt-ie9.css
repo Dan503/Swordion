@@ -5,24 +5,6 @@
 //	IE8 and below
 \*================================================*/
 
-/*
-SCSS variables are information about icon's compiled state, stored under its original file name
-
-.icon-home { width: map-get($icon-home, 'width');
-}
-
-At the bottom of this section, we provide information about the spritesheet itself
-*/
-
-/*
-SCSS variables are information about icon's compiled state, stored under its original file name
-
-.icon-home { width: map-get($icon-home, 'width');
-}
-
-At the bottom of this section, we provide information about the spritesheet itself
-*/
-
 @font-face {
 	font-family: 'icons';
 	src: url("fonts/icons.eot?-nx4lre");
@@ -71,6 +53,33 @@ At the bottom of this section, we provide information about the spritesheet itse
 .icon-external:before {
 	content: "";
 }
+
+/*
+SCSS variables are information about icon's compiled state, stored under its original file name
+
+.icon-home { width: map-get($icon-home, 'width');
+}
+
+At the bottom of this section, we provide information about the spritesheet itself
+*/
+
+/*
+SCSS variables are information about icon's compiled state, stored under its original file name
+
+.icon-home { width: map-get($icon-home, 'width');
+}
+
+At the bottom of this section, we provide information about the spritesheet itself
+*/
+
+/*
+SCSS variables are information about icon's compiled state, stored under its original file name
+
+.icon-home { width: map-get($icon-home, 'width');
+}
+
+At the bottom of this section, we provide information about the spritesheet itself
+*/
 
 .mobileOnly,
 .tabletOnly,
@@ -245,6 +254,37 @@ The `sprites` mixin generates identical output to the CSS template but can be ov
 [class^="sprite-"]:before {
 	content: "";
 	display: block;
+	background-image: url("../images/auto-sprite/AllDevices-LowDef-autosprite.png");
+}
+
+.sprite-external-link:before {
+	background-position: -17px -17px;
+	width: 10px;
+	height: 11px;
+}
+
+.sprite-globe:before {
+	background-position: 0px 0px;
+	width: 15px;
+	height: 15px;
+}
+
+.sprite-music:before {
+	background-position: 0px -17px;
+	width: 15px;
+	height: 14px;
+}
+
+.sprite-podcast:before {
+	background-position: -17px 0px;
+	width: 15px;
+	height: 15px;
+}
+
+[class*=" sprite-"]:before,
+[class^="sprite-"]:before {
+	content: "";
+	display: block;
 	background-image: url("../images/auto-sprite/LowDef-autosprite.png");
 }
 
@@ -255,19 +295,19 @@ The `sprites` mixin generates identical output to the CSS template but can be ov
 }
 
 .sprite-pdf:before {
-	background-position: -19px 0px;
+	background-position: -17px 0px;
 	width: 15px;
 	height: 15px;
 }
 
 .sprite-powerpoint:before {
-	background-position: 0px -19px;
+	background-position: 0px -17px;
 	width: 15px;
 	height: 15px;
 }
 
 .sprite-word:before {
-	background-position: -19px -19px;
+	background-position: -17px -17px;
 	width: 15px;
 	height: 15px;
 }
@@ -1396,6 +1436,15 @@ body.theme-light .themed-footer {
 /*! Built by Daniel Tonon - UX Developer - Reading Room Australia - January 2015 !*/
 
 /*# sourceMappingURL=style-lt-ie9.css.map */
+
+@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192ppi), only screen and (min-resolution: 2dppx) {
+
+[class*=" sprite-"]:before,
+[class^="sprite-"]:before {
+	background-image: url("../images/auto-sprite/HighDef-autosprite.png");
+}
+
+}
 
 @media print {
 

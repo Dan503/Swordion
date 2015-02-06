@@ -1,4 +1,11 @@
-﻿@mixin M-sprite-width($sprite) {
+﻿
+//manually list all spritesheet variables here except High Def versions
+$spritesheets:
+	$spritesheet-alldevices,
+	$spritesheet-lowdef;
+
+
+@mixin M-sprite-width($sprite) {
   width: map-get($sprite, 'width');
 }
 
@@ -10,15 +17,21 @@
   background-position: map-get($sprite, 'offset_x') map-get($sprite, 'offset_y');
 }
 
-@mixin M-sprite-image($sprite) {
-  background-image: url(map-get($sprite, 'image'));
+@mixin M-sprite-image($spritesheet: $spritesheet-lowdef, $retina-sheet: $spritesheet-highdef) {
+	background-image: url(map-get($spritesheet, 'image'));
+	@if ($spritesheet == $spritesheet-lowdef){
+		@include M-retina {
+			background-size: map-get($spritesheet, 'width') map-get($spritesheet, 'height');
+			background-image: url(map-get($retina-sheet, 'image'));
+		}
+	}
 }
 
-@mixin M-sprite($sprite) {
-  @include M-sprite-image($sprite);
+@mixin M-sprite($sprite, $spritesheet: $spritesheet-lowdef, $retina-sheet: $spritesheet-highdef) {
   @include M-sprite-position($sprite);
   @include M-sprite-width($sprite);
   @include M-sprite-height($sprite);
+  @include M-sprite-image($spritesheet, $retina-sheet);
 }
 
 /*
@@ -39,11 +52,15 @@ The `sprites` mixin generates identical output to the CSS template
   }
 }
 
+
+//generates the sprite classes
 @if ($main-sheet == true){
 	[class*=" sprite-"], [class^="sprite-"] {
-		@include M-before{
+		@include M-before(inline-block){
 			@include M-sprite-image($spritesheet-lowdef);
 		}
 	}
-	@include M-sprites($spritesheet-lowdef);
+	@each $sheet in $spritesheets {
+		@include M-sprites($sheet);
+	}
 }

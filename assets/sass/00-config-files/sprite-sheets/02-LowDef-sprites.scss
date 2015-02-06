@@ -15,49 +15,49 @@ $excel: (
   offset_y: 0px,
   width: 15px,
   height: 15px,
-  total_width: 34px,
-  total_height: 34px,
+  total_width: 32px,
+  total_height: 32px,
   image: '../images/auto-sprite/LowDef-autosprite.png'
 );
 $pdf: (
   name: 'pdf',
-  x: 19px,
+  x: 17px,
   y: 0px,
-  offset_x: -19px,
+  offset_x: -17px,
   offset_y: 0px,
   width: 15px,
   height: 15px,
-  total_width: 34px,
-  total_height: 34px,
+  total_width: 32px,
+  total_height: 32px,
   image: '../images/auto-sprite/LowDef-autosprite.png'
 );
 $powerpoint: (
   name: 'powerpoint',
   x: 0px,
-  y: 19px,
+  y: 17px,
   offset_x: 0px,
-  offset_y: -19px,
+  offset_y: -17px,
   width: 15px,
   height: 15px,
-  total_width: 34px,
-  total_height: 34px,
+  total_width: 32px,
+  total_height: 32px,
   image: '../images/auto-sprite/LowDef-autosprite.png'
 );
 $word: (
   name: 'word',
-  x: 19px,
-  y: 19px,
-  offset_x: -19px,
-  offset_y: -19px,
+  x: 17px,
+  y: 17px,
+  offset_x: -17px,
+  offset_y: -17px,
   width: 15px,
   height: 15px,
-  total_width: 34px,
-  total_height: 34px,
+  total_width: 32px,
+  total_height: 32px,
   image: '../images/auto-sprite/LowDef-autosprite.png'
 );
 $spritesheet-lowdef: (
-  width: 34px,
-  height: 34px,
+  width: 32px,
+  height: 32px,
   image: '../images/auto-sprite/LowDef-autosprite.png',
   sprites: $excel $pdf $powerpoint $word
 );

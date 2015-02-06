@@ -78,31 +78,20 @@ module.exports = function (grunt) {
 				},
 				files: {
 					//destination
-					'assets/images/auto-sprite/LowDef-source-files/':
+					'assets/images/auto-sprite/LowDef-sourceFiles/':
 					//source
-					'assets/images/auto-sprite/HighDef-source-files/*.png'
+					'assets/images/auto-sprite/HighDef-sourceFiles/*.png'
 				}
 			}
 		},
 
 		//Able to auto-sprite without compass! :D
 		sprite:{
-	        LowDef: {
-	            src: 'assets/images/auto-sprite/LowDef-source-files/*.png',
-	            dest: 'assets/images/auto-sprite/LowDef-autosprite.png',
-	            destCss: 'assets/sass/00-config-files/LowDef-sprites.scss',
-	            cssFormat: 'scss_maps',
-	            imgPath: '../images/auto-sprite/LowDef-autosprite.png',
-	            padding: 4,
-				cssSpritesheetName: 'spritesheet-lowdef',
-	            cssOpts: {
-	                functions: false,
-	            },
-	        },
+			//Generates the double sized version of the main sprite
 	        HighDef: {
-	            src: 'assets/images/auto-sprite/HighDef-source-files/*.png',
+	            src: 'assets/images/auto-sprite/HighDef-sourceFiles/*.png',
 	            dest: 'assets/images/auto-sprite/HighDef-autosprite.png',
-	            destCss: 'assets/sass/00-config-files/HighDef-sprites.scss',
+	            destCss: 'assets/sass/00-config-files/sprite-sheets/01-HighDef-sprites.scss',
 	            cssFormat: 'scss_maps',
 	            imgPath: '../images/auto-sprite/HighDef-autosprite.png',
 	            padding: 4,
@@ -111,11 +100,38 @@ module.exports = function (grunt) {
 	                functions: false,
 	            },
 	        },
+			//Generates the normal sized version of the main sprite
+	        LowDef: {
+	            src: 'assets/images/auto-sprite/LowDef-sourceFiles/*.png',
+	            dest: 'assets/images/auto-sprite/LowDef-autosprite.png',
+	            destCss: 'assets/sass/00-config-files/sprite-sheets/02-LowDef-sprites.scss',
+	            cssFormat: 'scss_maps',
+	            imgPath: '../images/auto-sprite/LowDef-autosprite.png',
+	            padding: 2,
+				cssSpritesheetName: 'spritesheet-lowdef',
+	            cssOpts: {
+	                functions: false,
+	            },
+	        },
+			//Generates a normal sized sprite that is used on both retina and non retina screens
+			//If you do not have a double sized version for an image, use this.
+			AllDevices: {
+	            src: 'assets/images/auto-sprite/AllDevices-LowDef-sourceFiles/*.png',
+	            dest: 'assets/images/auto-sprite/AllDevices-LowDef-autosprite.png',
+	            destCss: 'assets/sass/00-config-files/sprite-sheets/03-AllDevices-LowDef-sprites.scss',
+	            cssFormat: 'scss_maps',
+	            imgPath: '../images/auto-sprite/AllDevices-LowDef-autosprite.png',
+	            padding: 2,
+				cssSpritesheetName: 'spritesheet-alldevices',
+	            cssOpts: {
+	                functions: false,
+	            },
+			}
 	    },
 
 		//allows sass to import a whole directory at a time
 		sass_globbing: {
-			your_target: {
+			all: {
 				files: {
 					'assets/sass/import-maps/config-map.scss': 'assets/sass/00-config-files/**/*.scss',
 					'assets/sass/import-maps/base-map.scss': 'assets/sass/02-base/**/*.scss',
@@ -255,24 +271,31 @@ module.exports = function (grunt) {
 					"sass_globbing",//generates import maps for SASS modules
 					"sass:dist", //compile the SASS
 					//"autoprefixer", //add prefixing (I do it with mixins)
-					"cmq", //merge media queries
-					"cssmin",
+					//"cmq", //merge media queries
+					//"cssmin",
 					//"copy:css", //copy css to server
 				],
 				options: { spawn: false }
 			},
 			HD_sprite: {
-				files: ["assets/images/auto-sprite/HighDef-source-files/*.png"],
+				files: ["assets/images/auto-sprite/HighDef-sourceFiles/*.png"],
 				tasks: [
 					"image_resize",
-					"sprite",
+					"sprite:HighDef",
 				],
 				options: { spawn: false }
 			},
 			LD_sprite: {
-				files: ["assets/images/auto-sprite/LowDef-source-files/*.png"],
+				files: ["assets/images/auto-sprite/LowDef-sourceFiles/*.png"],
 				tasks: [
-					"sprite",
+					"sprite:LowDef",
+				],
+				options: { spawn: false }
+			},
+			AD_LD_sprite: {
+				files: ["assets/images/auto-sprite/AllDevices-LowDef-sourceFiles/*.png"],
+				tasks: [
+					"sprite:AllDevices",
 				],
 				options: { spawn: false }
 			},
@@ -297,15 +320,15 @@ module.exports = function (grunt) {
 	//list the tasks in the order you want them done in
 	grunt.registerTask("default", [
 		"concat",
-		//"uglify",
+			//"uglify",
 		"sass_globbing",
 		"image_resize",
 		"sprite",
 		"sass:dist",
-		//"autoprefixer",
+			//"autoprefixer",
 		"cmq",
 		"cssmin",
-		//"copy",
+			//"copy",
 		"watch"
 	]);
 

@@ -203,6 +203,30 @@ a[href*=itunes]:before {
 	display: block;
 }
 
+.sprite-external-link:before {
+	background-position: -17px -17px;
+	width: 10px;
+	height: 11px;
+}
+
+.sprite-globe:before {
+	background-position: 0 0;
+	width: 15px;
+	height: 15px;
+}
+
+.sprite-music:before {
+	background-position: 0 -17px;
+	width: 15px;
+	height: 14px;
+}
+
+.sprite-podcast:before {
+	background-position: -17px 0;
+	width: 15px;
+	height: 15px;
+}
+
 [class*=" sprite-"]:before,
 [class^=sprite-]:before {
 	content: "";
@@ -217,19 +241,19 @@ a[href*=itunes]:before {
 }
 
 .sprite-pdf:before {
-	background-position: -19px 0;
+	background-position: -17px 0;
 	width: 15px;
 	height: 15px;
 }
 
 .sprite-powerpoint:before {
-	background-position: 0 -19px;
+	background-position: 0 -17px;
 	width: 15px;
 	height: 15px;
 }
 
 .sprite-word:before {
-	background-position: -19px -19px;
+	background-position: -17px -17px;
 	width: 15px;
 	height: 15px;
 }
