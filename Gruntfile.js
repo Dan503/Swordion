@@ -70,6 +70,7 @@ module.exports = function (grunt) {
 		//requires you to install imageMagik
 		//http://www.imagemagick.org/script/binary-releases.php
 		//THEN install with "npm install grunt-image-resize"
+		//This shrinks the HD sprite to normal size
 		image_resize: {
 			resize: {
 				options: {
@@ -78,9 +79,9 @@ module.exports = function (grunt) {
 				},
 				files: {
 					//destination
-					'assets/images/auto-sprite/LowDef-sourceFiles/':
+					'assets/images/auto-sprite/LowDef-autosprite.png':
 					//source
-					'assets/images/auto-sprite/HighDef-sourceFiles/*.png'
+					'assets/images/auto-sprite/HighDef-autosprite.png'
 				}
 			}
 		},
@@ -100,25 +101,12 @@ module.exports = function (grunt) {
 	                functions: false,
 	            },
 	        },
-			//Generates the normal sized version of the main sprite
-	        LowDef: {
-	            src: 'assets/images/auto-sprite/LowDef-sourceFiles/*.png',
-	            dest: 'assets/images/auto-sprite/LowDef-autosprite.png',
-	            destCss: 'assets/sass/00-config-files/sprite-sheets/02-LowDef-sprites.scss',
-	            cssFormat: 'scss_maps',
-	            imgPath: '../images/auto-sprite/LowDef-autosprite.png',
-	            padding: 2,
-				cssSpritesheetName: 'spritesheet-lowdef',
-	            cssOpts: {
-	                functions: false,
-	            },
-	        },
 			//Generates a normal sized sprite that is used on both retina and non retina screens
 			//If you do not have a double sized version for an image, use this.
 			AllDevices: {
 	            src: 'assets/images/auto-sprite/AllDevices-LowDef-sourceFiles/*.png',
 	            dest: 'assets/images/auto-sprite/AllDevices-LowDef-autosprite.png',
-	            destCss: 'assets/sass/00-config-files/sprite-sheets/03-AllDevices-LowDef-sprites.scss',
+	            destCss: 'assets/sass/00-config-files/sprite-sheets/02-AllDevices-LowDef-sprites.scss',
 	            cssFormat: 'scss_maps',
 	            imgPath: '../images/auto-sprite/AllDevices-LowDef-autosprite.png',
 	            padding: 2,

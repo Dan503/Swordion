@@ -45,14 +45,6 @@ SCSS variables are information about icon's compiled state, stored under its ori
 
 At the bottom of this section, we provide information about the spritesheet itself
 */
-/*
-SCSS variables are information about icon's compiled state, stored under its original file name
-
-.icon-home { width: map-get($icon-home, 'width');
-}
-
-At the bottom of this section, we provide information about the spritesheet itself
-*/
 .mobileOnly, .tabletOnly, .desktopOnly { display: none; }
 
 .nonMobile { display: block; }
@@ -90,24 +82,24 @@ The `sprites` mixin generates identical output to the CSS template but can be ov
 
 @include sprites(map-get($spritesheet, 'sprites'));
 */
-[class*=" sprite-"]:before, [class^="sprite-"]:before { content: ""; display: inline-block; background-image: url("../images/auto-sprite/LowDef-autosprite.png"); }
-@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192ppi), only screen and (min-resolution: 2dppx) { [class*=" sprite-"]:before, [class^="sprite-"]:before { background-size: 32px 32px; background-image: url("../images/auto-sprite/HighDef-autosprite.png"); } }
+[class*=" sprite-"]:before, [class^="sprite-"]:before { content: ""; display: inline-block; background-image: url(../images/auto-sprite/LowDef-autosprite.png); }
+@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192ppi), only screen and (min-resolution: 2dppx) { [class*=" sprite-"]:before, [class^="sprite-"]:before { background-size: 32px 31.5px; background-image: url("../images/auto-sprite/HighDef-autosprite.png"); } }
 
-.sprite-external-link:before { background-position: -17px -17px; width: 10px; height: 11px; }
+.sprite-external-link:before { background-position: -8.5px -8.5px; width: 5px; height: 5.5px; }
 
-.sprite-globe:before { background-position: 0px 0px; width: 15px; height: 15px; }
+.sprite-globe:before { background-position: 0px 0px; width: 7.5px; height: 7.5px; }
 
-.sprite-music:before { background-position: 0px -17px; width: 15px; height: 14px; }
+.sprite-music:before { background-position: 0px -8.5px; width: 7.5px; height: 7px; }
 
-.sprite-podcast:before { background-position: -17px 0px; width: 15px; height: 15px; }
+.sprite-podcast:before { background-position: -8.5px 0px; width: 7.5px; height: 7.5px; }
 
-.sprite-excel:before { background-position: 0px 0px; width: 15px; height: 15px; }
+.sprite-excel:before { background-position: 0px -17px; width: 15px; height: 14.5px; }
 
-.sprite-pdf:before { background-position: -17px 0px; width: 15px; height: 15px; }
+.sprite-pdf:before { background-position: 0px 0px; width: 15px; height: 15px; }
 
-.sprite-powerpoint:before { background-position: 0px -17px; width: 15px; height: 15px; }
+.sprite-powerpoint:before { background-position: -17px -17px; width: 15px; height: 14.5px; }
 
-.sprite-word:before { background-position: -17px -17px; width: 15px; height: 15px; }
+.sprite-word:before { background-position: -17px 0px; width: 15px; height: 15px; }
 
 /*   SHARED ANIMATION EFFECTS   */
 /*******************************************\

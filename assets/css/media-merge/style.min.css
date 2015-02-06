@@ -1453,6 +1453,15 @@ body.theme-light .themed-header {
 
 /*! Built by Daniel Tonon - UX Developer - Reading Room Australia - January 2015 !*/
 
+@media only screen and (-webkit-min-device-pixel-ratio:2),only screen and (min--moz-device-pixel-ratio:2),only screen and (-o-min-device-pixel-ratio:2 / 1),only screen and (min-device-pixel-ratio:2),only screen and (min-resolution:192ppi),only screen and (min-resolution:2dppx) {
+
+[class*=" sprite-"]:before,
+[class^=sprite-]:before {
+	background-image: url(../images/auto-sprite/HighDef-autosprite.png);
+}
+
+}
+
 @media screen and (min-width:600px) and (max-width:959px) {
 
 .tabletOnly {

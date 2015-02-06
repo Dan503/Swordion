@@ -1,29 +1,59 @@
 ﻿
-//manually list all spritesheet variables here except High Def versions
+//manually list all spritesheet variables here
 $spritesheets:
 	$spritesheet-alldevices,
-	$spritesheet-lowdef;
+	$spritesheet-highdef;
 
 
-@mixin M-sprite-width($sprite) {
-  width: map-get($sprite, 'width');
+@mixin M-sprite-width($sprite, $retina: true) {
+
+	$sprite_width: map-get($sprite, 'width');
+	$width:  $sprite_width;
+
+	@if ($retina == true) {
+		$width: $sprite_width / 2;
+	}
+
+	width: $width;
 }
 
-@mixin M-sprite-height($sprite) {
-  height: map-get($sprite, 'height');
+@mixin M-sprite-height($sprite, $retina: true) {
+
+	$sprite_height: map-get($sprite, 'height');
+	$height:  $sprite_height;
+
+	@if ($retina == true) {
+		$height: $sprite_height / 2;
+	}
+
+	height: $height;
 }
 
-@mixin M-sprite-position($sprite) {
-  background-position: map-get($sprite, 'offset_x') map-get($sprite, 'offset_y');
+@mixin M-sprite-position($sprite, $retina: true) {
+
+	$sprite-x: map-get($sprite, 'offset_x');
+	$sprite-y: map-get($sprite, 'offset_y');
+
+	$x: $sprite-x;
+	$y:  $sprite-y;
+
+	@if ($retina: true) {
+		$x: $sprite-x / 2;
+		$y:  $sprite-y / 2;
+	}
+
+	background-position: $x $y;
 }
 
-@mixin M-sprite-image($spritesheet: $spritesheet-lowdef, $retina-sheet: $spritesheet-highdef) {
-	background-image: url(map-get($spritesheet, 'image'));
-	@if ($spritesheet == $spritesheet-lowdef){
+@mixin M-sprite-image($spritesheet: $spritesheet-highdef) {
+	@if ($spritesheet == $spritesheet-highdef){
+		background-image: url(../images/auto-sprite/LowDef-autosprite.png);
 		@include M-retina {
-			background-size: map-get($spritesheet, 'width') map-get($spritesheet, 'height');
-			background-image: url(map-get($retina-sheet, 'image'));
+			background-size: (map-get($spritesheet, 'width') / 2)( map-get($spritesheet, 'height') / 2);
+			background-image: url(map-get($spritesheet, 'image'));
 		}
+	} @else {
+		background-image: url(map-get($spritesheet, 'image'));
 	}
 }
 
@@ -57,7 +87,7 @@ The `sprites` mixin generates identical output to the CSS template
 @if ($main-sheet == true){
 	[class*=" sprite-"], [class^="sprite-"] {
 		@include M-before(inline-block){
-			@include M-sprite-image($spritesheet-lowdef);
+			@include M-sprite-image($spritesheet-highdef);
 		}
 	}
 	@each $sheet in $spritesheets {
