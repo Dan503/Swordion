@@ -2,6 +2,7 @@
 //CONSTANT ICON STYLES//
 ///////////////////////
 
+//styles that are the same for all icons
 @mixin M-icon-static-styles {
 	font-family: 'icons';
 	speak: none;
@@ -21,6 +22,16 @@
 
 %M-icon-static-styles {
 	@include M-icon-static-styles;
+}
+
+//styles that require altering from icon to icon
+@mixin M-icon-dynamic-styles($icon, $color: inherit, $height: false, $width:$height, $display: inline-block){
+	content: map-get($icons, $icon);
+	display: $display;
+	@if ( $color != inherit ){
+		color: $color;
+	}
+	@include M-icon-size($height, $width);
 }
 
 @if ($main-sheet == true){
@@ -44,6 +55,7 @@
 	}
 }
 
+
 //////////////////
 //SETTING ICONS//
 ////////////////
@@ -52,28 +64,17 @@
 // Moves majority of static icon styles into a single rule to cut down css bulk
 @mixin M-icon($icon, $color: inherit, $height: false, $width:$height, $display: inline-block, $pos:before) {
 
-
 	@if ($pos == before){
 		&:before {
-			content: map-get($icons, $icon);
-			display: $display;
-			@if ( $color != inherit ){
-				color: $color;
-			}
 			@extend %M-icon-static-styles;
-			@include M-icon-size($height, $width);
+			@include M-icon-dynamic-styles($icon, $color, $height, $width, $display);
 			@content;
 		}
 
 	} @else if ($pos == after){
 		&:after {
-			content: map-get($icons, $icon);
-			display: $display;
-			@if ( $color != inherit ){
-				color: $color;
-			}
 			@extend %M-icon-static-styles;
-			@include M-icon-size($height, $width);
+			@include M-icon-dynamic-styles($icon, $color, $height, $width, $display);
 			@content;
 		}
 	}
@@ -85,24 +86,14 @@
 
 	@if ($pos == before){
 		&:before {
-			content: map-get($icons, $icon);
-			display: $display;
-			@if ( $colour != inherit ){
-				color: $colour;
-			}
-			@include M-icon-size($height, $width);
 			@include M-icon-static-styles;
+			@include M-icon-dynamic-styles($icon, $color, $height, $width, $display);
 			@content;
 		}
 	} @else if ($pos == after){
 		&:after {
-			content: map-get($icons, $icon);
-			display: $display;
-			@if ( $colour != inherit ){
-				color: $colour;
-			}
-			@include M-icon-size($height, $width);
 			@include M-icon-static-styles;
+			@include M-icon-dynamic-styles($icon, $color, $height, $width, $display);
 			@content;
 		}
 	}

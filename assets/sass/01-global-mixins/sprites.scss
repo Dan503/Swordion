@@ -82,8 +82,7 @@
 	}
 }
 
-@mixin M-sprite($sprite, $sheet_name: primary) {
-
+@mixin M-sprite-styling($sprite, $sheet_name: primary) {
 	$retina: isRetina($sheet_name);
 
 	@include M-sprite-position($sprite, $retina);
@@ -91,7 +90,6 @@
 	@include M-sprite-height($sprite, $retina);
 	@include M-sprite-image($sheet_name);
 }
-
 
 //@include sprites(sheet_name);
 
@@ -123,5 +121,28 @@
 		}
 
 		@include M-sprites($name);
+	}
+}
+
+//======================================================\\
+//				PRIMARY MIXIN							\\
+//======================================================\\
+
+//USAGE: @include M-sprite($sprite_variable, SPRITE_SHEET_NAME)
+//sprite sheet name is only necessary if the sprite is not in the primary sprite-sheet
+
+@mixin M-sprite($sprite, $sheet_name: primary, $display: inline-block, $pos:before) {
+
+	@if ($pos == before){
+
+		@include M-before($display) {
+			@include M-sprite-styling($sprite, $sheet_name);
+			@content;
+		}
+	} @else if ($pos == after){
+		@include M-after($display) {
+			@include M-sprite-styling($sprite, $sheet_name);
+			@content;
+		}
 	}
 }
