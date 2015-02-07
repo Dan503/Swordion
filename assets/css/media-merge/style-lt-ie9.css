@@ -262,6 +262,12 @@ a.external-link:after,
 	height: 15px;
 }
 
+.sprite-primary-powerpoint:before {
+	background-position: -17px -17px;
+	width: 15px;
+	height: 14.5px;
+}
+
 .sprite-primary-word:before {
 	background-position: -17px 0px;
 	width: 15px;

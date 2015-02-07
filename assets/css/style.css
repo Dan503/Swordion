@@ -98,6 +98,8 @@ nav ul, .columns { margin: 0; padding: 0; list-style: none; }
 
 .sprite-primary-pdf:before { background-position: 0px 0px; width: 15px; height: 15px; }
 
+.sprite-primary-powerpoint:before { background-position: -17px -17px; width: 15px; height: 14.5px; }
+
 .sprite-primary-word:before { background-position: -17px 0px; width: 15px; height: 15px; }
 
 [class*=" sprite-secondary-"]:before, [class^="sprite-secondary-"]:before { content: ''; display: inline-block; background-image: url("../images/auto-sprite/LD-secondary-autosprite.png"); }

@@ -302,8 +302,8 @@ module.exports = function (grunt) {
 	grunt.registerTask("default", [
 		"concat",
 			//"uglify",
-		"image_resize",
 		"sprite",
+		"image_resize",
 		"sass_globbing",
 		"sass:dist",
 			//"autoprefixer",
