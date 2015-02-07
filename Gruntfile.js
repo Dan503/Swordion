@@ -67,26 +67,59 @@ module.exports = function (grunt) {
 			}
 		},*/
 
+		//requires you to install imageMagik
+		//http://www.imagemagick.org/script/binary-releases.php
+		//THEN install with "npm install grunt-image-resize"
+		//This shrinks the HD sprite to normal size
+		image_resize: {
+			resize: {
+				options: {
+					width: '50%',
+					height: '50%',
+				},
+				files: {
+					//destination
+					'assets/images/auto-sprite/LD-primary-autosprite.png':
+					//source
+					'assets/images/auto-sprite/HD-primary-autosprite.png'
+				}
+			}
+		},
+
 		//Able to auto-sprite without compass! :D
 		sprite:{
-			LowDef: {
-				src: 'assets/images/auto-sprite/LowDef-source-files/*.png',
-				//spriteName: 'autosprite',
-				dest: 'assets/images/auto-sprite/LowDef-autosprite.png',
-				destCss: 'assets/sass/00-config-files/LowDef-sprites.scss',
-				cssFormat: 'scss_maps',
-				imgPath: '../images/auto-sprite/LowDef-autosprite.png',
-				padding: 4,
-				cssOpts: {
-					functions: false,
-					spritesheet_name: 'lowdef',//can't get this to work, it's esential for retina sprite stage :(
-				},
-			},
-		},
+			//Generates the double sized version of the primary sprite
+	        primary: {
+	            src: 'assets/images/auto-sprite/HD-primary-sourcefiles/*.png',
+	            dest: 'assets/images/auto-sprite/HD-primary-autosprite.png',
+	            destCss: 'assets/sass/00-config-files/sprite-sheets/HD-primary-sprites.scss',
+	            cssFormat: 'scss_maps',
+	            imgPath: '../images/auto-sprite/HD-primary-autosprite.png',
+	            padding: 4,
+				cssSpritesheetName: 'spritesheet-primary',
+	            cssOpts: {
+	                functions: false,
+	            },
+	        },
+			//Generates a normal sized sprite that is used on both retina and non retina screens
+			//If you do not have a double sized version for an image, use this.
+			secondary: {
+	            src: 'assets/images/auto-sprite/LD-secondary-sourceFiles/*.png',
+	            dest: 'assets/images/auto-sprite/LD-secondary-autosprite.png',
+	            destCss: 'assets/sass/00-config-files/sprite-sheets/LD-secondary-sprites.scss',
+	            cssFormat: 'scss_maps',
+	            imgPath: '../images/auto-sprite/LD-secondary-autosprite.png',
+	            padding: 2,
+				cssSpritesheetName: 'spritesheet-secondary',
+	            cssOpts: {
+	                functions: false,
+	            },
+			}
+	    },
 
 		//allows sass to import a whole directory at a time
 		sass_globbing: {
-			your_target: {
+			all: {
 				files: {
 					'assets/sass/import-maps/config-map.scss': 'assets/sass/00-config-files/**/*.scss',
 					'assets/sass/import-maps/base-map.scss': 'assets/sass/02-base/**/*.scss',
@@ -226,16 +259,24 @@ module.exports = function (grunt) {
 					"sass_globbing",//generates import maps for SASS modules
 					"sass:dist", //compile the SASS
 					//"autoprefixer", //add prefixing (I do it with mixins)
-					"cmq", //merge media queries
-					"cssmin",
+					//"cmq", //merge media queries
+					//"cssmin",
 					//"copy:css", //copy css to server
 				],
 				options: { spawn: false }
 			},
-			sprite: {
-				files: ["assets/images/auto-sprite/LowDef-source-files/*.png"],
+			sprite_primary: {
+				files: ["assets/images/auto-sprite/HD-primary-sourceFiles/*.png"],
 				tasks: [
-					"sprite",
+					"sprite:primary",
+					"image_resize",
+				],
+				options: { spawn: false }
+			},
+			sprite_secondary: {
+				files: ["assets/images/auto-sprite/LD-secondary-sourceFiles/*.png"],
+				tasks: [
+					"sprite:secondary",
 				],
 				options: { spawn: false }
 			},
@@ -260,14 +301,15 @@ module.exports = function (grunt) {
 	//list the tasks in the order you want them done in
 	grunt.registerTask("default", [
 		"concat",
-		//"uglify",
-		"sass_globbing",
+			//"uglify",
+		"image_resize",
 		"sprite",
+		"sass_globbing",
 		"sass:dist",
-		//"autoprefixer",
+			//"autoprefixer",
 		"cmq",
 		"cssmin",
-		//"copy",
+			//"copy",
 		"watch"
 	]);
 

@@ -5,14 +5,6 @@
 //	This is the file that compiles the css for
 //	modern browsers
 \*================================================*/
-/*
-SCSS variables are information about icon's compiled state, stored under its original file name
-
-.icon-home { width: map-get($icon-home, 'width');
-}
-
-At the bottom of this section, we provide information about the spritesheet itself
-*/
 @import url(http://fonts.googleapis.com/css?family=Roboto);
 @font-face { font-family: 'icons'; src: url("fonts/icons.eot?-nx4lre"); src: url("fonts/icons.eot?#iefix-nx4lre") format("embedded-opentype"), url("fonts/icons.woff?-nx4lre") format("woff"), url("fonts/icons.ttf?-nx4lre") format("truetype"), url("fonts/icons.svg?-nx4lre#icons") format("svg"); font-weight: normal; font-style: normal; }
 /*
@@ -37,6 +29,25 @@ At the bottom of this section, we provide information about the spritesheet itse
 
 .icon-external:before { content: ""; }
 
+/*
+SCSS variables are information about icon's compiled state, stored under its original file name
+
+.icon-home { width: map-get($icon-home, 'width');
+}
+
+At the bottom of this section, we provide information about the spritesheet itself
+*/
+/*
+SCSS variables are information about icon's compiled state, stored under its original file name
+
+.icon-home { width: map-get($icon-home, 'width');
+}
+
+At the bottom of this section, we provide information about the spritesheet itself
+*/
+/*================================================*\
+	SPRITE SHEET LIST
+\*================================================*/
 .mobileOnly, .tabletOnly, .desktopOnly { display: none; }
 
 @media screen and (max-width: 600px) { .mobileOnly { display: block; } }
@@ -77,20 +88,27 @@ nav ul, .columns { margin: 0; padding: 0; list-style: none; }
 
 [class^="icon-"]:before, [class^="icon-"]:after, [class*=" icon-"]:before, [class*=" icon-"]:after { display: block; }
 
-/*
-The `sprites` mixin generates identical output to the CSS template but can be overridden inside of SCSS
+/*================================================*\
+	SPRITE MIXINS
+\*================================================*/
+[class*=" sprite-primary-"]:before, [class^="sprite-primary-"]:before { content: ''; display: inline-block; background-image: url("../images/auto-sprite/LD-primary-autosprite.png"); }
+@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192ppi), only screen and (min-resolution: 2dppx) { [class*=" sprite-primary-"]:before, [class^="sprite-primary-"]:before { background-size: 32px 31.5px; background-image: url("../images/auto-sprite/HD-primary-autosprite.png"); } }
 
-@include sprites(map-get($spritesheet, 'sprites'));
-*/
-[class*=" sprite-"]:before, [class^="sprite-"]:before { content: ""; display: block; background-image: url("../images/auto-sprite/LowDef-autosprite.png"); }
+.sprite-primary-excel:before { background-position: 0px -17px; width: 15px; height: 14.5px; }
 
-.sprite-excel:before { background-position: 0px -34px; width: 30px; height: 29px; }
+.sprite-primary-pdf:before { background-position: 0px 0px; width: 15px; height: 15px; }
 
-.sprite-pdf:before { background-position: 0px 0px; width: 30px; height: 30px; }
+.sprite-primary-word:before { background-position: -17px 0px; width: 15px; height: 15px; }
 
-.sprite-powerpoint:before { background-position: -34px -34px; width: 30px; height: 29px; }
+[class*=" sprite-secondary-"]:before, [class^="sprite-secondary-"]:before { content: ''; display: inline-block; background-image: url("../images/auto-sprite/LD-secondary-autosprite.png"); }
 
-.sprite-word:before { background-position: -34px 0px; width: 30px; height: 30px; }
+.sprite-secondary-external-link:before { background-position: -17px -17px; width: 10px; height: 11px; }
+
+.sprite-secondary-globe:before { background-position: 0px 0px; width: 15px; height: 15px; }
+
+.sprite-secondary-music:before { background-position: 0px -17px; width: 15px; height: 14px; }
+
+.sprite-secondary-podcast:before { background-position: -17px 0px; width: 15px; height: 15px; }
 
 .animate, .js-countUp + *, .js-alphaCount + * { -webkit-transition: all 0.5s ease-in-out; transition: all 0.5s ease-in-out; }
 

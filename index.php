@@ -15,9 +15,9 @@ include 'header.php';
 </div>
 
 				<a href="javascript:void(0)" id="contentStart"></a>
-				<div class="content sprite-pdf">
+				<div class="content">
 
-						<h2>To do list:</h2>
+						<h2 class="sprite-primary-pdf">To do list:</h2>
 						<ol>
 							<li>Add the animation Javascript stuff from the DoC project</li>
 							<li>Add an example of a responsive youtube video</li>

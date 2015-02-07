@@ -5,15 +5,6 @@
 //	modern browsers
 \*================================================*/
 
-/*
-SCSS variables are information about icon's compiled state, stored under its original file name
-
-.icon-home { width: map-get($icon-home, 'width');
-}
-
-At the bottom of this section, we provide information about the spritesheet itself
-*/
-
 @font-face {
 	font-family: 'icons';
 	src: url("fonts/icons.eot?-nx4lre");
@@ -62,6 +53,28 @@ At the bottom of this section, we provide information about the spritesheet itse
 .icon-external:before {
 	content: "";
 }
+
+/*
+SCSS variables are information about icon's compiled state, stored under its original file name
+
+.icon-home { width: map-get($icon-home, 'width');
+}
+
+At the bottom of this section, we provide information about the spritesheet itself
+*/
+
+/*
+SCSS variables are information about icon's compiled state, stored under its original file name
+
+.icon-home { width: map-get($icon-home, 'width');
+}
+
+At the bottom of this section, we provide information about the spritesheet itself
+*/
+
+/*================================================*\
+	SPRITE SHEET LIST
+\*================================================*/
 
 .mobileOnly,
 .tabletOnly,
@@ -222,41 +235,64 @@ a.external-link:after,
 	display: block;
 }
 
-/*
-The `sprites` mixin generates identical output to the CSS template but can be overridden inside of SCSS
+/*================================================*\
+	SPRITE MIXINS
+\*================================================*/
 
-@include sprites(map-get($spritesheet, 'sprites'));
-*/
-
-[class*=" sprite-"]:before,
-[class^="sprite-"]:before {
-	content: "";
-	display: block;
-	background-image: url("../images/auto-sprite/LowDef-autosprite.png");
+[class*=" sprite-primary-"]:before,
+[class^="sprite-primary-"]:before {
+	content: '';
+	display: inline-block;
+	background-image: url("../images/auto-sprite/LD-primary-autosprite.png");
 }
 
-.sprite-excel:before {
-	background-position: 0px -34px;
-	width: 30px;
-	height: 29px;
+.sprite-primary-excel:before {
+	background-position: 0px -17px;
+	width: 15px;
+	height: 14.5px;
 }
 
-.sprite-pdf:before {
+.sprite-primary-pdf:before {
 	background-position: 0px 0px;
-	width: 30px;
-	height: 30px;
+	width: 15px;
+	height: 15px;
 }
 
-.sprite-powerpoint:before {
-	background-position: -34px -34px;
-	width: 30px;
-	height: 29px;
+.sprite-primary-word:before {
+	background-position: -17px 0px;
+	width: 15px;
+	height: 15px;
 }
 
-.sprite-word:before {
-	background-position: -34px 0px;
-	width: 30px;
-	height: 30px;
+[class*=" sprite-secondary-"]:before,
+[class^="sprite-secondary-"]:before {
+	content: '';
+	display: inline-block;
+	background-image: url("../images/auto-sprite/LD-secondary-autosprite.png");
+}
+
+.sprite-secondary-external-link:before {
+	background-position: -17px -17px;
+	width: 10px;
+	height: 11px;
+}
+
+.sprite-secondary-globe:before {
+	background-position: 0px 0px;
+	width: 15px;
+	height: 15px;
+}
+
+.sprite-secondary-music:before {
+	background-position: 0px -17px;
+	width: 15px;
+	height: 14px;
+}
+
+.sprite-secondary-podcast:before {
+	background-position: -17px 0px;
+	width: 15px;
+	height: 15px;
 }
 
 .animate,
@@ -1658,6 +1694,16 @@ body.theme-light .themed-footer {
 /*! Built by Daniel Tonon - UX Developer - Reading Room Australia - January 2015 !*/
 
 /*# sourceMappingURL=style.css.map */
+
+@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192ppi), only screen and (min-resolution: 2dppx) {
+
+[class*=" sprite-primary-"]:before,
+[class^="sprite-primary-"]:before {
+	background-size: 32px 31.5px;
+	background-image: url("../images/auto-sprite/HD-primary-autosprite.png");
+}
+
+}
 
 @media screen and (min-width: 600px) and (max-width: 959px) {
 
