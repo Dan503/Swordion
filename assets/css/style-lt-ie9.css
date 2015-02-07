@@ -83,18 +83,16 @@ nav ul, .columns { margin: 0; padding: 0; list-style: none; }
 /*================================================*\
 	SPRITE MIXINS
 \*================================================*/
-[class*=" sprite-primary-"]:before, [class^="sprite-primary-"]:before { content: ''; display: inline-block; background-image: url("../images/auto-sprite/LowDef-autosprite.png"); }
-@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192ppi), only screen and (min-resolution: 2dppx) { [class*=" sprite-primary-"]:before, [class^="sprite-primary-"]:before { background-size: 32px 31.5px; background-image: url("../images/auto-sprite/HighDef-autosprite.png"); } }
+[class*=" sprite-primary-"]:before, [class^="sprite-primary-"]:before { content: ''; display: inline-block; background-image: url("../images/auto-sprite/LD-primary-autosprite.png"); }
+@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192ppi), only screen and (min-resolution: 2dppx) { [class*=" sprite-primary-"]:before, [class^="sprite-primary-"]:before { background-size: 32px 31.5px; background-image: url("../images/auto-sprite/HD-primary-autosprite.png"); } }
 
 .sprite-primary-excel:before { background-position: 0px -17px; width: 15px; height: 14.5px; }
 
 .sprite-primary-pdf:before { background-position: 0px 0px; width: 15px; height: 15px; }
 
-.sprite-primary-powerpoint:before { background-position: -17px -17px; width: 15px; height: 14.5px; }
-
 .sprite-primary-word:before { background-position: -17px 0px; width: 15px; height: 15px; }
 
-[class*=" sprite-secondary-"]:before, [class^="sprite-secondary-"]:before { content: ''; display: inline-block; background-image: url("../images/auto-sprite/AllDevices-LowDef-autosprite.png"); }
+[class*=" sprite-secondary-"]:before, [class^="sprite-secondary-"]:before { content: ''; display: inline-block; background-image: url("../images/auto-sprite/LD-secondary-autosprite.png"); }
 
 .sprite-secondary-external-link:before { background-position: -17px -17px; width: 10px; height: 11px; }
 

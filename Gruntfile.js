@@ -79,38 +79,38 @@ module.exports = function (grunt) {
 				},
 				files: {
 					//destination
-					'assets/images/auto-sprite/LowDef-autosprite.png':
+					'assets/images/auto-sprite/LD-primary-autosprite.png':
 					//source
-					'assets/images/auto-sprite/HighDef-autosprite.png'
+					'assets/images/auto-sprite/HD-primary-autosprite.png'
 				}
 			}
 		},
 
 		//Able to auto-sprite without compass! :D
 		sprite:{
-			//Generates the double sized version of the main sprite
-	        HighDef: {
-	            src: 'assets/images/auto-sprite/HighDef-sourceFiles/*.png',
-	            dest: 'assets/images/auto-sprite/HighDef-autosprite.png',
-	            destCss: 'assets/sass/00-config-files/sprite-sheets/01-HighDef-sprites.scss',
+			//Generates the double sized version of the primary sprite
+	        primary: {
+	            src: 'assets/images/auto-sprite/HD-primary-sourcefiles/*.png',
+	            dest: 'assets/images/auto-sprite/HD-primary-autosprite.png',
+	            destCss: 'assets/sass/00-config-files/sprite-sheets/HD-primary-sprites.scss',
 	            cssFormat: 'scss_maps',
-	            imgPath: '../images/auto-sprite/HighDef-autosprite.png',
+	            imgPath: '../images/auto-sprite/HD-primary-autosprite.png',
 	            padding: 4,
-				cssSpritesheetName: 'spritesheet-highdef',
+				cssSpritesheetName: 'spritesheet-primary',
 	            cssOpts: {
 	                functions: false,
 	            },
 	        },
 			//Generates a normal sized sprite that is used on both retina and non retina screens
 			//If you do not have a double sized version for an image, use this.
-			AllDevices: {
-	            src: 'assets/images/auto-sprite/AllDevices-LowDef-sourceFiles/*.png',
-	            dest: 'assets/images/auto-sprite/AllDevices-LowDef-autosprite.png',
-	            destCss: 'assets/sass/00-config-files/sprite-sheets/02-AllDevices-LowDef-sprites.scss',
+			secondary: {
+	            src: 'assets/images/auto-sprite/LD-secondary-sourceFiles/*.png',
+	            dest: 'assets/images/auto-sprite/LD-secondary-autosprite.png',
+	            destCss: 'assets/sass/00-config-files/sprite-sheets/LD-secondary-sprites.scss',
 	            cssFormat: 'scss_maps',
-	            imgPath: '../images/auto-sprite/AllDevices-LowDef-autosprite.png',
+	            imgPath: '../images/auto-sprite/LD-secondary-autosprite.png',
 	            padding: 2,
-				cssSpritesheetName: 'spritesheet-alldevices',
+				cssSpritesheetName: 'spritesheet-secondary',
 	            cssOpts: {
 	                functions: false,
 	            },
@@ -265,25 +265,18 @@ module.exports = function (grunt) {
 				],
 				options: { spawn: false }
 			},
-			HD_sprite: {
-				files: ["assets/images/auto-sprite/HighDef-sourceFiles/*.png"],
+			sprite_primary: {
+				files: ["assets/images/auto-sprite/HD-primary-sourceFiles/*.png"],
 				tasks: [
+					"sprite:primary",
 					"image_resize",
-					"sprite:HighDef",
 				],
 				options: { spawn: false }
 			},
-			LD_sprite: {
-				files: ["assets/images/auto-sprite/LowDef-sourceFiles/*.png"],
+			sprite_secondary: {
+				files: ["assets/images/auto-sprite/LD-secondary-sourceFiles/*.png"],
 				tasks: [
-					"sprite:LowDef",
-				],
-				options: { spawn: false }
-			},
-			AD_LD_sprite: {
-				files: ["assets/images/auto-sprite/AllDevices-LowDef-sourceFiles/*.png"],
-				tasks: [
-					"sprite:AllDevices",
+					"sprite:secondary",
 				],
 				options: { spawn: false }
 			},
@@ -309,9 +302,9 @@ module.exports = function (grunt) {
 	grunt.registerTask("default", [
 		"concat",
 			//"uglify",
-		"sass_globbing",
 		"image_resize",
 		"sprite",
+		"sass_globbing",
 		"sass:dist",
 			//"autoprefixer",
 		"cmq",

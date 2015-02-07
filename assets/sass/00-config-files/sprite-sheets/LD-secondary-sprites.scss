@@ -17,7 +17,7 @@ $external-link: (
   height: 11px,
   total_width: 32px,
   total_height: 31px,
-  image: '../images/auto-sprite/AllDevices-LowDef-autosprite.png'
+  image: '../images/auto-sprite/LD-secondary-autosprite.png'
 );
 $globe: (
   name: 'globe',
@@ -29,7 +29,7 @@ $globe: (
   height: 15px,
   total_width: 32px,
   total_height: 31px,
-  image: '../images/auto-sprite/AllDevices-LowDef-autosprite.png'
+  image: '../images/auto-sprite/LD-secondary-autosprite.png'
 );
 $music: (
   name: 'music',
@@ -41,7 +41,7 @@ $music: (
   height: 14px,
   total_width: 32px,
   total_height: 31px,
-  image: '../images/auto-sprite/AllDevices-LowDef-autosprite.png'
+  image: '../images/auto-sprite/LD-secondary-autosprite.png'
 );
 $podcast: (
   name: 'podcast',
@@ -53,12 +53,12 @@ $podcast: (
   height: 15px,
   total_width: 32px,
   total_height: 31px,
-  image: '../images/auto-sprite/AllDevices-LowDef-autosprite.png'
+  image: '../images/auto-sprite/LD-secondary-autosprite.png'
 );
-$spritesheet-alldevices: (
+$spritesheet-secondary: (
   width: 32px,
   height: 31px,
-  image: '../images/auto-sprite/AllDevices-LowDef-autosprite.png',
+  image: '../images/auto-sprite/LD-secondary-autosprite.png',
   sprites: $external-link $globe $music $podcast
 );
 

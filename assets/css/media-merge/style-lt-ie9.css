@@ -243,64 +243,58 @@ a.external-link:after,
 	SPRITE MIXINS
 \*================================================*/
 
-[class*=" sprite-"]:before,
-[class^="sprite-"]:before {
-	content: "";
+[class*=" sprite-primary-"]:before,
+[class^="sprite-primary-"]:before {
+	content: '';
 	display: inline-block;
-	background-image: url("../images/auto-sprite/LowDef-autosprite.png");
+	background-image: url("../images/auto-sprite/LD-primary-autosprite.png");
 }
 
-.sprite-excel:before {
+.sprite-primary-excel:before {
 	background-position: 0px -17px;
 	width: 15px;
 	height: 14.5px;
 }
 
-.sprite-pdf:before {
+.sprite-primary-pdf:before {
 	background-position: 0px 0px;
 	width: 15px;
 	height: 15px;
 }
 
-.sprite-powerpoint:before {
-	background-position: -17px -17px;
-	width: 15px;
-	height: 14.5px;
-}
-
-.sprite-word:before {
+.sprite-primary-word:before {
 	background-position: -17px 0px;
 	width: 15px;
 	height: 15px;
 }
 
-[class*=" sprite-"]:before,
-[class^="sprite-"]:before {
-	content: "";
+[class*=" sprite-secondary-"]:before,
+[class^="sprite-secondary-"]:before {
+	content: '';
 	display: inline-block;
-	background-image: url("../images/auto-sprite/AllDevices-LowDef-autosprite.png");
+	background-image: url("../images/auto-sprite/LD-secondary-autosprite.png");
 }
 
-.sprite-external-link:before {
-	background-position: -8.5px -8.5px;
+.sprite-secondary-external-link:before {
+	background-position: -17px -17px;
 	width: 10px;
 	height: 11px;
 }
 
-.sprite-globe:before {
+.sprite-secondary-globe:before {
 	background-position: 0px 0px;
 	width: 15px;
 	height: 15px;
 }
 
-.sprite-music:before {
-	background-position: 0px -8.5px;
+.sprite-secondary-music:before {
+	background-position: 0px -17px;
 	width: 15px;
 	height: 14px;
 }
 
-.sprite-podcast:before {
-	background-position: -8.5px 0px;
+.sprite-secondary-podcast:before {
+	background-position: -17px 0px;
 	width: 15px;
 	height: 15px;
 }
@@ -1432,10 +1426,10 @@ body.theme-light .themed-footer {
 
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192ppi), only screen and (min-resolution: 2dppx) {
 
-[class*=" sprite-"]:before,
-[class^="sprite-"]:before {
+[class*=" sprite-primary-"]:before,
+[class^="sprite-primary-"]:before {
 	background-size: 32px 31.5px;
-	background-image: url("../images/auto-sprite/HighDef-autosprite.png");
+	background-image: url("../images/auto-sprite/HD-primary-autosprite.png");
 }
 
 }

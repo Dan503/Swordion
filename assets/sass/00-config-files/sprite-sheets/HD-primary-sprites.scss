@@ -17,7 +17,7 @@ $excel: (
   height: 29px,
   total_width: 64px,
   total_height: 63px,
-  image: '../images/auto-sprite/HighDef-autosprite.png'
+  image: '../images/auto-sprite/HD-primary-autosprite.png'
 );
 $pdf: (
   name: 'pdf',
@@ -29,7 +29,7 @@ $pdf: (
   height: 30px,
   total_width: 64px,
   total_height: 63px,
-  image: '../images/auto-sprite/HighDef-autosprite.png'
+  image: '../images/auto-sprite/HD-primary-autosprite.png'
 );
 $powerpoint: (
   name: 'powerpoint',
@@ -41,7 +41,7 @@ $powerpoint: (
   height: 29px,
   total_width: 64px,
   total_height: 63px,
-  image: '../images/auto-sprite/HighDef-autosprite.png'
+  image: '../images/auto-sprite/HD-primary-autosprite.png'
 );
 $word: (
   name: 'word',
@@ -53,12 +53,12 @@ $word: (
   height: 30px,
   total_width: 64px,
   total_height: 63px,
-  image: '../images/auto-sprite/HighDef-autosprite.png'
+  image: '../images/auto-sprite/HD-primary-autosprite.png'
 );
-$spritesheet-highdef: (
+$spritesheet-primary: (
   width: 64px,
   height: 63px,
-  image: '../images/auto-sprite/HighDef-autosprite.png',
+  image: '../images/auto-sprite/HD-primary-autosprite.png',
   sprites: $excel $pdf $powerpoint $word
 );
 
