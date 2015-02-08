@@ -1,34 +1,3 @@
-///***********************************
-//	SPRITES
-//************************************/
-
-// most comonly used manual sprite (retina and non-retina)
-@mixin M-sprite($BGposition: 0 0, $BGcolor: transparent, $defaultRepeat: no-repeat, $defaultImg:$sprite, $defaultRetina: $sprite2x){
-	background-image: $defaultImg;
-	background-repeat: $defaultRepeat;
-	background-color: $BGcolor;
-	background-position: $BGposition;
-
-  	@include M-retina {
-		background-size: $sprite_width auto;
-		background-image: $defaultRetina;
-	}
-}
-
-// less comonly used wide manual sprite (retina and non-retina)
-@mixin M-wide-sprite($BGposition: 0 0, $BGcolor: transparent, $defaultRepeat: no-repeat, $defaultImg:$wide_sprite, $defaultRetina: $wide_sprite2x){
-	background-image: $defaultImg;
-	background-repeat: $defaultRepeat;
-	background-color: $BGcolor;
-	background-position: $BGposition;
-
-  	@include M-retina {
-		background-size: 50px auto;
-		background-image: $defaultRetina;
-	}
-}
-
-
 ///***********************************\
 //
 //				GRADIENTS
