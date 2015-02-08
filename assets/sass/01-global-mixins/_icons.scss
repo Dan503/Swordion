@@ -1,5 +1,36 @@
+///*================================================*\
+//	ICON MIXINS
+//----------------------------------------------------
+//	Quickly and easily add icons from the icon font
+//	your site.
+//
+//	These are the mixins you would use in your
+//	style sheet:
+
+//	@include M-icon(icon_name, color, icon_height, icon_width);
+	// the standard way to add an icon with scss
+
+//	@include M-mq-icon(icon_name, color, icon_height, icon_width);
+	//(same as M-icon() but self contained for media queries)
+
+//	@include M-icon-size(icon_height, icon_width);
+	// set the size of an icon that was added using a class
+
+//	icon(icon_name);
+	//the easiest way to get an icon reference key
+
+//*================================================*/
+
+
+//Quick and easy icon reference function
+@function icon($icon_name){
+	@return map-get($icons, $icon_name)
+}
+
+
 /////////////////////////
 //CONSTANT ICON STYLES//
+//
 ///////////////////////
 
 //styles that are the same for all icons
@@ -26,7 +57,7 @@
 
 //styles that require altering from icon to icon
 @mixin M-icon-dynamic-styles($icon, $color: inherit, $height: false, $width:$height, $display: inline-block){
-	content: map-get($icons, $icon);
+	content:  icon($icon);
 	display: $display;
 	@if ( $color != inherit ){
 		color: $color;
@@ -45,7 +76,14 @@
 
 }
 
+
+
+//////////////////
+//SETTING ICONS//
+////////////////
+
 //set the size of the icon and makes it work with the M-centered mixin
+//This is good on it's own when addressing an icon that was added with an icon class
 @mixin M-icon-size ($icon-height, $icon-width: $icon-height) {
 	@if ($icon-height != false){
 		font-size: $icon-height;
@@ -54,11 +92,6 @@
 		text-align: center;
 	}
 }
-
-
-//////////////////
-//SETTING ICONS//
-////////////////
 
 // GOOD FOR MOST CIRCUMSTANCES
 // Moves majority of static icon styles into a single rule to cut down css bulk
