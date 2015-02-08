@@ -145,30 +145,19 @@ module.exports = function (grunt) {
 			}
 		},
 
-		//auto-prefixing that doesn't break your map file :D
-		autoprefixer: {
-	        options: {
-				map: true,//tracks changes done to css and edits the css map accordingly
-	        },
-			main: {
-	        	expand: true,
-				flatten: false,
-	        	src: 'assets/css/style.css',
-				dest: 'style.css',
-				options : {
-					browsers: ['last 3 versions', 'ie 9', 'ie10'],
+		// Automatically add prefixing to css
+		// I handle all my prefixing in the mixins
+		/*autoprefixer: {
+			options: {
+				browsers: ["last 1 version", "Android 2", "Android 4", "BlackBerry 7", "BlackBerry 10", "iOS 6", "iOS 7", "OperaMobile 20", "OperaMini 7", "OperaMini 8", "ChromeAndroid 36", "ExplorerMobile 9", "ExplorerMobile 10"]
+			},
+			sm: {
+				options: {
+					map: true
 				},
-			},
-	        ie: {
-	        	expand: true,
-				flatten: false,
-	        	src: 'assets/css/style-lt-ie9.css',
-				dest: 'style-lt-ie9.css',
-				options : {
-					browsers: ['ie7', 'ie 8'],
-				}
-			},
-	    },
+				src: "css/style.css"
+			}
+		},*/
 
 		//Merge similar media queries into single MQ's
 		//It isn't capable of generating css maps, so this is only used in the CSS minification process
@@ -188,11 +177,11 @@ module.exports = function (grunt) {
 		      banner: '/* Simmilar mediaqueries have been merged and CSS has been Minified in this file (Not to be loaded into the browser during site development) */'
 		    },
 			//takes the current css files in the "media-merge" folder, minifies them, adds '.min.css' to the end of the file, and copies them back into the main css folder
-			expand: true,
-			cwd: 'assets/css/media-merge/',
-			src: ['*.css', '!*.min.css'],
-			dest: 'assets/css/',
-			ext: '.min.css'
+		      expand: true,
+		      cwd: 'assets/css/media-merge/',
+		      src: ['*.css', '!*.min.css'],
+		      dest: 'assets/css/',
+		      ext: '.min.css'
 		  }
 		},
 
@@ -261,7 +250,7 @@ module.exports = function (grunt) {
 				tasks: [
 					"sass_globbing",//generates import maps for SASS modules
 					"sass:dist", //compile the SASS
-					"autoprefixer",//auto-prefix css
+					//"autoprefixer", //add prefixing (I do it with mixins)
 					//"cmq", //merge media queries
 					//"csso", //minify css
 					//"copy:css", //copy css to server
@@ -305,15 +294,14 @@ module.exports = function (grunt) {
 	grunt.registerTask("default", [
 		"concat",
 			//"uglify",
-		//"sprite",
-		//"image_resize",
+		"sprite",
+		"image_resize",
 		"sass_globbing",
 		"sass:dist",
-		"autoprefixer",//autoprefix css,
-		//"cmq",//combine media queries
-		//"csso",//minify css (css optimiser)
+		"cmq",//combine media queries
+		"csso",//minify css (css optimiser)
 			//"copy",
-		//"watch"
+		"watch"
 	]);
 
 };

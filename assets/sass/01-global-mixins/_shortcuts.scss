@@ -89,7 +89,6 @@
 
 //allows the styling of placeholder text
 @mixin M-placeholder($color:#767676) {
-	//auto-prefix not working on this :(
 	//#767676 is the lightest possible grey against a white bg that passes AA for small text
 	@include M-gt-ie8 {
 		&::-webkit-input-placeholder { color: $color; @content; } //safari and chrome
@@ -106,7 +105,6 @@
 //HYPHENTATION (Doesn't work in all browsers... yet)
 //Also needs to use hyphenator.js https://code.google.com/p/hyphenator/ for browsers that don't support hyphenation natively if hyphenation in all modern browsers is essential
 @mixin M-hyphenate {
-	//auto-prefix not working on this :(
 	-webkit-hyphens: auto;
        -moz-hyphens: auto;
         -ms-hyphens: auto;
