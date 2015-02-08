@@ -35,7 +35,6 @@ $gradColour2:#ccd4d6;
 	@if ($type == v){
 		background: $backup;
 		@if ($lt-ie9 == false){
-			background: -webkit-linear-gradient(top,  $gradColour1 $stop1,$gradColour2 $stop2);
 			background: linear-gradient(to bottom,  $gradColour1 $stop1,$gradColour2 $stop2);
 		} @else {
 		   @include M-ie-grad($gradColour1, $gradColour2,v);
@@ -47,7 +46,6 @@ $gradColour2:#ccd4d6;
 	@if ($type == h){
 		background: $backup;
 		@if ($lt-ie9 == false){
-			background: -webkit-linear-gradient(left,  $gradColour1 $stop1,$gradColour2 $stop2);
 			background: linear-gradient(to right,  $gradColour1 $stop1,$gradColour2 $stop2);
 		} @else {
 		   @include M-ie-grad($gradColour1, $gradColour2,h);
@@ -59,50 +57,38 @@ $gradColour2:#ccd4d6;
 		//Diagonal down (\)
 		@if ($type == d-down){
 			background: $backup;
-			background: -webkit-linear-gradient(-45deg,  $gradColour1 $stop1,$gradColour2 $stop2);
 			background: linear-gradient(135deg,  $gradColour1 $stop1,$gradColour2 $stop2);
 		}
 
 		//Diagonal up (/)
 		@if ($type == d-up){
 			background: $backup;
-			background: -webkit-linear-gradient(45deg,  $gradColour1 $stop1,$gradColour2 $stop2);
 			background: linear-gradient(45deg,  $gradColour1 $stop1,$gradColour2 $stop2);
 		}
 
 		//Radial (o)
 		@if ($type == r) {
 			background: $backup;
-			background: -webkit-gradient(radial, center center, 0px, center center, $stop2, color-stop($stop1,$gradColour1), color-stop($stop2,$gradColour2));
-			background: -webkit-radial-gradient(center, ellipse cover,  $gradColour1 $stop1,$gradColour2 $stop2);
 			background: radial-gradient(ellipse at center,  $gradColour1 $stop1,$gradColour2 $stop2);
 		}
 
 		@if ($type == r-top-left) {
 			background: $backup;
-			background: -webkit-gradient(radial,top left, 0px, center center, $stop2, color-stop($stop1,$gradColour1), color-stop($stop2,$gradColour2));
-			background: -webkit-radial-gradient(top left, ellipse cover,  $gradColour1 $stop1,$gradColour2 $stop2);
 			background: radial-gradient(ellipse at top left,  $gradColour1 $stop1,$gradColour2 $stop2);
 		}
 
 		@if ($type == r-top-right) {
 			background: $backup;
-			background: -webkit-gradient(radial,top right, 0px, center center, $stop2, color-stop($stop1,$gradColour1), color-stop($stop2,$gradColour2));
-			background: -webkit-radial-gradient(top right, ellipse cover,  $gradColour1 $stop1,$gradColour2 $stop2);
 			background: radial-gradient(ellipse at top right,  $gradColour1 $stop1,$gradColour2 $stop2);
 		}
 
 		@if ($type == r-bottom-right) {
 			background: $backup;
-			background: -webkit-gradient(radial,bottom right, 0px, center center, $stop2, color-stop($stop1,$gradColour1), color-stop($stop2,$gradColour2));
-			background: -webkit-radial-gradient(bottom right, ellipse cover,  $gradColour1 $stop1,$gradColour2 $stop2);
 			background: radial-gradient(ellipse at bottom right,  $gradColour1 $stop1,$gradColour2 $stop2);
 		}
 
 		@if ($type == r-bottom-left) {
 			background: $backup;
-			background: -webkit-gradient(radial,bottom left, 0px, center center, $stop2, color-stop($stop1,$gradColour1), color-stop($stop2,$gradColour2));
-			background: -webkit-radial-gradient(bottom left, ellipse cover,  $gradColour1 $stop1,$gradColour2 $stop2);
 			background: radial-gradient(ellipse at bottom left,  $gradColour1 $stop1,$gradColour2 $stop2);
 		}
 	} @else {
@@ -123,57 +109,48 @@ $gradColour2:#ccd4d6;
 	@if ($lt-ie9 == false){
 		@if ($type == v){
 			background: $backup;
-			background: -webkit-linear-gradient(top, $grad-colours-positions);
 			background: linear-gradient(to bottom, $grad-colours-positions);
 		}
 		//horizontal (-)
 		@if ($type == h){
 			background: $backup;
-			background: -webkit-linear-gradient(left, $grad-colours-positions);
 			background: linear-gradient(to right, $grad-colours-positions);
 		}
 		//Diagonal down (\)
 		@if ($type == d-down){
 			background: $backup;
-			background: -webkit-linear-gradient(-45deg, $grad-colours-positions);
 			background: linear-gradient(135deg, $grad-colours-positions);
 		}
 
 		//Diagonal up (/)
 		@if ($type == d-up){
 			background: $backup;
-			background: -webkit-linear-gradient(45deg, $grad-colours-positions);
 			background: linear-gradient(45deg, $grad-colours-positions);
 		}
 
 		//Radial (o)
 		@if ($type == r) {
 			background: $backup;
-			background: -webkit-radial-gradient(center, ellipse cover,  $grad-colours-positions);
 			background: radial-gradient(ellipse at center,  $grad-colours-positions);
 		}
 
 		@if ($type == r-top-left) {
 			background: $backup;
-			background: -webkit-radial-gradient(top left, ellipse cover, $grad-colours-positions);
 			background: radial-gradient(ellipse at top left, $grad-colours-positions);
 		}
 
 		@if ($type == r-top-right) {
 			background: $backup;
-			background: -webkit-radial-gradient(top right, ellipse cover, $grad-colours-positions);
 			background: radial-gradient(ellipse at top right, $grad-colours-positions);
 		}
 
 		@if ($type == r-bottom-right) {
 			background: $backup;
-			background: -webkit-radial-gradient(bottom right, ellipse cover, $grad-colours-positions);
 			background: radial-gradient(ellipse at bottom right, $grad-colours-positions);
 		}
 
 		@if ($type == r-bottom-left) {
 			background: $backup;
-			background: -webkit-radial-gradient(bottom left, ellipse cover, $grad-colours-positions);
 			background: radial-gradient(ellipse at bottom left, $grad-colours-positions);
 		}
 	} @else {
@@ -185,22 +162,18 @@ $gradColour2:#ccd4d6;
 //	Gradient with image
 //***********************/
 
-//modern browsers only (IE10+) :( Also, this creates a huge amount of css
+//modern browsers only (IE10+) :(
+//currently only designed to work with the manual sprite
 
-@mixin M-img-grad($img-position, $gradColour1, $gradColour2, $type: v, $stop1:0%, $stop2: 100%, $backup: $gradColour1, $image: $sprite, $retina_img: $sprite2x, $bgSize: $sprite_width auto){
+@mixin M-img-grad($img-position, $gradColour1, $gradColour2, $type: v, $stop1:0%, $stop2: 100%, $backup: $gradColour1, $image: $manual_sprite, $retina_img: $manual_sprite2x, $bgSize: $manual_sprite_width auto){
 
 	@if ($lt-ie9 == false){
 		//vertical (|)
 		@if ($type == v){
 			background: $backup;
-			background: $image, -webkit-gradient(linear, left top, left bottom, color-stop($stop1,$gradColour1), color-stop($stop2,$gradColour2));
-			background: $image, -webkit-linear-gradient(top,  $gradColour1 $stop1,$gradColour2 $stop2);
 			background: $image, linear-gradient(to bottom,  $gradColour1 $stop1,$gradColour2 $stop2);
 
-
 			@include M-retina {
-				background: $retina_img, -webkit-gradient(linear, left top, left bottom, color-stop($stop1,$gradColour1), color-stop($stop2,$gradColour2));
-				background: $retina_img, -webkit-linear-gradient(top,  $gradColour1 $stop1,$gradColour2 $stop2);
 				background: $retina_img, linear-gradient(to bottom,  $gradColour1 $stop1,$gradColour2 $stop2);
 			}
 		}
@@ -209,13 +182,9 @@ $gradColour2:#ccd4d6;
 		//horizontal (-)
 		@if ($type == h){
 			background: $backup;
-			background: $image, -webkit-gradient(linear, left top, right top, color-stop($stop1,$gradColour1), color-stop($stop2,$gradColour2));
-			background: $image, -webkit-linear-gradient(left,  $gradColour1 $stop1,$gradColour2 $stop2);
 			background: $image, linear-gradient(to right,  $gradColour1 $stop1,$gradColour2 $stop2);
 
 			@include M-retina {
-				background: $retina_img, -webkit-gradient(linear, left top, right top, color-stop($stop1,$gradColour1), color-stop($stop2,$gradColour2));
-				background: $retina_img, -webkit-linear-gradient(left,  $gradColour1 $stop1,$gradColour2 $stop2);
 				background: $retina_img, linear-gradient(to right,  $gradColour1 $stop1,$gradColour2 $stop2);
 			}
 		}
@@ -223,13 +192,9 @@ $gradColour2:#ccd4d6;
 		//Diagonal down (\)
 		@if ($type == d-down){
 			background: $backup;
-			background: $image, -webkit-gradient(linear, left top, right bottom, color-stop($stop1,$gradColour1), color-stop($stop2,$gradColour2));
-			background: $image, -webkit-linear-gradient(-45deg,  $gradColour1 $stop1,$gradColour2 $stop2);
 			background: $image, linear-gradient(135deg,  $gradColour1 $stop1,$gradColour2 $stop2);
 
 			@include M-retina {
-				background: $retina_img, -webkit-gradient(linear, left top, right top, color-stop($stop1,$gradColour1), color-stop($stop2,$gradColour2));
-				background: $retina_img, -webkit-linear-gradient(left,  $gradColour1 $stop1,$gradColour2 $stop2);
 				background: $retina_img, linear-gradient(to right,  $gradColour1 $stop1,$gradColour2 $stop2);
 			}
 		}
@@ -237,13 +202,9 @@ $gradColour2:#ccd4d6;
 		//Diagonal up (/)
 		@if ($type == d-up){
 			background: $backup;
-			background: $image, -webkit-gradient(linear, left bottom, right top, color-stop($stop1,$gradColour1), color-stop($stop2,$gradColour2));
-			background: $image, -webkit-linear-gradient(45deg,  $gradColour1 $stop1,$gradColour2 $stop2);
 			background: $image, linear-gradient(45deg,  $gradColour1 $stop1,$gradColour2 $stop2);
 
 			@include M-retina {
-				background: $retina_img, -webkit-gradient(linear, left bottom, right top, color-stop($stop1,$gradColour1), color-stop($stop2,$gradColour2));
-				background: $retina_img, -webkit-linear-gradient(45deg,  $gradColour1 $stop1,$gradColour2 $stop2);
 				background: $retina_img, linear-gradient(45deg,  $gradColour1 $stop1,$gradColour2 $stop2);
 			}
 		}
@@ -251,65 +212,45 @@ $gradColour2:#ccd4d6;
 		//Radial (o)
 		@if ($type == r) {
 			background: $backup;
-			background: $image, -webkit-gradient(radial, center center, 0px, center center, $stop2, color-stop($stop1,$gradColour1), color-stop($stop2,$gradColour2));
-			background: $image, -webkit-radial-gradient(center, ellipse cover,  $gradColour1 $stop1,$gradColour2 $stop2);
 			background: $image, radial-gradient(ellipse at center,  $gradColour1 $stop1,$gradColour2 $stop2);
 
 			@include M-retina {
-				background: $retina_img, -webkit-gradient(radial, center center, 0px, center center, $stop2, color-stop($stop1,$gradColour1), color-stop($stop2,$gradColour2));
-				background: $retina_img, -webkit-radial-gradient(center, ellipse cover,  $gradColour1 $stop1,$gradColour2 $stop2);
 				background: $retina_img, radial-gradient(ellipse at center,  $gradColour1 $stop1,$gradColour2 $stop2);
 			}
 		}
 
 		@if ($type == r-top-left) {
 			background: $backup;
-			background: $image, -webkit-gradient(radial,top left, 0px, center center, $stop2, color-stop($stop1,$gradColour1), color-stop($stop2,$gradColour2));
-			background: $image, -webkit-radial-gradient(top left, ellipse cover,  $gradColour1 $stop1,$gradColour2 $stop2);
 			background: $image, radial-gradient(ellipse at top left,  $gradColour1 $stop1,$gradColour2 $stop2);
 
 			@include M-retina {
-				background: $retina_img, -webkit-gradient(radial,top left, 0px, center center, $stop2, color-stop($stop1,$gradColour1), color-stop($stop2,$gradColour2));
-				background: $retina_img, -webkit-radial-gradient(top left, ellipse cover,  $gradColour1 $stop1,$gradColour2 $stop2);
 				background: $retina_img, radial-gradient(ellipse at top left,  $gradColour1 $stop1,$gradColour2 $stop2);
 			}
 		}
 
 		@if ($type == r-top-right) {
 			background: $backup;
-			background: $image, -webkit-gradient(radial,top right, 0px, center center, $stop2, color-stop($stop1,$gradColour1), color-stop($stop2,$gradColour2));
-			background: $image, -webkit-radial-gradient(top right, ellipse cover,  $gradColour1 $stop1,$gradColour2 $stop2);
 			background: $image, radial-gradient(ellipse at top right,  $gradColour1 $stop1,$gradColour2 $stop2);
 
 			@include M-retina {
-				background: $retina_img, -webkit-gradient(radial,top right, 0px, center center, $stop2, color-stop($stop1,$gradColour1), color-stop($stop2,$gradColour2));
-				background: $retina_img, -webkit-radial-gradient(top right, ellipse cover,  $gradColour1 $stop1,$gradColour2 $stop2);
 				background: $retina_img, radial-gradient(ellipse at top right,  $gradColour1 $stop1,$gradColour2 $stop2);
 			}
 		}
 
 		@if ($type == r-bottom-right) {
 			background: $backup;
-			background: $image, -webkit-gradient(radial,bottom right, 0px, center center, $stop2, color-stop($stop1,$gradColour1), color-stop($stop2,$gradColour2));
-			background: $image, -webkit-radial-gradient(bottom right, ellipse cover,  $gradColour1 $stop1,$gradColour2 $stop2);
 			background: $image, radial-gradient(ellipse at bottom right,  $gradColour1 $stop1,$gradColour2 $stop2);
 
 			@include M-retina {
-				background: $retina_img, -webkit-gradient(radial,bottom right, 0px, center center, $stop2, color-stop($stop1,$gradColour1), color-stop($stop2,$gradColour2));
-				background: $retina_img, -webkit-radial-gradient(bottom right, ellipse cover,  $gradColour1 $stop1,$gradColour2 $stop2);
 				background: $retina_img, radial-gradient(ellipse at bottom right,  $gradColour1 $stop1,$gradColour2 $stop2);
 			}
 		}
 
 		@if ($type == r-bottom-left) {
 			background: $backup;
-			background: $image, -webkit-gradient(radial,bottom left, 0px, center center, $stop2, color-stop($stop1,$gradColour1), color-stop($stop2,$gradColour2));
-			background: $image, -webkit-radial-gradient(bottom left, ellipse cover,  $gradColour1 $stop1,$gradColour2 $stop2);
 			background: $image, radial-gradient(ellipse at bottom left,  $gradColour1 $stop1,$gradColour2 $stop2);
 
 			@include M-retina {
-				background: $retina_img, -webkit-gradient(radial,bottom left, 0px, center center, $stop2, color-stop($stop1,$gradColour1), color-stop($stop2,$gradColour2));
-				background: $retina_img, -webkit-radial-gradient(bottom left, ellipse cover,  $gradColour1 $stop1,$gradColour2 $stop2);
 				background: $retina_img, radial-gradient(ellipse at bottom left,  $gradColour1 $stop1,$gradColour2 $stop2);
 			}
 		}

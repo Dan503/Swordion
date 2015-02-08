@@ -146,3 +146,16 @@
 		}
 	}
 }
+
+//if you want to use the manual spriting technique, you can use this instead
+@mixin M-manual-sprite($BGposition: 0 0, $BGcolor: transparent, $defaultRepeat: no-repeat, $defaultImg:$manual_sprite, $defaultRetina: $manual_sprite2x){
+	background-image: $defaultImg;
+	background-repeat: $defaultRepeat;
+	background-color: $BGcolor;
+	background-position: $BGposition;
+
+  	@include M-retina {
+		background-size: $sprite_width auto;
+		background-image: $defaultRetina;
+	}
+}
