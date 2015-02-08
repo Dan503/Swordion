@@ -14,7 +14,15 @@
 }
 
 /*
-@font-face { font-family: 'xxxxxxxxxxxxxx'; src: url('fonts/xxxxxxxxxxxxxx.eot'); src: local('Ôÿ║'), url('fonts/xxxxxxxxxxxxxx.woff') format('woff'), url('fonts/xxxxxxxxxxxxxx.ttf') format('truetype'), url('fonts/xxxxxxxxxxxxxx.svg#light') format('svg'); font-weight: normal; font-style: normal;
+@font-face {
+    font-family: 'xxxxxxxxxxxxxx';
+    src: url('fonts/xxxxxxxxxxxxxx.eot');
+    src: local('Ôÿ║'),
+         url('fonts/xxxxxxxxxxxxxx.woff') format('woff'),
+         url('fonts/xxxxxxxxxxxxxx.ttf') format('truetype'),
+         url('fonts/xxxxxxxxxxxxxx.svg#light') format('svg');
+    font-weight: normal;
+    font-style: normal;
 }
 */
 
@@ -57,7 +65,8 @@
 /*
 SCSS variables are information about icon's compiled state, stored under its original file name
 
-.icon-home { width: map-get($icon-home, 'width');
+.icon-home {
+  width: map-get($icon-home, 'width');
 }
 
 At the bottom of this section, we provide information about the spritesheet itself
@@ -66,7 +75,8 @@ At the bottom of this section, we provide information about the spritesheet itse
 /*
 SCSS variables are information about icon's compiled state, stored under its original file name
 
-.icon-home { width: map-get($icon-home, 'width');
+.icon-home {
+  width: map-get($icon-home, 'width');
 }
 
 At the bottom of this section, we provide information about the spritesheet itself
@@ -446,7 +456,8 @@ input[type=checkbox] {
 	cursor: pointer;
 }
 
-/************\ Tables
+/************\
+    Tables
 \************/
 
 table {
@@ -667,11 +678,11 @@ select option {
 	display: inline-block;
 	zoom: 1;
 	*display: inline; /*@include M-icon(arrow-down, 5px){
-	color: #000;
-	z-index: 0;
-	@include M-centered(v);
-	right: 10px;
-}*/
+  	color: #000;
+  	z-index: 0;
+  	@include M-centered(v);
+  	right: 10px;
+  }*/
 }
 
 .styled-select:before {
@@ -1442,7 +1453,11 @@ body.theme-light .themed-footer {
 
 @media print {
 
-/*================================================*\ 	PRINT STYLES //----------------------------------------------- //	Holds the print styles for the site \*================================================*/
+/*================================================*\
+  	PRINT STYLES
+  //-----------------------------------------------
+  //	Holds the print styles for the site
+  \*================================================*/
 
 * {
 	background: transparent !important;

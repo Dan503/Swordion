@@ -9,6 +9,7 @@ var js_merge_files = [
 	'assets/js/config-files/doc.ready-close.js',
 ];
 
+var autoprefixer = require('autoprefixer-core');
 
 //needed for the copy function
 //var server_root = '//CAN1DEV002/wwwroot/___SITE_FOLDER_NAME___/';
@@ -23,7 +24,6 @@ module.exports = function (grunt) {
 		cmq: "grunt-combine-media-queries",
 		watch: "grunt-contrib-watch",
 		sprite: "grunt-spritesmith",
-		//spriteHD: 'grunt-spritesmith-hd',
 	});
 
 	grunt.initConfig({
@@ -54,18 +54,6 @@ module.exports = function (grunt) {
 				}
 			}
 		},
-
-		//For generating iconfonts... doesn't work on PC :(
-		/*webfont: {
-			icons: {
-				src: 'assets/images/svg/icon-font/*.svg',
-				dest: 'build/fonts',
-				options: {
-					types: 'eot,woff,ttf,svg',
-					engine: 'node'
-				}
-			}
-		},*/
 
 		//This shrinks the HD sprite to normal size
 // In order for it to work, you need to install imageMagic on your computer:
@@ -138,7 +126,7 @@ module.exports = function (grunt) {
 		sass: {
 			dist: {
 				options: {
-					style: "compact",
+					style: "expanded",
 
 					//'sass-globbing' allows sass to bulk import files
 					//you need to install the 'sass-globbing' gem before use (gem install sass-globbing)
@@ -157,19 +145,19 @@ module.exports = function (grunt) {
 			}
 		},
 
-		// Automatically add prefixing to css
-		// I handle all my prefixing in the mixins
-		/*autoprefixer: {
-			options: {
-				browsers: ["last 1 version", "Android 2", "Android 4", "BlackBerry 7", "BlackBerry 10", "iOS 6", "iOS 7", "OperaMobile 20", "OperaMini 7", "OperaMini 8", "ChromeAndroid 36", "ExplorerMobile 9", "ExplorerMobile 10"]
-			},
-			sm: {
-				options: {
-					map: true
-				},
-				src: "css/style.css"
+		//auto-prefixing that doesn't break your map file :D
+		autoprefixer: {
+	        options: {
+				map: true,//tracks changes done to css and edits the css map accordingly
+				browsers: ['last 2 versions', 'ie 8', 'ie 9', 'ie10']
+	        },
+	        prefix: {
+	        	expand: true,
+				flatten: false,
+	        	src: ['assets/css/style.css', 'assets/css/style-lt-ie9.css'],
+				dest: 'assets/css/',
 			}
-		},*/
+	    },
 
 		//Merge similar media queries into single MQ's
 		//It isn't capable of generating css maps, so this is only used in the CSS minification process
@@ -180,19 +168,20 @@ module.exports = function (grunt) {
 				}
 			}
 		},
-		cssmin: {
-		  add_banner: {
+
+		//css optimiser (minification)
+		//http://bem.info/tools/optimizers/csso/description/
+		csso: {
+		  minify: {
 		    options: {
 		      banner: '/* Simmilar mediaqueries have been merged and CSS has been Minified in this file (Not to be loaded into the browser during site development) */'
 		    },
 			//takes the current css files in the "media-merge" folder, minifies them, adds '.min.css' to the end of the file, and copies them back into the main css folder
-		    files: [{
-		      expand: true,
-		      cwd: 'assets/css/media-merge/',
-		      src: ['*.css', '!*.min.css'],
-		      dest: 'assets/css/',
-		      ext: '.min.css'
-		    }]
+			expand: true,
+			cwd: 'assets/css/media-merge/',
+			src: ['*.css', '!*.min.css'],
+			dest: 'assets/css/',
+			ext: '.min.css'
 		  }
 		},
 
@@ -261,9 +250,9 @@ module.exports = function (grunt) {
 				tasks: [
 					"sass_globbing",//generates import maps for SASS modules
 					"sass:dist", //compile the SASS
-					//"autoprefixer", //add prefixing (I do it with mixins)
+					"autoprefixer",//auto-prefix css
 					//"cmq", //merge media queries
-					//"cssmin",
+					//"csso", //minify css
 					//"copy:css", //copy css to server
 				],
 				options: { spawn: false }
@@ -309,9 +298,9 @@ module.exports = function (grunt) {
 		"image_resize",
 		"sass_globbing",
 		"sass:dist",
-			//"autoprefixer",
-		"cmq",
-		"cssmin",
+		"autoprefixer",//autoprefix css,
+		"cmq",//combine media queries
+		"csso",//minify css (css optimiser)
 			//"copy",
 		"watch"
 	]);
