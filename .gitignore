@@ -2,3 +2,14 @@
 node_modules/**/*
 *.map
 *.css
+assets/css/media-merge/style.css
+assets/css/media-merge/style.min.css
+assets/css/media-merge/style-lt-ie9.css
+assets/css/media-merge/style-lt-ie9.min.css
+assets/css/style.css
+assets/css/style.css.map
+assets/css/style.min.css
+assets/css/style-lt-ie9.css
+assets/css/style-lt-ie9.css.map
+assets/css/style-lt-ie9.min.css
+assets/images/auto-sprite/LD-primary-autosprite.png
