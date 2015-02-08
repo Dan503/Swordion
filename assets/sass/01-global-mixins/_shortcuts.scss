@@ -64,8 +64,6 @@
 }
 
 @mixin M-box-sizing ($type: border-box) {
-	-webkit-box-sizing: $type;
-	-moz-box-sizing: $type;
 	box-sizing: $type;
 	*behavior: url(../htc/boxsizing.htc);
 }
@@ -79,6 +77,7 @@
 }
 
 //don't forget about appearance: none; to clear defaults particularly on submit buttons
+//appearance not supported by auto-prefix
 @mixin M-appearance-none {
    -webkit-appearance: none;
    -moz-appearance:    none;
@@ -90,13 +89,14 @@
 
 //allows the styling of placeholder text
 @mixin M-placeholder($color:#767676) {
+	//auto-prefix not working on this :(
 	//#767676 is the lightest possible grey against a white bg that passes AA for small text
 	@include M-gt-ie8 {
 		&::-webkit-input-placeholder { color: $color; @content; } //safari and chrome
 		&:-moz-placeholder { color: $color; opacity: 1; @content; } //* Firefox 18- */
 		&::-moz-placeholder { color: $color; opacity: 1; @content; } //* Firefox 19+ */
 		&:-ms-input-placeholder { color: $color; @content; } //IE 9+
-		&::input-placeholder { color: $color; @content; } //future proofing
+		&::placeholder { color: $color; @content; } //future proofing
 	}
 	@include M-lt-ie9 {
 		&.placeholdersjs { color: $color; @content; } //IE8 and lower (with help of polyfill)
@@ -106,6 +106,7 @@
 //HYPHENTATION (Doesn't work in all browsers... yet)
 //Also needs to use hyphenator.js https://code.google.com/p/hyphenator/ for browsers that don't support hyphenation natively if hyphenation in all modern browsers is essential
 @mixin M-hyphenate {
+	//auto-prefix not working on this :(
 	-webkit-hyphens: auto;
        -moz-hyphens: auto;
         -ms-hyphens: auto;

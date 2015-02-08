@@ -5,7 +5,7 @@
 //basic animation
 @mixin M-animate($settings: 0.5s, $ease: ease-in-out, $var: all){
 	@include M-gt-ie8 {
-	    -webkit-transition: $var $settings $ease;
+	    //-webkit-transition: $var $settings $ease;
 	    transition:  $var $settings $ease;
 	}
 }
@@ -20,10 +20,10 @@
 @mixin M-anti-animate($important: true) {
 	@include M-gt-ie8 {
 		@if ($important == true){
-		    -webkit-transition: none !important;
+		    //-webkit-transition: none !important;
 		    transition: none !important;
 		} @else {
-		    -webkit-transition: none;
+		    //-webkit-transition: none;
 		    transition: none;
 		}
 	}
@@ -85,7 +85,7 @@
 //This mixin allows you to use the same animation set as another element but give different timings
 @mixin M-kf-predefined($animation_name, $settings: 1s, $loops: infinite, $ease: linear){
 	@include M-gt-ie8 {
-		-webkit-animation: $animation_name $settings $loops $ease; //* Safari 4+ */
+		//-webkit-animation: $animation_name $settings $loops $ease; //* Safari 4+ */
 		animation:         $animation_name $settings $loops $ease; //* IE 10+, Fx 29+ */
 
 	}

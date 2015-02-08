@@ -144,16 +144,29 @@ include 'header.php';
 		</div>
 <?php
 	$input_array = array(
-		'',
-		'xxxxxxxxxxx',
-		'xxxxxxxxxxx'
+		array(
+			'label' => 'xxxxxxxxx',
+			'placeholder' => 'Enter text here'
+		),
+		array(
+			'label' => 'xxxxxxxxx',
+			'placeholder' => 'Enter text here'
+		),
+		array(
+			'label' => 'xxxxxxxxx',
+			'placeholder' => 'Enter text here'
+		),
 	);
 	for ($i = 0; $i < count($input_array); $i++) {
-		$input_id = preg_replace("/[^A-Za-z0-9]/", "", $input_array[$i]);
+
+		$id = preg_replace("/[^A-Za-z0-9]/", "", $input_array[$i]);
+		$label = $input_array[$i]['label'];
+		$placeholder = $input_array[$i]['placeholder'];
+
 		echo
 		'<div class="from-row">
-			<label for="'.$input_id.'">'.$input_array[$i].'</label>
-			<input id="'.$input_id.'" type="text"/>
+			<label for="'.$id.'">'.$label.'</label>
+			<input id="'.$id.'" placeholder="'.$placeholder.'" type="text"/>
 		</div>';
 	}
 ?>
@@ -177,7 +190,7 @@ include 'header.php';
 </form>
 
 
-<div style="width: 100px;">
+<div class="hyphenTest">
 	<h2>Hyphenation test</h2>
 	<p>Transmogrification</p>
 </div>

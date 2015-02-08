@@ -149,14 +149,25 @@ module.exports = function (grunt) {
 		autoprefixer: {
 	        options: {
 				map: true,//tracks changes done to css and edits the css map accordingly
-				browsers: ['last 2 versions', 'ie 8', 'ie 9', 'ie10']
 	        },
-	        prefix: {
+			main: {
 	        	expand: true,
 				flatten: false,
-	        	src: ['assets/css/style.css', 'assets/css/style-lt-ie9.css'],
-				dest: 'assets/css/',
-			}
+	        	src: 'assets/css/style.css',
+				dest: 'style.css',
+				options : {
+					browsers: ['last 3 versions', 'ie 9', 'ie10'],
+				},
+			},
+	        ie: {
+	        	expand: true,
+				flatten: false,
+	        	src: 'assets/css/style-lt-ie9.css',
+				dest: 'style-lt-ie9.css',
+				options : {
+					browsers: ['ie7', 'ie 8'],
+				}
+			},
 	    },
 
 		//Merge similar media queries into single MQ's
@@ -294,15 +305,15 @@ module.exports = function (grunt) {
 	grunt.registerTask("default", [
 		"concat",
 			//"uglify",
-		"sprite",
-		"image_resize",
+		//"sprite",
+		//"image_resize",
 		"sass_globbing",
 		"sass:dist",
 		"autoprefixer",//autoprefix css,
-		"cmq",//combine media queries
-		"csso",//minify css (css optimiser)
+		//"cmq",//combine media queries
+		//"csso",//minify css (css optimiser)
 			//"copy",
-		"watch"
+		//"watch"
 	]);
 
 };
