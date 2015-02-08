@@ -32,3 +32,4 @@ $all_sheet_names: map_keys(map_merge(map-get($spritesheets, retina-sheets), map-
 //variables for the manual sprite mixin
 $manual_sprite: url(../images/design/manual-sprite.png);
 $manual_sprite2x: url(../images/design/manual-sprite@2x.png);
+$manual_sprite_width: 100px;
