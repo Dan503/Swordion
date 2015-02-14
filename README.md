@@ -1,15 +1,101 @@
 # Swordion
 A feature rich website boilerplate starter kit that makes life easy for front end developers
 
-These notes are going to be out of date but I want to put something up here to give an idea of what this thing does. I'll update this later on to be more accurate.
+---------------------
+
+##Dependancies
+
+- Grunt
+- SASS
+- Local PHP server
+- <a href="http://www.imagemagick.org/script/binary-releases.php">Image Magik</a>
 
 --------------------
 
-Super useful SASS mixins guide
+##Getting started
+
+###Local PHP server
+
+Install a local php server on your computer.
+
+I use <a href="http://www.easyphp.org/">EasyPHP Devserver</a> with the <a href="http://www.easyphp.org/save-module-virtualhostsmanager-vc9-latest.php">Virtual Host Manager</a> plugin. Once you've got it working it's great... but it uses port 80 by default which can make the initial install difficult. You need to manually change it to a different port (I use port 8080) in your computers hosts file.
+
+If you are on mac or you can't get EasyPHP to work, just Google "local php server" and you should find something that works for you pretty quick.
+
+... lol "just google" are words that I probably shouldn't be putting in documentation :P
+
+###Image Magik
+
+This is needed for the auto-sprite functionality. You will need to install Image Magic before doing the npm install into your project folder (don't worry I'm going through that next).
+
+The instructions found on the <a href="http://www.imagemagick.org/script/binary-releases.php">Image Magik website</a> are pretty clear.
+
+###Getting Grunt and SASS working:
+
+####First time use:
+
+0. Download and install <a href="http://rubyinstaller.org/">rubyinstaller</a> *if you are on PC*.
+0. Download and Install <a href="http://nodejs.org/">Node.js</a>
+0. Open Start menu
+0. Run as administrator: "start command prompt with ruby"
+5. set the project directory:
+  0. Type `cd ` in the console
+  0. Paste the project folder directory into the console (using right click menu)
+    - eg: `cd C:\Users\username\Documents\projects\PROJECT_NAME\website`
+  0. Press `enter/return`
+0. Paste this into the console (inculding the line break at the end):
+
+````````````
+gem install sass
+npm install -g grunt-cli
+npm install
+grunt
+
+````````````
+
+####When starting work on someone elses project
+
+The grunt node_module files should never be placed in source control. It hinders the process of committing and updating if those files are in the repository. Instead the files should be downloaded and installed using npm:
+
+You will need to set the project directory as stated in point 5, then paste this into the ruby enabled console:
+
+```````
+npm install -g grunt-cli
+npm install
+grunt
+
+```````
+
+####When returning to a project you have been working on
+
+All you need to do is set the project directory (as stated in point 5) then paste this into the ruby enabled console:
+
+```````
+grunt
+
+```````
+
+For this I recommend creating a "grunt-start-up.txt" file that you keep in your root folder and *out of source control* (It would be different for everyone). This is an example of what you would put in it:
+
+```````
+cd C:\Users\username\Documents\projects\PROJECT_NAME\website
+grunt
+
+``````
+
+Ensure that it has a line break at the end.
+
+Now when you are returning to a project, all you need to do is a select-all, copy, then paste it into the console. It will instantly start running grunt for you :)
+
+--------------------
+
+*The notes below are out of date but I want to put something up here to give an idea of what this thing can do. I'll update this later on to be more accurate. This documentation (and this whole thing in general) is a __work in progress__ and is likely to change with no notice*
+
+--------------------
+
+##SASS mixins guide
 
 (All my mixins start with "M-" because my editor doesn't like ending keyboard shortcut code snippets with a space)
-
-Read this section carefully! I don’t want to catch you styling something without the mixin if there is a mixin that can do it.
 
 All SASS mixins are stored here:
 /assets/sass/mixins/
