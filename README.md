@@ -89,7 +89,9 @@ Now when you are returning to a project, all you need to do is a select-all, cop
 
 --------------------
 
-*The notes below are out of date but I want to put something up here to give an idea of what this thing can do. I'll update this later on to be more accurate. This documentation (and this whole thing in general) is a __work in progress__ and is likely to change with no notice*
+##Warning!
+
+*The notes below are out of date (and horribly formatted) but I want to put something up here to give an idea of what this thing can do. I'll update this later on to be more accurate (and prettier). This documentation (and this whole thing in general) is a __work in progress__ and is likely to change with no notice*
 
 --------------------
 
