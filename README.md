@@ -111,6 +111,7 @@ This is basically how the naming convention works:
 ```````````````````
 
 You might have noticed that this is different to the standard way of structuring BEM classes:
+
 `.module-name__element-name--modifier-name`
 
 I hope based off that one example you can see why I have chosen to use the CCSS way of using the BEM structure instead of the standard BEM structure. Using camel case clearly groups the words that belong together under the same part of the class. Every dash clearly separates each segment of the class and it's clear what each dash represents. At a glance, the standard BEM structure is confusing with dashes and underscores all over the place. I think The CCSS method is simply easier to read.
