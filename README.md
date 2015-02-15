@@ -107,7 +107,8 @@ This is basically how the naming convention works:
 .moduleName-elementName--modifierName
 
 //if a class is used by javascript it is given a "js" prefix at the start
-.js-moduleName-elementName--modifierName
+//I allow plain modifiers to be targeted by js as explained a bit later on
+.js-moduleName-elementName
 ```````````````````
 
 You might have noticed that this is different to the standard way of structuring BEM classes:
