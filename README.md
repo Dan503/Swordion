@@ -96,39 +96,42 @@ There is a class system that permeates throughout the whole of Swordion... or at
 This is basically how the naming convention works:
 
 ````````````````````
-
 //this type of class is given to the element that wraps around a self contained module
 .moduleName
 
 //this type of class is added to the individual elements that make up the module
 .moduleName-elementName
 
-//if an elements state is in an alternate state from the default state, it is given a class like this
+//if an elements state is in an alternate state from the default state,
+//it is given a class like this with 2 dashes before the modifier
 .moduleName-elementName--modifierName
 
 //if a class is used by javascript it is given a "js" prefix at the start
 .js-moduleName-elementName--modifierName
-
 ```````````````````
 
-You might have noticed that this is different to the standard way of structuring BEM classes: `.module-name__element-name--modifier-name`.
+You might have noticed that this is different to the standard way of structuring BEM classes:
+`.module-name__element-name--modifier-name`
 
-I hope based off that example you can see why I have chosen to use the CCSS way of using the BEM structure instead of the standard structure. Using camel case clearly groups the words that belong to the same part of the class. Every dash clearly separates each segment of the class and it's clear what each dash represents.
+I hope based off that one example you can see why I have chosen to use the CCSS way of using the BEM structure instead of the standard BEM structure. Using camel case clearly groups the words that belong together under the same part of the class. Every dash clearly separates each segment of the class and it's clear what each dash represents. At a glance, the standard BEM structure is confusing with dashes and underscores all over the place. I think The CCSS method is simply easier to read.
 
 Here is an example of how you would use the classes:
 
-HTML
+###HTML
 ```````````html
-<ul class="pagination">
-	<li class="pagination-item"><a href="/page1" class="pagination-link">1</a></li>
-	<li class="pagination-item"><a href="/page2" class="pagination-link pagination-link--active">2</a></li>
-	<li class="pagination-item"><a href="/page3" class="pagination-link">3</a></li>
-</ul>
+<div class="menu">
+	<a id="js-menu-toggle" class="menu-btn" href="#">Toggle menu</a>
+	<ul class="menu-list js-menu-list">
+		<li class="menu-item"><a href="/page1" class="menu-link">Home</a></li>
+		<li class="menu-item"><a href="/page2" class="menu-link menu-link--active">About</a></li>
+		<li class="menu-item"><a href="/page3" class="menu-link">Contact</a></li>
+	</ul>
+</div>
 ````````````
 
-SASS
+###SASS
 ````````sass
-.pagination {
+.menu {
 	list-style: none;
 	text-align: center;
 	padding: 0;
@@ -145,21 +148,42 @@ SASS
 			color: #fff;
 		}
 	}
+	&-btn {
+		display: block;
+		padding: 10px 20px;
+		background: #000;
+		color: #fff;
+	}
 }
 ```````
 
-Generated CSS
+###Generated CSS
 ````````````css
-.pagination { list-style: none; text-align: center; padding: 0; }
+.menu { list-style: none; text-align: center; padding: 0; }
 
-.pagination-item { display: inline-block; }
+.menu-item { display: inline-block; }
 
-.pagination-link { display: block; padding: 10px; }
+.menu-link { display: block; padding: 10px; }
 
-.pagination-link--active { background: #000; color: #fff; }
+.menu-link--active { background: #000; color: #fff; }
+
+.menu-btn { display: block; padding: 10px 20px; background: #000; color: #fff; }
 ```````````
 
+###Javascript
+```````javascript
+$('#js-menu-toggle').click(function(){
+	$('.js-menu-list').slideToggle();
+});
+```````
 
+So a few things you should note:
+
+- `js-` names should be an id unless the element appears multiple times on the page
+- Try to avoid applying styles to the `js-` classes unless the styles are heavily integrated with the javascript functionality. Eg. a lightbox requires css to make it appear on screen properly, so those styles could target `js-` classes if you like.
+- Because SASS currently doesn't support `.js-& {/*...rules...*/}` I allow modifier classes to not require a js prefix if targeted with js simply because you would often need to add/remove 2 modifier classes instead of just 1 with js
+Example: `$('.js-module-element.js-module-element--modifier').removeClass('module-element--modifier').removeClass('js-module-element--modifier')`
+No one wants to do that, just target modifier classes without the js prefix.
 
 --------------------
 
