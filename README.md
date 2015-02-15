@@ -133,10 +133,11 @@ Here is an example of how you would use the classes:
 ###SASS
 ````````sass
 .menu {
-	list-style: none;
-	text-align: center;
-	padding: 0;
-
+	&-list {
+		list-style: none;
+		text-align: center;
+		padding: 0;
+	}
 	&-item {
 		display: inline-block;
 	}
@@ -160,7 +161,7 @@ Here is an example of how you would use the classes:
 
 ###Generated CSS
 ````````````css
-.menu { list-style: none; text-align: center; padding: 0; }
+.menu-list { list-style: none; text-align: center; padding: 0; }
 
 .menu-item { display: inline-block; }
 
