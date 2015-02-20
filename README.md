@@ -3,6 +3,12 @@ A feature rich website boilerplate starter kit that makes life easy for front en
 
 ---------------------
 
+##Please note
+
+_This documentation (and this whole thing in general) is a __work in progress__ and is likely to change without notice*_
+
+---------------------
+
 ##Dependancies
 
 - Grunt
@@ -120,23 +126,23 @@ You might have noticed that this is different to the standard way of structuring
 
 I hope based off that one example you can see why I have chosen to use the CCSS way of using the BEM structure instead of the standard BEM structure. Using camel case clearly groups the words that belong together under the same part of the class. Every dash clearly separates each segment of the class and it's clear what each dash represents. At a glance, the standard BEM structure is confusing with dashes and underscores all over the place. I think The CCSS method is simply easier to read.
 
-Here is an example of how you would use the classes:
+Here is an example of how you would use the classes using my slightly altered method:
 
 ###HTML
 ```````````html
-<div class="menu">
-	<a id="js-menu-toggle" class="menu-btn" href="#">Toggle menu</a>
-	<ul class="menu-list js-menu-list">
-		<li class="menu-item"><a href="/page1" class="menu-link">Home</a></li>
-		<li class="menu-item"><a href="/page2" class="menu-link menu-link--active">About</a></li>
-		<li class="menu-item"><a href="/page3" class="menu-link">Contact</a></li>
+<div class="navMenu">
+	<a id="JS-navMenu-toggle" class="navMenu-toggle" href="#">Toggle menu</a>
+	<ul id="JS-navMenu-list" class="navMenu-list">
+		<li class="navMenu-item"><a href="/page1" class="navMenu-link JS-navMenu-link">Home</a></li>
+		<li class="navMenu-item"><a href="/page2" class="navMenu-link JS-navMenu-link navMenu-link--JS-active">About</a></li>
+		<li class="navMenu-item"><a href="/page3" class="navMenu-link JS-navMenu-link">Contact</a></li>
 	</ul>
 </div>
 ````````````
 
 ###SASS
 ````````sass
-.menu {
+.navMenu {
 	&-list {
 		list-style: none;
 		text-align: center;
@@ -149,12 +155,12 @@ Here is an example of how you would use the classes:
 		display: block;
 		padding 10px;
 
-		&--active {
+		&--JS-active {
 			background: #000;
 			color: #fff;
 		}
 	}
-	&-btn {
+	&-toggle {
 		display: block;
 		padding: 10px 20px;
 		background: #000;
@@ -165,37 +171,44 @@ Here is an example of how you would use the classes:
 
 ###Generated CSS
 ````````````css
-.menu-list { list-style: none; text-align: center; padding: 0; }
+.navMenu-list { list-style: none; text-align: center; padding: 0; }
 
-.menu-item { display: inline-block; }
+.navMenu-item { display: inline-block; }
 
-.menu-link { display: block; padding: 10px; }
+.navMenu-link { display: block; padding: 10px; }
 
-.menu-link--active { background: #000; color: #fff; }
+.navMenu-link--JS-active { background: #000; color: #fff; }
 
-.menu-btn { display: block; padding: 10px 20px; background: #000; color: #fff; }
+.navMenu-toggle { display: block; padding: 10px 20px; background: #000; color: #fff; }
 ```````````
 
 ###Javascript
 ```````javascript
-$('#js-menu-toggle').click(function(){
-	$('.js-menu-list').slideToggle();
+$('#JS-navMenu-toggle').click(function(){
+	$('#JS-navMenu-list').slideToggle();
 });
+
+//ignore how useless this js actually is, it's just to demonstrate class usage
+var navMenu_active = 'navMenu-link--JS-active';
+$('.JS-navMenu-link').click(function(){
+	$('.'+navMenu_active).removeClass(navMenu_active);
+	$(this).addClass(navMenu_active);
+});
+
 ```````
 
 So a few things you should note:
 
-- `js-` names should be an id unless the element appears multiple times on the page
-- Try to avoid applying styles to the `js-` classes unless the styles are heavily integrated with the javascript functionality. Eg. a lightbox requires css to make it appear on screen properly, so those styles could target `js-` classes if you like.
-- Because SASS currently doesn't support `.js-& {/*...rules...*/}` I allow modifier classes to not require a js prefix if targeted with js simply because you would often need to add/remove 2 modifier classes instead of just 1 with js
-Example: `$('.js-module-element.js-module-element--modifier').removeClass('module-element--modifier').removeClass('js-module-element--modifier')`
-No one wants to do that, just target modifier classes without the js prefix.
+- If part of the class name is in ALL CAPS, it means it's a prefix. Prefix class segments are trying to tell you something. Eg. "JS-" means that the class/id is used by javascript. I haven't figured out what a full list of these prefixes should be yet.
+- `JS-` names should be an id unless the element appears multiple times on the page or is a modifier
+- Try to avoid applying styles to the `JS-` classes unless the styles are heavily integrated with the javascript functionality. Eg. In the above example, the active styling is applied to the .
+- Because SASS currently doesn't really support `.JS-& {/*...rules...*/}` I put the JS prefix _after_ the modifier in the js affected class name.
 
 --------------------
 
 ##Warning!
 
-*The notes below are out of date (and horribly formatted) but I want to put something up here to give an idea of what this thing can do. I'll update this later on to be more accurate (and prettier). This documentation (and this whole thing in general) is a __work in progress__ and is likely to change with no notice*
+*The notes below are out of date (and horribly formatted) but I want to put something up here to give an idea of what this thing can do. I'll update this later on to be more accurate (and prettier).
 
 --------------------
 
