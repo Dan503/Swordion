@@ -1,6 +1,10 @@
 # Swordion
 A feature rich website boilerplate starter kit that makes life easy for front end developers
 
+The idea with Swordion is to use it as a base for building a new website on. You need everything for this thing to work.
+
+You can use the global mixins folder to use the Swordion mixins in an old project... but it's far from plug and play. The mixins need to have the IE seperation functionality removed from them before they will work in an old site. You will probably need the config files as well. So I wouldn't recomend it if you aren't strong in writing SASS.
+
 ---------------------
 
 ##Please note
@@ -20,9 +24,7 @@ _This documentation (and this whole thing in general) is a __work in progress__ 
 
 ##Getting started
 
-Step one is, you need to either clone or download a zip of the master branch onto your computer. You need everything for this to work.
-
-Once you have a copy,
+Step one is to clone a copy of Swordion onto your computer so you have a master copy that you can use in all future projects. After that, copy the Swordion files into the folder you want to build the site in. Use that copy as a base for your project.
 
 ###Local PHP server
 
