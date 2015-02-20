@@ -108,20 +108,20 @@ There is a class system that permeates throughout the whole of Swordion... or at
 This is basically how the naming system works:
 
 ````````````````````
-//this type of class is given to the element that wraps around a self contained module
+//this type of class is given to the element that wraps around (or is in itself) a self contained module
 .moduleName
 
-//this type of class is added to the individual elements that make up the module
+//this type of class is added to the individual elements that make up a module
 .moduleName-elementName
 
-//if an elements state is in an alternate state from the default state,
+//if an elements state is in an alternate state from the default state (a _modified_ element),
 //it is given a class like this with 2 dashes before the modifier name
 .moduleName-elementName--modifierName
 
 //if an element class is used by javascript it is given a "JS-" prefix at the start of the class name
 .JS-moduleName-elementName
 
-//if a modifier class is used by js, the "JS-" prefix goes AFTER the double dash, NOT at the start
+//if a modifier class is used by js, the "JS-" prefix goes _AFTER_ the double dash, _NOT_ at the start
 //(I'll explain why a little later on)
 .moduleName-elementName--JS-modifierName
 ```````````````````
