@@ -210,6 +210,7 @@ $('.JS-navMenu-link').click(function(){
 	//The same variable can be used for both class selection and manipulation :)
 	$('.' + navMenu_active).removeClass(navMenu_active);
 	$(this).addClass(navMenu_active);
+
 });
 
 ```````
