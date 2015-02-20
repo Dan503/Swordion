@@ -114,7 +114,7 @@ This is basically how the naming system works:
 //this type of class is added to the individual elements that make up a module
 .moduleName-elementName
 
-//if an elements state is in an alternate state from the default state (a _modified_ element),
+//if an elements state is in an alternate state from the default state (a *modified* element),
 //it is given a class like this with 2 dashes before the modifier name
 .moduleName-elementName--modifierName
 
