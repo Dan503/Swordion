@@ -20,6 +20,10 @@ _This documentation (and this whole thing in general) is a __work in progress__ 
 
 ##Getting started
 
+Step one is, you need to either clone or download a zip of the master branch onto your computer. You need everything for this to work.
+
+Once you have a copy,
+
 ###Local PHP server
 
 Install a local php server on your computer.
@@ -97,9 +101,9 @@ Now when you are returning to a project, all you need to do is a select-all, cop
 
 ##Class system
 
-There is a class system that permeates throughout the whole of Swordion... or at lest I intend to make it run through the whole kit when it's done. It is based off <a href="https://github.com/sathify/CCSS#naming-conventions---simplified-bem">CCSS</a> which is an altered version of <a href="http://csswizardry.com/2013/01/mindbemding-getting-your-head-round-bem-syntax/" title="learn more about BEM naming conventions">BEM</a> class naming convention.
+There is a class system that permeates throughout the whole of Swordion... or at lest I intend to make it run through the whole kit when it's done. It is an altered version off <a href="https://github.com/sathify/CCSS#naming-conventions---simplified-bem">CCSS</a> which is an altered version of the <a href="http://csswizardry.com/2013/01/mindbemding-getting-your-head-round-bem-syntax/" title="learn more about BEM naming conventions">BEM</a> class naming convention.
 
-This is basically how the naming convention works:
+This is basically how the naming system works:
 
 ````````````````````
 //this type of class is given to the element that wraps around a self contained module
@@ -109,19 +113,22 @@ This is basically how the naming convention works:
 .moduleName-elementName
 
 //if an elements state is in an alternate state from the default state,
-//it is given a class like this with 2 dashes before the modifier
+//it is given a class like this with 2 dashes before the modifier name
 .moduleName-elementName--modifierName
 
-//if a class is used by javascript it is given a "js" prefix at the start
-//I allow plain modifiers to be targeted by js as explained a bit later on
-.js-moduleName-elementName
+//if an element class is used by javascript it is given a "JS-" prefix at the start of the class name
+.JS-moduleName-elementName
+
+//if a modifier class is used by js, the "JS-" prefix goes AFTER the double dash, NOT at the start
+//(I'll explain why a little later on)
+.moduleName-elementName--JS-modifierName
 ```````````````````
 
 You might have noticed that this is different to the standard way of structuring BEM classes:
 
 `````
 //classic BEM structure
-.module-name__element-name--modifier-name
+.js-module-name__element-name--modifier-name
 `````
 
 I hope based off that one example you can see why I have chosen to use the CCSS way of using the BEM structure instead of the standard BEM structure. Using camel case clearly groups the words that belong together under the same part of the class. Every dash clearly separates each segment of the class and it's clear what each dash represents. At a glance, the standard BEM structure is confusing with dashes and underscores all over the place. I think The CCSS method is simply easier to read.
@@ -188,10 +195,18 @@ $('#JS-navMenu-toggle').click(function(){
 	$('#JS-navMenu-list').slideToggle();
 });
 
+
 //ignore how useless this js actually is, it's just to demonstrate class usage
+
+//set the manipulated class name to a variable so it can be altered easily later if needed
+//(don't include the "." though)
 var navMenu_active = 'navMenu-link--JS-active';
+
 $('.JS-navMenu-link').click(function(){
-	$('.'+navMenu_active).removeClass(navMenu_active);
+
+	//This is why you don't include the dot.
+	//The same variable can be used for both class selection and manipulation :)
+	$('.' + navMenu_active).removeClass(navMenu_active);
 	$(this).addClass(navMenu_active);
 });
 
@@ -201,14 +216,14 @@ So a few things you should note:
 
 - If part of the class name is in ALL CAPS, it means it's a prefix. Prefix class segments are trying to tell you something. Eg. "JS-" means that the class/id is used by javascript. I haven't figured out what a full list of these prefixes should be yet.
 - `JS-` names should be an id unless the element appears multiple times on the page or is a modifier
-- Try to avoid applying styles to the `JS-` classes unless the styles are heavily integrated with the javascript functionality. Eg. In the above example, the active styling is applied to the .
+- Avoid applying styles to the `JS-` classes unless the class is a js modifier class that has functionality strongly tied into the styling (like the example above). This keeps everything sperate and easier to maintain.
 - Because SASS currently doesn't really support `.JS-& {/*...rules...*/}` I put the JS prefix _after_ the modifier in the js affected class name.
 
 --------------------
 
 ##Warning!
 
-*The notes below are out of date (and horribly formatted) but I want to put something up here to give an idea of what this thing can do. I'll update this later on to be more accurate (and prettier).
+_*The notes below are out of date (and horribly formatted) but I want to put something up here to give an idea of what this thing can do. I'll update this later on to be more accurate (and prettier)._
 
 --------------------
 
