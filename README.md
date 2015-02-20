@@ -121,7 +121,7 @@ This is basically how the naming system works:
 //if an element class is used by javascript it is given a "JS-" prefix at the start of the class name
 .JS-moduleName-elementName
 
-//if a modifier class is used by js, the "JS-" prefix goes _AFTER_ the double dash, _NOT_ at the start
+//if a modifier class is used by js, the "JS-" prefix goes AFTER the double dash, NOT at the start
 //(I'll explain why a little later on)
 .moduleName-elementName--JS-modifierName
 ```````````````````
