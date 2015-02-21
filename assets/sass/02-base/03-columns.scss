@@ -19,6 +19,8 @@
 //			eg: columns--thirds
 //	step 2: give extra wide columns span classes
 //			eg. columns-col--span2
+//	WARNING: using a span class will likely require additional
+//			 styling for tablets and smaller devices
 //
 //	EXAMPLE HTML:
 //	<ul class="columns--floated columns--thirds">
@@ -152,7 +154,9 @@
 		}
 	}
 	@include M-mq(max,$bp-phablet){
-		&--fiths { text-align: center; }
+		&--fiths { text-align: center;
+			.columns--col { display: inline-block; float: none; }
+		}
 	}
 
 
@@ -163,7 +167,8 @@
 //	all be the same height but will vary in width
 //	based on the content inside them (unless a width class is provided).
 //	They will not wrap on Desktop.
-//	They switch to floated style on tablet so they can wrap.
+//	They switch to floated style at various screen widths
+//	so they can wrap depending on the width class given.
 //
 //	Apply table column styling with the
 //	columns--tabular class
@@ -172,18 +177,13 @@
 		display: table;
 		width: 100%;
 		@extend %noDots;
-		@include M-mq(max,$bp-mobile){
-			display: block;
+		@include M-mq(max,$bp-tablet){
 			@include M-after { clear: both; }
 		}
 
 		.columns-col {
 			display: table-cell;
-			@include M-mq(max,$bp-mobile){
-				//if mobile, change to floated format
-				display: block;
-				float: left;
-			}
+
 			&--vAlign { vertical-align: middle; }
 
 			//overides width class
