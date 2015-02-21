@@ -126,7 +126,7 @@ module.exports = function (grunt) {
 		sass: {
 			dist: {
 				options: {
-					style: "expanded",
+					style: "compact",
 
 					//'sass-globbing' allows sass to bulk import files
 					//you need to install the 'sass-globbing' gem before use (gem install sass-globbing)

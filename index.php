@@ -77,23 +77,23 @@ include 'header.php';
 
 <h3>Simple re-usable pop-in animation</h3>
 
-<ul class="popinDemo js-popins columns">
+<ul class="popinDemo js-popins columns--tabular columns--sixths">
 <?php
-	for ($i = 0; $i < 4; $i++) {
+	for ($i = 0; $i < 6; $i++) {
 		echo
-		'<li class="popinDemo-piece js-popins-piece column quarters">
+		'<li class="popinDemo-piece js-popins-piece columns-col">
 			<p class="animationDemoItem">Pop-in item '.($i+1).'</p>
 		</li>';
-	}
+	};
 ?>
 </ul>
 
 <h3>Simple multistage animation</h3>
-<ul id="js-simpleExampleElement" class="columns simpleAnimationExample">
+<ul id="js-simpleExampleElement" class="columns--floated columns--halves simpleAnimationExample">
 <?php
 	for ($i = 0; $i < 4; $i++) {
 		echo
-		'<li class="simple'.($i+1).' simpleAnimationExample-piece column halves">
+		'<li class="simple'.($i+1).' simpleAnimationExample-piece columns-col halves">
 			<p class="animationDemoItem">Staged animation item '.($i+1).'</p>
 		</li>';
 	}
