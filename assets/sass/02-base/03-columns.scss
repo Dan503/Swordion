@@ -154,8 +154,8 @@
 		}
 	}
 	@include M-mq(max,$bp-phablet){
-		&--fiths { text-align: center;
-			.columns--col { display: inline-block; float: none; }
+		&--fiths[class*="columns"] { text-align: center;
+			.columns-col { display: inline-block; float: none; }
 		}
 	}
 
