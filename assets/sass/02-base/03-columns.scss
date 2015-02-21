@@ -8,67 +8,148 @@
 \*================================================*/
 
 //The styling for the central box that holds the whole page content
-.container { margin:0 auto; max-width:$bp-large; }
+.container { margin:0 auto; max-width:$bp-tablet; }
 
-//place on an element holding columns to contain them
-//and also remove dot points
-.columns { @extend %clearfix; @extend %noDots; }
 
-.column { float: left; padding: 0; margin: 0; }
+.columns {
+/*================================================*\
+	FLOATED COLUMNS
+----------------------------------------------------
+	These columns all share the same repeating
+	width. They will not share the same heights
+	without the help of js.
+	They will wrap.
+\*================================================*/
+	&--floated { @extend %clearfix; @extend %noDots;
+		.column { float: left; padding: 0; margin: 0;
+			&-padding { padding: 0 5%; }
 
-.full { width: 100%; }
-.halves { width: 50%;
-	@include M-mq(max,$bp-mobile){
-		width: 100%;
+			@include M-mq(max,$bp-mobile){
+				margin-bottom: 20px;
+			}
+		}
 	}
-}
-.thirds { width: 33.33%;
-	@include M-mq(max,$bp-mobile){
-		width: 100%;
+	@include M-mq(max,$bp-phablet){
+		&--fiths { text-align: center; }
 	}
-	&.colspan2 { width: 66.66%;
+
+
+/*================================================*\
+	TABULAR COLUMNS
+----------------------------------------------------
+	These columns act like table cells. They will
+	all be the same height but will vary in width
+	based on the content inside them. They will
+	not wrap.
+\*================================================*/
+	&--tabular {
+		display: table;
+		width: 100%;
+		@extend %noDots;
 		@include M-mq(max,$bp-mobile){
-			width: 100%;
+			display: block;
+			@include M-after { clear: both; }
+		}
+
+		.column {
+			display: table-cell;
+			@include M-mq(max,$bp-mobile){
+				width: 100%;
+				display: block;
+				float: left;
+			}
+
+			&--vAlign { vertical-align: middle; }
 		}
 	}
-}
-.quarters { width: 25%;
-	@include M-mq(max,$bp-tablet){
-		width: 50%;
-	}
-	@include M-mq(max,$bp-mobile){
-		width: 100%;
-	}
-}
-.fiths { width: 20%;
-	@include M-mq(max,$bp-tablet){
-		width: 100%;
-	}
-	&.colspan2 { width: 40%;
-		@include M-mq(max,$bp-tablet){
-			width: 100%;
+
+/*================================================*\
+	COLUMN WIDTHS
+----------------------------------------------------
+	Quickly and easily apply standard percentage
+	widths to columns based on fractions
+\*================================================*/
+	$colWidths: (
+		class: full,
+		breaks: false,
+	), (
+		class: halves,
+		breaks: (
+			(
+				bp:$bp-mobile,
+				width: 100%,
+			),
+		)
+	), (
+		class: thirds,
+		breaks: (
+			$bp-mobile 100%,
+		)
+	), (
+		class: quarters,
+		breaks: (
+			(
+				bp: $bp-tablet,
+				width: 50%,
+			), (
+				bp:$bp-mobile,
+				width: 100%,
+			),
+		),
+	), (
+		class: fiths,
+		breaks: (
+			(
+				bp: $bp-phablet,
+				width: 33.33%,
+			), (
+				bp:$bp-mobile,
+				width: 50%,
+			), (
+				bp: $bp-small,
+				width: 100%,
+			),
+		),
+	), (
+		class: sixths,
+		breaks:	(
+			(
+				bp: $bp-phablet,
+				width: 33.33%,
+			), (
+				bp:$bp-mobile,
+				width: 50%,
+			), (
+				bp: $bp-small,
+				width: 100%,
+			),
+		),
+	);
+
+	@for $i from 1 through length($colWidths) {
+		$array: nth($colWidths, $i);
+		$class: map-get($array, class);
+		$breaks: nth(map-get($array, breaks),1);
+
+		&--#{$class} .column {
+			width: percentage(1/$i);
+
+			@if ($i > 2){
+				@for $x from 2 through ($i - 1) {
+					&--span#{$x} { width: percentage($x/$i); }
+				}
+			}
+
+			@if ($breaks != false) {
+				@debug $breaks;
+				@for $y from 1 through length(nth($breaks,1)) {
+					$device : nth($breaks, 1);
+					$width : nth($breaks, 2);
+					@include M-mq(max,$device){ width: $width }
+				}
+			}
 		}
 	}
-	&.colspan3 { width: 60%;
-		@include M-mq(max,$bp-tablet){
-			width: 100%;
-		}
-	}
-	&.colspan4 { width: 80%;
-		@include M-mq(max,$bp-tablet){
-			width: 100%;
-		}
-	}
-}
-.sixths { width: 16.66%;
-	@include M-mq(max,$bp-tablet){
-		width: 50%;
-	}
-	@include M-mq(max,$bp-mobile){
-		width: 100%;
-	}
-	//colspan2 = 1/3
-	//colspan3 = 1/2
-	//colspan4 = 2/3
-	&.colspan5 { width: 83.33%; }
+
+
 }
