@@ -3,5 +3,3 @@ node_modules/**/*
 assets/images/auto-sprite/*.png
 assets/css/**/*.css
 assets/css/**/*.map
-!assets/css/style-lt-ie9.css
-!assets/css/style.css
