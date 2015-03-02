@@ -32,6 +32,26 @@ Install a local php server on your computer.
 
 I use <a href="http://www.easyphp.org/">EasyPHP Devserver</a> with the <a href="http://www.easyphp.org/save-module-virtualhostsmanager-vc9-latest.php">Virtual Host Manager</a> plugin. Once you've got it working it's great... but it uses port 80 by default which can make the initial install difficult. You need to manually change it to a different port (I use port 8080) in your computers hosts file.
 
+####Installing Easy PHP local server (PC only)
+
+1. Download it from <a href="http://www.easyphp.org/">The easy PHP website</a> (vc11 is preferable)
+2. Open the program, right click the icon that appears in the bottom right corner of the screen.
+3. select configuration > apache
+4. replace all instances of `127.0.0.1:80` with `127.0.0.1:8080` then save the file
+5. Download the <a href="http://www.easyphp.org/save-module-virtualhostsmanager-vc11-latest.php">virtual hosts manager</a> add on
+6. I'd recomend dragging the program into your task bar for quick and easy access
+
+####Seting up a new project with EasyPHP
+
+1. right click the little EasyPHP icon in the bottom right of the screen again
+2. click "administration"
+3. click "add virtual host"
+4. In the first text box that appears (under point 2) write the name of the projects (The name can only contain alpha-numeric characters, dots, underscores and hyphens. The name should all be in lowercase lettters)
+5. Paste the path to the root folder of the project
+6. Press "ok" (this action requires the program to have access to your hosts file, this may cause problems for you if your security settings don't allow this)
+7. Click on the name of the project to take you to the localy hosted version of the site
+8. Book mark the site for easy access
+
 If you are on mac or you can't get EasyPHP to work, just Google "local php server" and you should find something that works for you pretty quick.
 
 ... lol "just google" are words that I probably shouldn't be putting in documentation :P
