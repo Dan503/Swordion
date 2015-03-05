@@ -9,7 +9,7 @@ var js_merge_files = [
 	'assets/js/config-files/doc.ready-close.js',
 ];
 
-var autoprefixer = require('autoprefixer-core');
+//var autoprefixer = require('autoprefixer-core');
 
 //needed for the copy function
 //var server_root = '//CAN1DEV002/wwwroot/___SITE_FOLDER_NAME___/';
@@ -58,7 +58,7 @@ module.exports = function (grunt) {
 		//This shrinks the HD sprite to normal size
 // In order for it to work, you need to install imageMagic on your computer:
 //	1.	Go here to download it http://www.imagemagick.org/script/binary-releases.php
-//	2.	Follow the instructions while cd is the default, NOT the project directory
+//	2.	Follow the instructions while cd is the default, NOT the project directory (make sure to tick "add to system path" when the option comes up)
 //	3.	Once installed… (I can’t remember if it’s in or out of the project folder cd) “npm install im”
 //	4.	When cd is the project folder “npm install grunt-image-resize”
 //	5.	You’re done, it should be working now :)
