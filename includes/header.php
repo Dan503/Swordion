@@ -62,7 +62,7 @@
 	<?php /* I haven't seen selectivizr work yet :( */ ?>
 
 </head>
-<body class="<?php echo $body_classes ?>">
+<body class="<?php echo $body_classes ?> theme-dark">
 
 	<!-- I've found the <noscript> tag to not always work properly -->
     <div class="noscript-message jsHide">

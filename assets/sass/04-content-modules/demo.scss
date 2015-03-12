@@ -1,0 +1,95 @@
+﻿
+.demo {
+	&-div {
+		height: 200px;
+		width: 500px;
+	}
+
+	&-mediaQuery {
+		color: #fff;
+		@include M-mq(max,$bp-mobile){
+			background-color: red;
+		}
+		@include M-mq(min-max,$bp-mobile,$bp-tablet){
+			border: 5px dotted #fff;
+			background: green;
+		}
+		@include M-mq(min,$bp-tablet){
+			background-color: purple;
+		}
+	}
+	&-gradient {
+		@include M-grad(#ccc,#000,h);
+	}
+	&-multiGrad {
+		$gradient:
+			#000 0%,
+			green 30%,
+			red 40%,
+			orange 80%,
+			blue 100%
+		;
+		@include M-multi-grad($gradient,d-up);
+	}
+
+	&-triangle {
+		@include M-tri(up,#000,20px);
+		//@extend %centered;
+		//left: 20px;
+	}
+
+	&-autoSprite {
+		@include M-sprite($word){
+			outline: 2px solid red;
+			margin-right: 10px;
+		};
+	}
+
+	&-icon {
+		@include M-icon(word,blue,20px){
+			margin-right: 10px;
+		};
+	}
+
+	&-kfAnimate {
+		$exampleAnimation:
+			((margin, 0px),),
+			((margin, 0 20px),),
+			((margin, 0px),),
+		;
+
+		@include M-kf-animate(
+			exampleAnimation,
+			kf_generator($exampleAnimation),
+			3s,
+			infinite,
+			linear
+		);
+		&--multi {
+			text-align: center;
+			//EXAMPLE USAGE (multi attribute):
+			$exampleAnimation--multi:
+				(
+					(scale, 0),
+					(opacity, 0)
+				) 0%, (
+					(scale, 1),
+					(opacity, 1)
+				) 80%, (
+					(scale, 0),
+					(opacity, 0)
+				) 100%
+			;
+			@include M-kf-animate(
+				exampleAnimation--multi,
+				$exampleAnimation--multi,
+				3s,
+				infinite,
+				linear
+			);
+		}
+
+
+
+	}
+}

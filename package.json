@@ -12,7 +12,7 @@
     "grunt-contrib-watch": "~0.6.1",
     "grunt-csso": "~0.7.0",
     "grunt-image-resize": "~1.0.0",
-    "grunt-sass": "*",
+    "grunt-contrib-sass": "*",
     "grunt-sass-globbing": "~1.0.3",
     "grunt-spritesmith": "~3.6.0",
     "im": "~0.2.3",

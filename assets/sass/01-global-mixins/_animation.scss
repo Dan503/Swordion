@@ -85,7 +85,7 @@
 //This mixin allows you to use the same animation set as another element but give different timings
 @mixin M-kf-predefined($animation_name, $settings: 1s, $loops: infinite, $ease: linear){
 	@include M-gt-ie8 {
-		//-webkit-animation: $animation_name $settings $loops $ease; //* Safari 4+ */
+		-webkit-animation: $animation_name $settings $loops $ease; //* Safari 4+ */
 		animation:         $animation_name $settings $loops $ease; //* IE 10+, Fx 29+ */
 
 	}

@@ -60,7 +60,7 @@
 	&--v { @extend %centered--v; }
 
 //.centered--h | only HORIZONTALLY center align an element that has fixed height and width
-	&--h { @extend %centered--v; }
+	&--h { @extend %centered--h; }
 }
 
 //	Resolution specific elements
@@ -76,6 +76,8 @@
 	&--slow { @include M-animate(1s); }
 }
 
+//quickly add position relative to an element
+.relative { position: relative; }
 
 //A link that only appears when the user focuses on it
 .skipLink {

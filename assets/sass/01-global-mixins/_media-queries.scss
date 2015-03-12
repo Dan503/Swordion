@@ -10,9 +10,8 @@ $fix-mqs: false !default;
 		$width: $width + 1;
 	}
 
-	// If fixed width
-	@if $fix-mqs {
-		@if $fix-mqs >= $width and $min-or-max == 'min-width' and $width-2 == null {
+	@if ($lt-ie9 == true) {
+		@if $fix-mqs >= $width and $min-or-max == min and $width-2 == null {
 			@content;
 		}
 	}
