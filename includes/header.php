@@ -35,6 +35,12 @@
 	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 	<link rel="icon" href="/favicon.ico" type="image/x-icon">
 
+	<!-- touch screen home icon -->
+	<link rel="apple-touch-icon-precomposed" sizes="57x57" href="/apple-icon-57x57-precomposed.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/apple-icon-72x72-precomposed.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/apple-icon-114x114-precomposed.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-icon-144x144-precomposed.png" />
+
 	<!--[if gt IE 8]><!-->
 		<link rel="stylesheet" type="text/css" href="/assets/css/style.css" />
 	<?php /* Minified CSS (For use during production phase)
