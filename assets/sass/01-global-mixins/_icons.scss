@@ -69,7 +69,7 @@
 
 	[class^="icon-"], [class*=" icon-"] {
 		&:before, &:after {
-			display: block;
+			display: inline-block;
 			@extend %M-icon-static-styles;
 		}
 	}

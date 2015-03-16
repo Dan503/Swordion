@@ -9,6 +9,53 @@ include 'header.php';
 		<section id="main" role="main">
 				<div class="wrapper">
 
+<div class="demo">
+	<div class="demo-div demo-mediaQuery">
+		<p>Media Query example</p>
+		<p class="desktopOnly">Desktop only</p>
+		<p class="tabletOnly">Tablet only</p>
+		<p class="mobileOnly">Mobile only</p>
+		<p class="nonMobile">non mobile</p>
+		<p class="nonDesktop">non desktop</p>
+	</div>
+
+	<div class="demo-div demo-gradient">
+		<p>Gradient example</p>
+	</div>
+
+	<div class="demo-div demo-multiGrad">
+		<p>Multi Gradient example</p>
+	</div>
+
+	<div class="demo-div relative">
+		<p>Triangle &amp; centered example</p>
+		<div class="demo-triangle"></div>
+	</div>
+
+	<div class="demo-div">
+		<p class="sprite-primary-pdf">retina pdf sprite class</p>
+		<p class="sprite-secondary-podcast">standard podcast sprite class</p>
+		<p class="demo-autoSprite">Sprite added using mixin</p>
+	</div>
+
+	<div class="demo-div">
+		<p class="icon-pdf">pdf icon class</p>
+		<p class="demo-icon">icon added using mixin</p>
+	</div>
+
+	<div class="demo-div">
+		<p class="demo-kfAnimate">KF Animation example</p>
+		<p class="demo-kfAnimate--multi">KF Animation example</p>
+	</div>
+
+	<div class="demo-themes">
+		<p class="demo-div themed-header">Themed header</p>
+		<p class="demo-div themed-nav">Themed nav</p>
+		<p class="demo-div themed-footer">Themed footer</p>
+	</div>
+</div>
+
+
 <div class="full-screen-div-example js-fullScreen">
 	<h2>Full screen div example</h2>
 	<p>Scroll down to see more content</p>
