@@ -30,7 +30,7 @@ Step one is to clone a copy of Swordion onto your computer so you have a master 
 
 Install a local php server on your computer.
 
-I use <a href="http://www.easyphp.org/">EasyPHP Devserver</a> with the <a href="http://www.easyphp.org/save-module-virtualhostsmanager-vc9-latest.php">Virtual Host Manager</a> plugin. Once you've got it working it's great... but it uses port 80 by default which can make the initial install difficult. You need to manually change it to a different port (I use port 8080) in your computers hosts file.
+I use <a href="http://www.easyphp.org/">EasyPHP Devserver</a> with the <a href="http://www.easyphp.org/save-module-virtualhostsmanager-vc9-latest.php">Virtual Host Manager</a> plugin. Once you've got it working it's great... but it uses port 80 by default which can make the initial install difficult. You need to manually change it to a different port (I use port 8080) in the appache file. Right click easyPHP icon in bottom right corner of screen > Configuration > Apache. Then find/replace all occurances of ":80" with ":8080".
 
 ####Installing Easy PHP local server (PC only)
 
