@@ -59,25 +59,36 @@ $rumble:rumble_generator(5);
 ---------------------------------------------
 	Element spins around in one spot
 \*******************************************/
-$spin:
+$spin--clockwise:
 	(
 		(rotate, 0),
 	) 0%, (
 		(rotate, 360),
 	) 100%
 ;
-@if ($main-sheet == true){@include M-kf-definition(spin,$spin);}
+$spin--anticlockwise:
+	(
+		(rotate, 360),
+	) 0%, (
+		(rotate, 0),
+	) 100%
+;
+
+@if ($main-sheet == true){
+	@include M-kf-definition(spin--clockwise,$spin--clockwise);
+	@include M-kf-definition(spin--anticlockwise,$spin--anticlockwise);
+}
 
 //////////////// Use the following //////////////////////////
 
 //mixin for custom functionality (changes how fast it spins)
-@mixin M-spin($settings: 0.5s, $loops: infinite){
-	@include M-kf-predefined(spin,$settings, $loops, linear);
+@mixin M-spin($direction: clockwise, $settings: 1s, $loops: infinite){
+	@include M-kf-predefined(spin--#{$direction},$settings, $loops, linear);
 }
 
 //@extend for base functionality
 %spin { @include M-spin; }
-%spinSingle { @include M-spin(0.5s, 1) }
+%spinSingle { @include M-spin(1s, 1) }
 
 //classes for canned functionality
 @if ($main-sheet == true){

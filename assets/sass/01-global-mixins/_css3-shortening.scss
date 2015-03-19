@@ -30,9 +30,12 @@
 }
 
 //CSS3 element rotation
-@mixin M-rotate ($angle: 90,$origin: center) {
+//$axis accepts X or Y (capitalised)
+@mixin M-rotate ($angle: 90,$origin: center, $axis: unquote('')) {
 	@include M-gt-ie8 {
-		transform: rotate(#{$angle}deg);
+		-webkit-transform: unquote('rotate#{$axis}(#{$angle}deg)'); //* Safari and Chrome */
+		    -ms-transform: unquote('rotate#{$axis}(#{$angle}deg)'); //* IE 9 */
+		        transform: unquote('rotate#{$axis}(#{$angle}deg)');
 
 		@if ($origin != center) {
 			@include M-origin($origin);

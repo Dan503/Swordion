@@ -2,11 +2,20 @@
 //     CSS3 ANIMATION    //
 //////////////////////////
 
+@mixin M-3d {
+    -webkit-transform-style: preserve-3d;
+	transform-style: preserve-3d;
+}
+%M-3d { @include M-3d; }
+
 //basic animation
-@mixin M-animate($settings: 0.5s, $ease: ease-in-out, $var: all){
+@mixin M-animate($settings: 0.5s, $ease: ease-in-out, $var: all, $style: flat){
 	@include M-gt-ie8 {
-	    //-webkit-transition: $var $settings $ease;
+	    -webkit-transition: $var $settings $ease;
 	    transition:  $var $settings $ease;
+		@if ($style == 3D){
+			@include M-3d;
+		}
 	}
 }
 
@@ -55,7 +64,9 @@
 				$attribute: nth(nth($css, $rule),1);
 				$value: nth(nth($css, $rule),2);
 				@if ($attribute == rotate){
-					@include M-rotate($value)
+					@include M-rotate($value);
+				} @else if ($attribute == 3D-rotate){
+					@include M-rotate(nth($value,1), $axis: nth($value,2));
 				} @else if ($attribute == scale) {
 					@include M-scale($value);
 				} @else {
@@ -69,6 +80,7 @@
 //Sets up the key-frames for the animation
 //Use this on it's own to set up an animation that is shared across multiple elements or multiple timings
 @mixin M-kf-definition($animation_name, $animation_set) {
+	@at-root(without: all) {
 	@include M-gt-ie8 {
 		@-webkit-keyframes #{$animation_name} {
 			//@include M-keyframes-loop($keyframes, $rules);
@@ -76,6 +88,7 @@
 		}
 		@keyframes #{$animation_name} {
 			@include M-kf-animation-loop($animation_set);
+			}
 		}
 	}
 }

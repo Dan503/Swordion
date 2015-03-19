@@ -20,7 +20,7 @@
 
 //$thickness is half the width of the side furthest from the point.
 
-@mixin M-tri($direction, $color: #000, $length: 12px, $thickness: round($length * 0.75), $thickness2: $thickness) {
+@mixin M-tri($direction, $color: #000, $length: 12px, $thickness: round($length * 0.57), $thickness2: $thickness) {
 	display: block;
 	width: 0!important;
 	height: 0!important;
@@ -126,10 +126,10 @@
 	display: block;
 	@include M-size($height,$width);
 
-	@if ($type: fill){
+	@if ($type == fill){
 //filled circle
 		background-color: $color;
-	} @else if ($type: stroke){
+	} @else if ($type == stroke){
 //empty circle
 		border: $thickness solid $color;
 	}
@@ -177,7 +177,7 @@
 
 //Works in IE9+, use a cross icon as a backup if needed
 @mixin M-cross($color, $size: 10px, $thickness: 2px, $backup-icon: false){
-	@if ($lt-ie9 && $backup-icon == false){
+	@if ($lt-ie9 and $backup-icon == false){
 		@include M-plus($color,$size,$thickness){
 			@content;
 		};

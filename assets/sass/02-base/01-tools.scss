@@ -21,7 +21,7 @@
 .noWrap { white-space: nowrap; }
 
 //elipsis (...) added to end of cut off text (single line only)
-.elipsis { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.elipsis { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: block; }
 
 //hide element on page load
 .hide { display:none; }
@@ -87,3 +87,5 @@
 
 //remove default styling (good for submit buttons)
 .appearanceNone { @extend %appearanceNone; }
+
+.inlineBlock { @include M-inline-block; }

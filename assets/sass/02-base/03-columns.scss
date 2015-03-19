@@ -75,7 +75,7 @@
 		$class: map-get($array, class);
 		$breaks: map-get($array, breaks);
 
-		.columns--#{$class} .columns-col {
+		.columns--#{$class}:not(.columns--disableMQs) > .columns-col {
 			width: percentage(1/$i);
 
 			@if ($i > 2){
@@ -97,15 +97,15 @@
 		}
 		//de-Tabelise for halves and thirds
 		@if ($i <= 2 and $i < 4){
-			$deTabelise--mobile: append($deTabelise--mobile, '.columns--' + $class + '.columns--tabular .columns-col',comma);
+			$deTabelise--mobile: append($deTabelise--mobile, '.columns--' + $class + '.columns--tabular:not(.columns--disableMQs) >  .columns-col',comma);
 		}
 		//de-Tabelise for quarters
 		@if ($i == 4){
-			$deTabelise--tablet: append($deTabelise--tablet, '.columns--' + $class + '.columns--tabular .columns-col',comma);
+			$deTabelise--tablet: append($deTabelise--tablet, '.columns--' + $class + '.columns--tabular:not(.columns--disableMQs) >  .columns-col',comma);
 		}
 		//de-Tabelise for fiths and higher
 		@if ($i >= 5){
-			$deTabelise--phablet: append($deTabelise--phablet, '.columns--' + $class + '.columns--tabular .columns-col',comma);
+			$deTabelise--phablet: append($deTabelise--phablet, '.columns--' + $class + '.columns--tabular:not(.columns--disableMQs) >  .columns-col',comma);
 		}
 	}
 
@@ -133,6 +133,11 @@
 
 
 .columns {
+	&-col {
+		padding: 0;
+		margin: 0;
+	}
+
 //================================================*\
 //*				FLOATED COLUMNS					*/
 //----------------------------------------------------
@@ -144,18 +149,23 @@
 //	Apply floated column styling with the
 //	columns--floated class
 //================================================*/
-	&--floated { @extend %clearfix; @extend %noDots;
-		.columns-col { float: left; padding: 0; margin: 0;
+	&--floated {
+		@extend %clearfix;
+		@extend %noDots;
+		width: 100%;
+		> .columns-col { float: left;
 			&-padding { padding: 0 5%; }
 
+		}
+		&:not(.columns--disableMQs){
 			@include M-mq(max,$bp-mobile){
 				margin-bottom: 20px;
 			}
 		}
 	}
-	@include M-mq(max,$bp-phablet){
-		&--fiths[class*="columns"] { text-align: center;
-			.columns-col { display: inline-block; float: none; }
+	@include M-mq(max,$bp-mobile){
+		&--fiths[class*="columns"]:not(.columns--disableMQs) { text-align: center;
+			> .columns-col { display: inline-block; float: none; }
 		}
 	}
 
@@ -177,11 +187,13 @@
 		display: table;
 		width: 100%;
 		@extend %noDots;
+		&:not(.columns--disableMQs){
 		@include M-mq(max,$bp-tablet){
 			@include M-after { clear: both; }
 		}
+		}
 
-		.columns-col {
+		> .columns-col {
 			display: table-cell;
 
 			&--vAlign { vertical-align: middle; }

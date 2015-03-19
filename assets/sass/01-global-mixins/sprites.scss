@@ -22,7 +22,7 @@
 	}
 }
 
-@mixin M-sprite-width($sprite, $retina: true) {
+@function sprite-width($sprite, $retina: true) {
 
 	$sprite_width: map-get($sprite, 'width');
 	$width:  $sprite_width;
@@ -31,10 +31,10 @@
 		$width: $sprite_width / 2;
 	}
 
-	width: $width;
+	@return $width;
 }
 
-@mixin M-sprite-height($sprite, $retina: true) {
+@function sprite-height($sprite, $retina: true) {
 
 	$sprite_height: map-get($sprite, 'height');
 	$height:  $sprite_height;
@@ -43,10 +43,10 @@
 		$height: $sprite_height / 2;
 	}
 
-	height: $height;
+	@return $height;
 }
 
-@mixin M-sprite-position($sprite, $retina: true) {
+@function sprite-pos($sprite, $retina: true) {
 
 	$sprite-x: map-get($sprite, 'offset_x');
 	$sprite-y: map-get($sprite, 'offset_y');
@@ -62,7 +62,7 @@
 
 	//@debug (map-get($sprite, 'name'), $retina, $x $y);
 
-	background-position: $x $y;
+	@return $x $y;
 }
 
 @mixin M-sprite-image($sheet_name: primary) {
@@ -84,10 +84,9 @@
 
 @mixin M-sprite-styling($sprite, $sheet_name: primary) {
 	$retina: isRetina($sheet_name);
-
-	@include M-sprite-position($sprite, $retina);
-	@include M-sprite-width($sprite, $retina);
-	@include M-sprite-height($sprite, $retina);
+	background-position: sprite-pos($sprite, $retina);
+	width: sprite-width($sprite, $retina);
+	height: sprite-height($sprite, $retina);
 	@include M-sprite-image($sheet_name);
 }
 
@@ -101,9 +100,9 @@
 	@each $sprite in $sprites {
 		$sprite-name: map-get($sprite, 'name');
 		.sprite-#{$sheet_name}-#{$sprite-name}:before {
-			@include M-sprite-position($sprite, $retina);
-			@include M-sprite-width($sprite, $retina);
-			@include M-sprite-height($sprite, $retina);
+			background-position: sprite-pos($sprite, $retina);
+			width: sprite-width($sprite, $retina);
+			height: sprite-height($sprite, $retina);
 		}
 	}
 }
@@ -141,9 +140,11 @@
 		}
 	} @else if ($pos == after){
 		@include M-after($display) {
-			@include M-sprite-styling($sprite, $sheet_name);
 			@content;
 		}
+	} @else if ($pos == element){
+		display: $display;
+		@include M-sprite-styling($sprite, $sheet_name);
 	}
 }
 
