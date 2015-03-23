@@ -66,6 +66,7 @@ include 'header.php';
 
 						<h2 class="sprite-primary-pdf">To do list:</h2>
 						<ol>
+							<li>Create a flexbox version of the columns class</li>
 							<li>Add the animation Javascript stuff from the DoC project</li>
 							<li>Add an example of a responsive youtube video</li>
 							<li>Change structure to allow for BEM structuring. Look into <a href="https://github.com/mksanderson/crank" title="">Matt S&rsquo;s Crank starter kit</a> for ideas on folder structure and see what else his kit does</li>
