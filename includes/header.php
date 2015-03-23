@@ -41,22 +41,38 @@
 	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/apple-icon-114x114-precomposed.png" />
 	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-icon-144x144-precomposed.png" />
 
+	<?php
+		//$environment = 'production';
+		$environment = 'development';
+	?>
+
 	<!--[if gt IE 8]><!-->
-		<link rel="stylesheet" type="text/css" href="/assets/css/style.css" />
-	<?php /* Minified CSS (For use during production phase)
-		<link rel="stylesheet" type="text/css" href="/assets/css/style.min.css" />
-	*/?>
+		<?php
+			if ($environment == 'development') {
+				//Unminified css for development phase
+				echo '<link rel="stylesheet" type="text/css" href="/assets/css/style.css" />';
+			} else {
+				//Minified CSS (for use during production phase)
+				echo '<link rel="stylesheet" type="text/css" href="/assets/css/style.min.css" />';
+			}
+		?>
 	<!--<![endif]-->
 
-	<!--[if lt IE 9]>
-		<link rel="stylesheet" type="text/css" href="/assets/css/style-lt-ie9.css" />
-	<![endif]-->
-
-	<?php /* Minified CSS (For use during production phase)
-	<!--[if lt IE 9]>
-		<link rel="stylesheet" type="text/css" href="/assets/css/style-lt-ie9.min.css" />
-	<![endif]-->
-	*/ ?>
+	<?php
+		if ($environment == 'development') {
+			//Unminified css for development phase
+			echo
+			'<!--[if lt IE 9]>
+				<link rel="stylesheet" type="text/css" href="/assets/css/style-lt-ie9.css" />
+			<![endif]-->';
+		} else {
+			//Minified CSS (for use during production phase)
+			echo
+			'<!--[if lt IE 9]>
+				<link rel="stylesheet" type="text/css" href="/assets/css/style-lt-ie9.min.css" />
+			<![endif]-->';
+		}
+ 	?>
 
 	<script src="/assets/js/vendor/_modernizr.2.7.1.min.js"></script>
 	<!--[if lt IE 9]>
