@@ -3,15 +3,15 @@
 // ******************************************************/
 $fix-mqs: false !default;
 
-@mixin M-mq($min-or-max, $width: $breakpoint-tablet, $width-2: null) {
+@mixin M-mq($range, $width: $breakpoint-tablet, $width-2: null) {
 
 	//prevent media query overlap
-	@if $min-or-max == min {
+	@if $range == min {
 		$width: $width + 1;
 	}
 
 	@if ($lt-ie9 == true) {
-		@if $fix-mqs >= $width and $min-or-max == min and $width-2 == null {
+		@if $fix-mqs >= $width and $range == min and $width-2 == null {
 			@content;
 		}
 	}
@@ -19,21 +19,30 @@ $fix-mqs: false !default;
 	@else {
 
 		// if has both min and max-widths
+		// if has both min and max-widths
 		@if $width-2 {
+
 			$width-2: $width-2 - 1;//prevent media query overlap
-			@media screen and (min-width: $width) and (max-width: $width-2) {
-				@content;
+
+			@if ($range == inside) {
+				@media screen and (min-width: $width) and (max-width: $width-2) {
+					@content;
+				}
+			} @else if ($range == outside) {
+				@media not screen and (min-width: $width) and (max-width: $width-2) {
+					@content;
+				}
 			}
 		}
 
 		// else output min or max width
 		@else {
-			@if $min-or-max == min{
+			@if $range == min{
 				@media screen and (min-width: $width) {
 					@content;
 				}
 			}
-			@else if $min-or-max == max {
+			@else if $range == max {
 				@media screen and (max-width: $width) {
 					@content;
 				}
@@ -58,35 +67,49 @@ $fix-mqs: false !default;
 %hide { display: none; }
 
 @mixin M-mobile-only {
-	@extend %hide;
-	@include M-mq(max,$bp-mobile){
-		display: block;
+	@include M-mq(min,$bp-mobile){
+		display: none!important;
 	}
 }
 %mobile-only { @include M-mobile-only; }
 
 @mixin M-tablet-only {
-	@extend %hide;
-	@include M-mq(min-max,$bp-mobile,$bp-tablet){
-		display: block;
+	@include M-mq(outside,$bp-mobile,$bp-desktop){
+		display: none!important;
 	}
 }
 %tablet-only { @include M-tablet-only }
 
 @mixin M-desktop-only {
-	@extend %hide;
-	@include M-mq(min,$bp-tablet){
-		display: block;
+	@include M-mq(max,$bp-desktop){
+		display: none!important;
 	}
 }
 %desktop-only { @include M-desktop-only; }
 
-@mixin M-non-mobile { display: block;
+
+@mixin M-non-mobile {
 	@include M-mq(max, $bp-mobile){
-		display: none;
+		display: none!important;
 	}
 }
 %non-mobile { @include M-non-mobile }
+
+@mixin M-non-tablet {
+	@include M-mq(inside, $bp-mobile, $bp-desktop){
+		display: none!important;
+	}
+}
+%non-mobile { @include M-non-mobile }
+
+@mixin M-non-desktop {
+	@include M-mq(min, $bp-desktop){
+		display: none!important;
+	}
+}
+%non-desktop { @include M-non-desktop }
+
+
 
 
 // ******************************************************\
