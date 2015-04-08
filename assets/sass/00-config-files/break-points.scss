@@ -2,24 +2,44 @@
 //	BREAK POINTS
 //----------------------------------------------------
 //	Defines the points at which the page design
-//	will snap and drastically change it's styles
-//
-//	Waring, if you
+//	can snap and drastically change it's layout
+//	these values are global and can be used in
+//	all modules.
 //*================================================*/
 
 //browser spec min-supported width: 320px (iPhones)
 
-//break points
-$bp-x-small: 350px; //essentially iphones in portrait view only
+$breakPoints: (
+	'tiny': 350px, //*essentially iphones in portrait view only*/
+	'small': 480px,
+	'mobile': 600px, ///*!MAJOR BREAK POINT!*//*Maximum for strict mobile view*/
+	'mid': 770px, //*Maximum for really large phones or really small tablets*/
+	'tablet': 960px, ///*!MAJOR BREAK POINT!*//*maximum for iPads in portrait*/
+	'desktop': 1024px, //*!MAJOR BREAK POINT!*//*maximum for iPads in landscape*/
+	'page': 1200px, //*Point at which the edge of the desktop design meets the edge of the screen*/
+);
 
-$bp-small: 480px;
+@function bp($value){
+	@return map-get($breakPoints, $value);
+}
 
-$bp-mobile: 600px; //Maximum for strict mobile view
 
-$bp-phablet: 770px; //Maximum for really large phones or really small tablets
+///*================================================*\
+//	TWEAK POINTS
+//----------------------------------------------------
+//	Defines the points at which the page will
+//	alter slightly to improve the layout
+//
+//	DO NOT DEFINE TWEAK POINTS IN THIS FILE!
+//	The tweak points should be defined in the
+//	sass file for the effected module. Not here!
+//	Do not share tweak points between modules.
+//*================================================*/
 
-$bp-tablet: 960px; //maximum for tablets in portrait
+//only stating tweak points here for the sake of the function
+//Do not place tweak points in here!
+$tweakPoints: ();
 
-$bp-desktop: 1024px; //maximum for tablets in portrait landscape
-
-$bp-large: 1200px; // Point at which the edge of the page meets the edge of the screen.
+@function tp($value){
+	@return map-get($tweakPoints, $value);
+}

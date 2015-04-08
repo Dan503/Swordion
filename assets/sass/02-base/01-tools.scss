@@ -63,11 +63,13 @@
 	&--h { @extend %centered--h; }
 }
 
-//	Resolution specific elements
-.mobileOnly { @extend %mobile-only; }
-.tabletOnly { @extend %tablet-only; }
-.desktopOnly { @extend %desktop-only; }
-.nonMobile { @extend %non-mobile; }
+//	Screen size specific elements
+.mobileOnly { @include M-mobileOnly; }
+.tabletOnly { @include M-tabletOnly; }
+.desktopOnly { @include M-desktopOnly; }
+.nonMobile { @include M-nonMobile; }
+.nonTablet { @include M-nonTablet; }
+.nonDesktop { @include M-nonDesktop; }
 
 //animate an element when it's css changes
 .animate {

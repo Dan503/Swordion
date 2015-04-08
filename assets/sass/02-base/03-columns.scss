@@ -6,7 +6,7 @@
 //================================================*/
 
 //The styling for the central box that holds the whole page content
-.container { margin:0 auto; max-width:$bp-tablet; }
+.container { margin:0 auto; max-width:bp('tablet'); }
 
 
 //================================================*\
@@ -34,32 +34,32 @@
 	), (
 		class: halves,
 		breaks: (
-			$bp-mobile 100%,
+			bp('mobile') 100%,
 		),
 	), (
 		class: thirds,
 		breaks: (
-			$bp-mobile 100%,
+			bp('mobile') 100%,
 		),
 	), (
 		class: quarters,
 		breaks: (
-			$bp-tablet 50%,
-			$bp-mobile 100%,
+			bp('tablet') 50%,
+			bp('mobile') 100%,
 		),
 	), (
 		class: fiths,
 		breaks: (
-			$bp-phablet 33.33%,
-			$bp-mobile 50%,
-			$bp-small 100%,
+			bp('mid') 33.33%,
+			bp('mobile') 50%,
+			bp('small') 100%,
 		),
 	), (
 		class: sixths,
 		breaks:	(
-			$bp-phablet 33.33%,
-			$bp-mobile 50%,
-			$bp-small 100%,
+			bp('mid') 33.33%,
+			bp('mobile') 50%,
+			bp('small') 100%,
 		),
 	);
 
@@ -110,9 +110,9 @@
 	}
 
 	$deTabelisers :
-		$deTabelise--tablet $bp-tablet,
-		$deTabelise--phablet $bp-phablet,
-		$deTabelise--mobile $bp-mobile,
+		$deTabelise--tablet bp('tablet'),
+		$deTabelise--phablet bp('mid'),
+		$deTabelise--mobile bp('mobile'),
 	;
 
 /*change to floated format at certain screen sizes for certain column widths if set to tabular style*/
@@ -158,12 +158,12 @@
 
 		}
 		&:not(.columns--disableMQs){
-			@include M-mq(max,$bp-mobile){
+			@include M-mq(max,bp('mobile')){
 				margin-bottom: 20px;
 			}
 		}
 	}
-	@include M-mq(max,$bp-mobile){
+	@include M-mq(max,bp('mobile')){
 		&--fiths[class*="columns"]:not(.columns--disableMQs) { text-align: center;
 			> .columns-col { display: inline-block; float: none; }
 		}
@@ -188,7 +188,7 @@
 		width: 100%;
 		@extend %noDots;
 		&:not(.columns--disableMQs){
-		@include M-mq(max,$bp-tablet){
+		@include M-mq(max,bp('tablet')){
 			@include M-after { clear: both; }
 		}
 		}

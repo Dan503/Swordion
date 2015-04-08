@@ -64,52 +64,41 @@ $fix-mqs: false !default;
 //**********************************\
 //	Resolution specific elements
 //*********************************/
-%hide { display: none; }
-
-@mixin M-mobile-only {
-	@include M-mq(min,$bp-mobile){
+@mixin M-mobileOnly {
+	@include M-mq(min,bp('mobile')){
 		display: none!important;
 	}
 }
-%mobile-only { @include M-mobile-only; }
 
-@mixin M-tablet-only {
-	@include M-mq(outside,$bp-mobile,$bp-desktop){
+@mixin M-tabletOnly {
+	@include M-mq(outside,bp('mobile'),bp('desktop')){
 		display: none!important;
 	}
 }
-%tablet-only { @include M-tablet-only }
 
-@mixin M-desktop-only {
-	@include M-mq(max,$bp-desktop){
+@mixin M-desktopOnly {
+	@include M-mq(max,bp('desktop')){
 		display: none!important;
 	}
 }
-%desktop-only { @include M-desktop-only; }
 
-
-@mixin M-non-mobile {
-	@include M-mq(max, $bp-mobile){
+@mixin M-nonMobile {
+	@include M-mq(max, bp('mobile')){
 		display: none!important;
 	}
 }
-%non-mobile { @include M-non-mobile }
 
-@mixin M-non-tablet {
-	@include M-mq(inside, $bp-mobile, $bp-desktop){
+@mixin M-nonTablet {
+	@include M-mq(inside, bp('mobile'), bp('desktop')){
 		display: none!important;
 	}
 }
-%non-mobile { @include M-non-mobile }
 
-@mixin M-non-desktop {
-	@include M-mq(min, $bp-desktop){
+@mixin M-nonDesktop {
+	@include M-mq(min, bp('desktop')){
 		display: none!important;
 	}
 }
-%non-desktop { @include M-non-desktop }
-
-
 
 
 // ******************************************************\

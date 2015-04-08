@@ -7,14 +7,14 @@
 
 	&-mediaQuery {
 		color: #fff;
-		@include M-mq(max,$bp-mobile){
+		@include M-mq(max,bp('mobile')){
 			background-color: red;
 		}
-		@include M-mq(min-max,$bp-mobile,$bp-tablet){
+		@include M-mq(min-max,bp('mobile'),bp('tablet')){
 			border: 5px dotted #fff;
 			background: green;
 		}
-		@include M-mq(min,$bp-tablet){
+		@include M-mq(min,bp('tablet')){
 			background-color: purple;
 		}
 	}
