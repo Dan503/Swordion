@@ -70,38 +70,38 @@ module.exports = function (grunt) {
 				},
 				files: {
 					//destination
-					'assets/images/auto-sprite/LD-primary-autosprite.png':
+					'assets/images/auto-sprite/LD-retina-autosprite.png':
 					//source
-					'assets/images/auto-sprite/HD-primary-autosprite.png'
+					'assets/images/auto-sprite/HD-retina-autosprite.png'
 				}
 			}
 		},
 
 		//Able to auto-sprite without compass! :D
 		sprite:{
-			//Generates the double sized version of the primary sprite
-	        primary: {
-	            src: 'assets/images/auto-sprite/HD-primary-sourcefiles/*.png',
-	            dest: 'assets/images/auto-sprite/HD-primary-autosprite.png',
-	            destCss: 'assets/sass/00-config-files/sprite-sheets/HD-primary-sprites.scss',
+			//Generates the double sized version of the retina sprite
+	        retina: {
+	            src: 'assets/images/auto-sprite/HD-retina-sourcefiles/*.png',
+	            dest: 'assets/images/auto-sprite/HD-retina-autosprite.png',
+	            destCss: 'assets/sass/00-config-files/sprite-sheets/HD-retina-sprites.scss',
 	            cssFormat: 'scss_maps',
-	            imgPath: '../images/auto-sprite/HD-primary-autosprite.png',
+	            imgPath: '../images/auto-sprite/HD-retina-autosprite.png',
 	            padding: 4,
-				cssSpritesheetName: 'spritesheet-primary',
+				cssSpritesheetName: 'spritesheet-retina',
 	            cssOpts: {
 	                functions: false,
 	            },
 	        },
 			//Generates a normal sized sprite that is used on both retina and non retina screens
 			//If you do not have a double sized version for an image, use this.
-			secondary: {
-	            src: 'assets/images/auto-sprite/LD-secondary-sourceFiles/*.png',
-	            dest: 'assets/images/auto-sprite/LD-secondary-autosprite.png',
-	            destCss: 'assets/sass/00-config-files/sprite-sheets/LD-secondary-sprites.scss',
+			nonRetina: {
+	            src: 'assets/images/auto-sprite/LD-nonRetina-sourceFiles/*.png',
+	            dest: 'assets/images/auto-sprite/LD-nonRetina-autosprite.png',
+	            destCss: 'assets/sass/00-config-files/sprite-sheets/LD-nonRetina-sprites.scss',
 	            cssFormat: 'scss_maps',
-	            imgPath: '../images/auto-sprite/LD-secondary-autosprite.png',
+	            imgPath: '../images/auto-sprite/LD-nonRetina-autosprite.png',
 	            padding: 2,
-				cssSpritesheetName: 'spritesheet-secondary',
+				cssSpritesheetName: 'spritesheet-nonRetina',
 	            cssOpts: {
 	                functions: false,
 	            },
@@ -257,18 +257,18 @@ module.exports = function (grunt) {
 				],
 				options: { spawn: false }
 			},
-			sprite_primary: {
-				files: ["assets/images/auto-sprite/HD-primary-sourceFiles/*.png"],
+			sprite_retina: {
+				files: ["assets/images/auto-sprite/HD-retina-sourceFiles/*.png"],
 				tasks: [
-					"sprite:primary",
+					"sprite:retina",
 					"image_resize",
 				],
 				options: { spawn: false }
 			},
-			sprite_secondary: {
-				files: ["assets/images/auto-sprite/LD-secondary-sourceFiles/*.png"],
+			sprite_nonRetina: {
+				files: ["assets/images/auto-sprite/LD-nonRetina-sourceFiles/*.png"],
 				tasks: [
-					"sprite:secondary",
+					"sprite:nonRetina",
 				],
 				options: { spawn: false }
 			},
