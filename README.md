@@ -89,7 +89,13 @@ grunt
 
 The grunt node_module files should never be placed in source control. It hinders the process of committing and updating if those files are in the repository. Instead the files should be downloaded and installed using npm:
 
-You will need to set the project directory as stated in point 5, then paste this into the ruby enabled console:
+First set the current directory to your project root folder as stated in point 5
+
+```````
+cd C:\Path\To\Your\Project\Root\Folder
+```````
+
+Then paste this into a ruby and nodeJS enabled console window:
 
 ```````
 npm install -g grunt-cli
