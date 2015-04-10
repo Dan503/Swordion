@@ -51,7 +51,7 @@
 			if ($environment == 'development') {
 				//Unminified css for development phase
 				echo '<link rel="stylesheet" type="text/css" href="/assets/css/style.css" />';
-			} else {
+			} else if ($environment == 'production') {
 				//Minified CSS (for use during production phase)
 				echo '<link rel="stylesheet" type="text/css" href="/assets/css/style.min.css" />';
 			}
@@ -65,7 +65,7 @@
 			'<!--[if lt IE 9]>
 				<link rel="stylesheet" type="text/css" href="/assets/css/style-lt-ie9.css" />
 			<![endif]-->';
-		} else {
+		} else if ($environment == 'production') {
 			//Minified CSS (for use during production phase)
 			echo
 			'<!--[if lt IE 9]>
