@@ -17,8 +17,8 @@
 		@return map-deep-get($spritesheets, retina-sheets $sheet_name $version);
 	}
 	@else {
-		//get the standard definition sprite sheet variable
-		@return map-deep-get($spritesheets, standard-sheets $sheet_name);
+		//get the nonRetina definition sprite sheet variable
+		@return map-deep-get($spritesheets, nonRetina-sheets $sheet_name);
 	}
 }
 
@@ -65,7 +65,7 @@
 	@return $x $y;
 }
 
-@mixin M-sprite-image($sheet_name: primary) {
+@mixin M-sprite-image($sheet_name: retina) {
 
 	//if it is a retina compatible style sheet...
 	@if ( isRetina($sheet_name) ){
@@ -82,14 +82,6 @@
 	}
 }
 
-@mixin M-sprite-styling($sprite, $sheet_name: primary) {
-	$retina: isRetina($sheet_name);
-	background-position: sprite-pos($sprite, $retina);
-	width: sprite-width($sprite, $retina);
-	height: sprite-height($sprite, $retina);
-	@include M-sprite-image($sheet_name);
-}
-
 //@include sprites(sheet_name);
 
 @mixin M-sprites($sheet_name) {
@@ -99,7 +91,11 @@
 
 	@each $sprite in $sprites {
 		$sprite-name: map-get($sprite, 'name');
-		.sprite-#{$sheet_name}-#{$sprite-name}:before {
+		$sprite-class: $sprite-name;
+		@if ($retina == false){
+			$sprite-class: 'nonRetina-' + $sprite-name;
+		}
+		.sprite-#{$sprite-class} {
 			background-position: sprite-pos($sprite, $retina);
 			width: sprite-width($sprite, $retina);
 			height: sprite-height($sprite, $retina);
@@ -111,12 +107,13 @@
 //format: sprite-SPRITE_SHEET_NAME-SPRITE_NAME
 @if ($main-sheet == true){
 	@each $name in $all_sheet_names {
-		[class*=" sprite-#{$name}-"], [class^="sprite-#{$name}-"] {
-			&:before {
-				content: '';
-				display: inline-block;
-				@include M-sprite-image($name);
-			}
+		$class: '';
+		@if (isRetina($name) == false){
+			$class: $name + '-';
+		}
+		[class*=" sprite-#{$class}"], [class^="sprite-#{$class}"] {
+			@include M-sprite-image($name);
+			display: inline-block;
 		}
 
 		@include M-sprites($name);
@@ -128,24 +125,14 @@
 //======================================================\\
 
 //USAGE: @include M-sprite($sprite_variable, SPRITE_SHEET_NAME)
-//sprite sheet name is only necessary if the sprite is not in the primary sprite-sheet
+//sprite sheet name is only necessary if the sprite is not in the retina sprite-sheet
 
-@mixin M-sprite($sprite, $sheet_name: primary, $display: inline-block, $pos:before) {
-
-	@if ($pos == before){
-
-		@include M-before($display) {
-			@include M-sprite-styling($sprite, $sheet_name);
-			@content;
-		}
-	} @else if ($pos == after){
-		@include M-after($display) {
-			@content;
-		}
-	} @else if ($pos == element){
-		display: $display;
-		@include M-sprite-styling($sprite, $sheet_name);
-	}
+@mixin M-sprite($sprite, $sheet_name: retina) {
+	$retina: isRetina($sheet_name);
+	background-position: sprite-pos($sprite, $retina);
+	width: sprite-width($sprite, $retina);
+	height: sprite-height($sprite, $retina);
+	@include M-sprite-image($sheet_name);
 }
 
 //if you want to use the manual spriting technique, you can use this instead

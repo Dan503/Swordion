@@ -39,10 +39,8 @@
 	}
 
 	&-autoSprite {
-		@include M-sprite($word){
-			outline: 2px solid red;
-			margin-right: 10px;
-		};
+		@include M-sprite($word);
+		display: inline-block;
 	}
 
 	&-icon {

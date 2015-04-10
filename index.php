@@ -33,9 +33,9 @@ include 'header.php';
 	</div>
 
 	<div class="demo-div">
-		<p class="sprite-primary-pdf">retina pdf sprite class</p>
-		<p class="sprite-secondary-podcast">standard podcast sprite class</p>
-		<p class="demo-autoSprite">Sprite added using mixin</p>
+		<p><i class="sprite-pdf"></i>retina pdf sprite class</p>
+		<p><i class="sprite-nonRetina-podcast"></i>standard podcast sprite class</p>
+		<p><i class="demo-autoSprite"></i>Sprite added using mixin</p>
 	</div>
 
 	<div class="demo-div">
