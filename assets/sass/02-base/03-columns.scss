@@ -2,6 +2,7 @@
 //You can alter the available column gutter classes here
 $columnGutters: 5, 10, 15, 20, 25, 30;
 
+$flexPrefixes: ms webkit;
 
 //================================================*\
 /*	COLUMNS STYLING FILE						*/
@@ -100,28 +101,23 @@ $colWidths: (
 .columns {
 	@extend %noDots;
 	width: 100%;
-	display: table;//tabular backup for IE9 and below
 	@include M-gt-ie8 {
-		display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
-		display: -ms-flexbox;      /* TWEENER - IE 10 */
-		display: -webkit-flex;     /* NEW - Chrome */
-		display: flex;             /* NEW, Spec - Opera 12.1, Firefox 20+ */
-
-		@include M-prefix(flex-wrap, wrap, ms webkit);
-		@include M-prefix(align-content, stretch, ms webkit);
+		@include M-flex;
+		@include M-prefix(align-content, stretch, $flexPrefixes);
 
 		> .columns-col {
-			@include M-prefix(flex-grow,1, ms webkit);
+			@include M-prefix(flex-grow,1, $flexPrefixes);
+		}
+		&:not(.columns--noWrap){
+			@include M-prefix(flex-wrap, wrap, $flexPrefixes);
 		}
 	}
-	.lt-ie10 & > .columns-col { display: table-cell; }//tabular backup for IE9 and below
 
 	&-col {
 		padding: 0;
 		margin: 0;
 		background-clip: padding-box;
-		border-color: transparent;
-		border-style: solid;
+		border: 0 solid transparent;
 	}
 
 	@each $gutter in $columnGutters {
@@ -134,4 +130,18 @@ $colWidths: (
 		}
 	}
 
+	@include M-gt-ie8 {
+		&--vAlign > .columns-col {
+			@include M-flex;
+			@include M-prefix(flex-direction,column, $flexPrefixes);
+			@include M-prefix(justify-content,center, $flexPrefixes);
+		}
+	}
+
+	//tabular backup for IE9 and below
+	.lt-ie10 & {
+		display: table;
+		> .columns-col { display: table-cell; }
+	 	&--vAlign > .columns-col { vertical-align: middle; }
+	}
 }

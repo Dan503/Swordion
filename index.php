@@ -9,6 +9,7 @@ include 'header.php';
 		<section id="main" role="main">
 				<div class="wrapper">
 
+
 <div class="demo">
 	<div class="demo-div demo-mediaQuery">
 		<p>Media Query example</p>
@@ -56,6 +57,38 @@ include 'header.php';
 	</div>
 </div>
 
+<h2>Nav example</h2>
+<nav class="columns columns--noWrap columns--vAlign navExample">
+
+		<?php
+			$items_array = array(
+				array(
+					'text' => 'very very very long item, do not mess with me',
+					'link' => '#item1_1',
+				), array(
+					'text' => 'short',
+					'link' => '#item0_1',
+				), array(
+					'text' => 'Normal sized item',
+					'link' => '#item2_1',
+				), array(
+					'text' => 'looooo ooooooooo ooooooooo oooong',
+					'link' => '#item4_1',
+				),
+			);
+
+			for ($i = 0; $i < count($items_array); $i++) {
+				$text = $items_array[$i]['text'];
+				$link = $items_array[$i]['link'];
+				echo
+				'<a href="'.$link.'" class="columns-col navExample-link">
+					<span class="vAlign-helper">'.$text.'</span>
+				</a>';
+			}
+		?>
+
+
+</nav>
 
 <div class="full-screen-div-example js-fullScreen">
 	<h2>Full screen div example</h2>
