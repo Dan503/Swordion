@@ -8,6 +8,19 @@
 //laziness shortcuts//
 /////////////////////
 
+/// Mixin helper to output vendor prefixes
+/// @author HugoGiraudel
+/// @param {String} $property - Unprefixed CSS property
+/// @param {*} $value - Raw CSS value
+/// @param {List} $prefixes - List of prefixes to output
+@mixin M-prefix($property, $value, $prefixes: ()) {
+  @each $prefix in $prefixes {
+    -#{$prefix}-#{$property}: $value;
+  }
+
+  #{$property}: $value;
+}
+
 //Just get straight into styling a :before or :after without worrying about content or display
 @mixin M-before($display: block) {
 	&:before {

@@ -133,6 +133,9 @@
 
 
 .columns {
+	@extend %noDots;
+	width: 100%;
+
 	&-col {
 		padding: 0;
 		margin: 0;
@@ -151,8 +154,6 @@
 //================================================*/
 	&--floated {
 		@extend %clearfix;
-		@extend %noDots;
-		width: 100%;
 		> .columns-col { float: left;
 			&-padding { padding: 0 5%; }
 
@@ -185,12 +186,10 @@
 //================================================*/
 	&--tabular {
 		display: table;
-		width: 100%;
-		@extend %noDots;
 		&:not(.columns--disableMQs){
-		@include M-mq(max,bp('tablet')){
-			@include M-after { clear: both; }
-		}
+			@include M-mq(max,bp('tablet')){
+				@include M-after { clear: both; }
+			}
 		}
 
 		> .columns-col {
@@ -201,6 +200,24 @@
 			//overides width class
 			//WARNING: will require extra responsive styling
 			&--autoWidth { width: auto; }
+		}
+	}
+
+	&--flex {
+		display: table;//tabular backup for IE9 and below
+		@include M-gt-ie8 {
+			display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
+			display: -ms-flexbox;      /* TWEENER - IE 10 */
+			display: -webkit-flex;     /* NEW - Chrome */
+			display: flex;             /* NEW, Spec - Opera 12.1, Firefox 20+ */
+
+			@include M-prefix(flex-wrap, wrap, ms webkit);
+			@include M-prefix(align-content, stretch, ms webkit);
+
+			> .columns-col {
+				.lt-ie10 & { display: table-cell; }//tabular backup for IE9 and below
+				@include M-prefix(flex-grow,1, ms webkit);
+			}
 		}
 	}
 }
