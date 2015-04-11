@@ -125,7 +125,7 @@ include 'header.php';
 
 <h3>Simple re-usable pop-in animation</h3>
 
-<ul class="popinDemo js-popins columns columns--thirds columns--flex">
+<ul class="popinDemo js-popins columns columns--thirds">
 <?php
 	for ($i = 0; $i < 6; $i++) {
 		echo
@@ -137,7 +137,7 @@ include 'header.php';
 </ul>
 
 <h3>Simple multistage animation</h3>
-<ul id="js-simpleExampleElement" class="columns columns--floated columns--halves simpleAnimationExample">
+<ul id="js-simpleExampleElement" class="columns columns--halves simpleAnimationExample">
 <?php
 	for ($i = 0; $i < 4; $i++) {
 		echo
