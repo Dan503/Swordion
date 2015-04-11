@@ -5,11 +5,6 @@ $fix-mqs: false !default;
 
 @mixin M-mq($range, $width: $breakpoint-tablet, $width-2: null) {
 
-	//prevent media query overlap
-	@if $range == min {
-		$width: $width + 1;
-	}
-
 	@if ($lt-ie9 == true) {
 		@if $fix-mqs >= $width and $range == min and $width-2 == null {
 			@content;
@@ -22,14 +17,12 @@ $fix-mqs: false !default;
 		// if has both min and max-widths
 		@if $width-2 {
 
-			$width-2: $width-2 - 1;//prevent media query overlap
-
 			@if ($range == inside) {
-				@media screen and (min-width: $width) and (max-width: $width-2) {
+				@media screen and (min-width: #{$width + 1}) and (max-width: $width-2) {
 					@content;
 				}
 			} @else if ($range == outside) {
-				@media not screen and (min-width: $width) and (max-width: $width-2) {
+				@media not screen and (min-width: #{$width + 1}) and (max-width: $width-2) {
 					@content;
 				}
 			}
@@ -38,7 +31,7 @@ $fix-mqs: false !default;
 		// else output min or max width
 		@else {
 			@if $range == min{
-				@media screen and (min-width: $width) {
+				@media screen and (min-width: #{$width + 1}) {
 					@content;
 				}
 			}
@@ -71,13 +64,13 @@ $fix-mqs: false !default;
 }
 
 @mixin M-tabletOnly {
-	@include M-mq(outside,bp('mobile'),bp('desktop')){
+	@include M-mq(outside,bp('mobile'),bp('tablet')){
 		display: none!important;
 	}
 }
 
 @mixin M-desktopOnly {
-	@include M-mq(max,bp('desktop')){
+	@include M-mq(max,bp('tablet')){
 		display: none!important;
 	}
 }
@@ -89,13 +82,13 @@ $fix-mqs: false !default;
 }
 
 @mixin M-nonTablet {
-	@include M-mq(inside, bp('mobile'), bp('desktop')){
+	@include M-mq(inside, bp('mobile'), bp('tablet')){
 		display: none!important;
 	}
 }
 
 @mixin M-nonDesktop {
-	@include M-mq(min, bp('desktop')){
+	@include M-mq(min, bp('tablet')){
 		display: none!important;
 	}
 }

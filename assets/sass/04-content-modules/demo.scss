@@ -10,7 +10,7 @@
 		@include M-mq(max,bp('mobile')){
 			background-color: red;
 		}
-		@include M-mq(min-max,bp('mobile'),bp('tablet')){
+		@include M-mq(inside,bp('mobile'),bp('tablet')){
 			border: 5px dotted #fff;
 			background: green;
 		}

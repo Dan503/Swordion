@@ -15,8 +15,9 @@ include 'header.php';
 		<p class="desktopOnly">Desktop only</p>
 		<p class="tabletOnly">Tablet only</p>
 		<p class="mobileOnly">Mobile only</p>
-		<p class="nonMobile">non mobile</p>
-		<p class="nonDesktop">non desktop</p>
+		<p class="nonMobile">Non mobile</p>
+		<p class="nonTablet">Non tablet</p>
+		<p class="nonDesktop">Non desktop</p>
 	</div>
 
 	<div class="demo-div demo-gradient">
