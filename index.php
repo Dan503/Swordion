@@ -125,25 +125,29 @@ include 'header.php';
 
 <h3>Simple re-usable pop-in animation</h3>
 
-<ul class="popinDemo js-popins columns columns--thirds">
+<ul class="popinDemo js-popins columns columns--thirds columns--gutter-20">
 <?php
 	for ($i = 0; $i < 6; $i++) {
+		$extra = '';
+		if ($i==2){
+			$extra = ' extra text for testing';
+		}
 		echo
-		'<li class="popinDemo-piece js-popins-piece columns-col animationDemoItem">
-			Pop-in item '.($i+1).
+		'<li class="popinDemo-piece js-popins-piece columns-col animationDemoItem">'.
+			'Pop-in item '.($i+1).$extra.
 		'</li>';
 	};
 ?>
 </ul>
 
 <h3>Simple multistage animation</h3>
-<ul id="js-simpleExampleElement" class="columns columns--halves simpleAnimationExample">
+<ul id="js-simpleExampleElement" class="columns columns--halves columns--gutter-10 simpleAnimationExample">
 <?php
 	for ($i = 0; $i < 4; $i++) {
 		echo
-		'<li class="simple'.($i+1).' simpleAnimationExample-piece columns-col halves">
-			Staged animation item '.($i+1).'
-		</li>';
+		'<li class="simple'.($i+1).' simpleAnimationExample-piece columns-col animationDemoItem">'.
+			'Staged animation item '.($i+1).
+		'</li>';
 	}
 ?>
 </ul>
