@@ -2,7 +2,8 @@
 //	HELPERS
 //************/
 
-%noDots { margin: 0; padding: 0; list-style: none; }
+@mixin M-noDots { margin: 0; padding: 0; list-style: none; }
+%noDots { @include M-noDots; }
 
 ///////////////////////
 //laziness shortcuts//
@@ -55,6 +56,12 @@
 @mixin M-pos ($bg_position){
 	background-position: $bg_position;
 };
+
+@mixin M-hover {
+	&:hover, &:focus {
+		@content;
+	}
+}
 
 ////////////////////////////////////
 //Browser compatibility shortcuts//
