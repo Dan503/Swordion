@@ -28,7 +28,7 @@
 //		<li class="columns-col columns-col--span2">column is 2/3 wide on desktop</li>
 //	</ul>
 //================================================*/
-	$colWidths: (
+$colWidths: (
 		class: full,
 		breaks: false,
 	), (
@@ -61,147 +61,58 @@
 			bp('mobile') 50%,
 			bp('small') 100%,
 		),
-	);
+	)
+;
 
-	//setting up variables for deTabelisation
+@for $i from 1 through length($colWidths) {
+	$array: nth($colWidths, $i);
+	$class: map-get($array, class);
+	$breaks: map-get($array, breaks);
 
-	$deTabelise--mobile: ();
-	$deTabelise--phablet: ();
-	$deTabelise--tablet: ();
+	.columns--#{$class}:not(.columns--disableMQs) > .columns-col {
+		width: percentage(1/$i);
 
-
-	@for $i from 1 through length($colWidths) {
-		$array: nth($colWidths, $i);
-		$class: map-get($array, class);
-		$breaks: map-get($array, breaks);
-
-		.columns--#{$class}:not(.columns--disableMQs) > .columns-col {
-			width: percentage(1/$i);
-
-			@if ($i > 2){
-				@for $x from 2 through ($i - 1) {
-					&--span#{$x} { width: percentage($x/$i); }
-				}
-			}
-
-			@if ($breaks != false) {
-				@for $y from 1 through length($breaks) {
-					$breakData : nth($breaks, $y);
-					$device : nth($breakData, 1);
-					$width : nth($breakData, 2);
-					@include M-mq(max,$device){
-						width: $width;
-					}
-				}
+		@if ($i > 2){
+			@for $x from 2 through ($i - 1) {
+				&--span#{$x} { width: percentage($x/$i); }
 			}
 		}
-		//de-Tabelise for halves and thirds
-		@if ($i <= 2 and $i < 4){
-			$deTabelise--mobile: append($deTabelise--mobile, '.columns--' + $class + '.columns--tabular:not(.columns--disableMQs) >  .columns-col',comma);
-		}
-		//de-Tabelise for quarters
-		@if ($i == 4){
-			$deTabelise--tablet: append($deTabelise--tablet, '.columns--' + $class + '.columns--tabular:not(.columns--disableMQs) >  .columns-col',comma);
-		}
-		//de-Tabelise for fiths and higher
-		@if ($i >= 5){
-			$deTabelise--phablet: append($deTabelise--phablet, '.columns--' + $class + '.columns--tabular:not(.columns--disableMQs) >  .columns-col',comma);
-		}
-	}
 
-	$deTabelisers :
-		$deTabelise--tablet bp('tablet'),
-		$deTabelise--phablet bp('mid'),
-		$deTabelise--mobile bp('mobile'),
-	;
-
-/*change to floated format at certain screen sizes for certain column widths if set to tabular style*/
-@for $i from 1 through length($deTabelisers) {
-	$array: nth($deTabelisers,$i);
-	$list: nth($array,1);
-	$res: nth($array,2);
-
-	@include M-mq(max,$res){
-		#{$list} {
-			display: block;
-			float: left;
+		@if ($breaks != false) {
+			@for $y from 1 through length($breaks) {
+				$breakData : nth($breaks, $y);
+				$device : nth($breakData, 1);
+				$width : nth($breakData, 2);
+				@include M-mq(max,$device){
+					width: $width;
+				}
+			}
 		}
 	}
 }
 
 
-
-
 .columns {
+	@extend %noDots;
+	width: 100%;
+	display: table;//tabular backup for IE9 and below
+	@include M-gt-ie8 {
+		display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
+		display: -ms-flexbox;      /* TWEENER - IE 10 */
+		display: -webkit-flex;     /* NEW - Chrome */
+		display: flex;             /* NEW, Spec - Opera 12.1, Firefox 20+ */
+
+		@include M-prefix(flex-wrap, wrap, ms webkit);
+		@include M-prefix(align-content, stretch, ms webkit);
+
+		> .columns-col {
+			@include M-prefix(flex-grow,1, ms webkit);
+		}
+	}
+	.lt-ie10 & > .columns-col { display: table-cell; }//tabular backup for IE9 and below
+
 	&-col {
 		padding: 0;
 		margin: 0;
 	}
-
-//================================================*\
-//*				FLOATED COLUMNS					*/
-//----------------------------------------------------
-//	These columns all share the same repeating
-//	width. They will not share the same heights
-//	without the help of js.
-//	They will wrap.
-//
-//	Apply floated column styling with the
-//	columns--floated class
-//================================================*/
-	&--floated {
-		@extend %clearfix;
-		@extend %noDots;
-		width: 100%;
-		> .columns-col { float: left;
-			&-padding { padding: 0 5%; }
-
-		}
-		&:not(.columns--disableMQs){
-			@include M-mq(max,bp('mobile')){
-				margin-bottom: 20px;
-			}
-		}
-	}
-	@include M-mq(max,bp('mobile')){
-		&--fiths[class*="columns"]:not(.columns--disableMQs) { text-align: center;
-			> .columns-col { display: inline-block; float: none; }
-		}
-	}
-
-
-//================================================*\
-//*				TABULAR COLUMNS					*/
-//----------------------------------------------------
-//	These columns act like table cells. They will
-//	all be the same height but will vary in width
-//	based on the content inside them (unless a width class is provided).
-//	They will not wrap on Desktop.
-//	They switch to floated style at various screen widths
-//	so they can wrap depending on the width class given.
-//
-//	Apply table column styling with the
-//	columns--tabular class
-//================================================*/
-	&--tabular {
-		display: table;
-		width: 100%;
-		@extend %noDots;
-		&:not(.columns--disableMQs){
-		@include M-mq(max,bp('tablet')){
-			@include M-after { clear: both; }
-		}
-		}
-
-		> .columns-col {
-			display: table-cell;
-
-			&--vAlign { vertical-align: middle; }
-
-			//overides width class
-			//WARNING: will require extra responsive styling
-			&--autoWidth { width: auto; }
-		}
-	}
 }
-

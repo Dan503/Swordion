@@ -64,7 +64,7 @@ include 'header.php';
 				<a href="javascript:void(0)" id="contentStart"></a>
 				<div class="content">
 
-						<h2 class="sprite-primary-pdf">To do list:</h2>
+						<h2>To do list:</h2>
 						<ol>
 							<li>Create a flexbox version of the columns class</li>
 							<li>Add the animation Javascript stuff from the DoC project</li>
@@ -125,24 +125,24 @@ include 'header.php';
 
 <h3>Simple re-usable pop-in animation</h3>
 
-<ul class="popinDemo js-popins columns--tabular columns--sixths">
+<ul class="popinDemo js-popins columns columns--thirds">
 <?php
 	for ($i = 0; $i < 6; $i++) {
 		echo
-		'<li class="popinDemo-piece js-popins-piece columns-col">
-			<p class="animationDemoItem">Pop-in item '.($i+1).'</p>
-		</li>';
+		'<li class="popinDemo-piece js-popins-piece columns-col animationDemoItem">
+			Pop-in item '.($i+1).
+		'</li>';
 	};
 ?>
 </ul>
 
 <h3>Simple multistage animation</h3>
-<ul id="js-simpleExampleElement" class="columns--floated columns--halves simpleAnimationExample">
+<ul id="js-simpleExampleElement" class="columns columns--halves simpleAnimationExample">
 <?php
 	for ($i = 0; $i < 4; $i++) {
 		echo
 		'<li class="simple'.($i+1).' simpleAnimationExample-piece columns-col halves">
-			<p class="animationDemoItem">Staged animation item '.($i+1).'</p>
+			Staged animation item '.($i+1).'
 		</li>';
 	}
 ?>
