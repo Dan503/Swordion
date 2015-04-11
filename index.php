@@ -33,9 +33,9 @@ include 'header.php';
 	</div>
 
 	<div class="demo-div">
-		<p class="sprite-primary-pdf">retina pdf sprite class</p>
-		<p class="sprite-secondary-podcast">standard podcast sprite class</p>
-		<p class="demo-autoSprite">Sprite added using mixin</p>
+		<p><i class="sprite-pdf"></i>retina pdf sprite class</p>
+		<p><i class="sprite-nonRetina-podcast"></i>standard podcast sprite class</p>
+		<p><i class="demo-autoSprite"></i>Sprite added using mixin</p>
 	</div>
 
 	<div class="demo-div">
@@ -66,6 +66,7 @@ include 'header.php';
 
 						<h2 class="sprite-primary-pdf">To do list:</h2>
 						<ol>
+							<li>Create a flexbox version of the columns class</li>
 							<li>Add the animation Javascript stuff from the DoC project</li>
 							<li>Add an example of a responsive youtube video</li>
 							<li>Change structure to allow for BEM structuring. Look into <a href="https://github.com/mksanderson/crank" title="">Matt S&rsquo;s Crank starter kit</a> for ideas on folder structure and see what else his kit does</li>

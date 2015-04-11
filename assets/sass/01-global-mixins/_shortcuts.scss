@@ -73,6 +73,9 @@
 	box-sizing: $type;
 	*behavior: url(../htc/boxsizing.htc);
 }
+%box-sizing {
+	@include M-box-sizing;
+}
 
 @mixin M-inline-block {
 	display: inline-block;

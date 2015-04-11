@@ -18,6 +18,10 @@
   @return $value;
 }
 
+//http://stackoverflow.com/questions/12328259/how-do-you-strip-the-unit-from-any-number-in-sass
+@function strip-units($number) {
+  @return $number / ($number * 0 + 1);
+}
 
 //Functions taken from: http://hugogiraudel.com/2013/08/08/advanced-sass-list-functions/
 

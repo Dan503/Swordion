@@ -3,3 +3,4 @@ node_modules/**/*
 assets/images/auto-sprite/*.png
 assets/css/**/*.css
 assets/css/**/*.map
+grunt-start-up.txt

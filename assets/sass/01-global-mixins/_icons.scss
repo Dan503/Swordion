@@ -56,13 +56,13 @@
 }
 
 //styles that require altering from icon to icon
-@mixin M-icon-dynamic-styles($icon, $color: inherit, $height: false, $width:$height, $display: inline-block){
+@mixin M-icon-dynamic-styles($icon, $color: inherit, $size: 16px, $height: $size, $width:$height, $display: inline-block){
 	content:  icon($icon);
 	display: $display;
 	@if ( $color != inherit ){
 		color: $color;
 	}
-	@include M-icon-size($height, $width);
+	@include M-icon-size($size, $height, $width);
 }
 
 @if ($main-sheet == true){
@@ -84,30 +84,36 @@
 
 //set the size of the icon and makes it work with the M-centered mixin
 //This is good on it's own when addressing an icon that was added with an icon class
-@mixin M-icon-size ($icon-height, $icon-width: $icon-height) {
-	@if ($icon-height != false){
-		font-size: $icon-height;
-		line-height: $icon-height;
-		@include M-size($icon-height, $icon-width);
+@mixin M-icon-size ($size, $height: $size, $width: $height ) {
+	@if ($size != false){
+		font-size: $size;
+		line-height: $height;
+		@include M-size($height, $width);
 		text-align: center;
 	}
 }
 
 // GOOD FOR MOST CIRCUMSTANCES
 // Moves majority of static icon styles into a single rule to cut down css bulk
-@mixin M-icon($icon, $color: inherit, $height: false, $width:$height, $display: inline-block, $pos:before) {
+@mixin M-icon($icon, $color: inherit, $size: false, $height: $size, $width:$height, $display: inline-block, $pos:before) {
 
 	@if ($pos == before){
 		&:before {
 			@extend %M-icon-static-styles;
-			@include M-icon-dynamic-styles($icon, $color, $height, $width, $display);
+			@include M-icon-dynamic-styles($icon, $color, $size, $height, $width, $display);
 			@content;
 		}
 
 	} @else if ($pos == after){
 		&:after {
 			@extend %M-icon-static-styles;
-			@include M-icon-dynamic-styles($icon, $color, $height, $width, $display);
+			@include M-icon-dynamic-styles($icon, $color, $size, $height, $width, $display);
+			@content;
+		}
+	}  @else if ($pos == both){
+		&:before, &:after {
+			@extend %M-icon-static-styles;
+			@include M-icon-dynamic-styles($icon, $color, $size, $height, $width, $display);
 			@content;
 		}
 	}
@@ -115,18 +121,24 @@
 
 //GOOD FOR MEDIA QUERIES
 //Self contained to prevent errors in media queries
-@mixin M-mq-icon($icon, $colour: inherit, $height: false, $width:$height, $display: inline-block, $pos:before) {
+@mixin M-mq-icon($icon, $color: inherit, $size: false, $height: $size, $width: $height, $display: inline-block, $pos: before) {
 
 	@if ($pos == before){
 		&:before {
 			@include M-icon-static-styles;
-			@include M-icon-dynamic-styles($icon, $color, $height, $width, $display);
+			@include M-icon-dynamic-styles($icon, $color, $size, $height, $width, $display);
 			@content;
 		}
 	} @else if ($pos == after){
 		&:after {
 			@include M-icon-static-styles;
-			@include M-icon-dynamic-styles($icon, $color, $height, $width, $display);
+			@include M-icon-dynamic-styles($icon, $color, $size, $height, $width, $display);
+			@content;
+		}
+	}  @else if ($pos == both){
+		&:before, &:after {
+			@include M-icon-static-styles;
+			@include M-icon-dynamic-styles($icon, $color, $size, $height, $width, $display);
 			@content;
 		}
 	}

@@ -7,7 +7,7 @@
 
 
 .tooltip { position: relative;
-	@include M-mq(min,$bp-tablet){
+	@include M-mq(min,bp('tablet')){
 		&:hover, &:focus {
 			.tooltip-text {
 				//can't use @extend, inside media query

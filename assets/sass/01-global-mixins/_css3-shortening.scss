@@ -25,14 +25,19 @@
 //change the origin point of css transforms
 @mixin M-origin ($origin: 0px 0px) {
 	@include M-gt-ie8 {
-		transform-origin: $origin;
+		-webkit-transform-origin: $origin;
+			-ms-transform-origin: $origin;
+				transform-origin: $origin;
 	}
 }
 
 //CSS3 element rotation
-@mixin M-rotate ($angle: 90,$origin: center) {
+//$axis accepts X or Y (capitalised)
+@mixin M-rotate ($angle: 90,$origin: center, $axis: unquote('')) {
 	@include M-gt-ie8 {
-		transform: rotate(#{$angle}deg);
+		-webkit-transform: unquote('rotate#{$axis}(#{$angle}deg)'); //* Safari and Chrome */
+		    -ms-transform: unquote('rotate#{$axis}(#{$angle}deg)'); //* IE 9 */
+		        transform: unquote('rotate#{$axis}(#{$angle}deg)');
 
 		@if ($origin != center) {
 			@include M-origin($origin);
@@ -44,7 +49,9 @@
 //CSS3 element scale
 @mixin M-scale ($scale: 1,$origin: center) {
 	@include M-gt-ie8 {
-		transform: scale($scale);
+		-webkit-transform: scale($scale);
+			-ms-transform: scale($scale);
+				transform: scale($scale);
 
 		@if ($origin != center) {
 			@include M-origin($origin);
