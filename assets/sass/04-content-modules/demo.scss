@@ -19,7 +19,7 @@
 		}
 	}
 	&-gradient {
-		@include M-grad(#ccc,#000,h);
+		@include M-grad(#ccc,#000,20deg);
 	}
 	&-multiGrad {
 		$gradient:
