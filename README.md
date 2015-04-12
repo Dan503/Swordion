@@ -258,7 +258,7 @@ Swordion features a robust responsive grid system based on fractions. It uses fl
 
 Here is a basic example of how to set a shared column width:
 
-```````
+```````HTML
 <!-- Setting a shared column width -->
 <div class="columns columns--quarters">
 	<div class="columns-col"><!-- column content --></div>
@@ -313,7 +313,7 @@ Here is a full list of available column width classes and what their break point
 
 Here is an example of how to use the colspan feature:
 
-```````
+```````HTML
 <!-- Adding an extra wide column -->
 <div class="columns columns--quarters">
 	<div class="columns-col columns-col--span-2"><!-- column content --></div>
@@ -328,7 +328,7 @@ The class works as you would expect. The columns set to thids only accepts --spa
 
 <strong>WARNING!</strong> Using the --span-# feature doesn't scale well, extra module specific styling will be needed for smaller screen sizes. If you are using the --span-# feature I'd recommend adding the columns--disableMQs class to the columns div. This will prevent the usual snapping at break points and allow you to add your own module based break points without interference from the default styles.
 
-```````
+```````HTML
 <!-- Disabling the default Media Queries to make module based Media Queries easier -->
 <div class="columns columns--quarters columns--disableMQs">
 	<div class="columns-col columns-col--span-2"><!-- column content --></div>
@@ -341,7 +341,7 @@ The class works as you would expect. The columns set to thids only accepts --spa
 
 Disabling the media queries also really comes in handy when you need to nest columns inside one another.
 
-```````
+```````HTML
 <!-- Nesting columns inside one another and disabling the inner columns Media Queries -->
 <div class="columns columns--halves">
 	<div class="columns-col">
@@ -366,7 +366,7 @@ When you have horizontal navigation, there are a lot of common difficulties to o
 
 Since the columns are powered by the flexbox css property (in modern browsers) the columns classes are able to take care of most of this for us.
 
-```````
+```````HTML
 <!-- Example of how to use columns for navigation -->
 <nav class="columns columns--noWrap columns--padding-5 columns--vAlign navExample">
 	<a href="#item0" class="columns-col navExample-link">
@@ -408,7 +408,7 @@ I hate how It's not inside a list but I couldn't find any way to make the links 
 
 A lot of the time you don't want your columns to be hard up against one another. In those scenarios, we want to add a gutter to our columns.
 
-```````
+```````HTML
 <!-- Adding a 20px gutter between the columns -->
 <div class="columns columns--halves columns--gutter-20">
 	<div class="columns-col"><!-- column content --></div>
