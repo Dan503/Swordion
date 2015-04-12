@@ -16,25 +16,30 @@ $columnGutters: 5, 10, 15, 20, 25, 30;
 	//@breaks position 2: the new width of the columns at the specified screen size
 $colWidths: (
 		class: full,
+		default: 100%,
 		breaks: false,
 	), (
 		class: halves,
+		default: percentage(1/2),
 		breaks: (
 			bp('mobile') 100%,//* At the "mobile" screen size, make the columns 100% width */
 		),
 	), (
 		class: thirds,
+		default: percentage(1/3),
 		breaks: (
 			bp('mobile') 100%,
 		),
 	), (
 		class: quarters,
+		default: percentage(1/4),
 		breaks: (
 			bp('tablet') 50%,
 			bp('mobile') 100%,
 		),
 	), (
 		class: fiths,
+		default: percentage(1/5),
 		breaks: (
 			bp('mid') 33.33%,
 			bp('mobile') 50%,
@@ -42,6 +47,7 @@ $colWidths: (
 		),
 	), (
 		class: sixths,
+		default: percentage(1/6),
 		breaks:	(
 			bp('mid') 33.33%,
 			bp('mobile') 50%,

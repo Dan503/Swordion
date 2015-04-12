@@ -34,10 +34,12 @@
 @for $i from 1 through length($colWidths) {
 	$array: nth($colWidths, $i);
 	$class: map-get($array, class);
+	$defaultWidth: map-get($array, default);
 	$breaks: map-get($array, breaks);
 
 	.columns--#{$class}:not(.columns--disableMQs) > .columns-col {
-		width: percentage(1/$i);
+		//width: percentage(1/$i); //clever way
+		width: $defaultWidth; //more editable way
 
 		@if ($i > 2){
 			@for $x from 2 through ($i - 1) {
@@ -61,7 +63,7 @@
 
 .columns {
 	@extend %noDots;
-	width: 100%;
+	min-width: 100%;
 	@include M-gt-ie8 {
 		@include M-flex;
 		@include M-prefix(align-content, stretch, $flexPrefixes);
