@@ -159,7 +159,7 @@ include 'header.php';
 
 <h3>Simple re-usable pop-in animation</h3>
 
-<ul class="popinDemo js-popins columns columns--thirds columns--gutter-20">
+<ul class="popinDemo js-popins columns columns--thirds columns--gutter-20 columns--padding-10">
 <?php
 	for ($i = 0; $i < 6; $i++) {
 		$extra = '';

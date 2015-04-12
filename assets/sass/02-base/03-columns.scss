@@ -91,6 +91,14 @@
 		}
 	}
 
+	@each $pad in $columnPadding {
+		&--padding-#{$pad} {
+			> .columns-col {
+				padding: $pad * 1px;
+			}
+		}
+	}
+
 	@include M-gt-ie8 {
 		&--vAlign > .columns-col {
 			@include M-flex;
