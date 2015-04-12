@@ -1,0 +1,54 @@
+﻿//================================================*\
+//*	COLUMNS CONFIGURATION FILE						*/
+//----------------------------------------------------
+//	This file holds all the configurable aspects of
+//	the columns class system
+//================================================*/
+
+//You can alter the available column gutter sizes here
+//usage: .columns--gutter-20
+$columnGutters: 5, 10, 15, 20, 25, 30;
+
+//Set the points at which percentage based columns change width
+//@class [string]: The modifire class added to the columns class eg. .columns--halves
+//@breaks [list OR false booleen]: a list of screensizes at which point the column width changes
+	//@breaks position 1: the screen size the new width is applied to
+	//@breaks position 2: the new width of the columns at the specified screen size
+$colWidths: (
+		class: full,
+		breaks: false,
+	), (
+		class: halves,
+		breaks: (
+			bp('mobile') 100%,//* At the "mobile" screen size, make the columns 100% width */
+		),
+	), (
+		class: thirds,
+		breaks: (
+			bp('mobile') 100%,
+		),
+	), (
+		class: quarters,
+		breaks: (
+			bp('tablet') 50%,
+			bp('mobile') 100%,
+		),
+	), (
+		class: fiths,
+		breaks: (
+			bp('mid') 33.33%,
+			bp('mobile') 50%,
+			bp('small') 100%,
+		),
+	), (
+		class: sixths,
+		breaks:	(
+			bp('mid') 33.33%,
+			bp('mobile') 50%,
+			bp('small') 100%,
+		),
+	)
+;
+
+//The prefixes applied to display:flex attributes
+$flexPrefixes: ms webkit;
