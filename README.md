@@ -401,7 +401,7 @@ This is the part that vertically center aligns the text inside the link if the l
 <strong>It's not in a list!?!</strong><br>
 I hate how It's not inside a list but I couldn't find any way to make the links both center align the text and completely fill the available space in the column. When I put it inside a list, I basically had to decide between text that wasn't vertically center aligned, having links that didn't fill the entire space available, or resorting to javascript to force equal heights that way. Using javascript to force it felt excessive to me when a pure css approach is possible if you just leave the links out of a list. It's wrapped in a `<nav>` element, that should make it semantic enough I think.
 
-<strong>navExample module classes</strong>
+<strong>navExample module classes</strong><br>
 "navExample" and "navExample-link" aren't part of the columns class set. to add custom styling to the nav, you need the "navExample" and "navExample-link" module classes to target the nav properly in the SASS files.
 
 ###Adding gutters
