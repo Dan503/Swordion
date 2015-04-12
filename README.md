@@ -393,7 +393,8 @@ Yep that's right, you don't need to set a columns--halves or a columns--sixths c
 This prevents the columns from wrapping by default. You can easily overide this later in a media query by using `@include M-prefix(flex-wrap, wrap, $flexPrefixes);`. I just found that if the nav is left to it's own devices, the wrapping can lead to some odd looking results on smaller screens.
 
 <strong>columns--padding-#</strong><br>
-To quickly and easily add padding to all the columns at once, you can use the --padding-# modifier class. This class is a bit more powerful than most classes though so depending on the situation, it might be better to add the padding using module based styling instead.
+To quickly and easily add padding to all the columns at once, you can use the --padding-# modifier class. This class is a bit more powerful than most classes though so depending on the situation, it might be better to add the padding using module based styling instead.<br>
+Available Padding classes can be edited in the columns config file.
 
 <strong>columns--vAlign</strong><br>
 This is the part that vertically center aligns the text inside the link if the links around it have split to 2 lines already. You will notice that there is a "columns-vAlignHelper" span inside the `<a>` tags. These don't actually have any styling attatched to them but `<a>` tags <em>need</em> an element inside them for the vertical alignment to work. I put the class on there to hint at why it's needed.
@@ -418,7 +419,8 @@ A lot of the time you don't want your columns to be hard up against one another.
 </div>
 ```````
 
-The above example will add a 20px gutter between each column both horizontally and vertically.
+The above example will add a 20px gutter between each column both horizontally and vertically.<br>
+Available gutter classes can be edited in the columns config file.
 
 <strong>WARNING!</strong><br>
 The columns use border instead of margin to create the gutters. This is due to border being able to fit within the overall width of it's container. Margin does not have that ability so using margin causes havoc for the widths of the columns.
