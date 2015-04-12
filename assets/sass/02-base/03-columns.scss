@@ -68,9 +68,6 @@
 		@include M-flex;
 		@include M-prefix(align-content, stretch, $flexPrefixes);
 
-		> .columns-col {
-			@include M-prefix(flex-grow,1, $flexPrefixes);
-		}
 		&:not(.columns--noWrap){
 			@include M-prefix(flex-wrap, wrap, $flexPrefixes);
 		}
@@ -81,6 +78,7 @@
 		margin: 0;
 		background-clip: padding-box;
 		border: 0 solid transparent;
+		@include M-prefix(flex-grow,1, $flexPrefixes);
 	}
 
 	@each $gutter in $columnGutters {

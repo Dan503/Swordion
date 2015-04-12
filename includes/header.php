@@ -91,7 +91,7 @@
     	<p>Please <a href="http://www.enable-javascript.com/">enable javascript</a> to access the full functionality of this site</p>
     </div>
 
-	<div id="siteContainer" class="pageWidth">
+	<div class="pageWidth siteContainer">
 		<div id="skipLinks">
 			<a href="#contentStart" class="vh focusable" title="">Skip to content</a>
 		</div>
