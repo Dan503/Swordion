@@ -43,7 +43,7 @@
 
 		@if ($i > 2){
 			@for $x from 2 through ($i - 1) {
-				&--span#{$x} { width: percentage($x/$i); }
+				&--span-#{$x} { width: percentage($x/$i); }
 			}
 		}
 

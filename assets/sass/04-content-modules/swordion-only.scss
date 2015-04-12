@@ -100,7 +100,6 @@
 		background-color: $purple-mid;
 		@include M-animate(0.2s);
 		color: #fff;
-		padding: 5px;
 		text-align: center;
 		border-left: 1px solid #ccc;
 		&:first-child { border-left: none; }
