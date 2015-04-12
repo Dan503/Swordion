@@ -252,6 +252,15 @@
 	}
 }
 
+//make an element fill the entire area of it's parent (parent needs position relative)
+@mixin M-fill {
+	position: absolute;
+	top: 0;
+	left: 0;
+	@include M-size(100%);
+}
+%fill { @include M-fill; }
+
 ////////////
 // Other //
 ///////////
