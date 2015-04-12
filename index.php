@@ -82,7 +82,7 @@ include 'header.php';
 				$link = $items_array[$i]['link'];
 				echo
 				'<a href="'.$link.'" class="columns-col navExample-link">
-					<span class="vAlign-helper">'.$text.'</span>
+					<span class="columns-vAlignHelper">'.$text.'</span>
 				</a>';
 			}
 		?>

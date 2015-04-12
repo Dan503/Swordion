@@ -250,6 +250,236 @@ So a few things you should note:
 
 --------------------
 
+##Columns (grid) system
+
+Swordion features a robust responsive grid system based on fractions. It uses flexbox styling with table styling as a backup for IE9 and bellow.
+
+###Setting column widths
+
+Here is a basic example of how to set a shared column width:
+
+```````
+<!-- Setting a shared column width -->
+<div class="columns columns--quarters">
+	<div class="columns-col"><!-- column content --></div>
+	<div class="columns-col"><!-- column content --></div>
+	<div class="columns-col"><!-- column content --></div>
+	<div class="columns-col"><!-- column content --></div>
+</div>
+```````
+
+In this example, it would generate 4 columns of equal width across the page. At certain break points, the columns automatically alter their width to a more appropriate size. For example, if the columns is given the class "columns--quarters", currently at the "tablet" breakpoint (defined in the "break-points.scss" config file) the width of the columns changes from 25% to 50%.
+
+Here is a full list of available column width classes and what their break points are (all of this can be altered in the "columns.scss" config file):
+
+- <strong>columns--full</strong>
+  - Default column width: 100%;
+  - Break points: none;
+  - (Useful for when you still want access to the columns classes but you don't actually want any columns.)
+
+- <strong>columns--halves</strong>
+  - Default column width: 50%;
+  - Break points:
+     - breaks at 'mobile' (600px) to 100% width;
+
+- <strong>columns--thirds</strong>
+  - Default column width: 33.33333%;
+  - Break points:
+     - breaks at 'mobile' (600px) to 100% width;
+
+- <strong>columns--quarters</strong>
+  - Default column width: 25%;
+  - Break points:
+     - breaks at 'tablet' (960px) to 50% width;
+     - breaks at 'mobile' (600px) to 100% width;
+
+- <strong>columns--fiths</strong>
+  - Default column width: 20%;
+  - Break points:
+     - breaks at 'mid' (770px) to 33% width;
+     - breaks at 'mobile' (600px) to 50% width;
+     - breaks at 'small' (480px) to 100% width;
+
+- <strong>columns--sixths</strong>
+  - Default column width: 16.66667%;
+  - Break points:
+     - breaks at 'mid' (770px) to 33.33% width;
+     - breaks at 'mobile' (600px) to 50% width;
+     - breaks at 'small' (480px) to 100% width;
+
+####Colspan feature
+
+<strong>(Columns that take up the space of more than 1 column)</strong>
+
+Here is an example of how to use the colspan feature:
+
+```````
+<!-- Adding an extra wide column -->
+<div class="columns columns--quarters">
+	<div class="columns-col columns-col--span-2"><!-- column content --></div>
+	<div class="columns-col"><!-- column content --></div>
+	<div class="columns-col"><!-- column content --></div>
+</div>
+```````
+
+In this example the first column will take up 50% of the width while the other two columns will take up only 25% of the width. That is the basic premise of using the --span-# modifier.
+
+The class works as you would expect. The columns set to thids only accepts --span2 where as columns set to sixths can accept --span2 all the way to --span5.
+
+<strong>WARNING!</strong> Using the --span-# feature doesn't scale well, extra module specific styling will be needed for smaller screen sizes. If you are using the --span-# feature I'd recommend adding the columns--disableMQs class to the columns div. This will prevent the usual snapping at break points and allow you to add your own module based break points without interference from the default styles.
+
+```````
+<!-- Disabling the default Media Queries to make module based Media Queries easier -->
+<div class="columns columns--quarters columns--disableMQs">
+	<div class="columns-col columns-col--span-2"><!-- column content --></div>
+	<div class="columns-col"><!-- column content --></div>
+	<div class="columns-col"><!-- column content --></div>
+</div>
+```````
+
+###Nesting columns
+
+Disabling the media queries also really comes in handy when you need to nest columns inside one another.
+
+```````
+<!-- Nesting columns inside one another and disabling the inner columns Media Queries -->
+<div class="columns columns--halves">
+	<div class="columns-col">
+		<div class="columns columns--thirds columns--disableMQs">
+			<div class="columns-col"><!-- column content --></div>
+			<div class="columns-col"><!-- column content --></div>
+			<div class="columns-col"><!-- column content --></div>
+		</div>
+	</div>
+	<div class="columns-col"><!-- column content --></div>
+</div>
+```````
+
+###Using columns for horizontal nav bars
+
+When you have horizontal navigation, there are a lot of common difficulties to overcome:
+ - Longer items need more space than smaller items
+ - Everything needs to look evenly spaced
+ - If the text wraps, the smaller text should be vertically center aligned
+ - It needs to be able to wrap elements to the next line so it doesn't break on mobile devices
+ - links need to take up the full size of the box it is in for the best user experience.
+
+Since the columns are powered by the flexbox css property (in modern browsers) the columns classes are able to take care of most of this for us.
+
+```````
+<!-- Example of how to use columns for navigation -->
+<nav class="columns columns--noWrap columns--padding-5 columns--vAlign navExample">
+	<a href="#item0" class="columns-col navExample-link">
+		<span class="columns-vAlignHelper">Very long item that is probably too long for navigation</span>
+	</a>
+	<a href="#item1" class="columns-col navExample-link">
+		<span class="columns-vAlignHelper">short</span>
+	</a>
+	<a href="#item2" class="columns-col navExample-link">
+		<span class="columns-vAlignHelper">Normal sized item</span>
+	</a>
+	<a href="#item4" class="columns-col navExample-link">
+		<span class="columns-vAlignHelper">looooo ooooooooo ooooooooo oooong</span>
+	</a>
+</nav>
+```````
+
+A few things to note:
+
+<strong>no --width class</strong><br>
+Yep that's right, you don't need to set a columns--halves or a columns--sixths class for the columns to work. If no width class is provided then it will automatically determine how wide the columns should be based on the content inside the column (which is perfect for a horisontal nav bar). I'd recommend setting widths with module based media queries for smaller screen sizes though.
+
+<strong>columns--noWrap</strong><br>
+This prevents the columns from wrapping by default. You can easily overide this later in a media query by using `@include M-prefix(flex-wrap, wrap, $flexPrefixes);`. I just found that if the nav is left to it's own devices, the wrapping can lead to some odd looking results on smaller screens.
+
+<strong>columns--padding-#</strong><br>
+To quickly and easily add padding to all the columns at once, you can use the --padding-# modifier class. This class is a bit more powerful than most classes though so depending on the situation, it might be better to add the padding using module based styling instead.
+
+<strong>columns--vAlign</strong><br>
+This is the part that vertically center aligns the text inside the link if the links around it have split to 2 lines already. You will notice that there is a "columns-vAlignHelper" span inside the `<a>` tags. These don't actually have any styling attatched to them but `<a>` tags <em>need</em> an element inside them for the vertical alignment to work. I put the class on there to hint at why it's needed.
+
+<strong>It's not in a list!?!</strong><br>
+I hate how It's not inside a list but I couldn't find any way to make the links both center align the text and completely fill the available space in the column. When I put it inside a list, I basically had to decide between text that wasn't vertically center aligned, having links that didn't fill the entire space available, or resorting to javascript to force equal heights that way. Using javascript to force it felt excessive to me when a pure css approach is possible if you just leave the links out of a list. It's wrapped in a `<nav>` element, that should make it semantic enough I think.
+
+<strong>navExample module classes</strong>
+"navExample" and "navExample-link" aren't part of the columns class set. to add custom styling to the nav, you need the "navExample" and "navExample-link" module classes to target the nav properly in the SASS files.
+
+###Adding gutters
+
+A lot of the time you don't want your columns to be hard up against one another. In those scenarios, we want to add a gutter to our columns.
+
+```````
+<!-- Adding a 20px gutter between the columns -->
+<div class="columns columns--halves columns--gutter-20">
+	<div class="columns-col"><!-- column content --></div>
+	<div class="columns-col"><!-- column content --></div>
+	<div class="columns-col"><!-- column content --></div>
+	<div class="columns-col"><!-- column content --></div>
+</div>
+```````
+
+The above example will add a 20px gutter between each column both horizontally and vertically.
+
+<strong>WARNING!</strong><br>
+The columns use border instead of margin to create the gutters. This is due to border being able to fit within the overall width of it's container. Margin does not have that ability so using margin causes havoc for the widths of the columns.
+
+<strong>If you need to add a border to your guttered columns</strong> then use outline instead. Out of the box, the guttered columns can accept a 1px outline and place it correctly in the element. If you need a thicker border than that, use the `outline-offset` css property to position it correctly. This is how to work out the required outline-offset:
+
+```````HTML
+ADDING A FULL BORDER TO COLUMNS WITH A GUTTER
+
+HTML:
+<div class="columns columns--halves columns--gutter-20 columnsBorderExample">
+	<div class="columns-col columnsBorderExample-col"><!-- column content --></div>
+	<div class="columns-col columnsBorderExample-col"><!-- column content --></div>
+	<div class="columns-col columnsBorderExample-col"><!-- column content --></div>
+	<div class="columns-col columnsBorderExample-col"><!-- column content --></div>
+</div>
+```````
+```````SASS
+SASS:
+.columnsBorderExample {
+	&-col {
+		$outlinePos: (-20 / 2) - 2px; //(-[gutter] / 2) - [outline-width]
+		outline: 2px solid #000;
+		outline-offset: $outlinePos;
+	}
+}
+
+```````
+
+<strong>If you only want one side to have a border </strong> I would recommend faking it by using position:absolute on a :before or :after element and giving it a background color.
+
+```````HTML
+ADDING A SINGLE TOP BORDER TO COLUMNS WITH A GUTTER
+
+HTML:
+<div class="columns columns--halves columns--gutter-20 columnsBorderExample">
+	<div class="columns-col columnsBorderExample-col"><!-- column content --></div>
+	<div class="columns-col columnsBorderExample-col"><!-- column content --></div>
+	<div class="columns-col columnsBorderExample-col"><!-- column content --></div>
+	<div class="columns-col columnsBorderExample-col"><!-- column content --></div>
+</div>
+```````
+```````SASS
+SASS:
+.columnsBorderExample {
+	&-col {
+		@include M-before {
+			$gutterOffset: 20px / 2;
+			position: absolute;
+			left: $gutterOffset;
+			right: $gutterOffset;
+			top: $gutterOffset;
+			height: 1px;
+			width: auto;
+			background: #000;
+		}
+	}
+}
+
+--------------------
+
 ##Warning!
 
 _*The notes below are out of date (and horribly formatted) but I want to put something up here to give an idea of what this thing can do. I'll update this later on to be more accurate (and prettier)._
@@ -334,7 +564,7 @@ Same as above except now it will rotate around the bottom right corner.
 @include M-arrow(direction,colour,length, thickness, thickness2)
 This is my CSS triangle mixin. If we had a triangle that was pointing up, Length would be the height of the triangle (the distance from the point of the triangle to the base of the triangle). Thickness would be half the width of the base of the triangle. Thickness2 is the other half of the base.
 Direction accepts the values: up, down, left and right.
- 
+
 Stored in: _arrows.scss
 Usage:
 
@@ -357,7 +587,7 @@ o	Used when point of the triangle is not equal distance from both corners
 o	X, Y, & Z all equal the values you give them
 
 @include M-icon(icon, height, width, display, position){content}
-Pretty simply, this gives quick and easy access to your icon-font icons. You don't put this mixin inside a :before or :after pseudo element. The mixin does that for you. 
+Pretty simply, this gives quick and easy access to your icon-font icons. You don't put this mixin inside a :before or :after pseudo element. The mixin does that for you.
 
 One thing to note is that this mixin doesn't work inside media queries. If you need to put an icon inside a media query, instead use: @include M-mq-icon(...){ [content] }; It does the same thing but it's self contained.
 
@@ -368,7 +598,7 @@ Usage:
    color: #000;
    ... (Any other styles)
 };
-This is how you are going to incorporate most icons. The pixel value given in slot 2 defines, the font-size, the height and the width of the box around the icon. 
+This is how you are going to incorporate most icons. The pixel value given in slot 2 defines, the font-size, the height and the width of the box around the icon.
 The default display for icons is inline-block and the default position is to use the :before psudo element.
 
 @include M-icon($icon-icon_name, 20px, 10px){
