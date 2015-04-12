@@ -324,7 +324,7 @@ Here is an example of how to use the colspan feature:
 
 In this example the first column will take up 50% of the width while the other two columns will take up only 25% of the width. That is the basic premise of using the --span-# modifier.
 
-The class works as you would expect. The columns set to thids only accepts --span2 where as columns set to sixths can accept --span2 all the way to --span5.
+The class works as you would expect. The columns set to thids only accepts --span-2 where as columns set to sixths can accept --span-2 all the way to --span-5.
 
 <strong>WARNING!</strong> Using the --span-# feature doesn't scale well, extra module specific styling will be needed for smaller screen sizes. If you are using the --span-# feature I'd recommend adding the columns--disableMQs class to the columns div. This will prevent the usual snapping at break points and allow you to add your own module based break points without interference from the default styles.
 
