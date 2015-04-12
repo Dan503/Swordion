@@ -87,6 +87,7 @@
 			margin: -$actualGutter;
 			> .columns-col {
 				border-width: $actualGutter;
+				outline-offset: -$actualGutter - 1;
 			}
 		}
 	}
