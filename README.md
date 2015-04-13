@@ -422,32 +422,32 @@ A lot of the time you don't want your grid cells to be hard up against one anoth
 The above example will add a 20px gutter between each column both horizontally and vertically.<br>
 Available gutter classes can be edited in the grid config file.
 
-<strong>WARNING!</strong><br>
+###Adding borders to cells with gutters
+
 The grid cells use border instead of margin to create the gutters. This is due to border being able to fit within the overall width of it's container. Margin does not have that ability so using margin causes havoc for the widths of the columns.
 
-<strong>If you need to add a border to your guttered grid</strong> then use outline instead. Out of the box, the guttered grid can accept a 1px outline and place it correctly in the element. If you need a thicker border than that, use the `outline-offset` css property to position it correctly. This is how to work out the required outline-offset:
+<strong>If border is already taken, how do we add a border then?</strong>
+
+There is another css property that works almost exactly the same as border and that property is outline :)
+There are a few things outline can't do though that you should be aware of:
+
+ - Outline can't be applied to only one side and all sides have to have to share the same styling
+ - Outline isn't included in the box model, it kind of floats above it
+ - You can position the outline differently using the `outline-offset` css property
+
+Other than that it can be treated pretty much in the same way as border.
+
+To make life easier, the grid system has a `grid--outline-#` modifier class that can be applied to it
 
 ```````HTML
-ADDING A FULL BORDER TO GRID CELLS WITH A GUTTER
+ADDING A FULL BORDER TO GRID CELLS THAT HAVE A GUTTER
 
-HTML:
-<div class="grid grid--halves grid--gutter-20 gridBorderExample">
-	<div class="grid-cell gridBorderExample-cell"><!-- grid content --></div>
-	<div class="grid-cell gridBorderExample-cell"><!-- grid content --></div>
-	<div class="grid-cell gridBorderExample-cell"><!-- grid content --></div>
-	<div class="grid-cell gridBorderExample-cell"><!-- grid content --></div>
+<div class="grid grid--halves grid--gutter-20 grid--outline-2">
+	<div class="grid-cell"><!-- grid content --></div>
+	<div class="grid-cell"><!-- grid content --></div>
+	<div class="grid-cell"><!-- grid content --></div>
+	<div class="grid-cell"><!-- grid content --></div>
 </div>
-```````
-```````SASS
-SASS:
-.gridBorderExample {
-	&-cell {
-		$outlinePos: (-20 / 2) - 2px; //(-[gutter] / 2) - [outline-width]
-		outline: 2px solid #000;
-		outline-offset: $outlinePos;
-	}
-}
-
 ```````
 
 <strong>If you only want one side to have a border </strong> I would recommend faking it by using position:absolute on a :before or :after element and giving it a background color.
@@ -467,15 +467,16 @@ HTML:
 SASS:
 .gridBorderExample {
 	&-cell {
+		position: relative;
 		@include M-before {
-			$gutterOffset: 20px / 2;
+			$gutterOffset: round(20px / 2); //round([gutter] / 2)
 			position: absolute;
 			left: $gutterOffset;
 			right: $gutterOffset;
 			top: $gutterOffset;
-			height: 1px;
+			height: 0px;
 			width: auto;
-			background: #000;
+			border-bottom: 1px solid #000;
 		}
 	}
 }
