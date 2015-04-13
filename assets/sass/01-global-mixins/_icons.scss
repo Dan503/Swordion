@@ -36,14 +36,13 @@
 //styles that are the same for all icons
 @mixin M-icon-static-styles {
 	font-family: 'icons';
-	speak: none;
 	font-style: normal;
 	font-weight: normal;
 	font-variant: normal;
+	speak: none;
 	text-transform: none;
-	line-height: 1;
-	display: inline-block;
     text-align: center;
+	text-indent: 0;
 	vertical-align: middle;
 
 	//* Better Font Rendering =========== */
