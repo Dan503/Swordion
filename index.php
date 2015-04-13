@@ -58,7 +58,7 @@ include 'header.php';
 </div>
 
 <h2>Nav example</h2>
-<nav class="columns columns--noWrap columns--vAlign columns--padding-5 navExample">
+<nav class="grid grid--noWrap grid--vAlign grid--padding-5 navExample">
 
 		<?php
 			$items_array = array(
@@ -81,8 +81,8 @@ include 'header.php';
 				$text = $items_array[$i]['text'];
 				$link = $items_array[$i]['link'];
 				echo
-				'<a href="'.$link.'" class="columns-col navExample-link">
-					<span class="columns-vAlignHelper">'.$text.'</span>
+				'<a href="'.$link.'" class="grid-cell navExample-link">
+					<span class="grid-vAlignHelper">'.$text.'</span>
 				</a>';
 			}
 		?>
@@ -100,7 +100,7 @@ include 'header.php';
 
 						<h2>To do list:</h2>
 						<ol>
-							<li>Create a flexbox version of the columns class</li>
+							<li>Create a flexbox version of the grid class</li>
 							<li>Add the animation Javascript stuff from the DoC project</li>
 							<li>Add an example of a responsive youtube video</li>
 							<li>Change structure to allow for BEM structuring. Look into <a href="https://github.com/mksanderson/crank" title="">Matt S&rsquo;s Crank starter kit</a> for ideas on folder structure and see what else his kit does</li>
@@ -159,7 +159,7 @@ include 'header.php';
 
 <h3>Simple re-usable pop-in animation</h3>
 
-<ul class="popinDemo js-popins columns columns--thirds columns--gutter-20 columns--padding-10">
+<ul class="popinDemo js-popins grid grid--thirds grid--gutter-20 grid--padding-10">
 <?php
 	for ($i = 0; $i < 6; $i++) {
 		$extra = '';
@@ -167,7 +167,7 @@ include 'header.php';
 			$extra = ' extra text for testing';
 		}
 		echo
-		'<li class="popinDemo-piece js-popins-piece columns-col animationDemoItem">'.
+		'<li class="popinDemo-piece js-popins-piece grid-cell animationDemoItem">'.
 			'Pop-in item '.($i+1).$extra.
 		'</li>';
 	};
@@ -175,11 +175,11 @@ include 'header.php';
 </ul>
 
 <h3>Simple multistage animation</h3>
-<ul id="js-simpleExampleElement" class="columns columns--halves columns--gutter-10 simpleAnimationExample">
+<ul id="js-simpleExampleElement" class="grid grid--halves grid--gutter-10 simpleAnimationExample">
 <?php
 	for ($i = 0; $i < 4; $i++) {
 		echo
-		'<li class="simple'.($i+1).' simpleAnimationExample-piece columns-col animationDemoItem">'.
+		'<li class="simple'.($i+1).' simpleAnimationExample-piece grid-cell animationDemoItem">'.
 			'Staged animation item '.($i+1).
 		'</li>';
 	}
