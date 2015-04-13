@@ -79,6 +79,7 @@
 		background-clip: padding-box;
 		border: 0 solid transparent;
 		@include M-prefix(flex-grow,1, $flexPrefixes);
+		outline-color: #000;
 	}
 
 	@each $gutter in $cellGutters {
@@ -94,7 +95,8 @@
 				&.grid--outline-#{$outline} {
 					> .grid-cell {
 						$outline: $outline * 1px;
-						outline: $outline solid #000;
+						outline-width: $outline;
+						outline-style: solid;
 						outline-offset: round((-$gutter / 2) - $outline);
 					}
 				}
