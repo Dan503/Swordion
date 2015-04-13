@@ -83,14 +83,25 @@
 
 	@each $gutter in $cellGutters {
 		&--gutter-#{$gutter} {
-			$actualGutter: ($gutter * 1px) / 2;
+			$actualGutter: round(($gutter * 1px) / 2);
 			margin: -$actualGutter;
 			> .grid-cell {
 				border-width: $actualGutter;
 				outline-offset: -$actualGutter - 1;
 			}
+
+			@each $outline in $cellOutlines {
+				&.grid--outline-#{$outline} {
+					> .grid-cell {
+						$outline: $outline * 1px;
+						outline: $outline solid #000;
+						outline-offset: round((-$gutter / 2) - $outline);
+					}
+				}
+			}
 		}
 	}
+
 
 	@each $pad in $cellPadding {
 		&--padding-#{$pad} {
