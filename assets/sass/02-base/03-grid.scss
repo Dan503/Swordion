@@ -31,8 +31,8 @@
 //	</ul>
 //================================================*/
 
-@for $i from 1 through length($colWidths) {
-	$array: nth($colWidths, $i);
+@for $i from 1 through length($cellWidths) {
+	$array: nth($cellWidths, $i);
 	$class: map-get($array, class);
 	$defaultWidth: map-get($array, default);
 	$breaks: map-get($array, breaks);
@@ -81,7 +81,7 @@
 		@include M-prefix(flex-grow,1, $flexPrefixes);
 	}
 
-	@each $gutter in $columnGutters {
+	@each $gutter in $cellGutters {
 		&--gutter-#{$gutter} {
 			$actualGutter: ($gutter * 1px) / 2;
 			margin: -$actualGutter;
@@ -92,7 +92,7 @@
 		}
 	}
 
-	@each $pad in $columnPadding {
+	@each $pad in $cellPadding {
 		&--padding-#{$pad} {
 			> .grid-cell {
 				padding: $pad * 1px;

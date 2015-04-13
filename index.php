@@ -58,7 +58,7 @@ include 'header.php';
 </div>
 
 <h2>Nav example</h2>
-<nav class="grid grid--noWrap grid--vAlign grid--padding-5 navExample">
+<nav class="grid grid--noWrap grid--vAlign grid--padding-5 grid--border-3 navExample">
 
 		<?php
 			$items_array = array(

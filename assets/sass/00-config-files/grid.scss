@@ -1,26 +1,26 @@
 ﻿//================================================*\
-//*	COLUMNS CONFIGURATION FILE						*/
+//*	gridS CONFIGURATION FILE						*/
 //----------------------------------------------------
 //	This file holds all the configurable aspects of
-//	the columns class system
+//	the grid class system
 //================================================*/
 
-//You can alter the available column gutter sizes here
-//usage: .columns--gutter-20
-$columnGutters: 5, 10, 15, 20, 25, 30;
+//You can alter the available grid gutter sizes here
+//usage: .grid--gutter-20
+$cellGutters: 5, 10, 15, 20, 25, 30;
 
 
-//You can alter the available column padding sizes here
-//usage: .columns--padding-20
-$columnPadding: 5, 10, 15, 20, 25, 30;
+//You can alter the available grid padding sizes here
+//usage: .grid--padding-20
+$cellPadding: 5, 10, 15, 20, 25, 30;
 
 
-//Set the points at which percentage based columns change width
-//@class [string]: The modifire class added to the columns class eg. .columns--halves
+//Set the points at which columns change widths
+//@class [string]: The modifier class added to the grid class eg. .grid--halves
 //@breaks [list OR false booleen]: a list of screensizes at which point the column width changes
 	//@breaks position 1: the screen size the new width is applied to
 	//@breaks position 2: the new width of the columns at the specified screen size
-$colWidths: (
+$cellWidths: (
 		class: full,
 		default: 100%,
 		breaks: false,
