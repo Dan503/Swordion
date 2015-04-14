@@ -484,10 +484,9 @@ SASS:
 
 ###Adding borders to cells WITHOUT gutters
 
-If you don't need the gutters but you do want the borders (essentially making the grid look like a table) you can use the the `grid--border-#` class.
+If you don't need the gutters but you do want the borders (essentially making the grid look like a table) you can use the the `grid--border-#` class. Available border widths can be set in the grid.scss config file in the `$cellBorders` variable.
 
-<strong>Note:</strong><br>
-To change the color of the border, you need to target both the grid-cell <em>AND</em> the grid itself
+<strong>Note:</strong> To change the color of the border, you need to target both the grid-cell <em>AND</em> the grid itself
 
 ```````HTML
 ADDING A FULL BORDER TO GRID CELLS THAT DO NOT HAVE A GUTTER
