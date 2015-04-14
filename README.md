@@ -482,6 +482,46 @@ SASS:
 }
 ```````
 
+###Adding borders to cells WITHOUT gutters
+
+If you don't need the gutters but you do want the borders (essentially making the grid look like a table) you can use the the `grid--border-#` class.
+
+<strong>Note:</strong><br>
+To change the color of the border, you need to target both the grid-cell <em>AND</em> the grid itself
+
+```````HTML
+ADDING A FULL BORDER TO GRID CELLS THAT DO NOT HAVE A GUTTER
+
+<div class="grid grid--halves grid--border-3 gridBorderExample">
+	<div class="grid-cell gridBorderExample-cell"><!-- grid content --></div>
+	<div class="grid-cell gridBorderExample-cell"><!-- grid content --></div>
+	<div class="grid-cell gridBorderExample-cell"><!-- grid content --></div>
+	<div class="grid-cell gridBorderExample-cell"><!-- grid content --></div>
+</div>
+```````
+```````SASS
+SASS:
+.gridBorderExample {
+	&-cell, & {
+		border-color: #fff;
+	}
+}
+```````
+
+<strong>DO NOT MIX GRID--BORDER WITH GRID--GUTTER!!!</strong>
+
+```````HTML
+WHAT NOT TO DO!
+
+<div class="grid grid--halves grid--gutter-20 grid--border-2">
+	<div class="grid-cell"><!-- grid content --></div>
+	<div class="grid-cell"><!-- grid content --></div>
+	<div class="grid-cell"><!-- grid content --></div>
+	<div class="grid-cell"><!-- grid content --></div>
+</div>
+```````
+
+
 --------------------
 
 ##Warning!
