@@ -64,6 +64,7 @@
 .grid {
 	@extend %noDots;
 	min-width: 100%;
+	border: 0 solid #000;
 	@include M-gt-ie8 {
 		@include M-flex;
 		@include M-prefix(align-content, stretch, $flexPrefixes);
@@ -76,12 +77,15 @@
 	&-cell {
 		padding: 0;
 		margin: 0;
-		background-clip: padding-box;
+		background-clip: padding-box!important;
 		border: 0 solid transparent;
 		@include M-prefix(flex-grow,1, $flexPrefixes);
 		outline-color: #000;
+		border-color: #000;
 	}
 
+//grid--gutter styling
+	&[class*="grid--gutter-"] > .grid-cell { border-color: transparent!important; }
 	@each $gutter in $cellGutters {
 		&--gutter-#{$gutter} {
 			$actualGutter: round(($gutter * 1px) / 2);
@@ -104,7 +108,22 @@
 		}
 	}
 
+//grid--border styling
+	@each $border in $cellBorders {
+		&--border-#{$border} {
+			@if (isEven($border)== false){
+				@warn "#{$border} is an uneven value. Only even values are supported. Please remove the #{$border} value from $cellBorders in the gid.scss config file"
+			}
 
+			$border: ($border / 2) * 1px;
+			border-width: $border;
+			> .grid-cell {
+				border-width: $border;
+			}
+		}
+	}
+
+//grid--padding styling
 	@each $pad in $cellPadding {
 		&--padding-#{$pad} {
 			> .grid-cell {

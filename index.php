@@ -281,22 +281,25 @@ include 'header.php';
 	<p>Transmogrification</p>
 </div>
 
-<div id="equalTest">
-	<div>
+<h2>Grid with borders</h2>
+<p>Even values only! Odd border widths not supported</p>
+<div id="equalGridTest" class="equalTest grid grid--halves grid--border-2">
+	<div class="grid-cell">
 		fbhsdjkfbsjkfb<br>
 		fsjkhnwejkfhn<br>
 		jfsdjsdfjf
 	</div>
-	<div>
+	<div class="grid-cell">
 		dfsfklsdfklsd
 	</div>
-	<br>
-	<div>
+	<div class="grid-cell">
 		fhnsdjkf<br>
 		fsdjksd
 	</div>
-	<div>mjsdfkl</div>
+	<div class="grid-cell">mjsdfkl</div>
 </div>
+
+
 
 			<ul class="downloads">
 				<li><a href="downloads/sample.pdf">PDF</a> <small>(2MB)</small></li>

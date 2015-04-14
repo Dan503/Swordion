@@ -19,8 +19,8 @@
 	width: 100px;
 }
 
-#equalTest {
-	div { border: 20px solid green; width: 50%; background: #FFB2B2; float: left; }
+.equalTest { //border-color: green;
+	div {  width: 50%; background: #FFB2B2; float: left; }
 }
 
 .full-screen-div-example { background: #F1F49F; }
