@@ -111,14 +111,20 @@
 //grid--border styling
 	@each $border in $cellBorders {
 		&--border-#{$border} {
-			@if (isEven($border)== false){
-				@warn "#{$border} is an uneven value. Only even values are supported. Please remove the #{$border} value from $cellBorders in the gid.scss config file"
-			}
+			@if (isEven($border)){
 
-			$border: ($border / 2) * 1px;
-			border-width: $border;
-			> .grid-cell {
+				$border: ($border / 2) * 1px;
 				border-width: $border;
+				> .grid-cell {
+					border-width: $border;
+				}
+			} @else {
+				//@warn "#{$border} is an uneven value. Only even values are supported. Please remove the #{$border} value from $cellBorders in the gid.scss config file"
+				$border: $border * 1px;
+				border-width: $border 0 0 $border;
+				> .grid-cell {
+					border-width: 0 $border $border 0;
+				}
 			}
 		}
 	}
