@@ -31,22 +31,26 @@
 //	</ul>
 //================================================*/
 
+
 @for $i from 1 through length($cellWidths) {
 	$array: nth($cellWidths, $i);
 	$class: map-get($array, class);
 	$defaultWidth: map-get($array, default);
 	$breaks: map-get($array, breaks);
 
+//sets the default grid-cell widths
 	.grid--#{$class}:not(.grid--disableMQs) > .grid-cell {
-		//width: percentage(1/$i); //clever way
-		width: $defaultWidth; //more editable way
+		//width: percentage(1/$i); //The clever way :D
+		width: $defaultWidth; //more editable way -_-
 
+//.grid-cell--span-# styling
 		@if ($i > 2){
 			@for $x from 2 through ($i - 1) {
 				&--span-#{$x} { width: percentage($x/$i); }
 			}
 		}
 
+//Applies the media queries for the break points
 		@if ($breaks != false) {
 			@for $y from 1 through length($breaks) {
 				$breakData : nth($breaks, $y);
@@ -60,7 +64,7 @@
 	}
 }
 
-
+//base grid styling
 .grid {
 	@extend %noDots;
 	min-width: 100%;
@@ -74,6 +78,7 @@
 		}
 	}
 
+//base grid-cell styling
 	&-cell {
 		padding: 0;
 		margin: 0;
@@ -84,7 +89,7 @@
 		border-color: #000;
 	}
 
-//grid--gutter styling
+//grid--gutter-# styling
 	&[class*="grid--gutter-"] > .grid-cell { border-color: transparent!important; }
 	@each $gutter in $cellGutters {
 		&--gutter-#{$gutter} {
@@ -95,6 +100,7 @@
 				outline-offset: -$actualGutter - 1;
 			}
 
+//grid--outline-# styling (yes, it needs to go inside the @each)
 			@each $outline in $cellOutlines {
 				&.grid--outline-#{$outline} {
 					> .grid-cell {
@@ -108,7 +114,7 @@
 		}
 	}
 
-//grid--border styling
+//grid--border-# styling
 	@each $border in $cellBorders {
 		&--border-#{$border} {
 			@if (isEven($border)){
@@ -119,7 +125,6 @@
 					border-width: $border;
 				}
 			} @else {
-				//@warn "#{$border} is an uneven value. Only even values are supported. Please remove the #{$border} value from $cellBorders in the gid.scss config file"
 				$border: $border * 1px;
 				border-width: $border 0 0 $border;
 				> .grid-cell {
@@ -129,7 +134,7 @@
 		}
 	}
 
-//grid--padding styling
+//grid--padding-# styling
 	@each $pad in $cellPadding {
 		&--padding-#{$pad} {
 			> .grid-cell {
@@ -138,6 +143,7 @@
 		}
 	}
 
+//vertical alignment code
 	@include M-gt-ie8 {
 		&--vAlign > .grid-cell {
 			@include M-flex;
@@ -146,7 +152,7 @@
 		}
 	}
 
-	//tabular backup for IE9 and below
+//tabular backup for IE9 and below
 	.lt-ie10 & {
 		display: table;
 		> .grid-cell { display: table-cell; }
