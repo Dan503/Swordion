@@ -81,6 +81,9 @@
 	@include M-gt-ie8 {
 		@include M-flex;
 		@include M-prefix(align-content, stretch, $flexPrefixes);
+		@include M-mq(max,bp('large')){
+			@include M-prefix(flex-wrap, wrap, $flexPrefixes);
+		}
 	}
 
 //Unfortunately this is a necessity for IE compatibility
