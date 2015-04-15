@@ -116,7 +116,14 @@
 	}
 
 //grid--gutter-# styling
-	&[class*="grid--gutter-"] > .grid-cell { border-color: transparent!important; }
+	&[class*="grid--gutter-"] > .grid-cell {
+		@include M-gt-ie8 {
+			border-color: transparent!important;
+		}
+		@include M-lt-ie9 {
+			border-color: #fff;
+		}
+	}
 	@each $gutter in $cellGutters {
 		&--gutter-#{$gutter} {
 			$actualGutter: round(($gutter * 1px) / 2);

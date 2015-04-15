@@ -355,6 +355,24 @@ Disabling the media queries also really comes in handy when you need to nest gri
 </div>
 ```````
 
+###Enable wrapping (multiple rows)
+
+Originally I had this turned on by default but it caused issues in IE so this needs to be enabled with the `grid--enableWrapping` class if you want multiple wrapping rows.
+
+Don't worry, media queries still work if this isn't enabled. It only affects desktop sized screens.
+
+```````HTML
+<!-- Nesting grids inside one another and disabling the inner grid Media Queries -->
+<div class="grid grid--halves grid--enableWrapping">
+	<div class="grid-cell"><!-- grid content --></div>
+	<div class="grid-cell"><!-- grid content --></div>
+	<div class="grid-cell"><!-- grid content --></div>
+	<div class="grid-cell"><!-- grid content --></div>
+</div>
+```````
+
+
+
 ###Using the grid system for horizontal nav bars
 
 When you have horizontal navigation, there are a lot of common difficulties to overcome:
@@ -368,7 +386,7 @@ Since the grid system is powered by the flexbox css property (in modern browsers
 
 ```````HTML
 <!-- Example of how to use grid for navigation -->
-<nav class="grid grid--noWrap grid--padding-5 grid--vAlign navExample">
+<nav class="grid grid--padding-5 grid--vAlign navExample">
 	<a href="#item0" class="grid-cell navExample-link">
 		<span class="grid-vAlignHelper">Very long item that is probably too long for navigation</span>
 	</a>
@@ -389,9 +407,6 @@ A few things to note:
 <strong>no grid--[width] class</strong><br>
 Yep that's right, you don't need to set a `grid--halves` or a `grid--sixths` class for the grid to work. If no width class is provided then it will automatically determine how wide the columns should be based on the content inside the grid cell (which is perfect for a horisontal nav bar). I'd recommend setting widths with module based media queries for smaller screen sizes though.
 
-<strong>grid--noWrap</strong><br>
-This prevents the grid cells from wrapping by default. You can easily overide this later in a media query by using `@include M-prefix(flex-wrap, wrap, $flexPrefixes);`. I just found that if the nav is left to it's own devices, the wrapping can lead to some odd looking results on smaller screens.
-
 <strong>grid--padding-#</strong><br>
 To quickly and easily add padding to all the grid cells at once, you can use the `grid--padding-#` modifier class. This class is a bit more powerful than most classes though so depending on the situation, it might be better to add the padding using module based styling instead.<br>
 Available Padding classes can be edited in the grid config file.
@@ -411,7 +426,7 @@ A lot of the time you don't want your grid cells to be hard up against one anoth
 
 ```````HTML
 <!-- Adding a 20px gutter between the grid cells-->
-<div class="grid grid--halves grid--gutter-20">
+<div class="grid grid--quarters grid--gutter-20">
 	<div class="grid-cell"><!-- grid content --></div>
 	<div class="grid-cell"><!-- grid content --></div>
 	<div class="grid-cell"><!-- grid content --></div>
@@ -423,6 +438,8 @@ The above example will add a 20px gutter between each column both horizontally a
 Available gutter classes can be edited in the grid config file.
 
 ###Adding borders to cells with gutters
+
+(feature creates white borders instead of transparent gutters in IE8)
 
 The grid cells use border instead of margin to create the gutters. This is due to border being able to fit within the overall width of it's container. Margin does not have that ability so using margin causes havoc for the widths of the columns.
 
@@ -439,10 +456,12 @@ Other than that it can be treated pretty much in the same way as border.
 
 To make life easier, the grid system has a `grid--outline-#` modifier class that can be applied to it
 
+<strong>Warning!</strong> outline-offset doesn't work in IE. Until it does (or IE is no longer prominent) you should avoid using this feature. add an extra div inside the grid-cell with a border on it instead.
+
 ```````HTML
 ADDING A FULL BORDER TO GRID CELLS THAT HAVE A GUTTER
 
-<div class="grid grid--halves grid--gutter-20 grid--outline-2">
+<div class="grid grid--quarters grid--gutter-20 grid--outline-2">
 	<div class="grid-cell"><!-- grid content --></div>
 	<div class="grid-cell"><!-- grid content --></div>
 	<div class="grid-cell"><!-- grid content --></div>
@@ -456,7 +475,7 @@ ADDING A FULL BORDER TO GRID CELLS THAT HAVE A GUTTER
 ADDING A SINGLE TOP BORDER TO GRID CELLS WITH A GUTTER
 
 HTML:
-<div class="grid grid--halves grid--gutter-20 gridBorderExample">
+<div class="grid grid--quarters grid--gutter-20 gridBorderExample">
 	<div class="grid-cell gridBorderExample-cell"><!-- grid content --></div>
 	<div class="grid-cell gridBorderExample-cell"><!-- grid content --></div>
 	<div class="grid-cell gridBorderExample-cell"><!-- grid content --></div>
@@ -491,7 +510,7 @@ If you don't need the gutters but you do want the borders (essentially making th
 ```````HTML
 ADDING A FULL BORDER TO GRID CELLS THAT DO NOT HAVE A GUTTER
 
-<div class="grid grid--halves grid--border-3 gridBorderExample">
+<div class="grid grid--quarters grid--border-3 gridBorderExample">
 	<div class="grid-cell gridBorderExample-cell"><!-- grid content --></div>
 	<div class="grid-cell gridBorderExample-cell"><!-- grid content --></div>
 	<div class="grid-cell gridBorderExample-cell"><!-- grid content --></div>
@@ -512,7 +531,7 @@ SASS:
 ```````HTML
 WHAT NOT TO DO!
 
-<div class="grid grid--halves grid--gutter-20 grid--border-2">
+<div class="grid grid--quarters grid--gutter-20 grid--border-2">
 	<div class="grid-cell"><!-- grid content --></div>
 	<div class="grid-cell"><!-- grid content --></div>
 	<div class="grid-cell"><!-- grid content --></div>
