@@ -39,26 +39,35 @@
 	$breaks: map-get($array, breaks);
 
 //sets the default grid-cell widths
-	.grid--#{$class}:not(.grid--disableMQs) > .grid-cell {
-		//width: percentage(1/$i); //The clever way :D
-		width: $defaultWidth; //more editable way -_-
+	.grid--#{$class} {
+		> .grid-cell {
+			//width: percentage(1/$i); //The clever way :D
+			width: $defaultWidth; //more editable way -_-
 
 //.grid-cell--span-# styling
-		@if ($i > 2){
-			@for $x from 2 through ($i - 1) {
-				&--span-#{$x} { width: $defaultWidth * $x; }
+			@if ($i > 2){
+				@for $x from 2 through ($i - 1) {
+					&--span-#{$x} { width: $defaultWidth * $x; }
+				}
 			}
-		}
 
 //Applies the media queries for the break points
-		@if ($breaks != false) {
-			@for $y from 1 through length($breaks) {
-				$breakData : nth($breaks, $y);
-				$device : nth($breakData, 1);
-				$width : nth($breakData, 2);
-				@include M-mq(max,$device){
-					width: $width;
+			&:not(.grid--disableMQs) {
+				@if ($breaks != false) {
+					@for $y from 1 through length($breaks) {
+						$breakData : nth($breaks, $y);
+						$device : nth($breakData, 1);
+						$width : nth($breakData, 2);
+						@include M-mq(max,$device){
+							width: $width;
+						}
+					}
 				}
+			}
+		}
+		.no-flexbox &.grid--enableWrapping > .grid-cell {
+			@if ($i > 2) {
+				&:nth-child(#{$i}n+1) { clear: left; }
 			}
 		}
 	}
@@ -72,9 +81,23 @@
 	@include M-gt-ie8 {
 		@include M-flex;
 		@include M-prefix(align-content, stretch, $flexPrefixes);
+	}
 
-		&:not(.grid--noWrap){
-			@include M-prefix(flex-wrap, wrap, $flexPrefixes);
+//Unfortunately this is a necessity for IE compatibility
+	&--enableWrapping {
+		.no-flexbox & {
+			display: block;
+			@extend %clearfix;
+			& > .grid-cell {
+				float: left;
+			}
+		}
+
+		@include M-gt-ie8 {
+			.flexbox & {
+				@include M-flex;
+				@include M-prefix(flex-wrap, wrap, $flexPrefixes);
+			}
 		}
 	}
 

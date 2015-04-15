@@ -7,11 +7,11 @@
 //	These files will be loaded first
 //*================================================*/
 
-	//JS root defined in html for easy build integration
-	var plugin = js_root + 'plugins/conditional/';
-	var segment = js_root + 'segments/conditional/';
+//JS root defined in html for easy build integration
+var plugin = js_root + 'plugins/conditional/';
+var segment = js_root + 'modules/conditional/';
 
-	Modernizr.load([
+Modernizr.load([
 
 /*********************************************\
 
@@ -74,22 +74,25 @@
 
 /*********************************************\
 
-	SEGMENTS
+	MODULES
 ==============================================
 	large sections of code that are really
 	only used in specific circumstances
 	(eg. a home rotator)
 
 \*******************************************/
-
-	  {
-	  	//General form Javascript
-	  	test : $('input[type="browse"]').length || $('select').length,
-	  	yep  : segment + '_form.js'
-	  },
-	  /*{
-	  	//test if browser supports media queries
-	  	test : Modernizr.mq('only all'),
-	  	yep  : segment + '_media-queries.js'
-	  },*/
-	]);
+	{
+		test : $('.lt-ie10').length,
+		yep: segment + 'ie-hacks.js'
+	},
+	{
+		//General form Javascript
+		test : $('input[type="browse"]').length || $('select').length,
+		yep  : segment + '_form.js'
+	},
+	/*{
+		//test if browser supports media queries
+		test : Modernizr.mq('only all'),
+		yep  : segment + '_media-queries.js'
+	},*/
+]);

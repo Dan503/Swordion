@@ -159,7 +159,7 @@ include 'header.php';
 
 <h3>Simple re-usable pop-in animation</h3>
 
-<ul class="popinDemo js-popins grid grid--thirds grid--gutter-20 grid--padding-10 grid--outline-3">
+<ul class="grid grid--thirds grid--enableWrapping grid--gutter-20 grid--padding-10 grid--outline-3 popinDemo js-popins">
 <?php
 	for ($i = 0; $i < 6; $i++) {
 		$extra = '';
