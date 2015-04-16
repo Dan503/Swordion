@@ -422,6 +422,8 @@ I hate how It's not inside a list but I couldn't find any way to make the links 
 
 ###Adding gutters
 
+(Feature creates white borders instead of transparent gutters in IE8)
+
 A lot of the time you don't want your grid cells to be hard up against one another. In those scenarios, we want to add a gutter to our grid.
 
 ```````HTML
@@ -439,7 +441,7 @@ Available gutter classes can be edited in the grid config file.
 
 ###Adding borders to cells with gutters
 
-(feature creates white borders instead of transparent gutters in IE8)
+<strong>Warning!</strong> outline-offset doesn't work in IE (even IE11). Until it does (or IE is no longer prominent) you should avoid using this feature. Add an extra div inside the grid-cell with a border on it instead.
 
 The grid cells use border instead of margin to create the gutters. This is due to border being able to fit within the overall width of it's container. Margin does not have that ability so using margin causes havoc for the widths of the columns.
 
@@ -456,7 +458,6 @@ Other than that it can be treated pretty much in the same way as border.
 
 To make life easier, the grid system has a `grid--outline-#` modifier class that can be applied to it
 
-<strong>Warning!</strong> outline-offset doesn't work in IE. Until it does (or IE is no longer prominent) you should avoid using this feature. add an extra div inside the grid-cell with a border on it instead.
 
 ```````HTML
 ADDING A FULL BORDER TO GRID CELLS THAT HAVE A GUTTER
