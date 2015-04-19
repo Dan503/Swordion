@@ -1,4 +1,78 @@
-/* This is a generated file. Do not edit *//* MediaMatch v.2.0.2 - Testing css media queries in Javascript. Authors & copyright (c) 2013: WebLinc, David Knight. */
+/* This is a generated file. Do not edit *////*================================================*\
+//	BREAK POINTS
+//----------------------------------------------------
+//	Defines the points at which the page design
+//	will snap and drastically change it's styles
+//
+//	!!!WARNING!!!
+//	Ensure that these are always in synch with
+//	the SASS break points:
+//	/assets/sass/00-config-files/break-points.scss
+//*================================================*/
+var
+bp_x_small = 350, //essentially iphones in portrait only
+
+bp_small = 450,
+
+bp_mobile = 600, //maximum for strict mobile view
+
+bp_phablet = 770,
+
+bp_tablet = 960,//maximum for tablets in portrait
+
+bp_desktop = 1024,//point at which desktop content reaches the edge of of the screen
+
+bp_large = 1200;//point at which desktop content reaches the edge of of the screen
+
+
+//lists the available Global targets that relate to the variables here
+var globalTargets = {
+	moduleName : 'module',
+		moduleName_modifier : 'module--modifier-JS',
+
+		elementName : 'module-element',
+			element_modifier : 'module-element--modifier-JS',
+};
+
+
+
+//Please state here the class names for the various grid withs
+//(required for an IE hack)
+
+var gridWidths = [
+	'full',
+	'halves',
+	'thirds',
+	'quarters',
+	'fiths',
+	'sixths'
+];
+/*************************************************\
+  SCREEN SIZE
+================================================
+  Always know the current screen width & height
+\************************************************/
+
+var screen_width = $(window).width();
+var screen_height = $(window).height();
+
+//determines how far down the screen animations start (0.66 = 66% down the screen)
+var x_high_buffer = parseInt(screen_height * 0.25);
+var high_buffer = parseInt(screen_height * 0.33);
+var low_buffer = parseInt(screen_height * 0.66);
+var x_low_buffer = parseInt(screen_height * 0.75);
+
+$(window).resize(function(){
+	screen_width = $(window).width();
+	screen_height = $(window).height();
+
+	x_high_buffer = parseInt(screen_height * 0.25);
+	high_buffer = parseInt(screen_height * 0.33);
+	low_buffer = parseInt(screen_height * 0.66);
+	x_low_buffer = parseInt(screen_height * 0.75);
+});
+
+/* MediaMatch v.2.0.2 - Testing css media queries in Javascript. Authors & copyright (c) 2013: WebLinc, David Knight. */
 
 //Allows old browsers to support enquire.min.js
 
@@ -152,68 +226,6 @@ window.log=function(){log.history=log.history||[];log.history.push(arguments);th
 //!!DO NOT EDIT!!!
 //document.ready opening (it will be correct in the merged js file)
 jQuery(function($){
-///*================================================*\
-//	BREAK POINTS
-//----------------------------------------------------
-//	Defines the points at which the page design
-//	will snap and drastically change it's styles
-//
-//	!!!WARNING!!!
-//	Ensure that these are always in synch with
-//	the SASS break points:
-//	/assets/sass/00-config-files/break-points.scss
-//*================================================*/
-var
-bp_x_small = 350, //essentially iphones in portrait only
-
-bp_small = 450,
-
-bp_mobile = 600, //maximum for strict mobile view
-
-bp_phablet = 770,
-
-bp_tablet = 960,//maximum for tablets in portrait
-
-bp_desktop = 1024,//point at which desktop content reaches the edge of of the screen
-
-bp_large = 1200;//point at which desktop content reaches the edge of of the screen
-
-
-//lists the available Global targets that relate to the variables here
-var globalTargets = {
-	moduleName : 'module',
-		moduleName_modifier : 'module--modifier-JS',
-
-		elementName : 'module-element',
-			element_modifier : 'module-element--modifier-JS',
-};
-
-
-/*************************************************\
-  SCREEN SIZE
-================================================
-  Always know the current screen width & height
-\************************************************/
-
-var screen_width = $(window).width();
-var screen_height = $(window).height();
-
-//determines how far down the screen animations start (0.66 = 66% down the screen)
-var x_high_buffer = parseInt(screen_height * 0.25);
-var high_buffer = parseInt(screen_height * 0.33);
-var low_buffer = parseInt(screen_height * 0.66);
-var x_low_buffer = parseInt(screen_height * 0.75);
-
-$(window).resize(function(){
-	screen_width = $(window).width();
-	screen_height = $(window).height();
-
-	x_high_buffer = parseInt(screen_height * 0.25);
-	high_buffer = parseInt(screen_height * 0.33);
-	low_buffer = parseInt(screen_height * 0.66);
-	x_low_buffer = parseInt(screen_height * 0.75);
-});
-
 /****************************************\
    Allow time for css animations
    but only in browsers that support
