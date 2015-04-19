@@ -1,12 +1,13 @@
 
 var js_merge_files = [
 	'assets/js/plugins/constant/*.js',
-	'assets/js/config-files/doc.ready-open.js',
-	'assets/js/config-files/config.js',
+	'assets/js/doc.ready-open.js',
+	'assets/js/00-global-variables/*.js',
+	'assets/js/01-global-functions/*.js',
 	'assets/js/js-loader.js',
 	'assets/js/_main.js',
-	'assets/js/segments/constant/*.js',
-	'assets/js/config-files/doc.ready-close.js',
+	'assets/js/modules/constant/*.js',
+	'assets/js/doc.ready-close.js',
 ];
 
 //var autoprefixer = require('autoprefixer-core');
@@ -293,7 +294,7 @@ module.exports = function (grunt) {
 	//list the tasks in the order you want them done in
 	grunt.registerTask("default", [
 		"concat",
-			//"uglify",
+		"uglify",//minify JS
 		"sprite",
 		"image_resize",
 		"sass_globbing",

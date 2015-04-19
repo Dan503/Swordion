@@ -63,6 +63,21 @@
 	}
 }
 
+//simple mixin for checking if a variable is equal to a value
+@mixin M-is($variable, $value){
+	@if ($variable == $value){
+		@content;
+	}
+}
+
+//simple mixin for checking if a variable is NOT equal to a value
+@mixin M-isNot($variable, $value){
+	@if ($variable != $value){
+		@content;
+	}
+}
+
+
 ////////////////////////////////////
 //Browser compatibility shortcuts//
 //////////////////////////////////

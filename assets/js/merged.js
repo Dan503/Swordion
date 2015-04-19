@@ -143,19 +143,15 @@ jQuery.fn.scrollToMe = function(speed,callFunc) {
 	return this;
 };
 
+//Not sure what this does. I think it prevents errors in browsers without a console... I think.
+// usage: log('inside coolFunc', this, arguments);
+window.log=function(){log.history=log.history||[];log.history.push(arguments);this.console&&(arguments.callee=arguments.callee.caller,console.log(Array.prototype.slice.call(arguments)))};
+(function(b){function c(){}for(var d="assert,count,debug,dir,dirxml,error,exception,group,groupCollapsed,groupEnd,info,log,markTimeline,profile,profileEnd,time,timeEnd,trace,warn".split(","),a;a=d.pop();)b[a]=b[a]||c})(window.console=window.console||{});
+
 
 //!!DO NOT EDIT!!!
 //document.ready opening (it will be correct in the merged js file)
 jQuery(function($){
-
-///*================================================*\
-//	CONFIGURATION RELATED JS
-//----------------------------------------------------
-//	This file holds functions and variables that
-//	give key measurements for other functions to use
-//*================================================*/
-
-
 ///*================================================*\
 //	BREAK POINTS
 //----------------------------------------------------
@@ -183,10 +179,21 @@ bp_desktop = 1024,//point at which desktop content reaches the edge of of the sc
 bp_large = 1200;//point at which desktop content reaches the edge of of the screen
 
 
+//lists the available Global targets that relate to the variables here
+var globalTargets = {
+	moduleName : 'module',
+		moduleName_modifier : 'module--modifier-JS',
 
-/****************************************\
- Always know current screen width & height
-\****************************************/
+		elementName : 'module-element',
+			element_modifier : 'module-element--modifier-JS',
+};
+
+
+/*************************************************\
+  SCREEN SIZE
+================================================
+  Always know the current screen width & height
+\************************************************/
 
 var screen_width = $(window).width();
 var screen_height = $(window).height();
@@ -206,8 +213,6 @@ $(window).resize(function(){
 	low_buffer = parseInt(screen_height * 0.66);
 	x_low_buffer = parseInt(screen_height * 0.75);
 });
-
-
 
 /****************************************\
    Allow time for css animations
@@ -229,7 +234,6 @@ function animation_time(time){
 	}, animation_time(500));
 */
 
-
 /****************************************\
    IE safe version of preventDefault
 \****************************************/
@@ -237,10 +241,37 @@ function preventDefault(e){
 	(e.preventDefault) ? e.preventDefault() : e.returnValue = false;
 }
 
-//Not sure what this does. I think it prevents errors in browsers without a console... I think.
-// usage: log('inside coolFunc', this, arguments);
-window.log=function(){log.history=log.history||[];log.history.push(arguments);this.console&&(arguments.callee=arguments.callee.caller,console.log(Array.prototype.slice.call(arguments)))};
-(function(b){function c(){}for(var d="assert,count,debug,dir,dirxml,error,exception,group,groupCollapsed,groupEnd,info,log,markTimeline,profile,profileEnd,time,timeEnd,trace,warn".split(","),a;a=d.pop();)b[a]=b[a]||c})(window.console=window.console||{});
+
+/*********************\
+  TARGETING FUNCTIONS
+\*********************/
+
+//sets up the default module targets variable that gets overwritten in every module
+var moduleTargets = {};
+
+//returns a CLASS (dot added) eg. ".module-element--modifier-JS"
+var c = function (key,classSet){
+	classSet = typeof classSet != 'undefined' ?  classSet : moduleTargets;
+	return '.'+classSet[key];
+}
+
+//returns a SPAN (nothing added) eg. "module-element--modifier-JS"
+var s = function (key,classSet){
+	classSet = typeof classSet != 'undefined' ?  classSet : moduleTargets;
+	return classSet[key];
+};
+
+//returns a HOOK (an attribute selector)
+var h = function(key,classSet){
+	classSet = typeof classSet != 'undefined' ?  classSet : moduleTargets;
+	return '[data-JShook="'+classSet[key]+'"]';
+}
+
+//returns an ID (hash added) eg. "#js-module-element"
+var id = function (key,classSet){
+	classSet = typeof classSet != 'undefined' ?  classSet : moduleTargets;
+	return '#'+classSet[key];
+};
 
 
 ///*================================================*\
@@ -251,11 +282,11 @@ window.log=function(){log.history=log.history||[];log.history.push(arguments);th
 //	These files will be loaded first
 //*================================================*/
 
-	//JS root defined in html for easy build integration
-	var plugin = js_root + 'plugins/conditional/';
-	var segment = js_root + 'segments/conditional/';
+//JS root defined in html for easy build integration
+var plugin = js_root + 'plugins/conditional/';
+var segment = js_root + 'modules/conditional/';
 
-	Modernizr.load([
+Modernizr.load([
 
 /*********************************************\
 
@@ -318,43 +349,28 @@ window.log=function(){log.history=log.history||[];log.history.push(arguments);th
 
 /*********************************************\
 
-	SEGMENTS
+	MODULES
 ==============================================
 	large sections of code that are really
 	only used in specific circumstances
 	(eg. a home rotator)
 
 \*******************************************/
-
-	  {
-	  	//General form Javascript
-	  	test : $('input[type="browse"]').length || $('select').length,
-	  	yep  : segment + '_form.js'
-	  },
-	  /*{
-	  	//test if browser supports media queries
-	  	test : Modernizr.mq('only all'),
-	  	yep  : segment + '_media-queries.js'
-	  },*/
-	]);
-
-/*================================================*\
-	MAIN JS FILE
-\*================================================*/
-
-//Small bits and pieces of code go here.
-//Write code here first, then turn it
-//into a segment if it starts getting really big.
-
-//=================================================
-
-
-$('#equalTest div').equalHeights();
-
-if ($('#element').length){
-
-}
-
+	{
+		test : $('.lt-ie10').length,
+		yep: segment + 'ie-hacks.js'
+	},
+	{
+		//General form Javascript
+		test : $('input[type="browse"]').length || $('select').length,
+		yep  : segment + '_form.js'
+	},
+	/*{
+		//test if browser supports media queries
+		test : Modernizr.mq('only all'),
+		yep  : segment + '_media-queries.js'
+	},*/
+]);
 
 /**********************************************************************************\
   open PDFs, docs, external site links (start with http://), etc in a new window
