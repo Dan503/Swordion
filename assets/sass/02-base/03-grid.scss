@@ -94,9 +94,6 @@
 			@include M-prefix(flex-wrap, wrap, $flexPrefixes);
 		}
 	}
-	@include M-lt-ie9 {
-		@include M-clearfix;
-	}
 
 //Unfortunately this is a necessity for IE compatibility
 	&--enableWrapping {
@@ -110,7 +107,6 @@
 
 		@include M-gt-ie8 {
 			.flexbox & {
-				@include M-flex;
 				@include M-prefix(flex-wrap, wrap, $flexPrefixes);
 			}
 		}
@@ -152,7 +148,12 @@
 
 //grid--gutter-# styling
 	&[class*="grid--gutter-"] {
-		> .grid-cell, & { border-color: transparent!important; }
+		> .grid-cell, & {
+			border-color: transparent;
+			@include M-lt-ie9 {
+				border-color: #fff;
+			}
+		}
 	}
 	@each $gutter in $cellGutters {
 		&--gutter-#{$gutter} {

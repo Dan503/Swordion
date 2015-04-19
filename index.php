@@ -159,7 +159,7 @@ include 'header.php';
 
 <h3>Simple re-usable pop-in animation</h3>
 
-<ul class="popinDemo js-popins grid grid--vAlign grid--thirds grid--hasInners grid--gutter-20 grid--padding-10 grid--border-3">
+<ul class="popinDemo js-popins grid grid--enableWrapping grid--vAlign grid--thirds grid--hasInners grid--gutter-20 grid--padding-10 grid--border-3">
 <?php
 	for ($i = 0; $i < 6; $i++) {
 		$extra = '';
@@ -177,7 +177,7 @@ include 'header.php';
 </ul>
 
 <h3>Simple multistage animation</h3>
-<ul id="js-simpleExampleElement" class="grid grid--halves grid--gutter-10 simpleAnimationExample">
+<ul id="js-simpleExampleElement" class="grid grid--halves grid--enableWrapping grid--gutter-10 simpleAnimationExample">
 <?php
 	for ($i = 0; $i < 4; $i++) {
 		echo
