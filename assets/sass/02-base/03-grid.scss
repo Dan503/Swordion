@@ -9,7 +9,15 @@
 //	YOU'RE DOING!
 //================================================*/
 
+%vAlign {
+	@include M-flex;
+	@include M-prefix(flex-direction,column, $flexPrefixes);
+	@include M-prefix(justify-content,center, $flexPrefixes);
+}
 
+%flex {
+	@include M-flex;
+}
 
 //================================================*\
 /*				GRID WIDTHS						*/
@@ -65,7 +73,7 @@
 	@extend %noDots;
 	min-width: 100%;
 	@include M-gt-ie8 {
-		@include M-flex;
+		@extend %flex;
 		@include M-prefix(align-content, stretch, $flexPrefixes);
 
 		&:not(.grid--noWrap){
@@ -79,8 +87,11 @@
 		background-clip: padding-box;
 		border: 0 solid transparent;
 		@include M-prefix(flex-grow,1, $flexPrefixes);
-		outline-color: #000;
 	}
+
+		&-inner {
+			border: 0 solid #000;
+		}
 
 	@each $gutter in $cellGutters {
 		&--gutter-#{$gutter} {
@@ -90,34 +101,57 @@
 				border-width: $actualGutter;
 				outline-offset: -$actualGutter - 1;
 			}
-
-			@each $outline in $cellOutlines {
-				&.grid--outline-#{$outline} {
-					> .grid-cell {
-						$outline: $outline * 1px;
-						outline-width: $outline;
-						outline-style: solid;
-						outline-offset: round((-$gutter / 2) - $outline);
-					}
-				}
-			}
 		}
 	}
 
+	@each $border in $cellBorders {
+		&--border-#{$border} {
+			$border: ($border * 1px);
+			> .grid-cell > .grid-inner {
+				border-width: $border;
+			}
+		}
+	}
 
 	@each $pad in $cellPadding {
 		&--padding-#{$pad} {
 			> .grid-cell {
 				padding: $pad * 1px;
 			}
+			&.grid--hasInners {
+				> .grid-cell > .grid-inner {
+					padding: $pad * 1px;
+				}
+			}
 		}
 	}
 
 	@include M-gt-ie8 {
-		&--vAlign > .grid-cell {
-			@include M-flex;
+		&--vAlign {
+			> .grid-cell {
+				@extend %vAlign;
+			}
+			&.grid--hasInners {
+				> .grid-cell > .grid-inner {
+					@extend %vAlign;
+				}
+			}
+		}
+	}
+
+	&--hasInners {
+		> .grid-cell {
+			@extend %flex;
 			@include M-prefix(flex-direction,column, $flexPrefixes);
-			@include M-prefix(justify-content,center, $flexPrefixes);
+
+			> .grid-inner {
+				@include M-prefix(flex-grow,1, $flexPrefixes);
+			}
+		}
+		&[class*="grid--padding-"] {
+			> .grid-cell {
+				padding: 0!important;
+			}
 		}
 	}
 

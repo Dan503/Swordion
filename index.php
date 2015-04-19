@@ -159,7 +159,7 @@ include 'header.php';
 
 <h3>Simple re-usable pop-in animation</h3>
 
-<ul class="popinDemo js-popins grid grid--thirds grid--gutter-20 grid--padding-10 grid--outline-3">
+<ul class="popinDemo js-popins grid grid--vAlign grid--thirds grid--hasInners grid--gutter-20 grid--padding-10 grid--border-3">
 <?php
 	for ($i = 0; $i < 6; $i++) {
 		$extra = '';
@@ -167,9 +167,11 @@ include 'header.php';
 			$extra = ' extra text for testing';
 		}
 		echo
-		'<li class="popinDemo-piece js-popins-piece grid-cell animationDemoItem">'.
-			'Pop-in item '.($i+1).$extra.
-		'</li>';
+		'<li class="popinDemo-piece js-popins-piece grid-cell animationDemoItem">
+			<div class="grid-inner">
+				<div class="grid-vAlignHelper">Pop-in item '.($i+1).$extra.'</div>
+			</div>
+		</li>';
 	};
 ?>
 </ul>
