@@ -167,9 +167,11 @@ include 'header.php';
 			$extra = ' extra text for testing';
 		}
 		echo
-		'<li class="popinDemo-piece js-popins-piece grid-cell animationDemoItem">'.
-			'Pop-in item '.($i+1).$extra.
-		'</li>';
+		'<li class="popinDemo-piece js-popins-piece grid-cell animationDemoItem">
+			<div class="grid-inner">
+				<div class="grid-vAlignHelper">Pop-in item '.($i+1).$extra.'</div>
+			</div>
+		</li>';
 	};
 ?>
 </ul>
