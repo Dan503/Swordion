@@ -36,10 +36,7 @@ $breakPoints: (
 //	Do not share tweak points between modules.
 //*================================================*/
 
-//only stating tweak points here for the sake of the function
-//Do not place tweak points in here!
-$tweakPoints: ();
-
 @function tp($value){
+	$tweakPoints: () !default;
 	@return map-get($tweakPoints, $value);
 }
