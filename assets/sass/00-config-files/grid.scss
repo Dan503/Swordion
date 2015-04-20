@@ -6,21 +6,17 @@
 //================================================*/
 
 //You can alter the available grid gutter sizes here
-//usage: .grid--gutter-20
+//usage: class="grid grid--gutter-20"
 $cellGutters: 5, 10, 15, 20, 25, 30;
 
-//You can alter the available grid outline thicknesses here
-//usage: .grid--outline-2
-$cellOutlines: 1, 2, 3, 4, 5;
-
-//You can alter the available grid outline thicknesses here
-//usage: .grid--outline-2
-$cellBorders: 1, 2, 3, 4, 5, 10;
+//You can alter the available grid border thicknesses here
+//note that borders require grid-inner elements inside grid-cell elements
+//usage: class="grid grid--border-2 grid--hasInners"
+$cellBorders: 1, 2, 3, 4, 5;
 
 //You can alter the available grid padding sizes here
-//usage: .grid--padding-20
+//usage: class="grid grid--padding-20"
 $cellPadding: 5, 10, 15, 20, 25, 30;
-
 
 //Set the points at which columns change widths
 //@class [string]: The modifier class added to the grid class eg. .grid--halves

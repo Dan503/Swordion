@@ -9,7 +9,15 @@
 //	YOU'RE DOING!
 //================================================*/
 
+%vAlign {
+	@include M-flex;
+	@include M-prefix(flex-direction,column, $flexPrefixes);
+	@include M-prefix(justify-content,center, $flexPrefixes);
+}
 
+%flex {
+	@include M-flex;
+}
 
 //================================================*\
 /*				GRID WIDTHS						*/
@@ -50,17 +58,17 @@
 					&--span-#{$x} { width: $defaultWidth * $x; }
 				}
 			}
+		}
 
 //Applies the media queries for the break points
-			&:not(.grid--disableMQs) {
-				@if ($breaks != false) {
-					@for $y from 1 through length($breaks) {
-						$breakData : nth($breaks, $y);
-						$device : nth($breakData, 1);
-						$width : nth($breakData, 2);
-						@include M-mq(max,$device){
-							width: $width;
-						}
+		&:not(.grid--disableMQs) {
+			@if ($breaks != false) {
+				@for $y from 1 through length($breaks) {
+					$breakData : nth($breaks, $y);
+					$device : nth($breakData, 1);
+					$width : nth($breakData, 2);
+					@include M-mq(max,$device){
+						> .grid-cell { width: $width; }
 					}
 				}
 			}
@@ -79,8 +87,9 @@
 	min-width: 100%;
 	border: 0 solid #000;
 	@include M-gt-ie8 {
-		@include M-flex;
+		@extend %flex;
 		@include M-prefix(align-content, stretch, $flexPrefixes);
+
 		@include M-mq(max,bp('large')){
 			@include M-prefix(flex-wrap, wrap, $flexPrefixes);
 		}
@@ -98,7 +107,6 @@
 
 		@include M-gt-ie8 {
 			.flexbox & {
-				@include M-flex;
 				@include M-prefix(flex-wrap, wrap, $flexPrefixes);
 			}
 		}
@@ -115,57 +123,49 @@
 		border-color: #000;
 	}
 
-//grid--gutter-# styling
-	&[class*="grid--gutter-"] > .grid-cell {
-		@include M-gt-ie8 {
-			border-color: transparent!important;
+//base grid-inner styling
+		&-inner {
+			border: 0 solid #000;
 		}
-		@include M-lt-ie9 {
-			border-color: #fff;
-		}
-	}
-	@each $gutter in $cellGutters {
-		&--gutter-#{$gutter} {
-			$actualGutter: round(($gutter * 1px) / 2);
-			margin: -$actualGutter;
-			> .grid-cell {
-				border-width: $actualGutter;
-				outline-offset: -$actualGutter - 1;
-			}
 
-//grid--outline-# styling (yes, it needs to go inside the @each)
-			@each $outline in $cellOutlines {
-				&.grid--outline-#{$outline} {
-					> .grid-cell {
-						$outline: $outline * 1px;
-						outline-width: $outline;
-						outline-style: solid;
-						outline-offset: round((-$gutter / 2) - $outline);
+//grid--border-# styling
+	@each $border in $cellBorders {
+		&--border-#{$border} {
+			$border: $border * 1px;
+			border-width: $border 0 0 $border;
+			> .grid-cell {
+				border-width: 0 $border $border 0;
+			}
+			&[class*="grid--gutter-"] {
+				> .grid-cell {
+					> .grid-inner {
+						border-width: $border;
 					}
 				}
 			}
 		}
 	}
 
-//grid--border-# styling
-	@each $border in $cellBorders {
-		&--border-#{$border} {
-			@if (isEven($border)){
-
-				$border: ($border / 2) * 1px;
-				border-width: $border;
-				> .grid-cell {
-					border-width: $border;
-				}
-			} @else {
-				$border: $border * 1px;
-				border-width: $border 0 0 $border;
-				> .grid-cell {
-					border-width: 0 $border $border 0;
-				}
+//grid--gutter-# styling
+	&[class*="grid--gutter-"] {
+		> .grid-cell, & {
+			border-color: transparent;
+			@include M-lt-ie9 {
+				border-color: #fff;
 			}
 		}
 	}
+	@each $gutter in $cellGutters {
+		&--gutter-#{$gutter} {
+			$gutter: $gutter * 1px;
+			margin: -$gutter;
+			border-width: $gutter 0 0 $gutter;
+			> .grid-cell {
+				border-width: 0 $gutter $gutter 0;
+			}
+		}
+	}
+
 
 //grid--padding-# styling
 	@each $pad in $cellPadding {
@@ -173,15 +173,40 @@
 			> .grid-cell {
 				padding: $pad * 1px;
 			}
+			&.grid--hasInners {
+				> .grid-cell > .grid-inner {
+					padding: $pad * 1px;
+				}
+			}
 		}
 	}
 
 //vertical alignment code
 	@include M-gt-ie8 {
-		&--vAlign > .grid-cell {
-			@include M-flex;
+		&--vAlign {
+			> .grid-cell {
+				@extend %vAlign;
+			}
+			&.grid--hasInners {
+				> .grid-cell > .grid-inner {
+					@extend %vAlign;
+				}
+			}
+		}
+	}
+
+	&--hasInners {
+		> .grid-cell {
+			@extend %flex;
 			@include M-prefix(flex-direction,column, $flexPrefixes);
-			@include M-prefix(justify-content,center, $flexPrefixes);
+			> .grid-inner {
+				@include M-prefix(flex-grow,1, $flexPrefixes);
+			}
+		}
+		&[class*="grid--padding-"] {
+			> .grid-cell {
+				padding: 0!important;
+			}
 		}
 	}
 

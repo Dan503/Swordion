@@ -439,77 +439,41 @@ A lot of the time you don't want your grid cells to be hard up against one anoth
 The above example will add a 20px gutter between each column both horizontally and vertically.<br>
 Available gutter classes can be edited in the grid config file.
 
-###Adding borders to cells with gutters
 
-<strong>Warning!</strong> outline-offset doesn't work in IE (even IE11). Until it does (or IE is no longer prominent) you should avoid using this feature. Add an extra div inside the grid-cell with a border on it instead.
+###Adding borders to cells with a gutter
 
-The grid cells use border instead of margin to create the gutters. This is due to border being able to fit within the overall width of it's container. Margin does not have that ability so using margin causes havoc for the widths of the columns.
+To make life easier, the grid system has a `grid--border-#` modifier class that can be applied to it. Available border widths can be set in the grid.scss config file in the `$cellBorders` variable.
 
-<strong>If border is already taken, how do we add a border then?</strong>
-
-There is another css property that works almost exactly the same as border and that property is outline :)
-There are a few things outline can't do though that you should be aware of:
-
- - Outline can't be applied to only one side and all sides have to have to share the same styling
- - Outline isn't included in the box model, it kind of floats above it
- - You can position the outline differently using the `outline-offset` css property
-
-Other than that it can be treated pretty much in the same way as border.
-
-To make life easier, the grid system has a `grid--outline-#` modifier class that can be applied to it
-
+I origionally did something clever with outline offset but IE11 doesn't support that so I had to go back to the drawing board. Now if you want to add a border to your grid cells you need to apply a `grid--hasInners` class to the main grid element and also add a `grid-inner` element inside the `grid-cell` element for the system to work.
 
 ```````HTML
-ADDING A FULL BORDER TO GRID CELLS THAT HAVE A GUTTER
+ADDING A BORDER TO GRID CELLS THAT HAVE A GUTTER
 
-<div class="grid grid--quarters grid--gutter-20 grid--outline-2">
-	<div class="grid-cell"><!-- grid content --></div>
-	<div class="grid-cell"><!-- grid content --></div>
-	<div class="grid-cell"><!-- grid content --></div>
-	<div class="grid-cell"><!-- grid content --></div>
+<div class="grid grid--quarters grid--hasInners grid--gutter-20 grid--border-2">
+	<div class="grid-cell">
+		<div class="grid-inner"><!-- grid content --></div>
+	</div>
+	<div class="grid-cell">
+		<div class="grid-inner"><!-- grid content --></div>
+	</div>
+	<div class="grid-cell">
+		<div class="grid-inner"><!-- grid content --></div>
+	</div>
+	<div class="grid-cell">
+		<div class="grid-inner"><!-- grid content --></div>
+	</div>
 </div>
 ```````
 
-<strong>If you only want one side to have a border </strong> I would recommend faking it by using position:absolute on a :before or :after element and giving it a background color.
-
-```````HTML
-ADDING A SINGLE TOP BORDER TO GRID CELLS WITH A GUTTER
-
-HTML:
-<div class="grid grid--quarters grid--gutter-20 gridBorderExample">
-	<div class="grid-cell gridBorderExample-cell"><!-- grid content --></div>
-	<div class="grid-cell gridBorderExample-cell"><!-- grid content --></div>
-	<div class="grid-cell gridBorderExample-cell"><!-- grid content --></div>
-	<div class="grid-cell gridBorderExample-cell"><!-- grid content --></div>
-</div>
-```````
-```````SASS
-SASS:
-.gridBorderExample {
-	&-cell {
-		position: relative;
-		@include M-before {
-			$gutterOffset: round(20px / 2); //round([gutter] / 2)
-			position: absolute;
-			left: $gutterOffset;
-			right: $gutterOffset;
-			top: $gutterOffset;
-			height: 0px;
-			width: auto;
-			border-bottom: 1px solid #000;
-		}
-	}
-}
-```````
 
 ###Adding borders to cells WITHOUT gutters
 
-If you don't need the gutters but you do want the borders (essentially making the grid look like a table) you can use the the `grid--border-#` class. Available border widths can be set in the grid.scss config file in the `$cellBorders` variable.
+If you don't need the gutters but you do want the borders (essentially making the grid look like a table) then you don't need to worry about adding the `grid-inner` stuff.
 
 <strong>Note:</strong> To change the color of the border, you need to target both the grid-cell <em>AND</em> the grid itself
 
 ```````HTML
-ADDING A FULL BORDER TO GRID CELLS THAT DO NOT HAVE A GUTTER
+ADDING A BORDER TO GRID CELLS THAT DO NOT HAVE A GUTTER
 
 <div class="grid grid--quarters grid--border-3 gridBorderExample">
 	<div class="grid-cell gridBorderExample-cell"><!-- grid content --></div>
@@ -525,19 +489,6 @@ SASS:
 		border-color: #fff;
 	}
 }
-```````
-
-<strong>DO NOT MIX GRID--BORDER WITH GRID--GUTTER!!!</strong>
-
-```````HTML
-WHAT NOT TO DO!
-
-<div class="grid grid--quarters grid--gutter-20 grid--border-2">
-	<div class="grid-cell"><!-- grid content --></div>
-	<div class="grid-cell"><!-- grid content --></div>
-	<div class="grid-cell"><!-- grid content --></div>
-	<div class="grid-cell"><!-- grid content --></div>
-</div>
 ```````
 
 
