@@ -22,21 +22,3 @@ $breakPoints: (
 @function bp($value){
 	@return map-get($breakPoints, $value);
 }
-
-
-///*================================================*\
-//	TWEAK POINTS
-//----------------------------------------------------
-//	Defines the points at which the page will
-//	alter slightly to improve the layout
-//
-//	DO NOT DEFINE TWEAK POINTS IN THIS FILE!
-//	The tweak points should be defined in the
-//	sass file for the effected module. Not here!
-//	Do not share tweak points between modules.
-//*================================================*/
-
-@function tp($value){
-	$tweakPoints: () !default;
-	@return map-get($tweakPoints, $value);
-}
