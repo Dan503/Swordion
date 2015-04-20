@@ -91,7 +91,9 @@
 		@include M-prefix(align-content, stretch, $flexPrefixes);
 
 		@include M-mq(max,bp('large')){
-			@include M-prefix(flex-wrap, wrap, $flexPrefixes);
+			&:not(.grid--disableMQs) {
+				@include M-prefix(flex-wrap, wrap, $flexPrefixes);
+			}
 		}
 	}
 
