@@ -1,0 +1,17 @@
+﻿//submit button resets
+
+input[type="submit"] {
+	@extend %appearanceNone;
+	border: none;
+	cursor: pointer;
+	.js & { @include M-opacity(0); }
+}
+
+.styledSubmit {
+	position: relative;
+	cursor: pointer;
+	input[type="submit"] {
+
+		@include M-fill;
+	}
+}

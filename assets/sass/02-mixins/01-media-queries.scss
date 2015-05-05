@@ -1,0 +1,121 @@
+// ******************************************************\
+// * DEVICE WIDTHS
+// ******************************************************/
+$fix-mqs: false !default;
+
+@mixin M-mq($range, $width: bp('mid'), $width-2: null) {
+
+	@if ($lt-ie9 == true) {
+		@if ($fix-mqs >= $width) and ($range == min) {
+			@content;
+		}
+	}
+
+	@else {
+
+		// if has both min and max-widths
+		// if has both min and max-widths
+		@if $width-2 {
+
+			@if ($range == inside) {
+				@media screen and (min-width: #{$width + 1}) and (max-width: $width-2) {
+					@content;
+				}
+			} @else if ($range == outside) {
+				@media not screen and (min-width: #{$width + 1}) and (max-width: $width-2) {
+					@content;
+				}
+			}
+		}
+
+		// else output min or max width
+		@else {
+			@if ($range == 'min') {
+				@media screen and (min-width: #{$width + 1}) {
+					@content;
+				}
+			}
+			@else if ($range == 'max') {
+				@media screen and (max-width: $width) {
+					@content;
+				}
+			}
+		}
+	}
+}
+
+@mixin M-retina {
+  	@media
+		only screen and (-webkit-min-device-pixel-ratio: 2),
+		only screen and (        min-device-pixel-ratio: 2),
+		only screen and (           min-resolution: 192ppi),
+		only screen and (            min-resolution: 2dppx) {
+			@content;
+	}
+}
+
+//**********************************\
+//	Resolution specific elements
+//*********************************/
+@mixin M-mobileOnly {
+	@include M-mq(min,bp('mobile')){
+		display: none!important;
+	}
+}
+
+@mixin M-tabletOnly {
+	@include M-mq(outside,bp('mobile'),bp('tablet')){
+		display: none!important;
+	}
+}
+
+@mixin M-desktopOnly {
+	@include M-mq(max,bp('tablet')){
+		display: none!important;
+	}
+}
+
+@mixin M-nonMobile {
+	@include M-mq(max, bp('mobile')){
+		display: none!important;
+	}
+}
+
+@mixin M-nonTablet {
+	@include M-mq(inside, bp('mobile'), bp('tablet')){
+		display: none!important;
+	}
+}
+
+@mixin M-nonDesktop {
+	@include M-mq(min, bp('tablet')){
+		display: none!important;
+	}
+}
+
+
+// ******************************************************\
+// * IE SPECIFIC RULES
+// ******************************************************/
+
+@mixin M-lt-ie9 {
+    @if ($lt-ie9 == true) {
+        @content;
+    }
+}
+
+@mixin M-gt-ie8 {
+    @if ($lt-ie9 == false) {
+        @content;
+    }
+}
+
+
+// ******************************************************\
+// * PRINT
+// ******************************************************/
+@mixin M-print {
+	@media print {
+		@content;
+	}
+}

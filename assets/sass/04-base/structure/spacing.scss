@@ -1,0 +1,23 @@
+﻿
+//creates a series of classes that make adding vertical spacing easier
+//Example: <div class="margin-top-10"> adds 10px margin to the top of that element
+
+$attributes: margin, padding;
+
+$directions: top, bottom;
+
+$spacings: 0, 1, 2, 5, 10, 15, 20, 25, 30;
+
+
+@each $attribute in $attributes { //goes through every attribute in the list
+	@each $space in $spacings { //goes through every spacing in the list
+		@each $direction in $directions { //goes through every direction in the list
+			.#{$attribute}-#{$direction}-#{$space} { //builds the class based on the current attribute direction and spacing
+				#{$attribute}-#{$direction}: $space * 1px; //adds the css
+			}
+		}
+	}
+}
+
+//example generated css rule:
+// .margin-top-10 { margin-top: 10px; }

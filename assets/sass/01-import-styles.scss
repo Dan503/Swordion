@@ -11,25 +11,25 @@
 @import "00-import-functions.scss";
 
 //any plugin style css gets loaded here (css you aren't meant to edit)
-@import "import-maps/plugins-map.scss";
+@import "import-maps/map-plugins.scss";
 
 //Styles that are essentially resets and tools to help make developing easier
 //order is important, use numbers on files, forms-base must be last.
-@import "import-maps/base-map.scss";
+@import "import-maps/map-base.scss";
 
 //Holds rules for modules that are visible on essentially every page (header, footer, etc.)
 //These are essentially modules OUTSIDE the main content area
 //order shouldn't be very important as long as they are self contained
-@import "import-maps/global-modules-map.scss";
+@import "import-maps/map-globalModules.scss";
 
 //Holds rules for modules that are only visible on certain pages or under certain circumstances
 //These are essentially modules INSIDE the main content area
 //order shouldn't be very important as long as they are self contained
-@import "import-maps/content-modules-map.scss";
+@import "import-maps/map-contentModules.scss";
 
 //Holds the animation stages for elements that are animated using the .addStages() javascript function
 //order shouldn't be important
-@import "import-maps/animation-map.scss";
+//@import "import-maps/map-animations.scss";
 
 //all theming based css goes here
 @import "02-themes.scss";
@@ -39,4 +39,4 @@
 
 
 
-/*! Built by Daniel Tonon - UX Developer - Reading Room Australia - January 2015 !*/
+/*! Built by Daniel Tonon - UX Developer - Reading Room Australia - May 2015 !*/

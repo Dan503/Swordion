@@ -1,0 +1,120 @@
+﻿
+//module colors
+
+$c-checkbox-check: $grey-dark;
+$c-checkbox-check--hover: #000;
+
+$c-checkbox-border: $grey-mid;
+$c-checkbox-border--hover: $grey-mid--hover;
+
+$c-checkbox-bg: #fff;
+$c-checkbox-bg--hover: $grey-light;
+
+
+//This file holds the functionality styling for checkboxes and radio buttons
+//Don't edit this file unless you know what you're doing.
+
+/********* Custom checkbox and radio buttons **********/
+
+//ensures IE8 doesn't get the custom radios and check boxes (IE8 doesn't support ":checked")
+@include M-gt-ie8 {
+	input[type="radio"], input[type="checkbox"] {
+		@extend %vh;
+
+		+ label {
+			padding-left: 25px;
+			position: relative;
+			cursor: pointer;
+
+			&:before, &:after {
+				content: '';
+				display: block;
+				position: absolute;
+				@extend %animate--fast;
+			}
+			//background
+			&:before {
+				@include M-size(15px);
+				background-color: #fff;
+				border: 1px solid $c-checkbox-border;
+				top: 2px;
+				left: 0px;
+			}
+			//foreground
+			@include M-icon('checkmark', $c-checkbox-check, 10px, $pos: after){
+				opacity: 0;
+				left: 3px;
+				top: 5px;
+				background: transparent;
+			};
+		}
+
+		&:focus + label, & + label:hover {
+			&:before {
+				background-color: $c-checkbox-bg--hover;
+				border-color: $c-checkbox-border--hover;
+			}
+			&:after {
+				color: $c-checkbox-check--hover;
+			}
+		}
+		&:checked + label:after { @extend %opacity-1; }
+
+		&.#{$errorClass} {
+			& + label {
+				&:before {
+					background-color: $c-error-bg;
+					border-color: $c-error-border;
+				}
+				&:after {
+					color: $c-error-text;
+				}
+			}
+			&:focus + label, & + label:hover {
+				&:before {
+					background-color: $c-error-bg--hover;
+					border-color: $c-error-border--hover;
+				}
+				&:after {
+					color: $c-error-text--hover;
+				}
+			}
+		}
+	}
+
+	input[type="radio"] {
+		& + label {
+			&:after, &:before {
+				border-radius: 50%;
+			}
+			//foreground
+			&:after {
+				content: '';
+				@include M-size(9px);
+				left: 3px;
+				top: 5px;
+				background-color: $c-checkbox-check;
+				opacity: 0;
+			}
+		}
+		&:focus + label, & + label:hover {
+			&:after {
+				background-color: $c-checkbox-check--hover;
+			}
+		}
+		&.#{$errorClass} {
+			&:focus + label, & + label:hover {
+				&:after {
+					background-color: $c-error-bg--hover;
+				}
+			}
+		}
+	}
+}
+
+//ie8 checkbox styling
+@include M-lt-ie9 {
+	input[type="radio"], input[type="checkbox"] {
+		float: left;
+	}
+}

@@ -1,78 +1,4 @@
-/* This is a generated file. Do not edit *////*================================================*\
-//	BREAK POINTS
-//----------------------------------------------------
-//	Defines the points at which the page design
-//	will snap and drastically change it's styles
-//
-//	!!!WARNING!!!
-//	Ensure that these are always in synch with
-//	the SASS break points:
-//	/assets/sass/00-config-files/break-points.scss
-//*================================================*/
-var
-bp_x_small = 350, //essentially iphones in portrait only
-
-bp_small = 450,
-
-bp_mobile = 600, //maximum for strict mobile view
-
-bp_phablet = 770,
-
-bp_tablet = 960,//maximum for tablets in portrait
-
-bp_desktop = 1024,//point at which desktop content reaches the edge of of the screen
-
-bp_large = 1200;//point at which desktop content reaches the edge of of the screen
-
-
-//lists the available Global targets that relate to the variables here
-var globalTargets = {
-	moduleName : 'module',
-		moduleName_modifier : 'module--modifier-JS',
-
-		elementName : 'module-element',
-			element_modifier : 'module-element--modifier-JS',
-};
-
-
-
-//Please state here the class names for the various grid withs
-//(required for an IE hack)
-
-var gridWidths = [
-	'full',
-	'halves',
-	'thirds',
-	'quarters',
-	'fiths',
-	'sixths'
-];
-/*************************************************\
-  SCREEN SIZE
-================================================
-  Always know the current screen width & height
-\************************************************/
-
-var screen_width = $(window).width();
-var screen_height = $(window).height();
-
-//determines how far down the screen animations start (0.66 = 66% down the screen)
-var x_high_buffer = parseInt(screen_height * 0.25);
-var high_buffer = parseInt(screen_height * 0.33);
-var low_buffer = parseInt(screen_height * 0.66);
-var x_low_buffer = parseInt(screen_height * 0.75);
-
-$(window).resize(function(){
-	screen_width = $(window).width();
-	screen_height = $(window).height();
-
-	x_high_buffer = parseInt(screen_height * 0.25);
-	high_buffer = parseInt(screen_height * 0.33);
-	low_buffer = parseInt(screen_height * 0.66);
-	x_low_buffer = parseInt(screen_height * 0.75);
-});
-
-/* MediaMatch v.2.0.2 - Testing css media queries in Javascript. Authors & copyright (c) 2013: WebLinc, David Knight. */
+/* This is a generated file. Do not edit *//* MediaMatch v.2.0.2 - Testing css media queries in Javascript. Authors & copyright (c) 2013: WebLinc, David Knight. */
 
 //Allows old browsers to support enquire.min.js
 
@@ -217,15 +143,72 @@ jQuery.fn.scrollToMe = function(speed,callFunc) {
 	return this;
 };
 
-//Not sure what this does. I think it prevents errors in browsers without a console... I think.
-// usage: log('inside coolFunc', this, arguments);
-window.log=function(){log.history=log.history||[];log.history.push(arguments);this.console&&(arguments.callee=arguments.callee.caller,console.log(Array.prototype.slice.call(arguments)))};
-(function(b){function c(){}for(var d="assert,count,debug,dir,dirxml,error,exception,group,groupCollapsed,groupEnd,info,log,markTimeline,profile,profileEnd,time,timeEnd,trace,warn".split(","),a;a=d.pop();)b[a]=b[a]||c})(window.console=window.console||{});
-
 
 //!!DO NOT EDIT!!!
 //document.ready opening (it will be correct in the merged js file)
 jQuery(function($){
+///*================================================*\
+//	BREAK POINTS
+//----------------------------------------------------
+//	Defines the points at which the page design
+//	will snap and drastically change it's styles
+//
+//	!!!WARNING!!!
+//	Ensure that these are always in synch with
+//	the SASS break points:
+//	/assets/sass/00-config-files/break-points.scss
+//*================================================*/
+var
+bp_x_small = 350, //essentially iphones in portrait only
+
+bp_small = 450,
+
+bp_mobile = 600, //maximum for strict mobile view
+
+bp_phablet = 770,
+
+bp_tablet = 960,//maximum for tablets in portrait
+
+bp_desktop = 1024,//point at which desktop content reaches the edge of of the screen
+
+bp_large = 1200;//point at which desktop content reaches the edge of of the screen
+
+
+//lists the available Global targets that relate to the variables here
+var globalTargets = {
+	moduleName : 'module',
+		moduleName_modifier : 'module--modifier-JS',
+
+		elementName : 'module-element',
+			element_modifier : 'module-element--modifier-JS',
+};
+
+
+/*************************************************\
+  SCREEN SIZE
+================================================
+  Always know the current screen width & height
+\************************************************/
+
+var screen_width = $(window).width();
+var screen_height = $(window).height();
+
+//determines how far down the screen animations start (0.66 = 66% down the screen)
+var x_high_buffer = parseInt(screen_height * 0.25);
+var high_buffer = parseInt(screen_height * 0.33);
+var low_buffer = parseInt(screen_height * 0.66);
+var x_low_buffer = parseInt(screen_height * 0.75);
+
+$(window).resize(function(){
+	screen_width = $(window).width();
+	screen_height = $(window).height();
+
+	x_high_buffer = parseInt(screen_height * 0.25);
+	high_buffer = parseInt(screen_height * 0.33);
+	low_buffer = parseInt(screen_height * 0.66);
+	x_low_buffer = parseInt(screen_height * 0.75);
+});
+
 /****************************************\
    Allow time for css animations
    but only in browsers that support
@@ -246,6 +229,34 @@ function animation_time(time){
 	}, animation_time(500));
 */
 
+
+//simple test to see if you are on the last loop of a .each() function
+function isLastRound(index, testItem){
+	return index == testItem.length - 1;
+}
+
+/******************************************\
+   Easily move elements to new locations
+\******************************************/
+
+	//target is the location it is being moved to
+	//action is the position in relation to the target that the element takes
+
+	//app = append (add it to the end of the target),
+	//prep = prepend (add to the beginning of the target),
+	//before = before (place it just before the target),
+	//after = after (place is straight after the target)
+
+	$.fn.moveTo = function(target,action) {
+		switch(action){
+			case "prep": target.prepend(this); break;
+			case "app": target.append(this); break;
+			case "before": target.before(this); break;
+			case "after": target.after(this); break;
+			case "prep": target.prepend(this); break;
+		}
+	}
+
 /****************************************\
    IE safe version of preventDefault
 \****************************************/
@@ -258,33 +269,70 @@ function preventDefault(e){
   TARGETING FUNCTIONS
 \*********************/
 
+//h = hook ([data-jshook="xxx"])
+//c = class (".xxx")
+//s = span ("xxx")
+//id = id ("#xxx")
+
+
 //sets up the default module targets variable that gets overwritten in every module
+var module = '';
 var moduleTargets = {};
 
 //returns a CLASS (dot added) eg. ".module-element--modifier-JS"
-var c = function (key,classSet){
-	classSet = typeof classSet != 'undefined' ?  classSet : moduleTargets;
+var Class = function (key,classSet){
+	classSet = typeof classSet != 'undefined' ?  classSet : moduleTargets[module];
 	return '.'+classSet[key];
 }
 
 //returns a SPAN (nothing added) eg. "module-element--modifier-JS"
-var s = function (key,classSet){
-	classSet = typeof classSet != 'undefined' ?  classSet : moduleTargets;
+var Span = function (key,classSet){
+	classSet = typeof classSet != 'undefined' ?  classSet : moduleTargets[module];
 	return classSet[key];
 };
 
 //returns a HOOK (an attribute selector)
-var h = function(key,classSet){
-	classSet = typeof classSet != 'undefined' ?  classSet : moduleTargets;
-	return '[data-JShook="'+classSet[key]+'"]';
+var Hook = function(key,classSet){
+	classSet = typeof classSet != 'undefined' ?  classSet : moduleTargets[module];
+	return '[data-jshook="'+classSet[key]+'"]';
 }
 
 //returns an ID (hash added) eg. "#js-module-element"
 var id = function (key,classSet){
-	classSet = typeof classSet != 'undefined' ?  classSet : moduleTargets;
+	classSet = typeof classSet != 'undefined' ?  classSet : moduleTargets[module];
 	return '#'+classSet[key];
 };
 
+
+
+//modified class manipulation
+jQuery.fn.modAddClass = function(target) {
+    this.addClass(Span(target));
+    return this;
+};
+
+jQuery.fn.modRemoveClass = function(target) {
+    this.removeClass(Span(target));
+    return this;
+};
+
+jQuery.fn.modToggleClass = function(target) {
+    this.toggleClass(Span(target));
+    return this;
+};
+
+
+
+//Wait until an element has loaded before firing off a function.
+//Particularly useful for ajax loaded content ;)
+function waitFor(element, callback){
+	var interval = setInterval(function(){
+		if ($(element).length){
+			clearInterval(interval);
+			callback();
+		}
+	}, 10);
+}
 
 ///*================================================*\
 //	CONDITIONAL JS LOADER

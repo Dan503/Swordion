@@ -1,0 +1,82 @@
+﻿///*================================================*\
+//	COLORS
+//----------------------------------------------------
+//	All color variables are listed here
+//*================================================*/
+
+
+// Add percentage of white to a color
+//https://gist.github.com/benfrain/7545629
+@function tint($color, $percent){
+  @return mix(white, $color, $percent);
+}
+
+// Add percentage of black to a color
+//https://gist.github.com/benfrain/7545629
+@function shade($color, $percent){
+  @return mix(black, $color, $percent);
+}
+
+
+///////////////////////////
+// Name color variables //
+/////////////////////////
+
+//changes the intensity of color change on hover
+$hoverModifier: 60%;
+$hoverModifier--large: 80%;
+$hoverModifier--small: 20%;
+
+//Purple
+$purple-pale: #E7DBEB;
+$purple-light: #C4A6CF;
+$purple-mid: #742890;
+$purple-dim: #541D68;
+$purple-dark: #350044;
+	//purple hover states
+	$purple-pale--hover: lighten($purple-pale, $hoverModifier);
+	$purple-light--hover: lighten($purple-light, $hoverModifier);
+	$purple-mid--hover: darken($purple-mid, $hoverModifier);
+	$purple-dim--hover: darken($purple-dim, $hoverModifier);
+	$purple-dark--hover: darken($purple-dark, $hoverModifier);
+
+//Green
+$green-pale: #DDEDAB;
+$green-light: #B7D84B;
+$green-mid: #98B732;
+$green-dim: #74A330;
+$green-dark: #46631D;
+	//green hover states
+	$green-pale: lighten($green-pale, $hoverModifier);
+	$green-light--hover: lighten($green-light, $hoverModifier);
+	$green-mid--hover: darken($green-mid, $hoverModifier);
+	$green-dim--hover: darken($green-dim, $hoverModifier);
+	$green-dark--hover: darken($green-dark, $hoverModifier);
+
+//red
+$red-pale: #FFD1D1;
+$red-light: #F15F3F;
+$red-mid: #CD492B;
+$red-dim: #A22709;
+$red-dark: #6A1A06;
+	//red hover states
+	$red-pale--hover: lighten($red-pale, $hoverModifier);
+	$red-light--hover: lighten($red-light, $hoverModifier);
+	$red-mid--hover: darken($red-mid, $hoverModifier);
+	$red-dim--hover: darken($red-dim, $hoverModifier);
+	$red-dark--hover: darken($red-dark, $hoverModifier);
+
+//grey
+$grey-pale: #F5F5F5;
+$grey-light: #CCCCCC;
+$grey-mid: #999999;
+$grey-dim: #6F6F6F;
+$grey-dark: #333333;
+	//grey hover states
+	$grey-pale--hover: lighten($grey-pale, $hoverModifier);
+	$grey-light--hover: lighten($grey-light, $hoverModifier);
+	$grey-mid--hover: darken($grey-mid, $hoverModifier);
+	$grey-dim--hover: darken($grey-dim, $hoverModifier);
+	$grey-dark--hover: darken($grey-dark, $hoverModifier);
+
+

@@ -8,7 +8,7 @@
 
 //Allows CSS3 in the compilation
 //prevents IE hacks appearing in outputted css
-$ie9: false;
+$ie9: true;
 $lt-ie9: false;
 
 //If set to true, css rules in the config and mixins folders (like the icon class names for example) will be outputted to the css. If set to false, it assumes that those classes have already been stated previously in the main style sheet so it will ignore them when compiling the css.

@@ -1,15 +1,19 @@
 
 /*================================================*\
-	MAIN CSS OUTPUT FILE (MODERN BROWSERS)
+	MAIN CSS OUTPUT FILE (OLD BROWSERS)
 //-----------------------------------------------
 //	This is the file that compiles the css for
-//	modern browsers
+//	IE8 and below
 \*================================================*/
 
-//Allows CSS3 in the compilation
-//prevents IE hacks appearing in outputted css
+//prevents CSS3 from appearing in the compilation (drastically reducing file size)
+//allows IE hacks to appearing in the outputted css
 $ie9: false;
-$lt-ie9: false;
+$lt-ie9: true;
+
+//Prevents media queries from being rendered in the css if they are for screen resolutions lower than this.
+//If the media query is for screens above this width, the css is outputted outside of a media query just appearing as normal css in the compiled style sheet
+$fix-mqs: 1060px;
 
 //If set to true, css rules in the config and mixins folders (like the icon class names for example) will be outputted to the css. If set to false, it assumes that those classes have already been stated previously in the main style sheet so it will ignore them when compiling the css.
 $main-sheet: true;

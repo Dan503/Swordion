@@ -1,12 +1,12 @@
 
 var js_merge_files = [
-	'assets/js/00-global-variables/*.js',
-	'assets/js/plugins/constant/*.js',
+	'assets/js/plugins/constant/**/*.js',
 	'assets/js/doc.ready-open.js',
-	'assets/js/01-global-functions/*.js',
+	'assets/js/00-global-variables/**/*.js',
+	'assets/js/01-global-functions/**/*.js',
 	'assets/js/js-loader.js',
 	'assets/js/_main.js',
-	'assets/js/modules/constant/*.js',
+	'assets/js/modules/constant/**/*.js',
 	'assets/js/doc.ready-close.js',
 ];
 
@@ -47,7 +47,8 @@ module.exports = function (grunt) {
 		uglify: {
 			my_target: {
 				options: {
-					sourceMap: false
+					sourceMap: false,
+					preserveComments: 'some'
 				},
 				files: {
 					"assets/js/merged.min.js": ["assets/js/merged.js"],
@@ -84,7 +85,7 @@ module.exports = function (grunt) {
 	        retina: {
 	            src: 'assets/images/auto-sprite/HD-retina-sourcefiles/*.png',
 	            dest: 'assets/images/auto-sprite/HD-retina-autosprite.png',
-	            destCss: 'assets/sass/00-config-files/sprite-sheets/HD-retina-sprites.scss',
+	            destCss: 'assets/sass/01-config/sprite-sheets/HD-retina-sprites.scss',
 	            cssFormat: 'scss_maps',
 	            imgPath: '../images/auto-sprite/HD-retina-autosprite.png',
 	            padding: 4,
@@ -98,7 +99,7 @@ module.exports = function (grunt) {
 			nonRetina: {
 	            src: 'assets/images/auto-sprite/LD-nonRetina-sourceFiles/*.png',
 	            dest: 'assets/images/auto-sprite/LD-nonRetina-autosprite.png',
-	            destCss: 'assets/sass/00-config-files/sprite-sheets/LD-nonRetina-sprites.scss',
+	            destCss: 'assets/sass/01-config/sprite-sheets/LD-nonRetina-sprites.scss',
 	            cssFormat: 'scss_maps',
 	            imgPath: '../images/auto-sprite/LD-nonRetina-autosprite.png',
 	            padding: 2,
@@ -113,11 +114,14 @@ module.exports = function (grunt) {
 		sass_globbing: {
 			all: {
 				files: {
-					'assets/sass/import-maps/config-map.scss': 'assets/sass/00-config-files/**/*.scss',
-					'assets/sass/import-maps/base-map.scss': 'assets/sass/02-base/**/*.scss',
-					'assets/sass/import-maps/global-modules-map.scss': 'assets/sass/03-global-modules/**/*.scss',
-					'assets/sass/import-maps/content-modules-map.scss': 'assets/sass/04-content-modules/**/*.scss',
-					'assets/sass/import-maps/animation-map.scss': 'assets/sass/05-staged-animations/**/*.scss',
+					'assets/sass/import-maps/map-config.scss': 'assets/sass/00-config/**/*.scss',
+					'assets/sass/import-maps/map-functions.scss': 'assets/sass/01-functions/**/*.scss',
+					'assets/sass/import-maps/map-mixins.scss': 'assets/sass/02-mixins/**/*.scss',
+					'assets/sass/import-maps/map-plugins.scss': 'assets/sass/03-plugins/**/*.scss',
+					'assets/sass/import-maps/map-base.scss': 'assets/sass/04-base/**/*.scss',
+					'assets/sass/import-maps/map-globalModules.scss': 'assets/sass/05-global-modules/**/*.scss',
+					'assets/sass/import-maps/map-contentModules.scss': 'assets/sass/06-content-modules/**/*.scss',
+					//'assets/sass/import-maps/map-animations.scss': 'assets/sass/07-animations/**/*.scss', //only required if the site has advanced multistage animations
 				}
 			}
 		},
@@ -125,23 +129,43 @@ module.exports = function (grunt) {
 
 		//compiles the SASS
 		sass: {
-			dist: {
-				options: {
-					style: "compact",
+			options: {
+				style: "compact",
 
-					//'sass-globbing' allows sass to bulk import files
-					//you need to install the 'sass-globbing' gem before use (gem install sass-globbing)
-					//require: 'sass-globbing',// Doesn't work on Windows :'(
+				//'sass-globbing' allows sass to bulk import files
+				//you need to install the 'sass-globbing' gem before use (gem install sass-globbing)
+				//require: 'sass-globbing',// Doesn't work on Windows :'(
 
-					//sourcemap: true, //deprecated in latest SASS version
-					compass: false // I don't like compass >:(
-					//compass: true
-				},
+				//sourcemap: true, //deprecated in latest SASS version
+				compass: false // I don't like compass >:(
+				//compass: true
+			},
+			all: {//compile all at the same time
 				files: {
 					//Modern style sheet
 					"assets/css/style.css": "assets/sass/output-files/style.scss",
+					//IE9 style sheet
+					"assets/css/style-ie9.css": "assets/sass/output-files/style-ie9.scss",
 					//IE8 style sheet
-					"assets/css/style-lt-ie9.css": "assets/sass/output-files/style-lt-ie9.scss",
+					"assets/css/style-ie8.css": "assets/sass/output-files/style-ie8.scss",
+				}
+			},
+			modern: {//only compile the modern style sheet
+				files: {
+					//Modern style sheet
+					"assets/css/style.css": "assets/sass/output-files/style.scss",
+				}
+			},
+			ie9 : {
+				files: {
+					//IE9 style sheet
+					"assets/css/style-ie9.css": "assets/sass/output-files/style-ie9.scss",
+				}
+			},
+			ie8 : {
+				files: {
+					//IE8 style sheet
+					"assets/css/style-ie8.css": "assets/sass/output-files/style-ie8.scss",
 				}
 			}
 		},
@@ -165,7 +189,7 @@ module.exports = function (grunt) {
 		cmq: {
 			your_target: {
 				files: {
-					'assets/css/media-merge/': ['assets/css/*.css']
+					'assets/css/media-merge/': ['assets/css/style.css','assets/css/style-ie9.css','assets/css/style-ie8.css']
 				}
 			}
 		},
@@ -180,7 +204,7 @@ module.exports = function (grunt) {
 			//takes the current css files in the "media-merge" folder, minifies them, adds '.min.css' to the end of the file, and copies them back into the main css folder
 		      expand: true,
 		      cwd: 'assets/css/media-merge/',
-		      src: ['*.css', '!*.min.css'],
+		      src: ['style.css','style-ie9.css','style-ie8.css'],
 		      dest: 'assets/css/',
 		      ext: '.min.css'
 		  }
@@ -233,6 +257,41 @@ module.exports = function (grunt) {
 			}
 		},*/
 
+		'ftp-deploy': {
+			options: {
+				src: '/',
+				exclusions: [
+					'**/.DS_Store',
+					'**/Thumbs.db',
+					'**/tmp',
+					'.sass-cache/**/*',
+					'node_modules/**/*',
+					'00 - Grunt start up.txt',
+					'00 - Grunt ftp-deploy.txt',
+					'Gruntfile.js',
+					'package.json',
+					'.ftppass',
+					'downloads/**/*'//optional
+				]
+			},
+			dev: {
+				auth: {
+					host: 'can1dev011.int.rroom.net',
+					port: '',
+					authKey: 'dev'
+				},
+				dest: 'data/webs/oeh/calculator/prototype',
+			},
+			uat: {
+				auth: {
+					host: 'aws1.readingroom.com.au',
+					port: '',
+					authKey: 'uat'
+				},
+				dest: 'path/to/folder/',
+			}
+		},
+
 		watch: {
 			options: {
 				livereload: true
@@ -241,7 +300,7 @@ module.exports = function (grunt) {
 				files: ["assets/js/**/*.js"],
 				tasks: [
 					"concat" //merges constant js files into one file
-					//"uglify", //minimise JS
+					//"uglify", //minify JS
 					//"copy:js", //copy js to server
 				],
 				options: { spawn: false }
@@ -250,8 +309,8 @@ module.exports = function (grunt) {
 				files: ["**/*.scss"],
 				tasks: [
 					"sass_globbing",//generates import maps for SASS modules
-					"sass:dist", //compile the SASS
-					//"autoprefixer", //add prefixing (I do it with mixins)
+					"sass:modern", //compile the SASS (modern only by default for speed)
+					//"autoprefixer", //add prefixing (I do it with mixins and can't get this to work without ruining the .map files)
 					//"cmq", //merge media queries
 					//"csso", //minify css
 					//"copy:css", //copy css to server
@@ -298,7 +357,7 @@ module.exports = function (grunt) {
 		"sprite",
 		"image_resize",
 		"sass_globbing",
-		"sass:dist",
+		"sass:all",
 		"cmq",//combine media queries
 		"csso",//minify css (css optimiser)
 			//"copy",

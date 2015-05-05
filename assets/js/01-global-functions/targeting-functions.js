@@ -3,29 +3,55 @@
   TARGETING FUNCTIONS
 \*********************/
 
+//h = hook ([data-jshook="xxx"])
+//c = class (".xxx")
+//s = span ("xxx")
+//id = id ("#xxx")
+
+
 //sets up the default module targets variable that gets overwritten in every module
+var module = '';
 var moduleTargets = {};
 
 //returns a CLASS (dot added) eg. ".module-element--modifier-JS"
-var c = function (key,classSet){
-	classSet = typeof classSet != 'undefined' ?  classSet : moduleTargets;
+var Class = function (key,classSet){
+	classSet = typeof classSet != 'undefined' ?  classSet : moduleTargets[module];
 	return '.'+classSet[key];
 }
 
 //returns a SPAN (nothing added) eg. "module-element--modifier-JS"
-var s = function (key,classSet){
-	classSet = typeof classSet != 'undefined' ?  classSet : moduleTargets;
+var Span = function (key,classSet){
+	classSet = typeof classSet != 'undefined' ?  classSet : moduleTargets[module];
 	return classSet[key];
 };
 
 //returns a HOOK (an attribute selector)
-var h = function(key,classSet){
-	classSet = typeof classSet != 'undefined' ?  classSet : moduleTargets;
-	return '[data-JShook="'+classSet[key]+'"]';
+var Hook = function(key,classSet){
+	classSet = typeof classSet != 'undefined' ?  classSet : moduleTargets[module];
+	return '[data-jshook="'+classSet[key]+'"]';
 }
 
 //returns an ID (hash added) eg. "#js-module-element"
 var id = function (key,classSet){
-	classSet = typeof classSet != 'undefined' ?  classSet : moduleTargets;
+	classSet = typeof classSet != 'undefined' ?  classSet : moduleTargets[module];
 	return '#'+classSet[key];
 };
+
+
+
+//modified class manipulation
+jQuery.fn.modAddClass = function(target) {
+    this.addClass(Span(target));
+    return this;
+};
+
+jQuery.fn.modRemoveClass = function(target) {
+    this.removeClass(Span(target));
+    return this;
+};
+
+jQuery.fn.modToggleClass = function(target) {
+    this.toggleClass(Span(target));
+    return this;
+};
+

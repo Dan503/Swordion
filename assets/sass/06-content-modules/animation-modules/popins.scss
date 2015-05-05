@@ -1,0 +1,6 @@
+﻿
+.popins {
+	&-piece { opacity: 0;
+		&--hasPopped { @include M-popin; }
+	}
+}

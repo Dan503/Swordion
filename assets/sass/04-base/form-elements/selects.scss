@@ -1,0 +1,70 @@
+﻿/********* Custom select boxes **********/
+
+%hoverState { background-color: $c-inputFocus; }
+
+select {
+	cursor: pointer;
+	option { font-weight: 100; }
+	.js & { @include M-opacity(0); }
+	&:hover + .styledSelect-display { @extend %hoverState; }
+}
+
+.styledSelect {
+	@extend %inputStyling;
+	width: 100%;
+	padding: 0;
+	position: relative;
+	overflow: hidden;
+	background-color: #fff;
+	cursor: pointer;
+	z-index: 0;
+	padding-right: 30px;
+	@include M-inline-block;
+
+	@include M-icon('arrow-thick--down', #000, 5px, 30px){
+		@include M-centered(v);
+		right: 0;
+		z-index: 1;
+		background-color: $c-primary;
+	}
+
+
+	&-display {
+		@include M-animate(0.25s,$var:background);
+		padding: 5px 0 5px 10px;
+		color: #000;
+		position: relative;
+		z-index: 0;
+		//add the arrow with a css triangle
+	}
+	&:hover .styledSelect-display {
+		@extend %hoverState;
+	}
+
+	//adding triangle with icon instead
+
+	&.#{$errorClass} {
+		background: $red-pale!important;
+		border-color: $red-dim;
+		&:before {
+			border-color: $c-error-border;
+			background-color: $c-error-border;
+			color: $c-error-bg;
+		}
+		.styledSelect-display { color: $red-dark; }
+
+		&:hover .styledSelect-display,
+		select:hover + .styledSelect-display  { background: $c-error-bg--hover; }
+	}
+
+	select {
+		@extend %appearanceNone;
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		@include M-opacity(0);
+		border: none!important;
+		z-index: 2;
+		&:focus + .styledSelect-display { background: $c-inputFocus; }
+	}
+}

@@ -16,19 +16,11 @@
 
 
 //all global variables go in the files listed in here
-@import "import-maps/config-map.scss";
+@import "import-maps/map-config.scss";
 
 //Global functions that extend SASS functionality
-@import "01-global-mixins/_functions.scss";
+@import "import-maps/map-functions.scss";
 
 //Global mixins are listed here
 //order is important
-@import "01-global-mixins/_media-queries.scss";
-@import "01-global-mixins/_css3-shortening.scss";
-@import "01-global-mixins/_shortcuts.scss";
-@import "01-global-mixins/_css-shapes.scss";
-@import "01-global-mixins/_icons.scss";
-@import "01-global-mixins/gradients.scss";
-@import "01-global-mixins/sprites.scss";
-@import "01-global-mixins/_animation.scss";
-@import "01-global-mixins/_animation-effects.scss";
+@import "import-maps/map-mixins.scss";
