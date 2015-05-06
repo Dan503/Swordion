@@ -7,3 +7,4 @@ grunt-start-up.txt
 assets/js/**/*.min.js
 assets/js/merged.js
 assets/sass/import-maps/*.scss
+00-creating new git.txt
