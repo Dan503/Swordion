@@ -98,17 +98,35 @@ $fix-mqs: false !default;
 // * IE SPECIFIC RULES
 // ******************************************************/
 
-@mixin M-lt-ie9 {
-    @if ($lt-ie9 == true) {
+//IE 8 and 9
+@mixin M-lt-ie10 {
+    @if ($lt-ie10) {
         @content;
     }
 }
 
+//IE8
+@mixin M-lt-ie9 {
+    @if ($lt-ie9) {
+        @content;
+    }
+}
+
+//IE10 + (modern)
+@mixin M-gt-ie9 {
+    @if ($lt-ie10 == false) {
+        @content;
+    }
+}
+
+//IE9 +
 @mixin M-gt-ie8 {
     @if ($lt-ie9 == false) {
         @content;
     }
 }
+
+
 
 
 // ******************************************************\

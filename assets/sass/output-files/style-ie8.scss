@@ -9,6 +9,8 @@
 //prevents CSS3 from appearing in the compilation (drastically reducing file size)
 //allows IE hacks to appearing in the outputted css
 $ie9: false;
+$ie8: true;
+$lt-ie10: true;
 $lt-ie9: true;
 
 //Prevents media queries from being rendered in the css if they are for screen resolutions lower than this.
