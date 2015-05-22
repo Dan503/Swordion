@@ -3,46 +3,124 @@
 // ******************************************************/
 $fix-mqs: false !default;
 
-@mixin M-mq($range, $width: bp('mid'), $width-2: null) {
 
-	@if ($lt-ie9 == true) {
-		@if ($fix-mqs >= $width) and ($range == min) {
-			@content;
-		}
-	}
+@mixin M-mq($range, $setting1: null, $setting2: null) {
 
-	@else {
+	$mediaString: '';
+	$mediaQuery: ();
+	$errorMessage: "first width setting (#{$setting1}) must be lower than the second width setting (#{$setting2})";
 
-		// if has both min and max-widths
-		// if has both min and max-widths
-		@if $width-2 {
+	@if ($setting1 == null) {
 
-			@if ($range == inside) {
-				@media screen and (min-width: #{$width + 1}) and (max-width: $width-2) {
+		//@for $i from 1 through length($range) {
+		@each $mqSet in $range {
+			$newRange: nth($mqSet,1);
+			$newWidth: nth($mqSet,2);
+			$newWidth2: null;
+			@if (length($mqSet) == 3){
+				$newWidth2: nth($mqSet,3);
+			}
+
+
+			@if (($newWidth2 != null) and ($newWidth > $newWidth2)){
+				@error $errorMessage;
+			}
+
+			@if ($lt-ie9 == true) {
+
+				@if (($fix-mqs >= $newWidth) and ($newRange == 'min')) {
+					@content;
+				} @else if (($newWidth2 != null) and ($fix-mqs >= $newWidth2) and ($newRange == 'outside')) {
+					@content;
+				} @else if (($newWidth2 != null) and ($fix-mqs >= $newWidth) and ($fix-mqs <= $newWidth2) and ($newRange == 'inside')) {
 					@content;
 				}
-			} @else if ($range == outside) {
-				@media not screen and (min-width: #{$width + 1}) and (max-width: $width-2) {
-					@content;
+
+			} @else {
+				// if has both min and max-widths
+				// if has both min and max-widths
+				@if ($newWidth2 != null) {
+
+					@if ($newRange == inside) {
+						$mediaString:'screen and (min-width: #{$newWidth + 1}) and (max-width: #{$newWidth2})';
+						$mediaQuery: append($mediaQuery, $mediaString, 'comma');
+
+						//@debug $mediaQuery;
+
+					} @else if ($range == outside) {
+						$mediaString:'not screen and (min-width: #{$newWidth + 1}) and (max-width: #{$newWidth2})';
+						$mediaQuery: append($mediaQuery, $mediaString, 'comma');
+					}
+
+				} @else {// else output min or max width
+
+					@if ($newRange == 'min') {
+						$mediaString:'screen and (min-width: #{$newWidth + 1})';
+						$mediaQuery: append($mediaQuery, $mediaString, 'comma');
+
+					} @else if ($newRange == 'max') {
+						$mediaString:'screen and (max-width: #{$newWidth})';
+						$mediaQuery: append($mediaQuery, $mediaString, 'comma');
+					}
 				}
+			}//end IE check
+
+		}//end @each
+
+		@if ($lt-ie9 == false) {
+			@media #{$mediaQuery} {
+				@content;
 			}
 		}
+	} @else {
 
-		// else output min or max width
-		@else {
-			@if ($range == 'min') {
-				@media screen and (min-width: #{$width + 1}) {
-					@content;
-				}
-			}
-			@else if ($range == 'max') {
-				@media screen and (max-width: $width) {
-					@content;
-				}
-			}
+		@if (($setting2 != null) and ($setting1 > $setting2)){
+			@error $errorMessage;
 		}
+
+
+		@if ($lt-ie9 == true) {
+			@if (($fix-mqs >= $setting1) and ($range == 'min')) {
+				@content;
+			} @else if (($setting2 != null) and ($fix-mqs >= $setting2) and ($range == 'outside')) {
+				@content;
+			} @else if (($setting2 != null) and ($fix-mqs >= $setting1) and ($fix-mqs <= $setting2) and ($range == 'inside')) {
+				@content;
+			}
+		} @else {
+			// if has both min and max-widths
+			// if has both min and max-widths
+			@if $setting2 {
+
+				@if ($range == inside) {
+					@media screen and (min-width: #{$setting1 + 1}) and (max-width: $setting2) {
+						@content;
+					}
+				} @else if ($range == outside) {
+					@media not screen and (min-width: #{$setting1 + 1}) and (max-width: $setting2) {
+						@content;
+					}
+				}
+			}
+
+			// else output min or max width
+			@else {
+				@if ($range == 'min') {
+					@media screen and (min-width: #{$setting1 + 1}) {
+						@content;
+					}
+				}
+				@else if ($range == 'max') {
+					@media screen and (max-width: $setting1) {
+						@content;
+					}
+				}
+			}
+		}//end IE check
+
 	}
 }
+
 
 @mixin M-retina {
   	@media
@@ -57,38 +135,42 @@ $fix-mqs: false !default;
 //**********************************\
 //	Resolution specific elements
 //*********************************/
+
+$BP-mobile: bp('mobile');
+$BP-tablet: $BPG-sideNav--accordionStyle;
+
 @mixin M-mobileOnly {
-	@include M-mq(min,bp('mobile')){
+	@include M-mq(min, $BP-mobile){
 		display: none!important;
 	}
 }
 
 @mixin M-tabletOnly {
-	@include M-mq(outside,bp('mobile'),bp('tablet')){
+	@include M-mq(outside, $BP-mobile, $BP-tablet){
 		display: none!important;
 	}
 }
 
 @mixin M-desktopOnly {
-	@include M-mq(max,bp('tablet')){
+	@include M-mq(max,$BP-tablet){
 		display: none!important;
 	}
 }
 
 @mixin M-nonMobile {
-	@include M-mq(max, bp('mobile')){
+	@include M-mq(max, $BP-mobile){
 		display: none!important;
 	}
 }
 
 @mixin M-nonTablet {
-	@include M-mq(inside, bp('mobile'), bp('tablet')){
+	@include M-mq(inside, $BP-mobile, $BP-tablet){
 		display: none!important;
 	}
 }
 
 @mixin M-nonDesktop {
-	@include M-mq(min, bp('tablet')){
+	@include M-mq(min, $BP-tablet){
 		display: none!important;
 	}
 }
