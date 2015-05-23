@@ -491,6 +491,291 @@ SASS:
 }
 ```````
 
+##SASS mixins guide
+
+_(All my mixins start with "M-" because my preferred editor doesn&rsquo;t like ending keyboard shortcut code snippets with a space)_
+
+All SASS mixins are stored here... unless they are module specific:
+/assets/sass/02-mixins/
+
+###The Media query mixin (@include M-mq(range, width1, width2){ @content })
+
+This is probably the number 1 most useful mixin in Swordion.
+
+####Basic usage
+
+`````````````SASS
+SASS:
+
+.element {
+	background: red;
+
+	@include M-mq(max, 600px){
+		background: blue;
+	}
+}
+`````````````
+`````````````CSS
+outputted CSS:
+
+.element { background: red; }
+@media screen and (max-width: 600px) {
+	.element { background: blue; }
+}
+`````````````
+
+In that example we have stated that we want the background of the element to be red by default but change to blue if the screen is less than 600px wide
+
+It's just as easy to state a minimum width:<br>
+
+`````````````SASS
+SASS:
+
+.element {
+	background: red;
+
+	@include M-mq(min, 600px){
+		background: blue;
+	}
+}
+`````````````
+`````````````CSS
+outputted CSS:
+
+.element { background: red; }
+@media screen and (min-width: 601px) {
+	.element { background: blue; }
+}
+`````````````
+
+Note that in the sass, we state the width as being 600px but it gets outputted as 601px in the CSS. This makes the mixin more intuitive to use and means you'll never have to worry about that ugly 1px cross over point where `min` and `max` ranges set to the same width display at the same time.
+
+But what about IE8? It can't read media queries so those `min` styles won't appear in IE properly... except they will ;)
+
+This is the primary reason for why IE8 gets it's own style sheet. There is a `$fix-mqs` variable in the `/assets/sass/output-files/style-lt-ie9.scss` file. The media query mixin uses this variable to determine if IE should recieve the styles or not. This variable should be set to the max-width of the design on desktop.
+
+If you use a `min` range in the mixin and the value you give is less than the $fix-mqs variable, the styles will be dumped directly into the css without the media query wrapping.
+
+`````````````SASS
+SASS:
+
+.element {
+	background: red;
+
+	@include M-mq(min, 600px){
+		background: blue;
+	}
+	@include M-mq(max, 600px){
+		background: blue;
+	}
+}
+`````````````
+`````````````CSS
+outputted modern CSS:
+
+.element { background: red; }
+@media screen and (min-width: 601px) {
+	.element { background: blue; }
+}
+@media screen and (max-width: 600px) {
+	.element { background: green; }
+}
+`````````````
+`````````````CSS
+outputted IE8 CSS:
+
+.element { background: red; background: blue; }
+`````````````
+
+But what about those times when you only want a style to be effective within a given range? Perhaps you only want something to be blue if it's a tablet sized screen? That is when the `inside` range type come in handy :)
+
+`````````````SASS
+SASS:
+
+.element {
+	background: red;
+
+	@include M-mq(inside, 1024px, 600px){
+		background: blue;
+	}
+}
+`````````````
+`````````````CSS
+outputted CSS:
+
+.element { background: red; }
+@media screen and (max-width: 1024px) and (min-width: 601px) {
+	.element { background: blue; }
+}
+`````````````
+
+Again notice how min-width gets outputted as +1 the value given to avoid potential conflicts.
+
+If you want something to be styled a certain way on mobiles and desktops but not tablets, we can use the `outside` range type:
+
+`````````````SASS
+SASS:
+
+.element {
+	background: red;
+
+	@include M-mq(outside, 1024px, 600px){
+		background: blue;
+	}
+}
+`````````````
+`````````````CSS
+outputted CSS:
+
+.element { background: red; }
+@media not screen and (max-width: 1024px) and (min-width: 601px) {
+	.element { background: blue; }
+}
+`````````````
+`````````````CSS
+outputted IE8 CSS:
+
+.element { background: red; background: blue; }
+`````````````
+
+Yep that's right. If the $fix-mqs variable is higher than the max width of an `outside` range type, the styles will be dumped into the IE style sheet for IE compatibility. The same will also happen if using an `inside` range and the $fix-mqs variable is between the max and minimum width (I doubt that would happen very often though since $fix-mqs is meant to be the maximum width of the design)
+
+####Using $MQ-xxxxx variables
+
+It's a bit of a pain in the ass for maintainability writing the media query conditions inline like that all the time, so the media query mixin can also accept the queries in variable form.
+
+`````````````SASS
+SASS:
+
+$MQ-example: inside, 1024px, 600px;
+
+.element {
+	background: red;
+
+	@include M-mq($MQ-example){
+		background: blue;
+	}
+}
+
+.element2 {
+	background: green;
+
+	@include M-mq($MQ-example){
+		background: grey;
+	}
+}
+`````````````
+`````````````CSS
+outputted CSS:
+
+.element { background: red; }
+@media screen and (max-width: 1024px) and (min-width: 601px) {
+	.element { background: blue; }
+}
+.element2 { background: green; }
+@media screen and (max-width: 1024px) and (min-width: 601px) {
+	.element { background: grey; }
+}
+`````````````
+
+Ahhhhh!!! It's doubling up on Media queries!!! Think of all that extra weight your adding!!!
+
+Don't worry. The Grunt for Swordion has CSS media query merging built into it's css minification stage. 90% of the time, if you use propper BEM technique to name your classes, this doesn't cause an issue. It does occasionally cause issues though so you will need to test your site after switching to the minified css to make sure there aren't any nasty surprises waiting for you.
+
+The CSS doesn't get minified on save. It only minifies when initializing the Grunt task runner. This is to reduce save time.
+
+####Media Query or statements
+
+Media Query or statements are only possible using a `$MQ-xxxxx` variable.
+
+`````````````SASS
+SASS:
+
+$MQ-example:
+	(inside, 1024px, 980px),
+	(max, 600px)
+;
+
+.element {
+	background: red;
+
+	@include M-mq($MQ-example){
+		background: blue;
+	}
+}
+`````````````
+`````````````CSS
+outputted CSS:
+
+.element { background: red; }
+@media screen and (max-width: 1024px) and (min-width: 981px), screen and (max-width: 600px) {
+	.element { background: blue; }
+}
+`````````````
+
+This technique is the most useful when you are targeting a module which is inside a container which is changing in width quite frequently. It's a bit harder to make a counter media query for these though since as long as just a single rule in the or statement is true, the styles will take effect. To effectively create a counter media query for one of these multi queries, you need to carefully target all the gaps in the original statement.
+
+`````````````SASS
+SASS:
+
+$MQ-example:
+	(inside, 1024px, 980px),
+	(max, 600px)
+;
+
+$MQ-example--false:
+	(min, 1024px),//$MQ-example doesn't go any higher than 1024px
+	(inside, 980px, 600px)//$MQ-example doesn't target screen sizes between 980px and 600px.
+	//$MQ-example covers all screen sizes below 600px so no further queries are needed for the counter query
+;
+
+.element {
+	@include M-mq($MQ-example){
+		background: blue;
+	}
+	@include M-mq($MQ-example--false){
+		background: red;
+	}
+}
+`````````````
+`````````````CSS
+outputted CSS:
+
+@media screen and (max-width: 1024px) and (min-width: 981px), screen and (max-width: 600px) {
+	.element { background: blue; }
+}
+@media screen and (min-width: 1025px), screen and (max-width: 980px) and (min-width: 601px) {
+	.element { background: red; }
+}
+`````````````
+
+####Media Query Break points
+
+We're human, we hate using numbers instead of words so typing 600px all over the place is a pain in the ass and horrible for maintainability. That's why I've got a `break-points.scss` config file in the `/assets/sass/00-config/` folder. I've also got a handy `bp('breakPointName')` function for grabing them whenever you want.
+
+`````````````SASS
+SASS:
+
+$MQ-example: inside, bp('tablet'), bp('mobile');
+
+.element {
+	background: red;
+
+	@include M-mq($MQ-example){
+		background: blue;
+	}
+}
+
+`````````````
+`````````````CSS
+outputted CSS:
+
+.element { background: red; }
+@media screen and (max-width: 1024px) and (min-width: 601px) {
+	.element { background: blue; }
+}
+`````````````
+
 
 --------------------
 
@@ -500,12 +785,6 @@ _*The notes below are out of date (and horribly formatted) but I want to put som
 
 --------------------
 
-##SASS mixins guide
-
-_(All my mixins start with "M-" because my editor doesn't like ending keyboard shortcut code snippets with a space)_
-
-All SASS mixins are stored here:
-/assets/sass/mixins/
 
 @include M-animate (time, attribute)
 Add CSS animation to an element.
