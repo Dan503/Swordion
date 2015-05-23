@@ -1,4 +1,11 @@
 ﻿
+$MQ-test-single: max, bp('mobile');
+
+$MQ-test-multiple:
+	(inside, bp('large'), bp('tablet')),
+	(min, bp('page'))
+;
+
 .demo {
 	&-div {
 		height: 200px;
@@ -10,12 +17,19 @@
 		@include M-mq(max,bp('mobile')){
 			background-color: red;
 		}
-		@include M-mq(inside,bp('mobile'),bp('tablet')){
+		@include M-mq(inside,bp('tablet'),bp('mobile')){
 			border: 5px dotted #fff;
 			background: green;
 		}
 		@include M-mq(min,bp('tablet')){
 			background-color: purple;
+		}
+
+		@include M-mq($MQ-test-single){
+			font-size: 40px;
+		}
+		@include M-mq($MQ-test-multiple){
+			color: red!important;
 		}
 	}
 	&-gradient {
