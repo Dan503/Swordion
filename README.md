@@ -684,9 +684,9 @@ Don't worry. The Grunt for Swordion has CSS media query merging built into it's 
 
 The CSS doesn't get minified on save. It only minifies when initializing the Grunt task runner. This is to reduce save time.
 
-####Media Query or statements
+####Media Query "or" statements
 
-Media Query or statements are only possible using a `$MQ-xxxxx` variable.
+Media Query "or" statements are only possible using a `$MQ-xxxxx` variable.
 
 `````````````SASS
 SASS:
