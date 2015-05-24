@@ -21,12 +21,12 @@ $mediaQuery: ();
 	@if ($setting2 != null) {
 
 		@if ($range == 'inside') {
-			$mediaString:'screen and (max-width: #{$setting1 + 1}) and (min-width: #{$setting2})';
+			$mediaString:'screen and (max-width: #{$setting1}) and (min-width: #{$setting2 + 1})';
 
 			//@debug $mediaQuery;
 
 		} @else if ($range == 'outside') {
-			$mediaString:'not screen and (max-width: #{$setting1 + 1}) and (min-width: #{$setting2})';
+			$mediaString:'not screen and (max-width: #{$setting1}) and (min-width: #{$setting2 + 1})';
 		}
 
 	} @else {// else output min or max width
