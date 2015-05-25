@@ -1,31 +1,41 @@
-<!doctype html>
-
-
-	<!-- Web Design & Development by Reading Room -->
-	<!-- www.readingroom.com.au (02) 6229 9400 -->
-
-<!-- http://www.paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
-<!--[if lt IE 8]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en"> <![endif]-->
-<!--[if IE 8]>    <html class="no-js ie8 lt-ie10 lt-ie9" lang="en"> <![endif]-->
-<!--[if IE 9]>    <html class="no-js ie9 lt-ie10" lang="en"> <![endif]-->
-<!--[if gt IE 9]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
-
-<?php
-	//sets the php error reporting configuration for the site to be less fussy about undefined variables
-	ini_set('error_reporting','E_COMPILE_ERROR|E_RECOVERABLE_ERROR|E_ERROR|E_CORE_ERROR|E_PARSE');
-
-	//Set errors to this for debugging
-	//ini_set('error_reporting','ALL');
-?>
 
 <head>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta charset="utf-8">
 
+<?php
+	//sets the page title for the current page
+	if (isset($nav_tertiary) && $nav_tertiary >= 0){
+		$pageTitle =
+			$navigationMap
+				[$nav_primary]
+				['subNav']
+				[$nav_secondary]
+				['subNav']
+				[$nav_tertiary]
+				['text'];
+	} else if (isset($nav_secondary) && $nav_secondary >= 0){
+		$pageTitle =
+			$navigationMap
+				[$nav_primary]
+				['subNav']
+				[$nav_secondary]
+				['text'];
+	} else {
+		$pageTitle =
+			$navigationMap
+				[$nav_primary]
+				['text'];
+	}
+?>
+
     <title><?php
-        if ($home == true) print 'Swordion Starter Kit';
-        else print $pageTitle . ' | Website name goes here' ?>
-    </title>
+        if ($home == true) {
+			print 'Royal Australian Air Force: Air Power Development Centre';
+        } else {
+			print $pageTitle . ' | Air Power Development Centre';
+        }
+	?></title>
 	<meta name="description" content="">
 	<meta name="author" content="">
 
@@ -42,8 +52,8 @@
 	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-icon-144x144-precomposed.png" />
 
 	<?php
-		//$environment = 'production';
-		$environment = 'development';
+		$environment = 'production';
+		//$environment = 'development';
 	?>
 
 	<!--[if gt IE 8]><!-->
@@ -84,23 +94,3 @@
 	<?php /* I haven't seen selectivizr work yet :( */ ?>
 
 </head>
-<body class="<?php echo $body_classes ?> theme-dark">
-
-	<!-- I've found the <noscript> tag to not always work properly -->
-    <div class="noscript-message jsHide">
-    	<p>Please <a href="http://www.enable-javascript.com/">enable javascript</a> to access the full functionality of this site</p>
-    </div>
-
-	<div class="pageWidth siteContainer">
-		<div id="skipLinks">
-			<a href="#contentStart" class="vh focusable" title="">Skip to content</a>
-		</div>
-		<header>
-
-				<div class="wrapper">
-					<h2 id="logo">Logo</h2>
-				</div>
-				<!-- @.wrapper-->
-
-		</header>
-		<!-- @#siteheader-->

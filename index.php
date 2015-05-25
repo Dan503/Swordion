@@ -2,12 +2,15 @@
 ini_set('include_path', $_SERVER['DOCUMENT_ROOT'].'/includes/');
 $body_classes = "home";
 $home = true;
-include 'header.php';
+$hasSideBar = false;
+$nav_primary = 0;
+include '02-base/body.php';
+
+$modulePath = '01-modules/siteMain/';
+
+$modulePath_home = $modulePath.'home/';
+
 ?>
-
-
-		<section id="main" role="main">
-				<div class="wrapper">
 
 
 <div class="demo">
@@ -95,7 +98,6 @@ include 'header.php';
 	<p>Scroll down to see more content</p>
 </div>
 
-				<a href="javascript:void(0)" id="contentStart"></a>
 				<div class="content">
 
 						<h2>To do list:</h2>
@@ -312,8 +314,6 @@ include 'header.php';
 				<li><a href="http://www.example.com" title="example of an external link">External link</a></li>
 			</ul>
 
-					</div>
-				</div>
-		</section><!-- #main-->
+			</div>
 
-<?php include 'footer.php'; ?>
+<?php include '02-base/foot.php'; ?>
