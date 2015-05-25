@@ -1,0 +1,30 @@
+
+
+
+/*================================================*\
+	MAIN CSS OUTPUT FILE (OLD BROWSERS)
+//-----------------------------------------------
+//	This is the file that compiles the css for
+//	IE8 and below
+\*================================================*/
+
+//If set to true, css rules in the config and mixins folders (like the icon class names for example) will be outputted to the css. If set to false, it assumes that those classes have already been stated previously in the main style sheet so it will ignore them when compiling the css.
+$main-sheet: true;
+
+//prevents CSS3 from appearing in the compilation (drastically reducing file size)
+//allows IE hacks to appearing in the outputted css
+$ie9: false;
+$ie8: true;
+$lt-ie10: true;
+$lt-ie9: true;
+
+//all global variables go in the files listed in here
+@import "../import-maps/map-config.scss";
+
+//Prevents media queries from being rendered in the css if they are for screen resolutions lower than this.
+//If the media query is for screens above this width, the css is outputted outside of a media query just appearing as normal css in the compiled style sheet
+$fix-mqs: bp('page');
+
+
+
+@import "../01-import-styles.scss";

@@ -52,8 +52,8 @@
 	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-icon-144x144-precomposed.png" />
 
 	<?php
-		$environment = 'production';
-		//$environment = 'development';
+		//$environment = 'production';
+		$environment = 'development';
 	?>
 
 	<!--[if gt IE 8]><!-->

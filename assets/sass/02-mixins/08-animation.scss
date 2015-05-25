@@ -3,8 +3,10 @@
 //////////////////////////
 
 @mixin M-3d {
-    -webkit-transform-style: preserve-3d;
-	transform-style: preserve-3d;
+	@include M-gt-ie8 {
+	    -webkit-transform-style: preserve-3d;
+		transform-style: preserve-3d;
+	}
 }
 %M-3d { @include M-3d; }
 
@@ -18,8 +20,15 @@
 		$settings: 1s;
 	}
 	@include M-gt-ie8 {
-	    -webkit-transition: $var $settings $ease;
-	    transition:  $var $settings $ease;
+		$rule: ();
+		@each $variable in $var {
+			$values: $variable $settings $ease;
+			$rule: append($rule, $values, 'comma');
+		}
+
+	    -webkit-transition: $rule;
+	    transition: $rule;
+
 		@if ($style == 3D){
 			@include M-3d;
 		}
@@ -62,26 +71,28 @@
 
 //analyses the animation set and generates the css rules for each key frame
 @mixin M-kf-animation-loop ($animation_set){
-	@for $frame from 1 through length($animation_set) {
-		$keyframe: nth(nth($animation_set,$frame),2);
-		$css: nth(nth($animation_set,$frame),1);
+	@include M-gt-ie8 {
+		@for $frame from 1 through length($animation_set) {
+			$keyframe: nth(nth($animation_set,$frame),2);
+			$css: nth(nth($animation_set,$frame),1);
 
-	 	#{$keyframe} {
-			@for $rule from 1 through length($css) {
-				$attribute: nth(nth($css, $rule),1);
-				$value: nth(nth($css, $rule),2);
-				@if ($attribute == rotate){
-					@include M-rotate($value);
-				} @else if ($attribute == 3D-rotate){
-					@include M-rotate(nth($value,1), $axis: nth($value,2));
-				} @else if ($attribute == scale) {
-					@include M-scale($value);
-				} @else {
-					#{$attribute} : $value;
+		 	#{$keyframe} {
+				@for $rule from 1 through length($css) {
+					$attribute: nth(nth($css, $rule),1);
+					$value: nth(nth($css, $rule),2);
+					@if ($attribute == rotate){
+						@include M-rotate($value);
+					} @else if ($attribute == 3D-rotate){
+						@include M-rotate(nth($value,1), $axis: nth($value,2));
+					} @else if ($attribute == scale) {
+						@include M-scale($value);
+					} @else {
+						#{$attribute} : $value;
+					}
 				}
 			}
-		}
-    }
+	    }
+	}
 };
 
 //Sets up the key-frames for the animation
@@ -113,8 +124,10 @@
 
 //Ties all the key-frame animation mixins together into a single easy to use mixin
 @mixin M-kf-animate($animation_name, $animation_set, $settings: 1s, $loops: infinite, $ease: linear) {
+	@include M-gt-ie8 {
 		@include M-kf-definition($animation_name, $animation_set);
 		@include M-kf-predefined($animation_name, $settings, $loops, $ease);
+	}
 }
 
 

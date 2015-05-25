@@ -48,6 +48,6 @@ foreach($files as $file) {
 
 		<?php include ($_SERVER['DOCUMENT_ROOT'].'/includes/01-modules/siteHeader/00-siteHeader.php'); ?>
 
-		<div class="siteMain width--page">
+		<div class="siteMain TK-pageWidth">
 
 			<?php if (!$hasSideBar) echo '<a href="javascript:void(0)" id="contentStart"></a>'; ?>

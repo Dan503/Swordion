@@ -1,0 +1,7 @@
+﻿
+//A div that wraps around the entire site
+.siteContainer {
+	overflow: hidden; //prevents unwanted horizontal scroll bar caused by .columns--gutter-# classes
+	background-color: $CG-bodyBG;
+	position: relative;
+}

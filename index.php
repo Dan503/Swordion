@@ -13,15 +13,16 @@ $modulePath_home = $modulePath.'home/';
 ?>
 
 
+
 <div class="demo">
 	<div class="demo-div demo-mediaQuery">
 		<p>Media Query example</p>
-		<p class="desktopOnly">Desktop only</p>
-		<p class="tabletOnly">Tablet only</p>
-		<p class="mobileOnly">Mobile only</p>
-		<p class="nonMobile">Non mobile</p>
-		<p class="nonTablet">Non tablet</p>
-		<p class="nonDesktop">Non desktop</p>
+		<p class="TK-desktopOnly">Desktop only</p>
+		<p class="TK-tabletOnly">Tablet only</p>
+		<p class="TK-mobileOnly">Mobile only</p>
+		<p class="TK-nonMobile">Non mobile</p>
+		<p class="TK-nonTablet">Non tablet</p>
+		<p class="TK-nonDesktop">Non desktop</p>
 	</div>
 
 	<div class="demo-div demo-gradient">
@@ -315,5 +316,6 @@ $modulePath_home = $modulePath.'home/';
 			</ul>
 
 			</div>
+
 
 <?php include '02-base/foot.php'; ?>

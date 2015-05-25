@@ -28,10 +28,10 @@ $flexPrefixes: ms webkit;
 
 
 //verticaly align inner content
-@mixin M-flexValign {
+@mixin M-flexValign($alignment: center) {
 	@include M-flex;
 	@include M-prefix(flex-direction,column, $flexPrefixes);
-	@include M-prefix(justify-content,center, $flexPrefixes);
+	@include M-prefix(justify-content,$alignment, $flexPrefixes);
 }
 %flexValign {
 	@include M-flexValign
@@ -41,7 +41,16 @@ $flexPrefixes: ms webkit;
 //This mixin allows an element to stay a constant width even when flex grow is applied to it.
 //The siblings of this element will grow/shrink to fit to fill the container  
 @mixin M-flexForceWidth($width){
-	width: auto;
-	max-width: $width;
-	min-width: $width;
+	@if ($width == false) {
+		max-width: none;
+		min-width: 0;
+	} @else {
+		width: auto;
+		max-width: $width;
+		min-width: $width;
+	}
 }
+
+@mixin M-flexGrow($amount: 1){
+	@include M-prefix(flex-grow,$amount, $flexPrefixes);
+ }

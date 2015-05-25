@@ -7,8 +7,14 @@
 //	this file.
 //*================================================*/
 
-//Holds the imports for all variables, mixins and functions
-@import "00-import-functions.scss";
+//Global functions that extend SASS functionality
+@import "import-maps/map-functions.scss";
+
+//Global mixins are listed here
+//order is important
+@import "import-maps/map-mixins.scss";
+
+
 
 //any plugin style css gets loaded here (css you aren't meant to edit)
 @import "import-maps/map-plugins.scss";
@@ -17,15 +23,9 @@
 //order is important, use numbers on files, forms-base must be last.
 @import "import-maps/map-base.scss";
 
-//Holds rules for modules that are visible on essentially every page (header, footer, etc.)
-//These are essentially modules OUTSIDE the main content area
+//Holds rules for modules throughout the site
 //order shouldn't be very important as long as they are self contained
-@import "import-maps/map-globalModules.scss";
-
-//Holds rules for modules that are only visible on certain pages or under certain circumstances
-//These are essentially modules INSIDE the main content area
-//order shouldn't be very important as long as they are self contained
-@import "import-maps/map-contentModules.scss";
+@import "import-maps/map-modules.scss";
 
 //Holds the animation stages for elements that are animated using the .addStages() javascript function
 //order shouldn't be important

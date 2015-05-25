@@ -77,6 +77,11 @@
 	}
 }
 
+//Quick mixin for only hiding something if JS is enabled
+@mixin M-jsHide {
+	display: none;
+	.no-js & { display: block;  }
+}
 
 ////////////////////////////////////
 //Browser compatibility shortcuts//
@@ -132,7 +137,7 @@
 %appearanceNone { @include M-appearanceNone; }
 
 //allows the styling of placeholder text
-@mixin M-placeholder($color:#767676) {
+@mixin M-placeholder($color:$CG-input--placeholder) {
 	//#767676 is the lightest possible grey against a white bg that passes AA for small text
 	@include M-gt-ie8 {
 		&::-webkit-input-placeholder { color: $color; @content; } //safari and chrome
@@ -310,3 +315,23 @@
 	&:after{ clear: both; }
 }
 %clearfix { @include M-clearfix; }
+
+
+//multi :not() rule
+@mixin M-not ($ignorList...) {
+	//if only a single value given
+	@if (length($ignorList) == 1){
+		//it is probably a list variable so set ignore list to the 1st item
+		$ignorList: nth($ignorList,1);
+	}
+	$notOutput: '';
+	//for each item in the list
+	@each $not in $ignorList {
+		//generate a :not([ignored_item]) segment for each item in the ignore list and put them back to back
+		$notOutput: $notOutput + ':not(#{$not})';
+	}
+	//output the full :not() rule including all ignored items
+	&#{$notOutput} {
+		@content;
+	}
+}

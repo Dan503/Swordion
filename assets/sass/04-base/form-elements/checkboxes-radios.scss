@@ -1,14 +1,14 @@
 ﻿
 //module colors
 
-$c-checkbox-check: $grey-dark;
-$c-checkbox-check--hover: #000;
+$C-checkbox-check: $CB-grey-dark;
+$C-checkbox-check--hover: #000;
 
-$c-checkbox-border: $grey-mid;
-$c-checkbox-border--hover: $grey-mid--hover;
+$C-checkbox-border: $CB-grey-mid;
+$C-checkbox-border--hover: $CB-grey-mid--hover;
 
-$c-checkbox-bg: #fff;
-$c-checkbox-bg--hover: $grey-light;
+$C-checkbox-bg: #fff;
+$C-checkbox-bg--hover: $CB-grey-light;
 
 
 //This file holds the functionality styling for checkboxes and radio buttons
@@ -36,12 +36,12 @@ $c-checkbox-bg--hover: $grey-light;
 			&:before {
 				@include M-size(15px);
 				background-color: #fff;
-				border: 1px solid $c-checkbox-border;
+				border: 1px solid $C-checkbox-border;
 				top: 2px;
 				left: 0px;
 			}
 			//foreground
-			@include M-icon('checkmark', $c-checkbox-check, 10px, $pos: after){
+			@include M-icon('checkmark', $C-checkbox-check, 10px, $pos: after){
 				opacity: 0;
 				left: 3px;
 				top: 5px;
@@ -51,11 +51,11 @@ $c-checkbox-bg--hover: $grey-light;
 
 		&:focus + label, & + label:hover {
 			&:before {
-				background-color: $c-checkbox-bg--hover;
-				border-color: $c-checkbox-border--hover;
+				background-color: $C-checkbox-bg--hover;
+				border-color: $C-checkbox-border--hover;
 			}
 			&:after {
-				color: $c-checkbox-check--hover;
+				color: $C-checkbox-check--hover;
 			}
 		}
 		&:checked + label:after { @extend %opacity-1; }
@@ -63,20 +63,20 @@ $c-checkbox-bg--hover: $grey-light;
 		&.#{$errorClass} {
 			& + label {
 				&:before {
-					background-color: $c-error-bg;
-					border-color: $c-error-border;
+					background-color: $CG-error-bg;
+					border-color: $CG-error-border;
 				}
 				&:after {
-					color: $c-error-text;
+					color: $CG-error-text;
 				}
 			}
 			&:focus + label, & + label:hover {
 				&:before {
-					background-color: $c-error-bg--hover;
-					border-color: $c-error-border--hover;
+					background-color: $CG-error-bg--hover;
+					border-color: $CG-error-border--hover;
 				}
 				&:after {
-					color: $c-error-text--hover;
+					color: $CG-error-text--hover;
 				}
 			}
 		}
@@ -93,19 +93,19 @@ $c-checkbox-bg--hover: $grey-light;
 				@include M-size(9px);
 				left: 3px;
 				top: 5px;
-				background-color: $c-checkbox-check;
+				background-color: $C-checkbox-check;
 				opacity: 0;
 			}
 		}
 		&:focus + label, & + label:hover {
 			&:after {
-				background-color: $c-checkbox-check--hover;
+				background-color: $C-checkbox-check--hover;
 			}
 		}
 		&.#{$errorClass} {
 			&:focus + label, & + label:hover {
 				&:after {
-					background-color: $c-error-bg--hover;
+					background-color: $CG-error-bg--hover;
 				}
 			}
 		}

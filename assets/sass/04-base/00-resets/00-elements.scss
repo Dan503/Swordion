@@ -1,4 +1,6 @@
 
+$C-h1: #2B2B2B;
+
 /*================================================*\
 	BASE ELEMENT STYLING
 //----------------------------------------------------
@@ -7,58 +9,123 @@
 //	these are essentially site resets
 \*================================================*/
 
-*, *:before, *:after {
-	//Makes fonts smoother
-	font-smoothing: antialiased;
+* {
+	margin-bottom: 0;
+	margin-top: 1em;
 
-	//supposedly this makes fonts cleaner but it makes fonts not appear in safari
-	//text-rendering: optimizeLegibility;
+	//allows body elements to sit hard up against the top border of their parent element without causing spacing issues later in the text.
+	&:first-child { margin-top: 0; }
 
-	//all elements are given border-box box-sizing
-	@include M-box-sizing(border-box);
+	&:before, &:after, & {
+		//Makes fonts smoother
+		font-smoothing: antialiased;
+
+		//supposedly this makes fonts cleaner but it makes fonts not appear in safari
+		//text-rendering: optimizeLegibility;
+
+		//all elements are given border-box box-sizing
+		@include M-box-sizing(border-box);
+	}
 }
+
+//counteracts * margin styling
+span,
+em,
+strong,
+a,
+b,
+i,
+input,
+div,
+textarea,
+select,
+header,
+footer,
+aside,
+time,
+html,
+form,
+nav,
+nav li { margin-top: 0; }
+
 
 //Makes it easier to alter font size with rem's. 1.3rem = 13px
 html { font-size: 62.5%; }
 
-//Sets default font size for the site to 1.3rem with a 13px backup.
+//Sets default font size for the site to 1.4rem with a 14px backup.
 //Setting the font-size using the mixin is the best way to set font size (and line height using line height mixin).
-body { @include M-font-size(16); font-family: $roboto; margin: 0; }
+body { @include M-font-size(14); font-family: $lato; margin: 0; }
 
-h1,h2,h3,h4,h5,h6,p,ul,ol,li {
-	//allows body elements to sit hard up against the top border of their parent element without causing spacing issues later in the text.
-	&:first-child { margin-top: 0 }
-}
 
 /*HEADINGS*/
-h1, h2, h3, h4, h5, h6 { color: $c-heading; font-weight: $bold; }
-h1 { @include M-font-size(40); color: $c-h1; }
-h2 { @include M-font-size(30); }
-h3 { @include M-font-size(25); }
-h4 { @include M-font-size(20); }
-h5 { @include M-font-size(17); font-style: italic;}
-h6 { @include M-font-size(15); font-weight: normal; font-style: italic; }
+h1, h2, h3, h4, h5, h6 { color: $CG-heading; font-weight: $normal; }
+h1, h2 { @include M-font-size(24); }
+h1 { margin-top: 30px; margin-bottom: -5px; }
+h3 { @include M-font-size(18); color: $CB-grey-dark; }
+h4 { @include M-font-size(16); color: $CB-grey-dark; font-weight: $bold; }
+h5 { @include M-font-size(14); font-weight: $bold; font-style: italic;}
+h6 { @include M-font-size(14); font-style: italic; }
 
 
-p, li { @include M-line-height(15); }
-p { margin: 0 0 1em; }
+p, li { @include M-line-height(24); }
+p { margin: 7px 0 0; }
 
-//adds pre-loader background to images
-img { background: url(../images/design/pre-loader.gif) center center no-repeat transparent; }
-
-a { text-decoration: none; }
-a:hover { text-decoration: underline; }
+a {
+	text-decoration: none;
+	color: $CG-baseLinkColor;
+	@include M-hover {
+		text-decoration: underline;
+	}
+}
 
 //makes nav default to not having dot points
 nav ul { @extend %noDots; }
 
 label, input[type=radio], input[type=checkbox] { cursor: pointer; }
 
+blockquote {
+	background-color: $CB-grey-light;
+	margin: $VG-bodyText-paragraphSpacing 0 0;
+	padding: 20px;
+	@include M-font-size(16);
+}
+
+
 /************\
     Tables
 \************/
-table{text-align:left; width:100%;
-	th, td { padding: 5px; }
-	thead th {font-weight: $bold;}
-	tbody th{font-weight: $bold;}
+$C-thead-th: $CB-blue-xPale;
+$C-tbody-td: $CB-grey-pale;
+$C-tbody-th: mix($C-thead-th, $C-tbody-td, 50%);
+table{
+	margin-top: 20px;
+	text-align:left;
+	width:100%;
+	border-collapse: collapse;
+	border-spacing: 0;
+	&:first-child {
+		margin-top: 0;
+	}
+	th, td { padding: 5px; border: 1px solid #fff; padding: 15px; }
+	th {
+		font-weight: $normal;
+	}
+	thead {
+		th {
+			@include M-font-size(18);
+			background-color: $C-thead-th;
+		}
+	}
+	tbody {
+		th {
+			background-color:$C-tbody-th;
+		}
+	}
+	td {
+		background: $C-tbody-td;
+	}
+}
+.tableWrap {
+	overflow: auto;
+	max-width: 100%;
 }

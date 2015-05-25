@@ -1,10 +1,10 @@
 ﻿//submit button resets
 
-input[type="submit"] {
+[type="submit"] {
 	@extend %appearanceNone;
 	border: none;
 	cursor: pointer;
-	.js & { @include M-opacity(0); }
+	.js &.styledSubmit { @include M-opacity(0); }
 }
 
 .styledSubmit {
@@ -13,5 +13,12 @@ input[type="submit"] {
 	input[type="submit"] {
 
 		@include M-fill;
+		opacity: 0;
+
+		@include M-lt-ie9 {
+			background: transparent;
+			text-indent: -999em;
+			border: none;
+		}
 	}
 }

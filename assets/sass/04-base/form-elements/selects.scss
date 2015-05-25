@@ -1,6 +1,6 @@
 ﻿/********* Custom select boxes **********/
 
-%hoverState { background-color: $c-inputFocus; }
+%hoverState { background-color: $CG-input-focus; }
 
 select {
 	cursor: pointer;
@@ -25,7 +25,7 @@ select {
 		@include M-centered(v);
 		right: 0;
 		z-index: 1;
-		background-color: $c-primary;
+		background-color: $CG-primary;
 	}
 
 
@@ -44,17 +44,17 @@ select {
 	//adding triangle with icon instead
 
 	&.#{$errorClass} {
-		background: $red-pale!important;
-		border-color: $red-dim;
+		background: $CB-red-pale!important;
+		border-color: $CB-red-dim;
 		&:before {
-			border-color: $c-error-border;
-			background-color: $c-error-border;
-			color: $c-error-bg;
+			border-color: $CG-error-border;
+			background-color: $CG-error-border;
+			color: $CG-error-bg;
 		}
-		.styledSelect-display { color: $red-dark; }
+		.styledSelect-display { color: $CG-error-text; }
 
 		&:hover .styledSelect-display,
-		select:hover + .styledSelect-display  { background: $c-error-bg--hover; }
+		select:hover + .styledSelect-display  { background: $CG-error-bg--hover; }
 	}
 
 	select {
@@ -65,6 +65,6 @@ select {
 		@include M-opacity(0);
 		border: none!important;
 		z-index: 2;
-		&:focus + .styledSelect-display { background: $c-inputFocus; }
+		&:focus + .styledSelect-display { background: $CG-input-focus; }
 	}
 }
