@@ -31,9 +31,9 @@
 
     <title><?php
         if ($home == true) {
-			print 'Royal Australian Air Force: Air Power Development Centre';
+			print 'Home Page welcome message';
         } else {
-			print $pageTitle . ' | Air Power Development Centre';
+			print $pageTitle . ' | Swordion';
         }
 	?></title>
 	<meta name="description" content="">
