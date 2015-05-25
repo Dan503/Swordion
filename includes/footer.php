@@ -13,7 +13,10 @@
 	<script type="text/javascript">
 		var js_root = "/assets/js/";
 	</script>
-	<script src="/assets/js/merged.js"></script>
+	<?php
+		$merged = $environment == 'development'? 'merged' : 'merged.min';
+		echo '<script src="/assets/js/'.$merged.'.js"></script>'
+	?>
 
 	<!--Google analytics code-->
 	<!--<script>
