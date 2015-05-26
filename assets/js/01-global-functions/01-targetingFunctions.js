@@ -38,20 +38,3 @@ var id = function (key,classSet){
 };
 
 
-
-//modified class manipulation
-jQuery.fn.modAddClass = function(target) {
-    this.addClass(Span(target));
-    return this;
-};
-
-jQuery.fn.modRemoveClass = function(target) {
-    this.removeClass(Span(target));
-    return this;
-};
-
-jQuery.fn.modToggleClass = function(target) {
-    this.toggleClass(Span(target));
-    return this;
-};
-

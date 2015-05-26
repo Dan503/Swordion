@@ -4,7 +4,7 @@
    CSS3 animation
 \****************************************/
 
-function animation_time(time){
+function animationTime(time){
 	if ($('html.csstransitions').length){
 		return time;
 	} else {
