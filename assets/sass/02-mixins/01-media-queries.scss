@@ -72,7 +72,7 @@ $mediaQuery: ();
 			$newWidth1: nth($range,2);
 			$newWidth2: null;
 			@if (length($range) == 3){
-				$newWidth2: nth($mqSet,3);
+				$newWidth2: nth($range,3);
 			}
 
 
