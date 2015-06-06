@@ -498,7 +498,10 @@ _(All my mixins start with "M-" because my preferred editor doesn&rsquo;t like e
 All SASS mixins are stored here... unless they are module specific:
 /assets/sass/02-mixins/
 
-###The Media query mixin (@include M-mq(range, width1, width2){ @content })
+
+###The Media query mixin
+
+**(@include M-mq(range, start-breakpoint, end-breakpoint){ @content })**
 
 This is probably the number 1 most useful mixin in Swordion.
 
