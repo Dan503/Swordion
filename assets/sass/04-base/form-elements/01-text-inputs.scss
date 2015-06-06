@@ -1,27 +1,16 @@
 ﻿//all text input types (including the new HTML5 ones)
-input[type="text"],
-input[type="email"],
-input[type="tel"],
-input[type="password"],
-input[type="time"],
-input[type="date"],
-input[type="datetime-local"],
-input[type="month"],
-input[type="number"],
-input[type="range"],
-input[type="search"],
-input[type="url"],
-input[type="week"],
+input,
 textarea {
 	//sets the placeholder color to the lightest possible grey against white that is AA complient
 	@extend %inputStyling;
 	width: 100%;
+	color: $CG-input;
 	@include M-animate('fast');
 	@include M-placeholder;
-	@include M-hover { background-color: $c-inputFocus; }
-	&.#{$errorClass} { background-color: $c-error-bg; border-color: $c-error-border;
+	@include M-hover { background-color: $CG-input-focus; }
+	&.#{$errorClass} { background-color: $CG-error-bg; border-color: $CG-error-border;
 		@include M-hover {
-			background-color: $c-error-bg--hover;
+			background-color: $CG-error-bg--hover;
 		}
 	}
 }

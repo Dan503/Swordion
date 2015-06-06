@@ -2,23 +2,27 @@
 ini_set('include_path', $_SERVER['DOCUMENT_ROOT'].'/includes/');
 $body_classes = "home";
 $home = true;
-include 'header.php';
+$hasSideBar = false;
+$nav_primary = 0;
+include '02-base/body.php';
+
+$modulePath = '01-modules/siteMain/';
+
+$modulePath_home = $modulePath.'home/';
+
 ?>
 
-
-		<section id="main" role="main">
-				<div class="wrapper">
 
 
 <div class="demo">
 	<div class="demo-div demo-mediaQuery">
 		<p>Media Query example</p>
-		<p class="desktopOnly">Desktop only</p>
-		<p class="tabletOnly">Tablet only</p>
-		<p class="mobileOnly">Mobile only</p>
-		<p class="nonMobile">Non mobile</p>
-		<p class="nonTablet">Non tablet</p>
-		<p class="nonDesktop">Non desktop</p>
+		<p class="TK-desktopOnly">Desktop only</p>
+		<p class="TK-tabletOnly">Tablet only</p>
+		<p class="TK-mobileOnly">Mobile only</p>
+		<p class="TK-nonMobile">Non mobile</p>
+		<p class="TK-nonTablet">Non tablet</p>
+		<p class="TK-nonDesktop">Non desktop</p>
 	</div>
 
 	<div class="demo-div demo-gradient">
@@ -95,7 +99,6 @@ include 'header.php';
 	<p>Scroll down to see more content</p>
 </div>
 
-				<a href="javascript:void(0)" id="contentStart"></a>
 				<div class="content">
 
 						<h2>To do list:</h2>
@@ -312,8 +315,7 @@ include 'header.php';
 				<li><a href="http://www.example.com" title="example of an external link">External link</a></li>
 			</ul>
 
-					</div>
-				</div>
-		</section><!-- #main-->
+			</div>
 
-<?php include 'footer.php'; ?>
+
+<?php include '02-base/foot.php'; ?>

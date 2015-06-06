@@ -2,8 +2,7 @@
 $errorClass: 'hasError';
 
 %inputStyling {
-	border: 1px solid $c-border--input;
+	border: 1px solid $CG-input-border;
 	max-width: 100%;
 	padding: 5px 10px;
-	font-size: 1.5em;
 }

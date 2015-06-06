@@ -8,7 +8,6 @@ $directions: top, bottom;
 
 $spacings: 0, 1, 2, 5, 10, 15, 20, 25, 30;
 
-
 @each $attribute in $attributes { //goes through every attribute in the list
 	@each $space in $spacings { //goes through every spacing in the list
 		@each $direction in $directions { //goes through every direction in the list
@@ -16,6 +15,12 @@ $spacings: 0, 1, 2, 5, 10, 15, 20, 25, 30;
 				#{$attribute}-#{$direction}: $space * 1px; //adds the css
 			}
 		}
+	}
+}
+
+.spacing-lineHeight{
+	&--tight {
+		&, p, li { @include M-line-height($VG-lineHeight--tight); }
 	}
 }
 

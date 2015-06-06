@@ -1,0 +1,61 @@
+﻿
+$BP-stackImg: bp('mid');
+$BP-unStackImg: bp('tablet');
+
+$V-slimImg-width: 60px;
+
+$C-link: $CG-listing-link;
+
+$module: 'listing';
+
+.#{$module} {
+	@include M-noDots;
+	&--slim {
+		.#{$module} {
+			&-item {
+				@include M-mq('inside', $BP-unStackImg, $BP-stackImg){
+					.#{$module} {
+						&-imgContainer {
+							float: none;
+							display: block;
+							margin: 0 auto;
+						}
+						&-content {
+							margin-left: 0;
+						}
+					}
+				}
+			}
+				&-imgContainer {
+					width: $V-slimImg-width;
+					float: left;
+				}
+				&-content {
+					margin-left: $V-slimImg-width + 20;
+				}
+		}
+	}
+
+	&-item {
+		@include M-clearfix;
+		margin-top: 20px;
+		&:first-child {
+			margin-top: 0;
+		}
+	}
+		&-imgContainer {
+			margin-top: 5px;
+		}
+
+		&-title {
+			margin-bottom: 10px;
+		}
+			&-titleLink {
+				color: $C-link;
+			}
+		&-text {
+			&--compact {
+				p { margin-top: 0; }
+			}
+		}
+}

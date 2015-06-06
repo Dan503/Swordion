@@ -1,0 +1,108 @@
+
+/*================================================*\
+	THE TOOL KIT
+//----------------------------------------------------
+//	This file holds one off classes designed to be
+//	used globally for a specific function
+\*================================================*/
+
+//all these classes are prefixed with TL- at the front
+.TK {
+
+	//remove dot points from a list
+	&-noDots { list-style: none; margin: 0; padding: 0; }
+
+	//Image Replacement. For when you are using a sprite or icon on an element and you don't want the text to appear
+	&-imgReplace { @extend %ir;
+		br {display:none;}
+	}
+
+	//Image Replacement 2. Good for submit buttons if you need IE7 compatibility
+	&-imgReplace2 { @extend %ir2; }
+
+	//prevent text wrapping
+	&-noWrap { white-space: nowrap; }
+
+	//elipsis (...) added to end of cut off text (single line only)
+	&-elipsis { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: block; }
+
+	//hide element on page load
+	&-hide { display:none; }
+
+	//HIDE the element if JS is ENABLED,
+	//SHOW the element if JS is DISABLED
+	&-jsHide { @include M-jsHide; }
+
+	//visually hidden element so that screen readers can see it but normal users cant
+	&-visHid { @extend %vh; }
+
+	//counters the visually hidden styles
+	&-visHid--show { @extend %anti-vh }
+
+	//a less favorable version of visually hidden since browsers still have to render it way off screen
+	&-offScreen { position: absolute; left: -999em; }
+
+	//Force a non-floating parent element to contain it's floating child elements
+	&-clearFix { @extend %clearfix; }
+
+	//simple clear classes for clearing floats
+	&-clear { clear: both;
+		&--left { clear: left; }
+		&--right { clear: right; }
+	}
+
+
+	//both vertically and horizontally center align an element that has fixed height and width
+	&-centered {
+		@extend %centered;
+
+	//.centered--v | only VERTICALLY center align an element that has fixed height and width
+		&--v { @extend %centered--v; }
+
+	//.centered--h | only HORIZONTALLY center align an element that has fixed height and width
+		&--h { @extend %centered--h; }
+	}
+
+
+	//	Screen size specific elements
+	&-mobileOnly { @include M-mobileOnly; }
+	&-tabletOnly { @include M-tabletOnly; }
+	&-desktopOnly { @include M-desktopOnly; }
+	&-nonMobile { @include M-nonMobile; }
+	&-nonTablet { @include M-nonTablet; }
+	&-nonDesktop { @include M-nonDesktop; }
+
+	//animate an element when it's css changes
+	&-animate {
+		@include M-animate;
+		&--medium { @include M-animate(0.5s); }//useful for hover states
+		&--slow { @include M-animate(1s); }
+	}
+
+	//quickly add position relative to an element
+	&-relative { position: relative; }
+
+	//completly fill the space of a relative element
+	&-fill { @include M-fill; }
+
+	//A link that only appears when the user focuses on it
+	&-skipLink {
+		@extend %vh;
+		&:active, &:focus { @extend %anti-vh }
+	}
+
+	//add float without extra styling
+	&-float {
+		&--left { float: left; }
+		&--right { float: right; }
+	}
+
+	//remove default styling (good for submit buttons)
+	&-appearanceNone { @extend %appearanceNone; }
+
+	&-inlineBlock { @include M-inline-block; }
+
+	//Styles the element to take up the max-width of the design
+	&-pageWidth { margin:0 auto; max-width:bp('page'); }
+
+}

@@ -201,7 +201,7 @@ $validStrings: v, h, d-down, d-up, r, r-top-left, r-top-right, r-bottom-left, r-
 //	Gradient with image
 //***********************/
 
-//modern browsers only (IE10+) :(
+//modern browsers only (IE10+)
 //currently only designed to work with the manual sprite
 
 @mixin M-img-grad($img-position, $gradColour1, $gradColour2, $type: v, $stop1:0%, $stop2: 100%, $backup: mix($gradColour1, $gradColour2), $image: $manual_sprite, $retina_img: $manual_sprite2x, $bgSize: $manual_sprite_width auto){

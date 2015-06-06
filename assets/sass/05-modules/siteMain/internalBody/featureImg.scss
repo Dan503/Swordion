@@ -1,0 +1,36 @@
+﻿ $C-caption-bg: $CB-grey-dark;
+ $C-caption-text: #fff;
+
+$BP-caption--stack: bp('tablet');
+
+.featureImg {
+	position: relative;
+	margin: $VG-bodyText-paragraphSpacing 0;
+
+	&--ignoreBlockPadding {
+		margin: (-$VG-block-padding--v) (-$VG-block-padding--h) 0;
+	}
+		&-img {
+			width: 100%;
+			display: block;
+		}
+		&-caption {
+			position: absolute;
+			bottom: 0;
+			right: 0;
+			padding: 20px;
+			width: 82%;
+			background-color: $C-caption-bg;
+			color: $C-caption-text;
+			@include M-mq(max,$BP-caption--stack){
+				width: 100%;
+				position: static;
+			}
+			p {
+				margin-top: 10px!important;
+				&:first-child {
+					margin-top: 0!important;
+				}
+			}
+		}
+}

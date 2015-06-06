@@ -1,0 +1,8 @@
+﻿
+$MQ-fullWidth: ('max', bp('mobile'));
+
+.sideBar {
+	@include M-mq($MQ-fullWidth){
+		width: 100%!important;
+	}
+}

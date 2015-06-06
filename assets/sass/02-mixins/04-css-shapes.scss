@@ -15,6 +15,38 @@
 }
 
 ///*******************\
+//	PURE CSS MENU ICON
+//*******************/
+@mixin M-menuIcon($color: #000, $width: 20px, $thickness: 5px, $gutter: 2px, $posType: relative, $margin: ($thickness + $gutter) auto, $animatable: true){
+
+	$distance: $thickness + $gutter;
+
+	width: $width;
+	position: $posType;
+	margin: $distance auto;
+
+	&, &:before, &:after {
+		@if($animatable){
+			@include M-animate;
+		}
+		height: $thickness;
+		background-color: $color;
+		border-radius: $thickness;
+	}
+
+	@include M-before-after {
+		width: 100%;
+		position: absolute;
+	}
+	&:before {
+		bottom: $distance;
+	}
+	&:after {
+		top: $distance;
+	}
+}
+
+///*******************\
 //	CSS TRIANGLES
 //*******************/
 
@@ -58,7 +90,7 @@
 ///***********************************\
 //	PURE CSS POINTING ARROWS ( -> )
 //***********************************/
-//IE9+ only :(
+//IE9+ only
 //works best if $thickness is a multiple of 2
 @mixin M-arrow($direction, $color, $length, $head-size: $length * 0.75, $thickness: 2px, $rotation: 0, $origin: center){
 	position: relative;
@@ -157,41 +189,44 @@
 		display: block;
 		content: '';
 		@include M-centered;
-		border: 0px solid $color;
+		background: $color;
 }
 
-@mixin M-plus($color, $size: 10px, $thickness: 2px){
+@mixin M-plus($color, $size: 10px, $thickness: 2px, $rounded: false){
 	position: relative;
 	&:before, &:after {
 		@include M-plus-minus-base($color);
+		@if ($rounded){
+			border-radius: $thickness * 2;
+		}
 		@content;
 	}
+	//vertical
 	&:before{
-		height: 0px;
-		width: $size;
-		border-bottom-width: $thickness;
-	}
-	&:after{
 		height: $size;
-		width: 0px;
-		border-left-width: $thickness;
+		width: $thickness;
+	}
+	//horizontal
+	&:after{
+		height: $thickness;
+		width: $size;
 	}
 }
 @mixin M-minus($color, $size: 10px, $thickness: 2px){
 	position: relative;
-	&:before {
+	//horizontal
+	&:after {
 		@include M-plus-minus-base($color);
-		height: 0px;
+		height: $thickness;
 		width: $size;
-		border-bottom-width: $thickness;
 		@content;
 	}
 }
 
 //Works in IE9+, use a cross icon as a backup if needed
-@mixin M-cross($color, $size: 10px, $thickness: 2px, $backup-icon: false){
-	@if ($lt-ie9 and $backup-icon == false){
-		@include M-plus($color,$size,$thickness){
+@mixin M-cross($color, $size: 20px, $thickness: 5px, $rounded: true, $backup-icon: false){
+	@if (($lt-ie9 == false) and $backup-icon == false){
+		@include M-plus($color,$size,$thickness,$rounded){
 			@content;
 		};
 		@include M-rotate(45);
@@ -199,58 +234,6 @@
 		@include M-icon($backup-icon, $size){
 			color: $color;
 			@content;//careful with the @content if using a backup
-		}
-	}
-}
-
-//experimental plus to minus mixin
-@mixin M-plus-to-minus($color, $size: 10px, $thickness: 2px){
-	position: relative;
-	&:before, &:after {
-		@extend %animate !optional;
-		@include M-plus-minus-base($color);
-		@content;
-	}
-	&:before{
-		height: $thickness;
-		width: $size;
-	}
-	&:after{
-		height: $size;
-		width: $thickness;
-		border-radius: 0%;
-	}
-	&.minus {
-		&:after {
-			height: $thickness;
-			width: $size;
-			border-radius: 50%;
-		}
-	}
-}
-
-//experimental minus to plus animation mixin
-@mixin M-minus-to-plus($color, $size: 10px, $thickness: 2px){
-	position: relative;
-	&:before, &:after {
-		@extend %animate !optional;
-		@include M-plus-minus-base($color);
-		@content;
-	}
-	&:before{
-		height: $thickness;
-		width: $size;
-	}
-	&:after{
-		height: $thickness;
-		width: $size;
-		border-radius: 50%;
-	}
-	&.plus {
-		&:after {
-			height: $size;
-			width: $thickness;
-			border-radius: 0%;
 		}
 	}
 }

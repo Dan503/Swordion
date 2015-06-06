@@ -1,0 +1,24 @@
+﻿
+$module: 'navPrimary';
+
+.navPrimary {
+	&-list {
+		//
+	}
+		&-item {
+			//
+		}
+			&-link {
+				//
+
+				@include M-hover {
+					//
+				}
+				&--isActive {
+					//
+					&:focus {
+						text-decoration: underline;
+					}
+				}
+			}
+}

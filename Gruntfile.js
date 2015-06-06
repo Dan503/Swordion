@@ -43,7 +43,6 @@ module.exports = function (grunt) {
 		},
 
 		//Minimises the JS
-		//I need to find a way to uglify without removing the MIT licences
 		uglify: {
 			my_target: {
 				options: {
@@ -61,7 +60,7 @@ module.exports = function (grunt) {
 // In order for it to work, you need to install imageMagic on your computer:
 //	1.	Go here to download it http://www.imagemagick.org/script/binary-releases.php
 //	2.	Follow the instructions while cd is the default, NOT the project directory (make sure to tick "add to system path" when the option comes up)
-//	3.	Once installed… (I can’t remember if it’s in or out of the project folder cd) “npm install im”
+//	3.	Once installed “npm install im”
 //	4.	When cd is the project folder “npm install grunt-image-resize”
 //	5.	You’re done, it should be working now :)
 		image_resize: {
@@ -79,7 +78,7 @@ module.exports = function (grunt) {
 			}
 		},
 
-		//Able to auto-sprite without compass! :D
+		//auto-spriting without compass
 		sprite:{
 			//Generates the double sized version of the retina sprite
 	        retina: {
@@ -119,9 +118,7 @@ module.exports = function (grunt) {
 					'assets/sass/import-maps/map-mixins.scss': 'assets/sass/02-mixins/**/*.scss',
 					'assets/sass/import-maps/map-plugins.scss': 'assets/sass/03-plugins/**/*.scss',
 					'assets/sass/import-maps/map-base.scss': 'assets/sass/04-base/**/*.scss',
-					'assets/sass/import-maps/map-globalModules.scss': 'assets/sass/05-global-modules/**/*.scss',
-					'assets/sass/import-maps/map-contentModules.scss': 'assets/sass/06-content-modules/**/*.scss',
-					//'assets/sass/import-maps/map-animations.scss': 'assets/sass/07-animations/**/*.scss', //only required if the site has advanced multistage animations
+					'assets/sass/import-maps/map-modules.scss': 'assets/sass/05-modules/**/*.scss',
 				}
 			}
 		},
@@ -131,23 +128,16 @@ module.exports = function (grunt) {
 		sass: {
 			options: {
 				style: "compact",
-
-				//'sass-globbing' allows sass to bulk import files
-				//you need to install the 'sass-globbing' gem before use (gem install sass-globbing)
-				//require: 'sass-globbing',// Doesn't work on Windows :'(
-
 				//sourcemap: true, //deprecated in latest SASS version
-				compass: false // I don't like compass >:(
-				//compass: true
+				compass: false
 			},
 			all: {//compile all at the same time
 				files: {
 					//Modern style sheet
 					"assets/css/style.css": "assets/sass/output-files/style.scss",
-					//IE9 style sheet
-					"assets/css/style-ie9.css": "assets/sass/output-files/style-ie9.scss",
+
 					//IE8 style sheet
-					"assets/css/style-ie8.css": "assets/sass/output-files/style-ie8.scss",
+					"assets/css/style-lt-ie9.css": "assets/sass/output-files/style-lt-ie9.scss",
 				}
 			},
 			modern: {//only compile the modern style sheet
@@ -156,40 +146,20 @@ module.exports = function (grunt) {
 					"assets/css/style.css": "assets/sass/output-files/style.scss",
 				}
 			},
-			ie9 : {
-				files: {
-					//IE9 style sheet
-					"assets/css/style-ie9.css": "assets/sass/output-files/style-ie9.scss",
-				}
-			},
-			ie8 : {
+			ie : {
 				files: {
 					//IE8 style sheet
-					"assets/css/style-ie8.css": "assets/sass/output-files/style-ie8.scss",
+					"assets/css/style-lt-ie9.css": "assets/sass/output-files/style-lt-ie9.scss",
 				}
 			}
 		},
-
-		// Automatically add prefixing to css
-		// I handle all my prefixing in the mixins
-		/*autoprefixer: {
-			options: {
-				browsers: ["last 1 version", "Android 2", "Android 4", "BlackBerry 7", "BlackBerry 10", "iOS 6", "iOS 7", "OperaMobile 20", "OperaMini 7", "OperaMini 8", "ChromeAndroid 36", "ExplorerMobile 9", "ExplorerMobile 10"]
-			},
-			sm: {
-				options: {
-					map: true
-				},
-				src: "css/style.css"
-			}
-		},*/
 
 		//Merge similar media queries into single MQ's
 		//It isn't capable of generating css maps, so this is only used in the CSS minification process
 		cmq: {
 			your_target: {
 				files: {
-					'assets/css/media-merge/': ['assets/css/style.css','assets/css/style-ie9.css','assets/css/style-ie8.css']
+					'assets/css/media-merge/': ['assets/css/style.css','assets/css/style-lt-ie9.css']
 				}
 			}
 		},
@@ -204,14 +174,14 @@ module.exports = function (grunt) {
 			//takes the current css files in the "media-merge" folder, minifies them, adds '.min.css' to the end of the file, and copies them back into the main css folder
 		      expand: true,
 		      cwd: 'assets/css/media-merge/',
-		      src: ['style.css','style-ie9.css','style-ie8.css'],
+		      src: ['style.css','style-lt-ie9.css'],
 		      dest: 'assets/css/',
 		      ext: '.min.css'
 		  }
 		},
 
-		//Copy files to server on save. Extreamly useful at build stage!
-		//See DIAC TIS Transact build for example of this working
+		//Copy files to server on save.
+		//Extreamly useful at build stage
 		/*copy: {
 			js: {
 				files: [
@@ -257,38 +227,60 @@ module.exports = function (grunt) {
 			}
 		},*/
 
-		'ftp-deploy': {
-			options: {
-				src: '/',
-				exclusions: [
-					'**/.DS_Store',
-					'**/Thumbs.db',
-					'**/tmp',
-					'.sass-cache/**/*',
-					'node_modules/**/*',
-					'00 - Grunt start up.txt',
-					'00 - Grunt ftp-deploy.txt',
-					'Gruntfile.js',
-					'package.json',
-					'.ftppass',
-					'downloads/**/*'//optional
-				]
-			},
+		ftpush: {
 			dev: {
 				auth: {
 					host: 'can1dev011.int.rroom.net',
 					port: '',
 					authKey: 'dev'
 				},
-				dest: 'data/webs/oeh/calculator/prototype',
+				dest: 'path/to/folder/',
+				src: '',
+				exclusions: [
+					'.git/**/*',
+					'**/.DS_Store',
+					'**/Thumbs.db',
+					'**/tmp',
+					'.sass-cache/**/*',
+					'node_modules/**/*',
+					'grunt-start-up.txt',
+					'grunt-first-time.txt',
+					'Gruntfile.js',
+					'package.json',
+					'.ftppass',
+					'downloads/**/*',
+				]
 			},
 			uat: {
 				auth: {
-					host: 'aws1.readingroom.com.au',
+					host: 'XXXXXXXX.htmldesign.aws1.readingroom.com.au',
 					port: '',
 					authKey: 'uat'
 				},
-				dest: 'path/to/folder/',
+				dest: 'web/',
+				src: '',
+				exclusions: [
+					'.git/**/*',
+					'**/.DS_Store',
+					'**/Thumbs.db',
+					'**/tmp',
+					'.sass-cache/**/*',
+					'node_modules/**/*',
+					'grunt-start-up.txt',
+					'grunt-first-time.txt',
+					'Gruntfile.js',
+					'package.json',
+					'.ftppass',
+					'downloads/**/*',//optional
+
+					//UAT only
+				],
+				keep: [
+					'.htaccess',
+					'.htpasswd',
+					'error/**/*',
+					'stats/**/*',
+				]
 			}
 		},
 
@@ -306,11 +298,11 @@ module.exports = function (grunt) {
 				options: { spawn: false }
 			},
 			scss: {
-				files: ["**/*.scss"],
+				files: ["assets/sass/**/*.scss"],
 				tasks: [
 					"sass_globbing",//generates import maps for SASS modules
+					//"sass:all", //compile the SASS (use "all" or "ie" for IE8 fixing)
 					"sass:modern", //compile the SASS (modern only by default for speed)
-					//"autoprefixer", //add prefixing (I do it with mixins and can't get this to work without ruining the .map files)
 					//"cmq", //merge media queries
 					//"csso", //minify css
 					//"copy:css", //copy css to server
