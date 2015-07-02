@@ -1,8 +1,8 @@
 <?php
 ini_set('include_path', $_SERVER['DOCUMENT_ROOT'].'/includes/');
 
-$nav_primary = 1;
-$nav_secondary = 2;
+//the longer the array, the deeper the nav item
+$GLOBALS['location'] = array(1, 0);
 
 include '02-base/body.php';
 

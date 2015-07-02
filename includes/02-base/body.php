@@ -1,3 +1,8 @@
+<?php
+	include 'settings.php';
+?>
+
+
 <!doctype html>
 
 
@@ -11,21 +16,8 @@
 <!--[if gt IE 9]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
 
 <?php
-	//sets the php error reporting configuration for the site to be less fussy about undefined variables
-	ini_set('error_reporting','E_COMPILE_ERROR|E_RECOVERABLE_ERROR|E_ERROR|E_CORE_ERROR|E_PARSE');
-
-	//Set errors to this for debugging
-	//ini_set('error_reporting','ALL');
 
 
-//adds all php functions
-$files = glob($_SERVER['DOCUMENT_ROOT'].'/includes/02-base/functions/*.php', GLOB_BRACE);
-foreach($files as $file) {
-  include $file;
-}
-
-//introduces the navigationMap
-	include 'navigationMap.php';
 
 //Holds the site <head> tag (mostly metadata)
 	include 'head.php';

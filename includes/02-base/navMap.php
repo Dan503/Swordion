@@ -1,6 +1,6 @@
 <?php
 
-	$navigationMap = array(
+	$navMap = array(
 		array(
 			'text' => 'Home',
 			'link' => '/',
@@ -27,6 +27,8 @@
 			)
 		)
 	);
+
+	$GLOBALS['navMap'] = $navMap;
 
 
 ?>
