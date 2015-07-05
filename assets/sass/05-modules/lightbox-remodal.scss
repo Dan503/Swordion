@@ -1,0 +1,221 @@
+
+/* Theme styles of the lightbox dialog (based on remodal) */
+
+.lightbox {
+	box-sizing: border-box;
+	max-width: 700px;
+	width: 100%;
+	margin-bottom: 10px;
+	padding: 35px;
+
+	transform: translate3d(0, 0, 0);
+
+	color: #2b2e38;
+	background: #fff;
+
+	&--small { max-width: 300px; }
+
+
+	/* Close button */
+
+	&-close {
+		position: absolute;
+		top: 0;
+		right: 0;
+
+		display: block;
+		overflow: visible;
+
+		width: 35px;
+		height: 35px;
+		margin: 0;
+		padding: 0;
+
+		cursor: pointer;
+		transition: color 0.2s;
+		text-decoration: none;
+
+		color: #95979c;
+		border: 0;
+		outline: 0;
+		background: transparent;
+
+		+ * { margin-top: 0; }
+
+		@include M-hover {
+			color: #2b2e38;
+		}
+
+		&:before {
+			font-family: Arial, "Helvetica CY", "Nimbus Sans L", sans-serif !important;
+			font-size: 25px;
+			line-height: 35px;
+
+			position: absolute;
+			top: 0;
+			left: 0;
+
+			display: block;
+
+			width: 35px;
+
+			content: "\00d7";
+			text-align: center;
+		}
+	}
+
+/* Dialog buttons */
+
+	&-confirm,
+	&-cancel {
+		font: inherit;
+
+		display: inline-block;
+		overflow: visible;
+
+		min-width: 110px;
+		margin: 0;
+		padding: 12px 0;
+
+		cursor: pointer;
+		transition: background 0.2s;
+		text-align: center;
+		vertical-align: middle;
+		text-decoration: none;
+
+		border: 0;
+		outline: 0;
+
+		&::-moz-focus-inner {
+		/* Remove inner padding and border in Firefox 4+ for the button tag. */
+			padding: 0;
+			border: 0;
+		}
+	}
+
+	&-confirm {
+		color: #fff;
+		background: #81c784;
+		@include M-hover {
+			background: #66bb6a;
+		}
+	}
+
+	&-cancel {
+		color: #fff;
+		background: #e57373;
+
+		@include M-hover {
+			background: #ef5350;
+		}
+	}
+}
+
+/* ==========================================================================
+   Remodal's default mobile first theme
+   ========================================================================== */
+
+%fill-forwards {
+	animation-fill-mode: forwards;
+}
+
+.remodal {
+	@extend %fill-forwards;
+
+	&.remodal-is-opening {
+		animation: remodal-opening-keyframes 0.3s;
+	}
+	.remodal-is-closing {
+		animation: remodal-closing-keyframes 0.3s;
+	}
+
+/* Default theme styles for the background */
+	&-bg {
+		&.remodal-is-opening,
+		&.remodal-is-opened {
+			filter: blur(3px);
+		}
+	}
+
+/* Default theme styles of the overlay */
+	&-overlay {
+		background: rgba(43, 46, 56, 0.9);
+		@extend %fill-forwards;
+
+		&.remodal-is-opening {
+			animation: remodal-overlay-opening-keyframes 0.3s;
+		}
+		&.remodal-is-closing {
+			animation: remodal-overlay-closing-keyframes 0.3s;
+		}
+	}
+
+/* Default theme styles of the wrapper */
+	&-wrapper {
+		padding: 10px 10px 0;
+	}
+	&, &-wrapper {
+		vertical-align: middle;
+	}
+}
+
+
+
+/* Keyframes
+   ========================================================================== */
+
+@keyframes remodal-opening-keyframes {
+  from {
+    transform: scale(1.05);
+
+    opacity: 0;
+  }
+  to {
+    transform: none;
+
+    opacity: 1;
+  }
+}
+
+@keyframes remodal-closing-keyframes {
+  from {
+    transform: scale(1);
+
+    opacity: 1;
+  }
+  to {
+    transform: scale(0.95);
+
+    opacity: 0;
+  }
+}
+
+@keyframes remodal-overlay-opening-keyframes {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes remodal-overlay-closing-keyframes {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+
+/* IE8
+   ========================================================================== */
+
+.lt-ie9 .remodal-overlay {
+  background: #2b2e38;
+}
+
+.lt-ie9 .remodal {
+  width: 700px;
+}
