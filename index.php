@@ -5,6 +5,14 @@ $location = array(0);
 
 $hasSideBar = false;
 
+$lightboxSets = array(
+	'home',
+);
+
+$exactLightboxes = array (
+	'other/test-other'
+);
+
 include '02-base/structure/body.php';
 
 $modulePath = '01-modules/siteMain/';

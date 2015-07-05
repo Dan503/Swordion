@@ -17,7 +17,8 @@
 				)
 			)
 		), array(
-			'text' => 'Events',
+			'text' => 'Lightbox test',
+			'link' => '#lightbox-test-constant',
 			'subNav' => array(
 				array(
 					'text' => 'Current Events',

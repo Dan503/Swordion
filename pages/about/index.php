@@ -4,6 +4,11 @@ ini_set('include_path', $_SERVER['DOCUMENT_ROOT'].'/includes/');
 //the longer the array, the deeper the nav item
 $location = array(1, 0);
 
+$lightboxSets = array(
+	'internal',
+	'other'
+);
+
 $sidebarHas = array(
 	'related' => false,
 );
