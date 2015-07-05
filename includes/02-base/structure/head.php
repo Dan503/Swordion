@@ -3,34 +3,8 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta charset="utf-8">
 
-<?php
-	//sets the page title for the current page
-	if (isset($nav_tertiary) && $nav_tertiary >= 0){
-		$pageTitle =
-			$navigationMap
-				[$nav_primary]
-				['subNav']
-				[$nav_secondary]
-				['subNav']
-				[$nav_tertiary]
-				['text'];
-	} else if (isset($nav_secondary) && $nav_secondary >= 0){
-		$pageTitle =
-			$navigationMap
-				[$nav_primary]
-				['subNav']
-				[$nav_secondary]
-				['text'];
-	} else {
-		$pageTitle =
-			$navigationMap
-				[$nav_primary]
-				['text'];
-	}
-?>
-
     <title><?php
-        if ($home == true) {
+        if ($isHome == true) {
 			print 'Home Page welcome message';
         } else {
 			print $pageTitle . ' | Swordion';

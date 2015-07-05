@@ -67,4 +67,6 @@
 	$isHome = $location[0] == 0 ? true : false;
 	$GLOBALS['isHome'] = $isHome;
 
+	getTitle();
+	$pageTitle = $GLOBALS['pageTitle'];
 ?>
