@@ -1,10 +1,19 @@
 <?php
 ini_set('include_path', $_SERVER['DOCUMENT_ROOT'].'/includes/');
-$body_classes = "home";
-$home = true;
+
+$location = array(0);
+
 $hasSideBar = false;
-$nav_primary = 0;
-include '02-base/body.php';
+
+$lightboxSets = array(
+	'home',
+);
+
+$exactLightboxes = array (
+	'other/test-other'
+);
+
+include '02-base/structure/body.php';
 
 $modulePath = '01-modules/siteMain/';
 
@@ -236,22 +245,22 @@ $modulePath_home = $modulePath.'home/';
 <?php
 	$input_array = array(
 		array(
-			'label' => 'xxxxxxxxx',
+			'label' => 'xxxxxxxxx1',
 			'placeholder' => 'Enter text here'
 		),
 		array(
-			'label' => 'xxxxxxxxx',
+			'label' => 'xxxxxxxxx2',
 			'placeholder' => 'Enter text here'
 		),
 		array(
-			'label' => 'xxxxxxxxx',
+			'label' => 'xxxxxxxxx3',
 			'placeholder' => 'Enter text here'
 		),
 	);
 	for ($i = 0; $i < count($input_array); $i++) {
 
-		$id = preg_replace("/[^A-Za-z0-9]/", "", $input_array[$i]);
 		$label = $input_array[$i]['label'];
+		$id = idSafe($label);
 		$placeholder = $input_array[$i]['placeholder'];
 
 		echo
@@ -318,4 +327,4 @@ $modulePath_home = $modulePath.'home/';
 			</div>
 
 
-<?php include '02-base/foot.php'; ?>
+<?php include '02-base/structure/foot.php'; ?>

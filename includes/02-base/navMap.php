@@ -1,6 +1,6 @@
 <?php
 
-	$navigationMap = array(
+	$navMap = array(
 		array(
 			'text' => 'Home',
 			'link' => '/',
@@ -17,7 +17,8 @@
 				)
 			)
 		), array(
-			'text' => 'Events',
+			'text' => 'Lightbox test',
+			'link' => '#lightbox-test-constant',
 			'subNav' => array(
 				array(
 					'text' => 'Current Events',
@@ -27,6 +28,8 @@
 			)
 		)
 	);
+
+	$GLOBALS['navMap'] = $navMap;
 
 
 ?>

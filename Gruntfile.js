@@ -134,22 +134,22 @@ module.exports = function (grunt) {
 			all: {//compile all at the same time
 				files: {
 					//Modern style sheet
-					"assets/css/style.css": "assets/sass/output-files/style.scss",
+					"assets/css/modern.css": "assets/sass/output-files/modern.scss",
 
 					//IE8 style sheet
-					"assets/css/style-lt-ie9.css": "assets/sass/output-files/style-lt-ie9.scss",
+					"assets/css/lt-ie9.css": "assets/sass/output-files/lt-ie9.scss",
 				}
 			},
 			modern: {//only compile the modern style sheet
 				files: {
 					//Modern style sheet
-					"assets/css/style.css": "assets/sass/output-files/style.scss",
+					"assets/css/modern.css": "assets/sass/output-files/modern.scss",
 				}
 			},
 			ie : {
 				files: {
 					//IE8 style sheet
-					"assets/css/style-lt-ie9.css": "assets/sass/output-files/style-lt-ie9.scss",
+					"assets/css/lt-ie9.css": "assets/sass/output-files/lt-ie9.scss",
 				}
 			}
 		},
@@ -159,7 +159,7 @@ module.exports = function (grunt) {
 		cmq: {
 			your_target: {
 				files: {
-					'assets/css/media-merge/': ['assets/css/style.css','assets/css/style-lt-ie9.css']
+					'assets/css/media-merge/': ['assets/css/modern.css','assets/css/lt-ie9.css']
 				}
 			}
 		},
@@ -174,7 +174,7 @@ module.exports = function (grunt) {
 			//takes the current css files in the "media-merge" folder, minifies them, adds '.min.css' to the end of the file, and copies them back into the main css folder
 		      expand: true,
 		      cwd: 'assets/css/media-merge/',
-		      src: ['style.css','style-lt-ie9.css'],
+		      src: ['modern.css','lt-ie9.css'],
 		      dest: 'assets/css/',
 		      ext: '.min.css'
 		  }

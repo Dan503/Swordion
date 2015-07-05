@@ -33,25 +33,9 @@ Modernizr.load([
 	    nope  : plugin + '_placeholders.min.js'
 	  },
 	  {
-	  	//desktop lightbox plugin
-	  	test : $('.js-lightbox-btn').length,
-		yep  : [plugin + '_jquery.custombox.js'],
-		callback : function (){
-			$('.js-lightbox-btn').click(function(e){
-				var scroll_position = scroll_pos;
-				$.fn.custombox( this, {
-			        effect: 'sign',
-					eClose: '.close-info-btn',
-					scrollbar: false,
-					complete: function(){
-						//needed for keyboard accessability.
-						//Place a hidden button (id="anchor") at the top of the loaded content
-						$(this.url).find('#anchor').focus();
-					}
-			    });
-			    e.preventDefault();
-			});
-		}
+		//remodal lightbox plugin (if you have constant lightboxes, move it to the constant plugins area)
+		test : $('[data-remodal-id]').length,
+		yep  : [plugin + 'remodal.min.js'],
 	  },
 
 	  /*****************************\
