@@ -56,7 +56,7 @@
 
 		$modifier = modifiers($settings['modifiers'], 'breadcrumb');
 
-		$map = $GLOBALS['navigationMap'];
+		$map = $GLOBALS['navMap'];
 		$target = $GLOBALS['location'][0];
 
 		if (is_array($GLOBALS['location'])){
