@@ -17,7 +17,7 @@
 	};
 
 	function getTitle() {
-		$map = $GLOBALS['navigationMap'];
+		$map = $GLOBALS['navMap'];
 		if (is_array($GLOBALS['location'])){
 			$target = $GLOBALS['location'][0];
 			getNavItem($map[$target], 1);
