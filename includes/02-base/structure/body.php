@@ -25,7 +25,11 @@
 
 ?>
 
-<body class="<?php echo $body_classes ?>">
+<body class="<?php
+	echo $body_classes;
+	if ($isHome) { echo ' home'; }
+	echo ($isLoggedIn ? ' logged-in' : ' logged-out');
+?>">
 
 	<!-- I've found the <noscript> tag to not always work properly -->
     <div class="alert alert--nojs alert--error TK-jsHide">
