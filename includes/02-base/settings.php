@@ -43,7 +43,8 @@
 	}
 
 //adds all custom PHP functions to the site (other than the "globFiles()" funtion)
-	globFiles('/includes/02-base/functions/');
+	globFiles('/includes/02-base/00-functions/');
+	globFiles('/includes/01-modules/00-functions/');
 
 //Introduces the navigationMap
 	include 'navMap.php';
