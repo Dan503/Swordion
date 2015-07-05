@@ -17,13 +17,6 @@ html.remodal-is-locked {
   overflow: hidden;
 }
 
-/* Anti FOUC */
-
-.remodal,
-[data-remodal-id] {
-  display: none;
-}
-
 /* Necessary styles of the overlay */
 
 .remodal-overlay {

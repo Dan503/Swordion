@@ -44,7 +44,7 @@ function lightbox($file) {
 
 //Renders the lightbox
 	print '
-	<div class="remodal lightbox '.$modifiers.$classes.'" data-remodal-id="lightbox-'.$filename.'">
+	<div class="remodal TK-jsHide lightbox'.$modifiers.$classes.'" data-remodal-id="lightbox-'.$filename.'">
 		<a href="javascript: void(0)" data-remodal-action="close" class="lightbox-close"><span class="TK-visHid">Close</span></a>';
 
 		//includes the content
