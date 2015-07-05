@@ -1,19 +1,22 @@
 <?php
 
-	// Start a login session
+// Enables use of PHP sessions
 	session_start();
-	$_SESSION["logged-in"] = isset($_SESSION["logged-in"]) ? $_SESSION["logged-in"]: false;
+	$_SESSION["logged-in"] = isset($_SESSION["logged-in"]) ? $_SESSION["logged-in"]: false; //default session is logged out
 	$isLoggedIn = $_SESSION["logged-in"];
+	$GLOBALS['isLoggedIn'] = $isLoggedIn;
 
 
 //Determine weather to load the minified production files or the un-minified development files
 	//$environment = 'production';
 	$environment = 'development';
+	$GLOBALS['environment'] = $environment;
 
 //sets the php error reporting configuration for the site to be less fussy about undefined variables
+//Essential for the "defaultTo()" function
 	ini_set('error_reporting','E_COMPILE_ERROR|E_RECOVERABLE_ERROR|E_ERROR|E_CORE_ERROR|E_PARSE');
 
-//Enable this for debugging
+//Uncomment this for debugging PHP
 	//error_reporting(-1);
 
 
@@ -23,6 +26,7 @@
 	}
 
 //function for bulk loading files
+//(Needs to be improved so it can check if there are deeper levels on it's own)
 	function globFiles ($path) {
 		$level1 = globLevel($path, '');
 		$level2 = globLevel($path, '**/');
@@ -45,18 +49,22 @@
 	include 'navMap.php';
 
 //Commonly used include paths
-	$modulePath = $_SERVER['DOCUMENT_ROOT'].'/includes/01-modules/';
-	$modulePath_siteMain = $modulePath.'siteMain/';
-	$modulePath_internalBody = $modulePath.'siteMain/internalBody/';
+	$includes = $_SERVER['DOCUMENT_ROOT'].'/includes/';
+	$modules = $_SERVER['DOCUMENT_ROOT'].'/includes/01-modules/';
+	$modules_siteMain = $modulePath.'siteMain/';
+	$modules_internal = $modulePath.'siteMain/internal/';
 
 
 //Default sidebar settings
 	$hasSidebar = defaultTo($hasSidebar, true);
 	$sidebarHas = defaultTo($sidebarHas, array(
 		'nav' => true,
-		'airHistory' => true,
 		'related' => true,
-		'pathFinder' => true,
 	));
+
+//check if it is the home page
+	$GLOBALS['location'] = $location;
+	$isHome = $location[0] == 0 ? true : false;
+	$GLOBALS['isHome'] = $isHome;
 
 ?>
