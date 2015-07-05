@@ -32,30 +32,17 @@
 
 	<!--[if gt IE 8]><!-->
 		<?php
-			if ($environment == 'development') {
-				//Unminified css for development phase
-				echo '<link rel="stylesheet" type="text/css" href="/assets/css/style.css" />';
-			} else if ($environment == 'production') {
-				//Minified CSS (for use during production phase)
-				echo '<link rel="stylesheet" type="text/css" href="/assets/css/style.min.css" />';
-			}
+			$modern = $environment == 'development'? 'modern' : 'modern.min';
+			echo '<link rel="stylesheet" type="text/css" href="/assets/css/'.$modern.'.css" />';
 		?>
 	<!--<![endif]-->
 
 	<?php
-		if ($environment == 'development') {
-			//Unminified css for development phase
-			echo
-			'<!--[if lt IE 9]>
-				<link rel="stylesheet" type="text/css" href="/assets/css/style-lt-ie9.css" />
-			<![endif]-->';
-		} else if ($environment == 'production') {
-			//Minified CSS (for use during production phase)
-			echo
-			'<!--[if lt IE 9]>
-				<link rel="stylesheet" type="text/css" href="/assets/css/style-lt-ie9.min.css" />
-			<![endif]-->';
-		}
+		$legacy = $environment == 'development'? 'lt-ie9' : 'lt-ie9.min';
+		echo
+		'<!--[if lt IE 9]>
+			<link rel="stylesheet" type="text/css" href="/assets/css/'.$legacy.'.css" />
+		<![endif]-->';
  	?>
 
 	<script src="/assets/js/vendor/_modernizr.2.7.1.min.js"></script>
