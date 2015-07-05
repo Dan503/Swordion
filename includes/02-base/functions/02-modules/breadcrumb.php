@@ -43,10 +43,22 @@
 		}
 	};
 
-	function breadcrumb($hasLastItem, $modifier){
-		$modifier = isset($modifier) ? ' breadcrumb--'.$modifier : '';
+	function breadcrumb($settings){
+
+		$defaultSettings = array(
+			'hasLastItem' => true,
+			'modifiers' => '',
+		);
+
+		$settings = isset($settings) ?
+			defaultTo($settings, $defaultSettings) :
+			$defaultSettings;
+
+		$modifier = modifiers($settings['modifiers'], 'breadcrumb');
+
 		$map = $GLOBALS['navigationMap'];
 		$target = $GLOBALS['location'][0];
+
 		if (is_array($GLOBALS['location'])){
 			echo
 			'<nav class="breadcrumb'.$modifier.'">
@@ -57,7 +69,7 @@
 						</a>
 					</li>';
 
-					getBreadcrumb($map[$target], 1, $hasLastItem);
+					getBreadcrumb($map[$target], 1, $settings['hasLastItem']);
 
 				echo
 				'</ul>
