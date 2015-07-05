@@ -1,5 +1,5 @@
 <?php
-	include 'settings.php';
+	include $_SERVER['DOCUMENT_ROOT'].'/includes/02-base/settings.php';
 ?>
 
 

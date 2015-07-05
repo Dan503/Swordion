@@ -4,7 +4,8 @@ $body_classes = "home";
 $home = true;
 $hasSideBar = false;
 $nav_primary = 0;
-include '02-base/body.php';
+
+include '02-base/structure/body.php';
 
 $modulePath = '01-modules/siteMain/';
 
@@ -318,4 +319,4 @@ $modulePath_home = $modulePath.'home/';
 			</div>
 
 
-<?php include '02-base/foot.php'; ?>
+<?php include '02-base/structure/foot.php'; ?>
