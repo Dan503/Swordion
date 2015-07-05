@@ -1,0 +1,1 @@
+<p>Other lightbox</p>

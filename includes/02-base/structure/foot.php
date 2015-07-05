@@ -5,12 +5,44 @@
 		<?php
 			include $modules.'siteFooter/00-siteFooter.php';
 
-		//adds all lightboxes to the site
-			$lightboxFiles =
-			glob($_SERVER['DOCUMENT_ROOT'].'/includes/01-modules/01-lightboxes/*.php', GLOB_BRACE);
+
+/*******************************\
+	Auto loading lightboxes!
+\*******************************/
+			$lightboxSets = defaultTo($lightboxSets, array());
+			$exactLightboxes = defaultTo($exactLightboxes, array());
+
+		//adds all constant lightboxes to the site
+		//(use this if the lightbox needs to appear on every page in the site unconditionally)
+		//place content files in the "/includes/01-modules/01-lightboxes/constant/" folder to use this
+			$lightboxFiles = glob($_SERVER['DOCUMENT_ROOT'].'/includes/01-modules/01-lightboxes/constant/*.php', GLOB_BRACE);
 
 			foreach($lightboxFiles as $file) {
 			  lightbox($file);
+			}
+
+		//adds all conditional lightbox sets to the site
+		//(use this if you want to bulk load a bunch of lightboxes onto a page but don't want them to be loaded on every page across the site
+		//place files in a new folder under "/includes/01-modules/01-lightboxes/conditional/" folder to use this.
+		//Then state the folder name in the $lightboxSets variable as part of an array
+			foreach($lightboxSets as $set) {
+				$lightboxFiles = glob($_SERVER['DOCUMENT_ROOT'].'/includes/01-modules/01-lightboxes/conditional/'.$set.'/*.php', GLOB_BRACE);
+
+				foreach($lightboxFiles as $file) {
+				  lightbox($file);
+				}
+			}
+
+		//adds all conditional exact lightboxes to the site
+		//(use this if you want to cherry pick exact lightboxes without loading entire sets)
+		//If you are using this then you are probably after a file that you have already used on a different page
+		//State the path to the file name starting from the "/includes/01-modules/01-lightboxes/conditional/" folder in the $exactLightboxes variable as part of an array
+			foreach($exactLightboxes as $lightbox) {
+				$lightboxFiles = glob($_SERVER['DOCUMENT_ROOT'].'/includes/01-modules/01-lightboxes/conditional/'.$lightbox.'.php', GLOB_BRACE);
+
+				foreach($lightboxFiles as $file) {
+				  lightbox($file);
+				}
 			}
 		?>
 
