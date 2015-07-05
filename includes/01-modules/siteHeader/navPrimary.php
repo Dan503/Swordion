@@ -1,13 +1,13 @@
 <nav class="navPrimary TK-clearFix">
 	<ul class="navPrimary-list width--page grid grid--hasInners grid--vAlign">
 		<?php
-			$navPrimary_array = $navigationMap;
+			$navPrimary_array = $navMap;
 
 			for ($i = 0; $i < count($navPrimary_array); $i++) {
 				$array = $navPrimary_array[$i];
 				$text = $array['text'];
 				$link = isset($array['link'])? $array['link'] : '#';
-				$active = $navPrimary == $i ?
+				$active = $location[0] == $i ?
 					' navPrimary-link--isActive' : '';
 
 				echo

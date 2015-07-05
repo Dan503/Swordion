@@ -1,19 +1,19 @@
 <?php
 ini_set('include_path', $_SERVER['DOCUMENT_ROOT'].'/includes/');
 
-$nav_primary = 1;
-$nav_secondary = 2;
+//the longer the array, the deeper the nav item
+$location = array(1, 0);
 
-include '02-base/body.php';
+$sidebarHas = array(
+	'related' => false,
+);
 
-$modulePath = '01-modules/siteMain/';
+include '02-base/structure/body.php';
 
-$modulePath_internalBody = $modulePath.'internalBody/';
-
-include $modulePath.'breadcrumb.php';
+breadcrumb();
 
 ?>
 
+<h1><?php echo $pageTitle ?></h1>
 
-
-<?php include '02-base/foot.php'; ?>
+<?php include '02-base/structure/foot.php'; ?>
