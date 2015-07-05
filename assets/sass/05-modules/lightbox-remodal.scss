@@ -116,6 +116,7 @@
    ========================================================================== */
 
 %fill-forwards {
+	-webkit-animation-fill-mode: forwards;
 	animation-fill-mode: forwards;
 }
 
