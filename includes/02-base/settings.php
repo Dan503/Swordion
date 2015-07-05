@@ -51,8 +51,8 @@
 //Commonly used include paths
 	$includes = $_SERVER['DOCUMENT_ROOT'].'/includes/';
 	$modules = $_SERVER['DOCUMENT_ROOT'].'/includes/01-modules/';
-	$modules_siteMain = $modulePath.'siteMain/';
-	$modules_internal = $modulePath.'siteMain/internal/';
+	$modules_siteMain = $modules.'siteMain/';
+	$modules_internal = $modules.'siteMain/internal/';
 
 
 //Default sidebar settings
@@ -69,4 +69,7 @@
 
 	getTitle();
 	$pageTitle = $GLOBALS['pageTitle'];
+
+	$currentURL = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+
 ?>
