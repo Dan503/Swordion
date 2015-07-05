@@ -38,7 +38,7 @@ function lightbox($file) {
 	}
 
 //reads the settings and turns it into usable class strings
-	$modifiers = modifiers($settings['modifiers'], 'lightbox');
+	$modifiers = modifiers('lightbox', $settings['modifiers']);
 	$classes = ' '.$settings['classes'];
 
 
