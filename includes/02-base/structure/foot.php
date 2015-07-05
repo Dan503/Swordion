@@ -2,7 +2,17 @@
 		</div>
 		<!-- @.mainArea -->
 
-		<?php include '01-modules/siteFooter/00-siteFooter.php'; ?>
+		<?php
+			include $modules.'siteFooter/00-siteFooter.php';
+
+		//adds all lightboxes to the site
+			$lightboxFiles =
+			glob($_SERVER['DOCUMENT_ROOT'].'/includes/01-modules/01-lightboxes/*.php', GLOB_BRACE);
+
+			foreach($lightboxFiles as $file) {
+			  lightbox($file);
+			}
+		?>
 
 	</div>
 	<!-- @.siteContainer-->
