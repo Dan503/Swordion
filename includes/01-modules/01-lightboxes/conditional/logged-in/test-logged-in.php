@@ -1,0 +1,1 @@
+<p>logged-in lightbox</p>

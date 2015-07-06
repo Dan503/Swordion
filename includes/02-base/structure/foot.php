@@ -9,8 +9,10 @@
 /*******************************\
 	Auto loading lightboxes!
 \*******************************/
-			$lightboxSets = defaultTo($lightboxSets, array());
-			$exactLightboxes = defaultTo($exactLightboxes, array());
+			$lightboxSets = isset($lightboxSets) ? $lightboxSets : array();
+			$exactLightboxes = isset($exactLightboxes) ? $exactLightboxes : array();
+
+			$lightboxSets = array_merge($lightboxSets, $constantLightboxes);
 
 		//adds all constant lightboxes to the site
 		//(use this if the lightbox needs to appear on every page in the site unconditionally)

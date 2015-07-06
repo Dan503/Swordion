@@ -73,4 +73,15 @@
 
 	$currentURL = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 
+
+	if ($isLoggedIn) {
+		$constantLightboxes = array(
+			'logged-in',
+		);
+	} else {
+		$constantLightboxes = array(
+			'logged-out',
+		);
+	}
+
 ?>
