@@ -26,16 +26,22 @@
 	}
 
 //function for bulk loading files
-//(Needs to be improved so it can check if there are deeper levels on it's own)
 	function globFiles ($path) {
-		$level1 = globLevel($path, '');
-		$level2 = globLevel($path, '**/');
-		$level3 = globLevel($path, '**/**/');
-		$level4 = globLevel($path, '**/**/**/');
 
-		$files = array_merge($level1, $level2);
-		$files = array_merge($files, $level3);
-		$files = array_merge($files, $level4);
+		$allLevels = array(
+			globLevel($path, ''),
+			globLevel($path, '**/'),
+			globLevel($path, '**/**/'),
+			globLevel($path, '**/**/**/'),
+		);
+
+		$files = array();
+
+		foreach($allLevels as $level){
+			if ($level != false) {
+				$files = array_merge($files, $level);
+			}
+		}
 
 		foreach($files as $file) {
 		  include $file;
