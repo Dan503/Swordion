@@ -1,7 +1,7 @@
 <?php
 
 //usage:
-// $variable = defaultTo([variable that you want to have a default for] , [default value for variable], [*optional* array of other possible settings])
+// $variable = defaultTo([variable that you want to have a default for] , [default value for variable], [*optional* a string determining how arrays are treated (replaced or just altered)])
 
 	function defaultTo($var, $val, $command){
 
