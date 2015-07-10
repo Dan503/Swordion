@@ -24,4 +24,3 @@ jQuery.fn.modHasHook = function(target) {
 	var hookString = this.attr('data-jshook');
     return hookString.indexOf(Span(target)) > 0;
 };
-
