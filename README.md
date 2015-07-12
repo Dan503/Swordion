@@ -144,9 +144,6 @@ This is basically how the naming system works:
 //it is given a class like this with 2 dashes before the modifier name
 .moduleName-elementName--modifierName
 
-//if an element class is used by javascript it is given a "JS-" prefix at the start of the class name
-.JS-moduleName-elementName
-
 //if a modifier class is used by js, the "JS-" prefix goes AFTER the double dash, NOT at the start
 //(I'll explain why a little later on)
 .moduleName-elementName--JS-modifierName
@@ -156,7 +153,7 @@ You might have noticed that this is different to the standard way of structuring
 
 `````
 //classic BEM structure
-.js-module-name__element-name--modifier-name
+.module-name__element-name--modifier-name
 `````
 
 I hope based off that one example you can see why I have chosen to use the CCSS way of using the BEM structure instead of the standard BEM structure. Using camel case clearly groups the words that belong together under the same part of the class. Every dash clearly separates each segment of the class and it's clear what each dash represents. At a glance, the standard BEM structure is confusing with dashes and underscores all over the place. I think The CCSS method is simply easier to read.
@@ -217,36 +214,128 @@ Here is an example of how you would use the classes using my slightly altered me
 .navMenu-toggle { display: block; padding: 10px 20px; background: #000; color: #fff; }
 ```````````
 
-###Javascript
+--------------------
+
+##JavaScript system
+
+Using the BEM naming convention in javascript is painful. For example take a look at this simple bit of code that replicates the jQuery toggleClass() method when clicking an element:
+
+```````````html
+<button class="moduleName-elementName">element</button>
+````````````
 ```````javascript
-$('#JS-navMenu-toggle').click(function(){
-	$('#JS-navMenu-list').slideToggle();
+//classic javascript
+$('.moduleName-elementName').click(function(){
+	if($(this).hasClass('moduleName-elementName--modifierName')){
+		$(this).removeClass('moduleName-elementName--modifierName');
+	} else {
+		$(this).addClass('moduleName-elementName--modifierName');
+	}
 });
+`````````````
 
+Look at all that horrible repetition! So what is the easiest way to reduce the repetition in with javascript? variables!
+So this is how that ends up looking if we save things into variables:
 
-//ignore how useless this js actually is, it's just to demonstrate class usage
+```````````html
+<button class="moduleName-elementName">element</button>
+````````````
+```````javascript
+//Using variables
+var element = 'moduleName-elementName',
+	element_modifier = 'moduleName-elementName--modifierName';
 
-//set the manipulated class name to a variable so it can be altered easily later if needed
-//(don't include the "." though)
-var navMenu_active = 'navMenu-link--JS-active';
-
-$('.JS-navMenu-link').click(function(){
-
-	//This is why you don't include the dot.
-	//The same variable can be used for both class selection and manipulation :)
-	$('.' + navMenu_active).removeClass(navMenu_active);
-	$(this).addClass(navMenu_active);
-
+$('.'+element).click(function(){
+	if($(this).hasClass(element_modifier)){
+		$(this).removeClass(element_modifier);
+	} else {
+		$(this).addClass(element_modifier);
+	}
 });
+`````````````
 
-```````
+That&rsquo;s getting better but Swordion is all about keeping things modular. We want to be able to make a clear distinction between what is used in javascript and what is used in CSS. Targeting a class in our JS means that the thing we are using to trigger the JS is highly likely to be used for styling. If that happens, and later down the line we decide that we want .otherElement to trigger the js instead of .elementName, we have to go back and alter our code. That is why Swordion uses `data-jshook` attributes instead.
 
-So a few things you should note:
+But targeting data attributes can be a bit annoying in JS:
 
-- If part of the class name is in ALL CAPS, it means it's a prefix. Prefix class segments are trying to tell you something. Eg. "JS-" means that the class/id is used by javascript. I haven't figured out what a full list of these prefixes should be yet.
-- `JS-` names should be an id unless the element appears multiple times on the page or is a modifier
-- Avoid applying styles to the `JS-` classes unless the class is a js modifier class that has functionality strongly tied into the styling (like the example above). This keeps everything sperate and easier to maintain.
-- Because SASS currently doesn't really support `.JS-& {/*...rules...*/}` I put the JS prefix _after_ the modifier in the js affected class name.
+```````````html
+<button class="moduleName-elementName" data-jshook="moduleName-functionName">element</button>
+````````````
+```````javascript
+//Using variables
+var functionName = 'moduleName-functionName',
+	element_modifier = 'moduleName-elementName--modifierName';
+
+$('[data-jshook*="'+element+'"]').click(function(){
+	if($(this).hasClass(element_modifier)){
+		$(this).removeClass(element_modifier);
+	} else {
+		$(this).addClass(element_modifier);
+	}
+});
+`````````````
+
+That is why Swordion gives you tools for using these js hooks easily.
+
+```````````html
+<button class="moduleName-elementName" data-jshook="moduleName-functionName">element</button>
+````````````
+```````javascript
+//The Swordion approach
+
+var module_moduleName = 'moduleName'; //#1
+
+module = module_moduleName; //#2
+
+moduleTargets[module] = {//#3
+	//js hooks
+	functionName : module+'-functionName',//#4
+
+	//class modifiers
+	elementName_modifier: module+'-elementName--modifierName',//#5
+};
+
+
+$(Hook('functionName')).click(function(){ //#6
+	module = module_moduleName;//#7
+	if($(this).modHasClass('element_modifier')){//#8
+		$(this).modRemoveClass('element_modifier');
+	} else {
+		$(this).modAddClass(element_modifier);
+	}
+});
+`````````````
+
+Firstly, you need to understand that this would typically go into it's own JS file under this directory: /assets/js/modules/constant/
+Also this file would only hold the code for a single module and would be named after that module. So in this case the file would be called "moduleName.js".
+
+Now here is a run down of the code above:
+
+1. Sets the name of this module. This must be the same as the first portion of the data-jshook attribute.
+2. "module" must be called "module" here. It is required for the targeting functions to work.
+3. This line will always be the same in every module based JS file. It is essentially the thing that declares the list of hooks and classes that this particular module uses.
+4. This is a hook name. This would be named after the function that hook is used for.
+5. This is a class modifier name. These would be classes that can be used in both CSS and JS for changing an elements state
+6. This line shows how to call for a js hook. The equivalent of this line in regular jQuery looks like this: `$('[data-jshook*="moduleName-functionName"]')`. See how much smaller it makes it? One thing to note though is that it uses `*=`. The strength of this is that you can place multiple jshooks on a single element... the downside is that it will sometimes target things you don't want it to target. eg. `$('[data-jshook*="moduleName-functionName"])` will also target `'<div data-jshook="moduleName-functionName--modifier"></div>`. So if you use a modifier in the name, all names need to have a modifier on them.
+7. This needs to be re-declared inside any function that happens outside of the initial JS load. It is how the targeting functions understand what module you are referring to. I recognise that re-declaring this line all the time isn't all that nice but I haven't found any better ways of doing it.
+8. This is an example of using one of the mod class methods Swordion comes with. It works the same way as the jQuery class manipulator functions except it has "mod" (short for module) at the front and knows to expect something from the moduleTargets object instead of an exact match with the html.
+
+
+### Swordion JS targeting functions:
+
+- **Hook('xxx')** => returns a data-jshook attribute selector => `"[data-jshook*="module-function"]"`
+- **Class('xxx')** => returns a CLASS (dot added) => `".module-element--modifier"`
+- **Span('xxx')** => returns a SPAN (nothing added) => `"module-element--modifier"`
+- **id('xxx')** =>returns an ID (hash added) => `"#module-element"`
+
+### Swordion "mod" functions
+
+- **.modAddClass('xxx')** = `.addClass(Span('xxx'));` => adds a class
+- **.modRemoveClass('xxx')** = `.removeClass(Span('xxx'));` => removes a class
+- **.modToggleClass('xxx')** = `.toggleClass(Span('xxx'));` => toggles a class on/off depending on if the class is already there or not
+- **.modHasClass('xxx')** = `.hasClass(Span('xxx'))` => checks if an element has the specified class
+- **.modHasHook('xxx')** = `.attr('data-jshook').indexOf(Span('xxx')) > 0` => checks if an element has the specified JS hook.
+
 
 --------------------
 
@@ -918,7 +1007,7 @@ If you don't want to have it display inline block, you can change it using the $
 @include M-grad (colour1, colour2, type, stop1, stop2, backup);
 I don't think this project uses gradients much but you might find this useful, particularly for difficult shadows.
 view the _backgrounds.scss file in the mixins folder to see all available gradient types.
-This mixin uses filter based gradients for IE8 so it will still appear there if it is either a vertical or horizontal gradient. The gradient will not appear in IE9 though. To get it to appear in IE9, you will need to also use @include M-ie-grad(…); 
+This mixin uses filter based gradients for IE8 so it will still appear there if it is either a vertical or horizontal gradient. The gradient will not appear in IE9 though. To get it to appear in IE9, you will need to also use @include M-ie-grad(…);
 
 Stored in: _backgrounds.scss
 Usage:
@@ -930,7 +1019,7 @@ A gradient with a type modifier that makes it horizontal (colour goes left to ri
 
 @include M-grad (#fff, #000, v, 25%, 85%);
 A vertical gradient (that’s what the “v” is for) that incorporates colour stops.
- 
+
 @include M-grad (#fff, #000, $backup: #000);
 A vertical gradient with a defined backup for browsers that don’t support gradients.
 @include M-multi-grad(colour-array, type, backup)
@@ -938,7 +1027,7 @@ This mixin has slightly less browser support than M-grad but it makes it easy to
 
 Stored in: backgrounds.scss
 Usage:
-$gradient: 
+$gradient:
    #000 0%,
    #ccc 50%,
    #fff 100%;
@@ -1047,15 +1136,15 @@ Main files
 
 My JS structure consists of a js-loader.js file, a main.js file, a set of plugins and a set of segments.
 
-•	The js-loader file controls what js the page loads. 
+•	The js-loader file controls what js the page loads.
 
 •	The main.js file holds the majority of the sites javascript.
 
 •	The plugins are bits of code that extend javascript functionality and should never need to be edited (like .equalHeights() )
 
-•	The segments are for large sections of code that are only needed for specific circumstances (like the code that controls a rotator for example). Or you might just want to section off a large bit of code that is self contained. 
+•	The segments are for large sections of code that are only needed for specific circumstances (like the code that controls a rotator for example). Or you might just want to section off a large bit of code that is self contained.
 
-Other Notable files 
+Other Notable files
 _new-window.js
 This file opens documents and external links in new windows. It also integrates with Google Analytics so it can track when people download documents or click on external links. It does this all based off the <a> tag href attribute.
 _media-queries.js
