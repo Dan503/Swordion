@@ -147,6 +147,9 @@ This is basically how the naming system works:
 //if a modifier class is used by js, the "JS-" prefix goes AFTER the double dash, NOT at the start
 //(I'll explain why a little later on)
 .moduleName-elementName--JS-modifierName
+
+//"TK" stands for "Tool Kit". These are functional classes that serve a specific purpose
+.TK-functionName
 ```````````````````
 
 You might have noticed that this is different to the standard way of structuring BEM classes:
