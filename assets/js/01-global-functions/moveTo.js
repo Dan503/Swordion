@@ -15,14 +15,14 @@
 		//if target is a span it will wrap it in the jQuery selector
 		target = typeof target == 'string' ? $(target) : target;
 
-		//The default action is append
-		action = defaultTo(action, 'append');
-
-		switch(action){
-			case "prepend": target.prepend(this); break;
-			case "append": target.append(this); break;
-			case "before": target.before(this); break;
-			case "after": target.after(this); break;
+		if (typeof target != 'undefined') {
+			switch(action){
+				case "prepend": target.prepend(this); break;
+				case "before": target.before(this); break;
+				case "after": target.after(this); break;
+				default : target.append(this); break;//assumes you want to append by default
+			}
 		}
+
 		return this;
 	}
