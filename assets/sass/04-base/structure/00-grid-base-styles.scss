@@ -15,13 +15,34 @@
 	.no-flexbox & {
 		display: block;
 		@extend %clearfix;
-		& > .grid-cell {
+		& > * {
 			float: left;
 			display: block;
 		}
 	}
 }
 
+@mixin M-grid-setting($addition, $type: 'class'){
+	$selector: '';
+	@each $item in $addition {
+		@if ($type == 'class'){
+			$selector: '#{$selector}.grid-setting--#{$item}';
+		} @else if ($type =='not') {
+			$selector: '#{$selector}:not(.grid-setting--#{$item})';
+		} @else {
+			$selector: $selector + $item;
+		}
+	}
+	.grid#{$selector}, .grid-parent#{$selector} > * {
+		@content;
+	}
+}
+
+@mixin M-grid {
+	.grid, .grid-parent > * {
+		@content;
+	}
+}
 
 //================================================*\
 /*				GRID WIDTHS						*/
@@ -49,34 +70,50 @@
 	$defaultWidth: map-get($array, default);
 	$breaks: map-get($array, breaks);
 
-//sets the default grid-cell widths
-	.grid--#{$class} {
-		> .grid-cell {
+//sets the default grid-cell widths (grid-setting--thirds)
+	@include M-grid-setting($class) {
+		> * {
 			//width: percentage(1/$i); //The clever way :D
 			width: $defaultWidth; //more editable way -_-
+		}
+	}
 
-//.grid-cell--span-# styling
-			@if ($i > 2){
-				@for $x from 2 through ($i - 1) {
-					&--span-#{$x} { width: $defaultWidth * $x; }
+//.grid-setting--cell-#-span-# styling
+	@if ($i > 1){
+		@for $cell from 1 through $i {
+			@for $span from 2 through $i {
+				@include M-grid-setting(($class,'cell-#{$cell}--span-#{$span}')) {
+					> *:nth-child(#{$cell}n) {  width: $defaultWidth * $span; }
+				}
+			}
+			@include M-grid-setting('cell-#{$cell}--hAlign') {
+				text-align: center;
+
+				img {
+					display: block;
+					margin: 0 auto;
 				}
 			}
 		}
+	}
 
 //Applies the media queries for the break points
-		&:not(.grid--disableMQs) {
-			@if ($breaks != false) {
-				@for $y from 1 through length($breaks) {
-					$breakData : nth($breaks, $y);
-					$device : nth($breakData, 1);
-					$width : nth($breakData, 2);
-					@include M-mq(max,$device){
-						> .grid-cell { width: $width; }
-					}
+	.grid.grid-setting--#{$class}:not(.grid-setting--disableMQs), .grid-parent#{$class}:not(.grid-setting--disableMQs) > * {
+		@if ($breaks != false) {
+			@for $y from 1 through length($breaks) {
+				$breakData : nth($breaks, $y);
+				$device : nth($breakData, 1);
+				$width : nth($breakData, 2);
+				@include M-mq(max,$device){
+					> * { width: $width; }
 				}
 			}
 		}
-		.no-flexbox &.grid--enableWrapping > .grid-cell {
+	}
+
+//clears left if non-flexbox (and can read nth-child)
+	.no-flexbox {
+		@include M-grid-setting('enableWrapping'){
 			@if ($i > 2) {
 				&:nth-child(#{$i}n+1) { clear: left; }
 			}
@@ -84,113 +121,92 @@
 	}
 }
 
-
-//base grid styling
-.grid {
+@include M-grid {
+//.grid base styles (needs to overwrite grid-cell)
 	@extend %noDots;
 	min-width: 100%;
-	border: 0 solid #000;
+	border: 0 solid transparent;
 	@include M-gt-ie8 {
-		@extend %flex;
+		@include M-flex;
 		@include M-prefix(align-content, stretch, $flexPrefixes);
 
-		@include M-mq(max,bp('page')){
-			@include M-not('.grid--disableMQs', '.grid--noWrap'){
-				@include M-flexWrap;
-			}
-		}
-	}
-
-//grid-wrap styling... really only necessary for use with grid--gutter-#
-	&-wrap {
-		overflow: hidden;
 	}
 
 //base grid-cell styling
-	&-cell {
+	> * {
 		display: block;
 		padding: 0;
 		margin: 0;
 		background-clip: padding-box!important;
 		border: 0 solid transparent;
 		@include M-flexGrow;
-		outline-color: #000;
-		border-color: #000;
+		min-width: 0;
+	}
+}
 
-//grid-cell--forceWidth-# styling for elements that must always be a certain width at ALL screen sizes
-		@each $class, $width in $forcedWidths {
-			&--forceWidth-#{$class} {
-				@include M-flexForceWidth($width);
+@include M-gt-ie8 {
+		@include M-mq(max,bp('page')){
+			@include M-grid-setting(('disableMQs', 'noWrap'), 'not'){
+				@include M-flexWrap;
 			}
 		}
-	}
+}
+
 
 //base grid-inner styling
-		&-inner {
-			border: 0 solid #000;
-		}
+@include M-grid-setting('hasInners'){
+	> * {
+		border: 0 solid #000;
+	}
+}
 
 //grid--border-# styling
-	@each $border in $cellBorders {
-		&--border-#{$border} {
-			$border: $border * 1px;
-			border-width: $border 0 0 $border;
+@each $border in $cellBorders {
+	@include M-grid-setting('border-#{$border}'){
+		$border: $border * 1px;
+		border-width: $border 0 0 $border;
+		> .grid-cell {
+			border-width: 0 $border $border 0;
+		}
+		&[class*="grid--gutter-"] {
 			> .grid-cell {
-				border-width: 0 $border $border 0;
-			}
-			&[class*="grid--gutter-"] {
-				> .grid-cell {
-					> .grid-inner {
-						border-width: $border;
-					}
+				> .grid-inner {
+					border-width: $border;
 				}
 			}
 		}
 	}
+}
 
 //grid--gutter-# styling
-	&[class*="grid--gutter-"] {
-		&.grid-outerGutters {
-			margin: 0;
-			&--vertical {
-				margin-top: 0;
-				margin-bottom: 0;
-			}
-			&--horizontal {
-				margin-left: 0;
-				margin-right: 0;
-			}
+@include M-grid-setting('[class*="grid--gutter-"]', attribute){
+	> *, & {
+		border-color: transparent;
+		@include M-lt-ie9 {
+			border-color: $gutter-ieFallback;
 		}
-
-		> .grid-cell, & {
-			border-color: transparent;
-			@include M-lt-ie9 {
-				border-color: $gutter-ieFallback;
-			}
-		}
-		/*.lt-ie10 & {
-			border-left: 0;
-			margin-left: 0;
-		}*/
 	}
+}
+@include M-grid-setting('outerGutters'){
+	margin-top: 0!important;
+	margin-bottom: 0!important;
+	/*.lt-ie10 & {
+		border-left: 0;
+		margin-left: 0;
+	}*/
+}
 
+
+//Handles the cell gutters
 	@mixin M-grid-cellGutter ($gutter){
-		margin: -$gutter;
+		margin: -$gutter;//!important;
 		border-width: $gutter 0 0 $gutter;
-		> .grid-cell {
+		> * {
 			border-width: 0 $gutter $gutter 0;
 		}
 	}
-	@mixin M-grid-delayedGutter($gutter) {
-		&.grid-outerGutters--delayedHorizontal {
-			@include M-mq(max, (bp('page') + $gutter)){
-				margin-left: 0;
-				margin-right: 0;
-			}
-		}
-	}
 	@each $class, $gutter in $cellGutters {
-		&--gutter-#{$class} {
+		@include M-grid-setting('gutter-#{$class}'){
 			@if (length($gutter) > 1) {
 				@each $screenSize, $value in $gutter {
 					@if ($screenSize == 'default') {
@@ -200,33 +216,35 @@
 							@include M-grid-cellGutter($value);
 						}
 					}
-					@include M-grid-delayedGutter($value);
 				}
 			} @else {
-				@include M-grid-cellGutter($gutter);
-				@include M-grid-delayedGutter($gutter);
+				@include M-grid-cellGutter($gutter)
+			}
+
+	//a custom bit for this site only
+			@if (($class == 'blocks') or ($class == 'footNav')){
+				@include M-mq(max, bp('page') + $VG-block-spacing){
+					@include M-grid {
+						&, & > * {
+							margin-left: 0!important;
+							margin-right: 0!important;
+						}
+					}
+				}
 			}
 		}
 	}
 
-//grid--padding-# styling
-	@each $pad in $cellPadding {
-		&--padding-#{$pad} {
-			> .grid-cell {
-				padding: $pad * 1px;
-			}
-			&.grid--hasInners {
-				> .grid-cell > .grid-inner {
-					padding: $pad * 1px;
-				}
-			}
-		}
+//grid-wrap styling... really only necessary for use with grid-setting--gutter-#
+	.grid-wrap {
+		overflow: hidden;
 	}
+
 
 //vertical alignment code
 	@include M-gt-ie8 {
-		&--vAlign {
-			> .grid-cell {
+		@include M-grid-setting('vAlign'){
+			> * {
 				@extend %flexValign;
 			}
 			&.grid--hasInners {
@@ -235,49 +253,46 @@
 				}
 			}
 		}
-	}
-
-	&--hasInners {
-		> .grid-cell {
-			@extend %flex;
-			@include M-prefix(flex-direction,column, $flexPrefixes);
-			> .grid-inner {
-				@include M-prefix(flex-grow,1, $flexPrefixes);
-			}
-		}
-		&[class*="grid--padding-"] {
-			> .grid-cell {
-				padding: 0!important;
+		@include M-grid-setting(('vAlign', 'hasInners')){
+			> * {
+				@include M-flex;
+				@include M-prefix(flex-direction,column, $flexPrefixes);
+				> * {
+					@include M-prefix(flex-grow,1, $flexPrefixes);
+				}
 			}
 		}
 	}
 
 //tabular backup for IE9 and below
-	.no-flexbox & {
-		display: table;
-		width: 100%;
-		> .grid-cell { display: table-cell; vertical-align: top; }
-		&-inner { display: block; }
-	 	&--vAlign > .grid-cell { vertical-align: middle; }
+	.no-flexbox {
+		.grid, .grid-parent > * {
+			display: table;
+			width: 100%;
+			> * { display: table-cell; vertical-align: top; }
+		}
+		@include M-grid-setting('hasInners'){
+			> * { display: block; }
+		}
+		@include M-grid-setting('vAlign'){
+		 	> * { vertical-align: middle; }
+		}
 	}
 
 
 //Unfortunately this is a necessity for IE compatibility
-	&--enableWrapping {
+	@include M-grid-setting('enableWrapping'){
 		@include M-ieFloat;
 
 		@include M-gt-ie8 {
-			.flexbox & {
-				@include M-flexWrap;
-			}
+			@include M-flexWrap;
 		}
 	}
 
 //allows IE to use floats instead of display table without affecting modern browsers
-	&--ieFloat {
+	@include M-grid-setting('ieFloat'){
 		@include M-ieFloat;
 	}
-}
 
 
 

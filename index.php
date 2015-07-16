@@ -71,7 +71,7 @@ $modulePath_home = $modulePath.'home/';
 </div>
 
 <h2>Nav example</h2>
-<nav class="grid grid--noWrap grid--vAlign grid--padding-5 navExample">
+<nav class="grid grid-setting--noWrap grid-setting--vAlign grid-setting--padding-5 navExample">
 
 		<?php
 			$items_array = array(
@@ -94,7 +94,7 @@ $modulePath_home = $modulePath.'home/';
 				$text = $items_array[$i]['text'];
 				$link = $items_array[$i]['link'];
 				echo
-				'<a href="'.$link.'" class="grid-cell navExample-link">
+				'<a href="'.$link.'" class="navExample-link">
 					<span class="grid-vAlignHelper">'.$text.'</span>
 				</a>';
 			}
@@ -171,7 +171,7 @@ $modulePath_home = $modulePath.'home/';
 
 <h3>Simple re-usable pop-in animation</h3>
 
-<ul class="popinDemo js-popins grid grid--enableWrapping grid--vAlign grid--thirds grid--hasInners grid--gutter-20 grid--padding-10 grid--border-3">
+<ul class="popinDemo js-popins grid grid-setting--enableWrapping grid-setting--vAlign grid-setting--thirds grid-setting--hasInners grid-setting--gutter-20 grid-setting--padding-10 grid-setting--border-3">
 <?php
 	for ($i = 0; $i < 6; $i++) {
 		$extra = '';
@@ -179,8 +179,8 @@ $modulePath_home = $modulePath.'home/';
 			$extra = ' extra text for testing';
 		}
 		echo
-		'<li class="popinDemo-piece js-popins-piece grid-cell animationDemoItem">
-			<div class="grid-inner">
+		'<li class="popinDemo-piece js-popins-piece animationDemoItem">
+			<div>
 				<div class="grid-vAlignHelper">Pop-in item '.($i+1).$extra.'</div>
 			</div>
 		</li>';
@@ -189,11 +189,11 @@ $modulePath_home = $modulePath.'home/';
 </ul>
 
 <h3>Simple multistage animation</h3>
-<ul id="js-simpleExampleElement" class="grid grid--halves grid--enableWrapping grid--gutter-10 simpleAnimationExample">
+<ul id="js-simpleExampleElement" class="grid grid-setting--halves grid-setting--enableWrapping grid-setting--gutter-10 simpleAnimationExample">
 <?php
 	for ($i = 0; $i < 4; $i++) {
 		echo
-		'<li class="simple'.($i+1).' simpleAnimationExample-piece grid-cell animationDemoItem">'.
+		'<li class="simple'.($i+1).' simpleAnimationExample-piece animationDemoItem">'.
 			'Staged animation item '.($i+1).
 		'</li>';
 	}
