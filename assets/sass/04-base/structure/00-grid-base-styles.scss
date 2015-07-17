@@ -44,6 +44,7 @@
 	}
 }
 
+
 //================================================*\
 /*				GRID WIDTHS						*/
 //----------------------------------------------------
@@ -83,7 +84,24 @@
 		@for $cell from 1 through $i {
 			@for $span from 2 through $i {
 				@include M-grid-setting(($class,'cell-#{$cell}--span-#{$span}')) {
-					> *:nth-child(#{$cell}n) {  width: $defaultWidth * $span; }
+					@if ($cell == 1){
+						$n: 1;
+						@if ($class == 'halves'){
+							$n: 2;
+						} @else if ($class == 'thirds') {
+							$n: 3;
+						} @else if ($class == 'quarters') {
+							$n: 4;
+						} @else if ($class == 'fiths') {
+							$n: 5;
+						} @else if ($class == 'sixths') {
+							$n: 6;
+						}
+						> *:first-child, > *:nth-child(#{$n}n + 1) {  width: $defaultWidth * $span; }
+
+					} @else {
+						> *:nth-child(#{$cell}n) {  width: $defaultWidth * $span; }
+					}
 				}
 			}
 			@include M-grid-setting('cell-#{$cell}--hAlign') {
@@ -155,8 +173,10 @@
 
 //base grid-inner styling
 @include M-grid-setting('hasInners'){
-	> * {
-		border: 0 solid #000;
+	> * { @include M-flex;
+		> * {
+			@include M-flexGrow;
+		}
 	}
 }
 
