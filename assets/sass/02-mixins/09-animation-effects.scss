@@ -11,12 +11,12 @@
 
 @function rumble_generator($rotation){
 	@return
-		((rotate, 0),),
-		((rotate, -$rotation),),
-		((rotate, $rotation),),
-		((rotate, -$rotation),),
-		((rotate, 0),),
-		((rotate, 0),),
+		(rotate: 0),
+		(rotate: -$rotation),
+		(rotate: $rotation),
+		(rotate: -$rotation),
+		(rotate: 0),
+		(rotate: 0)
 	;
 }
 
@@ -60,23 +60,17 @@ $rumble:rumble_generator(5);
 	Element spins around in one spot
 \*******************************************/
 $spin--clockwise:
-	(
-		(rotate, 0),
-	) 0%, (
-		(rotate, 360),
-	) 100%
+	(rotate: 0),
+	(rotate: 360)
 ;
 $spin--anticlockwise:
-	(
-		(rotate, 360),
-	) 0%, (
-		(rotate, 0),
-	) 100%
+	(rotate: 360),
+	(rotate: 0)
 ;
 
 @if ($main-sheet == true){
-	@include M-kf-definition(spin--clockwise,$spin--clockwise);
-	@include M-kf-definition(spin--anticlockwise,$spin--anticlockwise);
+	@include M-kf-definition(spin--clockwise, kf_generator($spin--clockwise));
+	@include M-kf-definition(spin--anticlockwise, kf_generator($spin--anticlockwise));
 }
 
 //////////////// Use the following //////////////////////////
@@ -109,16 +103,10 @@ $spin--anticlockwise:
 \*******************************************/
 
 @function popin_generator($scale){
-	@return (
-			(scale, 0),
-			(opacity, 0),
-		) 0%, (
-			(scale, $scale),
-			(opacity, 1),
-		) 70%, (
-			(scale, 1),
-			(opacity, 1),
-		) 100%,
+	@return
+		0% (scale: 0, opacity: 0),
+		70% (scale: $scale, opacity: 1),
+		100% (scale: 1, opacity: 1)
 	;
 }
 
@@ -129,12 +117,12 @@ $popin: popin_generator(1.2);
 
 //mixin for custom functionality
 @mixin M-popin($settings: 0.5s, $name:popin, $growth:1.2 ){
-	opacity: 1;
 	@if ($name == popin){
 		@include M-kf-predefined(popin,$settings,1,ease-out);
 	} @else {
-		@include M-kf-animate($name, kf_generator(popin_generator($growth)), $settings, 1);
+		@include M-kf-animate($name, popin_generator($growth), $settings, 1);
 	}
+	.no-cssanimations & { opacity: 1; }
 }
 
 
@@ -146,15 +134,11 @@ $popin: popin_generator(1.2);
 \*******************************************/
 
 @function pulse_generator($scale, $stop1: 30%, $stop2: 50%){
-	@return (
-			(scale, 1),
-		) 0%, (
-			(scale, $scale),
-		) $stop1, (
-			(scale, 1),
-		) $stop2, (
-			(scale, 1),
-		) 100%
+	@return
+		0% (scale: 1),
+		$stop1 (scale: $scale),
+		$stop2 (scale: 1),
+		100% (scale: 1)
 	;
 }
 
