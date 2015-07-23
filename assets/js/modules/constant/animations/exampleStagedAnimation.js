@@ -20,15 +20,12 @@ $('#js-simpleExampleElement').each(function(){
 				1,//stage 3 will occur 1 second after the animation activates
 
 				//stage 4: 4th box has a bit of a spin effect in
-				0.75//it's preffereable to keep stages in order of occurance but you can give later stages smaller times than previous stages if needed when tweaking
+				0//it's preffereable to keep stages in order of occurance but you can give later stages smaller times than previous stages if needed when tweaking
 			],
-			callback: function(){
+			callback: function(stage){
 				_this
-				.stage(1,function(){
-					console.log('This function fires when the element comes into view (stage 1)');
-				})
-				.stage(3,function(){
-					console.log('This function is not fired until stage 3');
+				.stage(stage,function(){
+					console.log('(stage '+stage+')');
 				})
 			}
 		})

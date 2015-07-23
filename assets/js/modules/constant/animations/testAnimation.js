@@ -10,12 +10,12 @@ $('.testAnimation').each(function(){
 		_this.addStages({
 			stages: [
 				//stage 1 always triggers instantly
-				1000,//stage 2 triggers at 1 second
-				2000,//stage 3 triggers at 2 seconds
-				3000,//stage 4 triggers at 3 seconds
+				0.5,//stage 2 triggers after 1 second
+				1.2,//stage 3 triggers after 1.2 seconds
+				2,//stage 4 triggers after 2 seconds
 			],
-			callback: function(){
-				_this
+			callback: function(stage){
+				/*_this
 				.stage(1,function(){
 					console.log('does this work? (stage 1)');
 				})
@@ -24,7 +24,7 @@ $('.testAnimation').each(function(){
 				})
 				.stage(3,function(){
 					console.log('Lets see (stage 3)');
-				});
+				});*/
 			}
 		})
 
@@ -44,8 +44,8 @@ $('.rapidTest').each(function(){
 
 		_this.rapidStages({
 			repeatedElement:'.rapidTest-element',//element that is repeated
-			callback: function(){
-				_this
+			callback: function(stage){
+				/*_this
 				.stage(1,function(){
 					console.log('(stage 1)');
 				})
@@ -60,7 +60,7 @@ $('.rapidTest').each(function(){
 				})
 				.stage(5,function(){
 					console.log('(stage 5)');
-				});
+				});*/
 			}
 		})
 	})

@@ -1,10 +1,8 @@
 //calls functions at specific stages
 $.fn.stage = function(stage, callback) {
 	self = this;
-	if (
-		self.hasClass( 'stage-'+stage ) &&
-		!self.hasClass( 'stage-'+(stage+1) )
-	){
+	var currentStage = self.attr( 'data-current-stage');
+	if ( currentStage == stage ){
 		callback.call(self);
 	};
 	return self;
@@ -16,12 +14,19 @@ $.fn.addTimer = function(settings) {
 
 	var _this = this;
 	setTimeout(function(){
-		_this.addClass('stage-' + (settings.classNumber));
+		_this
+			.addClass('stage-' + (settings.classNumber))
+			.attr('data-current-stage',settings.classNumber);
+
+		//remove the old current stage class then add the new one
+		_this[0].className = _this[0].className.replace(/\bcurrentStage.[0-9]*\b/g, '');
+		_this.addClass('currentStage-' + (settings.classNumber));
+
 		if (settings.repeatedElement != false){
 			$(settings.repeatedElement).eq(settings.classNumber - 1).addClass(settings.activationName);
 		};
 		if (settings.callback != false){
-			settings.callback.call(_this);
+			settings.callback.call(_this, settings.classNumber);
 		}
 	},(settings.time * 1000))
 };
