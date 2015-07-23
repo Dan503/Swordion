@@ -58,33 +58,35 @@ $MQ-test-multiple:
 	}
 
 	&-kfAnimate {
+		padding: 5px 20px;
 		$exampleAnimation:
-			((margin, 0px),),
-			((margin, 0 20px),),
-			((margin, 0px),),
+			(margin: 0 30px, background: #FF0000),
+			(margin: 0 60px, background: #008000),
+			(margin: 0 30px, background: #FF0000),
 		;
 
 		@include M-kf-animate(
 			exampleAnimation,
 			kf_generator($exampleAnimation),
-			3s,
-			infinite,
-			linear
+			2s 1s,
+			$ease: ease-in-out
 		);
 		&--multi {
 			text-align: center;
 			//EXAMPLE USAGE (multi attribute):
 			$exampleAnimation--multi:
-				(
-					(scale, 0),
-					(opacity, 0)
-				) 0%, (
-					(scale, 1),
-					(opacity, 1)
-				) 80%, (
-					(scale, 0),
-					(opacity, 0)
-				) 100%
+				0% (
+					scale: 0,
+					opacity: 0
+				),
+				80% (
+					scale: 1,
+					opacity: 1
+				),
+				100% (
+					scale: 0,
+					opacity: 0
+				)
 			;
 			@include M-kf-animate(
 				exampleAnimation--multi,

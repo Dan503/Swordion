@@ -1,0 +1,16 @@
+.testAnimation {
+	width: 500px;
+	margin: 0 auto;
+	background: red;
+}
+
+.rapidTest {
+	@include M-clearfix;
+	&-element {
+		height: 100px;
+		width: 100px;
+		margin: 10px;
+		float: left;
+		background: red;
+	}
+}

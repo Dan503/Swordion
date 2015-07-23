@@ -1,6 +1,7 @@
 ﻿
-.popins {
-	&-piece { opacity: 0;
-		&--hasPopped { @include M-popin; }
+[data-jshook*="popins"] {
+	> * {
+		opacity: 0;
 	}
+	> .popins-item--isActivated { @include M-popin; }
 }

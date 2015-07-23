@@ -41,10 +41,10 @@
 	background-color: $CG-primary;
 	color: #fff;
 	text-align: center;
+	border: 1px solid #000;
 }
 
 .simpleAnimationExample {
-	overflow: hidden;
 	.simpleAnimationExample-piece { position: relative; }
 
 	////////////////////////////
@@ -61,20 +61,24 @@
 		@include M-scale(0);
 	}
 
+	.simple4 {
+		opacity: 0;
+	}
+
 	///////////////////////
 	//End state settings//
 	/////////////////////
 
 	//first box fades in
-	&.activate {
+	&.stage-1 {
 		.simple1 {
 			//since the animations won't play backwards, put the animation timings in the stage to control timings easier
-			@extend %animate-long !optional; //(goes for 1s)
+			@include M-animate(1s);
 			opacity: 1;
 		}
 	}
 	//2nd box slides in from top right corner
-	&.stage2 {
+	&.stage-2 {
 		.simple2 {
 			@include M-animate(0.5s);
 			bottom: 0;
@@ -82,11 +86,22 @@
 		}
 	}
 	//3rd box grows in
-	&.stage3 {
+	&.stage-3 {
 		.simple3 {
 			//if using one of the default settings for animation duration, the @extend version instead
 			@include M-animate(2s); //(goes for 0.5s)
 			@include M-scale(1);
+		}
+	}
+	//4th box has a bit of a spin effect in
+	&.stage-4 {
+		.simple4 {
+			$simple4animation:
+				0% (opacity: 0, rotate: 180),
+				70% (rotate: 360),
+				100% (opacity: 1, rotate: 0),
+			;
+			@include M-kf-animate(simple4animation, $simple4animation, 2s, 1);
 		}
 	}
 }

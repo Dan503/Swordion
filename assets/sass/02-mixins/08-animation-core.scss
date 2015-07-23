@@ -11,7 +11,7 @@
 %M-3d { @include M-3d; }
 
 //basic animation
-@mixin M-animate($settings: 0.2s, $ease: ease-in-out, $var: all, $fill: both, $style: flat){
+@mixin M-animate($settings: 0.2s, $ease: ease-in-out, $var: all, $style: flat){
 	@if ($settings == 'fast'){
 		$settings: 0.2s;
 	} @else if ($settings == 'medium'){
@@ -23,7 +23,7 @@
 		//allows $var to take multiple arguments
 		$rule: ();
 		@each $variable in $var {
-			$values: $variable $settings $ease $fill;
+			$values: $variable $settings $ease;
 			$rule: append($rule, $values, 'comma');
 		}
 

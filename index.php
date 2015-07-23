@@ -169,9 +169,43 @@ $modulePath_home = $modulePath.'home/';
 
 <h2>Animations</h2>
 
+<h3>Test animation</h3>
+<div class="testAnimation">
+stages test
+</div>
+
+<div class="rapidTest">
+rapid stages test
+<ul>
+	<?php
+		$items_array = array(
+			'item0_0',
+			'xxxxxxx',
+			'xxxxxxx',
+			'xxxxxxx',
+			'xxxxxxx',
+			'xxxxxxx',
+			'xxxxxxx',
+			'xxxxxxx',
+			'xxxxxxx',
+			'xxxxxxx',
+			'xxxxxxx',
+		);
+
+		for ($i = 0; $i < count($items_array); $i++) {
+			$item = $items_array[$i];
+			$text = $item['text'];
+			$link = defaultTo($item['link'],'#');
+			echo
+			'<li class="rapidTest-element"><a href="'.$link.'">'.$text.'</a></li>';
+		}
+	?>
+</ul>
+</div>
+
 <h3>Simple re-usable pop-in animation</h3>
 
-<ul class="popinDemo js-popins grid grid--enableWrapping grid--vAlign grid--thirds grid--hasInners grid--gutter-20 grid--padding-10 grid--border-3">
+<ul class="popinDemo grid grid--enableWrapping grid--vAlign grid--thirds grid--hasInners grid--gutter-20 grid--padding-10 grid--border-3" data-jshook="popins">
 <?php
 	for ($i = 0; $i < 6; $i++) {
 		$extra = '';
@@ -179,7 +213,7 @@ $modulePath_home = $modulePath.'home/';
 			$extra = ' extra text for testing';
 		}
 		echo
-		'<li class="popinDemo-piece js-popins-piece grid-cell animationDemoItem">
+		'<li class="popinDemo-piece grid-cell animationDemoItem">
 			<div class="grid-inner">
 				<div class="grid-vAlignHelper">Pop-in item '.($i+1).$extra.'</div>
 			</div>

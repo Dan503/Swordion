@@ -23,9 +23,19 @@ $C-h1: #2B2B2B;
 		//supposedly this makes fonts cleaner but it makes fonts not appear in safari
 		//text-rendering: optimizeLegibility;
 
-		//all elements are given border-box box-sizing
-		@include M-box-sizing(border-box);
+		//all elements are given their parents box-sizing
+		@include M-box-sizing(inherit);
 	}
+}
+
+html, body {
+	//unless set otherwise, all elements will recieve border box box sizing
+	@include M-box-sizing(border-box);
+
+	//required for best scroll animation results
+	height: 100%;
+	margin: 0;
+	padding: 0;
 }
 
 //counteracts * margin styling
