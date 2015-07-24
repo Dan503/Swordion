@@ -7,6 +7,9 @@
 	//if it's a map, treat each setting in the map seperately
 	@if (type-of($defaultMap) == 'map' ){
 
+		//@debug $mapVariable;
+		//@debug $defaultMap;
+
 	    $finalParams: $mapVariable;
 
 	    // We iterate over each property of the defaultMap
@@ -19,6 +22,8 @@
 
 	        }
 	    }
+
+		//@debug $finalParams;
 
 	    @return $finalParams;
 
