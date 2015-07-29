@@ -872,6 +872,101 @@ outputted CSS:
 `````````````
 
 
+
+
+
+###The animation mixins
+
+####Transition animations
+
+The absolute most basic and easiest way to add animation to your site is with this mixin:
+
+`````````````SASS
+@include M-animate;
+```````````````````````
+
+When a change in styles is detected, it will animate the change whenever possible. The default settings are a duration of 0.2s, no delay, eases in and out and will affect all css attributes. so in other words, this is the default output css:
+
+```````````````````````CSS
+/*CSS output*/
+-webkit-transition: all 0.2s ease-in-out;
+transition: all 0.2s ease-in-out;
+```````````````````````
+
+
+If you want to alter the timing so it has a different duration, it's as easy as:
+
+`````````````SASS
+//animation takes 0.5s to complete
+@include M-animate(0.5s);
+```````````````````````
+
+Adding a delay can be done like this:
+
+`````````````SASS
+//animation takes 0.5s to complete and has a 0.2s delay
+@include M-animate(0.5s 0.2s);
+```````````````````````
+
+To change the ease style you can do this
+
+`````````````SASS
+Changing the ease style
+
+//using custom timing
+@include M-animate(0.5s, linear);
+
+//using default timing
+@include M-animate($ease:linear);
+```````````````````````
+
+If you only want to animate particular CSS attributes you can do this:
+
+`````````````SASS
+Specifying attributes to animate
+
+/*using custom settings*/
+@include M-animate(0.5s, linear, background border);
+
+/*using default settings*/
+@include M-animate($attributes: background border);
+```````````````````````
+
+This is what the example above exports as CSS (using the default settings example)
+
+```````````````````````CSS
+/*CSS output*/
+-webkit-transition: background 0.2s ease-in-out, border 0.2s ease-in-out;
+transition: background 0.2s ease-in-out, border 0.2s ease-in-out;
+```````````````````````
+
+That's pretty cool but what about if we want to give the background and border animation a duration of 1s with a 0.5s delay and a linear ease, but on the same element we also want to animate the opacity with default settings? It's easy with Swordion :)
+
+`````````````SASS
+Advanced transition settings
+
+$transition: (
+	attributes: background border,
+	duration: 1s,
+	delay: 0.5s,
+	ease: linear
+), (
+	attributes: opacity,
+);
+@include M-animate($transition);
+```````````````````````
+```````````````````````CSS
+/*CSS output*/
+-webkit-transition: background 1s 0.5s linear, border 0.2s 0.5s linear, opacity 0.2s 0s ease-in-out;
+transition: background 1s 0.5s linear, border 0.2s 0.5s linear, opacity 0.2s 0s ease-in-out;
+```````````````````````
+
+See even the really complicated transitions are easy with Swordion! You can have as many of those groups as you want, it will just keep adding to the transition rule.
+
+####Keyframe animations
+
+(This section coming soon!)
+
 --------------------
 
 ##Warning!
