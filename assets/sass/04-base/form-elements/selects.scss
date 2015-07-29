@@ -30,7 +30,7 @@ select {
 
 
 	&-display {
-		@include M-animate(0.25s,$var:background);
+		@include M-animate(0.25s,$attributes:background);
 		padding: 5px 0 5px 10px;
 		color: #000;
 		position: relative;
