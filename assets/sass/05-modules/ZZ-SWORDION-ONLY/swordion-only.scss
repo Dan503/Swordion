@@ -106,9 +106,19 @@
 	}
 }
 
-.navExample {
+.navPrimary {
 	@include M-mq(max,bp('tablet')){
 		@include M-prefix(flex-wrap, wrap, $flexPrefixes);
+	}
+	&-item {
+		border-left: 1px solid #ccc;
+		&:first-child { border-left: none; }
+		@include M-mq(max,bp('tablet')){
+			width: 50%;
+		}
+		@include M-mq(max,bp('mobile')){
+			width: 100%;
+		}
 	}
 	&-link {
 		@include M-grad(rgba(#fff,0.4),rgba(#000,0.6));
@@ -116,18 +126,10 @@
 		@include M-animate(0.2s);
 		color: #fff;
 		text-align: center;
-		border-left: 1px solid #ccc;
-		&:first-child { border-left: none; }
 		@include M-hover {
 			background-color: $CB-blue-dark;
 			text-decoration: none;
 			@include M-pos(20px center);
-		}
-		@include M-mq(max,bp('tablet')){
-			width: 50%;
-		}
-		@include M-mq(max,bp('mobile')){
-			width: 100%;
 		}
 	}
 }

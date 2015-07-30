@@ -71,8 +71,8 @@ $modulePath_home = $modulePath.'home/';
 </div>
 
 <h2>Nav example</h2>
-<nav class="grid grid--noWrap grid--vAlign grid--padding-5 navExample">
-
+<nav class="">
+	<ul class="grid grid--hasInners grid--noWrap grid--vAlign navPrimary">
 		<?php
 			$items_array = array(
 				array(
@@ -94,13 +94,12 @@ $modulePath_home = $modulePath.'home/';
 				$text = $items_array[$i]['text'];
 				$link = $items_array[$i]['link'];
 				echo
-				'<a href="'.$link.'" class="grid-cell navExample-link">
-					<span class="grid-vAlignHelper">'.$text.'</span>
-				</a>';
+				'<li class="navPrimary-item grid-cell">
+					<a href="'.$link.'" class="grid-inner navPrimary-link">'.$text.'</a>
+				</li>';
 			}
 		?>
-
-
+	</ul>
 </nav>
 
 <div class="full-screen-div-example js-fullScreen">
