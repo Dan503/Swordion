@@ -113,13 +113,6 @@
 //@extend %anti-animate !optional;
 %anti-animate { @include M-anti-animate; }
 
-@if ($main-sheet == true){
-	.animate { @extend %animate !optional; }
-	.animate--fast { @extend %animate--fast !optional; }
-	.animate--slow { @extend %animate--slow !optional; }
-	.anti-animate { @extend %anti-animate !optional; }
-}
-
 
 ///////////////////////////////
 //	Keyframe animations		//
