@@ -28,7 +28,7 @@ var Span = function (key,classSet){
 //returns a HOOK (an attribute selector)
 var Hook = function(key,classSet){
 	classSet = typeof classSet != 'undefined' ?  classSet : moduleTargets[module];
-	return '[data-jshook="'+classSet[key]+'"]';
+	return '[data-jshook^="'+classSet[key]+' "], [data-jshook*=" '+classSet[key]+' "], [data-jshook$=" '+classSet[key]+'"]';
 }
 
 //returns an ID (hash added) eg. "#js-module-element"
