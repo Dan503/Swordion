@@ -1,9 +1,8 @@
 ﻿
 //sets up the styles for icon classes
 [class^="icon-"], [class*=" icon-"] {
-	display: inline-block;
 	&:before, &:after {
-		display: block;
+		display: inline-block;
 		@extend %M-icon-static-styles;
 		line-height: 1em;
 	}
