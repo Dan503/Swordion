@@ -55,9 +55,8 @@
 
 
 
-a.external-link {
-	@include M-icon(external,14px,$pos:after){
-		color: #1C4B92;
+.JS-externalLink {
+	@include M-icon(external, inherit, 14px, $pos:after){
 		margin-left: 5px;
 	}
 }
@@ -68,7 +67,7 @@ a.external-link {
 #{files_link((doc, docx))} { @include M-download_icons(word,#3617B4); }
 #{files_link((xls, xlsx))} { @include M-download_icons(excel,#065B0E,50%,50%); }
 #{files_link((ppt, pptx))} { @include M-download_icons(powerpoint,#E65A15,30%); }
-#{files_link(txt)} { @include M-download_icons(text,#7B7B7B,30%); }
+#{files_link(txt)} { @include M-download_icons(hamburger,#7B7B7B,30%); }
 #{files_link(mp3)} { @include M-download_icons(audio,#680E7F,50%); }
 a[href*="itunes"] { @include M-download_icons(podcast,#107A8F,$desaturation:20%); }
 a.htmlDownload { @include M-download_icons(globe,#4469CE,30%); }
