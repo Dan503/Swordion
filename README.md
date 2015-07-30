@@ -1109,7 +1109,7 @@ Ok, now for another scenario. What if we want to apply the same effect to a rang
 }
 ```````````````````````
 
-The variables for `kf-definition` are simply the animation name, followed by the animation set. The variables for `kf-predefined` are the same as `kf-animate` except without the `$animation_set` variable.
+The variables for `kf-definition` are simply the animation name, followed by the animation set. The variables for `kf-predefined` are the same as `kf-animate` except without the `$keyframes` variable.
 
 --------------------
 
