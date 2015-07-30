@@ -22,7 +22,7 @@
 
 $rumble:rumble_generator(5);
 
-@if ($main-sheet == true){@include M-kf-definition( rumble, kf_generator($rumble) );}
+@if ($main-sheet == true){@include M-kf-definition( rumble, $rumble );}
 
 //////////////// Use the following //////////////////////////
 
@@ -69,8 +69,8 @@ $spin--anticlockwise:
 ;
 
 @if ($main-sheet == true){
-	@include M-kf-definition(spin--clockwise, kf_generator($spin--clockwise));
-	@include M-kf-definition(spin--anticlockwise, kf_generator($spin--anticlockwise));
+	@include M-kf-definition(spin--clockwise, $spin--clockwise);
+	@include M-kf-definition(spin--anticlockwise, $spin--anticlockwise);
 }
 
 //////////////// Use the following //////////////////////////
@@ -153,7 +153,7 @@ $pulse: pulse_generator(1.1);
 	@if ($name == pulse){
 		@include M-kf-predefined(pulse,$settings,$loops);
 	} @else {
-		@include M-kf-animate($name, kf_generator(pulse_generator($scale, $stop1, $stop2)), $settings, 1);
+		@include M-kf-animate($name, pulse_generator($scale, $stop1, $stop2), $settings, 1);
 	}
 }
 

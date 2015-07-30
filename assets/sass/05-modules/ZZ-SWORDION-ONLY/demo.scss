@@ -65,12 +65,7 @@ $MQ-test-multiple:
 			(margin: 0 30px, background: #FF0000),
 		;
 
-		@include M-kf-animate(
-			exampleAnimation,
-			kf_generator($exampleAnimation),
-			2s 1s,
-			$ease: ease-in-out
-		);
+		@include M-kf-animate(exampleAnimation, $exampleAnimation, 2s 1s, $ease: ease-in-out);
 		&--multi {
 			text-align: center;
 			//EXAMPLE USAGE (multi attribute):
