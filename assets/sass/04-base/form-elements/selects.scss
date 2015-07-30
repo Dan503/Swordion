@@ -21,13 +21,20 @@ select {
 	padding-right: 30px;
 	@include M-inline-block;
 
-	@include M-icon('arrow-thick--down', #000, 5px, 30px){
+	//add the arrow with a css triangle
+	@include M-before {
+		@include M-tri(down, $CG-primary, 7px);
+		@include M-centered(v);
+		right: 11px;
+	}
+
+	//adding arrow with an icon instead
+	/*@include M-icon('arrow--down', #000, 5px, 30px){
 		@include M-centered(v);
 		right: 0;
 		z-index: 1;
 		background-color: $CG-primary;
-	}
-
+	}*/
 
 	&-display {
 		@include M-animate(0.25s,$attributes:background);
@@ -35,13 +42,13 @@ select {
 		color: #000;
 		position: relative;
 		z-index: 0;
-		//add the arrow with a css triangle
+		display: block;
+		border-right: 1px solid rgba($CG-primary,0.5);
 	}
 	&:hover .styledSelect-display {
 		@extend %hoverState;
 	}
 
-	//adding triangle with icon instead
 
 	&.#{$errorClass} {
 		background: $CB-red-pale!important;
