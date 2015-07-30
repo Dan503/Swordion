@@ -252,7 +252,7 @@
 				"id": 17,
 				"prevSize": 32,
 				"code": 58896,
-				"name": "arrow-down"
+				"name": "arrow--down"
 			},
 			"setIdx": 1,
 			"setId": 1,
@@ -281,7 +281,7 @@
 				"id": 16,
 				"prevSize": 32,
 				"code": 58897,
-				"name": "arrow-left"
+				"name": "arrow--left"
 			},
 			"setIdx": 1,
 			"setId": 1,
@@ -310,7 +310,7 @@
 				"id": 15,
 				"prevSize": 32,
 				"code": 58898,
-				"name": "arrow-right"
+				"name": "arrow--right"
 			},
 			"setIdx": 1,
 			"setId": 1,
@@ -339,7 +339,7 @@
 				"id": 14,
 				"prevSize": 32,
 				"code": 58899,
-				"name": "arrow-up"
+				"name": "arrow--up"
 			},
 			"setIdx": 1,
 			"setId": 1,
