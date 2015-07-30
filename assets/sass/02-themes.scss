@@ -59,7 +59,7 @@ $themes: (
 
 @if ($main-sheet == true){
 	@each $theme, $elements in $themes {
-		body.theme-#{$theme} {
+		body.theme--#{$theme} {
 			@each $class, $attributes in $elements {
 				.themed-#{$class} {
 					@each $attribute, $value in $attributes {
@@ -71,7 +71,7 @@ $themes: (
 	}
 
 	//optional: animate theme transitions :)
-	[class^="themed-"], [class*=" themed-"]  { @include M-animate; }
+	[class^="themed-"], [class*=" themed-"]  { @include M-animate(0.5s); }
 }
 
 
