@@ -13,12 +13,8 @@
 @each $icon, $referenceKey in $icons {
     .icon-#{$icon}:before {
         content: $referenceKey !important;
+		@if ($icon == 'spinner'){
+			@include M-spin;
+		}
     }
-}
-
-//facebook2 is only useful if given these styles because of the offset in the "f"
-.icon-facebook2:before {
-	background-color: #3a5897;
-	color: #fff;
-	padding-left: 0.333%;
 }

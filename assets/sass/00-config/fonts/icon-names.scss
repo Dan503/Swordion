@@ -19,7 +19,7 @@
 //*================================================*/
 
 //Use this regular expression to find/replace the css icomoon generates
-//find: \.icon-([a-zA-Z0-9-_]*):before\s{\r\n\tcontent:\s("\\[a-zA-Z0-9]*");\r\n}\r\n
+//find: \.icon-([a-zA-Z0-9-_]*):before\s{\r\n\tcontent:\s("\\[a-zA-Z0-9]*");\r\n}\r
 //replace with: \1: \2,
 
 //expects this css format:
@@ -30,25 +30,29 @@
 
 //list of icon names and they're reference keys
 $icons: (
+	spinner: "\e609",
+	star--empty: "\e60a",
+	star--half: "\e60b",
+	star--full: "\e60c",
+	cross: "\e60d",
+	checkmark: "\e60e",
+	external: "\e60f",
+	twitter: "\e608",
+
+	arrow-down: "\e610",
+	arrow-left: "\e611",
+	arrow-right: "\e612",
+	arrow-up: "\e613",
+
+	facebook: "\e614",
+	fontsize: "\e615",
+	rtf: "\e616",
 	pdf: "\e600",
 	word: "\e601",
 	excel: "\e602",
 	powerpoint: "\e603",
-	text: "\e604",
+	hamburger: "\e604",
 	audio: "\e605",
 	podcast: "\e606",
 	globe: "\e607",
-	external: "\e608",
 );
-
-
-@if ($main-sheet == true){
-
-	//generates the .icon-XXX classes
-	@each $icon, $referenceKey in $icons {
-	    .icon-#{$icon}:before {
-	        content: $referenceKey !important;
-	    }
-	}
-
-}
