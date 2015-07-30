@@ -1,9 +1,9 @@
 
 var js_merge_files = [
-	'assets/js/plugins/constant/**/*.js',
-	'assets/js/doc.ready-open.js',
 	'assets/js/00-global-variables/**/*.js',
 	'assets/js/01-global-functions/**/*.js',
+	'assets/js/plugins/constant/**/*.js',
+	'assets/js/doc.ready-open.js',
 	'assets/js/js-loader.js',
 	'assets/js/_main.js',
 	'assets/js/modules/constant/**/*.js',
