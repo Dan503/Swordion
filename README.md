@@ -1052,7 +1052,7 @@ If you want to maybe have a slow fade in while the background changes colors, yo
 }
 ```````````````````````
 
-If you are wondering what that @1@ at the end is, it's the number of loops the animation will play for. Most of the time you will want this to be either @1@ or @infinite@, it defaults to infinite.
+If you are wondering what that `1` at the end is, it's the number of loops the animation will play for. Most of the time you will want this to be either `1` or `infinite`, it defaults to infinite.
 
 This is the order that the kf-animate attributes go in and their default settings:
 
@@ -1060,12 +1060,12 @@ This is the order that the kf-animate attributes go in and their default setting
 @include M-kf-animate($name, $keyframes, $timing: 1s, $loops: infinite, $ease: linear, $fill: both)
 ```````````````````````
 
-@$timing@ is used for both duration and delay. Duration is always the first value and if you add a second value to the @$timing@ variable it will be the delay.
+`$timing` is used for both duration and delay. Duration is always the first value and if you add a second value to the `$timing` variable it will be the delay.
 
-If you are wondering what the @$fill@ variable is, it's the @animation-fill-mode@ property. If you're still confused, have a read of this excellent article: <a href="http://www.sitepoint.com/understanding-css-animation-fill-mode-property/" title="">Understanding the CSS animation-fill-mode Property</a>. You shouldn't need to worry about this setting too much though the default should work well in like 99% of circumstances.
+If you are wondering what the `$fill` variable is, it's the `animation-fill-mode` property. If you're still confused, have a read of this excellent article: <a href="http://www.sitepoint.com/understanding-css-animation-fill-mode-property/" title="">Understanding the CSS animation-fill-mode Property</a>. You shouldn't need to worry about this setting too much though the default should work well in like 99% of circumstances.
 
 
-Ok, now for another scenario. What if we want to apply the same effect to a range of different elements, possibly even with different timings? If we used the kf-animate mixin to do this, yes it would work but we'd also have a whole heap of duplicated css in our output file. What we really want to be able to do is state the keyframes once but refer back to it multiple times with different timings. This is when the @kf-definition@ and @kf-predefined@ mixins come in handy.
+Ok, now for another scenario. What if we want to apply the same effect to a range of different elements, possibly even with different timings? If we used the kf-animate mixin to do this, yes it would work but we'd also have a whole heap of duplicated css in our output file. What we really want to be able to do is state the keyframes once but refer back to it multiple times with different timings. This is when the `kf-definition` and `kf-predefined` mixins come in handy.
 
 `````````````SASS
 //define a set of keyframes and then refer back to it multiple times with different timings
@@ -1109,7 +1109,7 @@ Ok, now for another scenario. What if we want to apply the same effect to a rang
 }
 ```````````````````````
 
-The variables for @kf-definition@ are simply the animation name, followed by the animation set. The variables for @kf-predefined@ are the same as @kf-animate@ except without the @$animation_set@ variable.
+The variables for `kf-definition` are simply the animation name, followed by the animation set. The variables for `kf-predefined` are the same as `kf-animate` except without the `$animation_set` variable.
 
 --------------------
 
