@@ -40,6 +40,7 @@ $C-checkbox-bg--hover: $CB-grey-light;
 				top: 2px;
 				left: 0px;
 			}
+
 			//foreground
 			&:after {
 				background-color: $C-checkbox-check;
@@ -48,12 +49,6 @@ $C-checkbox-bg--hover: $CB-grey-light;
 				left: 3px;
 				opacity: 0;
 			}
-			/*@include M-icon('checkmark', $C-checkbox-check, 10px, $pos: after){
-				opacity: 0;
-				left: 3px;
-				top: 5px;
-				background: transparent;
-			};*/
 		}
 
 		&:focus + label, & + label:hover {
@@ -94,15 +89,6 @@ $C-checkbox-bg--hover: $CB-grey-light;
 			&:after, &:before {
 				border-radius: 50%;
 			}
-			//foreground
-			&:after {
-				content: '';
-				//@include M-size(9px);
-				//left: 3px;
-				//top: 5px;
-				background-color: $C-checkbox-check;
-				opacity: 0;
-			}
 		}
 		&:focus + label, & + label:hover {
 			&:after {
@@ -116,6 +102,15 @@ $C-checkbox-bg--hover: $CB-grey-light;
 				}
 			}
 		}
+	}
+
+	//Use this for tick check marks. Remove this for square check marks
+	input[type="checkbox"] + label {
+		@include M-icon('checkmark', $C-checkbox-check, 10px, $pos: after){
+			left: 3px;
+			top: 5px;
+			background: transparent;
+		};
 	}
 }
 
