@@ -337,6 +337,18 @@
 }
 
 
+
+//overflowShadow Basic usage:
+
+//(for horizontal scroll)
+//@include M-overflowShadow(h);
+
+//(for vertical scroll)
+//@include M-overflowShadow(v);
+
+//(for if you need a base background color other than white)
+//@include M-overflowShadow(h, #ccc);
+
 @mixin M-overflowShadow ($direction: h, $bg: #fff, $shadow: $CB-grey-dark, $shadowSize: 20px, $baseSize: 11 * $shadowSize){
 
 	$start: left;
