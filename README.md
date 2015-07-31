@@ -296,10 +296,10 @@ module = module_moduleName; //#2
 
 moduleTargets[module] = {//#3
 	//js hooks
-	functionName : module+'-functionName',//#4
+	functionName : module+'__functionName',//#4
 
 	//class modifiers
-	elementName_modifier: module+'-elementName--modifierName',//#5
+	elementName_modifier: module+'__elementName--modifierName',//#5
 };
 
 
@@ -328,20 +328,24 @@ Now here is a run down of the code above:
 8. This is an example of using one of the mod class methods Swordion comes with. It works the same way as the jQuery class manipulator functions except it has "mod" (short for module) at the front and knows to expect something from the moduleTargets object instead of an exact match with the html.
 
 
-### Swordion JS targeting functions:
+`````````````````````````
+//Swordion JS targeting functions:
 
-- **Hook('xxx')** => returns a data-jshook attribute selector => `"[data-jshook*="module__function"]"`
-- **Class('xxx')** => returns a CLASS (dot added) => `".module__element--modifier"`
-- **Span('xxx')** => returns a SPAN (nothing added) => `"module__element--modifier"`
-- **id('xxx')** =>returns an ID (hash added) => `"#module__element"`
+Hook('xxx') => returns a data-jshook attribute selector => '[data-jshook^="module__function "], [data-jshook*=" module__function "], [data-jshook$=" module__function"], [data-jshook="module__function"]'
+Class('xxx') => returns a CLASS (dot added) => ".module__element--modifier"
+Span('xxx') => returns a SPAN (nothing added) => "module__element--modifier"
+id('xxx') =>returns an ID (hash added) => "#module__element"
+``````````````````````````
 
-### Swordion "mod" functions
 
-- **.modAddClass('xxx')** = `.addClass(Span('xxx'));` => adds a class
-- **.modRemoveClass('xxx')** = `.removeClass(Span('xxx'));` => removes a class
-- **.modToggleClass('xxx')** = `.toggleClass(Span('xxx'));` => toggles a class on/off depending on if the class is already there or not
-- **.modHasClass('xxx')** = `.hasClass(Span('xxx'))` => checks if an element has the specified class
-- **.modHasHook('xxx')** = `.attr('data-jshook').indexOf(Span('xxx')) > 0` => checks if an element has the specified JS hook.
+``````````````````````````
+//Swordion "mod" functions
+
+.modAddClass('xxx') = .addClass(Span('xxx')) => adds a class
+.modRemoveClass('xxx') = .removeClass(Span('xxx')) => removes a class
+.modToggleClass('xxx') = .toggleClass(Span('xxx')) => toggles a class on/off depending on if the class is already there or not
+.modHasClass('xxx') = .hasClass(Span('xxx')) => checks if an element has the specified class
+.modHasHook('xxx') = .attr('data-jshook').indexOf(Span('xxx')) > 0 => checks if an element has the specified JS hook.
 
 
 --------------------
