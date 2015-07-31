@@ -229,9 +229,9 @@
 @mixin M-cross($color, $size: 20px, $thickness: 5px, $rounded: true, $backup-icon: false){
 	@if (($lt-ie9 == false) and $backup-icon == false){
 		@include M-plus($color,$size,$thickness,$rounded){
+			@include M-rotate(45);
 			@content;
 		};
-		@include M-rotate(45);
 	} @else {
 		@include M-icon($backup-icon, $size){
 			color: $color;
