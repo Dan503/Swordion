@@ -71,7 +71,7 @@
 	/////////////////////
 
 	//first box fades in
-	&.stage-1 {
+	&.stage-1-JS {
 		.simple1 {
 			//since the animations won't play backwards, put the animation timings in the stage to control timings easier
 			@include M-animate(1s);
@@ -79,7 +79,7 @@
 		}
 	}
 	//2nd box slides in from top right corner
-	&.stage-2 {
+	&.stage-2-JS {
 		.simple2 {
 			@include M-animate(0.5s);
 			bottom: 0;
@@ -87,7 +87,7 @@
 		}
 	}
 	//3rd box grows in
-	&.stage-3 {
+	&.stage-3-JS {
 		.simple3 {
 			//if using one of the default settings for animation duration, the @extend version instead
 			@include M-animate(2s); //(goes for 0.5s)
@@ -95,7 +95,7 @@
 		}
 	}
 	//4th box has a bit of a spin effect in
-	&.stage-4 {
+	&.stage-4-JS {
 		.simple4 {
 			$simple4animation:
 				0% (opacity: 0, rotate: 180),

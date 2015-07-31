@@ -16,11 +16,11 @@ $('a:not([href^="javascript"])').each(function(i){
 
 		//if file type is in the accepted list of file types...
 		if ($.inArray(file_type,file_types) > -1){
-			$(this).addClass('JS-downloadLink').addClass('JS-downloadLink--'+file_type);
+			$(this).addClass('downloadLink-JS').addClass('downloadLink--'+file_type+'-JS');
 
 		//if file type is an image and is on a touch device
 		} else if ($.inArray(file_type,image_types) > -1 && $('html').hasClass('touch')){
-			$(this).addClass('JS-imageLink');
+			$(this).addClass('imageLink-JS');
 		};
 
 	//Share links
@@ -36,31 +36,31 @@ $('a:not([href^="javascript"])').each(function(i){
 		};
 
 		if (isLinkedId) {
-			$(this).addClass(baseShareClass+'--linkedIn');
+			$(this).addClass(baseShareClass+'--linkedIn-JS');
 
 		} else if (isTwitter) {
-			$(this).addClass(baseShareClass+'--twitter');
+			$(this).addClass(baseShareClass+'--twitter-JS');
 
 		} else if (isFacebook) {
-			$(this).addClass(baseShareClass+'--facebook');
+			$(this).addClass(baseShareClass+'--facebook-JS');
 
 		} else if (isEmail) {
-			$(this).addClass('JS-emailShare');
+			$(this).addClass('emailShare-JS');
 		}
 
 	//podcast link
 		if (href.match('^http://www.itunes.com')){
-			$(this).addClass('JS-podcastLink');
+			$(this).addClass('podcastLink-JS');
 		};
 
 	//External links
 		if (
 			href.match("^http") &&
 			href.indexOf(window.location.host) === -1 &&
-			!$(this).hasClass('JS-shareLink') &&
-			!$(this).hasClass('JS-podcastLink')
+			!$(this).hasClass('shareLink-JS') &&
+			!$(this).hasClass('podcastLink-JS')
 		){
-			$(this).addClass('JS-externalLink');
+			$(this).addClass('externalLink-JS');
 		};
 
 	};
@@ -68,59 +68,59 @@ $('a:not([href^="javascript"])').each(function(i){
 	//once all links have been processed
 	if (i == $('a:not([href^="javascript"])').length - 1){
 		//any specific new window links get listed here
-		var all_new_window_links = '.JS-downloadLink, .JS-imageLink, .JS-externalLink, .JS-podcastLink';
+		var all_new_window_links = '.downloadLink-JS, .imageLink-JS, .externalLink-JS, .podcastLink-JS';
 
 		//Google analytics download tracking
-		$('body').on('click','.JS-downloadLink', function(){
+		$('body').on('click','.downloadLink-JS', function(){
 			var url = $(this).attr('href');
-			var classStart = 'JS-downloadLink--';
+			var classStart = 'downloadLink--';
 			var self = $(this);
 			var text = self.text();
 
 			$.each(file_types, function(i){
 				var extension = file_types[i];
-				if (self.hasClass(classStart+extension)) {
+				if (self.hasClass(classStart+extension+'-JS')) {
 					trackEvent('Download - ' + extension, 'click', pageTitle + ' | ' + text + ' | ' + url);
 				}
 			});
 		});
 
 		//Google analytics external link tracking
-		$('body').on('click','.JS-externalLink', function(){
+		$('body').on('click','.externalLink-JS', function(){
 			var url = $(this).attr('href');
 			trackEvent('Outbound', 'click', pageTitle + ' | ' + url);
 		});
 
 		//Google analytics external link tracking
-		$('body').on('click','.JS-podcastLink', function(){
+		$('body').on('click','.podcastLink-JS', function(){
 			var url = $(this).attr('href');
 			trackEvent('Podcast', 'click', pageTitle + ' | ' + url);
 		});
 
-		$('body').on('click','.JS-emailShare', function(){
+		$('body').on('click','.emailShare-JS', function(){
 			trackEvent('Email share', 'click', pageTitle);
 		});
 
 		//Share link functionality and Google analytics tracking
-		$('body').on('click','.JS-shareLink', function(e){
+		$('body').on('click','.shareLink-JS', function(e){
 			preventDefault(e);
 			var url = $(this).attr('href');
 
-			var classStart = 'JS-shareLink--';
+			var classStart = 'shareLink--';
 
-			if ($(this).hasClass(classStart + 'twitter')){
+			if ($(this).hasClass(classStart + 'twitter-JS')){
 				var window_name = "Share on Twitter";
 				var width = 600;
 				var height = 260;
 				trackEvent('Twitter share', 'click', pageTitle);
 
-			} else if ($(this).hasClass(classStart + 'linkedIn')){
+			} else if ($(this).hasClass(classStart + 'linkedIn-JS')){
 				var window_name = "Share on LinkedIn"
 				var width = 600;
 				var height = 400;
 				trackEvent('LinkedIn share', 'click', pageTitle);
 
-			} else if ($(this).hasClass(classStart + 'facebook')){
+			} else if ($(this).hasClass(classStart + 'facebook-JS')){
 				var window_name = "Share on Facebook"
 				var width = 600;
 				var height = 400;
@@ -141,7 +141,7 @@ $('a:not([href^="javascript"])').each(function(i){
 			window.open(url, window_name, 'scrollbars=yes, width=' + width + ', height=' + height + ', top=' + top + ', left=' + left);
 		});
 
-		$(all_new_window_links).addClass("JS-newWindow");
+		$(all_new_window_links).addClass("newWindow-JS");
 
 		$('body').on('click', all_new_window_links, function(e){
 			//return false; //uncomment to help with testing so you don't get redirected while testing GA code.
