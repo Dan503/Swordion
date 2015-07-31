@@ -41,7 +41,7 @@
 		}
 	}
 
-	&__bellow {
+	&--bellow {
 		@include M-origin(top center);
 		bottom: auto;
 		top: 150%;
