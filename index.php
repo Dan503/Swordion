@@ -103,7 +103,7 @@ $modulePath_home = $modulePath.'home/';
 
 </nav>
 
-<div class="full-screen-div-example js-fullScreen">
+<div class="full-screen-div-example" data-jshook="fullScreen__screenFill">
 	<h2>Full screen div example</h2>
 	<p>Scroll down to see more content</p>
 </div>
