@@ -70,39 +70,6 @@ $modulePath_home = $modulePath.'home/';
 	</div>
 </div>
 
-<h2>Nav example</h2>
-<nav class="grid grid--noWrap grid--vAlign grid--padding-5 navExample">
-
-		<?php
-			$items_array = array(
-				array(
-					'text' => 'very very very long item, do not mess with me',
-					'link' => '#item1_1',
-				), array(
-					'text' => 'short',
-					'link' => '#item0_1',
-				), array(
-					'text' => 'Normal sized item',
-					'link' => '#item2_1',
-				), array(
-					'text' => 'looooo ooooooooo ooooooooo oooong',
-					'link' => '#item4_1',
-				),
-			);
-
-			for ($i = 0; $i < count($items_array); $i++) {
-				$text = $items_array[$i]['text'];
-				$link = $items_array[$i]['link'];
-				echo
-				'<a href="'.$link.'" class="grid__cell navExample__link">
-					<span class="grid__vAlignHelper">'.$text.'</span>
-				</a>';
-			}
-		?>
-
-
-</nav>
-
 <div class="full-screen-div-example" data-jshook="fullScreen__screenFill">
 	<h2>Full screen div example</h2>
 	<p>Scroll down to see more content</p>
