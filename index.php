@@ -77,9 +77,9 @@ $modulePath_home = $modulePath.'home/';
 	</div>
 
 	<div class="demo__themes">
-		<p class="demo__div themed__header">Themed header</p>
-		<p class="demo__div themed__nav">Themed nav</p>
-		<p class="demo__div themed__footer">Themed footer</p>
+		<p class="demo__div theme__header">Themed header</p>
+		<p class="demo__div theme__nav">Themed nav</p>
+		<p class="demo__div theme__footer">Themed footer</p>
 	</div>
 </div>
 
