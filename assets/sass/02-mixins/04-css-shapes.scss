@@ -157,7 +157,9 @@
 	border-radius: 50%;
 	display: block;
 
-	@if (unit($width) == '%') {
+	@if ($width == 'auto') {
+		@include M-size($height,$width);
+	} @else if (unit($width) == '%') {
 		width: $width;
 		padding: $width 0 0 0;
 		height: 0;
