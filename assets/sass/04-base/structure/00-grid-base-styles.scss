@@ -15,7 +15,7 @@
 	.no-flexbox & {
 		display: block;
 		@extend %clearfix;
-		& > .grid-cell {
+		& > .grid__cell {
 			float: left;
 			display: block;
 		}
@@ -32,14 +32,14 @@
 //	step 1: give container the width modifier class.
 //			eg: grid--thirds
 //	step 2: give extra wide grid span classes
-//			eg. grid-cell--span2
+//			eg. grid__cell--span2
 //	WARNING: using a span class will likely require additional
 //			 styling for tablets and smaller devices
 //
 //	EXAMPLE HTML:
 //	<ul class="grid grid--thirds">
-//		<li class="grid-cell">Column is 1/3 wide on desktop</li>
-//		<li class="grid-cell grid-cell--span2">column is 2/3 wide on desktop</li>
+//		<li class="grid__cell">Column is 1/3 wide on desktop</li>
+//		<li class="grid__cell grid__cell--span2">column is 2/3 wide on desktop</li>
 //	</ul>
 //================================================*/
 
@@ -49,13 +49,13 @@
 	$defaultWidth: map-get($array, default);
 	$breaks: map-get($array, breaks);
 
-//sets the default grid-cell widths
+//sets the default grid__cell widths
 	.grid--#{$class} {
-		> .grid-cell {
+		> .grid__cell {
 			//width: percentage(1/$i); //The clever way :D
 			width: $defaultWidth; //more editable way -_-
 
-//.grid-cell--span-# styling
+//.grid__cell--span-# styling
 			@if ($i > 2){
 				@for $x from 2 through ($i - 1) {
 					&--span-#{$x} { width: $defaultWidth * $x; }
@@ -71,12 +71,12 @@
 					$device : nth($breakData, 1);
 					$width : nth($breakData, 2);
 					@include M-mq(max,$device){
-						> .grid-cell { width: $width; }
+						> .grid__cell { width: $width; }
 					}
 				}
 			}
 		}
-		.no-flexbox &.grid--enableWrapping > .grid-cell {
+		.no-flexbox &.grid--enableWrapping > .grid__cell {
 			@if ($i > 2) {
 				&:nth-child(#{$i}n+1) { clear: left; }
 			}
@@ -106,7 +106,7 @@
 		overflow: hidden;
 	}
 
-//base grid-cell styling
+//base grid__cell styling
 	&__cell {
 		display: block;
 		padding: 0;
@@ -117,7 +117,7 @@
 		outline-color: #000;
 		border-color: #000;
 
-//grid-cell--forceWidth-# styling for elements that must always be a certain width at ALL screen sizes
+//grid__cell--forceWidth-# styling for elements that must always be a certain width at ALL screen sizes
 		@each $class, $width in $forcedWidths {
 			&--forceWidth-#{$class} {
 				@include M-flexForceWidth($width);
@@ -125,7 +125,7 @@
 		}
 	}
 
-//base grid-inner styling
+//base grid__inner styling
 		&__inner {
 			border: 0 solid #000;
 		}
@@ -135,12 +135,12 @@
 		&--border-#{$border} {
 			$border: $border * 1px;
 			border-width: $border 0 0 $border;
-			> .grid-cell {
+			> .grid__cell {
 				border-width: 0 $border $border 0;
 			}
 			&[class*="grid--gutter-"] {
-				> .grid-cell {
-					> .grid-inner {
+				> .grid__cell {
+					> .grid__inner {
 						border-width: $border;
 					}
 				}
@@ -150,19 +150,19 @@
 
 //grid--gutter-# styling
 	&[class*="grid--gutter-"] {
-		&.grid-outerGutters {
+		&.grid--outerGutters {
 			margin: 0;
-			&--vertical {
+			&-v {
 				margin-top: 0;
 				margin-bottom: 0;
 			}
-			&--horizontal {
+			&-h {
 				margin-left: 0;
 				margin-right: 0;
 			}
 		}
 
-		> .grid-cell, & {
+		> .grid__cell, & {
 			border-color: transparent;
 			@include M-lt-ie9 {
 				border-color: $gutter-ieFallback;
@@ -177,12 +177,12 @@
 	@mixin M-grid-cellGutter ($gutter){
 		margin: -$gutter;
 		border-width: $gutter 0 0 $gutter;
-		> .grid-cell {
+		> .grid__cell {
 			border-width: 0 $gutter $gutter 0;
 		}
 	}
 	@mixin M-grid-delayedGutter($gutter) {
-		&.grid-outerGutters--delayedHorizontal {
+		&.grid--outerGutters-delayedHorizontal {
 			@include M-mq(max, (bp('page') + $gutter)){
 				margin-left: 0;
 				margin-right: 0;
@@ -212,11 +212,11 @@
 //grid--padding-# styling
 	@each $pad in $cellPadding {
 		&--padding-#{$pad} {
-			> .grid-cell {
+			> .grid__cell {
 				padding: $pad * 1px;
 			}
 			&.grid--hasInners {
-				> .grid-cell > .grid-inner {
+				> .grid__cell > .grid__inner {
 					padding: $pad * 1px;
 				}
 			}
@@ -226,11 +226,11 @@
 //vertical alignment code
 	@include M-gt-ie8 {
 		&--vAlign {
-			> .grid-cell {
+			> .grid__cell {
 				@extend %flexValign;
 			}
 			&.grid--hasInners {
-				> .grid-cell > .grid-inner {
+				> .grid__cell > .grid__inner {
 					@extend %flexValign;
 				}
 			}
@@ -238,15 +238,15 @@
 	}
 
 	&--hasInners {
-		> .grid-cell {
+		> .grid__cell {
 			@extend %flex;
 			@include M-prefix(flex-direction,column, $flexPrefixes);
-			> .grid-inner {
+			> .grid__inner {
 				@include M-prefix(flex-grow,1, $flexPrefixes);
 			}
 		}
 		&[class*="grid--padding-"] {
-			> .grid-cell {
+			> .grid__cell {
 				padding: 0!important;
 			}
 		}
@@ -256,9 +256,9 @@
 	.no-flexbox & {
 		display: table;
 		width: 100%;
-		> .grid-cell { display: table-cell; vertical-align: top; }
+		> .grid__cell { display: table-cell; vertical-align: top; }
 		&__inner { display: block; }
-	 	&--vAlign > .grid-cell { vertical-align: middle; }
+	 	&--vAlign > .grid__cell { vertical-align: middle; }
 	}
 
 
