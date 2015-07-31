@@ -331,7 +331,7 @@ Now here is a run down of the code above:
 `````````````````````````
 //Swordion JS targeting functions:
 
-//Returns a data-jshook attribute selector (needs to be like this so they are treated them similarly to classes)
+//Returns a data-jshook attribute selector (needs to be like this so they are treated similarly to classes)
 Hook('xxx') => '[data-jshook^="module__function "], [data-jshook*=" module__function "], [data-jshook$=" module__function"], [data-jshook="module__function"]'
 
 //returns a CLASS (dot added)
