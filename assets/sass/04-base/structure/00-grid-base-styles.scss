@@ -102,12 +102,12 @@
 	}
 
 //grid-wrap styling... really only necessary for use with grid--gutter-#
-	&-wrap {
+	&__wrap {
 		overflow: hidden;
 	}
 
 //base grid-cell styling
-	&-cell {
+	&__cell {
 		display: block;
 		padding: 0;
 		margin: 0;
@@ -126,7 +126,7 @@
 	}
 
 //base grid-inner styling
-		&-inner {
+		&__inner {
 			border: 0 solid #000;
 		}
 
@@ -257,7 +257,7 @@
 		display: table;
 		width: 100%;
 		> .grid-cell { display: table-cell; vertical-align: top; }
-		&-inner { display: block; }
+		&__inner { display: block; }
 	 	&--vAlign > .grid-cell { vertical-align: middle; }
 	}
 

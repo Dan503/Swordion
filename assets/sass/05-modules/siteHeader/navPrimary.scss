@@ -2,13 +2,13 @@
 $module: 'navPrimary';
 
 .navPrimary {
-	&-list {
+	&__list {
 		//
 	}
-		&-item {
+		&__item {
 			//
 		}
-			&-link {
+			&__link {
 				//
 
 				@include M-hover {

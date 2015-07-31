@@ -6,7 +6,7 @@ select {
 	cursor: pointer;
 	option { font-weight: 100; }
 	.js & { @include M-opacity(0); }
-	&:hover + .styledSelect-display { @extend %hoverState; }
+	&:hover + .styledSelect__display { @extend %hoverState; }
 }
 
 .styledSelect {
@@ -36,7 +36,7 @@ select {
 		background-color: $CG-primary;
 	}*/
 
-	&-display {
+	&__display {
 		@include M-animate(0.25s,$attributes:background);
 		padding: 5px 0 5px 10px;
 		color: #000;
@@ -45,7 +45,7 @@ select {
 		display: block;
 		border-right: 1px solid rgba($CG-primary,0.5);
 	}
-	&:hover .styledSelect-display {
+	&:hover .styledSelect__display {
 		@extend %hoverState;
 	}
 
@@ -58,10 +58,10 @@ select {
 			background-color: $CG-error-border;
 			color: $CG-error-bg;
 		}
-		.styledSelect-display { color: $CG-error-text; }
+		.styledSelect__display { color: $CG-error-text; }
 
-		&:hover .styledSelect-display,
-		select:hover + .styledSelect-display  { background: $CG-error-bg--hover; }
+		&:hover .styledSelect__display,
+		select:hover + .styledSelect__display  { background: $CG-error-bg--hover; }
 	}
 
 	select {
@@ -72,6 +72,6 @@ select {
 		@include M-opacity(0);
 		border: none!important;
 		z-index: 2;
-		&:focus + .styledSelect-display { background: $CG-input-focus; }
+		&:focus + .styledSelect__display { background: $CG-input-focus; }
 	}
 }

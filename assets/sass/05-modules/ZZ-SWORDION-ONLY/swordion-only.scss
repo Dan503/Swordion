@@ -110,7 +110,7 @@
 	@include M-mq(max,bp('tablet')){
 		@include M-prefix(flex-wrap, wrap, $flexPrefixes);
 	}
-	&-item {
+	&__item {
 		border-left: 1px solid #ccc;
 		&:first-child { border-left: none; }
 		@include M-mq(max,bp('tablet')){
@@ -120,7 +120,7 @@
 			width: 100%;
 		}
 	}
-	&-link {
+	&__link {
 		@include M-grad(rgba(#fff,0.4),rgba(#000,0.6));
 		background-color: $CB-blue-mid;
 		@include M-animate(0.2s);

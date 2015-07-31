@@ -17,7 +17,7 @@
 		}
 	}
 
-	&-text {
+	&__text {
 		@include M-scale(0);
 		@include M-opacity(0);
 		@include M-origin(bottom center);
@@ -41,7 +41,7 @@
 		}
 	}
 
-	&-bellow {
+	&__bellow {
 		@include M-origin(top center);
 		bottom: auto;
 		top: 150%;
