@@ -6,7 +6,7 @@ input[type="file"] {
 	}
 }
 
-.styledBrowse {
+.styledBrowse-JS {
 	.js & {
 		overflow: hidden;
 		cursor: pointer;
@@ -33,7 +33,7 @@ input[type="file"] {
 			cursor: pointer;
 			visibility: visible;
 		}
-		&__preview {
+		&__preview-JS {
 			line-height: 2.1em;
 			float: left;
 		}
