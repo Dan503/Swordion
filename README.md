@@ -324,29 +324,45 @@ Now here is a run down of the code above:
 4. This is a hook name. This would be named after the function that hook is used for.
 5. This is a class modifier name. These would be classes that can be used in both CSS and JS for changing an elements state
 6. This line shows how to call for a js hook. The equivalent of this line in regular jQuery looks like this: `$('[data-jshook*="moduleName__functionName"]')`. See how much smaller it makes it? One thing to note though is that it uses `*=`. The strength of this is that you can place multiple jshooks on a single element... the downside is that it will sometimes target things you don't want it to target. eg. `$('[data-jshook*="moduleName__functionName"])` will also target `'<div data-jshook="moduleName__functionName--modifier"></div>`. So if you use a modifier in the name, all names need to have a modifier on them.
-7. This needs to be re-declared inside any function that happens outside of the initial JS load. It is how the targeting functions understand what module you are referring to. I recognise that re-declaring this line all the time isn't all that nice but I haven't found any better ways of doing it.
+7. This needs to be re-declared inside any function that happens outside of the initial page load. It is how the targeting functions understand what module you are referring to. I realise that re-declaring this line all the time isn't all that nice but I haven't found a better way of doing it.
 8. This is an example of using one of the mod class methods Swordion comes with. It works the same way as the jQuery class manipulator functions except it has "mod" (short for module) at the front and knows to expect something from the moduleTargets object instead of an exact match with the html.
 
 
 `````````````````````````
 //Swordion JS targeting functions:
 
-Hook('xxx') => returns a data-jshook attribute selector => '[data-jshook^="module__function "], [data-jshook*=" module__function "], [data-jshook$=" module__function"], [data-jshook="module__function"]'
-Class('xxx') => returns a CLASS (dot added) => ".module__element--modifier"
-Span('xxx') => returns a SPAN (nothing added) => "module__element--modifier"
-id('xxx') =>returns an ID (hash added) => "#module__element"
+//Returns a data-jshook attribute selector (needs to be like this so they are treated them similarly to classes)
+Hook('xxx') => '[data-jshook^="module__function "], [data-jshook*=" module__function "], [data-jshook$=" module__function"], [data-jshook="module__function"]'
+
+//returns a CLASS (dot added)
+Class('xxx') => ".module__element--modifier"
+
+//returns a SPAN (nothing added)
+Span('xxx') => "module__element--modifier"
+
+//returns an ID (hash added)
+id('xxx') => "#module__element"
 ``````````````````````````
 
 
 ``````````````````````````
 //Swordion "mod" functions
 
-.modAddClass('xxx') = .addClass(Span('xxx')) => adds a class
-.modRemoveClass('xxx') = .removeClass(Span('xxx')) => removes a class
-.modToggleClass('xxx') = .toggleClass(Span('xxx')) => toggles a class on/off depending on if the class is already there or not
-.modHasClass('xxx') = .hasClass(Span('xxx')) => checks if an element has the specified class
-.modHasHook('xxx') = .attr('data-jshook').indexOf(Span('xxx')) > 0 => checks if an element has the specified JS hook.
+//Adds a class
+.modAddClass('xxx') = .addClass(Span('xxx'))
 
+//Removes a class
+.modRemoveClass('xxx') = .removeClass(Span('xxx'))
+
+//Toggles a class on/off depending on if the class is already there or not
+.modToggleClass('xxx') = .toggleClass(Span('xxx'))
+
+//Checks if an element has the specified class
+.modHasClass('xxx') = .hasClass(Span('xxx'))
+
+//Checks if an element has the specified JS hook.
+.modHasHook('xxx') = .attr('data-jshook').indexOf(Span('xxx')) > 0
+``````````````````````````
 
 --------------------
 
