@@ -7,7 +7,7 @@ moduleTargets[module] = {
     popins : module,
 
     //class modifiers
-    isActivated: module+'-item--isActivated',
+    isActivated: module+'__item--isActivated-JS',
 };
 
 $(Hook('popins')).each(function(){

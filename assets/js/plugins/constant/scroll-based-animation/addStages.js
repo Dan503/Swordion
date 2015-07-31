@@ -74,7 +74,7 @@ $.fn.rapidStages = function(settings){
 	settings = defaultTo(settings, {
 		startAt: 1, //determine which stage to start countin from
 		repeatedElement: '> *',//the element that fires the rapid stages
-		activationName: 'stage-element--isActivated',
+		activationName: 'stage__element--isActivated-JS',
 		startStages: [],//timed stages before the rapid stages are added
 		startTime: 0,//the time when the rapid stages start
 		delay: 0.2,// the delay in seconds between each rapid stage
