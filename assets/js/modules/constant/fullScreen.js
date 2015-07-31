@@ -7,7 +7,7 @@ module = module_fullScreen;
 
 moduleTargets[module] = {
     //js hooks
-    screenFill : module+'__screenFill',
+    screenFiller : module+'__screenFiller',
     subtractor : module+'__subtractor',
 };
 
@@ -17,15 +17,18 @@ $.fn.fullScreen = function(subtraction){
 
 
 }
-function fillScreen(target){
+$.fn.fillScreen = function(subtractorElement){
 	module = module_fullScreen;
-	var subtractionHeight = $(Hook('subtractor')).length ? $(Hook('subtractor')).height() : 0;
+	var subtractor__height = $(subtractorElement).length ? $(subtractorElement).height() : 0;
 
-	target.height(screen__height - subtractionHeight);
+	this.height(screen__height - subtractor__height);
 };
 
-fillScreen(Hook('screenFill'));
+var screenFiller = $(Hook('screenFiller'));
+var subtractor = $(Hook('subtractor'))
+
+screenFiller.fillScreen(subtractor);
 
 $(window).resize(function(){
-	fillScreen(_this)
+	screenFiller.fillScreen(subtractor);
 });

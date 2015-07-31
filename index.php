@@ -21,6 +21,19 @@ $modulePath_home = $modulePath.'home/';
 
 ?>
 
+<ul class="tiltParallax__scene" data-jshook="tiltParallax__scene">
+	<li class="layer tiltParallax__layer" data-depth="-4.00"></li>
+	<li class="layer tiltParallax__layer" data-depth="-0.80"></li>
+	<li class="layer tiltParallax__layer" data-depth="-0.60"></li>
+	<li class="layer tiltParallax__layer" data-depth="-0.40"></li>
+	<li class="layer tiltParallax__layer" data-depth="-0.20"></li>
+	<li class="layer tiltParallax__layer" data-depth="0.00"></li>
+	<li class="layer tiltParallax__layer" data-depth="0.20"></li>
+	<li class="layer tiltParallax__layer" data-depth="0.40"></li>
+	<li class="layer tiltParallax__layer" data-depth="0.60"></li>
+	<li class="layer tiltParallax__layer" data-depth="0.80"></li>
+	<li class="layer tiltParallax__layer" data-depth="1.00"></li>
+</ul>
 
 
 <div class="demo">
@@ -70,7 +83,7 @@ $modulePath_home = $modulePath.'home/';
 	</div>
 </div>
 
-<div class="full-screen-div-example" data-jshook="fullScreen__screenFill">
+<div class="full-screen-div-example" data-jshook="fullScreen__screenFiller">
 	<h2>Full screen div example</h2>
 	<p>Scroll down to see more content</p>
 </div>
