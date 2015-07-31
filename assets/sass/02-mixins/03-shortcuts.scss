@@ -300,7 +300,9 @@
 	position: absolute;
 	top: 0;
 	left: 0;
-	@include M-size(100%);
+	bottom: 0;
+	right: 0;
+	@include M-size(auto);
 }
 %fill { @include M-fill; }
 
