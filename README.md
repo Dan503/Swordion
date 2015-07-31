@@ -9,7 +9,7 @@ You can use the global mixins folder to use the Swordion mixins in an old projec
 
 ##Please note
 
-_This documentation (and this whole thing in general) is a __work in progress__ and is likely to change without notice*_
+This documentation (and this whole thing in general) is a __work in progress__ and is likely to change drastically without notice.
 
 ---------------------
 
@@ -129,7 +129,7 @@ Now when you are returning to a project, all you need to do is a select-all, cop
 
 ##Class system
 
-There is a class system that permeates throughout the whole of Swordion... or at lest I intend to make it run through the whole kit when it's done. It is an altered version off <a href="https://github.com/sathify/CCSS#naming-conventions---simplified-bem">CCSS</a> which is an altered version of the <a href="http://csswizardry.com/2013/01/mindbemding-getting-your-head-round-bem-syntax/" title="learn more about BEM naming conventions">BEM</a> class naming convention.
+There is a class system that permeates throughout the whole of Swordion... or at lest I try to make it run through the whole kit as best I can. It is a slightly altered version of the <a href="http://csswizardry.com/2013/01/mindbemding-getting-your-head-round-bem-syntax/" title="learn more about BEM naming conventions">BEM</a> class naming convention.
 
 This is basically how the naming system works:
 
@@ -138,39 +138,43 @@ This is basically how the naming system works:
 .moduleName
 
 //this type of class is added to the individual elements that make up a module
-.moduleName-elementName
+.moduleName__elementName
 
 //if an elements state is in an alternate state from the default state (a *modified* element),
 //it is given a class like this with 2 dashes before the modifier name
-.moduleName-elementName--modifierName
+.moduleName__elementName--modifierName
 
-//if a modifier class is used by js, the "JS-" prefix goes AFTER the double dash, NOT at the start
-//(I'll explain why a little later on)
-.moduleName-elementName--JS-modifierName
+//If a class is used by js, "-JS" goes at the end of the class. This makes it easier to understand where the class comes from and it goes at the end since it makes it easier to write rules for it that way in SASS
+.moduleName__elementName--modifierName-JS
 
-//"TK" stands for "Tool Kit". These are functional classes that serve a specific purpose
+//"TK-" stands for "Tool Kit". These are functional classes that serve a specific purpose
 .TK-functionName
+
+//single dashes are miscellaneous and just used to help add grouping to class names that don't quite fit into the basic "module, element, modifier" structure.
+//often used to separate a number from a word or add an extra detail to a modifier class
+.moduleName__elementName-1
+.moduleName__elementName--modifierName-typeName
 ```````````````````
 
-You might have noticed that this is different to the standard way of structuring BEM classes:
+This is pretty much the same as regular BEM syntax except it is using camel case instead of dashes to separate words.
 
 `````
 //classic BEM structure
 .module-name__element-name--modifier-name
 `````
 
-I hope based off that one example you can see why I have chosen to use the CCSS way of using the BEM structure instead of the standard BEM structure. Using camel case clearly groups the words that belong together under the same part of the class. Every dash clearly separates each segment of the class and it's clear what each dash represents. At a glance, the standard BEM structure is confusing with dashes and underscores all over the place. I think The CCSS method is simply easier to read.
+I hope based off that one example you can see why I have chosen to make it camel case. Using camel case clearly groups the words that belong together under the same part of the class. Every dash and underscore clearly separates each segment of the class and it's clear what each bit represents. At a glance, the standard BEM structure is confusing with dashes and underscores all over the place. I think This method is simply easier to read.
 
 Here is an example of how you would use the classes using my slightly altered method:
 
 ###HTML
 ```````````html
 <div class="navMenu">
-	<a id="JS-navMenu-toggle" class="navMenu-toggle" href="#">Toggle menu</a>
-	<ul id="JS-navMenu-list" class="navMenu-list">
-		<li class="navMenu-item"><a href="/page1" class="navMenu-link JS-navMenu-link">Home</a></li>
-		<li class="navMenu-item"><a href="/page2" class="navMenu-link JS-navMenu-link navMenu-link--JS-active">About</a></li>
-		<li class="navMenu-item"><a href="/page3" class="navMenu-link JS-navMenu-link">Contact</a></li>
+	<a id="navMenu__toggle" class="navMenu__toggle" href="#">Toggle menu</a>
+	<ul id="navMenu__list" class="navMenu__list">
+		<li class="navMenu__item"><a href="/page1" class="navMenu__link">Home</a></li>
+		<li class="navMenu__item"><a href="/page2" class="navMenu__link navMenu__link--isActive">About</a></li>
+		<li class="navMenu__item"><a href="/page3" class="navMenu__link">Contact</a></li>
 	</ul>
 </div>
 ````````````
@@ -178,24 +182,24 @@ Here is an example of how you would use the classes using my slightly altered me
 ###SASS
 ````````sass
 .navMenu {
-	&-list {
+	&__list {
 		list-style: none;
 		text-align: center;
 		padding: 0;
 	}
-	&-item {
+	&__item {
 		display: inline-block;
 	}
-	&-link {
+	&__link {
 		display: block;
 		padding 10px;
 
-		&--JS-active {
+		&--isActive {
 			background: #000;
 			color: #fff;
 		}
 	}
-	&-toggle {
+	&__toggle {
 		display: block;
 		padding: 10px 20px;
 		background: #000;
@@ -206,15 +210,15 @@ Here is an example of how you would use the classes using my slightly altered me
 
 ###Generated CSS
 ````````````css
-.navMenu-list { list-style: none; text-align: center; padding: 0; }
+.navMenu__list { list-style: none; text-align: center; padding: 0; }
 
-.navMenu-item { display: inline-block; }
+.navMenu__item { display: inline-block; }
 
-.navMenu-link { display: block; padding: 10px; }
+.navMenu__link { display: block; padding: 10px; }
 
-.navMenu-link--JS-active { background: #000; color: #fff; }
+.navMenu__link--isActive { background: #000; color: #fff; }
 
-.navMenu-toggle { display: block; padding: 10px 20px; background: #000; color: #fff; }
+.navMenu__toggle { display: block; padding: 10px 20px; background: #000; color: #fff; }
 ```````````
 
 --------------------
@@ -224,15 +228,15 @@ Here is an example of how you would use the classes using my slightly altered me
 Using the BEM naming convention in javascript is painful. For example take a look at this simple bit of code that replicates the jQuery toggleClass() method when clicking an element:
 
 ```````````html
-<button class="moduleName-elementName">element</button>
+<button class="moduleName__elementName">element</button>
 ````````````
 ```````javascript
 //classic javascript
-$('.moduleName-elementName').click(function(){
-	if($(this).hasClass('moduleName-elementName--modifierName')){
-		$(this).removeClass('moduleName-elementName--modifierName');
+$('.moduleName__elementName').click(function(){
+	if($(this).hasClass('moduleName__elementName--modifierName')){
+		$(this).removeClass('moduleName__elementName--modifierName');
 	} else {
-		$(this).addClass('moduleName-elementName--modifierName');
+		$(this).addClass('moduleName__elementName--modifierName');
 	}
 });
 `````````````
@@ -241,12 +245,12 @@ Look at all that horrible repetition! So what is the easiest way to reduce the r
 So this is how that ends up looking if we save things into variables:
 
 ```````````html
-<button class="moduleName-elementName">element</button>
+<button class="moduleName__elementName">element</button>
 ````````````
 ```````javascript
 //Using variables
-var element = 'moduleName-elementName',
-	element_modifier = 'moduleName-elementName--modifierName';
+var element = 'moduleName__elementName',
+	element_modifier = 'moduleName__elementName--modifierName';
 
 $('.'+element).click(function(){
 	if($(this).hasClass(element_modifier)){
@@ -262,12 +266,12 @@ That&rsquo;s getting better but Swordion is all about keeping things modular. We
 But targeting data attributes can be a bit annoying in JS:
 
 ```````````html
-<button class="moduleName-elementName" data-jshook="moduleName-functionName">element</button>
+<button class="moduleName__elementName" data-jshook="moduleName__functionName">element</button>
 ````````````
 ```````javascript
 //Using variables
-var functionName = 'moduleName-functionName',
-	element_modifier = 'moduleName-elementName--modifierName';
+var functionName = 'moduleName__functionName',
+	element_modifier = 'moduleName__elementName--modifierName';
 
 $('[data-jshook*="'+element+'"]').click(function(){
 	if($(this).hasClass(element_modifier)){
@@ -281,7 +285,7 @@ $('[data-jshook*="'+element+'"]').click(function(){
 That is why Swordion gives you tools for using these js hooks easily.
 
 ```````````html
-<button class="moduleName-elementName" data-jshook="moduleName-functionName">element</button>
+<button class="moduleName__elementName" data-jshook="moduleName__functionName">element</button>
 ````````````
 ```````javascript
 //The Swordion approach
@@ -319,17 +323,17 @@ Now here is a run down of the code above:
 3. This line will always be the same in every module based JS file. It is essentially the thing that declares the list of hooks and classes that this particular module uses.
 4. This is a hook name. This would be named after the function that hook is used for.
 5. This is a class modifier name. These would be classes that can be used in both CSS and JS for changing an elements state
-6. This line shows how to call for a js hook. The equivalent of this line in regular jQuery looks like this: `$('[data-jshook*="moduleName-functionName"]')`. See how much smaller it makes it? One thing to note though is that it uses `*=`. The strength of this is that you can place multiple jshooks on a single element... the downside is that it will sometimes target things you don't want it to target. eg. `$('[data-jshook*="moduleName-functionName"])` will also target `'<div data-jshook="moduleName-functionName--modifier"></div>`. So if you use a modifier in the name, all names need to have a modifier on them.
+6. This line shows how to call for a js hook. The equivalent of this line in regular jQuery looks like this: `$('[data-jshook*="moduleName__functionName"]')`. See how much smaller it makes it? One thing to note though is that it uses `*=`. The strength of this is that you can place multiple jshooks on a single element... the downside is that it will sometimes target things you don't want it to target. eg. `$('[data-jshook*="moduleName__functionName"])` will also target `'<div data-jshook="moduleName__functionName--modifier"></div>`. So if you use a modifier in the name, all names need to have a modifier on them.
 7. This needs to be re-declared inside any function that happens outside of the initial JS load. It is how the targeting functions understand what module you are referring to. I recognise that re-declaring this line all the time isn't all that nice but I haven't found any better ways of doing it.
 8. This is an example of using one of the mod class methods Swordion comes with. It works the same way as the jQuery class manipulator functions except it has "mod" (short for module) at the front and knows to expect something from the moduleTargets object instead of an exact match with the html.
 
 
 ### Swordion JS targeting functions:
 
-- **Hook('xxx')** => returns a data-jshook attribute selector => `"[data-jshook*="module-function"]"`
-- **Class('xxx')** => returns a CLASS (dot added) => `".module-element--modifier"`
-- **Span('xxx')** => returns a SPAN (nothing added) => `"module-element--modifier"`
-- **id('xxx')** =>returns an ID (hash added) => `"#module-element"`
+- **Hook('xxx')** => returns a data-jshook attribute selector => `"[data-jshook*="module__function"]"`
+- **Class('xxx')** => returns a CLASS (dot added) => `".module__element--modifier"`
+- **Span('xxx')** => returns a SPAN (nothing added) => `"module__element--modifier"`
+- **id('xxx')** =>returns an ID (hash added) => `"#module__element"`
 
 ### Swordion "mod" functions
 
@@ -353,10 +357,10 @@ Here is a basic example of how to set a shared grid column width:
 ```````HTML
 <!-- Setting a shared column width -->
 <div class="grid grid--quarters">
-	<div class="grid-cell"><!-- grid content --></div>
-	<div class="grid-cell"><!-- grid content --></div>
-	<div class="grid-cell"><!-- grid content --></div>
-	<div class="grid-cell"><!-- grid content --></div>
+	<div class="grid__cell"><!-- grid content --></div>
+	<div class="grid__cell"><!-- grid content --></div>
+	<div class="grid__cell"><!-- grid content --></div>
+	<div class="grid__cell"><!-- grid content --></div>
 </div>
 ```````
 
@@ -408,24 +412,24 @@ Here is an example of how to use the colspan feature:
 ```````HTML
 <!-- Adding an extra wide column -->
 <div class="grid grid--quarters">
-	<div class="grid-cell grid-cell--span-2"><!-- grid content --></div>
-	<div class="grid-cell"><!-- grid content --></div>
-	<div class="grid-cell"><!-- grid content --></div>
+	<div class="grid__cell grid__cell--span-2"><!-- grid content --></div>
+	<div class="grid__cell"><!-- grid content --></div>
+	<div class="grid__cell"><!-- grid content --></div>
 </div>
 ```````
 
-In this example the first column will take up 50% of the width while the other two columns will take up only 25% of the width. That is the basic premise of using the `grid-cell--span-#` modifier.
+In this example the first column will take up 50% of the width while the other two columns will take up only 25% of the width. That is the basic premise of using the `grid__cell--span-#` modifier.
 
-The class works as you would expect. The grid set to thids only accepts `--span-2` where as a grid set to sixths can accept `grid-cell--span-2` all the way to `grid-cell--span-5`.
+The class works as you would expect. The grid set to thids only accepts `--span-2` where as a grid set to sixths can accept `grid__cell--span-2` all the way to `grid__cell--span-5`.
 
-<strong>WARNING!</strong> Using the `grid-cell--span-#` feature doesn't scale well, extra module specific styling will be needed for smaller screen sizes. If you are using the `grid-cell--span-#` feature I'd recommend adding the `grid--disableMQs` class to the grid div. This will prevent the usual snapping at break points and allow you to add your own module based media queries in without interference from the default styles.
+<strong>WARNING!</strong> Using the `grid__cell--span-#` feature doesn't scale well, extra module specific styling will be needed for smaller screen sizes. If you are using the `grid__cell--span-#` feature I'd recommend adding the `grid--disableMQs` class to the grid div. This will prevent the usual snapping at break points and allow you to add your own module based media queries in without interference from the default styles.
 
 ```````HTML
 <!-- Disabling the default Media Queries to make module based Media Queries easier -->
 <div class="grid grid--quarters grid--disableMQs">
-	<div class="grid-cell grid-cell--span-2"><!-- grid content --></div>
-	<div class="grid-cell"><!-- grid content --></div>
-	<div class="grid-cell"><!-- grid content --></div>
+	<div class="grid__cell grid__cell--span-2"><!-- grid content --></div>
+	<div class="grid__cell"><!-- grid content --></div>
+	<div class="grid__cell"><!-- grid content --></div>
 </div>
 ```````
 
@@ -436,14 +440,14 @@ Disabling the media queries also really comes in handy when you need to nest gri
 ```````HTML
 <!-- Nesting grids inside one another and disabling the inner grid Media Queries -->
 <div class="grid grid--halves">
-	<div class="grid-cell">
+	<div class="grid__cell">
 		<div class="grid grid--thirds grid--disableMQs">
-			<div class="grid-cell"><!-- grid content --></div>
-			<div class="grid-cell"><!-- grid content --></div>
-			<div class="grid-cell"><!-- grid content --></div>
+			<div class="grid__cell"><!-- grid content --></div>
+			<div class="grid__cell"><!-- grid content --></div>
+			<div class="grid__cell"><!-- grid content --></div>
 		</div>
 	</div>
-	<div class="grid-cell"><!-- grid content --></div>
+	<div class="grid__cell"><!-- grid content --></div>
 </div>
 ```````
 
@@ -456,10 +460,10 @@ Don't worry, media queries still work if this isn't enabled. It only affects des
 ```````HTML
 <!-- Nesting grids inside one another and disabling the inner grid Media Queries -->
 <div class="grid grid--halves grid--enableWrapping">
-	<div class="grid-cell"><!-- grid content --></div>
-	<div class="grid-cell"><!-- grid content --></div>
-	<div class="grid-cell"><!-- grid content --></div>
-	<div class="grid-cell"><!-- grid content --></div>
+	<div class="grid__cell"><!-- grid content --></div>
+	<div class="grid__cell"><!-- grid content --></div>
+	<div class="grid__cell"><!-- grid content --></div>
+	<div class="grid__cell"><!-- grid content --></div>
 </div>
 ```````
 
@@ -479,17 +483,17 @@ Since the grid system is powered by the flexbox css property (in modern browsers
 ```````HTML
 <!-- Example of how to use grid for navigation -->
 <nav class="grid grid--padding-5 grid--vAlign navExample">
-	<a href="#item0" class="grid-cell navExample-link">
-		<span class="grid-vAlignHelper">Very long item that is probably too long for navigation</span>
+	<a href="#item0" class="grid__cell navExample__link">
+		<span class="grid__vAlignHelper">Very long item that is probably too long for navigation</span>
 	</a>
-	<a href="#item1" class="grid-cell navExample-link">
-		<span class="grid-vAlignHelper">short</span>
+	<a href="#item1" class="grid__cell navExample__link">
+		<span class="grid__vAlignHelper">short</span>
 	</a>
-	<a href="#item2" class="grid-cell navExample-link">
-		<span class="grid-vAlignHelper">Normal sized item</span>
+	<a href="#item2" class="grid__cell navExample__link">
+		<span class="grid__vAlignHelper">Normal sized item</span>
 	</a>
-	<a href="#item4" class="grid-cell navExample-link">
-		<span class="grid-vAlignHelper">looooo ooooooooo ooooooooo oooong</span>
+	<a href="#item4" class="grid__cell navExample__link">
+		<span class="grid__vAlignHelper">looooo ooooooooo ooooooooo oooong</span>
 	</a>
 </nav>
 ```````
@@ -504,13 +508,13 @@ To quickly and easily add padding to all the grid cells at once, you can use the
 Available Padding classes can be edited in the grid config file.
 
 <strong>grid--vAlign</strong><br>
-This is the part that vertically center aligns the text inside the link if the links around it have split to 2 lines already. You will notice that there is a "grid-vAlignHelper" span inside the `<a>` tags. These don't actually have any styling attatched to them but the `<a>` tags <em>need</em> an element inside them for the vertical alignment to work. I put the class on there to hint at why it's needed.
+This is the part that vertically center aligns the text inside the link if the links around it have split to 2 lines already. You will notice that there is a "grid__vAlignHelper" span inside the `<a>` tags. These don't actually have any styling attatched to them but the `<a>` tags <em>need</em> an element inside them for the vertical alignment to work. I put the class on there to hint at why it's needed.
 
 <strong>It's not in a list!?!</strong><br>
 I hate how It's not inside a list but I couldn't find any way to make the links both center align the text and completely fill the available space in the column. When I put it inside a list, I basically had to decide between text that wasn't vertically center aligned, having links that didn't fill the entire space available, or resorting to javascript to force equal heights that way. Using javascript to force it felt excessive to me when a pure css approach is possible if you just leave the links out of a list. It's wrapped in a `<nav>` element, that should make it semantic enough I think.
 
 <strong>navExample module classes</strong><br>
-"navExample" and "navExample-link" aren't part of the grid class set. to add custom styling to the nav, you need the "navExample" and "navExample-link" module classes to target the nav properly in the SASS files.
+"navExample" and "navExample__link" aren't part of the grid class set. to add custom styling to the nav, you need the "navExample" and "navExample__link" module classes to target the nav properly in the SASS files.
 
 ###Adding gutters
 
@@ -521,10 +525,10 @@ A lot of the time you don't want your grid cells to be hard up against one anoth
 ```````HTML
 <!-- Adding a 20px gutter between the grid cells-->
 <div class="grid grid--quarters grid--gutter-20">
-	<div class="grid-cell"><!-- grid content --></div>
-	<div class="grid-cell"><!-- grid content --></div>
-	<div class="grid-cell"><!-- grid content --></div>
-	<div class="grid-cell"><!-- grid content --></div>
+	<div class="grid__cell"><!-- grid content --></div>
+	<div class="grid__cell"><!-- grid content --></div>
+	<div class="grid__cell"><!-- grid content --></div>
+	<div class="grid__cell"><!-- grid content --></div>
 </div>
 ```````
 
@@ -536,23 +540,23 @@ Available gutter classes can be edited in the grid config file.
 
 To make life easier, the grid system has a `grid--border-#` modifier class that can be applied to it. Available border widths can be set in the grid.scss config file in the `$cellBorders` variable.
 
-I origionally did something clever with outline offset but IE11 doesn't support that so I had to go back to the drawing board. Now if you want to add a border to your grid cells you need to apply a `grid--hasInners` class to the main grid element and also add a `grid-inner` element inside the `grid-cell` element for the system to work.
+I origionally did something clever with outline offset but IE11 doesn't support that so I had to go back to the drawing board. Now if you want to add a border to your grid cells you need to apply a `grid--hasInners` class to the main grid element and also add a `grid__inner` element inside the `grid__cell` element for the system to work.
 
 ```````HTML
 ADDING A BORDER TO GRID CELLS THAT HAVE A GUTTER
 
 <div class="grid grid--quarters grid--hasInners grid--gutter-20 grid--border-2">
-	<div class="grid-cell">
-		<div class="grid-inner"><!-- grid content --></div>
+	<div class="grid__cell">
+		<div class="grid__inner"><!-- grid content --></div>
 	</div>
-	<div class="grid-cell">
-		<div class="grid-inner"><!-- grid content --></div>
+	<div class="grid__cell">
+		<div class="grid__inner"><!-- grid content --></div>
 	</div>
-	<div class="grid-cell">
-		<div class="grid-inner"><!-- grid content --></div>
+	<div class="grid__cell">
+		<div class="grid__inner"><!-- grid content --></div>
 	</div>
-	<div class="grid-cell">
-		<div class="grid-inner"><!-- grid content --></div>
+	<div class="grid__cell">
+		<div class="grid__inner"><!-- grid content --></div>
 	</div>
 </div>
 ```````
@@ -560,18 +564,18 @@ ADDING A BORDER TO GRID CELLS THAT HAVE A GUTTER
 
 ###Adding borders to cells WITHOUT gutters
 
-If you don't need the gutters but you do want the borders (essentially making the grid look like a table) then you don't need to worry about adding the `grid-inner` stuff.
+If you don't need the gutters but you do want the borders (essentially making the grid look like a table) then you don't need to worry about adding the `grid__inner` stuff.
 
-<strong>Note:</strong> To change the color of the border, you need to target both the grid-cell <em>AND</em> the grid itself
+<strong>Note:</strong> To change the color of the border, you need to target both the grid__cell <em>AND</em> the grid itself
 
 ```````HTML
 ADDING A BORDER TO GRID CELLS THAT DO NOT HAVE A GUTTER
 
 <div class="grid grid--quarters grid--border-3 gridBorderExample">
-	<div class="grid-cell gridBorderExample-cell"><!-- grid content --></div>
-	<div class="grid-cell gridBorderExample-cell"><!-- grid content --></div>
-	<div class="grid-cell gridBorderExample-cell"><!-- grid content --></div>
-	<div class="grid-cell gridBorderExample-cell"><!-- grid content --></div>
+	<div class="grid__cell gridBorderExample__cell"><!-- grid content --></div>
+	<div class="grid__cell gridBorderExample__cell"><!-- grid content --></div>
+	<div class="grid__cell gridBorderExample__cell"><!-- grid content --></div>
+	<div class="grid__cell gridBorderExample__cell"><!-- grid content --></div>
 </div>
 ```````
 ```````SASS
@@ -1099,11 +1103,11 @@ Ok, now for another scenario. What if we want to apply the same effect to a rang
 	50% { opacity: 1; }
 	100% { opacity: 0; }
 }
-.parent-child--anim1 {
+.parent__child--anim1 {
 	-webkit-animation: fadeInOut 1s infinite linear both;
 	animation: fadeInOut 1s infinite linear both;
 }
-.parent-child--anim2 {
+.parent__child--anim2 {
 	-webkit-animation: fadeInOut 2s infinite linear both;
 	animation: fadeInOut 2s infinite linear both;
 }
