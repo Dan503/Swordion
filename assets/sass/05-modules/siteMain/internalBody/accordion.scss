@@ -20,14 +20,14 @@ $BP-plus--shifted: bp('mobile');
 
 .#{$module} {
 	margin: (40px - $V-head-padding) 0 40px;
-	&-item {
+	&__item {
 		border-bottom: $V-border;
 		margin: 0;
 	}
-	&-heading {
+	&__heading {
 		position: relative;
 	}
-		&-headLink {
+		&__headLink {
 			padding: $V-head-padding;
 			color: $C-head-text;
 			display: block;
@@ -35,16 +35,16 @@ $BP-plus--shifted: bp('mobile');
 
 			&:hover {
 				.#{$module} {
-					&-icon { border-color: $C-plus--hover; }
+					&__icon { border-color: $C-plus--hover; }
 				}
 			}
 		}
-	&-content {
+	&__content {
 		border-top: $V-border;
 		padding: 15px 0;
 	}
 
-	&-icon {
+	&__icon {
 		@include M-plus($C-plus,$V-plus-size--inner,4px){
 			@include M-animate;
 		};

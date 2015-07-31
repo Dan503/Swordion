@@ -39,7 +39,7 @@
 
 	<div class="siteContainer">
 		<div class="skipLinks">
-			<a href="#contentStart" class="skipLinks-link TK-skipLink" title="">Skip to content</a>
+			<a href="#contentStart" class="skipLinks__link TK-skipLink" title="">Skip to content</a>
 		</div>
 
 

@@ -1,21 +1,34 @@
 ﻿
 //make any element take up the full screen height minus the optional subtracted element
 
+var module_fullScreen = 'fullScreen';
+
+module = module_fullScreen;
+
+moduleTargets[module] = {
+    //js hooks
+    screenFiller : module+'__screenFiller',
+    subtractor : module+'__subtractor',
+};
+
+
 $.fn.fullScreen = function(subtraction){
 	var _this = this;
 
-	function fillScreen(target){
-		var windowHeight = $(window).height();
-		var subtractionHeight =  typeof subtraction != 'undefined' ? $(subtraction).height() : 0;
 
-		target.height(windowHeight - subtractionHeight);
-	};
-
-	fillScreen(_this);
-
-	$(window).resize(function(){
-		fillScreen(_this)
-	});
 }
+$.fn.fillScreen = function(subtractorElement){
+	module = module_fullScreen;
+	var subtractor__height = $(subtractorElement).length ? $(subtractorElement).height() : 0;
 
-$('.js-fullScreen').fullScreen('header');
+	this.height(screen__height - subtractor__height);
+};
+
+var screenFiller = $(Hook('screenFiller'));
+var subtractor = $(Hook('subtractor'))
+
+screenFiller.fillScreen(subtractor);
+
+$(window).resize(function(){
+	screenFiller.fillScreen(subtractor);
+});

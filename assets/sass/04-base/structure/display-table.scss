@@ -3,10 +3,10 @@
 
 .table {
 	display: table;
-	&-row {
+	&__row {
 		display: table-row;
 	}
-		&-cell {
+		&__cell {
 			display: table-cell;
 		}
 }

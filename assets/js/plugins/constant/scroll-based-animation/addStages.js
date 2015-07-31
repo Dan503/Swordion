@@ -15,12 +15,12 @@ $.fn.addTimer = function(settings) {
 	var _this = this;
 	setTimeout(function(){
 		_this
-			.addClass('stage-' + (settings.classNumber))
+			.addClass('stage-' + (settings.classNumber)+'-JS')
 			.attr('data-current-stage',settings.classNumber);
 
 		//remove the old current stage class then add the new one
-		_this[0].className = _this[0].className.replace(/\bcurrentStage.[0-9]*\b/g, '');
-		_this.addClass('currentStage-' + (settings.classNumber));
+		_this[0].className = _this[0].className.replace(/\bcurrentStage.[0-9]*-JS\b/g, '');
+		_this.addClass('currentStage-' + (settings.classNumber)+'-JS');
 
 		if (settings.repeatedElement != false){
 			$(settings.repeatedElement).eq(settings.classNumber - 1).addClass(settings.activationName);
@@ -41,7 +41,7 @@ $.fn.addStages = function(settings, repeatedElement, activationName) {
 		repeatedElement: false,
 	});
 
-	if (this.length && !this.hasClass('stage-1')) {
+	if (this.length && !this.hasClass('stage-1-JS')) {
 		var total = this.length;
 		var _this = this;
 
@@ -74,7 +74,7 @@ $.fn.rapidStages = function(settings){
 	settings = defaultTo(settings, {
 		startAt: 1, //determine which stage to start countin from
 		repeatedElement: '> *',//the element that fires the rapid stages
-		activationName: 'stage-element--isActivated',
+		activationName: 'stage__element--isActivated-JS',
 		startStages: [],//timed stages before the rapid stages are added
 		startTime: 0,//the time when the rapid stages start
 		delay: 0.2,// the delay in seconds between each rapid stage

@@ -7,7 +7,7 @@
 	.js &.styledSubmit { @include M-opacity(0); }
 }
 
-.styledSubmit {
+.styledSubmit-JS {
 	position: relative;
 	cursor: pointer;
 	input[type="submit"] {

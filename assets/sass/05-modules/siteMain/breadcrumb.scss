@@ -4,7 +4,7 @@ $C-nonLink: $CB-grey-dimmer;
 .breadcrumb {
 	float: left;
 	margin-top: 10px;
-	&-item {
+	&__item {
 		display: inline-block;
 		vertical-align: middle;
 		padding-left: 20px;
@@ -21,7 +21,7 @@ $C-nonLink: $CB-grey-dimmer;
 			&:before { display: none; }
 		}
 	}
-		&-inner {
+		&__inner {
 			&--link {
 				//
 			}
@@ -31,7 +31,7 @@ $C-nonLink: $CB-grey-dimmer;
 			&--home {
 			}
 		}
-			&-icon {
+			&__icon {
 				@include M-icon-size(20px);
 				position: relative;
 				top: 1px;

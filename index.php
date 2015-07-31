@@ -21,10 +21,23 @@ $modulePath_home = $modulePath.'home/';
 
 ?>
 
+<ul class="tiltParallax__scene" data-jshook="tiltParallax__scene">
+	<li class="layer tiltParallax__layer" data-depth="-4.00"></li>
+	<li class="layer tiltParallax__layer" data-depth="-0.80"></li>
+	<li class="layer tiltParallax__layer" data-depth="-0.60"></li>
+	<li class="layer tiltParallax__layer" data-depth="-0.40"></li>
+	<li class="layer tiltParallax__layer" data-depth="-0.20"></li>
+	<li class="layer tiltParallax__layer" data-depth="0.00"></li>
+	<li class="layer tiltParallax__layer" data-depth="0.20"></li>
+	<li class="layer tiltParallax__layer" data-depth="0.40"></li>
+	<li class="layer tiltParallax__layer" data-depth="0.60"></li>
+	<li class="layer tiltParallax__layer" data-depth="0.80"></li>
+	<li class="layer tiltParallax__layer" data-depth="1.00"></li>
+</ul>
 
 
 <div class="demo">
-	<div class="demo-div demo-mediaQuery">
+	<div class="demo__div demo__mediaQuery">
 		<p>Media Query example</p>
 		<p class="TK-desktopOnly">Desktop only</p>
 		<p class="TK-tabletOnly">Tablet only</p>
@@ -34,75 +47,43 @@ $modulePath_home = $modulePath.'home/';
 		<p class="TK-nonDesktop">Non desktop</p>
 	</div>
 
-	<div class="demo-div demo-gradient">
+	<div class="demo__div demo__gradient">
 		<p>Gradient example</p>
 	</div>
 
-	<div class="demo-div demo-multiGrad">
+	<div class="demo__div demo__multiGrad">
 		<p>Multi Gradient example</p>
 	</div>
 
-	<div class="demo-div relative">
+	<div class="demo__div relative">
 		<p>Triangle &amp; centered example</p>
-		<div class="demo-triangle"></div>
+		<div class="demo__triangle"></div>
 	</div>
 
-	<div class="demo-div">
+	<div class="demo__div">
 		<p><i class="sprite-pdf"></i>retina pdf sprite class</p>
 		<p><i class="sprite-nonRetina-podcast"></i>standard podcast sprite class</p>
 		<p><i class="demo-autoSprite"></i>Sprite added using mixin</p>
 	</div>
 
-	<div class="demo-div">
+	<div class="demo__div">
 		<p class="icon-pdf">pdf icon class</p>
-		<p class="demo-icon">icon added using mixin</p>
+		<p class="demo__icon">icon added using mixin</p>
 	</div>
 
-	<div class="demo-div">
-		<p class="demo-kfAnimate">KF Animation example</p>
-		<p class="demo-kfAnimate--multi">KF Animation example</p>
+	<div class="demo__div">
+		<p class="demo__kfAnimate">KF Animation example</p>
+		<p class="demo__kfAnimate--multi">KF Animation example</p>
 	</div>
 
-	<div class="demo-themes">
-		<p class="demo-div themed-header">Themed header</p>
-		<p class="demo-div themed-nav">Themed nav</p>
-		<p class="demo-div themed-footer">Themed footer</p>
+	<div class="demo__themes">
+		<p class="demo__div theme__header">Themed header</p>
+		<p class="demo__div theme__nav">Themed nav</p>
+		<p class="demo__div theme__footer">Themed footer</p>
 	</div>
 </div>
 
-<h2>Nav example</h2>
-<nav class="">
-	<ul class="grid grid--hasInners grid--noWrap grid--vAlign navPrimary">
-		<?php
-			$items_array = array(
-				array(
-					'text' => 'very very very long item, do not mess with me',
-					'link' => '#item1_1',
-				), array(
-					'text' => 'short',
-					'link' => '#item0_1',
-				), array(
-					'text' => 'Normal sized item',
-					'link' => '#item2_1',
-				), array(
-					'text' => 'looooo ooooooooo ooooooooo oooong',
-					'link' => '#item4_1',
-				),
-			);
-
-			for ($i = 0; $i < count($items_array); $i++) {
-				$text = $items_array[$i]['text'];
-				$link = $items_array[$i]['link'];
-				echo
-				'<li class="navPrimary-item grid-cell">
-					<a href="'.$link.'" class="grid-inner navPrimary-link">'.$text.'</a>
-				</li>';
-			}
-		?>
-	</ul>
-</nav>
-
-<div class="full-screen-div-example js-fullScreen">
+<div class="full-screen-div-example" data-jshook="fullScreen__screenFiller">
 	<h2>Full screen div example</h2>
 	<p>Scroll down to see more content</p>
 </div>
@@ -196,7 +177,7 @@ rapid stages test
 			$text = $item['text'];
 			$link = defaultTo($item['link'],'#');
 			echo
-			'<li class="rapidTest-element"><a href="'.$link.'">'.$text.'</a></li>';
+			'<li class="rapidTest__element"><a href="'.$link.'">'.$text.'</a></li>';
 		}
 	?>
 </ul>
@@ -212,9 +193,9 @@ rapid stages test
 			$extra = ' extra text for testing';
 		}
 		echo
-		'<li class="popinDemo-piece grid-cell animationDemoItem">
-			<div class="grid-inner">
-				<div class="grid-vAlignHelper">Pop-in item '.($i+1).$extra.'</div>
+		'<li class="popinDemo__piece grid__cell animationDemoItem">
+			<div class="grid__inner">
+				<div class="grid__vAlignHelper">Pop-in item '.($i+1).$extra.'</div>
 			</div>
 		</li>';
 	};
@@ -226,7 +207,7 @@ rapid stages test
 <?php
 	for ($i = 0; $i < 4; $i++) {
 		echo
-		'<li class="simple'.($i+1).' simpleAnimationExample-piece grid-cell animationDemoItem">'.
+		'<li class="simple'.($i+1).' simpleAnimationExample__piece grid__cell animationDemoItem">'.
 			'Staged animation item '.($i+1).
 		'</li>';
 	}
@@ -237,7 +218,7 @@ rapid stages test
 
 <form method="get" action="#">
 	<fieldset>
-		<div class="form-row">
+		<div class="form__row">
 			<ul>
 				<?php
 					$radio_array = array(
@@ -256,7 +237,7 @@ rapid stages test
 				?>
 			</ul>
 		</div>
-		<div class="form-row">
+		<div class="form__row">
 			<ul>
 				<?php
 					$checkbox_array = array(
@@ -297,25 +278,25 @@ rapid stages test
 		$placeholder = $input_array[$i]['placeholder'];
 
 		echo
-		'<div class="from-row">
+		'<div class="from__row">
 			<label for="'.$id.'">'.$label.'</label>
 			<input id="'.$id.'" placeholder="'.$placeholder.'" type="text"/>
 		</div>';
 	}
 ?>
-		<div class="form-row">
-			<label for="styled-browse">Styled browse button</label>
-			<input id="styled-browse" type="file" />
+		<div class="form__row">
+			<label for="styledBrowse">Styled browse button</label>
+			<input id="styledBrowse" type="file" />
 		</div>
-		<div class="form-row">
-			<label for="styled-select">Styled select</label>
-			<select id="styled-select">
+		<div class="form__row">
+			<label for="styledSelect">Styled select</label>
+			<select id="styledSelect">
 				<option>Select box</option>
 				<option>xxxxxx</option>
 				<option>xxxxxx</option>
 			</select>
 		</div>
-		<div class="form-row">
+		<div class="form__row">
 			<input type="submit" />
 			<input type="reset" />
 		</div>

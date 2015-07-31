@@ -12,8 +12,8 @@
 // Style the select boxes
 $('select').each(function(){
     var text = $(this).find('option:selected').text();
-    $(this).wrap('<div class="styledSelect" />');
-    $(this).after('<span class="styledSelect-display elipsis">' + text + '</span>');
+    $(this).wrap('<div class="styledSelect-JS" />');
+    $(this).after('<span class="styledSelect__display-JS elipsis">' + text + '</span>');
 
 	//Move error class to the visible part
 	if ($(this).hasClass('error')){
@@ -24,7 +24,7 @@ $('select').each(function(){
 //Handles changing of text
 $('select').on('change', function(){
     var text = $(this).find('option:selected').text();
-    $(this).next('.styledSelect-display').text(text);
+    $(this).next('.styledSelect__display-JS').text(text);
 });
 
 
@@ -45,8 +45,8 @@ $('input[type="checkbox"],input[type="radio"]').each(function(){
 /////////////////////////
 
 if ($('input[type="file"]').length){
-	$('input[type="file"]').wrap('<div class="styled-browse-button"><a href="javascript:void(0)" class="action"></a></div>');
-	$('.styled-browse-button').append('<span class="styled-browse-preview"></span>').find('a').prepend('Browse');
+	$('input[type="file"]').wrap('<div class="styledBrowse__button-JS"><a href="javascript:void(0)" class="action"></a></div>');
+	$('.styledBrowse__button-JS').append('<span class="styledBrowse__preview-JS"></span>').find('a').prepend('Browse');
 	$('input[type="file"].error').removeClass('error').parent().addClass('error');
 	$('input[type="file"]').change(function(){
 		var file_path = $(this).val();
@@ -55,6 +55,6 @@ if ($('input[type="file"]').length){
 		$(this).parent().next().text(file_only);
 	});
 	$('input[type=reset]').click(function(){
-		$('.styled-browse-preview').text('');
+		$('.styledBrowse__preview-JS').text('');
 	})
 };

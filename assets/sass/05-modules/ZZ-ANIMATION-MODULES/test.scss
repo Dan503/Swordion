@@ -6,7 +6,7 @@
 
 .rapidTest {
 	@include M-clearfix;
-	&-element {
+	&__element {
 		height: 100px;
 		width: 100px;
 		margin: 10px;

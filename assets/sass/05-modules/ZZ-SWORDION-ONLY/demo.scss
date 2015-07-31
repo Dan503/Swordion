@@ -7,12 +7,12 @@ $MQ-test-multiple:
 ;
 
 .demo {
-	&-div {
+	&__div {
 		height: 200px;
 		max-width: 500px;
 	}
 
-	&-mediaQuery {
+	&__mediaQuery {
 		color: #fff;
 		@include M-mq($MQ-test-single){
 			background-color: red;
@@ -26,10 +26,10 @@ $MQ-test-multiple:
 		}
 
 	}
-	&-gradient {
+	&__gradient {
 		@include M-grad(#ccc,#000,20deg);
 	}
-	&-multiGrad {
+	&__multiGrad {
 		$gradient:
 			#000 0%,
 			green 30%,
@@ -40,24 +40,24 @@ $MQ-test-multiple:
 		@include M-multi-grad($gradient,d-up);
 	}
 
-	&-triangle {
+	&__triangle {
 		@include M-tri(up,#000,20px);
 		//@extend %centered;
 		//left: 20px;
 	}
 
-	&-autoSprite {
+	&__autoSprite {
 		@include M-sprite($word);
 		display: inline-block;
 	}
 
-	&-icon {
+	&__icon {
 		@include M-icon(word,blue,20px){
 			margin-right: 10px;
 		};
 	}
 
-	&-kfAnimate {
+	&__kfAnimate {
 		padding: 5px 20px;
 		$exampleAnimation:
 			(margin: 0 30px, background: #FF0000),

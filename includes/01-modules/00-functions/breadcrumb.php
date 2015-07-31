@@ -13,16 +13,16 @@
 			$link = defaultTo($map['link'],'#');
 
 			print
-			'<li class="breadcrumb-item">';
+			'<li class="breadcrumb__item">';
 
 				if ($link != false) {
 					print '
-					<a class="breadcrumb-inner breadcrumb-link" href="'.$link.'" title="Go to '.$text.'">
+					<a class="breadcrumb__inner breadcrumb__link" href="'.$link.'" title="Go to '.$text.'">
 						'.$text.'
 					</a>';
 				} else {
 					print '
-					<span class="breadcrumb-inner breadcrumb-span">
+					<span class="breadcrumb__inner breadcrumb__span">
 						'.$text.'
 					</a>';
 				}
@@ -34,8 +34,8 @@
 		} else {
 			if ($hasLastItem == true) {
 				print
-				'<li class="breadcrumb-item breadcrumb-item--current">
-					<span class="breadcrumb-inner breadcrumb-span breadcrumb-current">
+				'<li class="breadcrumb__item breadcrumb__item--current">
+					<span class="breadcrumb__inner breadcrumb__span breadcrumb__current">
 						'.$map['text'].'
 					</span>
 				</li>';
@@ -62,9 +62,9 @@
 		if (is_array($GLOBALS['location'])){
 			echo
 			'<nav class="breadcrumb'.$modifier.'">
-				<ul class="breadcrumb-list">
-					<li class="breadcrumb-item breadcrumb-item--home">
-						<a class="breadcrumb-link breadcrumb-inner breadcrumb-home" href="/" title="Back to home page">
+				<ul class="breadcrumb__list">
+					<li class="breadcrumb__item breadcrumb__item--home">
+						<a class="breadcrumb__link breadcrumb__inner breadcrumb__home" href="/" title="Back to home page">
 							Home
 						</a>
 					</li>';

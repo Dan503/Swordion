@@ -2,6 +2,10 @@
 //  sass functions  //
 /////////////////////
 
+@function grey($percentage){
+	@return mix(#000, #fff, $percentage);
+}
+
 //A function for filling in a map variable with default values
 @function defaultTo($mapVariable, $defaultMap){
 	//if it's a map, treat each setting in the map seperately

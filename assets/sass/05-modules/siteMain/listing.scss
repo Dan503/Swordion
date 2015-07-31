@@ -12,48 +12,48 @@ $module: 'listing';
 	@include M-noDots;
 	&--slim {
 		.#{$module} {
-			&-item {
+			&__item {
 				@include M-mq('inside', $BP-unStackImg, $BP-stackImg){
 					.#{$module} {
-						&-imgContainer {
+						&__imgContainer {
 							float: none;
 							display: block;
 							margin: 0 auto;
 						}
-						&-content {
+						&__content {
 							margin-left: 0;
 						}
 					}
 				}
 			}
-				&-imgContainer {
+				&__imgContainer {
 					width: $V-slimImg-width;
 					float: left;
 				}
-				&-content {
+				&__content {
 					margin-left: $V-slimImg-width + 20;
 				}
 		}
 	}
 
-	&-item {
+	&__item {
 		@include M-clearfix;
 		margin-top: 20px;
 		&:first-child {
 			margin-top: 0;
 		}
 	}
-		&-imgContainer {
+		&__imgContainer {
 			margin-top: 5px;
 		}
 
-		&-title {
+		&__title {
 			margin-bottom: 10px;
 		}
-			&-titleLink {
+			&__titleLink {
 				color: $C-link;
 			}
-		&-text {
+		&__text {
 			&--compact {
 				p { margin-top: 0; }
 			}

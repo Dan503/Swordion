@@ -17,7 +17,7 @@
 
 	/* Close button */
 
-	&-close {
+	&__close {
 		position: absolute;
 		top: 0;
 		right: 0;
@@ -65,8 +65,8 @@
 
 /* Dialog buttons */
 
-	&-confirm,
-	&-cancel {
+	&__confirm,
+	&__cancel {
 		font: inherit;
 
 		display: inline-block;
@@ -92,7 +92,7 @@
 		}
 	}
 
-	&-confirm {
+	&__confirm {
 		color: #fff;
 		background: #81c784;
 		@include M-hover {
@@ -100,7 +100,7 @@
 		}
 	}
 
-	&-cancel {
+	&__cancel {
 		color: #fff;
 		background: #e57373;
 
@@ -130,7 +130,7 @@
 	}
 
 /* Default theme styles for the background */
-	&-bg {
+	&__bg {
 		&.remodal-is-opening,
 		&.remodal-is-opened {
 			filter: blur(3px);
@@ -138,7 +138,7 @@
 	}
 
 /* Default theme styles of the overlay */
-	&-overlay {
+	&__overlay {
 		background: rgba(43, 46, 56, 0.9);
 		@extend %fill-forwards;
 
@@ -151,10 +151,10 @@
 	}
 
 /* Default theme styles of the wrapper */
-	&-wrapper {
+	&__wrapper {
 		padding: 10px;
 	}
-	&, &-wrapper:after {
+	&, &__wrapper:after {
 		vertical-align: middle;
 	}
 }

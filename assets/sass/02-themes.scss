@@ -61,7 +61,7 @@ $themes: (
 	@each $theme, $elements in $themes {
 		body.theme--#{$theme} {
 			@each $class, $attributes in $elements {
-				.themed-#{$class} {
+				.theme__#{$class} {
 					@each $attribute, $value in $attributes {
 						#{$attribute}: $value;
 					}
@@ -71,7 +71,7 @@ $themes: (
 	}
 
 	//optional: animate theme transitions :)
-	[class^="themed-"], [class*=" themed-"]  { @include M-animate(0.5s); }
+	[class^="theme__"], [class*=" theme__"]  { @include M-animate(0.5s); }
 }
 
 
