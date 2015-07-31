@@ -1,5 +1,5 @@
 <nav class="navPrimary TK-clearFix">
-	<ul class="navPrimary-list width--page grid grid--hasInners grid--vAlign">
+	<ul class="navPrimary__list width--page grid grid--hasInners grid--vAlign">
 		<?php
 			$navPrimary_array = $navMap;
 
@@ -8,12 +8,12 @@
 				$text = $array['text'];
 				$link = isset($array['link'])? $array['link'] : '#';
 				$active = $location[0] == $i ?
-					' navPrimary-link--isActive' : '';
+					' navPrimary__link--isActive' : '';
 
 				echo
-				'<li class="navPrimary-item grid-cell" data-jshook="triangle-triReference">
-					<a href="'.$link.'" class="navPrimary-link'.$active.' grid-inner TK-animate">
-						<span class="navPrimary-text">'.$text.'</span>
+				'<li class="navPrimary__item grid__cell">
+					<a href="'.$link.'" class="navPrimary__link'.$active.' grid__inner TK-animate">
+						<span class="navPrimary__text">'.$text.'</span>
 					</a>
 				</li>';
 			}
