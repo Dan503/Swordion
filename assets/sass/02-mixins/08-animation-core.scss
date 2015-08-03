@@ -2,6 +2,8 @@
 //     CSS3 ANIMATION    //
 //////////////////////////
 
+$lt-ie9: false !default;
+
 @mixin M-3d {
 	@include M-gt-ie8 {
 	    -webkit-transform-style: preserve-3d;
@@ -25,7 +27,7 @@
 */
 //basic animation
 @mixin M-animate($settings: 0.2s, $ease: ease-in-out, $attributes: all, $style: flat){
-	@include M-gt-ie8 {
+	@if (not $lt-ie9) {
 
 		$rule: ();
 
@@ -99,7 +101,7 @@
 
 //Removes animation from elements with animation set
 @mixin M-anti-animate($important: true) {
-	@include M-gt-ie8 {
+	@if (not $lt-ie9) {
 		@if ($important == true){
 		    //-webkit-transition: none !important;
 		    transition: none !important;
@@ -147,7 +149,7 @@
 
 //analyses the animation set and generates the css rules for each key frame
 @mixin M-kf-animation-loop ($keyframes){
-	@include M-gt-ie8 {
+	@if (not $lt-ie9) {
 
 
 		@if (type-of(nth($keyframes,1)) == 'map'){
@@ -183,7 +185,7 @@
 //Use this on it's own to set up an animation that is shared across multiple elements or multiple timings
 @mixin M-kf-definition($name, $keyframes) {
 	@at-root(without: all) {
-		@include M-gt-ie8 {
+		@if (not $lt-ie9) {
 			@-webkit-keyframes #{$name} {
 				@include M-kf-animation-loop($keyframes);
 			}
@@ -198,7 +200,7 @@
 //use this on it's own to call on animations made with the kf-definition mixin
 //This mixin allows you to use the same animation set as another element but give different timings
 @mixin M-kf-predefined($name, $timing: 1s, $loops: infinite, $ease: linear, $fill: both){
-	@include M-gt-ie8 {
+	@if (not $lt-ie9) {
 		-webkit-animation: $name $timing $loops $ease $fill; //* Safari 4+ */
 		animation:         $name $timing $loops $ease $fill; //* IE 10+, Fx 29+ */
 
@@ -207,7 +209,7 @@
 
 //Ties all the key-frame animation mixins together into a single easy to use mixin
 @mixin M-kf-animate($name, $keyframes, $timing: 1s, $loops: infinite, $ease: linear, $fill: both) {
-	@include M-gt-ie8 {
+	@if (not $lt-ie9) {
 		@include M-kf-definition($name, $keyframes);
 		@include M-kf-predefined($name, $timing, $loops, $ease, $fill);
 	}
