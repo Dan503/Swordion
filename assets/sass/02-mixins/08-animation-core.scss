@@ -26,7 +26,7 @@ $lt-ie9: false !default;
 ));
 */
 //basic animation
-@mixin M-animate($settings: 0.2s, $ease: ease-in-out, $attributes: all, $style: flat){
+@mixin M-animate($settings: 0.2s, $ease: ease-in-out, $attributes: all){
 	@if (not $lt-ie9) {
 
 		$rule: ();
@@ -86,10 +86,6 @@ $lt-ie9: false !default;
 
 	    -webkit-transition: $rule;
 	    transition: $rule;
-
-		@if ($style == '3D'){
-			@include M-3d;
-		}
 	}
 }
 
