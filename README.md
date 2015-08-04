@@ -30,12 +30,6 @@ The documentation for Swordion is incomplete however there are at least some asp
 
 ---------------------
 
-##Please note
-
-The documentation (and this whole thing in general) is a **work in progress**. I also like to experiment with new ideas often in an attempt to improve the functionality. This often leads to drastic changes in how the kit works.
-
----------------------
-
 ##Dependencies
 
 - [Grunt](http://gruntjs.com/)
@@ -46,3 +40,7 @@ The documentation (and this whole thing in general) is a **work in progress**. I
 (Read the [Getting Started](https://github.com/Dan503/Swordion/wiki/Getting-started) portion of the Swordion documentation to help get yourself set up)
 
 --------------------
+
+##Please note
+
+The documentation (and this whole thing in general) is a **work in progress**. I also like to experiment with new ideas often in an attempt to improve the functionality. This often leads to drastic changes in how the kit works.
