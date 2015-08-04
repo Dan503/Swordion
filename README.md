@@ -24,6 +24,8 @@ The new flexbox CSS properties are amazing but with IE8 and 9 not supporting it,
 
 BEM is a pain in the ass to use with JS because of the long class names. Swordion uses a special system for JS that lets you use BEM in your HTML but have much shorter names in your javascript.
 
+--------------------
+
 ##[Read the documentation](https://github.com/Dan503/Swordion/wiki)
 
 The documentation for Swordion is incomplete however there are at least some aspects of the framework that are already covered in there.
