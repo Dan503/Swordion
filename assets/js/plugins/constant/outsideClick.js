@@ -11,8 +11,6 @@
 //inspired by
 //http://stackoverflow.com/a/3028037/1611058
 
-//WARNING: $(this) doesn't work inside this function.
-
 (function($) {
 
     $.fn.outsideClick = function(callback) {
@@ -20,7 +18,7 @@
 
 		$(document).click(function(event) {
 		    if(!$(event.target).closest(subject).length) {
-				callback();
+				callback.call(subject);
 		    }
 		});
 
@@ -28,3 +26,4 @@
     };
 
 }(jQuery));
+
