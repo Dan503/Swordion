@@ -9,8 +9,8 @@
 //modifiers('moduleName', 'string'); (useful for functions)
 // >> moduleName--string
 
-	function modifiers($module, $variable) {
-		if ($variable == '' || !isset($variable)) {
+	function modifiers($module, $variable = '') {
+		if ($variable == '') {
 			return '';
 		} else {
 
