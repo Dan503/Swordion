@@ -3,7 +3,7 @@
 
 //usage:
 /*
-	$(#element).outsideClick(function(){
+	$('#element').outsideClick(function(){
 		//code you want to run when clicked outside
 	});
 */
@@ -12,7 +12,12 @@
 //http://stackoverflow.com/a/3028037/1611058
 
 (function($) {
+	//when the user hits the escape key, it will trigger all outsideClick functions
+	$(document).on("keyup", function (e) {
+		if (e.which == 27) $('body').click();
+	});
 
+	//The actual plugin
     $.fn.outsideClick = function(callback) {
     	var subject = this;
 
