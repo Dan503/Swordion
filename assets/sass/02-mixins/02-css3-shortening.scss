@@ -3,6 +3,8 @@
 //		CSS 3 shortening
 //************************************/
 
+$lt-ie9: false !default;
+
 @mixin M-opacity($opacity){
 	@if ($lt-ie9 == false){
 		opacity: $opacity;
@@ -24,7 +26,7 @@
 
 //change the origin point of css transforms
 @mixin M-origin ($origin: 0px 0px) {
-	@include M-gt-ie8 {
+	@if ($lt-ie9 == false){
 		-webkit-transform-origin: $origin;
 			-ms-transform-origin: $origin;
 				transform-origin: $origin;
@@ -34,7 +36,7 @@
 //CSS3 element rotation
 //$axis accepts X or Y (capitalised)
 @mixin M-rotate ($angle: 90,$origin: center, $axis: unquote('')) {
-	@include M-gt-ie8 {
+	@if ($lt-ie9 == false){
 		-webkit-transform: unquote('rotate#{$axis}(#{$angle}deg)'); //* Safari and Chrome */
 		    -ms-transform: unquote('rotate#{$axis}(#{$angle}deg)'); //* IE 9 */
 		        transform: unquote('rotate#{$axis}(#{$angle}deg)');
@@ -48,7 +50,7 @@
 
 //CSS3 element scale
 @mixin M-scale ($scale: 1,$origin: center) {
-	@include M-gt-ie8 {
+	@if ($lt-ie9 == false){
 		-webkit-transform: scale($scale);
 			-ms-transform: scale($scale);
 				transform: scale($scale);
