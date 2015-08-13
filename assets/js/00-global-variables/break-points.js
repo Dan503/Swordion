@@ -9,17 +9,14 @@
 //	the SASS break points:
 //	/assets/sass/00-config-files/break-points.scss
 //*================================================*/
-var
-bp_x_small = 350, //essentially iphones in portrait only
 
-bp_small = 450,
+var bp = {
+	tiny : 350, //*essentially iphones in portrait view only*/
+	small : 480,
+	mobile : 600, ///*!MAJOR BREAK POINT!*//*Maximum for strict mobile view*/
+	mid : 770, //*essentially the maximum for iPads in portrait*/
+	tablet : 960, ///*!MAJOR BREAK POINT!*/ /*good place to switch to tablet view*/
+	page : 1050, //*Point at which the edge of the desktop design meets the edge of the screen*/
+	header : 1200, //*Point at which the edge of the desktop design for the header meets the edge of the screen*/
+};
 
-bp_mobile = 600, //maximum for strict mobile view
-
-bp_phablet = 770,
-
-bp_tablet = 960,//maximum for tablets in portrait
-
-bp_desktop = 1024,//point at which desktop content reaches the edge of of the screen
-
-bp_large = 1200;//point at which desktop content reaches the edge of of the screen
