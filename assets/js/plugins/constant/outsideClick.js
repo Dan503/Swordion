@@ -14,16 +14,35 @@
 (function($) {
 	//when the user hits the escape key, it will trigger all outsideClick functions
 	$(document).on("keyup", function (e) {
-		if (e.which == 27) $('body').click();
+		if (e.which == 27) $('body').click(); //escape key
 	});
 
 	//The actual plugin
-    $.fn.outsideClick = function(callback) {
+    $.fn.outsideClick = function(callback, exclusions) {
     	var subject = this;
 
+		//test if exclusions have been set
+		var hasExclusions = typeof exclusions !== 'undefined';
+
+
 		$(document).click(function(event) {
-		    if(!$(event.target).closest(subject).length) {
-				callback.call(subject);
+
+			//click target does not contain subject as a parent
+			var clickedOutside = !$(event.target).closest(subject).length;
+
+			//click target was on one of the excluded elements
+			var clickedExclusion = $(event.target).closest(exclusions).length;
+
+			var testSuccessful;
+
+			if (hasExclusions) {
+				testSuccessful = clickedOutside && !clickedExclusion;
+			} else {
+				testSuccessful = clickedOutside;
+			}
+
+		    if(testSuccessful) {
+				callback.call(subject, event);
 		    }
 		});
 
