@@ -123,6 +123,10 @@
 				@include M-flexForceWidth($width);
 			}
 		}
+
+		&--vAlign {
+			@include M-prefix(align-self, center, $flexPrefixes);
+		}
 	}
 
 //base grid__inner styling
