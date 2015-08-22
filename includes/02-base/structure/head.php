@@ -7,7 +7,7 @@
         if ($isHome == true) {
 			print 'Home Page welcome message';
         } else {
-			print strip_tags($pageTitle) . ' | Swordion';
+			print strip_tags($getCurrent['title']) . ' | Swordion';
         }
 	?></title>
 	<meta name="description" content="">
