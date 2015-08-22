@@ -43,16 +43,16 @@
 		}
 	};
 
-	function breadcrumb($settings){
+	function breadcrumb($settings = 'defaults'){
 
 		$defaultSettings = array(
 			'hasLastItem' => true,
 			'modifiers' => '',
 		);
 
-		$settings = isset($settings) ?
-			defaultTo($settings, $defaultSettings) :
-			$defaultSettings;
+		$settings = ($settings == 'defaults') ?
+			$defaultSettings :
+			defaultTo($settings, $defaultSettings);
 
 		$modifier = modifiers($settings['modifiers'], 'breadcrumb');
 
