@@ -4,6 +4,14 @@
 		array(
 			'title' => 'Home',
 			'link' => '/',
+			'subNav' => array(
+				//This is essentially the "miscellaneous" list holding pages that don't really belong to the Information Architecture.
+				array(
+					'title' => 'Site Map',
+				), array (
+					'title' => 'Search Results',
+				)
+			)
 		), array(
 			'title' => 'About',
 			'link' => '/pages/about/',
