@@ -173,11 +173,9 @@ rapid stages test
 		);
 
 		for ($i = 0; $i < count($items_array); $i++) {
-			$item = $items_array[$i];
-			$text = $item['text'];
-			$link = defaultTo($item['link'],'#');
+			$text = $items_array[$i];
 			echo
-			'<li class="rapidTest__element"><a href="'.$link.'">'.$text.'</a></li>';
+			'<li class="rapidTest__element">'.$text.'</li>';
 		}
 	?>
 </ul>
