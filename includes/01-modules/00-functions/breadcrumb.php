@@ -9,7 +9,7 @@
 		if (isset($location[$currDepth])){
 
 			$target = $location[$currDepth];
-			$text = $map['text'];
+			$text = $map['title'];
 			$link = defaultTo($map['link'],'#');
 
 			print
@@ -36,7 +36,7 @@
 				print
 				'<li class="breadcrumb__item breadcrumb__item--current">
 					<span class="breadcrumb__inner breadcrumb__span breadcrumb__current">
-						'.$map['text'].'
+						'.$map['title'].'
 					</span>
 				</li>';
 			}

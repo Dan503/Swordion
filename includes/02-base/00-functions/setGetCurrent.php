@@ -12,18 +12,14 @@
 			getNavItem($map['subNav'][$target], $currDepth + 1);
 
 		} else {
-			$GLOBALS['pageTitle'] = $map['text'];
+			$GLOBALS['getCurrent'] = $map;
 		}
 	};
 
-	function getTitle() {
+	function setGetCurrent(){
 		$map = $GLOBALS['navMap'];
-		if (is_array($GLOBALS['location'])){
-			$target = $GLOBALS['location'][0];
-			getNavItem($map[$target], 1);
-		} else {
-			$GLOBALS['pageTitle'] = $GLOBALS['location'];
-		}
+		$target = $GLOBALS['location'][0];
+		getNavItem($map[$target], 1);
 	}
 
 ?>

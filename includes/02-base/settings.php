@@ -74,8 +74,8 @@
 	$isHome = (is_array($location)) && ($location[0] == 0) ? true : false;
 	$GLOBALS['isHome'] = $isHome;
 
-	getTitle();
-	$pageTitle = $GLOBALS['pageTitle'];
+	setGetCurrent();
+	$getCurrent = $GLOBALS['getCurrent'];
 
 	$currentURL = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 

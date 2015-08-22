@@ -5,7 +5,7 @@
 
 			for ($i = 0; $i < count($navPrimary_array); $i++) {
 				$array = $navPrimary_array[$i];
-				$text = $array['text'];
+				$text = $array['title'];
 				$link = isset($array['link'])? $array['link'] : '#';
 				$active = $location[0] == $i ?
 					' navPrimary__link--isActive' : '';

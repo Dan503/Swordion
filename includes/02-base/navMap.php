@@ -2,28 +2,28 @@
 
 	$navMap = array(
 		array(
-			'text' => 'Home',
+			'title' => 'Home',
 			'link' => '/',
 		), array(
-			'text' => 'About',
+			'title' => 'About',
 			'link' => '/pages/about/',
 			'subNav' => array(
 				array(
-					'text' => 'page 1',
+					'title' => 'page 1',
 				), array (
-					'text' => 'Page 2',
+					'title' => 'Page 2',
 				), array (
-					'text' => 'Page 3',
+					'title' => 'Page 3',
 				)
 			)
 		), array(
-			'text' => 'Lightbox test',
+			'title' => 'Lightbox test',
 			'link' => '#lightbox-test-constant',
 			'subNav' => array(
 				array(
-					'text' => 'Current Events',
+					'title' => 'Current Events',
 				), array(
-					'text' => 'Past Events',
+					'title' => 'Past Events',
 				)
 			)
 		)

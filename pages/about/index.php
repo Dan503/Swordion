@@ -19,6 +19,6 @@ breadcrumb();
 
 ?>
 
-<h1><?php echo $pageTitle ?></h1>
+<h1><?php echo $getCurrent['title'] ?></h1>
 
 <?php include '02-base/structure/foot.php'; ?>
