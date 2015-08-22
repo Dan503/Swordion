@@ -71,7 +71,7 @@
 
 //check if it is the home page
 	$GLOBALS['location'] = $location;
-	$isHome = (is_array($location)) && ($location[0] == 0) ? true : false;
+	$isHome = (is_array($location)) && ($location[0] == 0) && (count($location) == 1) ? true : false;
 	$GLOBALS['isHome'] = $isHome;
 
 	setGetCurrent();

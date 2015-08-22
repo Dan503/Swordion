@@ -6,8 +6,8 @@
 			for ($i = 0; $i < count($navPrimary_array); $i++) {
 				$array = $navPrimary_array[$i];
 				$text = $array['title'];
-				$link = isset($array['link'])? $array['link'] : '#';
-				$active = $location[0] == $i ?
+				$link = defaultTo($array['link'], '#');
+				$active = $location[0] == $i && $i != 0 || $isHome && $i == 0 ?
 					' navPrimary__link--isActive' : '';
 
 				echo
