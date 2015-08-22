@@ -35,7 +35,7 @@ $validStrings: v, h, d-down, d-up, r, r-top-left, r-top-right, r-bottom-left, r-
 //	Standard Gradient
 //*********************/
 
-@mixin M-grad($gradColour1, $gradColour2, $type: v, $backup: mix($gradColour1, $gradColour2)){
+@mixin M-grad($gradColour1, $gradColour2, $type: v, $backup: mix($gradColour1, $gradColour2), $rStopPoint: unquote('')){
 
 	background: $backup;
 
@@ -85,33 +85,44 @@ $validStrings: v, h, d-down, d-up, r, r-top-left, r-top-right, r-bottom-left, r-
 				//Radial (o)
 				@if ($type == r) {
 					background: -webkit-radial-gradient(center, ellipse cover,  $gradColour1,$gradColour2);
-					background: radial-gradient(ellipse at center,  $gradColour1,$gradColour2);
+					background: radial-gradient(ellipse $rStopPoint at center,  $gradColour1,$gradColour2);
 				}
 
 				@if ($type == r-top-left) {
 					background: -webkit-radial-gradient(top left, ellipse cover,  $gradColour1,$gradColour2);
-					background: radial-gradient(ellipse at top left,  $gradColour1,$gradColour2);
+					background: radial-gradient(ellipse $rStopPoint at top left,  $gradColour1,$gradColour2);
 				}
 
 				@if ($type == r-top-right) {
 					background: -webkit-radial-gradient(top right, ellipse cover,  $gradColour1,$gradColour2);
-					background: radial-gradient(ellipse at top right,  $gradColour1,$gradColour2);
+					background: radial-gradient(ellipse $rStopPoint at top right,  $gradColour1,$gradColour2);
 				}
 
 				@if ($type == r-bottom-right) {
 					background: -webkit-radial-gradient(bottom right, ellipse cover,  $gradColour1,$gradColour2);
-					background: radial-gradient(ellipse at bottom right,  $gradColour1,$gradColour2);
+					background: radial-gradient(ellipse $rStopPoint at bottom right,  $gradColour1,$gradColour2);
 				}
 
 				@if ($type == r-bottom-left) {
 					background: -webkit-radial-gradient(bottom left, ellipse cover,  $gradColour1,$gradColour2);
-					background: radial-gradient(ellipse at bottom left,  $gradColour1,$gradColour2);
+					background: radial-gradient( $rStopPoint at bottom left,  $gradColour1,$gradColour2);
 				}
 			}
 		}//end lt-ie9 check
 	} @else {
 		@error errorMessage($type);
 	}
+}
+
+//more control over 2 color radial gradients
+@mixin M-rGrad ($gradColour1, $gradColour2, $position: center, $stopAt: closest-side, $shape: ellipse, $backup: mix(nth($gradColour1,1), nth($gradColour2,1))){
+	background: $backup;
+	background: radial-gradient($shape $stopAt at $position, $gradColour1, $gradColour2);
+}
+
+//more control over multi colored radial gradients
+@mixin M-multi-rGrad ($grad-colours-positions, $position: center, $stopAt: closest-side, $shape: ellipse){
+	background: radial-gradient($shape $stopAt at $position, $grad-colours-positions);
 }
 
 //************************************\
@@ -122,7 +133,7 @@ $validStrings: v, h, d-down, d-up, r, r-top-left, r-top-right, r-bottom-left, r-
 //$grad-colours: #fff 0%, #ccc 50%, #000 100%;
 //@include M-multi-grad($grad-colours,h,#fff);
 
-@mixin M-multi-grad ($grad-colours-positions,$type: h, $backup: transparent){
+@mixin M-multi-grad ($grad-colours-positions,$type: h, $backup: transparent, $rStopPoint: unquote('')){
 
 	background: $backup;
 
