@@ -1,10 +1,6 @@
 .tiltParallax {
 	&__scene {
 		padding: 0;
-
-		@include M-size(500px);
-		margin: 50px auto;
-		border: 1px solid blue;
 		position: relative;
 	}
 		&__layer {
@@ -15,10 +11,5 @@
 			top: 50%!important;
 			left: 50%!important;
 			@include M-size(50px);
-
-			border: 2px solid #000;
-			text-align: center;
-			background-color: #fff;
-			border-radius: 50%;
 		}
 }
