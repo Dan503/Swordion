@@ -13,10 +13,7 @@
 
 			//go through each key and completely replace it's value with the assigned value
 			foreach ($keys as $key){
-				var_dump($var[$key]);
-				var_dump($val[$key]);
-				echo '<br>';
-				$var[$key] = defaultTo($var[$key], $val[$key], 'replace');
+				$var[$key] = isset($var[$key])? $var[$key] : $val[$key];
 			}
 
 			return $var;
