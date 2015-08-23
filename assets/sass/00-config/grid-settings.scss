@@ -41,44 +41,29 @@ $forcedWidths:(
 //@breaks [list OR false booleen]: a list of screensizes at which point the column width changes
 	//@breaks position 1: the screen size the new width is applied to
 	//@breaks position 2: the new width of the columns at the specified screen size
-$cellWidths: (
-		class: full,
-		default: 100%,
-		breaks: false,
+$gridBreakPoints: (
+	(
+	//*1 column grid*/
+		false
 	), (
-		class: halves,
-		default: percentage(1/2),
-		breaks: (
-			bp('mobile') 100%,//* At the "mobile" screen size, make the columns 100% width */
-		),
+	//*2 column grid*/
+		bp('mobile') 100%,//* At the "mobile" screen size, make the columns 100% width */
 	), (
-		class: thirds,
-		default: percentage(1/3),
-		breaks: (
-			bp('mobile') 100%,
-		),
+	//*3 column grid*/
+		bp('mobile') 100%,
 	), (
-		class: quarters,
-		default: percentage(1/4),
-		breaks: (
-			bp('tablet') 50%,
-			bp('small') 100%,
-		),
+	//*4 column grid*/
+		bp('tablet') 50%,
+		bp('small') 100%,
 	), (
-		class: fiths,
-		default: percentage(1/5),
-		breaks: (
-			bp('tablet') 33.33%,
-			bp('mobile') 50%,
-			bp('small') 100%,
-		),
+	//*5 column grid*/
+		bp('tablet') 33.33%,
+		bp('mobile') 50%,
+		bp('small') 100%,
 	), (
-		class: sixths,
-		default: percentage(1/6),
-		breaks:	(
-			bp('tablet') 33.33%,
-			bp('mobile') 50%,
-			bp('small') 100%,
-		),
+	//*6 column grid*/
+		bp('tablet') 33.33%,
+		bp('mobile') 50%,
+		bp('small') 100%,
 	)
-;
+);
