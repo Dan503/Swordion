@@ -54,7 +54,7 @@
 
 //.grid__cell--span-# styling
 			@if ($i > 2){
-				@for $x from 2 through ($i - 1) {
+				@for $x from 2 through $i {
 					&--span-#{$x} { width: $columnWidth * $x; }
 				}
 			}
