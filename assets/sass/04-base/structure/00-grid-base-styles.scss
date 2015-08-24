@@ -37,28 +37,25 @@
 //			 styling for tablets and smaller devices
 //
 //	EXAMPLE HTML:
-//	<ul class="grid grid--thirds">
+//	<ul class="grid grid--cols-3">
 //		<li class="grid__cell">Column is 1/3 wide on desktop</li>
-//		<li class="grid__cell grid__cell--span2">column is 2/3 wide on desktop</li>
+//		<li class="grid__cell grid__cell--span-2">column is 2/3 wide on desktop</li>
 //	</ul>
 //================================================*/
 
-@for $i from 1 through length($cellWidths) {
-	$array: nth($cellWidths, $i);
-	$class: map-get($array, class);
-	$defaultWidth: map-get($array, default);
-	$breaks: map-get($array, breaks);
+@for $i from 1 through length($gridBreakPoints) {
+	$columnWidth: percentage(1/$i);
+	$breaks: nth($gridBreakPoints, $i);
 
 //sets the default grid__cell widths
-	.grid--#{$class} {
+	.grid--cols-#{$i} {
 		> .grid__cell {
-			//width: percentage(1/$i); //The clever way :D
-			width: $defaultWidth; //more editable way -_-
+			width: $columnWidth;
 
 //.grid__cell--span-# styling
 			@if ($i > 2){
-				@for $x from 2 through ($i - 1) {
-					&--span-#{$x} { width: $defaultWidth * $x; }
+				@for $x from 2 through $i {
+					&--span-#{$x} { width: $columnWidth * $x; }
 				}
 			}
 		}
@@ -67,11 +64,11 @@
 		&:not(.grid--disableMQs) {
 			@if ($breaks != false) {
 				@for $y from 1 through length($breaks) {
-					$breakData : nth($breaks, $y);
-					$device : nth($breakData, 1);
-					$width : nth($breakData, 2);
-					@include M-mq(max,$device){
-						> .grid__cell { width: $width; }
+					$MQ-breakData : nth($breaks, $y);
+					$MQ-screenWidth : nth($MQ-breakData, 1);
+					$MQ-columnWidth : nth($MQ-breakData, 2);
+					@include M-mq(max,$MQ-screenWidth){
+						> .grid__cell { width: $MQ-columnWidth; }
 					}
 				}
 			}

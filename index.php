@@ -92,7 +92,6 @@ $modulePath_home = $modulePath.'home/';
 
 						<h2>To do list:</h2>
 						<ol>
-							<li>Create a flexbox version of the grid class</li>
 							<li>Add the animation Javascript stuff from the DoC project</li>
 							<li>Add an example of a responsive youtube video</li>
 							<li>Change structure to allow for BEM structuring. Look into <a href="https://github.com/mksanderson/crank" title="">Matt S&rsquo;s Crank starter kit</a> for ideas on folder structure and see what else his kit does</li>
@@ -183,7 +182,7 @@ rapid stages test
 
 <h3>Simple re-usable pop-in animation</h3>
 
-<ul class="popinDemo grid grid--enableWrapping grid--vAlign grid--thirds grid--hasInners grid--gutter-20 grid--padding-10 grid--border-3" data-jshook="popins">
+<ul class="popinDemo grid grid--enableWrapping grid--vAlign grid--cols-3 grid--hasInners grid--gutter-20 grid--padding-10 grid--border-3" data-jshook="popins">
 <?php
 	for ($i = 0; $i < 6; $i++) {
 		$extra = '';
@@ -201,7 +200,7 @@ rapid stages test
 </ul>
 
 <h3>Simple multistage animation</h3>
-<ul id="js-simpleExampleElement" class="grid grid--halves grid--enableWrapping grid--gutter-10 simpleAnimationExample">
+<ul id="js-simpleExampleElement" class="grid grid--cols-2 grid--enableWrapping grid--gutter-10 simpleAnimationExample">
 <?php
 	for ($i = 0; $i < 4; $i++) {
 		echo
