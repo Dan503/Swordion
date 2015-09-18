@@ -21,13 +21,14 @@ var VG_buffer_lower = parseInt(VG_screen_height * 0.75);
 
 //Holds functions that fire on resize/scroll
 //use VG_onResize.push(function(){...}); anywhere to fire functions after user has resized screen
-//use VG_onScroll.push(function(){...}); anywhere to fire functions at end of scroll
+//use VG_onScrollStop.push(function(){...}); anywhere to fire functions at end of scroll
 var VG_onResize = [];
-var VG_onScroll = [];
+var VG_onScrollStop = [];
 
 $(window).resize(function(){
 	VG_screen_width = $(window).width();
 	VG_screen_height = $(window).height();
+	VG_page_height = $('[data-jshook*="siteContainer"]').outerHeight();
 
 	VG_buffer_higher = parseInt(VG_screen_height * 0.25);
 	VG_buffer_high = parseInt(VG_screen_height * 0.33);
@@ -50,7 +51,7 @@ $(window).scroll(function(){
 
 	clearTimeout(window.scrolling);
     window.scrolling = setTimeout(function(){
-    	$.each(VG_onScroll, function(){
+    	$.each(VG_onScrollStop, function(){
     		//calls functions that fire after user has finished scrolling
     		this.call();
     	});
