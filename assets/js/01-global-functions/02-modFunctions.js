@@ -1,26 +1,31 @@
 ﻿
 //module class manipulation
 
-jQuery.fn.modAddClass = function(target) {
-    this.addClass(Span(target));
+jQuery.fn.modAddClass = function(target, classSet) {
+	classSet = defaultTo(classSet, moduleTargets[module]);
+    this.addClass(Span(target, classSet));
     return this;
 };
 
-jQuery.fn.modRemoveClass = function(target) {
-    this.removeClass(Span(target));
+jQuery.fn.modRemoveClass = function(target, classSet) {
+	classSet = defaultTo(classSet, moduleTargets[module]);
+    this.removeClass(Span(target, classSet));
     return this;
 };
 
-jQuery.fn.modToggleClass = function(target) {
-    this.toggleClass(Span(target));
+jQuery.fn.modToggleClass = function(target, classSet) {
+	classSet = defaultTo(classSet, moduleTargets[module]);
+    this.toggleClass(Span(target, classSet));
     return this;
 };
 
-jQuery.fn.modHasClass = function(target) {
-    return this.hasClass(Span(target));
+jQuery.fn.modHasClass = function(target, classSet) {
+	classSet = defaultTo(classSet, moduleTargets[module]);
+    return this.hasClass(Span(target, classSet));
 };
 
-jQuery.fn.modHasHook = function(target) {
+jQuery.fn.modHasHook = function(target, classSet) {
+	classSet = defaultTo(classSet, moduleTargets[module]);
 	var hookString = this.attr('data-jshook');
-    return hookString.indexOf(Span(target)) > 0;
+    return hookString.indexOf(Span(target, classSet)) > 0;
 };
