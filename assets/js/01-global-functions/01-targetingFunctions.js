@@ -44,16 +44,49 @@ var Hook = function(key,classSet){
 	classSet = defaultTo(classSet, moduleTargets[module]);
 
 	var selectorFull = '';
+	var selectorFullArray = [];
 
-//if an array, merge into a single selector
+	var hookPart = function(number, key){
+		switch(number){
+			case 0: var partial = '[data-jshook^="'+classSet[key]+' "]'; break;
+			case 1: var partial = '[data-jshook*=" '+classSet[key]+' "]'; break;
+			case 2: var partial = '[data-jshook$=" '+classSet[key]+'"]'; break;
+			case 3: var partial = '[data-jshook="'+classSet[key]+'"]'; break;
+
+			//simplified but less strict
+			case 4: var partial = '[data-jshook*="'+classSet[key]+'"]'; break;
+		}
+
+		return partial;
+	}
+
+	var singleHook = function (key) {
+		return hookPart(0,key)+','+hookPart(1,key)+','+hookPart(2,key)+','+hookPart(3,key);
+	}
+
+//if an array, merge into a single selector as an "or" statement
 	if ( key.constructor === Array){
 		$.each(key, function(i, string){
-			var comma = (i == 0) ? '' : ', ';
-			selectorFull = selectorFull + comma + '[data-jshook^="'+classSet[string]+' "], [data-jshook*=" '+classSet[string]+' "], [data-jshook$=" '+classSet[string]+'"], [data-jshook="'+classSet[string]+'"]';
+			var selectorPartial = '';
+			//if inside a second array, merge them into an "and" statement
+			if( string.constructor === Array) {
+				$.each(string, function(x, finalString){
+					selectorPartial = selectorPartial + hookPart(4,finalString);
+				})
+				selectorFullArray[i] = selectorPartial;
+			} else {
+				//or statement
+				var comma = (i == 0) ? '' : ', ';
+				selectorFull = selectorFull + comma + singleHook(string);
+			}
 		});
+		$.each(selectorFullArray, function(index, string){
+			var comma = (index == 0) ? '' : ', ';
+			selectorFull = selectorFull + comma + string;
+		})
 //else just output a single copy of the selector
 	} else {
-		selectorFull = '[data-jshook^="'+classSet[key]+' "], [data-jshook*=" '+classSet[key]+' "], [data-jshook$=" '+classSet[key]+'"], [data-jshook="'+classSet[key]+'"]';
+		selectorFull = singleHook(key);
 	};
 
 
