@@ -7,6 +7,6 @@
 	}
 
 	function humanFileSize($file, $decimals = 2){
-		human_filesize_calculation(filesize($file), $decimals);
+		return human_filesize_calculation(filesize($file), $decimals);
 	}
 ?>

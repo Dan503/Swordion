@@ -19,8 +19,8 @@
 //*================================================*/
 
 //Use this regular expression to find/replace the css icomoon generates
-//find: \.icon-([a-zA-Z0-9-_]*):before\s{\r\n\tcontent:\s("\\[a-zA-Z0-9]*");\r\n}\r
-//replace with: \1: \2,
+//find: \.icon-([a-zA-Z0-9-_]*):before\s{\n(\t)content:\s("\\[a-zA-Z0-9]*");\n}(\n*)
+//replace with: \2\1: \3,\4
 
 //expects this css format:
 //.icon-ICON_NAME {
