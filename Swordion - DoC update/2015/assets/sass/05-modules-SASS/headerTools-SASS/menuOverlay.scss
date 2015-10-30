@@ -1,0 +1,94 @@
+
+$C-listContainer-bg: #092332;
+$C-link-text: #fff;
+$C-link-text--active: CG-prominence(1);
+
+$V-transformTime: $VG-headerTools-transformTime;
+
+$V-module-padding: 20px;
+$V-scroller-topPos: $VG-headerTools__progressBar-height + $VG-headerTools-transformHeight;
+
+$MQ-sideList--is-fullWidth: (max, bp('tablet'));
+$MQ-sideList--is-2col: (max, bp('mobile'));
+$MQ-sideList--is-1col: (max, bp('small'));
+
+$module: 'menuOverlay';
+
+.#{$module} {
+	position: fixed;
+	z-index: 0;
+	top: 0;
+	right: 0;
+	left: 0;
+	height: 0;
+	opacity: 0;
+	overflow: hidden;
+	background-color: $C-listContainer-bg;
+	@include M-animate($V-transformTime);
+	padding: 0 20px;
+	color: $C-link-text;
+
+	a { color: $C-link-text; }
+
+	&__scroller {
+		padding: 35px 20px 20px;
+		overflow: auto;
+		position: absolute;
+		top: $V-scroller-topPos;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		@include M-overflowShadow(v,$C-listContainer-bg, tint($C-listContainer-bg, 20%));
+		@include M-before {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 5px;
+			@include M-grad(shade($C-listContainer-bg,20%), transparent);
+		}
+	}
+
+	@include M-mq($MQ-sideList--is-fullWidth){
+		&__grid {
+			@include M-flexWrap;
+		}
+		&__sideCell {
+			width: 100%!important;
+			text-align: center;
+			padding-bottom: $V-module-padding;
+			//@include M-flexDirection(row);
+		}
+			&__sideList {
+				@include M-flex;
+				@include M-flexAlign(space-between);
+			}
+				&__sideitem {
+					@include M-flexGrow(false);
+					display: inline-block;
+					margin: 0 10px;
+				}
+	}
+
+	@include M-mq($MQ-sideList--is-2col){
+		&__sideList {
+			@include M-flexWrap;
+		}
+			&__sideItem {
+				width: 50%;
+				text-align: center;
+			}
+	}
+	@include M-mq($MQ-sideList--is-1col){
+		&__sideItem {
+			width: 100%;
+		}
+	}
+}
+
+.#{$VG-headerTools-menuOpenClass} {
+	.#{$module} {
+		height: 100%;
+		opacity: 1;
+	}
+}

@@ -1,0 +1,29 @@
+
+$C-bg--hover: $CB-grey-light;
+$C-bg--hover--light: rgba(#fff, 0.1);
+
+$C-border: $CG-baseLinkColor;
+$C-border--light: rgba(#fff, 0.2);
+
+$module: 'fancyLinks';
+
+.#{$module} {
+	a:not(.#{$module}__exclusion) {
+		text-decoration: none!important;
+		border-bottom: 1px solid $C-border;
+		@include M-animate;
+		@include M-hover {
+			background-color: $C-bg--hover;
+			border-color: $C-bg--hover;
+		}
+	}
+	&--light {
+		a:not(.#{$module}__exclusion) {
+			border-bottom: 1px solid $C-border--light;
+			@include M-hover {
+				background-color: $C-bg--hover--light;
+				border-color: $C-bg--hover--light;
+			}
+		}
+	}
+}

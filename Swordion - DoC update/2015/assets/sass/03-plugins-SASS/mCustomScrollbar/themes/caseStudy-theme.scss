@@ -1,0 +1,25 @@
+
+$C-draggerBar:#25AAD6;
+$C-rail: #0B2232;
+
+$V-rail-width: 5px;
+
+.mCS-caseStudy {
+	.mCSB {
+		&_dragger_bar {
+			width: $V-rail-width;
+			background-color: $C-draggerBar!important;
+		}
+		&_draggerRail {
+			width: $V-rail-width;
+			background-color: $C-rail;
+		}
+	}
+	&.mCustomScrollBox {
+		&:hover, &:active {
+			.mCSB {
+				&_dragger_bar { background-color: tint($C-draggerBar, 10%); }
+			}
+		}
+	}
+}

@@ -1,0 +1,44 @@
+
+$MQ-is-padded: (min, bp('mobile'));
+
+.landingLinks {
+	@include M-flex;
+	@include M-flexValign;
+	@include M-mq($MQ-is-padded){
+		padding-left: 10%;
+		&.fullScreen__filler--isApplied-JS { padding-top: 270px; }
+	}
+	.no-flexbox & { text-align: center; }
+
+	&__heading {
+		margin-bottom: 15px;
+	}
+		&__counter {
+			font-weight: $normal;
+			margin-bottom: 10px;
+			display: block;
+		}
+		&__headingText {
+			font-family: $openSans;
+			font-weight: $bold;
+			@include M-font-size(17px);
+		}
+		&__inner {
+			.no-flexbox & {
+				width: 400px;
+				display: inline-block;
+				text-align: left;
+			}
+		}
+			&__item {
+				margin-top: 0;
+				line-height: 1.1;
+				margin-bottom: 12px;
+			}
+				&__link {
+					font-weight: $normal;
+					//text-decoration: underline;
+					//@include M-hover { text-decoration: none; }
+					strong { font-size: 0.7em; display: block; text-transform: uppercase; }
+				}
+}

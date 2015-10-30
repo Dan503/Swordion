@@ -1,0 +1,34 @@
+﻿/////////////////////////////
+// global value variables //
+///////////////////////////
+//V- for value-
+
+
+$VG-standardContent-paragraphSpacing : 30px;
+
+$VG-plus-size--outer: 28px;
+
+$VG-siteContainer-borderWidth: 10px;
+$VG-siteContainer-padding: 20px;
+
+$VG-headerTools-transformTime: 0.5s;
+$VG-headerTools-transformHeight: 50px;
+$VG-headerTools-transformClass: 'headerTransform--isTransformed-JS';
+
+@if($lt-ie10){
+	$VG-headerTools-transformClass: 'lt-ie10';
+}
+
+$VG-headerTools-menuOpenClass: 'menuOverlay__menu--isOpen-JS';
+$VG-headerTools__progressBar-height: 10px;
+
+$VG-commonShadow: 0 2px 5px rgba(#0f134a,0.2);
+
+$VG-block-spacing: 20px;
+$VG-block-padding--v: 20px;
+$VG-block-padding--h: 30px;
+$VG-block-borderWidth: 10px;
+
+$VG-sideBar-width: 360px;
+
+$VG-search-openClass: 'search--isOpen-JS';

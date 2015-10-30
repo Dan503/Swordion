@@ -1,0 +1,81 @@
+
+$C-module-bg: CG-prominence(2);
+
+$MQ-img--is-hidden: (max, bp('mid'));
+
+.caseStudy {
+	position: relative;
+	margin: ($VG-block-spacing) (-$VG-siteContainer-padding) 0;
+	background-color: $C-module-bg;
+	z-index: 2;
+	.siteMain + & { margin-top: 0; }
+	&__inner {
+		max-width: 1370px;
+	}
+		&__imgCell {
+			background-size: cover;
+			background-position: center;
+			@include M-mq($MQ-img--is-hidden){
+				background: none;
+				display: none;
+			}
+		}
+		&__contentCell {
+			padding: 40px 20px;
+		}
+			&__content {
+				max-width: 760px;
+				*, *:before, *:after { color: #fff; }
+
+				h2 {
+					@include M-font-size(20px);
+					text-transform: uppercase;
+					margin-bottom: 0;
+				}
+				h3 {
+					margin-top: 13px;
+					margin-bottom: 20px;
+					@include M-font-size(30px);
+					font-weight: normal;
+					text-transform: none;
+				}
+
+				li {
+					border-color: tint($C-module-bg, 10%)!important;
+					&:before {
+						border-color: #fff!important;
+					}
+				}
+			}
+			&__overflowBlock {
+				max-height: 800px;
+				overflow: auto;
+				@include M-mq($MQ-img--is-hidden){
+					max-height: none;
+				}
+				@if($lt-ie10){
+					padding-right: 50px;
+				}
+			}
+
+				.mCSB_container {
+					margin-right: 8%;
+				}
+
+	a { color: #fff; outline-color: #fff!important;	}
+
+	&__link, &__caption {
+		font-weight: $normal!important;
+		padding-left: 20px;
+		border-left: 5px solid CG-prominence(3);
+		text-decoration: none!important;
+	}
+	&__link {
+		@include M-hover {
+			text-decoration: underline!important;
+		}
+	}
+	&__caption {
+		margin-top: 0;
+	}
+}

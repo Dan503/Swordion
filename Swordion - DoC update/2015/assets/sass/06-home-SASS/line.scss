@@ -1,0 +1,51 @@
+
+$V-line-width: 1px;
+
+$module: 'lines';
+
+.#{$module} {
+	height: 70px;
+	width: 100%;
+	position: relative;
+
+
+	&__line {
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		width: $V-line-width;
+		left: 0;
+		right: 0;
+		margin: auto;
+
+		&--tl-br {
+			@include M-skew(45deg);
+		}
+		&--tr-bl {
+			@include M-skew(-45deg);
+		}
+		&--left {
+			right: 50%;
+		}
+		&--right {
+			left: 50%;
+		}
+	}
+
+		&__inner {
+			border-left: $V-line-width dashed #000;
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			&--light { border-color: #fff; }
+		}
+
+	&--light {
+		.#{$module}__inner {
+			border-color: #fff;
+		}
+	}
+}
+
+

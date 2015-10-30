@@ -1,0 +1,29 @@
+﻿
+
+@mixin M-generateIconClasses ($iconList, $iconPrefix, $familyName){
+	//sets up the styles for icon classes
+	[class^="#{$iconPrefix}-"], [class*=" #{$iconPrefix}-"] {
+		&:before, &:after {
+			display: inline-block;
+			@extend %M-icon-static-styles;
+			line-height: 1em;
+			font-family: $familyName;
+		}
+	}
+
+	//generates the .icon-XXX classes
+	@each $icon, $referenceKey in $iconList {
+	    .#{$iconPrefix}-#{$icon}:before {
+	        content: $referenceKey !important;
+			@if ($icon == 'spinner'){
+				@include M-spin;
+			}
+	    }
+	}
+}
+
+@include M-generateIconClasses($icons, 'icon', 'icons');
+
+@if ($isHome){
+	@include M-generateIconClasses($homeIcons, 'iconHome', 'homeIcons');
+}

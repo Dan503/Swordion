@@ -1,0 +1,1 @@
+<img src="/2015/assets/images/content/governance-framework.png" alt="Figure 3.1 Department of Communications Governance Framework" />

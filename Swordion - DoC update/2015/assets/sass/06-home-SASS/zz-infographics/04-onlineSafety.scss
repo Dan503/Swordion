@@ -1,0 +1,127 @@
+
+$C-text-highlight: CG-prominence(1);
+
+$V-ball-animationTime: 3s;
+$V-ball-size: 15px;
+
+$module: 'onlineSafety';
+
+.#{$module} {
+	&__content {
+		margin-top: 40px;
+		max-width: 330px;
+		strong { color: $C-text-highlight; }
+	}
+
+	&__visual {
+		text-align: center;
+		width: 100%;
+		max-width: 400px;
+		margin: 0 auto;
+		p { color: $C-text-highlight; font-weight: $bold; line-height: 1.1; }
+		i, i:before { color: #fff; display: block; } //icons
+	}
+	&__countUp {
+		display: block;
+	}
+	&__visitors {
+		width: 100px;
+		position: relative;
+		padding: 0 5px;
+		margin: 0 auto 5px;
+	}
+		&__visitorIcon {
+			@include M-centered(v);
+			@include M-icon-size(50px, $width:30px);
+			&--left {
+				right: 100%;
+			}
+			&--right {
+				left: 100%;
+			}
+		}
+	&__lines {
+		height: 6vh;
+		@include M-mq($MQG-home--not-scrollAnimated){
+			&--top {
+				margin: 10px 0 15px;
+			}
+		}
+	}
+		&__line {
+			&--left {
+				right: 26%;
+			}
+			&--right {
+				left: 26%;
+			}
+		}
+			&__ball {
+				@include M-scale(0);
+				position: absolute;
+				top: 0;
+				left: 50%;
+				margin: round(-$V-ball-size / 2) 0 0 round(-$V-ball-size / 2);
+				@include M-before {
+					@include M-circle(fill, #fff, $V-ball-size);
+				}
+				&--left {
+					&:before {
+						@include M-skew(45deg);
+					}
+				}
+				&--right {
+					&:before {
+						@include M-skew(-45deg);
+					}
+				}
+
+				$ballAnimation:
+					0% (top: 0, scale: 0),
+					5% (top: 0, scale: 1),
+					45% (top: 100%, scale: 1),
+					50% (top: 100%, scale: 0),
+					100% (top: 100%, scale: 0)
+				;
+				//@include M-kf-definition(ballAnimation, $ballAnimation);
+
+				&--isAnimating-JS {
+					//@include M-kf-predefined(ballAnimation, $V-ball-animationTime);
+					&.#{$module} {
+						&__ball--bottom {
+							//@include M-kf-predefined(ballAnimation, $V-ball-animationTime ($V-ball-animationTime / 2));
+						}
+					}
+				}
+			}
+	&__computerIcon {
+		display: block;
+		margin: 10px 0 15px;
+		@include M-icon-size(90px, $width: 100%);
+	}
+	&__base {
+		width: 120%;
+		margin-left: -10%;
+	}
+		&__envolopes {
+			max-width: 110px;
+			min-width: 0;
+			margin: 10px auto 0;
+		}
+			&__envolope {
+				&:before {
+					@include M-icon-size(25px, $width: 100%);
+				}
+				&:first-child {
+					max-width: 100%;
+					width: 100%!important;
+				}
+			}
+		&__facebookIcon {
+			&:before {
+				@include M-icon-size(45px);
+				line-height: 1;
+				margin: 20px auto;
+			}
+		}
+}

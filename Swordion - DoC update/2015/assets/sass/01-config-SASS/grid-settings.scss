@@ -1,0 +1,66 @@
+﻿//================================================*\
+//*	gridS CONFIGURATION FILE						*/
+//----------------------------------------------------
+//	This file holds all the configurable aspects of
+//	the grid class system
+//================================================*/
+
+//You can alter the available grid gutter sizes here
+//usage: class="grid grid--gutter-blocks"
+$cellGutters: (
+	'blocks' : 20px,
+	'onlineSafteyEnvolopes': 8px,
+);
+
+$gutter-ieFallback: $CG-bodyInnerBG;
+
+//You can alter the available grid border thicknesses here
+//note that borders require grid-inner elements inside grid-cell elements
+//usage: class="grid grid--border-2 grid--hasInners"
+$cellBorders: 1, 2, 3, 4, 5;
+
+//You can alter the available grid padding sizes here
+//usage: class="grid grid--padding-20"
+$cellPadding: 5, 10, 15, 20, 25, 30;
+
+//available fixed widths for grid-cell--fixedWidth-# classes 
+$forcedWidths:(
+	'highlightLabel': 80px,
+);
+
+//Set the points at which columns change widths
+//@class [string]: The modifier class added to the grid class eg. .grid--halves
+//@breaks [list OR false booleen]: a list of screensizes at which point the column width changes
+	//@breaks position 1: the screen size the new width is applied to
+	//@breaks position 2: the new width of the columns at the specified screen size
+$gridBreakPoints: (
+	(
+	//*1 column grid*/
+		false
+	), (
+	//*2 column grid*/
+		$BPG-sidebar--fullWidth 100%,//* At the "mobile" screen size, make the columns 100% width */
+	), (
+	//*3 column grid*/
+		$BPG-sidebar--fullWidth 100%,
+	), (
+	//*4 column grid*/
+		bp('tablet') 50%,
+		bp('small') 100%,
+	), (
+	//*5 column grid*/
+		bp('tablet') 33.33%,
+		bp('mobile') 50%,
+		bp('small') 100%,
+	), (
+	//*6 column grid*/
+		bp('tablet') 33.33%,
+		bp('mobile') 50%,
+		bp('small') 100%,
+	), (
+	//*7 column grid*/
+		bp('tablet') 33.33%,
+		bp('mobile') 50%,
+		bp('small') 100%,
+	)
+);

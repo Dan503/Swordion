@@ -1,0 +1,61 @@
+
+$C-module-bg: #fff;
+ $C-icon: $CB-blue-dark;
+
+$V-item-border: 1px solid $CB-grey-light;
+$V-text-width: 200px;
+$V-icon-width: 45px;
+
+$module: 'socialShare';
+
+.#{$module} {
+	position: fixed;
+	bottom: 25%;
+	right: -$V-text-width;
+	background: $C-module-bg;
+	z-index: 1001;
+	box-shadow: $VG-commonShadow;
+	@include M-transform(translateY(50%));
+
+	&__item {
+		border-top: $V-item-border;
+		margin: 0;
+		&:first-child { border: none; }
+	}
+		&__link {
+			background-color: $C-module-bg;
+			display: block;
+			padding-left: $V-icon-width;
+			position: relative;
+			left: 0;
+			@include M-animate(0.5s);
+			&:hover, &:focus {
+				text-decoration: none;
+				left: -$V-text-width;
+				.#{$module} {
+					&__text {
+						width: $V-text-width;
+					}
+				}
+			}
+		}
+			&__icon {
+				display: block;
+				position: absolute;
+				top: 0;
+				left: 0;
+				&.icon-email {
+					&:before { @include M-icon-size(15px, $V-icon-width); }
+				}
+				&:before {
+					color: $C-icon;
+					@include M-icon-size(20px, $V-icon-width);
+				}
+			}
+			&__text {
+				display: block;
+				width: $V-text-width;
+				padding: 10px;
+				font-weight: $semi-bold;
+			}
+}

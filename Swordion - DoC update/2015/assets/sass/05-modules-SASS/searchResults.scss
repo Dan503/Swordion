@@ -1,0 +1,27 @@
+
+$module: 'searchResults';
+
+.#{$module} {
+	padding: 20px 0;
+	max-width: 800px;
+	margin: 0 auto;
+
+	&__metaData {
+		margin-top: 20px;
+		font-size: 0.9em;
+		font-weight: $normal;
+		strong { font-weight: $bold; }//default is $semi-bold
+	}
+	&__heading {
+		text-transform: none;
+		line-height: 1.3;
+	}
+	p {
+		margin: 0;
+	}
+	&__extras {
+		color: shade($CB-orange-mid, 10%);
+		font-size: 0.8em;
+		font-weight: $semi-bold;
+	}
+}

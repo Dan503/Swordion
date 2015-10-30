@@ -1,0 +1,50 @@
+
+$C-triangle: $CB-grey-mid;
+$C-border: $CB-blue-dark;
+
+$V-tri-size: 115px;
+$V-border-width: round($V-tri-size / 11);
+
+$MQ-tri--is-hidden: (max, bp('page') + $V-tri-size * 2.5);
+
+.decorativeSideTri {
+	@include M-centered(v);
+	position: fixed;
+	left: 0;
+	//left: -$VG-siteContainer-borderWidth;
+	height: $V-tri-size * 2;
+	width: $V-tri-size;
+	z-index: 9999;
+	@include M-mq($MQ-tri--is-hidden){
+		display: none;
+	}
+
+	&__triangle {
+		@include M-tri('right',$C-triangle,$V-tri-size);
+		overflow: hidden;
+		@include M-before {
+			background-color: $C-border;
+		}
+	}
+
+		&__border {
+			width: $V-border-width;
+			height: auto;
+			position: absolute;
+			top: $V-border-width;
+			bottom: $V-border-width;
+			left: 0;
+			background-color: $C-border;
+			@include M-before-after {
+				position: absolute;
+			}
+			&:before {
+				top: -$V-border-width;
+				@include M-tri(right,$C-border,$V-border-width,0);
+			}
+			&:after {
+				bottom: -$V-border-width;
+				@include M-tri(down,$C-border,$V-border-width,0);
+			}
+		}
+}

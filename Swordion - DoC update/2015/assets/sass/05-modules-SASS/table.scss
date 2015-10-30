@@ -1,0 +1,96 @@
+/************\
+    Tables
+\************/
+//$C-thead-th: ;
+$C-tbody-td: $CB-grey-light;
+$C-tbody-th: $CB-grey-mid; //mix($C-thead-th, $C-tbody-td, 50%);
+table{
+	margin-top: 30px;
+	text-align:left;
+	width:100%;
+	border-collapse: collapse;
+	border-spacing: 0;
+	&:first-child {
+		margin-top: 0;
+	}
+	th, td { padding: 5px; border: 1px solid #fff; padding: 10px; @include M-font-size(15px); text-align: left; }
+	th {
+		font-weight: $normal;
+	}
+	thead {
+		th {
+			//@include M-font-size(18px);
+			//background-color: rgba($C-thead-th,0.8);
+		}
+		tr:first-child {
+			th {
+				background-color: CG-prominence(2);
+				background-color: rgba(CG-prominence(2), 0.95);
+				color: #fff;
+			}
+		}
+		.infoTip { color: #fff; border-color: #fff;
+			@include M-hover {
+				background-color: tint(CG-prominence(2), 20%);
+				background-color: rgba(#fff, 0.2);
+			}
+		}
+	}
+	tbody {
+		th {
+			background-color: $C-tbody-th;
+			background-color: rgba($C-tbody-th,0.8);
+		}
+	}
+	td {
+		background-color: $C-tbody-td;
+		background-color: rgba($C-tbody-td,0.8);
+	}
+}
+.tableWrap-JS {
+	margin-top: 30px;
+	&:first-child {
+		margin-top: 0;
+	}
+	@include M-mq($MQ-tables--have-overflow){
+		@include M-overflowShadow(h);
+		max-width: 100%;
+	}
+}
+
+.table {
+	&__heading {
+		background-color: CG-prominence(1);
+		background-color: rgba(CG-prominence(1), 0.8);
+		font-weight: $bold;
+	}
+		&__subHeading {
+			background-color: grey(30%);
+			font-weight: $semi-bold;
+			//color: #fff;
+		}
+	&__highlightRow {
+		th, td { font-style: italic; font-weight: $semi-bold; }
+		th {
+			background-color: grey(23%);
+			background-color: rgba(grey(23%), 0.8);
+		}
+		td {
+			background-color: grey(15%);
+			background-color: rgba(grey(15%), 0.8);
+		}
+	}
+	&__divider {
+		//generated with http://enjoycss.com/nSE#background
+		background: -webkit-linear-gradient(-45deg, rgba(255,255,255,0.2) 25%, rgba(0,0,0,0) 25%, rgba(0,0,0,0) 50%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0.2) 75%, rgba(0,0,0,0) 75%, rgba(0,0,0,0) 0), $CB-grey-mid;
+		background: -moz-linear-gradient(-45deg, rgba(255,255,255,0.2) 25%, rgba(0,0,0,0) 25%, rgba(0,0,0,0) 50%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0.2) 75%, rgba(0,0,0,0) 75%, rgba(0,0,0,0) 0), $CB-grey-mid;
+		background: linear-gradient(-45deg, rgba(255,255,255,0.2) 25%, rgba(0,0,0,0) 25%, rgba(0,0,0,0) 50%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0.2) 75%, rgba(0,0,0,0) 75%, rgba(0,0,0,0) 0), $CB-grey-mid;
+		background-position: auto auto;
+		-webkit-background-origin: padding-box;
+		background-origin: padding-box;
+		-webkit-background-clip: border-box;
+		background-clip: border-box;
+		-webkit-background-size: 50px 50px;
+		background-size: 50px 50px;
+	}
+}

@@ -1,0 +1,1 @@
+<img src="/2015/assets/images/content/expenditure-on-consultancy-contracts.png" alt="Figure 3.2 Expenditure on consultancy contracts from 2012&ndash;15">

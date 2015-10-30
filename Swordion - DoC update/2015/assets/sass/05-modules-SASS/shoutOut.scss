@@ -1,0 +1,63 @@
+
+$BP-fontSizeShift: bp('tiny');
+
+$MQ-fontSizeShift--is-large:
+	(min, $BP-fontSizeShift)
+;
+
+$MQ-fontSizeShift--not-large:
+	(max, $BP-fontSizeShift)
+;
+
+.shoutOut {
+	position: relative;
+	padding-bottom: 100%;
+	overflow: hidden;
+
+&__block {
+	margin: $VG-block-spacing 0 0;
+}
+
+&__parent {
+	//width: 55%!important;
+}
+
+&__partner {
+	padding: 30px;
+	padding-left: 0;
+}
+
+	@include M-before {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		@include M-size(200%);
+		background: CG-prominence(3, 'partner');
+		@include M-rotate(45, bottom left);
+	}
+	&__shifter {
+		position: absolute;
+		top: 0;
+		right: 0;
+		@include M-size(25%);
+		background: CG-prominence(3);
+		@include M-rotate(-45, top right);
+		z-index: 1;
+	}
+	&__inner {
+		@include M-centered;
+		@include M-circle(fill,#fff,440px);
+		max-width: 85%;
+		max-height: 85%;
+		text-align: center;
+		padding: 10%;
+		line-height: 1.2;
+		z-index: 2;
+		@include M-font-size(24px);
+		p { margin: 0; }
+
+		@include M-mq($MQ-fontSizeShift--not-large){
+			font-size: 0.9em;
+		}
+	}
+}

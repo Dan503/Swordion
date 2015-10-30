@@ -1,0 +1,29 @@
+.progressLoad {
+	&__loadingBar {
+		background: red;
+		position: absolute;
+		top: 100%;
+		height: 5px;
+		width: 0;
+		opacity: 1;
+		$loadingBarTransition: (
+			attributes: width,
+			duration: 0.1s,
+			ease: linear,
+		), (
+			attributes: height opacity,
+			duration: 0.5s,
+			ease: linear,
+		);
+		@include M-animate($loadingBarTransition);
+		//width: 60%;//just to see what it looks like
+		&--isDone-JS {
+			height: 0;
+			opacity: 0;
+		}
+		&--isResetting-JS {
+			height: 0!important;
+			@include M-anti-animate;
+		}
+	}
+}

@@ -1,0 +1,11 @@
+
+$MQ-cell--is-fullWidth: (max, bp('mobile'));
+
+.landingGrid {
+	@include M-mq($MQ-cell--is-fullWidth){
+		@include M-flexWrap;
+		&__cell {
+			width: 100%!important;
+		}
+	}
+}

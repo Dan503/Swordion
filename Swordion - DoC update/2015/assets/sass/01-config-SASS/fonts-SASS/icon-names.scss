@@ -1,0 +1,93 @@
+﻿
+///*================================================*\
+//	ICONS
+//----------------------------------------------------
+//	All icon font icons are listed here.
+//	List consists of icon name and reference key
+//	icons can be added to an element with the class
+//	.icon-ICON_NAME
+//	or it be added with a mixin like this:
+//	@include M-icon(icon_name, color, size);
+//
+// if adding the icon using the class, the element
+//	holding the class does NOT need to be empty
+//	eg, this is completely fine:
+//	<li class="icon-globe">Globe</li>
+//
+//	The class only provides the icon,
+//	it does not style the icon
+//*================================================*/
+
+//Use this regular expression to find/replace the css icomoon generates
+//find: \.icon-([a-zA-Z0-9-_]*):before\s{\n(\t)content:\s("\\[a-zA-Z0-9]*");\n}(\n*)
+//replace with: \2\1: \3,\4
+
+//expects this css format:
+//.icon-ICON_NAME {
+//	content: "\e123";
+//}
+
+
+//list of icon names and they're reference keys
+$icons: (
+	spinner: "\e609",
+	star--empty: "\e60a",
+	star--half: "\e60b",
+	star--full: "\e60c",
+	cross: "\e60d",
+	checkmark: "\e60e",
+	facebook--invert: "\e618",
+	twitter: "\e608",
+	bothWays: "\e900",
+	gear: "\e901",
+	manInSpot: "\e902",
+	pieChart: "\e903",
+	presentation: "\e904",
+	tv--simple: "\e905",
+	question: "\e806",
+	tv: "\e805",
+	devices: "\e800",
+	meeting: "\e801",
+	review: "\e802",
+	strength: "\e803",
+	trophy: "\e804",
+	socialClub: "\e602",
+	group: "\e601",
+	share: "\e600",
+	twitter--outline: "\e60f",
+	external: "\e61a",
+	radio: "\e61b",
+	email: "\e619",
+	facebook: "\e614",
+	search: "\e617",
+	arrow--down: "\e610",
+	arrow--left: "\e611",
+	arrow--right: "\e612",
+	arrow--up: "\e613",
+);
+
+$homeIcons: (
+	broom: "\e611",
+	money: "\e612",
+	money--rotated: "\e615",
+	paper: "\e613",
+	pile: "\e614",
+	road: "\e600",
+	tower: "\e601",
+	aus--dots: "\e602",
+	aus--outline: "\e603",
+	aus--small: "\e610",
+	facebook--outline: "\e604",
+	email: "\e605",
+	computer: "\e606",
+	man: "\e607",
+	woman: "\e608",
+	fixedLines: "\e609",
+	fixedWireless: "\e60a",
+	satellite: "\e60b",
+	childSafety: "\e60c",
+	happy: "\e60d",
+	smile: "\e60e",
+	wink: "\e60f",
+	reset: "\e800",
+);

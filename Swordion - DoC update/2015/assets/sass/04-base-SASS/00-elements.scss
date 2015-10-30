@@ -1,0 +1,123 @@
+
+$C-h1: #2B2B2B;
+
+$MQ-tables--have-overflow: (max, bp('page'));
+
+/*================================================*\
+	BASE ELEMENT STYLING
+//----------------------------------------------------
+//	This file holds base styling for elements.
+//	NO CLASSES ALLOWED!
+//	these are essentially site resets
+\*================================================*/
+
+* {
+	margin-bottom: 0;
+	margin-top: 1em;
+
+	//allows body elements to sit hard up against the top border of their parent element without causing spacing issues later in the text.
+	&:first-child { margin-top: 0; }
+
+	&:before, &:after, & {
+		//Makes fonts smoother
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+		font-smoothing: antialiased;
+
+		//supposedly this makes fonts cleaner but it makes fonts not appear in safari
+		//text-rendering: optimizeLegibility;
+
+		//all elements are given their parents box-sizing
+		@include M-box-sizing(inherit);
+	}
+}
+
+html, body {
+	//unless set otherwise, all elements will recieve border box box sizing
+	@include M-box-sizing(border-box);
+
+	//required for best scroll animation results
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+//counteracts * margin styling
+span,
+em,
+strong,
+a,
+b,
+i,
+input,
+div,
+textarea,
+select,
+header,
+footer,
+aside,
+time,
+html,
+form,
+nav,
+nav li { margin-top: 0; }
+
+
+html {
+	//Makes it easier to alter font size with rem's. 1.3rem = 13px
+	font-size: 62.5%;
+
+	//prevents the user from scrolling the page while the menu is open
+	&.#{$VG-headerTools-menuOpenClass} {
+		overflow: hidden;
+	}
+}
+
+//Sets default font size for the site to 1.4rem with a 14px backup.
+//Setting the font-size using the mixin is the best way to set font size (and line height using line height mixin).
+body {
+	position: relative;
+	@include M-font-size(17px);
+	line-height: 1.6;
+	font-family: $openSans;
+	margin: 0;
+	font-weight: $light;
+}
+
+
+/*HEADINGS*/
+h1, h2, h3, h4, h5, h6 { color: $CG-heading; font-weight: $normal; font-family: $gafata; line-height: 1; margin-bottom: 15px; margin-top: 30px;
+	+ {
+		p, ul, ol { margin-top: 0; }
+	}
+}
+h1 {
+	@include M-font-size(30px); margin-top: 50px; margin-bottom: 20px;
+	+ h2 { margin-top: 30px; }
+}
+h2 { @include M-font-size(24px); margin-top: 50px; }
+h3 { @include M-font-size(19px); text-transform: uppercase; }
+h4 { @include M-font-size(16px); text-transform: uppercase; font-weight: $bold; }
+h5 { @include M-font-size(14px); text-transform: uppercase; font-style: italic; }
+
+p { margin: $VG-standardContent-paragraphSpacing 0 0; }
+
+a {
+	text-decoration: none;
+	color: $CG-baseLinkColor;
+	@include M-hover {
+		text-decoration: underline;
+	}
+}
+
+//makes nav default to not having dot points
+nav ul { @extend %noDots; }
+
+label, input[type=radio], input[type=checkbox] { cursor: pointer; }
+
+blockquote {
+	background-color: $CB-grey-light;
+	margin: $VG-standardContent-paragraphSpacing 0 0;
+	padding: 20px;
+	@include M-font-size(16px);
+}

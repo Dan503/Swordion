@@ -1,0 +1,55 @@
+.infographic {
+	position: relative;
+	//border-bottom: 1px solid #000; //used to help see where the stages start and end
+
+	&__heading {
+		@include M-font-size(40px);
+		line-height: 0.8;
+		color: inherit;
+		margin-bottom: 50px;
+		&--isAbsolute {
+			@include M-mq($MQG-home--is-scrollAnimated){
+				position: absolute;
+				top: 0;
+				left: 0;
+			}
+		}
+		@include M-mq($MQG-home--not-scrollAnimated){
+			margin-bottom: 30px;
+		}
+	}
+	&__visual {
+		p { margin: 0; }
+	}
+	&--isDark {
+		color: #fff;
+	}
+	&__mobFG {
+		@include M-mq($MQG-home--not-scrollAnimated){
+			position: relative;
+			z-index: 2;
+		}
+	}
+	&__mobBG {
+		@include M-mq($MQG-home--not-scrollAnimated){
+			@include M-fill((
+				top: -25px,
+				bottom: -25px,
+				left: calc(-100% - 20px),
+				right: calc(-100% - 20px),
+			));
+			z-index: 1;
+			@include M-skew(-45deg);
+
+			&--yellow {
+				background-color: CG-prominence(1);
+			}
+			&--blue {
+				background-color: CG-prominence(2);
+			}
+			&--darkBlue {
+				background-color: $CG-homeBG-dark;
+			}
+		}
+	}
+}

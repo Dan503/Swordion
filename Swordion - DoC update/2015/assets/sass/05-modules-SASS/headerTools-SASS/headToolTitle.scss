@@ -1,0 +1,60 @@
+
+$MQ-siteTitle--is-hidden: $MQG-headerTools--is-size-S;
+
+$module: 'headToolTitle';
+
+.#{$module} {
+	padding: 0 15px 0 25px;
+	position: fixed;
+	top: -20px;
+	right: 0;
+	left: 0;
+	color: #fff;
+	z-index: 5;
+	opacity: 0;
+	@include M-animate($VG-headerTools-transformTime);
+	@include M-rotate(45, top right);
+
+	&__link {
+		color: #fff;
+		border-bottom: 1px solid transparent;
+		@include M-animate;
+		@include M-hover {
+			border-color: #fff;
+			text-decoration: none;
+		}
+	}
+	&__text {
+		white-space: nowrap;
+		line-height: $VG-headerTools-transformHeight;
+		vertical-align: middle;
+		color: #fff;
+		font-family: $openSans;
+		font-size: 1em;
+	}
+	&__siteTitle {
+		padding-right: 30px;
+		@include M-flexGrow(0);
+		@include M-mq($MQ-siteTitle--is-hidden){
+			display: none;
+		}
+		.no-flexbox & { width: 300px; }
+	}
+		&__innerText {
+			margin-right: 5px;
+			@include M-font-size(17px, inherit);
+		}
+}
+
+.#{$VG-headerTools-transformClass} {
+	.#{$module} {
+		right: 200px;
+		opacity: 1;
+		top: if($modern, $VG-headerTools__progressBar-height, 0);
+		@include M-rotate(0);
+
+		@include M-mq($MQ-siteTitle--is-hidden){
+			right: 110px;
+		}
+	}
+}

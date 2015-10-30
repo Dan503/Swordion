@@ -1,0 +1,41 @@
+
+$MQ-tri--is-diagonalCut: $MQG-landingTri--is-diagonalCut;
+
+$MQ-introText--is-furtherDown: $MQG-landingSiteName--not-droppedDown;
+
+$MQ-introText--is-dark: (max, bp('mobile'));
+
+$MQ-heading--has-background: $MQ-introText--is-dark;
+
+.landingIntro {
+	color: #fff;
+	margin-right: 33%;
+	margin-bottom: 85px;
+	&__heading {
+		margin-top: 0;
+		font-family: $openSans;
+		color: #fff;
+		@include M-font-size(24px);
+		font-weight: $bold;
+		@include M-mq($MQ-heading--has-background){
+			padding: 20px;
+			margin: 0 -20px;
+			background: $CG-landingTri-border;
+		}
+	}
+	&__text {
+		margin: 20px 0;
+		font-style: italic;
+	}
+	@include M-mq($MQ-tri--is-diagonalCut){
+		margin-right: 50px;
+		//margin-top: 50px;
+	}
+	@include M-mq($MQ-introText--is-furtherDown){
+		//margin-top: 150px;
+	}
+	@include M-mq($MQ-introText--is-dark){
+		color: #000;
+		margin: 0;
+	}
+}

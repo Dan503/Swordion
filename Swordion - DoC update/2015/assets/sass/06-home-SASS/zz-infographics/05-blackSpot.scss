@@ -1,0 +1,163 @@
+
+$C-aus-outline: $CB-blue-light;
+$C-text-highlight: $CB-yellow-light;
+
+$V-wave-size: 40px;
+
+$BP-aus--shrink: bp('mobile');
+
+$MQ-aus--can-shrink: (max, $BP-aus--shrink);
+$MQ-aus--cant-shrink: (min, $BP-aus--shrink);
+
+$MQ-text--is-furtherOver: (inside, $BPG-home--scrollAnimated, $BP-aus--shrink + 100);
+
+@function ausIconSize($value){
+	@return ($value/440 * 100) * 0.6vw;
+}
+
+$module: 'blackSpot';
+
+.#{$module} {
+	&__content {
+		margin-top: 25px;
+	}
+	&__aus {
+		margin: 0 auto;
+		position: relative;
+		&:before, &:after {
+		}
+		&:before {
+			color: $C-aus-outline;
+		}
+	}
+	&__icon {
+		@include M-centered;
+		line-height: 1;
+		&--aus {
+			position: relative;
+			color: $C-aus-outline;
+			@include M-icon-size(440px, $width: 100%);
+			opacity: 1;
+
+			@include M-mq($MQ-aus--can-shrink){
+				@include M-icon-size(60vw, $width: 100%);
+			}
+		}
+		&--tower {
+			@include M-icon-size(70px, $width: 100%);
+			top: -60px;
+			@include M-3d;
+			@include M-mq($MQ-aus--can-shrink){
+				@include M-icon-size(ausIconSize(70), $width: 100%);
+				top: -10vw;
+			}
+		}
+		&--dots {
+			@include M-icon-size(397px, $width: 500px);
+			@include M-mq($MQ-aus--can-shrink){
+				@include M-icon-size(ausIconSize(400), $width: 100%);
+			}
+		}
+		&--road {
+		}
+	}
+	&__tower {
+		@include M-origin(center bottom);
+	}
+		&__radioWaveOrigin {
+			position: absolute;
+			top: 4px;
+			left: 50%;
+			margin-left: -5px;
+			@include M-size(10px);
+		}
+				&__waves {
+					&--left {
+						.#{$module} {
+							&__wave {
+								right: 30px;
+								&:before {
+									left: 0;
+								}
+							}
+						}
+					}
+					&--right {
+						.#{$module} {
+							&__wave {
+								left: 30px;
+								&:before {
+									right: 0;
+								}
+							}
+
+						}
+					}
+				}
+					&__wave {
+						position: absolute;
+						top: 50%;
+						margin-top: round(-$V-wave-size / 2);
+						height: $V-wave-size;
+						width: round($V-wave-size / 4);
+						overflow: hidden;
+						@include M-before {
+							position: absolute;
+							top: 50%;
+							margin-top: -200%;
+							@include M-circle(stroke, #fff, 400%, 3px);
+						}
+					}
+
+	&__dotMask {
+		@include M-fill((
+			top: 3%,
+		));
+		max-width: 450px;
+		margin: auto;
+	}
+		&__dots {
+			@include M-fill((top:5%));
+			&:before { display: block; }
+		}
+
+	&__roadWrap {
+		@include M-icon-size(150px, $width: auto);
+		@include M-centered;
+		top: -80px;
+		left: 7%;
+
+		@include M-mq($MQ-aus--can-shrink){
+			@include M-icon-size(ausIconSize(150), $width: 100%);
+			top: -10vw;
+			left: 2%;
+		}
+	}
+		&__roadMask {
+			overflow: hidden;
+			margin-top: 0;
+			height: 100%;
+			&:before { display: block; }
+		}
+
+	&__text {
+		position: absolute;
+		top: 80%;
+		right: 40%;
+		width: 130px;
+		color: $C-text-highlight;
+		font-weight: $bold;
+		line-height: 1.1;
+		text-align: center;
+		@include M-mq($MQ-text--is-furtherOver){
+			right: 43%;
+		}
+		p {
+			display: none;
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+		}
+	}
+}

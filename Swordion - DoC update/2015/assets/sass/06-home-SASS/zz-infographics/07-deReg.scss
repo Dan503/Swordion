@@ -1,0 +1,179 @@
+
+$C-text: CG-prominence(2);
+
+$BP-visual--shrunk: 500px;
+$BP-numbers--smaller: 550px;
+
+$MQ-numbers--are-smaller: (max, $BP-numbers--smaller);
+$MQ-numbers--not-smaller: (min, $BP-numbers--smaller);
+
+$MQ-visual--is-shrunk: (max, $BP-visual--shrunk);
+$MQ-visual--not-shrunk: (min, $BP-visual--shrunk);
+
+$MQ-mediumVisual--is-fixed: (inside, $BPG-home--scrollAnimated, $BP-numbers--smaller);
+
+
+.deReg {
+	&__content {
+		@include M-flex;
+		@include M-flexValign;
+		position: absolute;
+		top: 0;
+		right: 0;
+		width: 33%;
+		height: 75%;
+	}
+		&__contentInner {
+			max-width: 345px;
+			width: 100%;
+			margin: 0 auto;
+		}
+
+	&__visual {
+		min-width: 0;
+		text-align: center;
+		color: $C-text;
+		@include M-mq($MQG-home--is-scrollAnimated){
+			width: 50%;
+		}
+	}
+		&__visualInner {
+			margin: 0 auto;
+			width: 100%;
+			@include M-mq($MQG-home--is-scrollAnimated){
+				max-width: 700px;
+			}
+		}
+			&__icon {
+				margin: 0 auto;
+				position: relative;
+			}
+			&__text {
+				@include M-font-size(19px);
+				font-weight: $semi-bold;
+				line-height: 1.1;
+				margin-top: 15px;
+				strong {
+					font-family: $gafata;
+					font-size: 2.7em;
+					font-weight: $normal;
+					display: block;
+					@include M-mq($MQ-numbers--are-smaller){
+						font-size: 2em;
+					}
+				}
+				@include M-mq($MQ-visual--is-shrunk){
+					@include M-font-size(12px);
+				}
+			}
+
+		&__bottomHalf {
+			min-width: 0;
+			max-width: 750px;
+			width: 100%;
+			margin: 0 auto;
+		}
+
+			&__pile {
+				max-width: 100px;
+				width: 100%;
+				margin: 0 auto;
+			}
+				&__pileSVGwrap {
+					@include M-origin(bottom center);
+					position: relative;
+					z-index: 2;
+				}
+					&__pileSVG {
+						width: 100%;
+						@include M-mq($MQ-visual--is-shrunk){
+							width: 75%;
+						}
+					}
+
+					&__pileFront {
+						fill: $C-text;
+					}
+					&__pileBack {
+						fill: $CG-bodyInnerBG;
+					}
+
+			&__measures {
+				margin-bottom: 60px;
+			}
+				&__measuresText {
+					position: relative;
+					z-index: 3;
+
+					@include M-mq($MQ-visual--is-shrunk){
+						margin-top: 0;
+						margin-bottom: 10px;
+					}
+				}
+
+		&__flyersWrap {
+			@include M-centered(h);
+			top: 0;
+			margin: 0 auto;
+			max-width: 350px;
+			width: 50%;
+		}
+			&__flyers {
+				position: absolute;
+				left: 0;
+				top: 70%;
+				width: 200%;
+				padding-bottom: 200%;
+				margin-left: -50%;
+				height: 0;
+				//@include M-size(285px);
+
+				@include M-mq($MQ-visual--is-shrunk){
+					width: 150%;
+					padding-bottom: 150%;
+					margin-left: -25%;
+				}
+			}
+				&__rotator {
+					@include M-fill;
+				}
+					&__flyingIcon {
+						opacity: 0;
+						position: absolute;
+						bottom: 100%;
+						@include M-centered(h);
+					}
+				&__money {
+					&:before {
+						@include M-icon-size(60px, $width: 35px);
+
+						@include M-mq($MQ-visual--is-shrunk){
+							@include M-icon-size(10vw, $width: 5vw);
+						}
+					}
+				}
+				&__paper {
+					&:before {
+						@include M-icon-size(55px, $width: 50px);
+
+						@include M-mq($MQ-visual--is-shrunk){
+							@include M-icon-size(9vw, $width: 8.5vw);
+						}
+					}
+				}
+
+		&__savingsIcon {
+			@include M-icon-size(65px);
+		}
+		&__cleanUpIcon {
+			@include M-icon-size(60px);
+			margin-bottom: 5px;
+		}
+			&__pulseIcon, &__pulseBase {
+				opacity: 0;
+				@include M-scale(0);
+			}
+			&__pulseIcon {
+				@include M-centered;
+			}
+}

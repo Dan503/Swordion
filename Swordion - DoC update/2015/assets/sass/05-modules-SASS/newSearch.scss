@@ -1,0 +1,59 @@
+
+$C-btn-bg: CG-prominence(2);
+$C-btn-bg--hover: CG-prominence(2,'hover');
+
+$V-btn-width: 75px;
+
+$module: 'newSearch';
+
+.#{$module} {
+
+	&__input {
+		border: 1px solid $C-btn-bg;
+		padding-right: $V-btn-width;
+	}
+	&__submit {
+		position: absolute;
+		top: 0;
+		right: 0;
+		height: 100%;
+		width: $V-btn-width;
+		color: #fff!important;
+		text-align: right;
+		text-decoration: none!important;
+		@if($modern){ padding-right: 20px; }
+		@include M-hover {
+			.#{$module} {
+				&__btnBG:before {
+					background-color: $C-btn-bg--hover;
+				}
+			}
+		}
+	}
+		&__icon {
+			position: relative;
+			z-index: 5;
+			display: block;
+			text-align: if($modern, right, center);
+			color: #fff;
+		}
+		&__btnBG {
+			@include M-fill;
+			//left: 50%;
+			overflow: hidden;
+			display: block;
+			@include M-before {
+				@include M-animate;
+				@include M-fill;
+				right: if($modern, -25%, 0%);
+				left: auto;
+				//width: 200%;
+				@if($modern){ @include M-skew(-45deg); }
+				background: $C-btn-bg;
+				z-index: 1;
+			}
+		}
+	&__prompt {
+		text-align: center;
+	}
+}

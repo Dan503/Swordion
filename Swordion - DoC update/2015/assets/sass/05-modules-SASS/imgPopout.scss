@@ -1,0 +1,168 @@
+$C-expandIcon-bg: CG-prominence(1);
+$C-expandIcon-icon: $CB-grey-dark;
+
+$V-animationDuration: 0.5s;
+
+$BP-preview--stacked: bp('mid');
+$BP-popout--stacked: bp('mid');
+$BP-font--smaller: bp('tablet');
+
+$MQ-preview--is-stacked: (max, $BP-preview--stacked);
+$MQ-preview--not-stacked: (min, $BP-preview--stacked);
+
+$MQ-popout--is-stacked: (max, $BP-popout--stacked);
+$MQ-popout--not-stacked: (max, $BP-popout--stacked);
+
+$MQ-font--is-smaller: (max, $BP-font--smaller);
+$MQ-font--not-smaller: (min, $BP-font--smaller);
+
+$module: 'imgPopout';
+
+.#{$module} {
+	box-shadow: $VG-commonShadow;
+	margin-top: $VG-block-spacing;
+
+	&__preview {
+		//@include M-animate;
+		@include M-mq($MQ-preview--is-stacked){
+			@include M-flexReverse;
+		}
+		&.#{$module}__preview--isOpen-JS {
+			@include M-prefix(filter, (blur(7px)), webkit);
+			opacity: 0.7;
+		}
+	}
+	&__introText {
+		background: #fff;
+		padding: 25px 35px;
+		@include M-font-size(21px);
+		font-weight: $light;
+		p {
+			line-height: 1.65;
+		}
+	}
+	&__expandLink {
+		overflow: hidden;
+		position: relative;
+		display: block;
+		box-shadow: inset 0 0 0px $CB-grey-dark;
+		background: #000;
+		max-width: $VG-sideBar-width;
+		img {
+			@include M-animate;
+			opacity: 1;
+			width: 100%;
+			@include M-mq($MQ-preview--not-stacked){
+				@include M-centered(both,'modern');
+			}
+			@include M-mq($MQ-preview--is-stacked){
+				@include M-transform(none);
+				display: block;
+			}
+		}
+		@include M-hover {
+			img {
+				opacity: 0.8;
+				@include M-transform(translateX(-50%) translateY(-50%) scale(1.2));
+			}
+			@if ($gt-ie8) {
+				outline: none;
+			}
+		}
+		@include M-mq($MQ-preview--is-stacked){
+			width: 100%!important;
+			max-width: none;
+		}
+	}
+		&__expandIcon {
+			display: block;
+			bottom: 10px;
+			right: 10px;
+			@include M-circle(fill, $C-expandIcon-bg, 30px);
+			@include M-plus($C-expandIcon-icon, 15px, $pos: absolute);
+		}
+
+	&__expander {
+		position: absolute;
+		background-color: #fff;
+		top: 50%;
+		width: 100%;
+		opacity: 0;
+		visibility: hidden;
+		@include M-transform(scale(0) translateY(-50%));
+		@include M-origin(top right);
+		z-index: 100;
+		box-shadow: $VG-commonShadow;//0 0 5px $CB-grey-mid;
+
+		$animatedAttributes:
+			(
+				attributes: opacity transform,
+				duration: $V-animationDuration,
+			), (
+				attributes: visibility,
+				duration: 0s,
+				delay: $V-animationDuration,
+			)
+		;
+		@include M-animate($animatedAttributes);
+
+		&--isOpen-JS {
+			@include M-animate($V-animationDuration);
+			@include M-transform(scale(1) translateY(-50%));
+			opacity: 1;
+			visibility: visible;
+		}
+
+		@include M-mq($MQ-preview--is-stacked){
+			@include M-origin(bottom center);
+			@include M-flexWrap;
+		}
+	}
+		&__imgLargeContainer {
+			text-align: center;
+			@include M-mq($MQ-preview--is-stacked){
+				width: 100%!important;
+			}
+		}
+			&__imgLarge {
+			}
+		&__textLarge {
+			padding: 50px 20px 100px;
+			max-width: $VG-sideBar-width;
+
+			h2 {
+				margin-bottom: 30px;
+				@include M-font-size(36px);
+				@include M-mq($MQ-font--is-smaller){
+					@include M-font-size(26px);
+					margin-bottom: 15px;
+				}
+			}
+			@include M-mq($MQ-popout--is-stacked){
+				padding-top: 20px;
+				max-width: none;
+				h2 {
+					margin-right: 30px;
+				}
+			}
+		}
+			&__btn {
+				padding: 15px;
+				position: absolute;
+				left: 20px;
+				right: 20px;
+				bottom: 20px;
+				color: #000;
+				border: 2px solid #000;
+				text-align: center;
+				@include M-font-size(17px);
+				font-weight: $bold;
+				line-height: 1.2;
+				@include M-animate(0.3s);
+				@include M-hover {
+					background-color: #000;
+					color: #fff;
+					text-decoration: none;
+				}
+			}
+}

@@ -1,0 +1,128 @@
+
+$C-blue-bg: CG-prominence(3);
+$C-blue-border: CG-prominence(3,'partner');
+
+$C-yellow-bg: CG-prominence(1);
+$C-yellow-border: #fbcf04;
+
+$C-infoBtn-text: $CB-blue-dim;
+$C-tweetBtn-text: $C-infoBtn-text;
+
+$MQ-mainContentPadding--can-scale: (min, bp('tablet'));
+
+$module: 'block';
+
+.#{$module} {
+	background: #fff;
+	box-shadow: $VG-commonShadow;
+	padding: $VG-block-padding--v $VG-block-padding--h;
+
+	margin-top: $VG-block-spacing;
+	&:first-child {
+		margin-top: 0;
+	}
+
+		&__inner { max-width: 800px; margin: 0 auto; }
+
+	&--responsivePadding {
+		@include M-mq($MQ-mainContentPadding--can-scale){
+			padding: 2.5% $VG-block-padding--h;
+		}
+	}
+
+	&--noPadding {
+		padding: 0;
+	}
+
+	&--breakout {
+		border-top: 10px solid #E4E4E4;
+		@include M-font-size(22px);
+		text-align: center;
+		padding: 20px;
+		width: 100%;
+		p { margin: 0; }
+	}
+	&--blue {
+		background-color: $C-blue-bg;
+		border-color: $C-blue-border;
+	}
+	&--yellow {
+		background-color: $C-yellow-bg;
+		border-color: $C-yellow-border;
+	}
+
+
+	&__infoBtn {
+		background: CG-prominence(2);
+		color: #fff;
+		display: inline-block;
+		position: relative;
+		padding: 10px 15px;
+		padding-right: 70px;
+		font-weight: $normal;
+		margin-top: 20px;
+		margin-bottom: 10px;
+		font-size: 0.8em;
+		@include M-animate;
+		@include M-after {
+			position: absolute;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			width: 50px;
+			border-left: 1px solid $C-blue-bg;
+		}
+		@include M-hover {
+			text-decoration: none;
+			background-color: #000;
+			.#{$module} {
+				&__infoBtnIcon {
+					&:before {
+						color: $CG-info-icon--active;
+					}
+				}
+			}
+		}
+	}
+		&__infoBtnIcon {
+			@include M-icon('arrow--right', inherit, 30px){
+				@include M-centered(v);
+				top: 5px;
+				right: 10px;
+				background-color: transparent;
+			}
+		}
+	&__iconHighlight {
+		@include M-icon-size(105px,$width:100%);
+	}
+
+	&__tweetBtn {
+		font-weight: $bold;
+		font-family: $roboto;
+		text-transform: uppercase;
+		vertical-align: middle;
+		position: relative;
+		@include M-font-size(14px);
+		margin-top: 30px;
+		margin-bottom: 10px;
+		display: inline-block;
+		@include M-icon('twitter', $C-tweetBtn-text, 20px, $pos: after){
+			text-shadow: 0 0 0 $C-tweetBtn-text;
+			margin-left: 5px;
+			margin-top: -2px;
+			@include M-animate(0.3s);
+		};
+		@include M-hover {
+			@if($modern){
+				&:after {
+					text-shadow: 0 0 5px $C-tweetBtn-text;
+					color: #fff;
+				}
+			}
+		}
+	}
+
+	&__iconHighlight {
+		margin-bottom: 20px;
+ 	}
+}

@@ -1,0 +1,19 @@
+.enlargeImg {
+	display: block;
+	overflow: hidden;
+	@if($modern) {
+		cursor: pointer;
+		cursor: zoom-in;
+	}
+	outline: 1px solid #fff!important;
+	border: none!important;
+
+	@include M-hover {
+		img {
+			@include M-scale(1.05);
+		}
+	}
+	&:before, &:after { display: none; }
+
+	img { display: block; @include M-animate; }
+}

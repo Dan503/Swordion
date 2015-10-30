@@ -1,0 +1,55 @@
+.autoScroll {
+	&__btn {
+		position: absolute;
+		top: 11px;
+		right: 200px;
+		width: 50px;
+		height: 48px;
+		background: #fff;
+		z-index: 20;
+		border: none;
+		@include M-scale(0);
+		@include M-animate((
+			(
+				attributes: background,
+				duration: 0.2s
+			), (
+				attributes: transform,
+				duration: 0.1s,
+			)
+		));
+		@include M-appearanceNone;
+		@include M-hover {
+			background-color: CG-prominence(1);
+			outline: none;
+			box-shadow: none;
+		}
+		&:before {
+			@include M-animate(0.5s, $attributes: transform opacity border-width);
+		}
+
+		&--showsReset-JS {
+			@include M-icon('reset', CG-prominence(2), 48px * 0.5, $family: 'homeIcons'){
+				line-height: 48px;
+				@include M-size(48px!important);
+				background: transparent;
+				border: none;
+				@include M-rotate(360);
+			};
+		}
+
+		html:not(.#{$VG-headerTools-menuOpenClass}) .#{$VG-headerTools-transformClass} & {
+			@include M-scale(1);
+			@include M-animate((
+				(
+					attributes: background,
+					duration: 0.2s
+				), (
+					attributes: transform opacity,
+					duration: 0.5s,
+					delay: 0.5s,
+				)
+			));
+		}
+	}
+}

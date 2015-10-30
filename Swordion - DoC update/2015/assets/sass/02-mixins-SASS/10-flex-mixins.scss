@@ -1,0 +1,75 @@
+﻿
+//The prefixes applied to display:flex attributes
+$flexPrefixes: ms webkit;
+
+
+//shortcut for displaying as Flexbox
+@mixin M-flex {
+	display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
+	display: -ms-flexbox;      /* TWEENER - IE 10 */
+	display: -webkit-flex;     /* NEW - Chrome */
+	display: flex;             /* NEW, Spec - Opera 12.1, Firefox 20+ */
+}
+%flex { @include M-flex; }
+
+//control how the flexbox wraps
+@mixin M-flexWrap($isEnabled:true, $important: unquote('')){
+	@if ($isEnabled == true){
+		@include M-prefix(flex-wrap, wrap $important, $flexPrefixes);
+	} @else if ($isEnabled == 'reverse'){
+		@include M-prefix(flex-wrap, wrap-reverse $important, $flexPrefixes);
+	} @else if ($isEnabled == false) {
+		@include M-prefix(flex-wrap, nowrap $important, $flexPrefixes);
+	} @else {
+		@error '"#{$isEnabled}" is an invalid property for M-flexWrap. Valid properties are: true, false, and reverse';
+	}
+}
+%flexWrap { @include M-flexWrap; }
+
+@mixin M-flexDirection($direction: row){
+	@include M-prefix(flex-direction,$direction, $flexPrefixes);
+}
+
+@mixin M-flexFlow($directionWrap){
+	@include M-prefix(flex-flow,$directionWrap, $flexPrefixes);
+}
+
+@mixin M-flexReverse($direction: row){
+	@if($direction == row) {
+		@include M-flexFlow(row-reverse wrap-reverse);
+	} @else {
+		@include M-flexFlow(column-reverse wrap-reverse);
+	}
+}
+
+
+@mixin M-flexAlign($alignment: center){
+	@include M-prefix(justify-content,$alignment, $flexPrefixes);
+}
+
+@mixin M-flexAlignSelf($alignment: center){
+	@include M-prefix(align-self,$alignment, $flexPrefixes);
+}
+
+//verticaly align inner content
+@mixin M-flexValign($alignment: center) {
+	@include M-prefix(align-items,$alignment, $flexPrefixes);
+}
+
+//Flexbox doesn't like pixel widths.
+//This mixin allows an element to stay a constant width even when flex grow is applied to it.
+//The siblings of this element will grow/shrink to fit to fill the container  
+@mixin M-flexForceWidth($width){
+	@if ($width == false) {
+		max-width: none;
+		min-width: 0;
+	} @else {
+		width: auto;
+		max-width: $width;
+		min-width: $width;
+	}
+}
+
+@mixin M-flexGrow($amount: 1){
+	@include M-prefix(flex-grow,$amount, $flexPrefixes);
+ }

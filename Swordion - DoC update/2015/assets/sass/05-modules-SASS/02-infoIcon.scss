@@ -1,0 +1,16 @@
+
+.infoIcon {
+	width: 30px;
+	text-align: center;
+	font-weight: $normal;
+	font-family: $openSans;
+	font-size: 22px;
+	&:before {
+		@include M-animate(0.3s);
+		content: 'i';
+		color: $CG-info-icon;
+		@include M-circle(stroke, $CG-info-stroke, 30px, 1px);
+		line-height: 26px;
+		background-color: $CG-info-bg;
+	}
+}

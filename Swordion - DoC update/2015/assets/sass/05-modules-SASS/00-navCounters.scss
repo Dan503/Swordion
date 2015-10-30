@@ -1,0 +1,36 @@
+﻿
+$C-link-text: $CB-blue-dark;
+
+$V-fontSize: 36px;
+
+$module: 'navCounters';
+
+$V-list-counterName: #{$module}-counter;
+
+%counterStyles {
+	font-family: $gafata;
+	@include M-font-size($V-fontSize);
+	line-height: 1;
+	height: $V-fontSize;
+	display: block;
+	top: 0;
+	left: 0;
+}
+
+.#{$module} {
+	&__counterReset {
+		counter-reset: $V-list-counterName;
+	}
+		&__item {
+			position: relative;
+			&:before{
+				@extend %counterStyles;
+				position: absolute;
+				content: counter($V-list-counterName, decimal-leading-zero);
+				counter-increment: $V-list-counterName;
+			}
+			&--manual {
+				@extend %counterStyles;
+			}
+		}
+}

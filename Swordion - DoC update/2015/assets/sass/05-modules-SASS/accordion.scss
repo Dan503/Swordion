@@ -1,0 +1,97 @@
+﻿
+$module: 'accordion';
+
+$C-head-text: $CG-baseLinkColor;
+$C-headLink-bg: $CB-grey-light;
+$C-headLink-bg--hover: $CB-grey-mid;//shade($CB-grey-light, 10%);
+
+$C-plus: $CB-blue-dark;
+$C-plus-bg: CG-prominence(1);
+$C-plus-bg--hover: CG-prominence(1, 'partner');
+
+$V-head-padding--h: 25px;
+$V-head-padding--v: 15px;
+
+$V-headLink-borderWidth: $VG-block-borderWidth;
+
+$V-plus-size--inner: 16px;
+$V-plus-size--outer: 34px;
+$V-plus-positioner--v: $V-headLink-borderWidth;
+$V-plus-positioner--h: 10px;
+
+$V-head-padding:
+	$V-head-padding--v //*top*/
+	($V-plus-size--outer + 5 + $V-plus-positioner--h)//*right*/
+	$V-head-padding--v //*down*/
+	$V-head-padding--h //*left*/
+;
+
+$V-border: 1px solid $CG-border--tertiery;
+
+$MQ-imgWrap--is-hidden: (max, $BPG-sidebar--fullWidth);
+
+$MQ-headText-font--is-smaller: (max, bp('mobile'));
+
+.#{$module} {
+	margin: $VG-block-spacing 0 0;
+	&__item {
+		&--isOpen-JS {
+			.#{$module} {
+				&__icon {
+					@include M-scale(0);
+				}
+			}
+		}
+	}
+	&__heading {
+		position: relative;
+		font-family: $gafata;
+		@include M-font-size(30px);
+		line-height: 1;
+		@include M-mq($MQ-headText-font--is-smaller){
+			@include M-font-size(22px);
+		}
+	}
+		&__headLink {
+			padding: $V-head-padding;
+			color: $C-head-text;
+			display: block;
+			border-top: $V-headLink-borderWidth solid #fff;
+			background-color: $C-headLink-bg;
+			@include M-animate;
+
+			@include M-hover {
+				text-decoration: none;
+				background-color: $C-headLink-bg--hover;
+				.#{$module} {
+					&__icon { background-color: $C-plus-bg--hover;  }
+				}
+			}
+		}
+			&__icon {
+				@include M-plus($C-plus,$V-plus-size--inner,2px){
+					@include M-animate;
+				};
+				@include M-circle('fill',$C-plus-bg,$V-plus-size--outer);
+				@include M-animate;
+				@include M-centered(v);
+				@include M-scale(1);
+				top: $V-headLink-borderWidth;
+				right: $V-plus-positioner--h;
+				background-color: $C-plus-bg;
+			}
+
+	&__text {
+		padding: 30px;
+	}
+	&__imgWrap {
+		background-size: cover;
+		max-width: $VG-sideBar-width;
+		@include M-mq($MQ-imgWrap--is-hidden){
+			background: none!important;
+			display: none;
+		}
+	}
+
+
+}

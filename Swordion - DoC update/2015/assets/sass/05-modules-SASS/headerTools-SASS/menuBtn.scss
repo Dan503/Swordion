@@ -1,0 +1,189 @@
+
+$C-backdrop-bg: CG-prominence(1);
+$C-listContainer-bg: red;//$CB-grey-light;
+
+$V-transformTime: $VG-headerTools-transformTime;
+
+$moduleSizeSettings: (
+	(
+		sizeName: 'L',
+		bg-size: 400px,
+		btn-size: 25px,
+		mq: $MQG-headerTools--is-size-L,
+	), (
+		sizeName: 'M',
+		bg-size: 300px,
+		btn-size: 20px,
+		mq: $MQG-headerTools--is-size-M,
+	), (
+		sizeName: 'S',
+		bg-size: 200px,
+		btn-size: 15px,
+		mq: $MQG-headerTools--is-size-S,
+	)
+);
+
+$V-menuIcon-baseSize: map-get(nth($moduleSizeSettings,1), btn-size);
+$V-menuIcon-baseSeperation: round($V-menuIcon-baseSize * (10/25));
+
+$module: 'menuBtn';
+
+.#{$module} {
+	@include M-animate($V-transformTime);
+	position: fixed;
+	z-index: 1;
+	top: 0;
+	right: 0;
+
+	&__backDrop {
+		@include M-animate($V-transformTime);
+		position: absolute;
+		right: 0;
+		@include M-rotate(45, bottom right);
+		background-color: $C-backdrop-bg;
+		.home & { opacity: 0; }
+	}
+	&__btn {
+		@include M-animate($V-transformTime);
+		//right: 130px;
+		//top: 40px;
+		border: none;
+		padding: 0;
+		background: transparent;
+		position: absolute;
+		z-index: 3;
+
+		@include M-hover {
+			.#{$module} {
+				&__btnIcon {
+					@if ($gt-ie8){ @include M-menuIcon('plus'); }
+				}
+			}
+			@if ($gt-ie8) {
+				outline: none;
+				box-shadow: none;
+			}
+		}
+	}
+		&__btnIcon {
+			@include M-menuIcon($CB-grey-dark, $V-menuIcon-baseSize, 2px, $V-menuIcon-baseSeperation);
+		}
+
+	&__listContainer {
+		position: fixed;
+		top: 0;
+		right: 0;
+		left: 0;
+		height: 0;
+		opacity: 0;
+		overflow: hidden;
+		background-color: $C-listContainer-bg;
+		@include M-animate($V-transformTime);
+	}
+
+	@each $setting in $moduleSizeSettings {
+		$mq: map-get($setting, mq);
+		$bg-size: map-get($setting, bg-size);
+		$btn-size: map-get($setting, btn-size);
+		$sizeName: map-get($setting, sizeName);
+
+		@include M-mq($mq){
+
+			width: $bg-size * 0.7125;
+
+			&__backDrop {
+				@include M-size($bg-size);
+				top: round(-$bg-size * 0.3);//positions the backdrop correctly in the corner
+			}
+
+			&__btn {
+				top: round($bg-size * (40/400));
+				right: round($bg-size * (90/400));
+			}
+				&__btnIcon {
+					$lineSeperation: round($btn-size * (10/25));
+					@if ($sizeName == 'S'){
+						$lineSeperation: round($btn-size * (8/25));
+					}
+					@include M-menuIcon-size($btn-size, 2px, $lineSeperation);
+				}
+		}
+
+	}
+}
+
+//styles for when search is open
+.#{$VG-search-openClass} {
+	.#{$module} {
+		&__btn { z-index: 0; opacity: 0; }
+	}
+}
+
+//styles for when the header is transformed
+.#{$VG-headerTools-transformClass} {
+	.#{$module} {
+		width: 100%;
+		&__backDrop {
+			background-color: CG-prominence(2);
+			@include M-rotate(0);
+			height: $VG-headerTools-transformHeight;
+			width: 120%;
+			top: if($modern, $VG-headerTools__progressBar-height, 0);
+			right: 0;
+			opacity: 1;
+		}
+		&__btn {
+			right: 140px;
+			top: if($modern, (10px + $VG-headerTools__progressBar-height), 11px);
+
+			@include M-hover {
+				.#{$module} {
+					&__btnIcon {
+						&, &:before, &:after {
+							background-color: $CG-menuBtn--hover;
+						}
+					}
+				}
+			}
+			@include M-mq($MQG-headerTools--not-size-L){
+				@include M-transform(translateY(-50%));
+				top: 35px;
+			}
+			@include M-mq($MQG-headerTools--is-size-S){
+				right: 80px;
+			}
+		}
+			&__btnIcon {
+				&, &:before, &:after {
+					background-color: #fff;
+				}
+			}
+	}
+}
+
+//styles for when the menu is open
+.#{$VG-headerTools-menuOpenClass} {
+	.#{$module} {
+		&__btn {
+			@include M-hover {
+				.#{$module} {
+					&__btnIcon {
+						@include M-menuIcon('cross');
+					}
+				}
+			}
+		}
+			&__btnIcon {
+				@include M-menuIcon-size($V-menuIcon-baseSize, 2px, $V-menuIcon-baseSeperation);
+				@include M-menuIcon('cross');
+				&:before, &:after {
+					background-color: $CB-orange-mid;
+				}
+			}
+
+		&__listContainer {
+			height: 100%;
+			opacity: 1;
+		}
+	}
+}

@@ -1,0 +1,9 @@
+.mainContent {
+	& + {
+		.shoutOut__block,
+		.imgPopout,
+		.block,
+		.accordion
+			{ margin-top: 0; }
+	}
+}

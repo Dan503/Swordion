@@ -1,0 +1,60 @@
+
+$C-grad-top: #15364D;
+$C-grad-bottom: #142E42;
+$C-tri-fill: mix($C-grad-bottom, $C-grad-top);
+$C-tri-border: CG-prominence(2);
+
+$V-tri-borderWidth: 10px;
+
+$MQ-tri--is-diagonalCut: $MQG-landingTri--is-diagonalCut;
+
+$MQ-tri--is-hidden: (max, bp('mobile'));
+
+.landingTri {
+	@include M-fill((left: -45%, top: -$VG-siteContainer-borderWidth));
+	overflow: hidden;
+	width: 100%;
+	z-index: 1;
+	@include M-before {
+		@include M-fill((right: 95%, left: auto));
+		background: mix($C-grad-bottom, $C-grad-top);
+		//@include M-grad($C-grad-top, $C-grad-bottom);
+		z-index: 1;
+		width: 100%;
+	}
+	@include M-mq($MQ-tri--is-diagonalCut){
+		left: -10px;
+		&:before {
+			right: 50%;
+			//display: none;
+		}
+	}
+	@include M-mq($MQ-tri--is-hidden){
+		display: none;
+	}
+
+	&__inner {
+		@include M-rotate(45);
+		width: 100%;
+		padding-bottom: 100%;
+		height: 0;
+		@include M-centered(v);
+		top: 30%;
+		right: if($ie8, 10%, 22%);
+		border: $V-tri-borderWidth solid $C-tri-border;
+		border-left-width: 0;
+		background: $C-tri-fill;
+
+		@include M-mq($MQ-tri--is-diagonalCut){
+			width: 300%;
+			padding-bottom: 300%;
+			top: -100%;
+			right: 73%;
+		}
+	}
+	&__mobileHeader {
+		@include M-mq($MQ-tri--is-hidden){
+			@include M-flexGrow;
+		}
+	}
+}/*#142E42*/

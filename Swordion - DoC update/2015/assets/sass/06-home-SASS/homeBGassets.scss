@@ -1,0 +1,90 @@
+
+$V-offset: $VG-siteContainer-borderWidth;
+
+$C-bg--nbn: CG-prominence(1);
+$C-bg--grad-light: #153951;
+$C-bg--grad-dark: $CG-homeBG-dark;
+
+.homeBGassets {
+	top: $V-offset;
+	bottom: $V-offset;
+	left: $V-offset;
+	right: $V-offset;
+	position: fixed;
+	&--raised {
+		z-index: 2;
+	}
+	&__background {
+		@include M-mq($MQG-home--is-scrollAnimated){
+			@include M-box-sizing(content-box);
+			padding-top: 60px;
+			height: 900%;
+			@include M-before {
+				@include M-fill;
+				$V-gradient:
+					rgba($C-bg--nbn, 0),
+					rgba($C-bg--nbn, 0),
+					$C-bg--nbn,
+					$C-bg--nbn,
+					$C-bg--grad-dark,
+					$C-bg--grad-dark,
+					$C-bg--grad-light,
+					$C-bg--grad-dark,
+					$C-bg--grad-dark,
+					$C-bg--grad-dark,
+				;
+				@include M-multi-grad($V-gradient, v);
+			}
+		}
+	}
+	&__corner {
+		@include M-mq($MQG-home--is-scrollAnimated){
+			background-color: $CG-bodyInnerBG;
+			@include M-skew(-45deg);
+			@include M-fill;
+			top: 0;
+			left: 47%;
+			left: 115%;
+			//top: -25vw;
+		}
+	}
+
+	&__deRegCorner {
+		@include M-mq($MQG-home--is-scrollAnimated){
+			@include M-skew(45deg);
+			position: absolute;
+			top: 0;
+			left: 66%;
+			@include M-size(100%);
+			@include M-grad(CG-prominence(1, 'partner'), CG-prominence(1));
+		}
+	}
+}
+
+html {
+	@include M-before-after {
+		@include M-line(h,#fff,100%,$V-offset);
+		position: fixed;
+		top: 0;
+		z-index: 500;
+	}
+	&:after {
+		top: auto!important;
+		bottom: 0;
+	}
+}
+
+body {
+	@include M-before-after {
+		@include M-line(v,#fff,100%,$V-offset);
+		position: fixed;
+		top: 0;
+		left: 0;
+		z-index: 2000;
+	}
+	&:after {
+		top: 0;
+		left: auto;
+		right: 0;
+	}
+}

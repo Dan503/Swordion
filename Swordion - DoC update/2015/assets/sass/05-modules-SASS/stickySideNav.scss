@@ -1,0 +1,77 @@
+
+$V-sideBar-width: $VG-sideBar-width + 20;
+
+$MQ-module--is-hidden: (max, bp('mobile'));
+
+.stickySideNav {
+	margin-top: 0;
+
+	&__container {
+		@include M-animate(0.5s);
+		@include M-overflowShadow(v,$C-fixedNav-bg, shade($C-fixedNav-bg, 20%));
+		overflow-x: hidden;
+		position: fixed;
+		right: -$V-sideBar-width - 20;
+		max-width: $V-sideBar-width;
+		top: 110px;
+		z-index: 9999;
+		max-height: calc(100% - 150px);
+		box-shadow: $VG-commonShadow;
+		.sideNav {
+			@if($gt-ie8){ background-color: transparent; }
+		}
+		&--isOpen-JS {
+			right: 0;
+		}
+		@include M-mq($MQ-module--is-hidden){
+			display: none;
+		}
+	}
+
+	.sideNav {
+		&__heading {
+			padding-right: 30px;
+		}
+		&__expandNavTrigger {
+			display: none;
+		}
+	}
+	&__open {
+		@include M-animate(0.5s);
+		@include M-rotate(90, bottom right);
+		position: fixed;
+		top: 110px;
+		right: 0;
+		padding: 10px;
+		padding-left: 40px;
+		width: 110px;
+		font-weight: $bold;
+		@include M-font-size(11px);
+		line-height: 1.1;
+		text-transform: uppercase;
+		border-top: 10px solid $CG-sideNav-border;
+		background-color: $CG-sideNav-bg;
+		text-align: center;
+		box-shadow: $VG-commonShadow;
+		z-index: 9999;
+		@include M-icon('arrow--left',$CB-blue-dim, 30px, $width: 40px){
+			position: absolute;
+			@include M-centered(v);
+			left: 0;
+			top: 5px;
+		}
+		.#{$VG-headerTools-transformClass} & {
+			@include M-rotate(0);
+		}
+
+		@include M-mq($MQ-module--is-hidden){
+			display: none;
+		}
+	}
+	&__close {
+		position: absolute;
+		top: 20px;
+		right: 15px;
+		z-index: 1;
+	}
+}
