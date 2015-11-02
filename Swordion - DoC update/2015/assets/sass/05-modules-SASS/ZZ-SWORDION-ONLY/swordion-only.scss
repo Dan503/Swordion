@@ -1,0 +1,140 @@
+/**************************************************\
+	Styles for styling the Swordion site.
+	Remove this at the start of the project.
+\*************************************************/
+
+//for testing selectivizr
+.downloads li:nth-child(2) { color: red!important;}
+
+#logo {
+	padding: 50px;
+	margin: 0;
+	@include M-icon(pdf){
+		color: #000;
+	};
+}
+
+.hyphenTest {
+	@include M-hyphenate;
+	width: 100px;
+}
+
+.equalTest { //border-color: green;
+	div {  width: 50%; background: #FFB2B2; float: left; }
+}
+
+.full-screen-div-example { background: #F1F49F; }
+
+.arrow {
+	&.up { @include M-arrow(up,green,50px);  margin: 0 30px; }
+	&.down { @include M-arrow(down,green,50px); margin: 0 30px; }
+	&.left { @include M-arrow(left,green,50px); margin: 30px 0; }
+	&.right { @include M-arrow(right,green,50px); margin: 30px 0; }
+}
+
+/**********************************
+		Animations
+**********************************/
+.animationDemoItem {
+	//border-width: 5px;
+	padding: 20px;
+	background-color: $CG-primary;
+	color: #fff;
+	text-align: center;
+	border: 1px solid #000;
+}
+
+.simpleAnimationExample {
+	.simpleAnimationExample-piece { position: relative; }
+
+	////////////////////////////
+	//Starting state settings//
+	//////////////////////////
+	.simple1 {
+		opacity: 0;
+	}
+	.simple2 {
+		position: relative;
+		bottom: 100%;
+		left: 100%;
+	}
+	.simple3 {
+		@include M-scale(0);
+	}
+
+	.simple4 {
+		opacity: 0;
+	}
+
+	///////////////////////
+	//End state settings//
+	/////////////////////
+
+	//first box fades in
+	&.stage-1-JS {
+		.simple1 {
+			//since the animations won't play backwards, put the animation timings in the stage to control timings easier
+			@include M-animate(1s);
+			opacity: 1;
+		}
+	}
+	//2nd box slides in from top right corner
+	&.stage-2-JS {
+		.simple2 {
+			@include M-animate(0.5s);
+			bottom: 0;
+			left: 0;
+		}
+	}
+	//3rd box grows in
+	&.stage-3-JS {
+		.simple3 {
+			//if using one of the default settings for animation duration, the @extend version instead
+			@include M-animate(2s); //(goes for 0.5s)
+			@include M-scale(1);
+		}
+	}
+	//4th box has a bit of a spin effect in
+	&.stage-4-JS {
+		.simple4 {
+			$simple4animation:
+				0% (opacity: 0, rotate: 180),
+				70% (rotate: 360),
+				100% (opacity: 1, rotate: 0),
+			;
+			@include M-kf-animate(simple4animation, $simple4animation, 2s, 1);
+		}
+	}
+}
+
+.navPrimary {
+	@include M-mq(max,bp('tablet')){
+		@include M-prefix(flex-wrap, wrap, $flexPrefixes);
+	}
+	&__item {
+		border-left: 1px solid #ccc;
+		&:first-child { border-left: none; }
+		@include M-mq(max,bp('tablet')){
+			width: 50%;
+		}
+		@include M-mq(max,bp('mobile')){
+			width: 100%;
+		}
+	}
+	&__link {
+		@include M-grad(rgba(#fff,0.4),rgba(#000,0.6));
+		background-color: $CB-blue-mid;
+		@include M-animate(0.2s);
+		color: #fff;
+		text-align: center;
+		@include M-hover {
+			background-color: $CB-blue-dark;
+			text-decoration: none;
+			@include M-pos(20px center);
+		}
+	}
+}
+
+@include M-lt-ie9 {
+	/*this should appear in the IE8 style sheet but not the regular one*/
+}
