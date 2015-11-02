@@ -1,6 +1,0 @@
-.js .screenFader {
-	@include M-fill((position: fixed));
-	background: #fff;
-	z-index: 9999999999999999999999999;
-	@if ($lt-ie10) { display: none; }
-}
