@@ -12,25 +12,20 @@ var jsMerge = {
 	components : [
 		{
 			folder: 'vendor-JS/auto-load-JS',
-			isSplit: true,
+			//isSplit : true //(default)
 		}, {
 			folder: '00-variables-global-JS',
-			isSplit: true
 		}, {
 			folder: '01-functions-global-JS',
-			isSplit: true,
 		}, {
 			folder: 'plugins-JS',
-			isSplit: true,
 		}, {
 			file: 'doc.ready-open.js',
-			usedIn : 'all',// other option is an array eg. ['isHome', 'isModern']
+			//usedIn : 'all', //(default)// other option is an array eg. ['isHome', 'isModern']
 		}, {
 			folder : 'modules-JS',
-			isSplit : true,
 		}, {
 			file: 'doc.ready-close.js',
-			usedIn : 'all',
 		}
 	]
 };
@@ -58,12 +53,17 @@ for (var x = 0; x < jsMerge.splits.length; x++){
 
 		//if it's a file
 		if (typeof component.file !== 'undefined'){
+			//default "usedIn" to "all"
+			component.usedIn = component.usedIn || 'all';
+			//if file is used in all, or current split is in the "usedIn" array
 			if (component.usedIn == 'all' || component.usedIn.indexOf(split) > -1){
 				JS_merge_files[split].push(root + component.file);
 			}
 
 		//else it's a folder
 		} else {
+			//default "isSplit" to "true"
+			component.isSplit = component.isSplit || true;
 			//if componenet is not split, only load it in the 'isConstant' set
 			if (component.isSplit || split == 'isConstant'){
 
@@ -150,9 +150,9 @@ module.exports = function (grunt) {
 // In order for it to work, you need to install imageMagic on your computer:
 //	1.	Go here to download it http://www.imagemagick.org/script/binary-releases.php
 //	2.	Follow the instructions while cd is the default, NOT the project directory (make sure to tick "add to system path" when the option comes up)
-//	3.	Once installed ìnpm install imî
-//	4.	When cd is the project folder ìnpm install grunt-image-resizeî
-//	5.	Youíre done, it should be working now :)
+//	3.	Once installed ‚Äúnpm install im‚Äù
+//	4.	When cd is the project folder ‚Äúnpm install grunt-image-resize‚Äù
+//	5.	You‚Äôre done, it should be working now :)
 		image_resize: {
 			resize: {
 				options: {
