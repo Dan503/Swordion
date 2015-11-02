@@ -125,6 +125,7 @@ module.exports = function (grunt) {
 		// task_name: "grunt_plugin_name",
 		cmq: "grunt-combine-media-queries",
 		watch: "grunt-contrib-watch",
+		sprite: "grunt-spritesmith",
 	});
 
 	grunt.initConfig({
@@ -144,6 +145,59 @@ module.exports = function (grunt) {
 				files: JS_minified_files
 			}
 		},
+
+		//This shrinks the HD sprite to normal size
+// In order for it to work, you need to install imageMagic on your computer:
+//	1.	Go here to download it http://www.imagemagick.org/script/binary-releases.php
+//	2.	Follow the instructions while cd is the default, NOT the project directory (make sure to tick "add to system path" when the option comes up)
+//	3.	Once installed “npm install im”
+//	4.	When cd is the project folder “npm install grunt-image-resize”
+//	5.	You’re done, it should be working now :)
+		image_resize: {
+			resize: {
+				options: {
+					width: '50%',
+					height: '50%',
+				},
+				files: {
+					//destination
+					'assets/images/auto-sprite/LD-retina-autosprite.png':
+					//source
+					'assets/images/auto-sprite/HD-retina-autosprite.png'
+				}
+			}
+		},
+
+		//auto-spriting without compass
+		sprite:{
+			//Generates the double sized version of the retina sprite
+	        retina: {
+	            src: 'assets/images/auto-sprite/HD-retina-sourcefiles/*.png',
+	            dest: 'assets/images/auto-sprite/HD-retina-autosprite.png',
+	            destCss: 'assets/sass/00-config/sprite-sheets/HD-retina-sprites.scss',
+	            cssFormat: 'scss_maps',
+	            imgPath: '../images/auto-sprite/HD-retina-autosprite.png',
+	            padding: 4,
+				cssSpritesheetName: 'spritesheet-retina',
+	            cssOpts: {
+	                functions: false,
+	            },
+	        },
+			//Generates a normal sized sprite that is used on both retina and non retina screens
+			//If you do not have a double sized version for an image, use this.
+			nonRetina: {
+	            src: 'assets/images/auto-sprite/LD-nonRetina-sourceFiles/*.png',
+	            dest: 'assets/images/auto-sprite/LD-nonRetina-autosprite.png',
+	            destCss: 'assets/sass/00-config/sprite-sheets/LD-nonRetina-sprites.scss',
+	            cssFormat: 'scss_maps',
+	            imgPath: '../images/auto-sprite/LD-nonRetina-autosprite.png',
+	            padding: 2,
+				cssSpritesheetName: 'spritesheet-nonRetina',
+	            cssOpts: {
+	                functions: false,
+	            },
+			}
+	    },
 
 		//allows sass to import a whole directory at a time
 		sass_globbing: {
