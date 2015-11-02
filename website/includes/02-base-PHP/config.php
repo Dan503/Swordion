@@ -223,9 +223,6 @@ $GLOBALS['contentRoot'] = $contentRoot;
 	$modules_lightbox_root = $modules.'01-lightboxes-PHP/';
 	$modules_lightbox = $modules_lightbox_root.$locationString.'/';
 
-	$pageTitle = defaultTo($pageTitle, $getCurrent['title']);
-
-
 	$GLOBALS['skipTarget'] = 1;
 
 	$loadIn = array(

@@ -5,9 +5,9 @@
 
     <title><?php
         if ($isHome == true) {
-			print strip_tags($pageTitle);
+			print strip_tags($getCurrent['title']);
         } else {
-			print strip_tags($pageTitle) . ' | Department of Communications 2014-15 Annual Report';
+			print strip_tags($getCurrent['title']) . ' | Department of Communications 2014-15 Annual Report';
         }
 	?></title>
 
@@ -18,7 +18,7 @@
 
 	<meta name="viewport" content="width=device-width,initial-scale=1">
 
-	<?php $shareTitle = ($isHome) ? 'Department of Communications 2014-15 Annual Report' :  strip_tags($pageTitle) . ' | Department of Communications 2014-15 Annual Report'; ?>
+	<?php $shareTitle = ($isHome) ? 'Department of Communications 2014-15 Annual Report' :  strip_tags($getCurrent['title']) . ' | Department of Communications 2014-15 Annual Report'; ?>
 
 	<!-- facebook meta data -->
 	<meta property="og:title" content="<?php echo $shareTitle; ?>" />
