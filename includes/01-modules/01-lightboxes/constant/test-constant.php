@@ -1,1 +1,0 @@
-<p>Constant lightbox</p>

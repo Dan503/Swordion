@@ -1,14 +1,19 @@
 .sass-cache/**/*
 node_modules/**/*
-assets/images/auto-sprite/*.png
-assets/css/**/*.css
-assets/css/**/*.map
+2015/assets/images/auto-sprite/*.png
+2015/assets/css/**/*.css
+2015/assets/css/**/*.map
 grunt-start-up.txt
-assets/js/*.min.js
-assets/js/merged.js
-assets/sass/import-maps/*.scss
+2015/assets/js/*.min.js
+2015/assets/js/merged.js
+!2015/assets/js/merged.min.js
+2015/assets/sass/import-maps/*.scss
 00-creating new git.txt
-assets/sass/00-config/sprite-sheets/HD-retina-sprites.scss
-assets/sass/00-config/sprite-sheets/LD-nonRetina-sprites.scss
+2015/assets/sass/01-config/sprite-sheets/HD-retina-sprites.scss
+2015/assets/sass/01-config/sprite-sheets/LD-nonRetina-sprites.scss
 .ftppass
 grunt-first-time.txt
+.grunt/ftpush/uat.json
+DoC_2014-15_AR_package.zip
+2015.zip
+2015/assets/js/ZZ-merged-JS/
