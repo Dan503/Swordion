@@ -1,1 +1,0 @@
-<img style="background-color: #0E283B" src="/2015/assets/images/content/net-benefits.png" alt="Net benefits relative to no further rollout">

@@ -1,5 +1,5 @@
 <?php
-	include $_SERVER['DOCUMENT_ROOT'].'/2015/includes/02-base-PHP/config.php';
+	include $_SERVER['DOCUMENT_ROOT'].'/includes/02-base-PHP/config.php';
 ?>
 
 

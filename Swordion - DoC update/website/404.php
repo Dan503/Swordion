@@ -1,8 +1,8 @@
 <?php
 	header($_SERVER["SERVER_PROTOCOL"]." 404 Not Found");
-	$location = array(0, 5);
+	$location = array(0, 1);
 
-	include $_SERVER['DOCUMENT_ROOT'].'/2015/includes/02-base-PHP/structure-PHP/body.php';
+	include $_SERVER['DOCUMENT_ROOT'].'/includes/02-base-PHP/structure-PHP/body.php';
 ?>
 
 	<?php mainContentPiece('top'); ?>

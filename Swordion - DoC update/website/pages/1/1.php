@@ -6,7 +6,7 @@ $GLOBALS['secretaryImg'] = array(
 	'altText' => 'Secretary Drew Clarke'
 );
 
-include $_SERVER['DOCUMENT_ROOT'].'/2015/includes/02-base-PHP/structure-PHP/body.php';
+include $_SERVER['DOCUMENT_ROOT'].'/includes/02-base-PHP/structure-PHP/body.php';
 
 ?>
 
