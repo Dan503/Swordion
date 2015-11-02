@@ -42,7 +42,7 @@ var JS_merge_files = {};
 //generates an array of files delegated to each split
 for (var x = 0; x < jsMerge.splits.length; x++){
 
-	var root = '2015/assets/js/';
+	var root = 'website/assets/js/';
 	var split = jsMerge.splits[x];
 
 	JS_merge_files[split] = [];
@@ -91,7 +91,7 @@ var JS_minified_files = {};
 for (var key in JS_merge_files) {
   if (JS_merge_files.hasOwnProperty(key)) {
 
-  	JS_minified_files['2015/assets/js/ZZ-merged-JS/'+key+'.min.js'] = ['2015/assets/js/ZZ-merged-JS/'+key+'.js'];
+  	JS_minified_files['website/assets/js/ZZ-merged-JS/'+key+'.min.js'] = ['website/assets/js/ZZ-merged-JS/'+key+'.js'];
   }
 }
 //test grunt uglify syntax
@@ -107,12 +107,12 @@ var server_root;
 switch (process.platform) {
 // Windows
 	case 'win32':
-		server_root =  '//CAN1DEV012/webs/doc-ar-2015/';
+		server_root =  '//CAN1DEV012/webs/folderName/';
 		break;
 
 // Mac OSX
 	case 'darwin' :
-		server_root =  '/Volumes/webs/doc-ar-2015/';
+		server_root =  '/Volumes/webs/folderName/';
 		break;
 }
 
@@ -203,13 +203,13 @@ module.exports = function (grunt) {
 		sass_globbing: {
 			all: {
 				files: {
-					'2015/assets/sass/import-maps/map-functions.scss': '2015/assets/sass/00-functions-SASS/**/*.scss',
-					'2015/assets/sass/import-maps/map-config.scss': '2015/assets/sass/01-config-SASS/**/*.scss',
-					'2015/assets/sass/import-maps/map-mixins.scss': '2015/assets/sass/02-mixins-SASS/**/*.scss',
-					'2015/assets/sass/import-maps/map-plugins.scss': '2015/assets/sass/03-plugins-SASS/**/*.scss',
-					'2015/assets/sass/import-maps/map-base.scss': '2015/assets/sass/04-base-SASS/**/*.scss',
-					'2015/assets/sass/import-maps/map-modules.scss': '2015/assets/sass/05-modules-SASS/**/*.scss',
-					'2015/assets/sass/import-maps/map-home.scss': '2015/assets/sass/06-home-SASS/**/*.scss',
+					'website/assets/sass/import-maps/map-functions.scss': 'website/assets/sass/00-functions-SASS/**/*.scss',
+					'website/assets/sass/import-maps/map-config.scss': 'website/assets/sass/01-config-SASS/**/*.scss',
+					'website/assets/sass/import-maps/map-mixins.scss': 'website/assets/sass/02-mixins-SASS/**/*.scss',
+					'website/assets/sass/import-maps/map-plugins.scss': 'website/assets/sass/03-plugins-SASS/**/*.scss',
+					'website/assets/sass/import-maps/map-base.scss': 'website/assets/sass/04-base-SASS/**/*.scss',
+					'website/assets/sass/import-maps/map-modules.scss': 'website/assets/sass/05-modules-SASS/**/*.scss',
+					'website/assets/sass/import-maps/map-home.scss': 'website/assets/sass/06-home-SASS/**/*.scss',
 				}
 			}
 		},
@@ -225,25 +225,25 @@ module.exports = function (grunt) {
 			modern: {//only compile the modern style sheet
 				files: {
 					//Modern style sheet
-					"2015/assets/css/modern.css": "2015/assets/sass/output-files/modern.scss",
+					"website/assets/css/modern.css": "website/assets/sass/output-files/modern.scss",
 					//Modern HOME style sheet
-					"2015/assets/css/home-modern.css": "2015/assets/sass/output-files/home-modern.scss",
+					"website/assets/css/home-modern.css": "website/assets/sass/output-files/home-modern.scss",
 				}
 			},
 			ie9 : {
 				files : {
 					//IE9 style sheet
-					"2015/assets/css/ie9.css": "2015/assets/sass/output-files/ie9.scss",
+					"website/assets/css/ie9.css": "website/assets/sass/output-files/ie9.scss",
 					//IE9 HOME style sheet
-					"2015/assets/css/home-ie9.css": "2015/assets/sass/output-files/home-ie9.scss",
+					"website/assets/css/home-ie9.css": "website/assets/sass/output-files/home-ie9.scss",
 				}
 			},
 			ie8 : {
 				files : {
 					//IE8 style sheet
-					"2015/assets/css/ie8.css": "2015/assets/sass/output-files/ie8.scss",
+					"website/assets/css/ie8.css": "website/assets/sass/output-files/ie8.scss",
 					//IE8 HOME style sheet
-					"2015/assets/css/home-ie8.css": "2015/assets/sass/output-files/home-ie8.scss",
+					"website/assets/css/home-ie8.css": "website/assets/sass/output-files/home-ie8.scss",
 				}
 			}
 		},
@@ -253,13 +253,13 @@ module.exports = function (grunt) {
 		cmq: {
 			your_target: {
 				files: {
-					'2015/assets/css/media-merge/': [
-						'2015/assets/css/modern.css',
-						'2015/assets/css/ie9.css',
-						'2015/assets/css/ie8.css',
-						'2015/assets/css/home-modern.css',
-						'2015/assets/css/home-ie9.css',
-						'2015/assets/css/home-ie8.css'
+					'website/assets/css/media-merge/': [
+						'website/assets/css/modern.css',
+						'website/assets/css/ie9.css',
+						'website/assets/css/ie8.css',
+						'website/assets/css/home-modern.css',
+						'website/assets/css/home-ie9.css',
+						'website/assets/css/home-ie8.css'
 					]
 				}
 			}
@@ -274,9 +274,9 @@ module.exports = function (grunt) {
 		    },
 			//takes the current css files in the "media-merge" folder, minifies them, adds '.min.css' to the end of the file, and copies them back into the main css folder
 		      expand: true,
-		      cwd: '2015/assets/css/media-merge/',
+		      cwd: 'website/assets/css/media-merge/',
 		      src: ['modern.css','ie9.css','ie8.css','home-modern.css','home-ie9.css','home-ie8.css'],
-		      dest: '2015/assets/css/',
+		      dest: 'website/assets/css/',
 		      ext: '.min.css'
 		  }
 		},
@@ -288,9 +288,9 @@ module.exports = function (grunt) {
 				files: [
 					// includes files within path
 					{
-						cwd: '2015/assets/js/',
+						cwd: 'website/assets/js/',
 						src: ['ZZ-merged-JS/*.js'],
-						dest: server_root + '2015/assets/js/',
+						dest: server_root + 'website/assets/js/',
 					}
 				],
 				//pretend: true, // Don't do any IO. Before you run the task with `updateAndDelete` PLEASE MAKE SURE it doesn't remove too much.
@@ -299,7 +299,7 @@ module.exports = function (grunt) {
 			images: {
 				files: [
 					{
-						src: '2015/assets/images/**',
+						src: 'website/assets/images/**',
 						dest: server_root
 					}
 				],
@@ -309,9 +309,9 @@ module.exports = function (grunt) {
 			css: {
 				files: [
 					{
-						cwd: '2015/assets/css/',
+						cwd: 'website/assets/css/',
 						src: ['*.css', '*.map'],
-						dest: server_root + '2015/assets/css/'
+						dest: server_root + 'website/assets/css/'
 					}
 				],
 				//pretend: true,
@@ -330,9 +330,9 @@ module.exports = function (grunt) {
 			fonts: {
 				files: [
 					{
-						cwd: '2015/assets/fonts/',
+						cwd: 'website/assets/fonts/',
 						src: ['**/**'],
-						dest: server_root + '2015/assets/fonts/'
+						dest: server_root + 'website/assets/fonts/'
 					}
 				],
 				//pretend: true,
@@ -343,7 +343,7 @@ module.exports = function (grunt) {
 		ftpush: {
 			uat: {
 				auth: {
-					host: 'doc-ar-2015.uat.aws1.readingroom.com.au',
+					host: 'domain.uat.aws1.readingroom.com.au',
 					port: '',
 					authKey: 'uat'
 				},
@@ -379,7 +379,7 @@ module.exports = function (grunt) {
 				livereload: true
 			},
 			scripts: {
-				files: ["2015/assets/js/**/*.js", "!2015/assets/js/ZZ-merged-JS/*.js"],
+				files: ["website/assets/js/**/*.js", "!website/assets/js/ZZ-merged-JS/*.js"],
 				tasks: [
 					"concat", //merges constant js files into one file
 					//"uglify", //minify JS
@@ -388,7 +388,7 @@ module.exports = function (grunt) {
 				options: { spawn: false }
 			},
 			scss: {
-				files: ["2015/assets/sass/**/*.scss"],
+				files: ["website/assets/sass/**/*.scss"],
 				tasks: [
 					"sass_globbing",//generates import maps for SASS modules
 					"sass:modern", //compile the modern SASS (modern only by default for speed)
@@ -424,7 +424,7 @@ module.exports = function (grunt) {
 					"sync:fonts",
 				],
 				files: [
-					"2015/assets/fonts/**/**"
+					"website/assets/fonts/**/**"
 				]
 			}
 		}
