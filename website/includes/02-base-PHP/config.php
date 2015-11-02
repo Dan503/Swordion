@@ -1,7 +1,7 @@
 <?php
 
 //Helps with DoC code integration
-$root_location = '/2015';
+$root_location = '';
 $GLOBALS['root_location'] = $root_location;
 
 //Defines the root directory for where all the site content pages are held
