@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 
 //Commonly used include paths
 	$includeRoot = $_SERVER['DOCUMENT_ROOT'].$root_location.'/includes/';

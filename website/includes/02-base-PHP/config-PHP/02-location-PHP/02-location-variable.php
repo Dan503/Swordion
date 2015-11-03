@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 
 //Creates $location variable based on folder structure if $location variable does not already exist
 	$fileLocationSetting = str_replace(".php","",str_replace("/pages/","",$_SERVER[REQUEST_URI]));

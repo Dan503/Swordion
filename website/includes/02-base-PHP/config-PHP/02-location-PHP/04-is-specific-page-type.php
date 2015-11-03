@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 //check if the current page is a specific page on the site
 
 	$isHome =

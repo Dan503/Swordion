@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 
 //sets the current page navMap array item to a $getCurrent variable
 //you can then use it like this $getCurrent['title'] to get the current title text as a span

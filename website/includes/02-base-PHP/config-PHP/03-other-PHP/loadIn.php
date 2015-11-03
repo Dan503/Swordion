@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 	$loadIn = array(
 		'all' => array (
 			'before' => '',

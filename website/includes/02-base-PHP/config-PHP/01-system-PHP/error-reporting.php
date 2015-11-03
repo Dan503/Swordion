@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 //sets the php error reporting configuration for the site to be less fussy about undefined variables
 
 //Essential for the "defaultTo()" function

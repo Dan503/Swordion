@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 	//generates the current location as a string variable ("1-2-3" structure)
 	$locationString = '';
 	foreach($location as $i => $depth){

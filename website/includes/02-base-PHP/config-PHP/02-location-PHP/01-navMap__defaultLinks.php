@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 	//set default links for all nav items based on the $navMap variable
 
 function is_active($isActive, $link){
