@@ -1,4 +1,4 @@
-<aside class="socialShare socialShare__visShifter" data-jshook="socialShare__visShifter">
+<aside class="socialShare">
 	<ul class="socialShare__list TK-noDots">
 	<?php
 

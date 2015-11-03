@@ -28,7 +28,7 @@
 	<!-- jQuery loader (make sure it's the latest version when starting) -->
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<?php
-		$local_jQuery = $root_location.'/assets/js/vendor-JS/jquery-1.11.3.min.js';
+		$local_jQuery = $rootLocation.'/assets/js/vendor-JS/jquery-1.11.3.min.js';
 		echo "<script>window.jQuery || document.write('<script src=".$local_jQuery."><\/script>')</script>";
 	?>
 
@@ -63,7 +63,7 @@
 	<![endif]-->
 
 	<script type="text/javascript">
-		var js_root = '<?php echo $root_location."/assets/js/"; ?>';
+		var js_root = '<?php echo $rootLocation."/assets/js/"; ?>';
 	</script>
 
 	<?php
@@ -78,7 +78,7 @@
 		foreach ($baseJS as $setName => $extras){
 			echo '
 			'.$extras['before'].
-				'<script src="'.$root_location.'/assets/js/ZZ-merged-JS/'.$setName.$min.'.js"></script>'
+				'<script src="'.$rootLocation.'/assets/js/ZZ-merged-JS/'.$setName.$min.'.js"></script>'
 			.$extras['after'].'
 			';
 		}
@@ -95,7 +95,7 @@
 				foreach ($JSincludes as $setName => $extras){
 					echo '
 					'.$extras['before'].
-						'<script src="'.$root_location.'/assets/js/ZZ-merged-JS/'.$setName.$min.'.js"></script>'
+						'<script src="'.$rootLocation.'/assets/js/ZZ-merged-JS/'.$setName.$min.'.js"></script>'
 					.$extras['after'].'
 					';
 				}

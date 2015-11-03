@@ -38,7 +38,7 @@
 //If you are using this then you are probably after a file that you have already used on a different page
 //State the path to the file name starting from the "/includes/01-modules-PHP/01-lightboxes-PHP/" folder in the $exactLightboxes variable as part of an array
 	foreach($exactLightboxes as $lightbox) {
-		$lightboxFiles = glob($_SERVER['DOCUMENT_ROOT'].$GLOBALS['root_location'].'/includes/01-modules-PHP/01-lightboxes-PHP/'.$lightbox.'.php', GLOB_BRACE);
+		$lightboxFiles = glob($_SERVER['DOCUMENT_ROOT'].$GLOBALS['rootLocation'].'/includes/01-modules-PHP/01-lightboxes-PHP/'.$lightbox.'.php', GLOB_BRACE);
 
 		foreach($lightboxFiles as $file) {
 		  lightbox($file);

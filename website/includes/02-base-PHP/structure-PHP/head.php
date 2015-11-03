@@ -24,14 +24,14 @@
 	<meta property="og:title" content="<?php echo $shareTitle; ?>" />
 	<meta property="og:type" content="article" />
 	<meta property="og:url" content="<?php echo $currentURL; ?>" />
-	<meta property="og:image" content="<?php echo $root_location; ?>/assets/images/design/share-thumbnail.jpg" />
+	<meta property="og:image" content="<?php echo $rootLocation; ?>/assets/images/design/share-thumbnail.jpg" />
 	<meta property="og:description" content="<?php echo $socialDescription; ?>" />
 
 	<!-- twitter meta data -->
 	<meta name="twitter:site" content="<?php $currentURL; ?>">
 	<meta name="twitter:title" content="<?php echo $shareTitle; ?>">
 	<meta name="twitter:description" content="<?php echo $socialDescription; ?>">
-	<meta name="twitter:image" content="<?php echo $root_location; ?>/assets/images/design/share-thumbnail.jpg">
+	<meta name="twitter:image" content="<?php echo $rootLocation; ?>/assets/images/design/share-thumbnail.jpg">
 
     <!-- favicon -->
 	<link rel="shortcut icon" href="/2015/favicon.ico" type="image/x-icon">
@@ -56,12 +56,12 @@
 		foreach ($styleSheets as $browser) {
 			echo '
 			'.$loadIn[$browser]['before'].'
-				<link rel="stylesheet" type="text/css" href="'.$root_location.'/assets/css/'.$prefix.$browser.$min.'.css" />
+				<link rel="stylesheet" type="text/css" href="'.$rootLocation.'/assets/css/'.$prefix.$browser.$min.'.css" />
 			'.$loadIn[$browser]['after'];
 		}
  	?>
 
-	<script src="<?php echo $root_location; ?>/assets/js/vendor-JS/modernizr.2.8.3.min.js"></script>
+	<script src="<?php echo $rootLocation; ?>/assets/js/vendor-JS/modernizr.2.8.3.min.js"></script>
 	<!--[if lt IE 9]>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
 	<![endif]-->
