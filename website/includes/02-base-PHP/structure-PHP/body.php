@@ -41,48 +41,12 @@
 	<?php /* prevents unwanted horizontal scroll bars caused by .grid--gutter-# classes */ ?>
 	<div class="TK-overflowHidden">
 
-		<div class="siteContainer remodal-bg" data-jshook="siteContainer progressBar__tracker<?php if($isHome) echo ' autoScroll__reference'; ?>">
+		<div class="siteContainer remodal-bg" data-jshook="siteContainer">
 			<div class="skipLinks">
 				<a href="#contentStart-sideNav" class="skipLinks__link TK-skipLink" data-jshook="skipLinks__skipToNav skipLinks__link">Skip to side navigation</a>
 				<a href="#contentStart-1" class="skipLinks__link TK-skipLink" data-jshook="skipLinks__link">Skip to content</a>
 			</div>
 
+			<div class="siteContainer__inner TK-relative">
 
-			<?php include $modules_headerTools.'00-headerTools.php'; ?>
-
-			<?php include $modules.'socialShare.php'; ?>
-
-			<div class="siteContainer__inner TK-relative<?php
-				echo $isLanding? ' siteContainer__inner--gradient' : '';
-			?>"<?php
-				echo $isLanding? ' data-jshook="fullScreen__filler" data-fullscreen-subtract="60"' : '';
-			?>>
-				<?php if ($isHome){
-					include $modules_home.'homeBGassets.php';
-				} ?>
-
-				<?php if ($isLanding){ ?>
-					<div class="landingTri">
-						<div class="landingTri__inner"></div>
-					</div>
-				<?php } ?>
-
-				<?php if ($isInternal){ ?>
-					<div class="decorativeSideTri">
-						<div class="decorativeSideTri__triangle">
-							<div class="decorativeSideTri__border"></div>
-						</div>
-					</div>
-
-					<div class="decorativeBaseTri"></div>
-				<?php
-						include $modules.'internalHeader.php';
-					}
-				?>
-
-
-				<div class="siteMain<?php
-					echo !$isHome ? ' TK-pageWidth' : '';
-				?>"<?php
-					echo $isInternal ? ' data-jshook="headerTransform__scrollTrigger"' : '';
-				?>>
+				<div class="siteMain>
