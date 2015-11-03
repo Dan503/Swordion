@@ -143,4 +143,4 @@ include $_SERVER['DOCUMENT_ROOT'].'/includes/02-base-PHP/structure-PHP/body.php'
     ));
 ?>
 
-<?php include $includes.'02-base-PHP/structure-PHP/foot.php'; ?>
+<?php include $include['base'].'structure-PHP/foot.php'; ?>

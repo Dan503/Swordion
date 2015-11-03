@@ -6,7 +6,7 @@
 			<!-- @.siteContainer__inner-->
 
 			<?php
-				include $modules.'siteFooter-PHP/00-siteFooter.php';
+				include $include['module'].'siteFooter-PHP/00-siteFooter.php';
 			?>
 
 		</div>
@@ -23,7 +23,7 @@
 	</div>
 	<!-- TK-overflowHidden -->
 
-	<?php include $includes.'02-base-PHP/autoload-lightboxes.php'; ?>
+	<?php include $include['base'].'autoload-lightboxes.php'; ?>
 
 	<!-- jQuery loader (make sure it's the latest version when starting) -->
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>

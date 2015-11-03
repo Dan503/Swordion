@@ -323,4 +323,4 @@ rapid stages test
 			</div>
 
 
-<?php include $includes.'02-base-PHP/structure-PHP/foot.php'; ?>
+<?php include $include['base'].'structure-PHP/foot.php'; ?>
