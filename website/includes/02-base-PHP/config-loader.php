@@ -2,7 +2,7 @@
 //required function for globFiles()
 	function globArray($globPath, $levels = '', $fileType = '*.php'){
 
-		$rootPath = $_SERVER['DOCUMENT_ROOT'].$GLOBALS['root_location'];
+		$rootPath = $_SERVER['DOCUMENT_ROOT'].$GLOBALS['rootLocation'];
 
 		$computedRootPath = strpos($globPath,$rootPath) !== false ? '' : $rootPath;
 		return glob($computedRootPath.$globPath.$levels.$fileType, GLOB_BRACE);
