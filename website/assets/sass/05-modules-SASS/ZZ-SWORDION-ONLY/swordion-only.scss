@@ -38,7 +38,7 @@
 .animationDemoItem {
 	//border-width: 5px;
 	padding: 20px;
-	background-color: $CG-primary;
+	background-color: CG-prominence(1);
 	color: #fff;
 	text-align: center;
 	border: 1px solid #000;
@@ -135,6 +135,6 @@
 	}
 }
 
-@include M-lt-ie9 {
+@if ($lt-ie9) {
 	/*this should appear in the IE8 style sheet but not the regular one*/
 }
