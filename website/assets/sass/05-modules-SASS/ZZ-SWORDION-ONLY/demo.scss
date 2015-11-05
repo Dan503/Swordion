@@ -30,14 +30,13 @@ $MQ-test-multiple:
 		@include M-grad(#ccc,#000,20deg);
 	}
 	&__multiGrad {
-		$gradient:
+		@include M-grad((
 			#000 0%,
 			green 30%,
 			red 40%,
 			orange 80%,
 			blue 100%
-		;
-		@include M-multi-grad($gradient,d-up);
+		), diag-up);
 	}
 
 	&__triangle {
