@@ -75,7 +75,6 @@ $validStrings: map-keys($gradTypes);
 
 		@if($gt-ie8){
 			@if($isMultiGrad){
-				@debug "#{$type} == #{$gradType}";
 				@if($type == $gradType){
 					background: #{$cssGradType}-gradient($direction, $colorSet);
 				} @else if (type-of($type) == 'number'){
