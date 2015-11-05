@@ -45,7 +45,23 @@ $validStrings: map-keys($gradTypes);
 //	Standard Gradient
 //*********************/
 
-@mixin M-grad($gradColor1, $gradColor2: null, $type: v, $backup: null){
+@mixin M-grad(
+	$gradColor1,
+	$gradColor2: null,
+	$type: v,
+	$settings: ()
+){
+
+	$settings: defaultTo($settings, (
+		backup: default,
+		radial-range: closest-side,
+		radial-type: elipsis,
+		repeat: false,
+	));
+
+	$backup: map-get($settings, backup);
+
+	$repeater: unquote(if(map-get($settings, repeat), 'repeating-', ''));
 
 	$color1: $gradColor1;
 	$pureColor1 : first($color1);
@@ -54,7 +70,7 @@ $validStrings: map-keys($gradTypes);
 	$pureColor2 : first($color2);
 
 	$isMultiGrad: type-of(first($gradColor2)) != 'color';
-	$colorSet: first($gradColor1);//for multi-grad code
+	$colorSet: $gradColor1;//for multi-grad code
 
 	//allows multigrads to use second slot for type declaration
 	$type: if(contains($validStrings, $gradColor2), $gradColor2, $type);
@@ -64,27 +80,27 @@ $validStrings: map-keys($gradTypes);
 	}
 
 	@if($isMultiGrad){
-		background: if($backup == null, transparent, $backup);
+		background: if($backup == default, transparent, $backup);
 	} @else {
-		background: if($backup == null, mix($pureColor1, $pureColor2), $backup);
+		background: if($backup == default, mix($pureColor1, $pureColor2), $backup);
 	}
 
-	@each $gradType, $settings in $gradTypes {
-		$cssGradType: nth($settings,1);
-		$direction: nth($settings,2);
+	@each $gradType, $attributes in $gradTypes {
+		$cssGradType: nth($attributes,1);
+		$direction: nth($attributes,2);
 
 		@if($gt-ie8){
 			@if($isMultiGrad){
 				@if($type == $gradType){
 					background: #{$cssGradType}-gradient($direction, $colorSet);
 				} @else if (type-of($type) == 'number'){
-					background: linear-gradient($type, $colorSet);
+					background: #{$repeater}linear-gradient($type, $colorSet);
 				}
 			} @else {
 				@if($type == $gradType){
-					background: #{$cssGradType}-gradient($direction, $color1, $color2);
+					background: #{$repeater}#{$cssGradType}-gradient($direction, $color1, $color2);
 				} @else if (type-of($type) == 'number'){
-					background: linear-gradient($type, $color1, $color2);
+					background: #{$repeater}linear-gradient($type, $color1, $color2);
 				}
 			}
 		} @else if ($type == $gradType and ($type == v or $type == h)) {
