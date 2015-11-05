@@ -265,7 +265,7 @@ module.exports = function (grunt) {
 			}
 		},
 
-		//css optimiser (minification)
+		//css optimiser (minification) better than standard minification
 		//http://bem.info/tools/optimizers/csso/description/
 		csso: {
 		  minify: {
@@ -281,6 +281,21 @@ module.exports = function (grunt) {
 		  }
 		},
 
+		postcss: {
+		    options: {
+		      map: {
+		          inline: false, // save all sourcemaps as separate files...
+		      },
+
+		      processors: [
+		        require('autoprefixer')({browsers: 'last 2 versions'}), // add vendor prefixes
+				require("css-mqpacker")()
+		      ]
+		    },
+		    prefixMQ: {
+		      src: 'website/assets/css/*.css'
+		    }
+		},
 		// Keep files on server in sync with local copy
 		// Extreamly useful at build stage
 		sync: {
@@ -392,11 +407,12 @@ module.exports = function (grunt) {
 				tasks: [
 					"sass_globbing",//generates import maps for SASS modules
 					"sass:modern", //compile the modern SASS (modern only by default for speed)
-					"sass:ie8", //compile the IE8 SASS
-					"sass:ie9", //compile the IE9 SASS
-					"cmq", //merge media queries
-					"csso", //minify css
-					"sync:css" //copy css to server
+					//"sass:ie8", //compile the IE8 SASS
+					//"sass:ie9", //compile the IE9 SASS
+					"postcss"//merge media queries and add auto prefixing
+					//"cmq", //merge media queries
+					//"csso", //minify css
+					//"sync:css" //copy css to server
 				],
 				options: { spawn: false }
 			},
@@ -435,13 +451,14 @@ module.exports = function (grunt) {
 
 	//list the tasks in the order you want them done in
 	grunt.registerTask("default", [
-		"concat",
-			"uglify",//minify JS //use this instead http://fmarcia.info/jsmin/test.html
-		"sass_globbing",
-		"sass",//compile all SASS files when running the grunt command
-		"cmq",//combine media queries
+		"concat",//merge JS files
+		"uglify",//minify JS
+		"sass_globbing", //merge SASS files
+		"sass",//compile CSS files for all browsers when running the grunt command
+		"postcss",//merge media queries and add auto prefixing
+		//"cmq",//combine media queries
 		"csso",//minify css (css optimiser)
-		"sync",
+		//"sync",//copy files to another location
 		"watch"
 	]);
 
