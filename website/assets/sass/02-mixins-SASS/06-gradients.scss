@@ -59,6 +59,10 @@ $validStrings: map-keys($gradTypes);
 	//allows multigrads to use second slot for type declaration
 	$type: if(contains($validStrings, $gradColor2), $gradColor2, $type);
 
+	@if((not contains($validStrings, $type)) and (type-of($type) != 'number')){
+		@error errorMessage($type);
+	}
+
 	@if($isMultiGrad){
 		background: if($backup == null, transparent, $backup);
 	} @else {
@@ -70,22 +74,18 @@ $validStrings: map-keys($gradTypes);
 		$direction: nth($settings,2);
 
 		@if($gt-ie8){
-
 			@if($isMultiGrad){
+				@debug "#{$type} == #{$gradType}";
 				@if($type == $gradType){
 					background: #{$cssGradType}-gradient($direction, $colorSet);
 				} @else if (type-of($type) == 'number'){
 					background: linear-gradient($type, $colorSet);
-				} @else {
-					@error errorMessage($type);
 				}
 			} @else {
 				@if($type == $gradType){
 					background: #{$cssGradType}-gradient($direction, $color1, $color2);
 				} @else if (type-of($type) == 'number'){
 					background: linear-gradient($type, $color1, $color2);
-				} @else {
-					@error errorMessage($type);
 				}
 			}
 		} @else if ($type == $gradType and ($type == v or $type == h)) {
