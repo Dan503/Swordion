@@ -394,8 +394,8 @@
 //adds a shadow to items that have overflow:auto
 @mixin M-overflowShadow ($direction: h, $bg: #fff, $shadow: $CB-grey-dark, $shadowSize: 20px, $baseSize: 11 * $shadowSize){
 
-	$start: left;
-	$end: right;
+	$start: to right;
+	$end: to left;
 
 	$sizeBase: $baseSize 100%;
 	$sizeShadow: $shadowSize 100%;
@@ -423,14 +423,6 @@
 
 	@if ($gt-ie8) {
 		//adds the shadow to the table
-		$prefixes: webkit, moz, o;
-		@each $prefix in $prefixes {
-			background-image:
-				-#{$prefix}-linear-gradient($start, $bg, rgba($bg, 0)),
-				-#{$prefix}-linear-gradient($end, $bg, rgba($bg, 0)),
-				-#{$prefix}-linear-gradient($start, $shadow, rgba($shadow, 0)),
-				-#{$prefix}-linear-gradient($end, $shadow, rgba($shadow, 0));
-		}
 		background-image:
 			linear-gradient($start, $bg, rgba($bg, 0)),
 			linear-gradient($end, $bg, rgba($bg, 0)),
