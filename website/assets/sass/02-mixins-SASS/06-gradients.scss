@@ -45,7 +45,7 @@ $validStrings: map-keys($gradTypes);
 //	Standard Gradient
 //*********************/
 
-@mixin M-grad($gradColor1, $gradColor2: null,$type: v, $backup: null){
+@mixin M-grad($gradColor1, $gradColor2: null, $type: v, $backup: null){
 
 	$color1: $gradColor1;
 	$pureColor1 : first($color1);
@@ -53,7 +53,7 @@ $validStrings: map-keys($gradTypes);
 	$color2: $gradColor2;
 	$pureColor2 : first($color2);
 
-	$isMultiGrad: type-of($gradColor1) != 'color';
+	$isMultiGrad: type-of(first($gradColor2)) != 'color';
 	$colorSet: first($gradColor1);//for multi-grad code
 
 	//allows multigrads to use second slot for type declaration
