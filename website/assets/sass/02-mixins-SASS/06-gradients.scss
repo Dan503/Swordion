@@ -54,21 +54,24 @@ $validStrings: map-keys($gradTypes);
 	$pureColor2 : first($color2);
 
 	$isMultiGrad: type-of($gradColor1) != 'color';
+	$colorSet: first($gradColor1);//for multi-grad code
 
 	//allows multigrads to use second slot for type declaration
 	$type: if(contains($validStrings, $gradColor2), $gradColor2, $type);
 
-	//assumes
 	@if($isMultiGrad){
-		$colorSet: first($gradColor1);
-
 		background: if($backup == null, transparent, $backup);
+	} @else {
+		background: if($backup == null, mix($pureColor1, $pureColor2), $backup);
+	}
 
-		@each $gradType, $settings in $gradTypes {
-			$cssGradType: nth($settings,1);
-			$direction: nth($settings,2);
+	@each $gradType, $settings in $gradTypes {
+		$cssGradType: nth($settings,1);
+		$direction: nth($settings,2);
 
-			@if($gt-ie8){
+		@if($gt-ie8){
+
+			@if($isMultiGrad){
 				@if($type == $gradType){
 					background: #{$cssGradType}-gradient($direction, $colorSet);
 				} @else if (type-of($type) == 'number'){
@@ -77,21 +80,6 @@ $validStrings: map-keys($gradTypes);
 					@error errorMessage($type);
 				}
 			} @else {
-				@if ($type == $gradType and ($type == v or $type == h)){
-					$pureColor1: first(first($colorSet));
-					$pureColor2: first(last($colorSet));
-					@include M-ie-grad($pureColor1,$pureColor2,$type);
-				}
-			}
-		}
-	} @else {
-		background: if($backup == null, mix($pureColor1, $pureColor2), $backup);
-
-		@each $gradType, $settings in $gradTypes {
-			$cssGradType: nth($settings,1);
-			$direction: nth($settings,2);
-
-			@if($gt-ie8){
 				@if($type == $gradType){
 					background: #{$cssGradType}-gradient($direction, $color1, $color2);
 				} @else if (type-of($type) == 'number'){
@@ -99,11 +87,13 @@ $validStrings: map-keys($gradTypes);
 				} @else {
 					@error errorMessage($type);
 				}
-			} @else {
-				@if ($type == $gradType and ($type == v or $type == h)){
-					@include M-ie-grad($pureColor1,$pureColor2,$type);
-				}
 			}
+		} @else if ($type == $gradType and ($type == v or $type == h)) {
+			@if($isMultiGrad){
+				$pureColor1: first(first($colorSet));
+				$pureColor2: first(last($colorSet));
+			}
+			@include M-ie-grad($pureColor1,$pureColor2,$type);
 		}
 	}
 }
