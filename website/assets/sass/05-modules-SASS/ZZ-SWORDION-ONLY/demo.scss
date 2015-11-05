@@ -31,12 +31,18 @@ $MQ-test-multiple:
 	}
 	&__multiGrad {
 		@include M-grad((
-			#000 0%,
-			green 30%,
-			red 40%,
-			orange 80%,
-			blue 100%
-		), diag-up);
+			#000 0px,
+			green 10px,
+			red 10px,
+			orange 20px,
+			blue 30px
+		), radial, (
+			backup: #000,
+			repeat: true,
+			radial-pos: top left,
+			radial-type: circle,
+			radial-range: farthest-corner
+		));
 	}
 
 	&__triangle {

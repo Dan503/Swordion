@@ -47,6 +47,7 @@ $validStrings: map-keys($gradTypes);
 	$settings: ()
 ){
 
+//advanced default settings
 	$settings: defaultTo($settings, (
 		backup: default,
 		radial-range: closest-side,
