@@ -6,7 +6,7 @@
 	overflow: hidden;
 
 	&__light {
-		@include M-grad(#EBE300, transparent 50%, radial);
+		@include M-grad(#EBE300, transparent, radial);
 		@include M-size(200px);
 		margin: -100px 0 0 -100px;
 	}

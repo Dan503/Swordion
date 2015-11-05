@@ -11,10 +11,6 @@ $gradTypes: (
 	diag-down : (linear, 135deg),
 	diag-up : (linear, 45deg),
 	radial : (radial, ellipse at center),
-	radial-top-left: (radial, ellipse at top left),
-	radial-top-right: (radial, ellipse at top right),
-	radial-bottom-left: (radial, ellipse at bottom left),
-	radial-bottom-right: (radial, ellipse at bottom right),
 );
 
 
@@ -44,7 +40,6 @@ $validStrings: map-keys($gradTypes);
 //*********************\
 //	Standard Gradient
 //*********************/
-
 @mixin M-grad(
 	$gradColor1,
 	$gradColor2: null,
@@ -55,9 +50,19 @@ $validStrings: map-keys($gradTypes);
 	$settings: defaultTo($settings, (
 		backup: default,
 		radial-range: closest-side,
-		radial-type: elipsis,
+		radial-type: unquote(''),/*default is ellipse*/
+		radial-pos: center,
 		repeat: false,
 	));
+
+	$isMultiGrad: type-of(first($gradColor2)) != 'color';
+	$colorSet: $gradColor1;//for multi-grad code
+
+	//allows multigrads to use second slot for type declaration and 3rd slot for settings
+	$settings: if(type-of($type) == "map", $type, $settings);
+	$type: if($isMultiGrad, $gradColor2, $type);
+
+	$radialSettings : unquote("#{map-get($settings, radial-type)} #{map-get($settings, radial-range)} at #{map-get($settings, radial-pos)}");
 
 	$backup: map-get($settings, backup);
 
@@ -68,12 +73,6 @@ $validStrings: map-keys($gradTypes);
 
 	$color2: $gradColor2;
 	$pureColor2 : first($color2);
-
-	$isMultiGrad: type-of(first($gradColor2)) != 'color';
-	$colorSet: $gradColor1;//for multi-grad code
-
-	//allows multigrads to use second slot for type declaration
-	$type: if(contains($validStrings, $gradColor2), $gradColor2, $type);
 
 	@if((not contains($validStrings, $type)) and (type-of($type) != 'number')){
 		@error errorMessage($type);
@@ -91,13 +90,17 @@ $validStrings: map-keys($gradTypes);
 
 		@if($gt-ie8){
 			@if($isMultiGrad){
-				@if($type == $gradType){
-					background: #{$cssGradType}-gradient($direction, $colorSet);
+				@if ($type == radial){
+					background: #{$repeater}radial-gradient($radialSettings, $colorSet);
+				} @else if($type == $gradType){
+					background: #{$repeater}#{$cssGradType}-gradient($direction, $colorSet);
 				} @else if (type-of($type) == 'number'){
 					background: #{$repeater}linear-gradient($type, $colorSet);
 				}
 			} @else {
-				@if($type == $gradType){
+				@if ($type == radial){
+					background: #{$repeater}radial-gradient($radialSettings, $color1, $color2);
+				} @else if($type == $gradType){
 					background: #{$repeater}#{$cssGradType}-gradient($direction, $color1, $color2);
 				} @else if (type-of($type) == 'number'){
 					background: #{$repeater}linear-gradient($type, $color1, $color2);
