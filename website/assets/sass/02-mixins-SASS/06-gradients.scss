@@ -67,6 +67,7 @@ $validStrings: map-keys($gradTypes);
 		radial-type: unquote(''),/*default is ellipse*/
 		radial-pos: center,
 		repeat: false,
+		ie-polyfill: true,
 	));
 
 	$isMultiGrad: type-of(first($gradColor2)) != 'color';
@@ -126,7 +127,7 @@ $validStrings: map-keys($gradTypes);
 					}
 				}
 				background: $bgString;
-			} @else if ($type == v or $type == h) {
+			} @else if (($type == v or $type == h) and map-get($settings, ie-polyfill)) {
 				@include M-ie-grad($pureColor1,$pureColor2,$type);
 			}
 		}
