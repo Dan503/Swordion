@@ -45,13 +45,13 @@ $validStrings: map-keys($gradTypes);
 //*********************\
 //	Gradients
 //*********************/
-@function grad(	$gradColor1,
+/*@function grad(	$gradColor1,
 	$gradColor2: null,
 	$type: v,
 	$settings: ()
 ){
 
-}
+}*/
 
 @mixin M-grad(
 	$gradColor1,
@@ -133,6 +133,20 @@ $validStrings: map-keys($gradTypes);
 	}
 }
 
+//***********************\
+//	Multi background
+//***********************/
+
+/*@include M-multi-bg ($backgroundList){
+	$bgString: '';
+	@each ($backgroundList as $bg){
+		@if (type-of($bg) == 'list'){
+			//
+		}
+	}
+	background: $bgString;
+};
+*/
 //***********************\
 //	Gradient with image
 //***********************/
