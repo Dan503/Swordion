@@ -29,6 +29,7 @@
 	echo $body_classes;
 	if ($isHome) { echo ' home'; }
 	echo ($isLoggedIn ? ' logged-in' : ' logged-out');
+	echo ' '.(defaultTo($theme, 'theme--light'));
 ?>">
 
 	<!-- I've found the <noscript> tag to not always work properly -->
