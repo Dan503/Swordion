@@ -77,19 +77,12 @@ include $_SERVER['DOCUMENT_ROOT'].'/includes/02-base-PHP/structure-PHP/body.php'
 
 						<h2>To do list:</h2>
 						<ol>
-							<li>Add the animation Javascript stuff from the DoC project</li>
+							<li>Fix the form example styles</li>
 							<li>Add an example of a responsive youtube video</li>
-							<li>Change structure to allow for BEM structuring. Look into <a href="https://github.com/mksanderson/crank" title="">Matt S&rsquo;s Crank starter kit</a> for ideas on folder structure and see what else his kit does</li>
-							<li>Add <a href="http://vodkabears.github.io/remodal/#" title="">jQuery remodal lightbox</a> so it&rsquo;s ready to go on any project (need to add the js and create a backup cross icon)</li>
+							<li>Create a multi-background Sass mixin</li>
 							<li>Change the styling for the select boxes to the type that requires a little bit of JS</li>
-							<li>Make ready to go, custom styled checkboxes and radio buttons</li>
-							<li>Make the media query mixin automatically convert pixel values to em values</li>
+							<li>Make the media query mixin automatically convert pixel values to rem values</li>
 							<li>Make a zip download icon</li>
-							<li>Make grunt compile always loaded files into a single js file</li>
-							<li>Make js load minified files - make it easy to switch for development</li>
-							<li>Get selectivizor to work.</li>
-							<!--<li>get <a href="https://www.npmjs.org/package/grunt-svg2png">svg2png</a> grunt plugin working</li>--><!--I don't think we'll use this-->
-							<li>Create a content manageable pure css pie chart</li>
 						</ol>
 
 						<h2>Test list</h2>
