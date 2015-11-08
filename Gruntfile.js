@@ -11,14 +11,14 @@ var jsMerge = {
 	],
 	components : [
 		{
-			folder: 'vendor-JS/auto-load-JS',
+			folder: 'plugins--3rdParty-JS',
 			//isSplit : true //(default)
 		}, {
 			folder: '00-variables-global-JS',
 		}, {
 			folder: '01-functions-global-JS',
 		}, {
-			folder: 'plugins-JS',
+			folder: 'plugins--1stParty-JS',
 		}, {
 			file: 'doc.ready-open.js',
 			//usedIn : 'all', //(default)// other option is an array eg. ['isHome', 'isModern']
