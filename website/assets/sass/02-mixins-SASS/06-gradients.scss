@@ -102,36 +102,41 @@ $validStrings: map-keys($gradTypes);
 
 	background: if($backup == default, mix($pureColor1, $pureColor2), $backup);
 
-	@each $gradType, $attributes in $gradTypes {
-		$cssGradType: nth($attributes,1);
-		$direction: nth($attributes,2);
+	@if($modern){
+		@if (contains($validStrings, $type)){
+			@each $gradType, $attributes in $gradTypes {
+				$cssGradType: nth($attributes,1);
+				$direction: nth($attributes,2);
 
-		@if ($type == $gradType){
-
-			@if($modern){
-				@if($isMultiGrad){
-					@if ($type == radial){
-						$bgString: #{$repeater}radial-gradient($radialSettings, $colorSet);
-					} @else if($type == $gradType){
-						$bgString: #{$repeater}#{$cssGradType}-gradient($direction, $colorSet);
-					} @else if (type-of($type) == 'number'){
-						$bgString: #{$repeater}linear-gradient($type, $colorSet);
-					}
-				} @else {
-					@if ($type == radial){
-						$bgString: #{$repeater}radial-gradient($radialSettings, $color1, $color2);
-					} @else if($type == $gradType){
-						$bgString: #{$repeater}#{$cssGradType}-gradient($direction, $color1, $color2);
-					} @else if (type-of($type) == 'number'){
-						$bgString: #{$repeater}linear-gradient($type, $color1, $color2);
+				@if($modern){
+					@if($isMultiGrad){
+						@if ($type == radial){
+							$bgString: #{$repeater}radial-gradient($radialSettings, $colorSet);
+						} @else if($type == $gradType){
+							$bgString: #{$repeater}#{$cssGradType}-gradient($direction, $colorSet);
+						}
+					} @else {
+						@if ($type == radial){
+							$bgString: #{$repeater}radial-gradient($radialSettings, $color1, $color2);
+						} @else if($type == $gradType){
+							$bgString: #{$repeater}#{$cssGradType}-gradient($direction, $color1, $color2);
+						}
 					}
 				}
-				background: $bgString;
-			} @else if (($type == v or $type == h) and map-get($settings, ie-polyfill)) {
-				@include MG-ie-grad($pureColor1,$pureColor2,$type);
 			}
+		} @else if (type-of($type) == 'number'){
+			@if($isMultiGrad){
+				$bgString: #{$repeater}linear-gradient($type, $colorSet);
+			} @else {
+				$bgString: #{$repeater}linear-gradient($type, $color1, $color2);
+			}
+		@debug $bgString;
 		}
+		background: $bgString;
+	} @else if(($type == v or $type == h) and map-get($settings, ie-polyfill)){
+		@include MG-ie-grad($pureColor1,$pureColor2,$type);
 	}
+
 }
 
 //***********************\
