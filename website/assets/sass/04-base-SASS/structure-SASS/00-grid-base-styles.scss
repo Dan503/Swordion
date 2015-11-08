@@ -156,8 +156,7 @@
 		> .grid__cell {
 			border-width: 0 $gutter $gutter 0;
 		}
-	}
-	@mixin M-grid-delayedGutter($gutter) {
+
 		//only apply the outer horizontal gutters if the screen size is smaller than the page width + gutter size
 		&.grid--outerGutters-delayedHorizontal {
 			@include MG-mq(max, (bp('page') + $gutter)){
@@ -166,22 +165,23 @@
 			}
 		}
 	}
+
 	@each $class, $gutter in $cellGutters {
 		&--gutter-#{$class} {
-			@if (length($gutter) > 1) {
-				@each $screenSize, $value in $gutter {
-					@if ($screenSize == 'default') {
-						@include M-grid-cellGutter($value);
-					} @else {
-						@include MG-mq(max,$screenSize){
-							@include M-grid-cellGutter($value);
+			@if (type-of($gutter) == 'list') {
+				@each $value in $gutter {
+					@if (length($value) > 1){
+						$gutterSize: nth($value,1);
+						$mediaQuery: nth($value,2);
+						@include MG-mq($mediaQuery){
+							@include M-grid-cellGutter($gutterSize);
 						}
+					} @else {
+						@include M-grid-cellGutter($value);
 					}
-					@include M-grid-delayedGutter($value);
 				}
 			} @else {
 				@include M-grid-cellGutter($gutter);
-				@include M-grid-delayedGutter($gutter);
 			}
 		}
 	}

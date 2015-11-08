@@ -13,6 +13,11 @@ $gutter-ieFallback: $CG-bodyInnerBG;
 //usage: class="grid grid--gutter-moduleName"
 $cellGutters: (
 	'moduleName' : 20px,
+	'mediaQueryFriendly' : (
+		50px, //*default*/
+		25px (max, bp('tablet')), //*affected by media query*/
+		10px (max, bp('mobile')) //*affected by media query*/
+	)
 );
 
 //Set the points at which columns change widths
