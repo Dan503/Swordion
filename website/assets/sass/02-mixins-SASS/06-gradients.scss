@@ -130,7 +130,6 @@ $validStrings: map-keys($gradTypes);
 			} @else {
 				$bgString: #{$repeater}linear-gradient($type, $color1, $color2);
 			}
-		@debug $bgString;
 		}
 		background: $bgString;
 	} @else if(($type == v or $type == h) and map-get($settings, ie-polyfill)){
