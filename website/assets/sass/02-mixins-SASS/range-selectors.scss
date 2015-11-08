@@ -1,5 +1,5 @@
 
-@mixin M-thumb($chrome-margin) {
+@mixin MG-thumb($chrome-margin) {
 	&::-webkit-slider-thumb {
 		-webkit-appearance: none;
 		margin-top: $chrome-margin;
@@ -13,7 +13,7 @@
 	}
 }
 
-@mixin M-track {
+@mixin MG-track {
 	&::-webkit-slider-runnable-track {
 		@content;
 	}

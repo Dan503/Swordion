@@ -16,7 +16,7 @@
 	    .#{$iconPrefix}-#{$icon}:before {
 	        content: $referenceKey !important;
 			@if ($icon == 'spinner'){
-				@include M-spin;
+				@include MG-spin;
 			}
 	    }
 	}

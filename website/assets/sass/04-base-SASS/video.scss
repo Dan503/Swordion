@@ -6,7 +6,7 @@ html .video {
 	height: 0;
 
 	iframe, embed {
-		@include M-fill;
+		@include MG-fill;
 		z-index: 1;
 	}
 

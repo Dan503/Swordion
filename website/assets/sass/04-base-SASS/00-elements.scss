@@ -28,13 +28,13 @@ $MQ-tables--have-overflow: (max, bp('page'));
 		//text-rendering: optimizeLegibility;
 
 		//all elements are given their parents box-sizing
-		@include M-box-sizing(inherit);
+		@include MG-box-sizing(inherit);
 	}
 }
 
 html, body {
 	//unless set otherwise, all elements will recieve border box box sizing
-	@include M-box-sizing(border-box);
+	@include MG-box-sizing(border-box);
 
 	//required for best scroll animation results
 	height: 100%;
@@ -77,7 +77,7 @@ html {
 //Setting the font-size using the mixin is the best way to set font size (and line height using line height mixin).
 body {
 	position: relative;
-	@include M-font-size(17px);
+	@include MG-font-size(17px);
 	line-height: 1.6;
 	font-family: $openSans;
 	margin: 0;
@@ -92,20 +92,20 @@ h1, h2, h3, h4, h5, h6 { color: $CG-heading; font-weight: $normal; font-family: 
 	}
 }
 h1 {
-	@include M-font-size(30px); margin-top: 50px; margin-bottom: 20px;
+	@include MG-font-size(30px); margin-top: 50px; margin-bottom: 20px;
 	+ h2 { margin-top: 30px; }
 }
-h2 { @include M-font-size(24px); margin-top: 50px; }
-h3 { @include M-font-size(19px); text-transform: uppercase; }
-h4 { @include M-font-size(16px); text-transform: uppercase; font-weight: $bold; }
-h5 { @include M-font-size(14px); text-transform: uppercase; font-style: italic; }
+h2 { @include MG-font-size(24px); margin-top: 50px; }
+h3 { @include MG-font-size(19px); text-transform: uppercase; }
+h4 { @include MG-font-size(16px); text-transform: uppercase; font-weight: $bold; }
+h5 { @include MG-font-size(14px); text-transform: uppercase; font-style: italic; }
 
 p { margin: $VG-standardContent-paragraphSpacing 0 0; }
 
 a {
 	text-decoration: none;
 	color: $CG-baseLinkColor;
-	@include M-hover {
+	@include MG-hover {
 		text-decoration: underline;
 	}
 }
@@ -119,5 +119,5 @@ blockquote {
 	background-color: $CB-grey-light;
 	margin: $VG-standardContent-paragraphSpacing 0 0;
 	padding: 20px;
-	@include M-font-size(16px);
+	@include MG-font-size(16px);
 }

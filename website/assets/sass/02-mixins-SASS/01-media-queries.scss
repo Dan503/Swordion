@@ -77,14 +77,14 @@ $mediaQuery: ();
 	}
 }
 
-@mixin M-mq($range, $setting1: null, $setting2: null) {
+@mixin MG-mq($range, $setting1: null, $setting2: null) {
 
 	@if (length($range) > 1) {
 
 		//Uses this functionality if using a single level MQ variable
 		//eg:
 		//$MQ-example--single: inside, bp('large'), bp('tablet'));
-		//@include M-mq($MQ-example--single){}
+		//@include MG-mq($MQ-example--single){}
 		@if (type-of(nth($range,1)) == string){
 
 			$newRange: nth($range,1);
@@ -109,7 +109,7 @@ $mediaQuery: ();
 		//	(inside, bp('large'), bp('tablet')),
 		//	(min, bp('page'))
 		//;
-		//@include M-mq($MQ-example--multiple){}
+		//@include MG-mq($MQ-example--multiple){}
 		} @else {
 			$mediaQuery: ();
 
@@ -138,7 +138,7 @@ $mediaQuery: ();
 
 	//Uses this functionality if placing MQ data inline
 	//eg:
-	//@include M-mq(inside, bp('large'), bp('tablet'));
+	//@include MG-mq(inside, bp('large'), bp('tablet'));
 	} @else {
 
 		@if (ieMQtest($range, $setting1, $setting2)) {
@@ -155,7 +155,7 @@ $mediaQuery: ();
 }
 
 
-@mixin M-retina {
+@mixin MG-retina {
 	@if ($lt-ie9 == false) {
 	  	@media
 			only screen and (-webkit-min-device-pixel-ratio: 2),
@@ -174,38 +174,38 @@ $mediaQuery: ();
 $BP-mobile: bp('mobile');
 $BP-tablet: $BPG-sidebar--fullWidth;
 
-@mixin M-mobileOnly {
-	@include M-mq(min, $BP-mobile){
+@mixin MG-mobileOnly {
+	@include MG-mq(min, $BP-mobile){
 		display: none!important;
 	}
 }
 
-@mixin M-tabletOnly {
-	@include M-mq(outside, $BP-tablet, $BP-mobile){
+@mixin MG-tabletOnly {
+	@include MG-mq(outside, $BP-tablet, $BP-mobile){
 		display: none!important;
 	}
 }
 
-@mixin M-desktopOnly {
-	@include M-mq(max,$BP-tablet){
+@mixin MG-desktopOnly {
+	@include MG-mq(max,$BP-tablet){
 		display: none!important;
 	}
 }
 
-@mixin M-nonMobile {
-	@include M-mq(max, $BP-mobile){
+@mixin MG-nonMobile {
+	@include MG-mq(max, $BP-mobile){
 		display: none!important;
 	}
 }
 
-@mixin M-nonTablet {
-	@include M-mq(inside, $BP-tablet, $BP-mobile){
+@mixin MG-nonTablet {
+	@include MG-mq(inside, $BP-tablet, $BP-mobile){
 		display: none!important;
 	}
 }
 
-@mixin M-nonDesktop {
-	@include M-mq(min, $BP-tablet){
+@mixin MG-nonDesktop {
+	@include MG-mq(min, $BP-tablet){
 		display: none!important;
 	}
 }
@@ -214,7 +214,7 @@ $BP-tablet: $BPG-sidebar--fullWidth;
 // ******************************************************\
 // * PRINT
 // ******************************************************/
-@mixin M-print {
+@mixin MG-print {
 	@media print {
 		@content;
 	}

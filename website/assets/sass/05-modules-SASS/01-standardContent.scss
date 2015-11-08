@@ -17,9 +17,9 @@ $C-dots: $C-numbers;
 		text-decoration: underline;
 		color: $CG-baseLinkColor;
 		&:before, &:after {
-			@include M-animate;
+			@include MG-animate;
 		}
-		@include M-hover {
+		@include MG-hover {
 			text-decoration: none;
 		}
 	}
@@ -57,7 +57,7 @@ $C-dots: $C-numbers;
 			padding-left: 25px;
 			//padding: 5px 5px 5px 25px;
 			position: relative;
-			@include M-before {
+			@include MG-before {
 				position: absolute;
 				top: 15px;
 				left: 0;
@@ -69,7 +69,7 @@ $C-dots: $C-numbers;
 		> li {
 
 			&:before {
-				@include M-line(h, $C-dots, 10px, 2px, -45deg);
+				@include MG-line(h, $C-dots, 10px, 2px, -45deg);
 				top: 23px;
 			}
 			&:first-child:before {
@@ -78,13 +78,13 @@ $C-dots: $C-numbers;
 
 			> ul > li {
 				&:before {
-					@include M-tri(up,$C-dots,7px, 0);
-					@include M-rotate(0);
+					@include MG-tri(up,$C-dots,7px, 0);
+					@include MG-rotate(0);
 				}
 
 				li {
 					&:before {
-						@include M-size(5px);
+						@include MG-size(5px);
 						background: $C-dots;
 					}
 				}

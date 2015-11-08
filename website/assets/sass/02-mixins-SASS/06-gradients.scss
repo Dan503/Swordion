@@ -25,7 +25,7 @@ $validStrings: map-keys($gradTypes);
 //*********************/
 // Good to use this in combination with the multi-gradient mixin
 
-@mixin M-ie-grad($gradColor1,$gradColor2,$type:v){
+@mixin MG-ie-grad($gradColor1,$gradColor2,$type:v){
 	@if($lt-ie10){
 		//vertical (|)
 		$gradColor1: ie-hex-str($gradColor1);
@@ -53,7 +53,7 @@ $validStrings: map-keys($gradTypes);
 
 }*/
 
-@mixin M-grad(
+@mixin MG-grad(
 	$gradColor1,
 	$gradColor2: null,
 	$type: v,
@@ -128,7 +128,7 @@ $validStrings: map-keys($gradTypes);
 				}
 				background: $bgString;
 			} @else if (($type == v or $type == h) and map-get($settings, ie-polyfill)) {
-				@include M-ie-grad($pureColor1,$pureColor2,$type);
+				@include MG-ie-grad($pureColor1,$pureColor2,$type);
 			}
 		}
 	}
@@ -138,7 +138,7 @@ $validStrings: map-keys($gradTypes);
 //	Multi background
 //***********************/
 
-/*@include M-multi-bg ($backgroundList){
+/*@include MG-multi-bg ($backgroundList){
 	$bgString: '';
 	@each ($backgroundList as $bg){
 		@if (type-of($bg) == 'list'){
@@ -155,7 +155,7 @@ $validStrings: map-keys($gradTypes);
 //modern browsers only (IE10+)
 //currently only designed to work with the manual sprite
 
-@mixin M-img-grad($img-position, $gradColor1, $gradColor2, $type: v, $backup: mix($gradColor1, $gradColor2), $image: $manual_sprite, $retina_img: $manual_sprite2x, $bgSize: $manual_sprite_width auto){
+@mixin MG-img-grad($img-position, $gradColor1, $gradColor2, $type: v, $backup: mix($gradColor1, $gradColor2), $image: $manual_sprite, $retina_img: $manual_sprite2x, $bgSize: $manual_sprite_width auto){
 
 	background: $backup;
 
@@ -167,7 +167,7 @@ $validStrings: map-keys($gradTypes);
 				@if (unit($type) == 'deg'){
 					background: $image, linear-gradient($type,  $gradColor1,$gradColor2);
 
-					@include M-retina {
+					@include MG-retina {
 						background: $retina_img, linear-gradient($type,  $gradColor1,$gradColor2);
 					}
 				} @else {
@@ -180,7 +180,7 @@ $validStrings: map-keys($gradTypes);
 					background: $image, linear-gradient(to bottom,  $gradColor1,$gradColor2);
 
 
-					@include M-retina {
+					@include MG-retina {
 						background: $retina_img, linear-gradient(to bottom,  $gradColor1,$gradColor2);
 					}
 				}
@@ -189,7 +189,7 @@ $validStrings: map-keys($gradTypes);
 				@if ($type == h){
 					background: $image, linear-gradient(to right,  $gradColor1,$gradColor2);
 
-					@include M-retina {
+					@include MG-retina {
 						background: $retina_img, linear-gradient(to right,  $gradColor1,$gradColor2);
 					}
 				}
@@ -198,7 +198,7 @@ $validStrings: map-keys($gradTypes);
 				@if ($type == diag-down){
 					background: $image, linear-gradient(135deg,  $gradColor1,$gradColor2);
 
-					@include M-retina {
+					@include MG-retina {
 						background: $retina_img, linear-gradient(135deg,  $gradColor1,$gradColor2);
 					}
 				}
@@ -207,7 +207,7 @@ $validStrings: map-keys($gradTypes);
 				@if ($type == diag-up){
 					background: $image, linear-gradient(45deg,  $gradColor1,$gradColor2);
 
-					@include M-retina {
+					@include MG-retina {
 						background: $retina_img, linear-gradient(45deg,  $gradColor1,$gradColor2);
 					}
 				}
@@ -216,7 +216,7 @@ $validStrings: map-keys($gradTypes);
 				@if ($type == radial) {
 					background: $image, radial-gradient(ellipse at center,  $gradColor1,$gradColor2);
 
-					@include M-retina {
+					@include MG-retina {
 						background: $retina_img, radial-gradient(ellipse at center,  $gradColor1,$gradColor2);
 					}
 				}
@@ -224,7 +224,7 @@ $validStrings: map-keys($gradTypes);
 				@if ($type == radial-top-left) {
 					background: $image, radial-gradient(ellipse at top left,  $gradColor1,$gradColor2);
 
-					@include M-retina {
+					@include MG-retina {
 						background: $retina_img, radial-gradient(ellipse at top left,  $gradColor1,$gradColor2);
 					}
 				}
@@ -232,7 +232,7 @@ $validStrings: map-keys($gradTypes);
 				@if ($type == radial-top-right) {
 					background: $image, radial-gradient(ellipse at top right,  $gradColor1,$gradColor2);
 
-					@include M-retina {
+					@include MG-retina {
 						background: $retina_img, radial-gradient(ellipse at top right,  $gradColor1,$gradColor2);
 					}
 				}
@@ -240,7 +240,7 @@ $validStrings: map-keys($gradTypes);
 				@if ($type == radial-bottom-right) {
 					background: $image, radial-gradient(ellipse at bottom right,  $gradColor1,$gradColor2);
 
-					@include M-retina {
+					@include MG-retina {
 						background: $retina_img, radial-gradient(ellipse at bottom right,  $gradColor1,$gradColor2);
 					}
 				}
@@ -248,7 +248,7 @@ $validStrings: map-keys($gradTypes);
 				@if ($type == radial-bottom-left) {
 					background: $image, radial-gradient(ellipse at bottom left,  $gradColor1,$gradColor2);
 
-					@include M-retina {
+					@include MG-retina {
 						background: $retina_img, radial-gradient(ellipse at bottom left,  $gradColor1,$gradColor2);
 					}
 				}
@@ -257,7 +257,7 @@ $validStrings: map-keys($gradTypes);
 				background-repeat: no-repeat;
 				background-position: $img-position, 0 0;
 
-				@include M-retina {
+				@include MG-retina {
 					background-size: $bgSize, auto auto;
 				}
 			}

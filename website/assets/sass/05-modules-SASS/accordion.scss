@@ -38,7 +38,7 @@ $MQ-headText-font--is-smaller: (max, bp('mobile'));
 		&--isOpen-JS {
 			.#{$module} {
 				&__icon {
-					@include M-scale(0);
+					@include MG-scale(0);
 				}
 			}
 		}
@@ -46,10 +46,10 @@ $MQ-headText-font--is-smaller: (max, bp('mobile'));
 	&__heading {
 		position: relative;
 		font-family: $gafata;
-		@include M-font-size(30px);
+		@include MG-font-size(30px);
 		line-height: 1;
-		@include M-mq($MQ-headText-font--is-smaller){
-			@include M-font-size(22px);
+		@include MG-mq($MQ-headText-font--is-smaller){
+			@include MG-font-size(22px);
 		}
 	}
 		&__headLink {
@@ -58,9 +58,9 @@ $MQ-headText-font--is-smaller: (max, bp('mobile'));
 			display: block;
 			border-top: $V-headLink-borderWidth solid #fff;
 			background-color: $C-headLink-bg;
-			@include M-animate;
+			@include MG-animate;
 
-			@include M-hover {
+			@include MG-hover {
 				text-decoration: none;
 				background-color: $C-headLink-bg--hover;
 				.#{$module} {
@@ -69,13 +69,13 @@ $MQ-headText-font--is-smaller: (max, bp('mobile'));
 			}
 		}
 			&__icon {
-				@include M-plus($C-plus,$V-plus-size--inner,2px){
-					@include M-animate;
+				@include MG-plus($C-plus,$V-plus-size--inner,2px){
+					@include MG-animate;
 				};
-				@include M-circle('fill',$C-plus-bg,$V-plus-size--outer);
-				@include M-animate;
-				@include M-centered(v);
-				@include M-scale(1);
+				@include MG-circle('fill',$C-plus-bg,$V-plus-size--outer);
+				@include MG-animate;
+				@include MG-centered(v);
+				@include MG-scale(1);
 				top: $V-headLink-borderWidth;
 				right: $V-plus-positioner--h;
 				background-color: $C-plus-bg;
@@ -87,7 +87,7 @@ $MQ-headText-font--is-smaller: (max, bp('mobile'));
 	&__imgWrap {
 		background-size: cover;
 		max-width: $VG-sideBar-width;
-		@include M-mq($MQ-imgWrap--is-hidden){
+		@include MG-mq($MQ-imgWrap--is-hidden){
 			background: none!important;
 			display: none;
 		}

@@ -22,26 +22,26 @@
 
 $rumble:rumble_generator(5);
 
-@include M-kf-definition( rumble, $rumble );
+@include MG-kf-definition( rumble, $rumble );
 
 //////////////// Use the following //////////////////////////
 
 //Mixin for custom functionality
 
-//eg. @include M-rumble(animation_name, 2); would rumble the element 2 degrees either side
+//eg. @include MG-rumble(animation_name, 2); would rumble the element 2 degrees either side
 //if changing rotation distance, unique animation name is required
 
-@mixin M-rumble($name: rumble, $rotation: 5, $settings: 0.5s, $loops:infinite){
+@mixin MG-rumble($name: rumble, $rotation: 5, $settings: 0.5s, $loops:infinite){
 	@if ($name == rumble){
-		@include M-kf-predefined(rumble, $settings, $loops);
+		@include MG-kf-predefined(rumble, $settings, $loops);
 	} @else {
-		@include M-kf-animate($name, kf_generator(rumble_generator($rotation)), $settings, $loops);
+		@include MG-kf-animate($name, kf_generator(rumble_generator($rotation)), $settings, $loops);
 	}
 }
 
 //@extends for base functionality
-%rumble { @include M-rumble; }
-%rumbleSingle { @include M-rumble(rumble, 5, 0.5s, 1); }
+%rumble { @include MG-rumble; }
+%rumbleSingle { @include MG-rumble(rumble, 5, 0.5s, 1); }
 
 //classes for canned functionality
 .rumble,
@@ -65,20 +65,20 @@ $spin--anticlockwise:
 	(rotate: 0)
 ;
 
-@include M-kf-definition(spin--clockwise, $spin--clockwise);
-@include M-kf-definition(spin--anticlockwise, $spin--anticlockwise);
+@include MG-kf-definition(spin--clockwise, $spin--clockwise);
+@include MG-kf-definition(spin--anticlockwise, $spin--anticlockwise);
 
 
 //////////////// Use the following //////////////////////////
 
 //mixin for custom functionality (changes how fast it spins)
-@mixin M-spin($direction: clockwise, $settings: 1s, $loops: infinite){
-	@include M-kf-predefined(spin--#{$direction},$settings, $loops, linear);
+@mixin MG-spin($direction: clockwise, $settings: 1s, $loops: infinite){
+	@include MG-kf-predefined(spin--#{$direction},$settings, $loops, linear);
 }
 
 //@extend for base functionality
-%spin { @include M-spin; }
-%spinSingle { @include M-spin(1s, 1) }
+%spin { @include MG-spin; }
+%spinSingle { @include MG-spin(1s, 1) }
 
 //classes for canned functionality
 .spin,
@@ -105,16 +105,16 @@ $spin--anticlockwise:
 }
 
 $popin: popin_generator(1.2);
-@include M-kf-definition(popin,$popin);
+@include MG-kf-definition(popin,$popin);
 
 //////////////// Use the following //////////////////////////
 
 //mixin for custom functionality
-@mixin M-popin($settings: 0.5s, $name:popin, $growth:1.2 ){
+@mixin MG-popin($settings: 0.5s, $name:popin, $growth:1.2 ){
 	@if ($name == popin){
-		@include M-kf-predefined(popin,$settings,1,ease-out);
+		@include MG-kf-predefined(popin,$settings,1,ease-out);
 	} @else {
-		@include M-kf-animate($name, popin_generator($growth), $settings, 1);
+		@include MG-kf-animate($name, popin_generator($growth), $settings, 1);
 	}
 	.no-cssanimations & { opacity: 1; }
 }
@@ -138,22 +138,22 @@ $popin: popin_generator(1.2);
 
 $pulse: pulse_generator(1.1);
 
-@include M-kf-definition(pulse,$pulse);
+@include MG-kf-definition(pulse,$pulse);
 
 //////////////// Use the following //////////////////////////
 
 //mixin for custom functionality
-@mixin M-pulse($name: pulse,$settings: 1s, $loops:infinite, $scale:1.1, $stop1: 30%, $stop2: 50%){
+@mixin MG-pulse($name: pulse,$settings: 1s, $loops:infinite, $scale:1.1, $stop1: 30%, $stop2: 50%){
 	@if ($name == pulse){
-		@include M-kf-predefined(pulse,$settings,$loops);
+		@include MG-kf-predefined(pulse,$settings,$loops);
 	} @else {
-		@include M-kf-animate($name, pulse_generator($scale, $stop1, $stop2), $settings, $loops);
+		@include MG-kf-animate($name, pulse_generator($scale, $stop1, $stop2), $settings, $loops);
 	}
 }
 
 //@extend for base functionality
-%pulse { @include M-pulse; }
-%pulseSingle { @include M-pulse(pulse,1s,1); }
+%pulse { @include MG-pulse; }
+%pulseSingle { @include MG-pulse(pulse,1s,1); }
 
 
 //classes for canned functionality
@@ -189,15 +189,15 @@ $pulse: pulse_generator(1.1);
 
 $radarPulse: radarPulse_generator();
 
-@include M-kf-definition(radarPulse,$radarPulse);
+@include MG-kf-definition(radarPulse,$radarPulse);
 
 //////////////// Use the following //////////////////////////
 
-@mixin M-radarPulse($name: radarPulse, $scale:1.4, $settings: 2s, $delayStop: 50%, $loops:infinite){
+@mixin MG-radarPulse($name: radarPulse, $scale:1.4, $settings: 2s, $delayStop: 50%, $loops:infinite){
 	@if ($name == radarPulse){
-		@include M-kf-predefined(radarPulse,$settings,$loops);
+		@include MG-kf-predefined(radarPulse,$settings,$loops);
 	} @else {
-		@include M-kf-animate($name, radarPulse_generator($scale, $delayStop), $settings, $loops);
+		@include MG-kf-animate($name, radarPulse_generator($scale, $delayStop), $settings, $loops);
 	}
 }
 
@@ -206,7 +206,7 @@ $radarPulse: radarPulse_generator();
 	BOB EFFECT
 ---------------------------------------------
 	Element moves backwards and forwards
-	@include M-bob([animation name], [axis], [bob distance]);
+	@include MG-bob([animation name], [axis], [bob distance]);
 \*******************************************/
 @function bob_generator($axis, $value){
 	@return
@@ -227,12 +227,12 @@ $bobs:
 	$axis: nth($bob, 2);
 	$value: nth($bob, 3);
 
-	@include M-kf-definition($name, bob_generator($axis, $value));
+	@include MG-kf-definition($name, bob_generator($axis, $value));
 }
 
 ////////////// use this /////////////////////
 
-@mixin M-bob($instanceName: left, $settings: 1s, $loops:infinite, $axis: X, $value: 3px){
+@mixin MG-bob($instanceName: left, $settings: 1s, $loops:infinite, $axis: X, $value: 3px){
 
 	$defaultBob: false;
 
@@ -243,10 +243,10 @@ $bobs:
 				@error "Do not use 'up', 'down', 'left' or 'right' as the first argument if setting custom values for '$axis' '$value' (the first argument is used as the animation name)";
 			}
 			$defaultBob: true;
-			@include M-kf-predefined($bobName,$settings,$loops);
+			@include MG-kf-predefined($bobName,$settings,$loops);
 		}
 	}
 	@if ($defaultBob == false){
-		@include M-kf-animate('bob--#{$instanceName}', bob_generator($axis, $value), $settings, $loops);
+		@include MG-kf-animate('bob--#{$instanceName}', bob_generator($axis, $value), $settings, $loops);
 	}
 }

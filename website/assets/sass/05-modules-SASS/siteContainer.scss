@@ -14,15 +14,15 @@ $MQ-module--disable-overflow: (max, bp('page'));
 	&__inner {
 		padding: $VG-siteContainer-padding;
 		&--gradient {
-			@if ($gt-ie8){ @include M-grad($C-inner-bg, #fff); }
+			@if ($gt-ie8){ @include MG-grad($C-inner-bg, #fff); }
 		}
 
-		@include M-mq($MQ-module--disable-overflow){
+		@include MG-mq($MQ-module--disable-overflow){
 			overflow: hidden;
 		}
 	}
 
-	@include M-mq($MQ-module--not-padded){
+	@include MG-mq($MQ-module--not-padded){
 		border: none;
 	}
 

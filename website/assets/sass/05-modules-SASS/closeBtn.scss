@@ -1,6 +1,6 @@
 .closeBtn {
-	@include M-circle(fill, $CB-orange-mid, 30px);
-	@include M-cross(#fff,16px,2px){
+	@include MG-circle(fill, $CB-orange-mid, 30px);
+	@include MG-cross(#fff,16px,2px){
 		@if ($ie8) {
 			margin-top: 30%;
 			display: block;
@@ -10,8 +10,8 @@
 	top: 10px;
 	right: 10px;
 	border: none;
-	@include M-animate;
-	@include M-hover{
+	@include MG-animate;
+	@include MG-hover{
 		background-color: $CB-orange-mid--hover;
 	}
 }

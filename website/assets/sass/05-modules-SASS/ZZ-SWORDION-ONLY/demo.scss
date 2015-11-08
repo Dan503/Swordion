@@ -14,23 +14,23 @@ $MQ-test-multiple:
 
 	&__mediaQuery {
 		color: #fff;
-		@include M-mq($MQ-test-single){
+		@include MG-mq($MQ-test-single){
 			background-color: red;
 		}
-		@include M-mq($MQ-test-multiple){
+		@include MG-mq($MQ-test-multiple){
 			border: 5px dotted #fff;
 			background: green;
 		}
-		@include M-mq(min, bp('tablet')){
+		@include MG-mq(min, bp('tablet')){
 			background-color: purple;
 		}
 
 	}
 	&__gradient {
-		@include M-grad(#ccc,#000,20deg);
+		@include MG-grad(#ccc,#000,20deg);
 	}
 	&__multiGrad {
-		@include M-grad((
+		@include MG-grad((
 			#000 0px,
 			green 10px,
 			red 10px,
@@ -46,18 +46,18 @@ $MQ-test-multiple:
 	}
 
 	&__triangle {
-		@include M-tri(up,#000,20px);
+		@include MG-tri(up,#000,20px);
 		//@extend %centered;
 		//left: 20px;
 	}
 
 	&__autoSprite {
-		@include M-sprite($word);
+		@include MG-sprite($word);
 		display: inline-block;
 	}
 
 	&__icon {
-		@include M-icon(word,blue,20px){
+		@include MG-icon(word,blue,20px){
 			margin-right: 10px;
 		};
 	}
@@ -70,7 +70,7 @@ $MQ-test-multiple:
 			(margin: 0 30px, background: #FF0000),
 		;
 
-		@include M-kf-animate(exampleAnimation, $exampleAnimation, 2s 1s, $ease: ease-in-out);
+		@include MG-kf-animate(exampleAnimation, $exampleAnimation, 2s 1s, $ease: ease-in-out);
 		&--multi {
 			text-align: center;
 			//EXAMPLE USAGE (multi attribute):
@@ -88,7 +88,7 @@ $MQ-test-multiple:
 					opacity: 0
 				)
 			;
-			@include M-kf-animate(
+			@include MG-kf-animate(
 				exampleAnimation--multi,
 				$exampleAnimation--multi,
 				3s,

@@ -2,16 +2,16 @@
 //     CSS3 ANIMATION    //
 //////////////////////////
 
-@mixin M-3d {
+@mixin MG-3d {
 	@if ($gt-ie8) {
 	    -webkit-transform-style: preserve-3d;
 		transform-style: preserve-3d;
 	}
 }
-%M-3d { @include M-3d; }
+%M-3d { @include MG-3d; }
 
-/*@include M-animate(0.5s);
-@include M-animate((
+/*@include MG-animate(0.5s);
+@include MG-animate((
 (
 	attributes: margin padding background, (default: all)
 	duration: 0.2s,
@@ -24,7 +24,7 @@
 ));
 */
 //basic animation
-@mixin M-animate($settings: 0.2s, $ease: ease-in-out, $attributes: all, $style: flat){
+@mixin MG-animate($settings: 0.2s, $ease: ease-in-out, $attributes: all, $style: flat){
 	@if ($gt-ie8) {
 
 		$rule: ();
@@ -86,19 +86,19 @@
 	    transition: $rule;
 
 		@if ($style == '3D'){
-			@include M-3d;
+			@include MG-3d;
 		}
 	}
 }
 
 //The animation @extend requires this usage if used because of the IE style sheet split:
 //@extend %animate !optional;
-%animate { @include M-animate; } //basic animation (0.5s)
-%animate--fast { @include M-animate(0.2s,ease-out); }//Ideal for animating hover states (0.2s)
-%animate--slow { @include M-animate(1s); }//Drawn out animation for a more majestic effect (1s)
+%animate { @include MG-animate; } //basic animation (0.5s)
+%animate--fast { @include MG-animate(0.2s,ease-out); }//Ideal for animating hover states (0.2s)
+%animate--slow { @include MG-animate(1s); }//Drawn out animation for a more majestic effect (1s)
 
 //Removes animation from elements with animation set
-@mixin M-anti-animate($important: true) {
+@mixin MG-anti-animate($important: true) {
 	@if ($gt-ie8) {
 		@if ($important == true){
 		    //-webkit-transition: none !important;
@@ -111,7 +111,7 @@
 }
 //requires this usage if used because of the IE test:
 //@extend %anti-animate !optional;
-%anti-animate { @include M-anti-animate; }
+%anti-animate { @include MG-anti-animate; }
 
 .animate { @extend %animate !optional; }
 .animate--fast { @extend %animate--fast !optional; }
@@ -151,7 +151,7 @@
 
 
 //analyses the animation set and generates the css rules for each key frame
-@mixin M-kf-animation-loop ($animation_set){
+@mixin MG-kf-animation-loop ($animation_set){
 	@if ($gt-ie8) {
 
 
@@ -170,11 +170,11 @@
 		 	#{$keyframe} {
 		 		@each $attribute, $value in $css {
 					@if ($attribute == rotate){
-						@include M-rotate($value);
+						@include MG-rotate($value);
 					} @else if ($attribute == 3D-rotate){
-						@include M-rotate(nth($value,1), $axis: nth($value,2));
+						@include MG-rotate(nth($value,1), $axis: nth($value,2));
 					} @else if ($attribute == scale) {
-						@include M-scale($value);
+						@include MG-scale($value);
 					} @else {
 						#{$attribute} : $value;
 					}
@@ -186,14 +186,14 @@
 
 //Sets up the key-frames for the animation
 //Use this on it's own to set up an animation that is shared across multiple elements or multiple timings
-@mixin M-kf-definition($animation_name, $animation_set) {
+@mixin MG-kf-definition($animation_name, $animation_set) {
 	@at-root(without: all) {
 		@if ($gt-ie8) {
 			@-webkit-keyframes #{$animation_name} {
-				@include M-kf-animation-loop($animation_set);
+				@include MG-kf-animation-loop($animation_set);
 			}
 			@keyframes #{$animation_name} {
-				@include M-kf-animation-loop($animation_set);
+				@include MG-kf-animation-loop($animation_set);
 			}
 		}
 	}
@@ -202,7 +202,7 @@
 //Defines how the animation plays out
 //use this on it's own to call on animations made with the kf-definition mixin
 //This mixin allows you to use the same animation set as another element but give different timings
-@mixin M-kf-predefined($animation_name, $settings: 1s, $loops: infinite, $ease: linear, $fill: both){
+@mixin MG-kf-predefined($animation_name, $settings: 1s, $loops: infinite, $ease: linear, $fill: both){
 	@if ($gt-ie8) {
 		-webkit-animation: $animation_name $settings $loops $ease $fill; //* Safari 4+ */
 		animation:         $animation_name $settings $loops $ease $fill; //* IE 10+, Fx 29+ */
@@ -211,10 +211,10 @@
 }
 
 //Ties all the key-frame animation mixins together into a single easy to use mixin
-@mixin M-kf-animate($animation_name, $animation_set, $settings: 1s, $loops: infinite, $ease: linear, $fill: both) {
+@mixin MG-kf-animate($animation_name, $animation_set, $settings: 1s, $loops: infinite, $ease: linear, $fill: both) {
 	@if ($gt-ie8) {
-		@include M-kf-definition($animation_name, $animation_set);
-		@include M-kf-predefined($animation_name, $settings, $loops, $ease, $fill);
+		@include MG-kf-definition($animation_name, $animation_set);
+		@include MG-kf-predefined($animation_name, $settings, $loops, $ease, $fill);
 	}
 }
 
@@ -237,7 +237,7 @@
 //;
 
 //#element {
-//	@include M-kf-animate(example_animation, $example_animation, 3s);
+//	@include MG-kf-animate(example_animation, $example_animation, 3s);
 //}
 
 

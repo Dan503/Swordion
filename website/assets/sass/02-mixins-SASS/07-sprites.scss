@@ -65,12 +65,12 @@
 	@return $x $y;
 }
 
-@mixin M-sprite-image($sheet_name: retina) {
+@mixin MG-sprite-image($sheet_name: retina) {
 
 	//if it is a retina compatible style sheet...
 	@if ( isRetina($sheet_name) ){
 		background-image: url(get-sheet($sheet_name,ld));
-		@include M-retina {
+		@include MG-retina {
 			background-size: (map-get(get-sheet($sheet_name), 'width') / 2)( map-get(get-sheet($sheet_name), 'height') / 2);
 			background-image: url(map-get(get-sheet($sheet_name), 'image'));
 		}
@@ -84,7 +84,7 @@
 
 //@include sprites(sheet_name);
 
-@mixin M-sprites($sheet_name) {
+@mixin MG-sprites($sheet_name) {
 
 	$sprites: map-get(get-sheet($sheet_name),'sprites');
 	$retina: isRetina($sheet_name);
@@ -111,36 +111,36 @@
 			$class: $name + '-';
 		}
 		[class*=" sprite-#{$class}"], [class^="sprite-#{$class}"] {
-			@include M-sprite-image($name);
+			@include MG-sprite-image($name);
 			display: inline-block;
 		}
 
-		@include M-sprites($name);
+		@include MG-sprites($name);
 	}
 
 //======================================================\\
 //				PRIMARY MIXIN							\\
 //======================================================\\
 
-//USAGE: @include M-sprite($sprite_variable, SPRITE_SHEET_NAME)
+//USAGE: @include MG-sprite($sprite_variable, SPRITE_SHEET_NAME)
 //sprite sheet name is only necessary if the sprite is not in the retina sprite-sheet
 
-@mixin M-sprite($sprite, $sheet_name: retina) {
+@mixin MG-sprite($sprite, $sheet_name: retina) {
 	$retina: isRetina($sheet_name);
 	background-position: sprite-pos($sprite, $retina);
 	width: sprite-width($sprite, $retina);
 	height: sprite-height($sprite, $retina);
-	@include M-sprite-image($sheet_name);
+	@include MG-sprite-image($sheet_name);
 }
 
 //if you want to use the manual spriting technique, you can use this instead
-@mixin M-manual-sprite($BGposition: 0 0, $BGcolor: transparent, $defaultRepeat: no-repeat, $defaultImg:$manual_sprite, $defaultRetina: $manual_sprite2x){
+@mixin MG-manual-sprite($BGposition: 0 0, $BGcolor: transparent, $defaultRepeat: no-repeat, $defaultImg:$manual_sprite, $defaultRetina: $manual_sprite2x){
 	background-image: $defaultImg;
 	background-repeat: $defaultRepeat;
 	background-color: $BGcolor;
 	background-position: $BGposition;
 
-  	@include M-retina {
+  	@include MG-retina {
 		background-size: $sprite_width auto;
 		background-image: $defaultRetina;
 	}

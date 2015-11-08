@@ -19,14 +19,14 @@ $module: 'pagination';
 		margin: 0 100px;
 	}
 		&__list {
-			@include M-flexAlign(space-around);
+			@include MG-flexAlign(space-around);
 		}
 			&__item {
-				@include M-flexGrow(0);
+				@include MG-flexGrow(0);
 				margin: 0!important;
 				display: block;
 				text-align: center;
-				@include M-mq($MQ-numbers--are-hidden){
+				@include MG-mq($MQ-numbers--are-hidden){
 					&:not(.#{$module}__currentItem) { display: none!important; }
 				}
 			}
@@ -37,10 +37,10 @@ $module: 'pagination';
 					display: block;
 				}
 				&__link, &__current {
-					@include M-after {
-						@include M-animate;
-						@include M-fill;
-						//@include M-skew(-45deg);
+					@include MG-after {
+						@include MG-animate;
+						@include MG-fill;
+						//@include MG-skew(-45deg);
 						border-radius: 50%;
 						left: 50%;
 						width: 0;
@@ -48,7 +48,7 @@ $module: 'pagination';
 					}
 				}
 				&__link {
-					@include M-hover {
+					@include MG-hover {
 						&:after {
 							left: 0;
 							width: 100%;
@@ -60,7 +60,7 @@ $module: 'pagination';
 						left: 0;
 						width: 100%;
 						background-color: $C-numbers-bg;
-						@include M-mq($MQ-numbers--are-hidden){
+						@include MG-mq($MQ-numbers--are-hidden){
 							display: none;//not displaying properly on iphone. not worth fixing.
 						}
 					}
@@ -68,12 +68,12 @@ $module: 'pagination';
 		&__nextPrevLink {
 			position: relative;
 			text-decoration: none!important;
-			@include M-icon('arrow--left', inherit){
-				@include M-centered(v);
+			@include MG-icon('arrow--left', inherit){
+				@include MG-centered(v);
 				top: -2px;
 				z-index: 3;
 			};
-			@include M-hover {
+			@include MG-hover {
 				text-decoration: underline!important;
 			}
 		}
@@ -86,9 +86,9 @@ $module: 'pagination';
 					content: icon('arrow--left');
 					left: 0;
 				}
-				@include M-hover{
+				@include MG-hover{
 					&:before {
-						@include M-bob(left);
+						@include MG-bob(left);
 					}
 					&:after {
 						left: -15%!important;
@@ -105,9 +105,9 @@ $module: 'pagination';
 					content: icon('arrow--right');
 					right: 0;
 				}
-				@include M-hover{
+				@include MG-hover{
 					&:before {
-						@include M-bob(right);
+						@include MG-bob(right);
 					}
 					&:after {
 						left: -25%!important;

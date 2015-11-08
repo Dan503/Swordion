@@ -70,6 +70,6 @@ $themes: (
 }
 
 	//optional: animate theme transitions :)
-[class^="themed-"], [class*=" themed-"]  { @include M-animate(0.5s); }
+[class^="themed-"], [class*=" themed-"]  { @include MG-animate(0.5s); }
 
 

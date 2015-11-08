@@ -73,7 +73,7 @@
 	&__confirm {
 		color: #fff;
 		background: #81c784;
-		@include M-hover {
+		@include MG-hover {
 			background: #66bb6a;
 		}
 	}
@@ -82,7 +82,7 @@
 		color: #fff;
 		background: #e57373;
 
-		@include M-hover {
+		@include MG-hover {
 			background: #ef5350;
 		}
 	}

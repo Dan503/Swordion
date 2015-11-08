@@ -2,7 +2,7 @@
 input[type="file"] {
 	cursor: pointer;
 	.js & {
-		@include M-opacity(0);
+		@include MG-opacity(0);
 	}
 }
 

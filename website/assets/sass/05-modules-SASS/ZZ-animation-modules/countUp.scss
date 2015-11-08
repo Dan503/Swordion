@@ -1,6 +1,6 @@
 ﻿
 .countUp {
-	@include M-animate(2s);
+	@include MG-animate(2s);
 	white-space: nowrap;
 	.js & { opacity: 0;}
 	&--isForcedVisible { @extend %anti-animate !optional; }
@@ -10,6 +10,6 @@
 	}
 
 	&--alpha {
-		@include M-animate(1s);
+		@include MG-animate(1s);
 	}
 }

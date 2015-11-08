@@ -4,7 +4,7 @@
 	@extend %appearanceNone;
 	border: none;
 	cursor: pointer;
-	.js &.styledSubmit { @include M-opacity(0); }
+	.js &.styledSubmit { @include MG-opacity(0); }
 }
 
 .styledSubmit-JS {
@@ -12,7 +12,7 @@
 	cursor: pointer;
 	input[type="submit"] {
 
-		@include M-fill;
+		@include MG-fill;
 		opacity: 0;
 
 		@if ($ie8) {

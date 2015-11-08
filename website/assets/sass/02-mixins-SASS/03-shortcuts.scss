@@ -2,8 +2,8 @@
 //	HELPERS
 //************/
 
-@mixin M-noDots { margin: 0; padding: 0; list-style: none; }
-%noDots { @include M-noDots; }
+@mixin MG-noDots { margin: 0; padding: 0; list-style: none; }
+%noDots { @include MG-noDots; }
 
 ///////////////////////
 //laziness shortcuts//
@@ -14,7 +14,7 @@
 /// @param {String} $property - Unprefixed CSS property
 /// @param {*} $value - Raw CSS value
 /// @param {List} $prefixes - List of prefixes to output
-@mixin M-prefix($property, $value, $prefixes: ()) {
+@mixin MG-prefix($property, $value, $prefixes: ()) {
   @each $prefix in $prefixes {
     -#{$prefix}-#{$property}: $value;
   }
@@ -23,21 +23,21 @@
 }
 
 //Just get straight into styling a :before or :after without worrying about content or display
-@mixin M-before($display: block) {
+@mixin MG-before($display: block) {
 	&:before {
 		content: "";
 		display: $display;
 		@content;
 	}
 }
-@mixin M-after($display: block) {
+@mixin MG-after($display: block) {
 	&:after {
 		content: "";
 		display: $display;
 		@content;
 	}
 }
-@mixin M-before-after($display: block) {
+@mixin MG-before-after($display: block) {
 	&:before, &:after {
 		content: "";
 		display: $display;
@@ -46,24 +46,24 @@
 }
 
 //set equal height and width
-@mixin M-size($height, $width: $height){
+@mixin MG-size($height, $width: $height){
 	height: $height;
 	width: $width;
 }
 
 
 //Because writing "pos" is easier than "background-position"
-@mixin M-pos ($bg_position){
+@mixin MG-pos ($bg_position){
 	background-position: $bg_position;
 };
 
-@mixin M-hover {
+@mixin MG-hover {
 	@if ($ie8){
 		&:hover, &:focus {
 			@content;
 		}
 	} @else {
-		@include M-mq($MQG-interactives--have-hoverState){
+		@include MG-mq($MQG-interactives--have-hoverState){
 			&:hover, &:focus {
 				@content;
 			}
@@ -72,21 +72,21 @@
 }
 
 //simple mixin for checking if a variable is equal to a value
-@mixin M-is($variable, $value){
+@mixin MG-is($variable, $value){
 	@if ($variable == $value){
 		@content;
 	}
 }
 
 //simple mixin for checking if a variable is NOT equal to a value
-@mixin M-isNot($variable, $value){
+@mixin MG-isNot($variable, $value){
 	@if ($variable != $value){
 		@content;
 	}
 }
 
 //Quick mixin for only hiding something if JS is enabled
-@mixin M-jsHide {
+@mixin MG-jsHide {
 	display: none;
 	.no-js & { display: block;  }
 }
@@ -97,7 +97,7 @@
 
 //Allows you to use rem line-height instead of ems (much easier to develop with)
 //line-height is given to mixin in pixels, mixin converts it
-@mixin M-line-height($sizeValue) {
+@mixin MG-line-height($sizeValue) {
 	line-height: $sizeValue + px; //fallback for browsers that don't support REM
 	@if ($lt-ie9 == false){
 		line-height: ($sizeValue / 10) + rem;//only renders rem in modern style sheet
@@ -106,7 +106,7 @@
 
 //Allows you to use rem fontsize instead of ems (much easier to develop with)
 //font size given to mixin in pixels or rem, the mixin then converts it to the other value
-@mixin M-font-size($sizeValue, $lineHeight: false) {
+@mixin MG-font-size($sizeValue, $lineHeight: false) {
 
 	//If using pixels for the base unit
 	@if (unit($sizeValue) == 'px'){
@@ -135,15 +135,15 @@
 	}
 }
 
-@mixin M-box-sizing ($type: border-box) {
+@mixin MG-box-sizing ($type: border-box) {
 	box-sizing: $type;
 	*behavior: url(../htc/boxsizing.htc);
 }
 %box-sizing {
-	@include M-box-sizing;
+	@include MG-box-sizing;
 }
 
-@mixin M-inline-block {
+@mixin MG-inline-block {
 	display: inline-block;
 	@if ($lt-ie9 == true){
 		zoom: 1;//for IE7
@@ -153,17 +153,17 @@
 
 //don't forget about appearance: none; to clear defaults particularly on submit buttons
 //appearance not supported by auto-prefix
-@mixin M-appearanceNone {
+@mixin MG-appearanceNone {
    -webkit-appearance: none!important;
    -moz-appearance:    none!important;
    appearance:         none!important;
    //necessary for iOS 7
    border-radius:0;
 }
-%appearanceNone { @include M-appearanceNone; }
+%appearanceNone { @include MG-appearanceNone; }
 
 //allows the styling of placeholder text
-@mixin M-placeholder($color:$CG-input--placeholder) {
+@mixin MG-placeholder($color:$CG-input--placeholder) {
 	//#767676 is the lightest possible grey against a white bg that passes AA for small text
 	@if ($gt-ie8) {
 		&::-webkit-input-placeholder { color: $color; @content; } //safari and chrome
@@ -179,7 +179,7 @@
 
 //HYPHENTATION (Doesn't work in all browsers... yet)
 //Also needs to use hyphenator.js https://code.google.com/p/hyphenator/ for browsers that don't support hyphenation natively if hyphenation in all modern browsers is essential
-@mixin M-hyphenate {
+@mixin MG-hyphenate {
 	-webkit-hyphens: auto;
        -moz-hyphens: auto;
         -ms-hyphens: auto;
@@ -196,21 +196,21 @@
 ///////////////////////
 
 //Image replacement as a function
-@mixin M-ir { font-size: 0em; text-shadow: none; color: transparent; text-transform: capitalize; display: block; }
-%ir { @include M-ir; };
+@mixin MG-ir { font-size: 0em; text-shadow: none; color: transparent; text-transform: capitalize; display: block; }
+%ir { @include MG-ir; };
 
 //old image replacement
-//@mixin M-ir { display: block; text-indent:-999px; overflow:hidden; text-align:left; direction:ltr; }
+//@mixin MG-ir { display: block; text-indent:-999px; overflow:hidden; text-align:left; direction:ltr; }
 
-@mixin M-ir2 { line-height: 999px; overflow: hidden; font-size: 0; color: transparent; text-transform: capitalize; }//*works on submit buttons even in IE7*/
-%ir2 { @include M-ir2; };
+@mixin MG-ir2 { line-height: 999px; overflow: hidden; font-size: 0; color: transparent; text-transform: capitalize; }//*works on submit buttons even in IE7*/
+%ir2 { @include MG-ir2; };
 
 //////////////////////
 // Visually hidden //
 ////////////////////
 
 //(visually hidden) so screen readers can read it but normally it can not be seen
-@mixin M-vh {
+@mixin MG-vh {
 	border:0;
 	//clip:rect(0 0 0 0);
 	width:0;
@@ -218,23 +218,23 @@
 	padding:0;
 	overflow:hidden;
 	position:absolute;
-	@include M-opacity(0);
+	@include MG-opacity(0);
 }
-%vh { @include M-vh; };
+%vh { @include MG-vh; };
 
 //counters the vh styles
-@mixin M-anti-vh {
+@mixin MG-anti-vh {
 	//border:0;
 	//clip: auto;
 	width:auto;
 	height:auto;
 	position: static;
-	@include M-opacity(1);
+	@include MG-opacity(1);
 }
-%anti-vh { @include M-anti-vh; }
+%anti-vh { @include MG-anti-vh; }
 
 //a less favorable version of visually hidden since browsers still have to render it way off screen
-@mixin M-offscreen { position: absolute; left: -999em; }
+@mixin MG-offscreen { position: absolute; left: -999em; }
 
 
 ////////////////
@@ -242,25 +242,25 @@
 //////////////
 
 //vertically center align text that is only on one line
-@mixin M-valign-text {
-	@include M-before{
+@mixin MG-valign-text {
+	@include MG-before{
 		display: inline-block;
 		height: 100%;
 		vertical-align: middle;
 		@content;
 	}
 }
-%valign-text { @include M-valign-text; }
+%valign-text { @include MG-valign-text; }
 
 //CENTER AN ELEMENT BOTH VERTICALLY AND HORIZONTALLY (or only one of the two)
 //Element must have a set width and height to work
 
 //usage:
-//@include M-centered; //center both horizontally and vertically
-//@include M-centered(v); // only center vertically
-//@include M-centered(h); // only center horizontally
+//@include MG-centered; //center both horizontally and vertically
+//@include MG-centered(v); // only center vertically
+//@include MG-centered(h); // only center horizontally
 
-@mixin M-centered($type: both, $isModern: 'not-modern') {
+@mixin MG-centered($type: both, $isModern: 'not-modern') {
 
 	position: absolute;
 
@@ -268,13 +268,13 @@
 		@if ($type == both) {
 			top: 50%;
 			left: 50%;
-			@include M-prefix(transform, unquote('translateY(-50%) translateX(-50%)'), ms webkit);
+			@include MG-prefix(transform, unquote('translateY(-50%) translateX(-50%)'), ms webkit);
 		} @else if ($type == v) {
 			top: 50%;
-			@include M-prefix(transform, unquote('translateY(-50%)'), ms webkit);
+			@include MG-prefix(transform, unquote('translateY(-50%)'), ms webkit);
 		} @else if ($type == h) {
 			left: 50%;
-			@include M-prefix(transform, unquote('translateX(-50%)'), ms webkit);
+			@include MG-prefix(transform, unquote('translateX(-50%)'), ms webkit);
 		}
 	} @else {
 		@if ($type == both) {
@@ -295,13 +295,13 @@
 	}
 }
 //use these over the mixin if possible
-%centered { @include M-centered; }
-%centered--h { @include M-centered(h); }
-%centered--v { @include M-centered(v); }
+%centered { @include MG-centered; }
+%centered--h { @include MG-centered(h); }
+%centered--v { @include MG-centered(v); }
 
 //Use this if parent is smaller than the target element
 //(the regular centered mixin works in chrome when parent is smaller but not in Fire fox)
-@mixin M-centered-margin ($size, $type: both, $side: left) {
+@mixin MG-centered-margin ($size, $type: both, $side: left) {
 	position: absolute;
 	@if ($type == v) {
 		@if ($side == left){
@@ -326,13 +326,13 @@
 }
 
 //make an element fill the entire area of it's parent (parent needs position relative)
-@mixin M-fill($adjustments: false) {
+@mixin MG-fill($adjustments: false) {
 
 	@if ($adjustments == false){
 		position: absolute;
 		top: 0;
 		left: 0;
-		@include M-size(100%);
+		@include MG-size(100%);
 	} @else {
 		$adjustments: defaultTo($adjustments, (
 			top: 0,
@@ -346,12 +346,12 @@
 		bottom: map-get($adjustments, bottom);
 		right: map-get($adjustments, right);
 		position: map-get($adjustments, position);
-		@include M-size(auto);
+		@include MG-size(auto);
 	}
 }
 
 //make a div take up the full screen height
-@mixin M-fullScreen($subtraction: 0px) {
+@mixin MG-fullScreen($subtraction: 0px) {
 	@if ($subtraction == 0px) {
 		min-height: 100vh;
 	} @else {
@@ -364,16 +364,16 @@
 ///////////
 
 //clear fix
-@mixin M-clearfix{
+@mixin MG-clearfix{
 	@if ($lt-ie9 == true){ zoom: 1; }
 	&:before, &:after { content:""; display:table; width: 100%; }
 	&:after{ clear: both; }
 }
-%clearfix { @include M-clearfix; }
+%clearfix { @include MG-clearfix; }
 
 
 //multi :not() rule
-@mixin M-not ($ignorList...) {
+@mixin MG-not ($ignorList...) {
 	//if only a single value given
 	@if (length($ignorList) == 1){
 		//it is probably a list variable so set ignore list to the 1st item
@@ -392,7 +392,7 @@
 }
 
 //adds a shadow to items that have overflow:auto
-@mixin M-overflowShadow ($direction: h, $bg: #fff, $shadow: $CB-grey-dark, $shadowSize: 20px, $baseSize: 11 * $shadowSize){
+@mixin MG-overflowShadow ($direction: h, $bg: #fff, $shadow: $CB-grey-dark, $shadowSize: 20px, $baseSize: 11 * $shadowSize){
 
 	$start: to right;
 	$end: to left;
@@ -438,7 +438,7 @@
 }
 
 //quickly and easily generate css from a map of css rules and values
-@mixin M-generateCSS($cssMap){
+@mixin MG-generateCSS($cssMap){
 	@each $rule, $value in $cssMap {
 		#{$rule}: $value;
 	}

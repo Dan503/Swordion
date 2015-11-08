@@ -34,7 +34,7 @@
 
 	//HIDE the element if JS is ENABLED,
 	//SHOW the element if JS is DISABLED
-	&-jsHide { @include M-jsHide; }
+	&-jsHide { @include MG-jsHide; }
 
 	//visually hidden element so that screen readers can see it but normal users cant
 	&-visHid { @extend %vh; }
@@ -68,16 +68,16 @@
 
 
 	//	Screen size specific elements
-	&-mobileOnly { @include M-mobileOnly; }
-	&-tabletOnly { @include M-tabletOnly; }
-	&-desktopOnly { @include M-desktopOnly; }
-	&-nonMobile { @include M-nonMobile; }
-	&-nonTablet { @include M-nonTablet; }
-	&-nonDesktop { @include M-nonDesktop; }
-	&-nonLargeScreen { @include M-mq(min, bp('page')){ display: none!important; } }
+	&-mobileOnly { @include MG-mobileOnly; }
+	&-tabletOnly { @include MG-tabletOnly; }
+	&-desktopOnly { @include MG-desktopOnly; }
+	&-nonMobile { @include MG-nonMobile; }
+	&-nonTablet { @include MG-nonTablet; }
+	&-nonDesktop { @include MG-nonDesktop; }
+	&-nonLargeScreen { @include MG-mq(min, bp('page')){ display: none!important; } }
 	&-largeScreenOnly {
 		@if($modern) {
-			@include M-mq(max, bp('page')){ display: none!important; }
+			@include MG-mq(max, bp('page')){ display: none!important; }
 		}
 	}
 
@@ -90,10 +90,10 @@
 
 	//animate an element when it's css changes
 	&-animate {
-		@include M-animate;
-		&--medium { @include M-animate(0.5s); }//useful for hover states
-		&--slow { @include M-animate(1s); }
-		&--false { @include M-anti-animate; }
+		@include MG-animate;
+		&--medium { @include MG-animate(0.5s); }//useful for hover states
+		&--slow { @include MG-animate(1s); }
+		&--false { @include MG-anti-animate; }
 	}
 
 	//quickly add position relative to an element
@@ -103,7 +103,7 @@
 	&-centeredText { text-align: center; }
 
 	//completly fill the space of a relative element
-	&-fill { @include M-fill; }
+	&-fill { @include MG-fill; }
 
 	//A link that only appears when the user focuses on it
 	&-skipLink {
@@ -120,7 +120,7 @@
 	//remove default styling (good for submit buttons)
 	&-appearanceNone { @extend %appearanceNone; }
 
-	&-inlineBlock { @include M-inline-block; }
+	&-inlineBlock { @include MG-inline-block; }
 
 	//Styles the element to take up the max-width of the design
 	&-pageWidth { margin:0 auto; max-width:bp('page'); width: 100%; display: block; }
@@ -142,10 +142,10 @@
 
 	//Make element take up full screen height
 	&-fullScreen {
-		@include M-fullScreen;
+		@include MG-fullScreen;
 		&--hasHeader {
-			@include M-mq($MQG-home--is-scrollAnimated){
-				@include M-fullScreen(70px);
+			@include MG-mq($MQG-home--is-scrollAnimated){
+				@include MG-fullScreen(70px);
 			}
 		}
 	}
@@ -155,7 +155,7 @@
 	}
 
 	&-flexValign {
-		@include M-flex;
-		@include M-flexValign;
+		@include MG-flex;
+		@include MG-flexValign;
 	}
 }

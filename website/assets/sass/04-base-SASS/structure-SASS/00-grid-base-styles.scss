@@ -67,7 +67,7 @@
 					$MQ-breakData : nth($breaks, $y);
 					$MQ-screenWidth : nth($MQ-breakData, 1);
 					$MQ-columnWidth : nth($MQ-breakData, 2);
-					@include M-mq(max,$MQ-screenWidth){
+					@include MG-mq(max,$MQ-screenWidth){
 						> .grid__cell { width: $MQ-columnWidth; }
 					}
 				}
@@ -89,11 +89,11 @@
 	border: 0 solid #000;
 	@if ($gt-ie8) {
 		@extend %flex;
-		@include M-prefix(align-content, stretch, $flexPrefixes);
+		@include MG-prefix(align-content, stretch, $flexPrefixes);
 
-		@include M-mq(max,bp('page')){
-			@include M-not('.grid--disableMQs', '.grid--noWrap'){
-				@include M-flexWrap;
+		@include MG-mq(max,bp('page')){
+			@include MG-not('.grid--disableMQs', '.grid--noWrap'){
+				@include MG-flexWrap;
 			}
 		}
 	}
@@ -110,19 +110,19 @@
 		margin: 0;
 		background-clip: padding-box!important;
 		border: 0 solid transparent;
-		@include M-flexGrow;
+		@include MG-flexGrow;
 		outline-color: #000;
 		border-color: #000;
 
 //grid__cell--forceWidth-# styling for elements that must always be a certain width at ALL screen sizes
 		@each $class, $width in $forcedWidths {
 			&--forceWidth-#{$class} {
-				@include M-flexForceWidth($width);
+				@include MG-flexForceWidth($width);
 			}
 		}
 
 		&--vAlign {
-			@include M-prefix(align-self, center, $flexPrefixes);
+			@include MG-prefix(align-self, center, $flexPrefixes);
 		}
 	}
 
@@ -184,7 +184,7 @@
 	}
 	@mixin M-grid-delayedGutter($gutter) {
 		&.grid--outerGutters-delayedHorizontal {
-			@include M-mq(max, (bp('page') + $gutter)){
+			@include MG-mq(max, (bp('page') + $gutter)){
 				margin-left: 0;
 				margin-right: 0;
 			}
@@ -197,7 +197,7 @@
 					@if ($screenSize == 'default') {
 						@include M-grid-cellGutter($value);
 					} @else {
-						@include M-mq(max,$screenSize){
+						@include MG-mq(max,$screenSize){
 							@include M-grid-cellGutter($value);
 						}
 					}
@@ -229,15 +229,15 @@
 		&--vAlign {
 			&:not(.grid--hasInners){
 				> .grid__cell {
-					@include M-flex;
-					@include M-flexValign;
+					@include MG-flex;
+					@include MG-flexValign;
 				}
 			}
 			&.grid--hasInners {
-				@include M-flexValign(stretch);
+				@include MG-flexValign(stretch);
 				> .grid__cell > .grid__inner {
-					@include M-flex;
-					@include M-flexValign;
+					@include MG-flex;
+					@include MG-flexValign;
 				}
 			}
 		}
@@ -245,8 +245,8 @@
 
 	&--hasInners {
 		> .grid__cell {
-			@include M-flex;
-			@include M-flexValign(stretch);
+			@include MG-flex;
+			@include MG-flexValign(stretch);
 		}
 		&[class*="grid--padding-"] {
 			> .grid__cell {
@@ -271,7 +271,7 @@
 
 		@if ($gt-ie8) {
 			.flexbox & {
-				@include M-flexWrap;
+				@include MG-flexWrap;
 			}
 		}
 	}

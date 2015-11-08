@@ -7,7 +7,7 @@ $C-display-border: CG-prominence(1);
 select {
 	cursor: pointer;
 	option { font-weight: 100; }
-	.js & { @include M-opacity(0); }
+	.js & { @include MG-opacity(0); }
 	&:hover + .styledSelect-display { @extend %hoverState; }
 }
 
@@ -22,18 +22,18 @@ select {
 		cursor: pointer;
 		z-index: 0;
 		padding-right: 30px;
-		@include M-inline-block;
+		@include MG-inline-block;
 
 		//add the arrow with a css triangle
-		@include M-before {
-			@include M-tri(down, CG-prominence(1), 7px);
-			@include M-centered(v);
+		@include MG-before {
+			@include MG-tri(down, CG-prominence(1), 7px);
+			@include MG-centered(v);
 			right: 11px;
 		}
 
 		//adding arrow with an icon instead
-		/*@include M-icon('arrow--down', CG-prominence(1), 5px, 30px){
-			@include M-centered(v);
+		/*@include MG-icon('arrow--down', CG-prominence(1), 5px, 30px){
+			@include MG-centered(v);
 			right: 0;
 			z-index: 1;
 		}*/
@@ -43,7 +43,7 @@ select {
 			width: 100%;
 			height: 100%;
 			position: absolute;
-			@include M-opacity(0);
+			@include MG-opacity(0);
 			border: none!important;
 			z-index: 2;
 			&:focus + .styledSelect__display-JS { background: $CG-input-focus; }
@@ -69,7 +69,7 @@ select {
 	}
 
 	&__display-JS {
-		@include M-animate(0.25s,$attributes:background);
+		@include MG-animate(0.25s,$attributes:background);
 		padding: 5px 0 5px 10px;
 		color: #000;
 		position: relative;

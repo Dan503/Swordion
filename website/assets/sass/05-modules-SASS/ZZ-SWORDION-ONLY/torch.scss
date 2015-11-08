@@ -1,17 +1,17 @@
 ﻿.torch {
-	@include M-size(500px);
+	@include MG-size(500px);
 	margin: 50px auto;
 	border: 3px solid #753300;
 	background: #000;
 	overflow: hidden;
 
 	&__light {
-		@include M-grad(#EBE300, transparent, radial);
-		@include M-size(200px);
+		@include MG-grad(#EBE300, transparent, radial);
+		@include MG-size(200px);
 		margin: -100px 0 0 -100px;
 	}
 	&__body {
-		@include M-grad(#363636 50%, #121212, radial);
+		@include MG-grad(#363636 50%, #121212, radial);
 		text-align: center;
 		border-radius: 50%;
 	}

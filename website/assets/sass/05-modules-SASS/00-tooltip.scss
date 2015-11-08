@@ -24,7 +24,7 @@ $module: 'tooltip';
 				@if($ie8){
 					display: block!important;
 				} @else {
-					@include M-scale(1);
+					@include MG-scale(1);
 					opacity: 1;
 				}
 				visibility: visible;
@@ -38,9 +38,9 @@ $module: 'tooltip';
 						duration: 0s,
 					)
 				;
-				@include M-animate($tooltipTransition--open);
+				@include MG-animate($tooltipTransition--open);
 
-				@include M-mq($MQ-tooltip--is-diabled){
+				@include MG-mq($MQ-tooltip--is-diabled){
 					display: none;
 				}
 			}
@@ -58,14 +58,14 @@ $module: 'tooltip';
 				duration: 0s,
 			)
 		;
-		@include M-animate($tooltipTransition);
+		@include MG-animate($tooltipTransition);
 		@if($ie8){
 			display: none;
 		} @else {
-			@include M-scale(0);
+			@include MG-scale(0);
 			opacity: 0;
 		}
-		@include M-origin(bottom center);
+		@include MG-origin(bottom center);
 		position: absolute;
 		text-align: center;
 		bottom: 100%;
@@ -75,7 +75,7 @@ $module: 'tooltip';
 		background: $C-background;
 		color: $C-text;
 		width: 300px;
-		@include M-font-size(13px);
+		@include MG-font-size(13px);
 		padding: 10px;
 		z-index: 5;
 		line-height: 1;
@@ -86,9 +86,9 @@ $module: 'tooltip';
 			margin-left: -50px;
 		}
 
-		@include M-before {
-			@include M-centered(h);
-			@include M-tri(down,$C-background,$V-icon-size);
+		@include MG-before {
+			@include MG-centered(h);
+			@include MG-tri(down,$C-background,$V-icon-size);
 			top: 100%;
 		}
 		&--align {
@@ -99,12 +99,12 @@ $module: 'tooltip';
 				top: 100%;
 				margin-top: $V-icon-size + 5;
 				&:before {
-					@include M-tri(up,$C-background,$V-icon-size);
+					@include MG-tri(up,$C-background,$V-icon-size);
 					top: auto;
 					bottom: 100%;
 				}
 			}
-			&-bottom-center { @include M-origin(top center); }
+			&-bottom-center { @include MG-origin(top center); }
 
 			&-bottom-right,
 			&-top-right {
@@ -113,12 +113,12 @@ $module: 'tooltip';
 				margin-left: 0;
 				margin-right: -8px;
 				&:before {
-					@include M-tri(up,$C-background,$V-icon-size);
+					@include MG-tri(up,$C-background,$V-icon-size);
 					left: auto;
 					right: 10px;
 				}
 			}
-			&-bottom-right { @include M-origin(top right); }
+			&-bottom-right { @include MG-origin(top right); }
 		}
 	}
 
