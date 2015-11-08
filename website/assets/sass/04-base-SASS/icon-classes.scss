@@ -23,7 +23,3 @@
 }
 
 @include M-generateIconClasses($icons, 'icon', 'icons');
-
-@if ($isHome){
-	@include M-generateIconClasses($homeIcons, 'iconHome', 'homeIcons');
-}

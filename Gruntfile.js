@@ -209,7 +209,6 @@ module.exports = function (grunt) {
 					'website/assets/sass/import-maps/map-plugins.scss': 'website/assets/sass/03-plugins-SASS/**/*.scss',
 					'website/assets/sass/import-maps/map-base.scss': 'website/assets/sass/04-base-SASS/**/*.scss',
 					'website/assets/sass/import-maps/map-modules.scss': 'website/assets/sass/05-modules-SASS/**/*.scss',
-					'website/assets/sass/import-maps/map-home.scss': 'website/assets/sass/06-home-SASS/**/*.scss',
 				}
 			}
 		},
@@ -226,24 +225,18 @@ module.exports = function (grunt) {
 				files: {
 					//Modern style sheet
 					"website/assets/css/modern.css": "website/assets/sass/output-files/modern.scss",
-					//Modern HOME style sheet
-					"website/assets/css/home-modern.css": "website/assets/sass/output-files/home-modern.scss",
 				}
 			},
 			ie9 : {
 				files : {
 					//IE9 style sheet
 					"website/assets/css/ie9.css": "website/assets/sass/output-files/ie9.scss",
-					//IE9 HOME style sheet
-					"website/assets/css/home-ie9.css": "website/assets/sass/output-files/home-ie9.scss",
 				}
 			},
 			ie8 : {
 				files : {
 					//IE8 style sheet
 					"website/assets/css/ie8.css": "website/assets/sass/output-files/ie8.scss",
-					//IE8 HOME style sheet
-					"website/assets/css/home-ie8.css": "website/assets/sass/output-files/home-ie8.scss",
 				}
 			}
 		},
@@ -257,9 +250,6 @@ module.exports = function (grunt) {
 						'website/assets/css/modern.css',
 						'website/assets/css/ie9.css',
 						'website/assets/css/ie8.css',
-						'website/assets/css/home-modern.css',
-						'website/assets/css/home-ie9.css',
-						'website/assets/css/home-ie8.css'
 					]
 				}
 			}
@@ -275,7 +265,7 @@ module.exports = function (grunt) {
 			//takes the current css files in the "media-merge" folder, minifies them, adds '.min.css' to the end of the file, and copies them back into the main css folder
 		      expand: true,
 		      cwd: 'website/assets/css/media-merge/',
-		      src: ['modern.css','ie9.css','ie8.css','home-modern.css','home-ie9.css','home-ie8.css'],
+		      src: ['modern.css','ie9.css','ie8.css'],
 		      dest: 'website/assets/css/',
 		      ext: '.min.css'
 		  }
