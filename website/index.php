@@ -68,7 +68,7 @@ include $_SERVER['DOCUMENT_ROOT'].'/includes/02-base-PHP/structure-PHP/body.php'
 	</div>
 </div>
 
-<div class="full-screen-div-example" data-jshook="fullScreen__screenFiller">
+<div class="full-screen-div-example" data-jshook="fullScreen__filler">
 	<h2>Full screen div example</h2>
 	<p>Scroll down to see more content</p>
 </div>
