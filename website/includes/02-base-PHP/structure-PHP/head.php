@@ -51,12 +51,11 @@
 			'ie9',
 			'ie8'
 		);
-		$prefix = $isHome ? 'home-' : '';
 
 		foreach ($styleSheets as $browser) {
 			echo '
 			'.$loadIn[$browser]['before'].'
-				<link rel="stylesheet" type="text/css" href="'.$rootLocation.'/assets/css/'.$prefix.$browser.$min.'.css" />
+				<link rel="stylesheet" type="text/css" href="'.$rootLocation.'/assets/css/'.$browser.$min.'.css" />
 			'.$loadIn[$browser]['after'];
 		}
  	?>
