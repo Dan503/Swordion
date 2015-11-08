@@ -1,3 +1,6 @@
+//designed to be used in an if statement like:
+//if (min(bp['tablet']){ ...functionality... }
+
 function min(size) {
 	if (bp.hasOwnProperty(size)){
 		return G_screen_width > (bp[size] + 1);

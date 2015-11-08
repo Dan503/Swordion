@@ -19,5 +19,3 @@ var bp = {
 	'large': 1024, //*maximum for iPads in landscape*/
 	'page': 1200, ///*!MAJOR BREAK POINT!*//*Point at which the edge of the desktop design meets the edge of the screen*/
 };
-
-var MQG_home_is_scrollAnimated = G_screen_width > bp['page'];

@@ -398,7 +398,7 @@ module.exports = function (grunt) {
 				tasks: [
 					"concat", //merges constant js files into one file
 					//"uglify", //minify JS
-					"sync:js" //copy js to server
+					//"sync:js" //copy js to server
 				],
 				options: { spawn: false }
 			},
@@ -422,7 +422,7 @@ module.exports = function (grunt) {
 				},
 				//The other file types that will trigger a browser refresh on save
 				tasks: [
-					"sync:html",
+					//"sync:html",
 				],
 				files: [
 					"**/*.html",
@@ -437,7 +437,7 @@ module.exports = function (grunt) {
 				},
 				//The other file types that will trigger a browser refresh on save
 				tasks: [
-					"sync:fonts",
+					//"sync:fonts",
 				],
 				files: [
 					"website/assets/fonts/**/**"
