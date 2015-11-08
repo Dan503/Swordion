@@ -68,6 +68,16 @@ include $_SERVER['DOCUMENT_ROOT'].'/includes/02-base-PHP/structure-PHP/body.php'
 	</div>
 </div>
 
+<?php
+	video('jVpfVk__W0k', array(
+		'id' => 'idForVideo',
+		'text' => 'text is mainly used in relation to the tile attribute on video for screen readers',
+		'classes' => 'classes-you-wish to-apply-to-video-element',
+		'wrapper-hooks' => 'JS-hooks-to-apply-to-wrapping-div',
+		'hooks' => 'JS-hooks-to-apply-directly-to-the-iFrame'
+	));
+?>
+
 <div class="full-screen-div-example" data-jshook="fullScreen__filler">
 	<h2>Full screen div example</h2>
 	<p>Scroll down to see more content</p>
@@ -78,7 +88,6 @@ include $_SERVER['DOCUMENT_ROOT'].'/includes/02-base-PHP/structure-PHP/body.php'
 						<h2>To do list:</h2>
 						<ol>
 							<li>Fix the form example styles</li>
-							<li>Add an example of a responsive youtube video</li>
 							<li>Create a multi-background Sass mixin</li>
 							<li>Change the styling for the select boxes to the type that requires a little bit of JS</li>
 							<li>Make the media query mixin automatically convert pixel values to rem values</li>
