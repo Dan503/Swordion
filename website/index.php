@@ -40,9 +40,9 @@ include $_SERVER['DOCUMENT_ROOT'].'/includes/02-base-PHP/structure-PHP/body.php'
 		<p>Multi Gradient example</p>
 	</div>
 
-	<div class="demo__div relative">
+	<div class="demo__div TK-relative">
 		<p>Triangle &amp; centered example</p>
-		<div class="demo__triangle"></div>
+		<div class="demo__triangle TK-centered"></div>
 	</div>
 
 	<div class="demo__div">
