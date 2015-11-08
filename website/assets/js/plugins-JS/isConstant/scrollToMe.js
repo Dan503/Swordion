@@ -39,5 +39,5 @@ if (hash.length){
 //stops scroll animation if user uses scroll wheel
 $(window).on('mousewheel', function(){
 	$('html, body').stop();
-	VG_autoScroll__isPlaying = false;
+	G_autoScroll__isPlaying = false;
 });

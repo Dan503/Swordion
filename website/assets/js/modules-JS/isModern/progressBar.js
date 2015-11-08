@@ -33,7 +33,7 @@ jQuery(function($){
 		var scene = new ScrollMagic.Scene({
 			//How long the duration of the scroll animation goes for. It's based on pixels, I recommend using $('.element').height()
 			//the duration can also be defined as a percentage (eg. "50%"). The percentage is a percentage of the total screen **WINDOW** height.
-		    duration: $(Hook('tracker')).outerHeight() - VG_screen_height,
+		    duration: $(Hook('tracker')).outerHeight() - G_screen_height,
 
 			//determines the element that controls when the animations starts
 			triggerElement: $(Hook('tracker')),
@@ -46,18 +46,18 @@ jQuery(function($){
 		})
 		.setTween(timeLine)
 		//.addIndicators({name: 'progressBar'})//to help with debugging
-		.addTo(VG_ctrl);
+		.addTo(G_ctrl);
 
-		VG_allScenes.push(scene);
+		G_allScenes.push(scene);
 	}
 	if ($(Hook('fullScreen_filler',globals)).length){
 		$(Class('fullScreen_isApplied',globals)).waitForMe(function(){
-			VG_page_height = getPageHeight();
+			G_page_height = getPageHeight();
 			progressScene();
 		})
 	} else {
 		setTimeout(function(){
-			VG_page_height = getPageHeight();
+			G_page_height = getPageHeight();
 			progressScene();
 		},10)
 	}

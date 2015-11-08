@@ -37,7 +37,7 @@ moduleTargets[module] = defaultTo(moduleTargets[module], {
 			.setPin(Hook('stage'))
 			.setTween(timeline);
 
-		VG_allScenes.push(scene);
+		G_allScenes.push(scene);
 	} else {
 
 		timeline.pause();
@@ -130,9 +130,9 @@ moduleTargets[module] = defaultTo(moduleTargets[module], {
 		})
 		.setTween(mobBGtimeline)
 		//.addIndicators({name: 'infoPlayer_mobileBGs'})//to help with debugging
-		.addTo(VG_ctrl);
+		.addTo(G_ctrl);
 
-		VG_allScenes.push(mobBGscene);
+		G_allScenes.push(mobBGscene);
 	}
 }
 
@@ -173,7 +173,7 @@ jQuery(function($){
 
 	if (stage.length){
 
-		var animDuration = VG_homeSplash_animDuration;
+		var animDuration = G_homeSplash_animDuration;
 
 		var headerTools_size = {
 			L : min('tablet'),
@@ -297,9 +297,9 @@ jQuery(function($){
 				.setTween(mobileTL)
 		}
 
-		scene.addTo(VG_ctrl)
+		scene.addTo(G_ctrl)
 
-		VG_allScenes.push(scene);
+		G_allScenes.push(scene);
 	}
 });
 
@@ -359,7 +359,7 @@ jQuery(function($){
 
 		$(Hook('jumpLink')).click(function(e){
 			preventDefault(e);
-			var homeSplash__offset = VG_homeSplash_animDuration * 3;
+			var homeSplash__offset = G_homeSplash_animDuration * 3;
 
 			var scrollPoints = {
 				//number is the scrollMagic .on('progress',function(e){e.progress}) result
@@ -374,7 +374,7 @@ jQuery(function($){
 				duration: 0,
 			});
 			$(Hook('playPause', 'autoScroll')).modRemoveClass('isPlaying', 'autoScroll');
-			VG_autoScroll__isPlaying = false;
+			G_autoScroll__isPlaying = false;
 		});
 
 //main animation
@@ -502,12 +502,12 @@ if(isLastRound(i,textTypes) && isLastRound(index,$(Hook('textContainer')).filter
 		var mainScene = new ScrollMagic.Scene({
 			duration: sceneDuration,
 			triggerElement: Hook('stage'),
-			offset: -VG_headerHeight,
+			offset: -G_header_height,
 			triggerHook: 'onLeave',
 		})
 		//.setPin(Hook('stage'))
 		//.addIndicators({name: 'established main'})//to help with debugging
-		.addTo(VG_ctrl);
+		.addTo(G_ctrl);
 
 
 
@@ -520,15 +520,15 @@ if(isLastRound(i,textTypes) && isLastRound(index,$(Hook('textContainer')).filter
 				.to(Hook('sideTri'), 2, {right: '100%'}, '+=5')
 			;
 			var sideTriScene = new ScrollMagic.Scene({
-				duration: VG_screen_borderedHeight * 10.5 - 60,
+				duration: G_screen_borderedHeight * 10.5 - 60,
 				triggerHook: 'onLeave',
-				offset: VG_screen_borderedHeight * 0.4
+				offset: G_screen_borderedHeight * 0.4
 			})
 			.setTween(sideTriTimeLine)
 			//.addIndicators({name: 'established sideTri'})//to help with debugging
-			.addTo(VG_ctrl);
+			.addTo(G_ctrl);
 
-			VG_allScenes.push(sideTriScene);
+			G_allScenes.push(sideTriScene);
 		}
 
 		infoPlayer(module, mainTimeLine, mainScene, {
@@ -583,7 +583,7 @@ jQuery(function($){
 		var stageHeight = stage.height();
 		var counterUpper = $(id('countUp'));
 
-		var counter = new countUp(Span('countUp'), 0, 18, 0, 1.5, VG_countUpOptions);
+		var counter = new countUp(Span('countUp'), 0, 18, 0, 1.5, G_countUpOptions);
 
 		counterUpper.text(18);
 
@@ -610,11 +610,11 @@ jQuery(function($){
 		var mainScene = new ScrollMagic.Scene({
 			duration: stageHeight * 1.5,
 			triggerElement: Hook('stage'),
-			offset: -VG_headerHeight,
+			offset: -G_header_height,
 			triggerHook: 'onLeave',
 		})
 		//.addIndicators({name: 'established'})//to help with debugging
-		.addTo(VG_ctrl);
+		.addTo(G_ctrl);
 
 		infoPlayer(module, mainTimeLine, mainScene, {
 			timeScale: 1.2,
@@ -685,7 +685,7 @@ jQuery(function($){
 			var element = $(id(name));
 			var origValue = parseInt(element.attr('data-value'));
 
-			counter[direction] = new countUp(Span(name), 0, origValue, 0, 1.5, VG_countUpOptions);
+			counter[direction] = new countUp(Span(name), 0, origValue, 0, 1.5, G_countUpOptions);
 			element.text(commafy(origValue));
 		});
 
@@ -748,7 +748,7 @@ jQuery(function($){
 		var mainScene = new ScrollMagic.Scene({
 			duration: stageHeight * 2,
 			triggerElement: Hook('stage'),
-			offset: -VG_headerHeight,
+			offset: -G_header_height,
 			triggerHook: 'onLeave',
 		})
 		.on('end', function(){
@@ -757,7 +757,7 @@ jQuery(function($){
 			$(Hook('ball')).not(Class('ball_isAnimating')).modAddClass('ball_isAnimating');
 		})
 		//.addIndicators({name: 'established'})//to help with debugging
-		.addTo(VG_ctrl);
+		.addTo(G_ctrl);
 
 		infoPlayer(module, mainTimeLine, mainScene, {
 			timeScale: 1.4,
@@ -823,7 +823,7 @@ jQuery(function($){
 				.attr('id', id)
 				.text(commafy(origValue));
 
-			counter.push(new countUp(id, 0, origValue, 0, 1, VG_countUpOptions));
+			counter.push(new countUp(id, 0, origValue, 0, 1, G_countUpOptions));
 		});
 
 		var mainTween =  new TimelineMax();
@@ -876,12 +876,12 @@ jQuery(function($){
 		var mainScene = new ScrollMagic.Scene({
 			duration: stageHeight * 3.2,
 			triggerElement: Hook('stage'),
-			offset: -VG_headerHeight,
+			offset: -G_header_height,
 			triggerHook: 'onLeave',
 		})
-		.addTo(VG_ctrl);
+		.addTo(G_ctrl);
 
-		VG_allScenes.push(mainScene);
+		G_allScenes.push(mainScene);
 
 		infoPlayer(module, mainTimeLine, mainScene, {
 			onReset: function(){
@@ -941,7 +941,7 @@ jQuery(function($){
 
 				var decimals = (realIndex == 1) ? 1 : 0;
 
-				counter.push(new countUp(id, 0, origValue, decimals, 2, VG_countUpOptions));
+				counter.push(new countUp(id, 0, origValue, decimals, 2, G_countUpOptions));
 
 				realIndex ++;
 			}
@@ -1006,10 +1006,10 @@ jQuery(function($){
 		var mainScene = new ScrollMagic.Scene({
 			duration: stageHeight * duration + highlightDelay,
 			triggerElement: Hook('stage'),
-			offset: -VG_headerHeight,
+			offset: -G_header_height,
 			triggerHook: 'onLeave',
 		})
-		.addTo(VG_ctrl);
+		.addTo(G_ctrl);
 
 		infoPlayer(module, mainTimeLine, mainScene, {
 			onReset: function(){
@@ -1061,7 +1061,7 @@ jQuery(function($){
 
 			$(this).attr('id', id);
 
-			counter.push(new countUp(id, 0, origValue, 0, 1.5, VG_countUpOptions));
+			counter.push(new countUp(id, 0, origValue, 0, 1.5, G_countUpOptions));
 		});
 
 		var mainTween =  new TimelineMax();
@@ -1164,7 +1164,7 @@ jQuery(function($){
 		var mainScene = new ScrollMagic.Scene({
 			duration: stageHeight * 2.3,
 			triggerElement: Hook('stage'),
-			offset: -VG_headerHeight,
+			offset: -G_header_height,
 			triggerHook: 'onLeave',
 		})
 		.on('leave', function(scroll){
@@ -1172,7 +1172,7 @@ jQuery(function($){
 				$(Hook('text')).slideUp();
 			}
 		})
-		.addTo(VG_ctrl);
+		.addTo(G_ctrl);
 
 		infoPlayer(module, mainTimeLine, mainScene, {
 			timeScale: 1.2
@@ -1286,11 +1286,11 @@ jQuery(function($){
 		var mainScene = new ScrollMagic.Scene({
 			duration: stageHeight * 4.25,
 			triggerElement: Hook('stage'),
-			offset: -VG_headerHeight,
+			offset: -G_header_height,
 			triggerHook: 'onLeave',
 		})
 		//.addIndicators({name: 'established'})//to help with debugging
-		.addTo(VG_ctrl);
+		.addTo(G_ctrl);
 
 		infoPlayer(module, mainTimeLine, mainScene);
 
@@ -1330,8 +1330,8 @@ jQuery(function($){
 
 			var triScene = new ScrollMagic.Scene(sceneSettings)
 			.setTween(triTimeLine)
-			.addTo(VG_ctrl);
-			VG_allScenes.push(triScene);
+			.addTo(G_ctrl);
+			G_allScenes.push(triScene);
 		//}
 	}
 });
@@ -1352,17 +1352,17 @@ moduleTargets[module] = {
 jQuery(function($){
 	module = module_autoScroll;
 
-	var destination = $(Hook('reference')).outerHeight() - VG_screen_height + 85;
+	var destination = $(Hook('reference')).outerHeight() - G_screen_height + 85;
 
 	var playPauseBtn = $(Hook('playPause'));
 
 	function addReset(){
 		module = module_autoScroll;
-		//console.log(VG_autoScroll__isPlaying);
+		//console.log(G_autoScroll__isPlaying);
 		playPauseBtn
 			.modRemoveClass('isPlaying')
 			.modAddClass('showsReset');
-		VG_autoScroll__isPlaying = false;
+		G_autoScroll__isPlaying = false;
 	}
 
 	playPauseBtn.click(function(e){
@@ -1372,20 +1372,20 @@ jQuery(function($){
 		var maxDuration = 60;//seconds
 
 		//reduces the duration the closer you get to the bottom of the page so animation speed stays consistent
-		var duration = (destination - VG_scrollPos) / destination * maxDuration;
+		var duration = (destination - G_scrollPos) / destination * maxDuration;
 
 	//realised I actually want to target all instances
 
-		if (VG_autoScroll__isPlaying) {
+		if (G_autoScroll__isPlaying) {
 			playPauseBtn.modRemoveClass('isPlaying');
 			$('html, body').stop();
-			VG_autoScroll__isPlaying = false;
+			G_autoScroll__isPlaying = false;
 		} else {
 			if (playPauseBtn.modHasClass('showsReset')){
 				scrollTo(0, {duration: 0});//instant scroll (not animated)
 				playPauseBtn.modRemoveClass('showsReset');
 			} else {
-				VG_autoScroll__isPlaying = true;
+				G_autoScroll__isPlaying = true;
 				playPauseBtn.modAddClass('isPlaying');
 
 				scrollTo(destination, {
@@ -1404,9 +1404,9 @@ jQuery(function($){
 		module = module_autoScroll;
 		playPauseBtn.modRemoveClass('isPlaying');
 		//$('html, body').stop(); //handeled in scrollToMe JS
-		VG_autoScroll__isPlaying = false;
+		G_autoScroll__isPlaying = false;
 
-		if (VG_scrollPos >= destination - 100){
+		if (G_scrollPos >= destination - 100){
 			addReset();
 		} else {
 			playPauseBtn.modRemoveClass('showsReset');
@@ -1464,8 +1464,8 @@ jQuery(function($){
 		})
 		.setTween(bgTimeLine)
 		//.addIndicators({name: 'homeBGassets__bg'})//to help with debugging
-		.addTo(VG_ctrl);
-		VG_allScenes.push(bgScene);
+		.addTo(G_ctrl);
+		G_allScenes.push(bgScene);
 
 
 //CORNER
@@ -1492,8 +1492,8 @@ jQuery(function($){
 		})
 		.setTween(cornerTimeLine)
 		//.addIndicators({name: 'homeBGassets__bg'})//to help with debugging
-		.addTo(VG_ctrl);
-		VG_allScenes.push(cornerScene);
+		.addTo(G_ctrl);
+		G_allScenes.push(cornerScene);
 
 	}
 });

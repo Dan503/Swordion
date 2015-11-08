@@ -1,6 +1,6 @@
 //refresh all scenes
 function refreshAllScenes() {
-	$.each(VG_allScenes, function(i, scene){
+	$.each(G_allScenes, function(i, scene){
 		scene.refresh();
 	});
 }

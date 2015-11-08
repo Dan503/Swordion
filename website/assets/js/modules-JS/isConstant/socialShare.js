@@ -59,7 +59,7 @@ if ($(Hook('visScrollTrigger')).length) {
 			$(Hook('visShifter')).modRemoveClass('isHidden_scroll').fadeIn();
 		}
 	})
-	.addTo(VG_ctrl);
+	.addTo(G_ctrl);
 
 }
 

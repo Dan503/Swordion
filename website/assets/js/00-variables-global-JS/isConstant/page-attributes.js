@@ -1,4 +1,4 @@
 
-var VG_siteTitle = $('title').text().split('| ').pop();
+var G_siteTitle = $('title').text().split('| ').pop();
 
-var VG_pageTitle = $('title').text().split(' |')[0];
+var G_pageTitle = $('title').text().split(' |')[0];

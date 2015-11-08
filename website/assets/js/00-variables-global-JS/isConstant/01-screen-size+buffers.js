@@ -10,39 +10,36 @@ function getPageHeight(){
 	return $('[data-jshook*="siteContainer"]').outerHeight();
 }
 
-var VG_screen_width = $(window).width();
-var VG_screen_height = $(window).height();
-var VG_page_height = getPageHeight();
-var VG_headerHeight = $('.progressBar').height() + $('.headerTools__title').height();
-
-var VG_screen_borderedHeight = VG_screen_height - 40;
-
+var G_screen_width = $(window).width();
+var G_screen_height = $(window).height();
+var G_page_height = getPageHeight();
+var G_header_height = $('.progressBar').height() + $('.headerTools__title').height();
 
 //determines how far down the screen animations start (0.66 = 66% down the screen)
-var VG_buffer_higher = parseInt(VG_screen_height * 0.25);
-var VG_buffer_high = parseInt(VG_screen_height * 0.33);
-var VG_buffer_low = parseInt(VG_screen_height * 0.66);
-var VG_buffer_lower = parseInt(VG_screen_height * 0.75);
+var G_buffer_higher = parseInt(G_screen_height * 0.25);
+var G_buffer_high = parseInt(G_screen_height * 0.33);
+var G_buffer_low = parseInt(G_screen_height * 0.66);
+var G_buffer_lower = parseInt(G_screen_height * 0.75);
 
 //Holds functions that fire on resize/scroll
-//use VG_onResize.push(function(){...}); anywhere to fire functions after user has resized screen
-//use VG_onScrollStop.push(function(){...}); anywhere to fire functions at end of scroll
-var VG_onResize = [];
-var VG_onScrollStop = [];
+//use G_onResize.push(function(){...}); anywhere to fire functions after user has resized screen
+//use G_onScrollStop.push(function(){...}); anywhere to fire functions at end of scroll
+var G_onResize = [];
+var G_onScrollStop = [];
 
 $(window).resize(function(){
-	VG_screen_width = $(window).width();
-	VG_screen_height = $(window).height();
-	VG_page_height = $('[data-jshook*="siteContainer"]').outerHeight();
+	G_screen_width = $(window).width();
+	G_screen_height = $(window).height();
+	G_page_height = $('[data-jshook*="siteContainer"]').outerHeight();
 
-	VG_buffer_higher = parseInt(VG_screen_height * 0.25);
-	VG_buffer_high = parseInt(VG_screen_height * 0.33);
-	VG_buffer_low = parseInt(VG_screen_height * 0.66);
-	VG_buffer_lower = parseInt(VG_screen_height * 0.75);
+	G_buffer_higher = parseInt(G_screen_height * 0.25);
+	G_buffer_high = parseInt(G_screen_height * 0.33);
+	G_buffer_low = parseInt(G_screen_height * 0.66);
+	G_buffer_lower = parseInt(G_screen_height * 0.75);
 
 	clearTimeout(window.resizedFinished);
     window.resizedFinished = setTimeout(function(i, resizeFunction){
-    	$.each(VG_onResize, function(){
+    	$.each(G_onResize, function(){
     		//calls functions that fire after user resizes the screen
 			if (typeof resizeFunction !== 'undefined') {
 	    		resizeFunction.call();
@@ -52,15 +49,15 @@ $(window).resize(function(){
 
 });
 
-var VG_scrollPos = $(document).scrollTop();
+var G_scrollPos = $(document).scrollTop();
 
 var willChangeElement = $('.TK-willChange');
 var willChangeClass = 'TK-willChange--isApplied-JS';
 
 $(window).scroll(function(e){
-    VG_scrollPos = $(document).scrollTop();
+    G_scrollPos = $(document).scrollTop();
 
-	if (VG_scrollPos < (VG_screen_height + 300)) {
+	if (G_scrollPos < (G_screen_height + 300)) {
 		willChangeElement.not('.'+willChangeClass).addClass(willChangeClass);
 	} else {
 		willChangeElement.filter('.'+willChangeClass).removeClass(willChangeClass);
@@ -68,7 +65,7 @@ $(window).scroll(function(e){
 
 	clearTimeout(window.scrolling);
     window.scrolling = setTimeout(function(){
-    	$.each(VG_onScrollStop, function(i, scrollStopFunction){
+    	$.each(G_onScrollStop, function(i, scrollStopFunction){
     		//calls functions that fire after user has finished scrolling
 			if (typeof scrollStopFunction !== 'undefined') {
 	    		scrollStopFunction.call();
@@ -79,6 +76,6 @@ $(window).scroll(function(e){
 
 });
 
-VG_onScrollStop.push(function(){
+G_onScrollStop.push(function(){
 	willChangeElement.filter('.'+willChangeClass).removeClass(willChangeClass);
 });

@@ -1,4 +1,4 @@
-var VG_countUpOptions = {
+var G_countUpOptions = {
 	useEasing : true,
 	useGrouping : true,
 	separator : ',',

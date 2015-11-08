@@ -9,7 +9,7 @@ function scrollTo(targetScrollPos, settings) {
 	});
 
 	var finalScrollPos = targetScrollPos == 'max' ?
-			VG_page_height - VG_screen_height :
+			G_page_height - G_screen_height :
 			targetScrollPos;
 
 	$('html, body').animate(

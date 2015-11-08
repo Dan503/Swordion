@@ -21,17 +21,3 @@ $.fn.fadeOrSlide = function(method, inOrOut) {
 	};
 	functionality[method][inOrOut]();
 }
-
-//will switch the visible text when it gets up to it in the time line
-function textSwap(allText, text1, text2, method){
-	method = defaultTo(method, 'slide')
-
-	if (text1.is(':hidden')) {
-		allText.not(text1).fadeOrSlide(method,'out');
-		text1.fadeOrSlide(method,'in');
-
-	} else if (text2.is(':hidden')) {
-		allText.not(text2).fadeOrSlide(method,'out');
-		text2.fadeOrSlide(method,'in');
-	}
-}

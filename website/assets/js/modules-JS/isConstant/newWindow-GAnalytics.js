@@ -80,7 +80,7 @@ $('a:not([href^="javascript"])').each(function(i){
 			$.each(file_types, function(i){
 				var extension = file_types[i];
 				if (self.hasClass(classStart+extension+'-JS')) {
-					trackEvent('Download - ' + extension, 'click', VG_pageTitle + ' | ' + text + ' | ' + url);
+					trackEvent('Download - ' + extension, 'click', G_pageTitle + ' | ' + text + ' | ' + url);
 				}
 			});
 		});
@@ -88,17 +88,17 @@ $('a:not([href^="javascript"])').each(function(i){
 		//Google analytics external link tracking
 		$('body').on('click','.externalLink-JS', function(){
 			var url = $(this).attr('href');
-			trackEvent('Outbound', 'click', VG_pageTitle + ' | ' + url);
+			trackEvent('Outbound', 'click', G_pageTitle + ' | ' + url);
 		});
 
 		//Google analytics external link tracking
 		$('body').on('click','.podcastLink-JS', function(){
 			var url = $(this).attr('href');
-			trackEvent('Podcast', 'click', VG_pageTitle + ' | ' + url);
+			trackEvent('Podcast', 'click', G_pageTitle + ' | ' + url);
 		});
 
 		$('body').on('click','.emailShare-JS', function(){
-			trackEvent('Email share', 'click', VG_pageTitle);
+			trackEvent('Email share', 'click', G_pageTitle);
 		});
 
 		//Share link functionality and Google analytics tracking
@@ -112,19 +112,19 @@ $('a:not([href^="javascript"])').each(function(i){
 				var window_name = "Share on Twitter";
 				var width = 600;
 				var height = 260;
-				trackEvent('Twitter share', 'click', VG_pageTitle);
+				trackEvent('Twitter share', 'click', G_pageTitle);
 
 			} else if ($(this).hasClass(classStart + 'linkedIn-JS')){
 				var window_name = "Share on LinkedIn"
 				var width = 600;
 				var height = 400;
-				trackEvent('LinkedIn share', 'click', VG_pageTitle);
+				trackEvent('LinkedIn share', 'click', G_pageTitle);
 
 			} else if ($(this).hasClass(classStart + 'facebook-JS')){
 				var window_name = "Share on Facebook"
 				var width = 600;
 				var height = 400;
-				trackEvent('Facebook share', 'click', VG_pageTitle);
+				trackEvent('Facebook share', 'click', G_pageTitle);
 			}
 
 		    // Fixes dual-screen position                         Most browsers      Firefox

@@ -64,6 +64,6 @@ if ($(Hook('scrollTrigger')).length){
 		$(Class('stickySideNav_open')).modRemoveClass('stickySideNav_open');
 	})
 	//.addIndicators({name: 'header transform'})//to help with debugging
-	.addTo(VG_ctrl);
+	.addTo(G_ctrl);
 }
 

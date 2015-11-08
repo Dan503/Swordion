@@ -29,5 +29,5 @@ $(Hook('popins')).each(function(){
 
 		//_this.removeStages(Span('isActivated'));
 	})
-	.addTo(VG_ctrl);
+	.addTo(G_ctrl);
 });

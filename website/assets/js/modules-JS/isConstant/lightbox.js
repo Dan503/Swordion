@@ -1,15 +1,15 @@
 
-var savedScrollPos = VG_scrollPos;
+var savedScrollPos = G_scrollPos;
 
 $(document)
 .on('opening', '[data-remodal-id]', function(){
-	savedScrollPos = VG_scrollPos;
+	savedScrollPos = G_scrollPos;
 })
 .on('closing', '[data-remodal-id]', function (e) {
 	screenFade('in',250);
 	$('body').css({
 		position: 'relative',
-		top: -VG_scrollPos,
+		top: -G_scrollPos,
 	});
 	scrollTo(savedScrollPos, {duration: 0});
 })
