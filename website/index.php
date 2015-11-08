@@ -48,7 +48,7 @@ include $_SERVER['DOCUMENT_ROOT'].'/includes/02-base-PHP/structure-PHP/body.php'
 	<div class="demo__div">
 		<p><i class="sprite-pdf"></i>retina pdf sprite class</p>
 		<p><i class="sprite-nonRetina-podcast"></i>standard podcast sprite class</p>
-		<p><i class="demo-autoSprite"></i>Sprite added using mixin</p>
+		<p><i class="demo__autoSprite"></i>Sprite added using mixin</p>
 	</div>
 
 	<div class="demo__div">

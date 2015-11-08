@@ -123,7 +123,6 @@ module.exports = function (grunt) {
 	require("jit-grunt")(grunt, {
 		//for any grunt plugins that aren't working without grunt.loadNpmTasks("grunt_plugin_name");, list them here:
 		// task_name: "grunt_plugin_name",
-		cmq: "grunt-combine-media-queries",
 		watch: "grunt-contrib-watch",
 		sprite: "grunt-spritesmith",
 	});
@@ -392,6 +391,15 @@ module.exports = function (grunt) {
 				],
 				options: { spawn: false }
 			},
+			images: {
+				files: ['website/assets/images/**'],
+				tasks: [
+					'image_resize',
+					'sprite',
+					//"sync:images" //copy js to server
+				],
+				options: { spawn: false }
+			},
 			scss: {
 				files: ["website/assets/sass/**/*.scss"],
 				tasks: [
@@ -441,6 +449,9 @@ module.exports = function (grunt) {
 
 	//list the tasks in the order you want them done in
 	grunt.registerTask("default", [
+		'image_resize',
+		'sprite',
+
 		"concat",//merge JS files
 		"uglify",//minify JS
 		"sass_globbing", //merge SASS files
