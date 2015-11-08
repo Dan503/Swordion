@@ -114,13 +114,6 @@
 		outline-color: #000;
 		border-color: #000;
 
-//grid__cell--forceWidth-# styling for elements that must always be a certain width at ALL screen sizes
-		@each $class, $width in $forcedWidths {
-			&--forceWidth-#{$class} {
-				@include MG-flexForceWidth($width);
-			}
-		}
-
 		&--vAlign {
 			@include MG-prefix(align-self, center, $flexPrefixes);
 		}
@@ -128,26 +121,8 @@
 
 //base grid__inner styling
 		&__inner {
-			border: 0 solid #000;
+			//
 		}
-
-//grid--border-# styling
-	@each $border in $cellBorders {
-		&--border-#{$border} {
-			$border: $border * 1px;
-			border-width: $border 0 0 $border;
-			> .grid__cell {
-				border-width: 0 $border $border 0;
-			}
-			&[class*="grid--gutter-"] {
-				> .grid__cell {
-					> .grid__inner {
-						border-width: $border;
-					}
-				}
-			}
-		}
-	}
 
 //grid--gutter-# styling
 	&[class*="grid--gutter-"] {
@@ -183,6 +158,7 @@
 		}
 	}
 	@mixin M-grid-delayedGutter($gutter) {
+		//only apply the outer horizontal gutters if the screen size is smaller than the page width + gutter size
 		&.grid--outerGutters-delayedHorizontal {
 			@include MG-mq(max, (bp('page') + $gutter)){
 				margin-left: 0;
@@ -206,20 +182,6 @@
 			} @else {
 				@include M-grid-cellGutter($gutter);
 				@include M-grid-delayedGutter($gutter);
-			}
-		}
-	}
-
-//grid--padding-# styling
-	@each $pad in $cellPadding {
-		&--padding-#{$pad} {
-			> .grid__cell {
-				padding: $pad * 1px;
-			}
-			&.grid--hasInners {
-				> .grid__cell > .grid__inner {
-					padding: $pad * 1px;
-				}
 			}
 		}
 	}

@@ -5,44 +5,29 @@
 //	the grid class system
 //================================================*/
 
-//You can alter the available grid gutter sizes here
-//usage: class="grid grid--gutter-blocks"
-$cellGutters: (
-	'blocks' : 20px,
-	'onlineSafteyEnvolopes': 8px,
-);
-
+//IE8 can't do transparent borders.
+//This defines what the default color for gutters is in IE.
 $gutter-ieFallback: $CG-bodyInnerBG;
 
-//You can alter the available grid border thicknesses here
-//note that borders require grid-inner elements inside grid-cell elements
-//usage: class="grid grid--border-2 grid--hasInners"
-$cellBorders: 1, 2, 3, 4, 5;
-
-//You can alter the available grid padding sizes here
-//usage: class="grid grid--padding-20"
-$cellPadding: 5, 10, 15, 20, 25, 30;
-
-//available fixed widths for grid-cell--fixedWidth-# classes 
-$forcedWidths:(
-	'highlightLabel': 80px,
+//You can alter the available grid gutter sizes here
+//usage: class="grid grid--gutter-moduleName"
+$cellGutters: (
+	'moduleName' : 20px,
 );
 
 //Set the points at which columns change widths
-//@class [string]: The modifier class added to the grid class eg. .grid--halves
-//@breaks [list OR false booleen]: a list of screensizes at which point the column width changes
-	//@breaks position 1: the screen size the new width is applied to
-	//@breaks position 2: the new width of the columns at the specified screen size
+//position 1: the screen size the new width is applied to
+//position 2: the new width of the columns at the specified screen size
 $gridBreakPoints: (
 	(
 	//*1 column grid*/
 		false
 	), (
 	//*2 column grid*/
-		$BPG-sidebar--fullWidth 100%,//* At the "mobile" screen size, make the columns 100% width */
+		bp('mobile') 100%,//* At the "mobile" screen size, make the columns 100% width */
 	), (
 	//*3 column grid*/
-		$BPG-sidebar--fullWidth 100%,
+		bp('mobile') 100%,
 	), (
 	//*4 column grid*/
 		bp('tablet') 50%,
