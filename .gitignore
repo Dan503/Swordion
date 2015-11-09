@@ -16,7 +16,7 @@ grunt-first-time.txt
 .grunt/ftpush/uat.json
 website.zip
 website/assets/js/ZZ-merged-JS/
-assets/images/auto-sprite/HD-retina-autosprite.png
-assets/images/auto-sprite/LD-nonRetina-autosprite.png
-assets/sass/00-config/sprite-sheets/HD-retina-sprites.scss
-assets/sass/00-config/sprite-sheets/LD-nonRetina-sprites.scss
+website/assets/images/auto-sprite/HD-retina-autosprite.png
+website/assets/images/auto-sprite/LD-nonRetina-autosprite.png
+website/assets/sass/00-config/sprite-sheets/HD-retina-sprites.scss
+website/assets/sass/00-config/sprite-sheets/LD-nonRetina-sprites.scss

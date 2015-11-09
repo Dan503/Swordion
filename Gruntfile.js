@@ -171,9 +171,9 @@ module.exports = function (grunt) {
 		sprite:{
 			//Generates the double sized version of the retina sprite
 	        retina: {
-	            src: 'assets/images/auto-sprite/HD-retina-sourcefiles/*.png',
-	            dest: 'assets/images/auto-sprite/HD-retina-autosprite.png',
-	            destCss: 'assets/sass/00-config/sprite-sheets/HD-retina-sprites.scss',
+	            src: 'website/assets/images/auto-sprite/HD-retina-sourcefiles/*.png',
+	            dest: 'website/assets/images/auto-sprite/HD-retina-autosprite.png',
+	            destCss: 'website/assets/sass/00-config/sprite-sheets/HD-retina-sprites.scss',
 	            cssFormat: 'scss_maps',
 	            imgPath: '../images/auto-sprite/HD-retina-autosprite.png',
 	            padding: 4,
@@ -185,9 +185,9 @@ module.exports = function (grunt) {
 			//Generates a normal sized sprite that is used on both retina and non retina screens
 			//If you do not have a double sized version for an image, use this.
 			nonRetina: {
-	            src: 'assets/images/auto-sprite/LD-nonRetina-sourceFiles/*.png',
-	            dest: 'assets/images/auto-sprite/LD-nonRetina-autosprite.png',
-	            destCss: 'assets/sass/00-config/sprite-sheets/LD-nonRetina-sprites.scss',
+	            src: 'website/assets/images/auto-sprite/LD-nonRetina-sourceFiles/*.png',
+	            dest: 'website/assets/images/auto-sprite/LD-nonRetina-autosprite.png',
+	            destCss: 'website/assets/sass/00-config/sprite-sheets/LD-nonRetina-sprites.scss',
 	            cssFormat: 'scss_maps',
 	            imgPath: '../images/auto-sprite/LD-nonRetina-autosprite.png',
 	            padding: 2,
