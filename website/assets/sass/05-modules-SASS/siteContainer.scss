@@ -8,7 +8,6 @@ $MQ-module--disable-overflow: (max, bp('page'));
 //A div that wraps around the entire site
 .siteContainer {
 	position: relative;
-	border: $VG-siteContainer-borderWidth solid $CG-bodyBG;
 	background-color: $C-inner-bg;
 
 	&__inner {

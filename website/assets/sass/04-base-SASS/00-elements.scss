@@ -66,11 +66,6 @@ nav li { margin-top: 0; }
 html {
 	//Makes it easier to alter font size with rem's. 1.3rem = 13px
 	font-size: 62.5%;
-
-	//prevents the user from scrolling the page while the menu is open
-	&.#{$VG-headerTools-menuOpenClass} {
-		overflow: hidden;
-	}
 }
 
 //Sets default font size for the site to 1.4rem with a 14px backup.

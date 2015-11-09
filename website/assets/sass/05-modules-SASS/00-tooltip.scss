@@ -135,11 +135,3 @@ $module: 'tooltip';
 		}
 	}
 }
-
-.#{$VG-headerTools-transformClass} {
-	.#{$module} {
-		&__text {
-			margin-top: 25px;
-		}
-	}
-}
