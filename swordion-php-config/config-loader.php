@@ -72,8 +72,10 @@
 		}
 	}
 
+
+
 	//Couldn't do a basic globFiles() command because I'd have to move variables to the global scope
-	$configFiles = globFiles('/includes/02-base-PHP/config-PHP/', 'array');
+	$configFiles = globFiles('/swordion-php-config/config-PHP/', 'array');
 	foreach ($configFiles as $configItem){
 	    include $configItem;
 	}
