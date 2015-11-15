@@ -51,22 +51,23 @@
 		<link rel="shortcut icon" href="/theme/assets/images/favicon.ico" />
         <link rel="stylesheet" href="/theme/assets/css/style.css">
 
-	<!--[if gt IE 8]><!-->
-		<link rel="stylesheet" type="text/css" href="/theme/assets/css/style.css" />
-	<?php /* Minified CSS (For use during production phase)
-		<link rel="stylesheet" type="text/css" href="/theme/assets/css/style.min.css" />
-	*/?>
-	<!--<![endif]-->
+	<?php
+		$min = $environment == 'development'? '' : '.min';
 
-	<!--[if lt IE 9]>
-		<link rel="stylesheet" type="text/css" href="/theme/assets/css/style-lt-ie9.css" />
-	<![endif]-->
+        //loads the custom CSS files based on the browser
+		$CSS_files = array(
+			'modern',
+			'ie9',
+			'ie8'
+		);
+		foreach ($CSS_files as $browser) {
+			echo '
+			'.$loadIn[$browser]['before'].'
+				<link rel="stylesheet" type="text/css" href="/theme/assets/css/'.$browser.$min.'.css" />
+			'.$loadIn[$browser]['after'];
+		}
+ 	?>
 
-	<?php /* Minified CSS (For use during production phase)
-	<!--[if lt IE 9]>
-		<link rel="stylesheet" type="text/css" href="/theme/assets/css/style-lt-ie9.min.css" />
-	<![endif]-->
-	*/ ?>
 
 	<!--[if lt IE 9]>
 		<script src="http://html5shiv.googlecode.com/svn/trunk/_html5.js"></script>
@@ -96,12 +97,22 @@
 		<a href="#start_primary_nav" accesskey="3" class="skipLink">Skip to Main Navigation</a>
 		<?php include $bp->get_page_template(); ?>
 
-	<!-- jQuery loader (make sure it's the latest version when starting) -->
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-	<script>window.jQuery || document.write('<script src="/assets/js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
+	<?php
+        //Loads the main JS files
+		$JSfiles = array(
+			'isConstant' => $loadIn['all'],
+			'isModern' => $loadIn['modern'],
+			'isLegacy' => $loadIn['legacy'],
+		);
+		foreach ($JSfiles as $fileName => $extras){
+			echo '
+			'.$extras['before'].
+				'<script src="/theme/assets/js/ZZ-merged-JS/'.$fileName.$min.'.js"></script>'
+			.$extras['after'].'
+			';
+		}
 
-		<script type="text/javascript">var js_root = "/theme/assets/js/";</script>
-		<script src="/theme/assets/js/merged.js"></script>
+	?>
 
 	<!--[if lt IE 7 ]>
 		<script src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.2/CFInstall.min.js"></script>
