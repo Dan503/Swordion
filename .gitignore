@@ -1,4 +1,22 @@
 .sass-cache/**/*
 node_modules/**/*
-*.map
-*.css
+theme/assets/images/auto-sprite/*.png
+theme/assets/css/**/*.css
+theme/assets/css/**/*.map
+grunt-start-up.txt
+theme/assets/js/*.min.js
+theme/assets/js/merged.js
+!theme/assets/js/merged.min.js
+theme/assets/sass/import-maps/*.scss
+00-creating new git.txt
+theme/assets/sass/01-config/sprite-sheets/HD-retina-sprites.scss
+theme/assets/sass/01-config/sprite-sheets/LD-nonRetina-sprites.scss
+.ftppass
+grunt-first-time.txt
+.grunt/ftpush/uat.json
+theme.zip
+theme/assets/js/ZZ-merged-JS/
+theme/assets/images/auto-sprite/HD-retina-autosprite.png
+theme/assets/images/auto-sprite/LD-nonRetina-autosprite.png
+theme/assets/sass/00-config/sprite-sheets/HD-retina-sprites.scss
+theme/assets/sass/00-config/sprite-sheets/LD-nonRetina-sprites.scss
