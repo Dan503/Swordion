@@ -1,0 +1,147 @@
+﻿/*================================================*\
+	SPRITE MIXINS
+\*================================================*/
+//	Holds all the mixins you need to access
+//	sprites easily
+//=================================================
+
+//check if the sprite sheet is retina compatible (has a high and low definition version or not)
+@function isRetina($sheet_name){
+	@return map-has-key(map-get($spritesheets, retina-sheets), $sheet_name);
+}
+
+@function get-sheet($sheet_name, $version: hd){
+
+	@if (isRetina($sheet_name)){
+		//get either the hd spritesheet variable or the path to the low-def spritesheet
+		@return map-deep-get($spritesheets, retina-sheets $sheet_name $version);
+	}
+	@else {
+		//get the nonRetina definition sprite sheet variable
+		@return map-deep-get($spritesheets, nonRetina-sheets $sheet_name);
+	}
+}
+
+@function sprite-width($sprite, $retina: true) {
+
+	$sprite_width: map-get($sprite, 'width');
+	$width:  $sprite_width;
+
+	@if ($retina == true) {
+		$width: $sprite_width / 2;
+	}
+
+	@return $width;
+}
+
+@function sprite-height($sprite, $retina: true) {
+
+	$sprite_height: map-get($sprite, 'height');
+	$height:  $sprite_height;
+
+	@if ($retina == true) {
+		$height: $sprite_height / 2;
+	}
+
+	@return $height;
+}
+
+@function sprite-pos($sprite, $retina: true) {
+
+	$sprite-x: map-get($sprite, 'offset_x');
+	$sprite-y: map-get($sprite, 'offset_y');
+
+	$x: $sprite-x;
+	$y:  $sprite-y;
+
+
+	@if ($retina == true) {
+		$x: $sprite-x / 2;
+		$y:  $sprite-y / 2;
+	}
+
+	//@debug (map-get($sprite, 'name'), $retina, $x $y);
+
+	@return $x $y;
+}
+
+@mixin MG-sprite-image($sheet_name: retina) {
+
+	//if it is a retina compatible style sheet...
+	@if ( isRetina($sheet_name) ){
+		background-image: url(get-sheet($sheet_name,ld));
+		@include MG-retina {
+			background-size: (map-get(get-sheet($sheet_name), 'width') / 2)( map-get(get-sheet($sheet_name), 'height') / 2);
+			background-image: url(map-get(get-sheet($sheet_name), 'image'));
+		}
+	}
+
+	//else if it does not have a High Definition and Low Definition version...
+	@else {
+		background-image: url(map-get(get-sheet($sheet_name), 'image'));
+	}
+}
+
+//@include sprites(sheet_name);
+
+@mixin MG-sprites($sheet_name) {
+
+	$sprites: map-get(get-sheet($sheet_name),'sprites');
+	$retina: isRetina($sheet_name);
+
+	@each $sprite in $sprites {
+		$sprite-name: map-get($sprite, 'name');
+		$sprite-class: $sprite-name;
+		@if ($retina == false){
+			$sprite-class: 'nonRetina-' + $sprite-name;
+		}
+		.sprite-#{$sprite-class} {
+			background-position: sprite-pos($sprite, $retina);
+			width: sprite-width($sprite, $retina);
+			height: sprite-height($sprite, $retina);
+		}
+	}
+}
+
+//generates the sprite classes
+//format: sprite-SPRITE_SHEET_NAME-SPRITE_NAME
+	@each $name in $all_sheet_names {
+		$class: '';
+		@if (isRetina($name) == false){
+			$class: $name + '-';
+		}
+		[class*=" sprite-#{$class}"], [class^="sprite-#{$class}"] {
+			@include MG-sprite-image($name);
+			display: inline-block;
+		}
+
+		@include MG-sprites($name);
+	}
+
+//======================================================\\
+//				PRIMARY MIXIN							\\
+//======================================================\\
+
+//USAGE: @include MG-sprite($sprite_variable, SPRITE_SHEET_NAME)
+//sprite sheet name is only necessary if the sprite is not in the retina sprite-sheet
+
+@mixin MG-sprite($sprite, $sheet_name: retina) {
+	$retina: isRetina($sheet_name);
+	background-position: sprite-pos($sprite, $retina);
+	width: sprite-width($sprite, $retina);
+	height: sprite-height($sprite, $retina);
+	@include MG-sprite-image($sheet_name);
+}
+
+//if you want to use the manual spriting technique, you can use this instead
+@mixin MG-manual-sprite($BGposition: 0 0, $BGcolor: transparent, $defaultRepeat: no-repeat, $defaultImg:$manual_sprite, $defaultRetina: $manual_sprite2x){
+	background-image: $defaultImg;
+	background-repeat: $defaultRepeat;
+	background-color: $BGcolor;
+	background-position: $BGposition;
+
+  	@include MG-retina {
+		background-size: $sprite_width auto;
+		background-image: $defaultRetina;
+	}
+}

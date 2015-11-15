@@ -1,0 +1,4 @@
+﻿cd C:\Users\daniel.tonon\Documents\00 - projects\DoC\00-2015\annual-report
+npm install -g grunt-cli
+npm install
+grunt

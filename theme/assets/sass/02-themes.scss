@@ -29,7 +29,7 @@ $themes: (
 			border: 2px solid #ccc,
 		),
 		header: (
-			background: #000,
+			background: #042A38,
 			color: #E0E0E0,
 		),
 		footer: (
@@ -40,35 +40,36 @@ $themes: (
 
 	light: (
 		nav: (
-			background: #fff,
+			background: #EDFF91,
 			color: #000,
 			border: 2px dotted #000,
 		),
 		header: (
-			background: #fff,
+			background: #CBFFB6,
 			color: #000,
+			border: 2px dotted green,
 		),
 		footer: (
-			background: #fff,
+			background: #FFCDEE,
 			color: #000,
+			border: 2px dotted red,
 		),
 	),
 );
 
-@if ($main-sheet == true){
-	@each $theme, $elements in $themes {
-		body.theme-#{$theme} {
-			@each $class, $attributes in $elements {
-				.themed-#{$class} {
-					@each $attribute, $value in $attributes {
-						#{$attribute}: $value;
-					}
+@each $theme, $elements in $themes {
+	body.theme--#{$theme} {
+		@each $class, $attributes in $elements {
+			.theme__#{$class} {
+				@each $attribute, $value in $attributes {
+					#{$attribute}: $value;
 				}
 			}
 		}
 	}
 }
 
+	//optional: animate theme transitions :)
+[class^="theme__"], [class*=" theme__"]  { @include MG-animate(0.5s); }
 
-//optional: animate theme transitions :)
-[class^="themed-"] { @include M-animate; }
+

@@ -1,2 +1,3 @@
-cd C:\Users\daniel.tonon\Documents\00 - projects\00-SWORDION\swordion
+E:
+cd E:\01-Dans stuff\Projects\00 - SWORDION\swordion
 grunt
