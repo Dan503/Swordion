@@ -15,48 +15,51 @@ $mediaQuery: ();
 	$errorMessage: '"#{$range}" range requires the first width setting (#{$setting1}) to be higher than the second width setting (#{$setting2})';
 	$errorMessage--ratios: '"#{$range}" range requires the settings (#{$setting1} #{$setting2}) to be strings in this format "4/3" (width ratio / height ratio).';
 
-	@if (str-index($range, 'ratio') == null){
-		//if a standard media query
-		@if (($setting2 != 0) and ($setting1 < $setting2)){
-			//if setting 2 is higher than setting 1
-			@error $errorMessage;
-		}
-	} @else {
-		//else if it's a ratio...
-		@if ((type-of($setting1) != string) or (($setting2 != 0) and (type-of($setting2) != string))){
-			@error $errorMessage--ratios;
+	@if (type-of($range) == 'string'){
+		@if (str-index($range, 'ratio') == null){
+			//if a standard media query
+			@if (($setting2 != 0) and ($setting1 < $setting2)){
+				//if setting 2 is higher than setting 1
+				@error $errorMessage;
+			}
+		} @else {
+			//else if it's a ratio...
+			@if ((type-of($setting1) != string) or (($setting2 != 0) and (type-of($setting2) != string))){
+				@error $errorMessage--ratios;
+			}
 		}
 	}
 
 
+
 	$mediaString: map-get((
 	//*single value given*/
-		min : 'screen and (min-width: #{$setting1 + 1})',
-		max : 'screen and (max-width: #{$setting1})',
+		min : '(min-width: #{$setting1 + 1})',
+		max : '(max-width: #{$setting1})',
 
-		min-height : 'screen and (min-height: #{$setting1 + 1})',
-		max-height : 'screen and (max-height: #{$setting1})',
+		min-height : '(min-height: #{$setting1 + 1})',
+		max-height : '(max-height: #{$setting1})',
 
-		ratio : 'screen and (aspect-ratio: #{$setting1})',
-		min-ratio : 'screen and (min-aspect-ratio: #{$setting1})',
-		max-ratio : 'screen and (max-aspect-ratio: #{$setting1})',
+		ratio : '(aspect-ratio: #{$setting1})',
+		min-ratio : '(min-aspect-ratio: #{$setting1})',
+		max-ratio : '(max-aspect-ratio: #{$setting1})',
 
-		device-ratio : 'screen and (device-aspect-ratio: #{$setting1})',
-		min-device-ratio : 'screen and (min-device-aspect-ratio: #{$setting1})',
-		max-device-ratio : 'screen and (max-device-aspect-ratio: #{$setting1})',
+		device-ratio : '(device-aspect-ratio: #{$setting1})',
+		min-device-ratio : '(min-device-aspect-ratio: #{$setting1})',
+		max-device-ratio : '(max-device-aspect-ratio: #{$setting1})',
 
 	//*2 values given*/
-		inside : 'screen and (max-width: #{$setting1}) and (min-width: #{$setting2 + 1})',
-		outside : 'not screen and (max-width: #{$setting1}) and (min-width: #{$setting2 + 1})',
+		inside : '(max-width: #{$setting1}) and (min-width: #{$setting2 + 1})',
+		outside : 'not (max-width: #{$setting1}) and (min-width: #{$setting2 + 1})',
 
-		inside-height : 'screen and (max-height: #{$setting1}) and (min-height: #{$setting2 + 1})',
-		outside-height : 'not screen and (max-height: #{$setting1}) and (min-height: #{$setting2 + 1})',
+		inside-height : '(max-height: #{$setting1}) and (min-height: #{$setting2 + 1})',
+		outside-height : 'not (max-height: #{$setting1}) and (min-height: #{$setting2 + 1})',
 
-		inside-ratio : 'screen and (max-aspect-ratio: #{$setting1}) and (min-aspect-ratio: #{$setting2})',
-		outside-ratio : 'not screen and (max-aspect-ratio: #{$setting1}) and (min-aspect-ratio: #{$setting2})',
+		inside-ratio : '(max-aspect-ratio: #{$setting1}) and (min-aspect-ratio: #{$setting2})',
+		outside-ratio : 'not (max-aspect-ratio: #{$setting1}) and (min-aspect-ratio: #{$setting2})',
 
-		inside-device-ratio : 'screen and (max-device-aspect-ratio: #{$setting1}) and (min-device-aspect-ratio: #{$setting2})',
-		outside-device-ratio : 'not screen and (max-device-aspect-ratio: #{$setting1}) and (min-device-aspect-ratio: #{$setting2})',
+		inside-device-ratio : '(max-device-aspect-ratio: #{$setting1}) and (min-device-aspect-ratio: #{$setting2})',
+		outside-device-ratio : 'not (max-device-aspect-ratio: #{$setting1}) and (min-device-aspect-ratio: #{$setting2})',
 	), $range);
 
 	@return $mediaString;
@@ -77,17 +80,20 @@ $mediaQuery: ();
 	}
 }
 
-@mixin MG-mq($range, $setting1: null, $setting2: null) {
+@mixin M-mq($range, $setting1: null, $setting2: null) {
 
 	@if (length($range) > 1) {
+
+		$newRange: nth($range,1);
 
 		//Uses this functionality if using a single level MQ variable
 		//eg:
 		//$MQ-example--single: inside, bp('large'), bp('tablet'));
-		//@include MG-mq($MQ-example--single){}
-		@if (type-of(nth($range,1)) == string){
+		//@include M-mq($MQ-example--single){}
 
-			$newRange: nth($range,1);
+		@if ((type-of($newRange) == string) and $newRange != 'combine'){
+
+
 			$newWidth1: nth($range,2);
 			$newWidth2: null;
 			@if (length($range) == 3){
@@ -98,7 +104,7 @@ $mediaQuery: ();
 			@if (ieMQtest($newRange, $newWidth1, $newWidth2)) {
 				@content;
 			} @else {
-				@media #{calculateMQ($newRange, $newWidth1, $newWidth2)} {
+				@media #{'screen and ' + calculateMQ($newRange, $newWidth1, $newWidth2)} {
 					@content;
 				}
 			}
@@ -109,28 +115,49 @@ $mediaQuery: ();
 		//	(inside, bp('large'), bp('tablet')),
 		//	(min, bp('page'))
 		//;
-		//@include MG-mq($MQ-example--multiple){}
+		//@include M-mq($MQ-example--multiple){}
 		} @else {
 			$mediaQuery: ();
 
+			$isCombined: false;
+
 			@each $mqSet in $range {
 
-				$newRange: nth($mqSet,1);
-				$newWidth1: nth($mqSet,2);
-				$newWidth2: null;
-				@if (length($mqSet) == 3){
-					$newWidth2: nth($mqSet,3);
-				}
 
-				@if (($lt-ie9 == true) and (ieMQtest($newRange, $newWidth1, $newWidth2))) {
-					@content;
+				$newRange: nth($mqSet,1);
+
+				@if ($newRange == 'combine'){
+					$isCombined: true;
 				} @else {
-					$mediaQuery: append($mediaQuery, calculateMQ($newRange, $newWidth1, $newWidth2), 'comma');
+
+					$newWidth1: nth($mqSet,2);
+					$newWidth2: null;
+					@if (length($mqSet) == 3){
+						$newWidth2: nth($mqSet,3);
+					}
+
+					@if (($lt-ie9 == true) and (ieMQtest($newRange, $newWidth1, $newWidth2))) {
+						@content;
+					} @else {
+						@if($isCombined){
+							@if ($mediaQuery == ()){
+								$mediaQuery: calculateMQ($newRange, $newWidth1, $newWidth2);
+							} @else {
+								$mediaQuery: $mediaQuery + ' and ' + calculateMQ($newRange, $newWidth1, $newWidth2);
+							}
+						} @else {
+							$mediaQuery: append($mediaQuery, calculateMQ($newRange, $newWidth1, $newWidth2), 'comma');
+						}
+					}
 				}
 			}//end @each
 
-			@if ($lt-ie9 == false) {
-				@media #{$mediaQuery} {
+				@debug $isCombined;
+				//@debug $mediaQuery;
+
+			@if ($newRange != 'combine' and not $lt-ie9) {
+				@debug $mediaQuery;
+				@media #{'screen and ' + $mediaQuery} {
 					@content;
 				}
 			}
@@ -138,14 +165,15 @@ $mediaQuery: ();
 
 	//Uses this functionality if placing MQ data inline
 	//eg:
-	//@include MG-mq(inside, bp('large'), bp('tablet'));
+	//@include M-mq(inside, bp('large'), bp('tablet'));
 	} @else {
 
 		@if (ieMQtest($range, $setting1, $setting2)) {
 			@content;
 		} @else {
 			@if ($lt-ie9 == false) {
-				@media #{calculateMQ($range, $setting1, $setting2)} {
+				@debug ($range);
+				@media #{'screen and ' + calculateMQ($range, $setting1, $setting2)} {
 					@content;
 				}
 			}
@@ -155,7 +183,7 @@ $mediaQuery: ();
 }
 
 
-@mixin MG-retina {
+@mixin M-retina {
 	@if ($lt-ie9 == false) {
 	  	@media
 			only screen and (-webkit-min-device-pixel-ratio: 2),
@@ -174,38 +202,38 @@ $mediaQuery: ();
 $BP-mobile: bp('mobile');
 $BP-tablet: $BPG-sidebar--fullWidth;
 
-@mixin MG-mobileOnly {
-	@include MG-mq(min, $BP-mobile){
+@mixin M-mobileOnly {
+	@include M-mq(min, $BP-mobile){
 		display: none!important;
 	}
 }
 
-@mixin MG-tabletOnly {
-	@include MG-mq(outside, $BP-tablet, $BP-mobile){
+@mixin M-tabletOnly {
+	@include M-mq(outside, $BP-tablet, $BP-mobile){
 		display: none!important;
 	}
 }
 
-@mixin MG-desktopOnly {
-	@include MG-mq(max,$BP-tablet){
+@mixin M-desktopOnly {
+	@include M-mq(max,$BP-tablet){
 		display: none!important;
 	}
 }
 
-@mixin MG-nonMobile {
-	@include MG-mq(max, $BP-mobile){
+@mixin M-nonMobile {
+	@include M-mq(max, $BP-mobile){
 		display: none!important;
 	}
 }
 
-@mixin MG-nonTablet {
-	@include MG-mq(inside, $BP-tablet, $BP-mobile){
+@mixin M-nonTablet {
+	@include M-mq(inside, $BP-tablet, $BP-mobile){
 		display: none!important;
 	}
 }
 
-@mixin MG-nonDesktop {
-	@include MG-mq(min, $BP-tablet){
+@mixin M-nonDesktop {
+	@include M-mq(min, $BP-tablet){
 		display: none!important;
 	}
 }
@@ -214,7 +242,7 @@ $BP-tablet: $BPG-sidebar--fullWidth;
 // ******************************************************\
 // * PRINT
 // ******************************************************/
-@mixin MG-print {
+@mixin M-print {
 	@media print {
 		@content;
 	}
