@@ -4,6 +4,9 @@
 //you can then use it like this $getCurrent['title'] to get the current title text as a span
 //also contains code that sets other "get" commands related to the current item
 
+	$getDepth = count($location);
+	$GLOBALS['getDepth'] = $getDepth;
+
 	setGetCurrent();
 	$getPrev = $GLOBALS['getPrev'];
 	$getStrictPrev = $GLOBALS['getStrictPrev'];//will not go to previous parent if no previous siblings exist
