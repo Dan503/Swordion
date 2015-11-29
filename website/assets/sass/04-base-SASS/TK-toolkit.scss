@@ -123,17 +123,12 @@
 	&-inlineBlock { @include MG-inline-block; }
 
 	//Styles the element to take up the max-width of the design
-	&-pageWidth { margin:0 auto; max-width:bp('page'); width: 100%; display: block; }
+	&-pageWidth { margin:0 auto; max-width:bp('page'); min-width: bp('large'); width: 100%; display: block; }
 
 	&-weight {
 		&--light { font-weight: $light; }
 		&--normal { font-weight: $normal; }
 		&--bold { font-weight: $bold; }
-	}
-
-	&-font {
-		&--gafata { font-family: $gafata; }
-		&--openSans { font-family: $openSans; }
 	}
 
 	&-spaced {
@@ -157,5 +152,12 @@
 	&-flexValign {
 		@include MG-flex;
 		@include MG-flexValign;
+	}
+
+	&-flex {
+		display: flex!important;
+	}
+	&-flexGrow {
+		flex-grow: 1;
 	}
 }
