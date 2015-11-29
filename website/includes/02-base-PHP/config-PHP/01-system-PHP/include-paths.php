@@ -10,7 +10,7 @@
 	$include = array(
 		'root' => $includeRoot,
 
-		'modules' => $includeRoot.'01-modules-PHP/',
+		'module' => $includeRoot.'01-modules-PHP/',
 		'home' => $modulesRoot.'home-PHP/',
 		'lightbox__root' => $modulesRoot.'01-lightboxes-PHP/',
 		'lightbox' => $modulesRoot.'01-lightboxes-PHP/'.$locationString.'/',
