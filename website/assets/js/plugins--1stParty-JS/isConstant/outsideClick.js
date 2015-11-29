@@ -3,9 +3,11 @@
 
 //usage:
 /*
-	$('#element').outsideClick(function(){
-		//code you want to run when clicked outside
-	});
+	$('.target-element').outsideClick(function(event){
+	    //code that fires when user clicks outside the element
+	    //event = the click event
+	    //$(this) = the '.target-element' that is firing this function
+	}, '.excluded-element')
 */
 
 //inspired by
