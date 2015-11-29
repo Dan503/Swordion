@@ -43,9 +43,15 @@
 //	</ul>
 //================================================*/
 
-@for $i from 1 through length($gridBreakPoints) {
+$grid-bp-list: if(
+	$gridBreakPoints == false,
+	false false false false false false,
+	$gridBreakPoints
+);
+
+@for $i from 1 through length($grid-bp-list) {
 	$columnWidth: percentage(1/$i);
-	$breaks: nth($gridBreakPoints, $i);
+	$breaks: nth($grid-bp-list, $i);
 
 //sets the default grid__cell widths
 	.grid--cols-#{$i} {
@@ -53,7 +59,7 @@
 			width: $columnWidth;
 
 //.grid__cell--span-# styling
-			@if ($i > 2){
+			@if ($i > 1){
 				@for $x from 2 through $i {
 					&--span-#{$x} { width: $columnWidth * $x; }
 				}
@@ -82,6 +88,7 @@
 }
 
 
+
 //base grid styling
 .grid {
 	@extend %noDots;
@@ -91,9 +98,11 @@
 		@extend %flex;
 		@include MG-prefix(align-content, stretch, $flexPrefixes);
 
-		@include MG-mq(max,bp('page')){
-			@include MG-not('.grid--disableMQs', '.grid--noWrap'){
-				@include MG-flexWrap;
+		@if ($gridBreakPoints != false){
+			@include MG-mq(max,bp('page')){
+				@include MG-not('.grid--disableMQs', '.grid--noWrap'){
+					@include MG-flexWrap;
+				}
 			}
 		}
 	}
@@ -105,6 +114,8 @@
 
 //base grid__cell styling
 	&__cell {
+		min-width: 0%;
+		max-width: 100%;
 		display: block;
 		padding: 0;
 		margin: 0;
@@ -116,6 +127,12 @@
 
 		&--vAlign {
 			@include MG-prefix(align-self, center, $flexPrefixes);
+		}
+		&.grid { display: flex; }
+		&, * > {
+			//helps fix IE10 word-wrap bug (elements need to not be display:inline for the fix to work though)
+			max-width: 100%;
+			flex-shrink: 1;
 		}
 	}
 
@@ -186,6 +203,17 @@
 		}
 	}
 
+	&--hasInners {
+		> .grid__cell {
+			@include MG-flex;
+			@include MG-flexValign(stretch);
+			> .grid__inner {
+				display: block;
+				width: 100%;
+			}
+		}
+	}
+
 //vertical alignment code
 	@if ($gt-ie8) {
 		&--vAlign {
@@ -205,17 +233,10 @@
 		}
 	}
 
-	&--hasInners {
-		> .grid__cell {
-			@include MG-flex;
-			@include MG-flexValign(stretch);
-		}
-		&[class*="grid--padding-"] {
-			> .grid__cell {
-				padding: 0!important;
-			}
-		}
+	&--vertical {
+		flex-direction: column;
 	}
+
 
 //tabular backup for IE9 and below
 	.no-flexbox & {
@@ -224,6 +245,15 @@
 		> .grid__cell { display: table-cell; vertical-align: top; }
 		&__inner { display: block; }
 	 	&--vAlign > .grid__cell { vertical-align: middle; }
+		&--vertical {
+			display: block;
+			@extend %clearfix;
+			& > .grid__cell {
+				float: left;
+				display: block;
+				width: 100%;
+			}
+		}
 	}
 
 
