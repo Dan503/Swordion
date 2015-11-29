@@ -113,7 +113,7 @@
 
 //$thickness is half the width of the side furthest from the point.
 
-@mixin MG-tri($direction, $color: #000, $length: 12px, $thickness: $length, $thickness2: $thickness, $important: true) {
+@mixin MG-tri($direction, $color: #000, $length: 12px, $thickness: round($length * 0.57), $thickness2: $thickness, $important: true) {
 
 	@if ($important){
 		$important: !important;
