@@ -347,12 +347,12 @@ module.exports = function (grunt) {
 		ftpush: {
 			uat: {
 				auth: {
-					host: 'domain.uat.aws1.readingroom.com.au',
+					host: 'prototype.projectName.aws1.adelphi.digital',
 					port: '',
 					authKey: 'uat'
 				},
 				dest: 'web/',
-				src: '',
+				src: 'website/',
 				exclusions: [
 					'.git/**/*',
 					'**/.DS_Store',
@@ -365,7 +365,9 @@ module.exports = function (grunt) {
 					'Gruntfile.js',
 					'package.json',
 					'.ftppass',
-					//'downloads/**/*',//optional
+					'**/**/*.js',
+					'!website/assets/js/ZZ-merged-JS/*.js',
+					'**/**/*.scss'//optional
 
 					//UAT only
 				],
