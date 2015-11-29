@@ -270,23 +270,30 @@
 }
 
 @mixin MG-plus($color, $size: 10px, $thickness: 2px, $rounded: false, $pos: relative){
-	position: $pos;
-	&:before, &:after {
-		@include MG-plus-minus-base($color);
-		@if ($rounded){
-			border-radius: $thickness * 2;
+	@if ($color == 'toMinus'){
+		&:before {
+			@include MG-rotate(90);
 		}
-		@content;
-	}
-	//vertical
-	&:before{
-		height: $size;
-		width: $thickness;
-	}
-	//horizontal
-	&:after{
-		height: $thickness;
-		width: $size;
+	} @else {
+		position: $pos;
+		&:before, &:after {
+			@include MG-animate;
+			@include MG-plus-minus-base($color);
+			@if ($rounded){
+				border-radius: $thickness * 2;
+			}
+			@content;
+		}
+		//vertical
+		&:before{
+			height: $size;
+			width: $thickness;
+		}
+		//horizontal
+		&:after{
+			height: $thickness;
+			width: $size;
+		}
 	}
 }
 @mixin MG-minus($color, $size: 10px, $thickness: 2px){
