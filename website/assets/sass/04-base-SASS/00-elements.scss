@@ -49,6 +49,7 @@ strong,
 a,
 b,
 i,
+label,
 input,
 div,
 textarea,
@@ -69,37 +70,45 @@ html {
 }
 
 //Sets default font size for the site to 1.4rem with a 14px backup.
-//Setting the font-size using the mixin is the best way to set font size (and line height using line height mixin).
+//Setting the font-size using the mixin is the best way to set font size.
 body {
 	position: relative;
-	@include MG-font-size(17px);
-	line-height: 1.6;
+	@include MG-font-size(14px);
+	line-height: 1.5;
 	font-family: $openSans;
 	margin: 0;
-	font-weight: $light;
+	font-weight: $normal;
+	background-color: $CG-body-bg;
+	color: $CG-body-text;
 }
 
 
 /*HEADINGS*/
-h1, h2, h3, h4, h5, h6 { color: $CG-heading; font-weight: $normal; font-family: $gafata; line-height: 1; margin-bottom: 15px; margin-top: 30px;
+h1, h2, h3, h4, h5, h6 {
+	color: $CG-heading;
+	font-weight: $normal;
+	line-height: 1;
+	margin-bottom: 15px;
+	margin-top: 30px;
 	+ {
 		p, ul, ol { margin-top: 0; }
 	}
 }
 h1 {
-	@include MG-font-size(30px); margin-top: 50px; margin-bottom: 20px;
+	@include MG-font-size(30px);
+	margin: 0;
 	+ h2 { margin-top: 30px; }
 }
-h2 { @include MG-font-size(24px); margin-top: 50px; }
-h3 { @include MG-font-size(19px); text-transform: uppercase; }
-h4 { @include MG-font-size(16px); text-transform: uppercase; font-weight: $bold; }
+h2 { @include MG-font-size(24px); margin-top: 50px; font-weight: $semi-bold; }
+h3 { @include MG-font-size(22px); text-transform: uppercase; font-weight: $normal; }
+h4 { @include MG-font-size(18px); font-weight: $semi-bold; }
 h5 { @include MG-font-size(14px); text-transform: uppercase; font-style: italic; }
 
 p { margin: $VG-standardContent-paragraphSpacing 0 0; }
 
 a {
 	text-decoration: none;
-	color: $CG-baseLinkColor;
+	color: $CG-links;
 	@include MG-hover {
 		text-decoration: underline;
 	}
