@@ -9,8 +9,8 @@ website/assets/js/merged.js
 !website/assets/js/merged.min.js
 website/assets/sass/import-maps/*.scss
 00-creating new git.txt
-website/assets/sass/01-config/sprite-sheets/HD-retina-sprites.scss
-website/assets/sass/01-config/sprite-sheets/LD-nonRetina-sprites.scss
+website/assets/sass/01-config-SASS/sprite-sheets/HD-retina-sprites.scss
+website/assets/sass/01-config-SASS/sprite-sheets/LD-nonRetina-sprites.scss
 .ftppass
 grunt-first-time.txt
 .grunt/ftpush/uat.json
@@ -18,5 +18,3 @@ website.zip
 website/assets/js/ZZ-merged-JS/
 website/assets/images/auto-sprite/HD-retina-autosprite.png
 website/assets/images/auto-sprite/LD-nonRetina-autosprite.png
-website/assets/sass/00-config/sprite-sheets/HD-retina-sprites.scss
-website/assets/sass/00-config/sprite-sheets/LD-nonRetina-sprites.scss

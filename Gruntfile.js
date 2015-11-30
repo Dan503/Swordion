@@ -173,7 +173,7 @@ module.exports = function (grunt) {
 	        retina: {
 	            src: 'website/assets/images/auto-sprite/HD-retina-sourcefiles/*.png',
 	            dest: 'website/assets/images/auto-sprite/HD-retina-autosprite.png',
-	            destCss: 'website/assets/sass/00-config/sprite-sheets/HD-retina-sprites.scss',
+	            destCss: 'website/assets/sass/01-config-SASS/sprite-sheets/HD-retina-sprites.scss',
 	            cssFormat: 'scss_maps',
 	            imgPath: '../images/auto-sprite/HD-retina-autosprite.png',
 	            padding: 4,
@@ -187,7 +187,7 @@ module.exports = function (grunt) {
 			nonRetina: {
 	            src: 'website/assets/images/auto-sprite/LD-nonRetina-sourceFiles/*.png',
 	            dest: 'website/assets/images/auto-sprite/LD-nonRetina-autosprite.png',
-	            destCss: 'website/assets/sass/00-config/sprite-sheets/LD-nonRetina-sprites.scss',
+	            destCss: 'website/assets/sass/01-config-SASS/sprite-sheets/LD-nonRetina-sprites.scss',
 	            cssFormat: 'scss_maps',
 	            imgPath: '../images/auto-sprite/LD-nonRetina-autosprite.png',
 	            padding: 2,
