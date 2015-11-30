@@ -3,9 +3,6 @@
 ///////////////////////////////
 //changes the intensity of color change on hover
 $V-hoverModifier: 60%;
-$V-hoverModifier--large: 80%;
-$V-hoverModifier--small: 20%;
-
 
 //CG- for color-global-
 //C- for color- (modular)
@@ -20,6 +17,8 @@ $CG-prominence: (
 
 	//*If there is a color that is commonly used alongside the main color, set it as the partner color*/
 	partner: $CB-orange-light,
+	/*if set as a background color, the text inside will most likely be this color*/
+	text: #fff,
 ),
 
 //*Second most prominent color etc. */
@@ -27,25 +26,27 @@ $CG-prominence: (
 	color: $CB-blue-dark,
 	hover: $CB-blue-dark--hover,
 	partner: $CB-blue-dimmer,
+	text: #fff,
 ),
 (
 	color: $CB-blue-light,
 	hover: $CB-blue-light--hover,
 	partner: $CB-blue-mid,
+	text: #fff,
 );
 
 
-$CG-border--primary: CG-prominence(1);
-$CG-border--secondary: $CB-grey-pale;
-$CG-border--tertiery: $CB-grey-light;
+$CG-body-text: $CB-grey-dark;
+$CG-body-bg: #fff;
 
-$CG-baseLinkColor: $CB-blue-dim;
+$CG-border-1: $CB-grey-light;
+$CG-border-2: $CG-body-bg;
+$CG-border-3: #d2d2d2;
 
-$CG-heading: $CB-blue-dark;
 
-$CG-bodyText: #000;
-$CG-bodyBG: #fff;
-$CG-bodyInnerBG: $CB-grey-light;
+$CG-links: $CB-blue-dim;
+
+$CG-heading: $CG-body-text;
 
 $CG-error-text: $CB-red-dim;
 $CG-error-bg: $CB-red-pale;
@@ -54,35 +55,7 @@ $CG-error-border: $CG-error-text;
 	$CG-error-bg--hover: $CB-red-pale--hover;
 	$CG-error-border--hover: $CG-error-text;
 
-
 $CG-input: $CB-grey-dark;
 $CG-input--placeholder: #767676;//#767676 is the lightest possible grey against a white bg that passes AA for small text
 $CG-input-focus: $CB-grey-pale;
-$CG-input-border: $CG-border--primary;
-
-$CG-footNav-bg: $CB-yellow-dim;
-
-$CG-nav-text: $CB-grey-dark;
-$CG-nav-bg--hover: $CB-grey-light;
-$CG-nav-active: $CB-yellow-mid;
-
-$CG-headerIcons: $CB-grey-dark;
-
-$CG-menuBtn--hover: $CB-yellow-mid;
-
-$CG-sideNav-bg: $CB-grey-light;
-$CG-sideNav-border: #C7CED6;
-
-$CG-close-bg: $CB-orange-mid;
-$CG-close-fg: #fff;
-
-$CG-info-bg: #fff;
-$CG-info-icon: $CB-blue-dim;
-$CG-info-stroke: $CG-info-icon;
-$CG-info-bg--active: $CG-info-stroke;
-$CG-info-icon--active: $CG-info-bg;
-
-$CG-landingTri-fill: mix(#15364D, #142E42);
-$CG-landingTri-border: CG-prominence(2);
-
-$CG-homeBG-dark: #0B2232;
+$CG-input-border: $CG-border-1;
