@@ -5,12 +5,12 @@ textarea {
 	@extend %inputStyling;
 	width: 100%;
 	color: $CG-input;
-	border-radius: 0!important;
+	border-radius: 3px!important;
 	@include MG-appearanceNone;
 	@include MG-animate('fast');
 	@include MG-placeholder;
 	@include MG-hover { background-color: $CG-input-focus; }
-	&.#{$errorClass} { background-color: $CG-error-bg; border-color: $CG-error-border;
+	&.#{$VG-errorClass} { background-color: $CG-error-bg; border-color: $CG-error-border;
 		@include MG-hover {
 			background-color: $CG-error-bg--hover;
 		}

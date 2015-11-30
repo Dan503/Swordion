@@ -1,6 +1,7 @@
 ﻿//submit button resets
 
 [type="submit"] {
+	@extend .btn;
 	@extend %appearanceNone;
 	border: none;
 	cursor: pointer;

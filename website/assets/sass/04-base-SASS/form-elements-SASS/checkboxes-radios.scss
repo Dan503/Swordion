@@ -25,6 +25,7 @@ $C-checkbox-bg--hover: $CB-grey-light;
 			padding-left: 25px;
 			position: relative;
 			cursor: pointer;
+			display: inline-block;
 
 			&:before, &:after {
 				content: '';
@@ -62,7 +63,7 @@ $C-checkbox-bg--hover: $CB-grey-light;
 		}
 		&:checked + label:after { @extend %opacity-1; }
 
-		&.#{$errorClass} {
+		&.#{$VG-errorClass} {
 			& + label {
 				&:before {
 					background-color: $CG-error-bg;
@@ -95,7 +96,7 @@ $C-checkbox-bg--hover: $CB-grey-light;
 				background-color: $C-checkbox-check--hover;
 			}
 		}
-		&.#{$errorClass} {
+		&.#{$VG-errorClass} {
 			&:focus + label, & + label:hover {
 				&:after {
 					background-color: $CG-error-bg--hover;
@@ -107,7 +108,7 @@ $C-checkbox-bg--hover: $CB-grey-light;
 	//Use this for tick check marks. Remove this for square check marks
 	input[type="checkbox"] + label {
 		@include MG-icon('checkmark', $C-checkbox-check, 10px, $pos: after){
-			left: 3px;
+			left: 2px;
 			top: 5px;
 			background: transparent;
 		};
