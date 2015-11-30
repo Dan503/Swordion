@@ -5,8 +5,8 @@
 //	Holds the styles for the css tooltip
 \*================================================*/
 
-$C-background: #000;
-$C-text: #fff;
+$C-background: CG-prominence(2);
+$C-text: CG-prominence(2,'text');
 
 $V-icon-size: 10px;
 $V-transitionDuration: 0.3s;
@@ -75,6 +75,7 @@ $module: 'tooltip';
 		background: $C-background;
 		color: $C-text;
 		width: 300px;
+		border-radius: 3px;
 		@include MG-font-size(13px);
 		padding: 10px;
 		z-index: 5;
