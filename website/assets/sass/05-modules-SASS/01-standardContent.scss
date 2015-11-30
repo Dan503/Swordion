@@ -8,14 +8,14 @@ $C-headingBorder: $CB-grey-pale;
 $C-numbers: #000;//$CB-blue-dim;
 $C-dots: $C-numbers;
 
-.standardContent, .mCSB_container, td {
+.standardContent, .standardContent td {
 
 	strong, b { font-weight: $semi-bold; }
 
 	a {
 		font-weight: $normal;
 		text-decoration: underline;
-		color: $CG-baseLinkColor;
+		color: $CG-links;
 		&:before, &:after {
 			@include MG-animate;
 		}
@@ -27,6 +27,7 @@ $C-dots: $C-numbers;
 	ul, ol {
 		ul, ol {
 			margin: 0;
+			margin-left: 50px;
 		}
 		li { margin-top: 10px; }
 	}
@@ -36,8 +37,6 @@ $C-dots: $C-numbers;
 			margin-top: $VG-standardContent-paragraphSpacing;
 			> li {
 				margin: 0;
-				border-top: 1px solid $C-listBorder;
-				padding-top: 11px;
 				padding-bottom: 11px;
 				&:first-child {
 					border-top: none;
@@ -69,23 +68,19 @@ $C-dots: $C-numbers;
 		> li {
 
 			&:before {
-				@include MG-line(h, $C-dots, 10px, 2px, -45deg);
-				top: 23px;
+				@include MG-circle(fill, $C-dots, 6px);
+				top: 11px;
 			}
-			&:first-child:before {
-				top: 12px;
-			}
-
 			> ul > li {
 				&:before {
-					@include MG-tri(up,$C-dots,7px, 0);
-					@include MG-rotate(0);
+					@include MG-line(h, $C-dots, 10px, 2px);
+					top: 12px;
 				}
 
-				li {
+				> ul > li {
 					&:before {
-						@include MG-size(5px);
-						background: $C-dots;
+						@include MG-circle(stroke, $C-dots, 8px, 1px);
+						top: 9px;
 					}
 				}
 			}
