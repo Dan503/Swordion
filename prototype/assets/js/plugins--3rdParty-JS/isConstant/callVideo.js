@@ -1,8 +1,8 @@
 /**
  * @author       Rob W <gwnRob@gmail.com>
- * @website      http://stackoverflow.com/a/7513356/938089
+ * @prototype      http://stackoverflow.com/a/7513356/938089
  * @version      20131010
- * @description  Executes function on a framed YouTube video (see website link)
+ * @description  Executes function on a framed YouTube video (see prototype link)
  *               For a full list of possible functions, see:
  *               https://developers.google.com/youtube/js_api_reference
  * @param String frame_id The id of (the div containing) the frame

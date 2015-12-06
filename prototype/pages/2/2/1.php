@@ -73,7 +73,7 @@ include $_SERVER['DOCUMENT_ROOT'].'/includes/02-base-PHP/structure-PHP/body.php'
                 </td>
                 <td>
                     <p><strong>Achieved</strong></p>
-                    <p>The Digital Business website we manage has seen a steady year-on-year growth. This year promotional activities we ran saw traffic to the site increase by 39 per cent when compared to 2013&ndash;14.</p>
+                    <p>The Digital Business prototype we manage has seen a steady year-on-year growth. This year promotional activities we ran saw traffic to the site increase by 39 per cent when compared to 2013&ndash;14.</p>
                     <p>The Digital Hubs Programme finished on 30 June 2015. It delivered over 73,000 individual and group training sessions to almost 140,000 participants.</p>
                     <p>Grant funding was provided to 47 local councils under the Digital Local Government Programme, which also ended on 30 June 2015.</p>
                     <p>The Digital Enterprise Programme has assisted almost 42,000 participants to improve their online presence and expand their market.</p>

@@ -42,7 +42,7 @@ var JS_merge_files = {};
 //generates an array of files delegated to each split
 for (var x = 0; x < jsMerge.splits.length; x++){
 
-	var root = 'website/assets/js/';
+	var root = 'prototype/assets/js/';
 	var split = jsMerge.splits[x];
 
 	JS_merge_files[split] = [];
@@ -91,7 +91,7 @@ var JS_minified_files = {};
 for (var key in JS_merge_files) {
   if (JS_merge_files.hasOwnProperty(key)) {
 
-  	JS_minified_files['website/assets/js/ZZ-merged-JS/'+key+'.min.js'] = ['website/assets/js/ZZ-merged-JS/'+key+'.js'];
+  	JS_minified_files['prototype/assets/js/ZZ-merged-JS/'+key+'.min.js'] = ['prototype/assets/js/ZZ-merged-JS/'+key+'.js'];
   }
 }
 //test grunt uglify syntax
@@ -171,9 +171,9 @@ module.exports = function (grunt) {
 		sprite:{
 			//Generates the double sized version of the retina sprite
 	        retina: {
-	            src: 'website/assets/images/auto-sprite/HD-retina-sourcefiles/*.png',
-	            dest: 'website/assets/images/auto-sprite/HD-retina-autosprite.png',
-	            destCss: 'website/assets/sass/01-config-SASS/sprite-sheets/HD-retina-sprites.scss',
+	            src: 'prototype/assets/images/auto-sprite/HD-retina-sourcefiles/*.png',
+	            dest: 'prototype/assets/images/auto-sprite/HD-retina-autosprite.png',
+	            destCss: 'prototype/assets/sass/01-config-SASS/sprite-sheets/HD-retina-sprites.scss',
 	            cssFormat: 'scss_maps',
 	            imgPath: '../images/auto-sprite/HD-retina-autosprite.png',
 	            padding: 4,
@@ -185,9 +185,9 @@ module.exports = function (grunt) {
 			//Generates a normal sized sprite that is used on both retina and non retina screens
 			//If you do not have a double sized version for an image, use this.
 			nonRetina: {
-	            src: 'website/assets/images/auto-sprite/LD-nonRetina-sourceFiles/*.png',
-	            dest: 'website/assets/images/auto-sprite/LD-nonRetina-autosprite.png',
-	            destCss: 'website/assets/sass/01-config-SASS/sprite-sheets/LD-nonRetina-sprites.scss',
+	            src: 'prototype/assets/images/auto-sprite/LD-nonRetina-sourceFiles/*.png',
+	            dest: 'prototype/assets/images/auto-sprite/LD-nonRetina-autosprite.png',
+	            destCss: 'prototype/assets/sass/01-config-SASS/sprite-sheets/LD-nonRetina-sprites.scss',
 	            cssFormat: 'scss_maps',
 	            imgPath: '../images/auto-sprite/LD-nonRetina-autosprite.png',
 	            padding: 2,
@@ -202,12 +202,12 @@ module.exports = function (grunt) {
 		sass_globbing: {
 			all: {
 				files: {
-					'website/assets/sass/import-maps/map-functions.scss': 'website/assets/sass/00-functions-SASS/**/*.scss',
-					'website/assets/sass/import-maps/map-config.scss': 'website/assets/sass/01-config-SASS/**/*.scss',
-					'website/assets/sass/import-maps/map-mixins.scss': 'website/assets/sass/02-mixins-SASS/**/*.scss',
-					'website/assets/sass/import-maps/map-plugins.scss': 'website/assets/sass/03-plugins-SASS/**/*.scss',
-					'website/assets/sass/import-maps/map-base.scss': 'website/assets/sass/04-base-SASS/**/*.scss',
-					'website/assets/sass/import-maps/map-modules.scss': 'website/assets/sass/05-modules-SASS/**/*.scss',
+					'prototype/assets/sass/import-maps/map-functions.scss': 'prototype/assets/sass/00-functions-SASS/**/*.scss',
+					'prototype/assets/sass/import-maps/map-config.scss': 'prototype/assets/sass/01-config-SASS/**/*.scss',
+					'prototype/assets/sass/import-maps/map-mixins.scss': 'prototype/assets/sass/02-mixins-SASS/**/*.scss',
+					'prototype/assets/sass/import-maps/map-plugins.scss': 'prototype/assets/sass/03-plugins-SASS/**/*.scss',
+					'prototype/assets/sass/import-maps/map-base.scss': 'prototype/assets/sass/04-base-SASS/**/*.scss',
+					'prototype/assets/sass/import-maps/map-modules.scss': 'prototype/assets/sass/05-modules-SASS/**/*.scss',
 				}
 			}
 		},
@@ -223,19 +223,19 @@ module.exports = function (grunt) {
 			modern: {//only compile the modern style sheet
 				files: {
 					//Modern style sheet
-					"website/assets/css/modern.css": "website/assets/sass/output-files/modern.scss",
+					"prototype/assets/css/modern.css": "prototype/assets/sass/output-files/modern.scss",
 				}
 			},
 			ie9 : {
 				files : {
 					//IE9 style sheet
-					"website/assets/css/ie9.css": "website/assets/sass/output-files/ie9.scss",
+					"prototype/assets/css/ie9.css": "prototype/assets/sass/output-files/ie9.scss",
 				}
 			},
 			ie8 : {
 				files : {
 					//IE8 style sheet
-					"website/assets/css/ie8.css": "website/assets/sass/output-files/ie8.scss",
+					"prototype/assets/css/ie8.css": "prototype/assets/sass/output-files/ie8.scss",
 				}
 			}
 		},
@@ -245,10 +245,10 @@ module.exports = function (grunt) {
 		cmq: {
 			your_target: {
 				files: {
-					'website/assets/css/media-merge/': [
-						'website/assets/css/modern.css',
-						'website/assets/css/ie9.css',
-						'website/assets/css/ie8.css',
+					'prototype/assets/css/media-merge/': [
+						'prototype/assets/css/modern.css',
+						'prototype/assets/css/ie9.css',
+						'prototype/assets/css/ie8.css',
 					]
 				}
 			}
@@ -263,9 +263,9 @@ module.exports = function (grunt) {
 		    },
 			//takes the current css files in the "media-merge" folder, minifies them, adds '.min.css' to the end of the file, and copies them back into the main css folder
 		      expand: true,
-		      cwd: 'website/assets/css/media-merge/',
+		      cwd: 'prototype/assets/css/media-merge/',
 		      src: ['modern.css','ie9.css','ie8.css'],
-		      dest: 'website/assets/css/',
+		      dest: 'prototype/assets/css/',
 		      ext: '.min.css'
 		  }
 		},
@@ -282,7 +282,7 @@ module.exports = function (grunt) {
 		      ]
 		    },
 		    prefixMQ: {
-		      src: 'website/assets/css/*.css'
+		      src: 'prototype/assets/css/*.css'
 		    }
 		},
 		// Keep files on server in sync with local copy
@@ -292,9 +292,9 @@ module.exports = function (grunt) {
 				files: [
 					// includes files within path
 					{
-						cwd: 'website/assets/js/',
+						cwd: 'prototype/assets/js/',
 						src: ['ZZ-merged-JS/*.js'],
-						dest: server_root + 'website/assets/js/',
+						dest: server_root + 'prototype/assets/js/',
 					}
 				],
 				//pretend: true, // Don't do any IO. Before you run the task with `updateAndDelete` PLEASE MAKE SURE it doesn't remove too much.
@@ -303,7 +303,7 @@ module.exports = function (grunt) {
 			images: {
 				files: [
 					{
-						src: 'website/assets/images/**',
+						src: 'prototype/assets/images/**',
 						dest: server_root
 					}
 				],
@@ -313,9 +313,9 @@ module.exports = function (grunt) {
 			css: {
 				files: [
 					{
-						cwd: 'website/assets/css/',
+						cwd: 'prototype/assets/css/',
 						src: ['*.css', '*.map'],
-						dest: server_root + 'website/assets/css/'
+						dest: server_root + 'prototype/assets/css/'
 					}
 				],
 				//pretend: true,
@@ -334,9 +334,9 @@ module.exports = function (grunt) {
 			fonts: {
 				files: [
 					{
-						cwd: 'website/assets/fonts/',
+						cwd: 'prototype/assets/fonts/',
 						src: ['**/**'],
-						dest: server_root + 'website/assets/fonts/'
+						dest: server_root + 'prototype/assets/fonts/'
 					}
 				],
 				//pretend: true,
@@ -352,7 +352,7 @@ module.exports = function (grunt) {
 					authKey: 'uat'
 				},
 				dest: 'web/',
-				src: 'website/',
+				src: 'prototype/',
 				exclusions: [
 					'.git/**/*',
 					'**/.DS_Store',
@@ -366,7 +366,7 @@ module.exports = function (grunt) {
 					'package.json',
 					'.ftppass',
 					'**/**/*.js',
-					'!website/assets/js/ZZ-merged-JS/*.js',
+					'!prototype/assets/js/ZZ-merged-JS/*.js',
 					'**/**/*.scss'//optional
 
 					//UAT only
@@ -385,7 +385,7 @@ module.exports = function (grunt) {
 				livereload: true
 			},
 			scripts: {
-				files: ["website/assets/js/**/*.js", "!website/assets/js/ZZ-merged-JS/*.js"],
+				files: ["prototype/assets/js/**/*.js", "!prototype/assets/js/ZZ-merged-JS/*.js"],
 				tasks: [
 					"concat", //merges constant js files into one file
 					//"uglify", //minify JS
@@ -394,7 +394,7 @@ module.exports = function (grunt) {
 				options: { spawn: false }
 			},
 			images: {
-				files: ['website/assets/images/**'],
+				files: ['prototype/assets/images/**'],
 				tasks: [
 					'image_resize',
 					'sprite',
@@ -403,7 +403,7 @@ module.exports = function (grunt) {
 				options: { spawn: false }
 			},
 			scss: {
-				files: ["website/assets/sass/**/*.scss"],
+				files: ["prototype/assets/sass/**/*.scss"],
 				tasks: [
 					"sass_globbing",//generates import maps for SASS modules
 					"sass:modern", //compile the modern SASS (modern only by default for speed)
@@ -440,7 +440,7 @@ module.exports = function (grunt) {
 					//"sync:fonts",
 				],
 				files: [
-					"website/assets/fonts/**/**"
+					"prototype/assets/fonts/**/**"
 				]
 			}
 		}

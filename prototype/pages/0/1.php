@@ -252,7 +252,7 @@ venenatis dapibus '
 
 <?php
 	videoBlock(
-		'Malcolm Turnbull launches the MyBroadband website which allows users to see the availability and quality of the fixed line broadband connections',
+		'Malcolm Turnbull launches the MyBroadband prototype which allows users to see the availability and quality of the fixed line broadband connections',
 		//only this bit: http://grabilla.com/05814-cf4d34e5-99d8-40ee-847c-825f97c31523.png
 		'pzMBZ0f--Xo'
 	);
