@@ -118,6 +118,9 @@
 				<a href="#contentStart-1" class="skipLinks__link TK-skipLink" data-jshook="skipLinks__link">Skip to content</a>
 			</div>
 
-			<div class="siteContainer__inner TK-relative">
+			<?php
+				include $include['module'].'siteHeader.php';
+			?>
 
-				<div class="siteMain">
+
+			<div class="siteMain TK-pageWidth TK-relative">

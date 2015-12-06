@@ -1,9 +1,6 @@
 
-				</div>
-				<!-- @.mainArea -->
-
 			</div>
-			<!-- @.siteContainer__inner-->
+			<!-- @.mainArea -->
 
 			<?php
 				include $include['module'].'siteFooter.php';
