@@ -2,7 +2,7 @@
 
 //function for looking up a specific portion of the navMap using a location array
 
-function getNavMap($location){
+function getNavMap($location, $portion = false){
 
 	$returnMap = $GLOBALS['navMap'];
 
@@ -10,7 +10,11 @@ function getNavMap($location){
 		$returnMap = $i == 0 ? $returnMap[$index] : $returnMap['subNav'][($index - 1)];
 	}
 
-	return $returnMap;
+	if ($portion == false) {
+		return $returnMap;
+	} else {
+		return $returnMap[$portion];
+	}
 }
 
 ?>
