@@ -4,18 +4,29 @@
 		array(
 			'title' => 'Welcome to Swordion',
 			'link' => '/',
+			'template' => 'home',
 			'subNav' => array(
-				array (
-					'title' => '404: page not found',
-					'isNavigable' => false
-				), array (
-					'title' => 'Search',
-					'intro' => !empty($query) ? $pageTitle : 'Search the Department of Communications Annual Report 2014&ndash;15',
-					'isNavigable' => false
-				)/*,
-				array (
-					'title' => 'Full featured example page',
-				)*/
+			//sub nav items of the home page are for miscellaneous extra navigation arrays that aren't part of the main site structure
+				array(
+					'title' => 'miscellaneous',
+					'isNavigable' => false,
+					'subNav' => array(
+						array (
+							'title' => '404: page not found',
+						), array (
+							'title' => 'Search',
+							'intro' => !empty($query) ? $pageTitle : 'Search the Department of Communications Annual Report 2014&ndash;15',
+						)
+					)
+				), array(
+					'title' => 'Shortcut Links',
+					'subNav' => array(
+						array(
+							'title' => 'example shortcut',
+							'link' => '/pages/1/2/3.php'
+						)
+					)
+				)
 			)
 		), array(
 		// part 1

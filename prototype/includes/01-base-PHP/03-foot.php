@@ -6,7 +6,7 @@
 			<!-- @.siteContainer__inner-->
 
 			<?php
-				include $include['modules'].'siteFooter.php';
+				include $include['module'].'siteFooter.php';
 			?>
 
 		</div>

@@ -73,12 +73,12 @@
 	}
 
 	//Couldn't do a basic globFiles() command because I'd have to move variables to the global scope
-	$configFiles = globFiles('/includes/02-base-PHP/config-PHP/', 'array');
+	$configFiles = globFiles('/includes/00-config-PHP/config-files-PHP/', 'array');
 	foreach ($configFiles as $configItem){
 	    include $configItem;
 	}
 
 //loads the functions that generate modules
-	globFiles('/includes/01-modules-PHP/00-functions-modules-PHP/');
+	globFiles('/includes/02-modules-PHP/00-functions-modules-PHP/');
 
 ?>

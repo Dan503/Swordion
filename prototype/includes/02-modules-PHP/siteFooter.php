@@ -1,4 +1,3 @@
-﻿
 <footer class="siteFooter">
 
 </footer>
