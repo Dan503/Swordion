@@ -29,7 +29,7 @@
 			print
 			'</li>';
 
-			getBreadcrumb($map['subNav'][$target], $currDepth + 1, $hasLastItem);
+			getBreadcrumb($map['subnav'][$target], $currDepth + 1, $hasLastItem);
 
 		} else {
 			if ($hasLastItem == true) {

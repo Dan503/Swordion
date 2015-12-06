@@ -15,13 +15,13 @@
 					$GLOBALS['getGrandParent'] = $map[$currTarget];
 					$GLOBALS['getNextGrandParent'] = $map[$currTarget + 1];
 				}
-				getNavItem($map[$currTarget]['subNav'], $nextTarget, $currDepth + 1);
+				getNavItem($map[$currTarget]['subnav'], $nextTarget, $currDepth + 1);
 
 
 			//if second last loop
 			} else {
 				$finalLocation = $location[$currDepth];
-				$finalMap = $map[$currTarget]['subNav'];
+				$finalMap = $map[$currTarget]['subnav'];
 
 				$GLOBALS['getPrev'] = $finalMap[$finalLocation - 1];
 				$GLOBALS['getStrictPrev'] = $GLOBALS['getPrev'];
@@ -34,8 +34,8 @@
 				$GLOBALS['getSiblings'] = $finalMap;
 				$GLOBALS['getParent'] = $map[$currTarget];
 
-				$GLOBALS['getNextParent'] = $GLOBALS['getGrandParent']['subNav'][$currTarget + 1];
-				$GLOBALS['getPrevParent'] = $GLOBALS['getGrandParent']['subNav'][$currTarget - 1];
+				$GLOBALS['getNextParent'] = $GLOBALS['getGrandParent']['subnav'][$currTarget + 1];
+				$GLOBALS['getPrevParent'] = $GLOBALS['getGrandParent']['subnav'][$currTarget - 1];
 
 				$GLOBALS['getNext'] = $finalMap[$finalLocation + 1];
 				$GLOBALS['getStrictNext'] = $GLOBALS['getNext'];

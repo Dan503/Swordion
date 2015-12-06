@@ -23,8 +23,8 @@ function set_link($isActive, $link, $generatedLink){
 		//Determines if the link appears in the navigation (defaults to true)
 		$nm['isNavigable'] = defaultTo($nm['isNavigable'], true);
 
-	    if (isset ($nm['subNav'])) {
-	        foreach ($nm['subNav'] as $b => &$sn) {
+	    if (isset ($nm['subnav'])) {
+	        foreach ($nm['subnav'] as $b => &$sn) {
 
 	        	$pathB = $contentRoot.$a.'/';
 
@@ -46,8 +46,8 @@ function set_link($isActive, $link, $generatedLink){
 			    $sn['link'] = set_link($sn['isActive'], $sn['link'], $pathB);
 				$sn['isNavigable'] = defaultTo($sn['isNavigable'], true);
 
-	            if (isset ($sn['subNav'])) {
-	                foreach ($sn['subNav'] as $c => &$sn2) {
+	            if (isset ($sn['subnav'])) {
+	                foreach ($sn['subnav'] as $c => &$sn2) {
 
 			        	$pathC = $contentRoot.$a.'/'.($b+1).'/';
 

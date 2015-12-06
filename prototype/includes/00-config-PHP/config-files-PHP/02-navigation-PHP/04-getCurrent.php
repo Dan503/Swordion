@@ -25,7 +25,7 @@
 	$getCurrentSection = $location[0] == 6?
 		$getParent : $navMap
 						[$location[0]]
-						['subNav']
+						['subnav']
 						[$location[1]];
 	$GLOBALS['getCurrentSection'] = $getCurrentSection;
 

@@ -7,7 +7,7 @@ function getNavMap($location, $portion = false){
 	$returnMap = $GLOBALS['navMap'];
 
 	foreach ($location as $i => $index){
-		$returnMap = $i == 0 ? $returnMap[$index] : $returnMap['subNav'][($index - 1)];
+		$returnMap = $i == 0 ? $returnMap[$index] : $returnMap['subnav'][($index - 1)];
 	}
 
 	if ($portion == false) {

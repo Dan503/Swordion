@@ -5,12 +5,12 @@
 			'title' => 'Welcome to Swordion',
 			'link' => '/',
 			'template' => 'home',
-			'subNav' => array(
+			'subnav' => array(
 			//sub nav items of the home page are for miscellaneous extra navigation arrays that aren't part of the main site structure
 				array(
 					'title' => 'miscellaneous',
 					'isNavigable' => false,
-					'subNav' => array(
+					'subnav' => array(
 						array (
 							'title' => '404: page not found',
 						), array (
@@ -20,7 +20,7 @@
 					)
 				), array(
 					'title' => 'Shortcut Links',
-					'subNav' => array(
+					'subnav' => array(
 						array(
 							'title' => 'example shortcut',
 							'link' => '/pages/1/2/3.php'
@@ -31,15 +31,15 @@
 		), array(
 		// part 1
 			'title' => 'Overview',
-			'subNav' => array(
+			'subnav' => array(
 				array(
 					'title' => 'Secretary&rsquo;s review',
 				), array (
 					'title' => 'About the Department',
-					'subNav' => array (
+					'subnav' => array (
 						array(
 							'title' => 'Our Corporate Plan',
-							'subNav' => array(
+							'subnav' => array(
 								array(
 									'title' => 'Enhancing digital productivity',
 								),
@@ -56,7 +56,7 @@
 						),
 						array (
 							'title' => 'Outcome and programme',
-							'subNav' => array(
+							'subnav' => array(
 								array(
 									'title' => 'Outcome and programme structure',
 								)
@@ -68,20 +68,20 @@
 		), array(
 		// part 2
 			'title' => 'Performance reporting',
-			'subNav' => array(
+			'subnav' => array(
 				array(
 					'title' => 'Outcome 1',
 					),
 				array(
 					'title' => '<strong>Programme 1.1:</strong> Digital Technologies and Communications Services',
-					'subNav' => array(
+					'subnav' => array(
 						array(
 							'title' => 'Enhancing digital productivity',
 
 						),
 						array(
 							'title' => 'Enhancing digital productivity: significant activities and achievements',
-							'subNav' => array(
+							'subnav' => array(
 								array(
 									'title' => 'Establish the Digital Transformation Officer',
 								),
