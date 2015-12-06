@@ -112,7 +112,7 @@
 	<?php /* prevents unwanted horizontal scroll bars caused by .grid--gutter-# classes */ ?>
 	<div class="TK-overflowHidden">
 
-		<div class="siteContainer remodal-bg" data-jshook="siteContainer">
+		<div class="siteContainer remodal-bg TK-clearFix" data-jshook="siteContainer">
 			<div class="skipLinks">
 				<a href="#contentStart-sideNav" class="skipLinks__link TK-skipLink" data-jshook="skipLinks__skipToNav skipLinks__link">Skip to side navigation</a>
 				<a href="#contentStart-1" class="skipLinks__link TK-skipLink" data-jshook="skipLinks__link">Skip to content</a>
