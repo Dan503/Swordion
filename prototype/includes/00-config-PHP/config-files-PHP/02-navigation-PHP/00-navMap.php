@@ -10,6 +10,8 @@
 				array(
 					'title' => 'miscellaneous',
 					'isNavigable' => false,
+					'subNavigable' => false,
+					'link' => '#',
 					'subnav' => array(
 						array (
 							'title' => '404: page not found',
@@ -20,6 +22,8 @@
 					)
 				), array(
 					'title' => 'Shortcut Links',
+					'isNavigable' => false,
+					'link' => '#',
 					'subnav' => array(
 						array(
 							'title' => 'example shortcut',
