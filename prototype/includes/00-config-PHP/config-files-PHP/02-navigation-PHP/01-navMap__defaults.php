@@ -19,22 +19,15 @@ function generateLink ($testLink, $basePath, $i){
 
 	   	if ($path_exists) {
 			//Detects if correct file exist and links to it if it does
-			echo 'path_exists
-			';
 			return $basePath.($i+1).'/';
 
 	   	} else if ($path_levelDown_exists) {
-			echo 'path_levelDown_exists
-			';
 			//if the correct page doesn't exist, it links to the first page of the next level down
 			return $basePath.($i+1).'/1/';
 
 		} else if ($path_first_exists) {
 			//if the correct page doesn't exist and the next level down doesn't exist, it links to the first sibling page
-			echo 'path_first_exists
-			';
 			return $basePath.'1/';
-
 
 	   	} else {
 			//if none of the above exist, it just leaves the link as a '#'
@@ -43,24 +36,14 @@ function generateLink ($testLink, $basePath, $i){
 	}
 }
 
-function generateDefaults($inputPath, $map, $index){
+function generateDefaults($inputPath, &$map, $index){
 	$recursivePath = $inputPath.($index+1).'/';
-
-
-	echo $map['title'].'
-';
 
     $map['link'] = generateLink($map['link'], $inputPath, $index);//applies the link
 	$map = defaultTo($map, array(
 		'isNavigable' => true,//means Item is navigable
 		'subNavigable' => true,//means subnav will appear in the nav
 	));
-
-	var_dump($map['link']);
-	echo '
-
-
-';
 
 	//if a subnav exists in item, generate defaults for it
     if (isset ($map['subnav'])) {
@@ -70,17 +53,10 @@ function generateDefaults($inputPath, $map, $index){
 	}
 }
 
-foreach ($navMap as $a => &$nm) {
-	$path = $contentRoot.$a.'/';
+foreach ($navMap as $i => &$nm) {
+	$path = $contentRoot.$i.'/';
 
-    $nm['link'] = generateLink($nm['link'], $path, $a);
-
-	echo $nm['title'].'
-';
-	var_dump($nm['link']);
-	echo '
-
-';
+    $nm['link'] = generateLink($nm['link'], $path, $i - 1);
 
 	//Determines if the link appears in the navigation (defaults to true)
 	$nm = defaultTo($nm, array(
@@ -89,12 +65,13 @@ foreach ($navMap as $a => &$nm) {
 	));
 
     if (isset ($nm['subnav'])) {
-        foreach ($nm['subnav'] as $b => &$map) {
-        	generateDefaults($path, $map, $b);
+        foreach ($nm['subnav'] as $subIndex => &$subMap) {
+        	generateDefaults($path, $subMap, $subIndex);
 		}
 	}
 }
 $GLOBALS['navMap'] = $navMap;
 
-	var_dump($navMap);
+//var_dump($navMap);
+
 ?>
