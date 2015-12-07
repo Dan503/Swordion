@@ -1,1 +1,0 @@
-<?php include $_SERVER['DOCUMENT_ROOT'].'/includes/01-base-PHP/template.php'; ?>

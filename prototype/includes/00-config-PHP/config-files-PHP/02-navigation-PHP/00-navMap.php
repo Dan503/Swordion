@@ -23,7 +23,7 @@
 					'subnav' => array(
 						array(
 							'title' => 'example shortcut',
-							'link' => '/pages/1/2/3.php'
+							'link' => '/pages/1/2/3/'
 						)
 					)
 				)
