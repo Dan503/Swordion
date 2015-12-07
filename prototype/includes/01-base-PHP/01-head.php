@@ -1,8 +1,8 @@
 <!doctype html>
 
 
-	<!-- Web Design & Development by Reading Room -->
-	<!-- www.readingroom.com.au (02) 6229 9400 -->
+	<!-- Web Design & Development by Adelphi Digital Consulting Group -->
+	<!-- http://adelphi.digital/ (02) 6229 9400 -->
 
 <!-- http://www.paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
 <!--[if lt IE 8]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en"> <![endif]-->
