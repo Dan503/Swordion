@@ -7,23 +7,26 @@ function set_link($isActive, $link, $generatedLink){
 	return defaultTo($link, $generatedLink);
 }
 
-function generateLink ($testLink, $basePath, $i){
+function generateLink ($linkOveride, $basePath, $i){
 
-	if (isset($testLink)){
-		return $testLink;
+	if (isset($linkOveride)){
+		return $linkOveride;
 
 	} else {
-		$path_exists = file_exists($_SERVER['DOCUMENT_ROOT'].$basePath.($i+1).'/index.php');
-		$path_levelDown_exists = file_exists($_SERVER['DOCUMENT_ROOT'].$basePath.($i+1).'/1/index.php');
+		$path_exists = file_exists($_SERVER['DOCUMENT_ROOT'].$basePath.$i.'/index.php');
+		$path_levelDown_exists = file_exists($_SERVER['DOCUMENT_ROOT'].$basePath.$i.'/1/index.php');
 		$path_first_exists = file_exists($_SERVER['DOCUMENT_ROOT'].$basePath.'1/index.php');
+
+		echo $basePath.$i.'/
+		';
 
 	   	if ($path_exists) {
 			//Detects if correct file exist and links to it if it does
-			return $basePath.($i+1).'/';
+			return $basePath.$i.'/';
 
 	   	} else if ($path_levelDown_exists) {
 			//if the correct page doesn't exist, it links to the first page of the next level down
-			return $basePath.($i+1).'/1/';
+			return $basePath.$i.'/1/';
 
 		} else if ($path_first_exists) {
 			//if the correct page doesn't exist and the next level down doesn't exist, it links to the first sibling page
@@ -36,10 +39,11 @@ function generateLink ($testLink, $basePath, $i){
 	}
 }
 
-function generateDefaults($inputPath, &$map, $index){
-	$recursivePath = $inputPath.($index+1).'/';
+function generateDefaults($basePath, &$map, $index){
+	$recursivePath = $basePath.$index.'/';
 
-    $map['link'] = generateLink($map['link'], $inputPath, $index);//applies the link
+    $map['link'] = generateLink($map['link'], $basePath, $index);
+
 	$map = defaultTo($map, array(
 		'isNavigable' => true,//means Item is navigable
 		'subNavigable' => true,//means subnav will appear in the nav
@@ -48,30 +52,17 @@ function generateDefaults($inputPath, &$map, $index){
 	//if a subnav exists in item, generate defaults for it
     if (isset ($map['subnav'])) {
         foreach ($map['subnav'] as $subIndex => &$subMap) {
-			generateDefaults($recursivePath, $subMap, $subIndex);
+			generateDefaults($recursivePath, $subMap, $subIndex + 1);
 		}
 	}
 }
 
 foreach ($navMap as $i => &$nm) {
-	$path = $contentRoot.$i.'/';
-
-    $nm['link'] = generateLink($nm['link'], $path, $i - 1);
-
-	//Determines if the link appears in the navigation (defaults to true)
-	$nm = defaultTo($nm, array(
-		'isNavigable' => true,//means Item is navigable
-		'subNavigable' => true,//means subnav will appear in the nav
-	));
-
-    if (isset ($nm['subnav'])) {
-        foreach ($nm['subnav'] as $subIndex => &$subMap) {
-        	generateDefaults($path, $subMap, $subIndex);
-		}
-	}
+    generateDefaults('/pages/', $nm, $i);
 }
+
 $GLOBALS['navMap'] = $navMap;
 
-//var_dump($navMap);
+var_dump($navMap);
 
 ?>
