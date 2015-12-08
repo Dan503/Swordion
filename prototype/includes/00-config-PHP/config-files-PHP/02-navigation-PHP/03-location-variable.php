@@ -2,7 +2,7 @@
 
 //Creates $location variable based on folder structure if $location variable does not already exist
 	$fileLocationNumbers = str_replace("/pages/","",$_SERVER[REQUEST_URI]);//removes "/pages/" from string
-	$fileLocationSetting = substr($fileLocationNumbers, 0, strlen($fileLocationNumbers) - 1) ;//removes trailing slash
+	$fileLocationSetting = substr($fileLocationNumbers, 0, strrpos($fileLocationNumbers,'/')) ;//removes trailing slash and everything after it
 	$location = isset($location)?$location : explode ("/", $fileLocationSetting);//saves the location as an array
 
 
