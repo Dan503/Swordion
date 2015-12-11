@@ -10,13 +10,14 @@ $V-hoverModifier: 60%;
 //lists prominent colors **IN ORDER OF PROMINENCE**
 $CG-prominence: (
 	//*Main color*/
-	color: $CB-yellow-light,
+	color: $CB-blue-dim,
 
 	//*Most likely hover state color for the main color*/
-	hover: shade($CB-yellow-light, $V-hoverModifier),
+	hover: shade($CB-blue-dim, $V-hoverModifier),
 
 	//*If there is a color that is commonly used alongside the main color, set it as the partner color*/
-	partner: $CB-orange-light,
+	partner: $CB-blue-light,
+
 	/*if set as a background color, the text inside will most likely be this color*/
 	text: #fff,
 ),

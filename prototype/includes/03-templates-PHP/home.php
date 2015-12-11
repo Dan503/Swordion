@@ -264,7 +264,8 @@ rapid stages test
 ?>
 		<div class="form__row">
 			<label for="styledBrowse">Styled browse button</label>
-			<input id="styledBrowse" type="file" />
+			<!-- default position is to the right -->
+			<input id="styledBrowse" type="file" title="Customisable browse button text" data-display-pos="right" />
 		</div>
 		<div class="form__row">
 			<label for="styledSelect">Styled select</label>
@@ -275,8 +276,7 @@ rapid stages test
 			</select>
 		</div>
 		<div class="form__row">
-			<input type="submit" />
-			<input type="reset" />
+			<input type="submit" class="btn" />
 		</div>
 	</fieldset>
 </form>

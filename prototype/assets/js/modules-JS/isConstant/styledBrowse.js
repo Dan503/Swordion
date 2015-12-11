@@ -20,8 +20,8 @@ if ($('input[type="file"]').length){
 
 		$(this).wrap('<div class="styledBrowse-JSadded"></div>');
 		$(this).parent()
-			.append(displayOrder[displayPos][1])
-			.append(displayOrder[displayPos][0]);
+			.append(displayOrder[displayPos][0])
+			.append(displayOrder[displayPos][1]);
 
 		$('input[type="file"]').attr('class','');
 
