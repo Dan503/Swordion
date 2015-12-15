@@ -29,7 +29,7 @@ $(Hook('trigger_hover')).hoverIntent({
 		module = module_dropMenu;
 
 		//Shows menu when hovering on
-		$(this).find($(Hook('revealer'))).slideDown();
+		$(this).find(Hook('revealer')).slideDown();
 
 	},
 
@@ -37,7 +37,7 @@ $(Hook('trigger_hover')).hoverIntent({
 		module = module_dropMenu;
 
 		//Hides menu when hovering off
-		$(this).find($(Hook('revealer'))).slideUp();
+		$(this).find(Hook('revealer')).slideUp();
 	},
 
 	timeout: 100

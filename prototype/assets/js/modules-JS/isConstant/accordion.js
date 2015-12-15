@@ -11,7 +11,6 @@ moduleTargets[module] = {
 	trigger_auto: module+'__trigger--auto',
 	reference : module+'__reference',
 	content : module+'__content',
-	heading : module+'__heading',
 
 	//css classes
 	item_isOpen : module+'__item--isOpen-JS',
@@ -52,22 +51,17 @@ if ($(Hook('content')).length) {
 					.not($(this))
 					.modRemoveClass('item_isOpen')
 					.end()
-				.find(Hook('content')+':visible')
+				.find(Hook('content'))
+					.filter(':visible')
 					.not(target)
 					.slideUp()
 					.end();
-
-			reference
-				.find(Hook('heading'))
-				.slideDown();
 
 			this_item
 				.modAddClass('item_isOpen')
 				.find(Hook('content'))
 					.slideDown()
-					.end()
-				.find(Hook('heading'))
-					.slideUp();
+					.end();
 		}
 
 
