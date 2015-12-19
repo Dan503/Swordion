@@ -1,6 +1,6 @@
 
 //This would be completely redundant code if iOS behaved properly
-//When unfocusing from infoTip, CSS would close it but iOS isn't appying or stripping focus properly with pur CSS
+//When unfocusing from infoTip, CSS would close it but iOS isn't appying or stripping focus properly with pure CSS
 
 var module_infoTip = 'infoTip';
 

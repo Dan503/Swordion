@@ -1,4 +1,6 @@
 
+//Code that helps retain current scroll position when a lightbox closes (code may not be necessary)
+
 var savedScrollPos = G_scrollPos;
 
 $(document)

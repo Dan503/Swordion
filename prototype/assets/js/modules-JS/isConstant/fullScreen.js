@@ -19,7 +19,7 @@ $.fn.fillScreen = function(subtractorSelection){
 };
 
 var filler = $(Hook('fullScreen_filler', globals));
-var subtractor = $(Hook('fullScreen_subtractor', globals))
+var subtractor = $(Hook('fullScreen_subtractor', globals));
 
 filler.fillScreen(subtractor);
 
