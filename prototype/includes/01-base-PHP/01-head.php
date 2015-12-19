@@ -15,10 +15,11 @@
 	<meta charset="utf-8">
 
     <title><?php
+		$title = defaultTo($getCurrent['altTitle'], $getCurrent['title']);
         if ($isHome == true) {
-			print strip_tags($getCurrent['title']);
+			print strip_tags($title);
         } else {
-			print strip_tags($getCurrent['title']) . ' | Department of Communications 2014-15 Annual Report';
+			print strip_tags($title) . ' | Website name goes here';
         }
 	?></title>
 

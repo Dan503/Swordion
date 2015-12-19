@@ -2,7 +2,8 @@
 
 	$navMap = array(
 		array(
-			'title' => 'Welcome to Swordion',
+			'title' => 'Home',
+			'altTitle' => 'Welcome to Swordion',
 			'link' => '/',
 			'template' => 'home',
 			'subnav' => array(
