@@ -1,0 +1,25 @@
+﻿//submit button resets
+
+[type="submit"] {
+	@extend .btn;
+	@extend %appearanceNone;
+	border: none;
+	cursor: pointer;
+	.js &.styledSubmit { @include MG-opacity(0); }
+}
+
+.styledSubmit-JS {
+	position: relative;
+	cursor: pointer;
+	input[type="submit"] {
+
+		@include MG-fill;
+		opacity: 0;
+
+		@if ($ie8) {
+			background: transparent;
+			text-indent: -999em;
+			border: none;
+		}
+	}
+}

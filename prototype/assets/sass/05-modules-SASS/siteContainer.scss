@@ -1,0 +1,28 @@
+﻿
+$C-inner-bg: $CB-grey-light;
+
+$MQ-module--not-padded: (max, bp('small'));
+
+$MQ-module--disable-overflow: (max, bp('page'));
+
+//A div that wraps around the entire site
+.siteContainer {
+	position: relative;
+	background-color: $C-inner-bg;
+
+	&__inner {
+		padding: $VG-siteContainer-padding;
+		&--gradient {
+			@if ($gt-ie8){ @include MG-grad($C-inner-bg, #fff); }
+		}
+
+		@include MG-mq($MQ-module--disable-overflow){
+			overflow: hidden;
+		}
+	}
+
+	@include MG-mq($MQ-module--not-padded){
+		border: none;
+	}
+
+}

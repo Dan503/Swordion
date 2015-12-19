@@ -1,0 +1,13 @@
+
+//Get prominent colors easily
+//    usage standard: CG-prominence(1);
+//    usage for hover state: CG-prominence(1, 'hover')
+//    usage for partner: CG-prominence(1, 'partner')
+@function CG-prominence($prominance, $type: color){
+	$colorGroup: nth($CG-prominence,$prominance);
+	@if (not map-has-key($colorGroup, $type)){
+		$type: color;
+		@warn '"#{$type}" is not a valid color type for "CG-prominence(#{$prominance})"';
+	}
+	@return map-get($colorGroup, $type);
+}

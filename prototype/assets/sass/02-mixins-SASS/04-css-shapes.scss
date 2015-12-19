@@ -1,0 +1,334 @@
+//basic line
+@mixin MG-line ($type, $color, $length:25px,$thickness:2px, $rotation: false, $origin: center){
+	@if ($type == v){
+		height: $length;
+		width: 0px;
+		border-left: $thickness solid $color;
+	} @else if ($type == h){
+		height: 0px;
+		width: $length;
+		border-bottom: $thickness solid $color;
+	} @else {
+		@error "#{$type} is not a valid type. must be either 'h' (horizontal) or 'v' (vertical)";
+	}
+	@if ($rotation != false){
+		@include MG-rotate(strip-units($rotation), $origin);
+	}
+}
+
+///*******************\
+//	PURE CSS MENU ICON
+//*******************/
+@mixin MG-menuIcon($color: #000, $width: 20px, $thickness: 5px, $gutter: 2px, $posType: relative, $margin: ($thickness + $gutter) auto, $animatable: true){
+
+	@if (type-of($color) == 'color'){
+		$distance: $thickness + $gutter;
+
+		width: $width;
+		position: $posType;
+		margin: $margin;
+		display: block;
+
+		&, &:before, &:after {
+			@if($animatable){
+				@include MG-animate;
+			}
+			height: $thickness;
+			background-color: $color;
+			border-radius: $thickness;
+		}
+
+		@include MG-before-after {
+			width: 100%;
+			position: absolute;
+			left: 0;
+			right: 0;
+		}
+		&:before {
+			bottom: $distance;
+		}
+		&:after {
+			top: $distance;
+		}
+
+//basically if $color isn't a color, it assumes you want the icon to look like a cross instead of a menu icon
+	} @else if ($color == 'cross') {
+		background-color: transparent;
+		&:before {
+			@include MG-rotate(45);
+			bottom: 0;
+			margin: 0;
+		}
+		&:after {
+			@include MG-rotate(-45);
+			top: 0;
+			margin: 0;
+		}
+	} @else if ($color == 'plus') {
+		background-color: transparent;
+		&:before, &:after {
+			margin: 0;
+			right: auto;
+		}
+		&:before {
+			@include MG-rotate(90);
+			bottom: 0;
+			left: 0;
+		}
+		&:after {
+			@include MG-rotate(0);
+			top: 0;
+			left: 0;
+		}
+	} @else {
+		@error "The first argument in M-menuIcon must be either a color or the word 'cross' or 'plus'";
+	}
+}
+
+//use to alter the size of a menu icon with only the essential styles
+@mixin MG-menuIcon-size ($width: 20px, $thickness: 5px, $gutter: 2px, $margin: ($thickness + $gutter) auto){
+
+		$distance: $thickness + $gutter;
+
+		width: $width;
+		margin: $margin;
+
+		&, &:before, &:after {
+			height: $thickness;
+			border-radius: $thickness;
+		}
+
+		&:before {
+			bottom: $distance;
+		}
+		&:after {
+			top: $distance;
+		}
+}
+
+
+///*******************\
+//	CSS TRIANGLES
+//*******************/
+
+//$thickness is half the width of the side furthest from the point.
+
+@mixin MG-tri($direction, $color: #000, $length: 12px, $thickness: round($length * 0.57), $thickness2: $thickness, $important: true) {
+
+	@if ($important){
+		$important: !important;
+	} @else {
+		$important: unquote('');
+	}
+
+	//right angle isosceles triangle shortcut
+	@if ($thickness == 0){
+		$thickness: $length;
+		$thickness2: 0;
+	}
+
+	display: block;
+	width: 0 $important;
+	height: 0 $important;
+	overflow: hidden;
+	background-clip: content-box;
+
+    @if ($direction == up) {
+      border-top: none;
+      border-left: $thickness solid transparent;
+      border-right: $thickness2 solid transparent;
+      border-bottom: $length solid $color;
+    }
+
+    @if ($direction == down) {
+      border-bottom: none;
+      border-right: $thickness solid transparent;
+      border-left: $thickness2 solid transparent;
+      border-top: $length solid $color;
+    }
+
+    @if ($direction == left) {
+      border-left: none;
+      border-bottom: $thickness solid transparent;
+      border-top: $thickness2 solid transparent;
+      border-right: $length solid $color;
+    }
+
+    @if ($direction == right) {
+      border-right: none;
+      border-top: $thickness solid transparent;
+      border-bottom: $thickness2 solid transparent;
+      border-left: $length solid $color;
+    }
+}
+
+///***********************************\
+//	PURE CSS POINTING ARROWS ( -> )
+//***********************************/
+//IE9+ only
+//works best if $thickness is a multiple of 2
+@mixin MG-arrow($direction, $color, $length, $head-size: $length * 0.75, $thickness: 2px, $rotation: 0, $origin: center){
+	position: relative;
+	display: block;
+
+	@if ( ($direction == left) or ($direction == right) ){
+		@if ($rotation != 0){
+			@include MG-line(h,$color,$length, $thickness, $rotation, $origin);
+		} @else {
+			@include MG-line(h,$color,$length, $thickness);
+		}
+	} @else {
+		@if ($rotation != 0){
+			@include MG-line(v,$color,$length, $thickness, $rotation, $origin);
+		} @else {
+			@include MG-line(v,$color,$length, $thickness);
+		}
+	}
+
+	@include MG-before {
+		position: absolute;
+		border: $thickness solid $color;
+		@include MG-size($head-size);
+
+		@if ($direction == up){
+			right: ($thickness/2);
+			top: -($thickness/2);
+			border-bottom: none;
+			border-left: none;
+			@include MG-rotate(-45,top right);
+
+		} @else if ($direction == down) {
+			right: ($thickness/2);
+			bottom: -($thickness/2);
+			border-top: none;
+			border-left: none;
+			@include MG-rotate(45,bottom right);
+
+		} @else if ($direction == left) {
+			left: -($thickness/2);
+			bottom: -($thickness/2);
+			border-top: none;
+			border-right: none;
+			@include MG-rotate(45,bottom left);
+
+		} @else if ($direction == right) {
+			right: -($thickness/2);
+			bottom: -($thickness/2);
+			border-top: none;
+			border-left: none;
+			@include MG-rotate(-45,bottom right);
+		}
+
+	}
+}
+
+  /////////////
+ // Circles //
+/////////////
+
+
+@mixin MG-circle($type, $color, $width, $thickness: 2px,$height:$width){
+
+	border-radius: 50%;
+	display: block;
+
+	@if ($width == 'auto') {
+		@include MG-size($height,$width);
+	} @else if (unit($width) == '%') {
+		width: $width;
+		padding: $width 0 0 0;
+		height: 0;
+	} @else if (unitless($width) == false) {
+		@include MG-size($height,$width);
+	} @else {
+		@warn '"#{$width}" is not a valid width. @include MG-circle(type, color, width, border-thickness* (stroke type only), height*). * = optional'
+	}
+
+	@if ($type == 'fill' and $color != 'none'){
+//filled circle
+		background-color: $color;
+	} @else if ($type == 'stroke'){
+//empty circle
+		border: $thickness solid $color;
+	}
+
+	@if ($type != 'fill' and $type != 'stroke' ){
+		@warn '"#{$type}" is not a valid circle type. Please select either "fill" or "stroke". @include MG-circle(type, color, width, border-thickness* (stroke type only), height*). * = optional'
+	}
+}
+
+
+  ///////////////////////////
+ // Plus and Minus shapes //
+///////////////////////////
+
+@mixin MG-plus-minus-base($color) {
+		display: block;
+		content: '';
+		@include MG-centered;
+		background: $color;
+}
+
+@mixin MG-plus($color, $size: 10px, $thickness: 2px, $rounded: false, $pos: relative){
+	@if ($color == 'toMinus'){
+		&:before {
+			@include MG-rotate(90);
+		}
+	} @else {
+		position: $pos;
+		&:before, &:after {
+			@include MG-animate;
+			@include MG-plus-minus-base($color);
+			@if ($rounded){
+				border-radius: $thickness * 2;
+			}
+			@content;
+		}
+		//vertical
+		&:before{
+			height: $size;
+			width: $thickness;
+		}
+		//horizontal
+		&:after{
+			height: $thickness;
+			width: $size;
+		}
+	}
+}
+@mixin MG-minus($color, $size: 10px, $thickness: 2px){
+	position: relative;
+	//horizontal
+	&:after {
+		@include MG-plus-minus-base($color);
+		height: $thickness;
+		width: $size;
+		@content;
+	}
+}
+
+//Works in IE9+, use a cross icon as a backup if needed
+@mixin MG-cross($color, $size: 20px, $thickness: 5px, $rounded: true, $backup-icon: false){
+	@if (($lt-ie9 == false) and $backup-icon == false){
+		@include MG-plus($color,$size,$thickness,$rounded){
+			@include MG-rotate(45);
+			@content;
+		};
+	} @else {
+		@include MG-before {
+			content: 'X';
+			color: $color;
+			@include MG-icon-size($size, $width: 100%);
+			font-family: Arial, Helvetica, sans-serif;
+			@content;//careful with the @content
+		}
+		/*@include MG-icon($backup-icon, $size){
+			color: $color;
+			@content;//careful with the @content if using a backup
+		}*/
+	}
+}
+
+
+
+
