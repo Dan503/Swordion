@@ -1,0 +1,121 @@
+body {
+  font: 16px/1.5 'Open Sans', Helvetica, Helvetica Neue, Arial, sans-serif;
+  color: rgba(0, 0, 0, 0.9);
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+h1 {
+  padding: 20% 0 0 0;
+  margin: 0;
+  text-align: center;
+  font-size: 36px;
+  color: rgba(0, 0, 0, 0.9);
+  position: relative;
+}
+h1:before {
+  content: '❤';
+  display: block;
+  position: absolute;
+  bottom: 50px;
+  left: 50%;
+  text-align: center;
+  width: 100px;
+  margin-left: -50px;
+  color: #ff466a;
+  font-size: 30px;
+}
+
+p {
+  text-align: center;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+strong {
+  color: rgba(0, 0, 0, 0.9);
+}
+section {
+  height: 100%;
+  position: relative;
+  text-align: center;
+}
+
+/* Center aligned first section */
+section .inner {
+  margin: 0 auto;
+  max-width: 85%;
+}
+
+/* Content of the following sections aligned next to the iphone */
+section .innerText {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-100px, -50%);
+  text-align: left;
+}
+
+/* iPhone/Card positioned to the left - this is a default position */
+.iphone {
+  width: 290px;
+  height: 600px;
+  border-radius: 10px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-150%, -50%);
+  background-color: #3757D0;
+  background-image: -webkit-radial-gradient(#81bcff, #5d7fce);
+  background-image: radial-gradient(#81bcff, #5d7fce);
+}
+
+/* Centered content of the ScrollMagic card */
+.iphone p {
+  font-size: 140px;
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* Letters hidden by default */
+.iphone p.screenA, .iphone p.screenB, .iphone p.screenC {
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* ScrollMagic hat on top of letters */
+.iphone p.screenHat {
+  z-index: 2;
+}
+.iphone p.screenHat img {
+  max-width: 130px;
+}
+
+/* Bullet list */
+.features {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  color: rgba(0, 0, 0, 0.6);
+}
+.features li {
+  position: relative;
+  padding-left: 17px;
+}
+
+/* A heart instead of a bullet */
+.features li:before {
+  content: '❤';
+  font-size: 11px;
+  position: absolute;
+  left: 0;
+  top: 5px;
+  display: block;
+  color: #ff466a;
+}

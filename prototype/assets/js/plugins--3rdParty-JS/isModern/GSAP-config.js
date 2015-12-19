@@ -1,0 +1,1 @@
+CSSPlugin.defaultTransformPerspective = 500;

@@ -1,0 +1,26 @@
+// map-fetch($map, $keys)
+//https://gist.github.com/jlong/8760275
+//
+// An easy way to fetch a deep value in a multi-level map. Works much like
+// map-get() except that you pass multiple keys as the second parameter to
+// go down multiple levels in the nested map.
+//
+@function map-deep-get($map, $keys) {
+  $value: $map;
+  @each $key in $keys {
+    $value: map-get($value, $key);
+  }
+  @return $value;
+}
+
+//an easy way of returning a value in a switch statement sort of syntax
+//only works for getting variables
+/*
+$newVariable: switch($testVariable, (
+	case_1_value : case_1_return_value,
+	case_2_value : case_2_return_value,
+));
+*/
+@function switch($var, $map){
+	@return map-deep-get($map, $var)
+}

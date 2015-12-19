@@ -1,0 +1,7 @@
+.standardContent .externalLink-JS {
+	@include MG-icon('external', $CB-grey-dim, $pos:after){
+		margin-left: 2px;
+		font-size: 0.75em;
+		vertical-align: text-top;
+	};
+}

@@ -1,0 +1,39 @@
+﻿
+$C-nonLink: $CB-grey-dim;
+
+.breadcrumb {
+	float: left;
+	margin-top: 10px;
+	&__item {
+		display: inline-block;
+		vertical-align: middle;
+		padding-left: 20px;
+		margin-left: 15px;
+		position: relative;
+		color: $C-nonLink;
+		@include MG-icon('arrow-right',$C-nonLink,13px,$width:8px){
+			@include MG-centered(v);
+			left: 0;
+		};
+		&:first-child {
+			padding-left: 0;
+			margin-left: 0;
+			&:before { display: none; }
+		}
+	}
+		&__inner {
+			&--link {
+				//
+			}
+			&--current {
+				//
+			}
+			&--home {
+			}
+		}
+			&__icon {
+				@include MG-icon-size(20px);
+				position: relative;
+				top: 1px;
+			}
+}
