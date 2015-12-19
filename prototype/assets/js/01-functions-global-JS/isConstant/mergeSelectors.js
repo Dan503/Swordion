@@ -1,3 +1,8 @@
+
+//Merge an array of jQuery objects into a single usable selector
+
+//mergeSelectors([$('.class1'), $('.class2')]) => $('.class1, .class2');
+
 //https://gist.github.com/sjwilliams/3929462
 
 // Based on pieces from this thread:
