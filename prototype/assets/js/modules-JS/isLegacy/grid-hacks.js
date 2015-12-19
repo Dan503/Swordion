@@ -1,7 +1,13 @@
 ﻿
-//simulates the flex box ability of giving things equal heights
 $('.grid').each(function(){
+	//simulates the flex box ability of giving things equal heights
 	$(this).find(' > .grid__cell').matchHeight();
+
+	//Makes cells with grid__inner classes take up the full height of the cell
+	if ($(this).hasClass('grid--hasInners')){
+		var this_cell = $(this).find(' > .grid__cell');
+		this_cell.find(' > .grid__inner').height(this_cell.height());
+	}
 });
 
 //Doesn't fix IE8 and IE9 not treating the right negative margin properly
