@@ -19,7 +19,7 @@ function video($srcID, $extras = array()){
 	}
 
 	echo '
-<div class="video '.$extras['classes'].'" data-jshook="'.$extras['wrapper-hooks'].'">
+<div class="responsiveVideo '.$extras['classes'].'" data-jshook="'.$extras['wrapper-hooks'].'">
 	<iframe id="'.$id.'" title="'.$titleAttr.'" data-jshook="'.$extras['hooks'].'" width="560" height="315" src="https://www.youtube-nocookie.com/embed/'.$srcID.'?rel=0&enablejsapi=1&controls=1&showinfo=0" frameborder="0" allowfullscreen></iframe>
 </div>';
 
