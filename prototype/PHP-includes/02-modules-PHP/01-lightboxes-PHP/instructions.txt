@@ -1,0 +1,13 @@
+This folder defines what pages lightboxes are available on. They can either appear on specific pages or specific templates.
+
+Providing a location string as the folder name (eg. "1-2-1" for page "/pages/1/2/1/") will make the lightboxes in that folder available specifically on that page.
+
+If you want the lightbox to appear on every page using a particular template, give the folder the same name as the desired template. (eg. name the folder "home" for the "home" template).
+
+You can then attatch links to the lightbox like this:
+
+<a href="#lightbox__fileName">Link text</a>
+
+
+!!!!WARNING!!!
+The Lightbox code is powered by Remodal. It's excellent at showing information popups but it's terrible for galleries as it loads up all the content of all the lightboxes all at once on first page load. Don't use this for Gallaries!

@@ -1,0 +1,5 @@
+This folder allows you to change some configuration settings to change how the site operates. 
+
+I would recommend not removing or changing anything that is already written in these files but feel free to add to them.
+
+If you are ever just seeing a big blank screen, try uncommenting the "error_reporting(-1);" line in error-reporting.php file (make sure to commment it again after you're done though).

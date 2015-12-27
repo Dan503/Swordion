@@ -1,0 +1,1 @@
+If a plugin requires css, turn the css file into an scss file then save it here. It will automatically get placed toward the top of the generated css file.

@@ -1,0 +1,1 @@
+Drop all the contents of  an icomoon package into this folder and it ill automatically copy the font files to the correct location for you
