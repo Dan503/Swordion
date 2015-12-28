@@ -1,25 +1,21 @@
 <?php
 
+//Do not alter this file other than adding to the array if needed
+
 //Commonly used include paths
-	$includeRoot = $_SERVER['DOCUMENT_ROOT'].$root_location.'/includes/';
+	$root = $_SERVER['DOCUMENT_ROOT'].$root_location.'/';
 
-	$baseRoot = $includeRoot.'01-base-PHP/';
+	$main_root = $root.'PHP-includes/';
 
-	$modulesRoot = $includeRoot.'02-modules-PHP/';
-
+//holds the paths for user editable modules
 	$include = array(
-		'root' => $includeRoot,
+		'root' => $main_root,
 
-		'base' => $baseRoot,
+		'base' => $main_root.'01-base-PHP/',
 
-		'module' => $includeRoot.'02-modules-PHP/',
-
-		'template' => $includeRoot.'03-templates-PHP/',
-
-		'lightbox__root' => $modulesRoot.'01-lightboxes-PHP/',
-		'lightbox' => $modulesRoot.'01-lightboxes-PHP/'.$locationString.'/',
+		'module' => $main_root.'02-modules-PHP/',
 	);
 
-	$head = $include['base'].'01-head.php';
+	$head = $include['base'].'head.php';
 
 ?>

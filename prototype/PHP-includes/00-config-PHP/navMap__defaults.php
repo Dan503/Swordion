@@ -5,5 +5,6 @@
 
 $GLOBALS['navMap__defaults'] = array(
 	'subNavigable' => true,//means that the items subnav will appear in the navigation (this needs to be coded in though, it isn't pre-packaged)
+	'template' => 'standard',//determines what the default template for the site is (do not remove this but you can change it to a different template if you like)
 );
 ?>

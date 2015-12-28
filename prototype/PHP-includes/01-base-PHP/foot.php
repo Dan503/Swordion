@@ -1,6 +1,6 @@
 
 			</div>
-			<!-- @.mainArea -->
+			<!-- @.siteMain -->
 
 			<?php
 				include $include['module'].'siteFooter.php';
@@ -9,18 +9,10 @@
 		</div>
 		<!-- @.siteContainer-->
 
-		<?php if ($GLOBALS['hasSideNav']){ ?>
-			<div data-jshook="headerTransform__transformer">
-				<a href="#" title="Open side navigation" class="stickySideNav__open" data-jshook="stickySideNav__trigger--open">Within this section</a>
-
-				<?php sideBar(array(array('blockType' => 'nav','navType' => 'fixed'))); ?>
-			</div>
-		<?php } ?>
-
 	</div>
-	<!-- TK-overflowHidden -->
+	<!-- @.TK-overflowHidden -->
 
-	<?php include $include['base'].'autoload-lightboxes.php'; ?>
+	<?php include $swordion['base'].'autoload-lightboxes.php'; ?>
 
 	<!-- jQuery loader (make sure it's the latest version when starting) -->
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -53,7 +45,6 @@
 	</script>
 
 	<?php
-		$min = $environment == 'development'? '' : '.min';
 
 		$baseJS = array(
 			'isConstant' => $loadIn['all'],
@@ -61,24 +52,24 @@
 			'isLegacy' => $loadIn['legacy'],
 		);
 
+		//loads the site javascript
 		foreach ($baseJS as $setName => $extras){
 			echo '
 			'.$extras['before'].
-				'<script src="'.$rootLocation.'/assets/js/ZZ-merged-JS/'.$setName.$min.'.js"></script>'
+				'<script src="'.$rootLocation.'/assets/js/'.$setName.$min.'.js"></script>'
 			.$extras['after'].'
 			';
 		}
 
 		$extraJS = array(
-		//this is referencing the $locationString variable, it is NOT a numerical index
-			'0' => array(
+			'home' => array(//'home' referencing the page template name
 				'isHome' => $loadIn['modern'],
 			)
 		);
 
-		foreach ($extraJS as $stringLocation => $JSincludes) {
-			if ($locationString == $stringLocation) {
-				foreach ($JSincludes as $setName => $extras){
+		foreach ($extraJS as $template => $JSextras) {
+			if ($getCurrent['template'] == $template) {
+				foreach ($JSextras as $setName => $extras){
 					echo '
 					'.$extras['before'].
 						'<script src="'.$rootLocation.'/assets/js/ZZ-merged-JS/'.$setName.$min.'.js"></script>'

@@ -1,0 +1,1 @@
+<p>Constant light-box example</p>

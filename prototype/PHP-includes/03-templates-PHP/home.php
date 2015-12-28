@@ -1,4 +1,7 @@
-<?php include $head; ?>
+<?php
+	$isHome = true;
+	include $head;
+?>
 
 <ul class="tiltParallax__scene torch" data-jshook="tiltParallax__scene">
 	<li class="layer tiltParallax__layer torch__light" data-depth="-4.00"></li>

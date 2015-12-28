@@ -16,11 +16,9 @@
 
     <title><?php
 		$title = defaultTo($getCurrent['altTitle'], $getCurrent['title']);
-        if ($isHome == true) {
-			print strip_tags($title);
-        } else {
-			print strip_tags($title) . ' | Website name goes here';
-        }
+		$titleText = $isHome ? strip_tags($title) : strip_tags($title) . ' | Website name goes here';
+
+		print $titleText;
 	?></title>
 
 	<?php
@@ -30,7 +28,7 @@
 
 	<meta name="viewport" content="width=device-width,initial-scale=1">
 
-	<?php $shareTitle = ($isHome) ? 'Department of Communications 2014-15 Annual Report' :  strip_tags($getCurrent['title']) . ' | Department of Communications 2014-15 Annual Report'; ?>
+	<?php $shareTitle = $titleText; ?>
 
 	<!-- facebook meta data -->
 	<meta property="og:title" content="<?php echo $shareTitle; ?>" />
@@ -99,8 +97,8 @@
 <body class="<?php
 	echo $body_classes;
 	if ($isHome) { echo ' home'; }
-	echo ($isLoggedIn ? ' logged-in' : ' logged-out');
-	echo ' '.(defaultTo($theme, 'theme--light'));
+	echo $isLoggedIn ? ' logged-in' : ' logged-out';
+	echo ' '.(defaultTo($theme, 'theme--light'));//remove this line if you aren't using themes in your site
 ?>">
 
 	<!-- I've found the <noscript> tag to not always work properly -->
