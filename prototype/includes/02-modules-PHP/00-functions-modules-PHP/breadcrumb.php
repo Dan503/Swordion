@@ -47,14 +47,14 @@
 
 		$defaultSettings = array(
 			'hasLastItem' => true,
-			'modifiers' => '',
+			'modifiers' => array(),
 		);
 
 		$settings = ($settings == 'defaults') ?
 			$defaultSettings :
 			defaultTo($settings, $defaultSettings);
 
-		$modifier = modifiers($settings['modifiers'], 'breadcrumb');
+		$modifier = count($settings['modifiers']) > 0 ? modifiers($settings['modifiers'], 'breadcrumb') : '';
 
 		$map = $GLOBALS['navMap'];
 		$target = $GLOBALS['location'][0];
@@ -64,7 +64,7 @@
 			'<nav class="breadcrumb'.$modifier.'">
 				<ul class="breadcrumb__list">
 					<li class="breadcrumb__item breadcrumb__item--home">
-						<a class="breadcrumb__link breadcrumb__inner breadcrumb__home" href="/2015/" title="Back to home page">
+						<a class="breadcrumb__link breadcrumb__inner breadcrumb__home" href="/" title="Back to home page">
 							Home
 						</a>
 					</li>';
