@@ -46,8 +46,10 @@
 	function breadcrumb($settings = 'defaults'){
 
 		$defaultSettings = array(
-			'hasLastItem' => true,
+			'hasLastItem' => false,
 			'modifiers' => array(),
+			'homeIcon' => true,
+			'classes' => '',
 		);
 
 		$settings = ($settings == 'defaults') ?
@@ -61,12 +63,19 @@
 
 		if (is_array($GLOBALS['location'])){
 			echo
-			'<nav class="breadcrumb'.$modifier.'">
+			'<nav class="breadcrumb'.$modifier.' '.$settings['classes'].'">
 				<ul class="breadcrumb__list">
-					<li class="breadcrumb__item breadcrumb__item--home">
-						<a class="breadcrumb__link breadcrumb__inner breadcrumb__home" href="/" title="Back to home page">
-							Home
-						</a>
+					<li class="breadcrumb__item breadcrumb__item--home">';
+						if ($settings['homeIcon']){
+							echo '
+							<a class="icon-home breadcrumb__link breadcrumb__inner breadcrumb__home" href="/" title="Home"></a>';
+						} else {
+							echo '
+							<a class="breadcrumb__link breadcrumb__inner breadcrumb__home" href="/" title="Back to home page">
+								Home
+							</a>';
+						}
+					echo '
 					</li>';
 
 					getBreadcrumb($map[$target], 1, $settings['hasLastItem']);
