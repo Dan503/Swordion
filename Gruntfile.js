@@ -219,12 +219,15 @@ module.exports = function (grunt) {
 		sass_globbing: {
 			all: {
 				files: {
-					'prototype/assets/sass/import-maps/map-functions.scss': 'prototype/assets/sass/00-functions-SASS/**/*.scss',
-					'prototype/assets/sass/import-maps/map-config.scss': 'prototype/assets/sass/01-config-SASS/**/*.scss',
-					'prototype/assets/sass/import-maps/map-mixins.scss': 'prototype/assets/sass/02-mixins-SASS/**/*.scss',
-					'prototype/assets/sass/import-maps/map-plugins.scss': 'prototype/assets/sass/03-plugins-SASS/**/*.scss',
-					'prototype/assets/sass/import-maps/map-base.scss': 'prototype/assets/sass/04-base-SASS/**/*.scss',
-					'prototype/assets/sass/import-maps/map-modules.scss': 'prototype/assets/sass/05-modules-SASS/**/*.scss',
+					'prototype/00-source-files/ZZ-Swordion-DO-NOT-EDIT/sass/import-maps/map-functions.scss': 'prototype/00-source-files/ZZ-Swordion-DO-NOT-EDIT/sass/00-functions-SASS/**/*.scss',
+					'prototype/00-source-files/ZZ-Swordion-DO-NOT-EDIT/sass/import-maps/map-functions.scss': 'prototype/00-source-files/ZZ-Swordion-DO-NOT-EDIT/sass/01-sprite-sheets-SASS/**/*.scss',
+					'prototype/00-source-files/ZZ-Swordion-DO-NOT-EDIT/sass/import-maps/map-config.scss': 'prototype/00-source-files/01-sass/01-config-SASS/**/*.scss',
+					'prototype/00-source-files/ZZ-Swordion-DO-NOT-EDIT/sass/import-maps/map-mixins.scss': 'prototype/00-source-files/ZZ-Swordion-DO-NOT-EDIT/sass/02-mixins-SASS/**/*.scss',
+					'prototype/00-source-files/ZZ-Swordion-DO-NOT-EDIT/sass/import-maps/map-plugins.scss': 'prototype/00-source-files/01-sass/03-plugins-SASS/**/*.scss',
+					'prototype/00-source-files/ZZ-Swordion-DO-NOT-EDIT/sass/import-maps/map-base.scss': 'prototype/00-source-files/ZZ-Swordion-DO-NOT-EDIT/sass/04-base-SASS/**/*.scss',
+					'prototype/00-source-files/ZZ-Swordion-DO-NOT-EDIT/sass/import-maps/map-base.scss': 'prototype/00-source-files/01-sass/04-base-SASS/**/*.scss',
+					'prototype/00-source-files/ZZ-Swordion-DO-NOT-EDIT/sass/import-maps/map-base.scss': 'prototype/00-source-files/01-sass/04-form-elements-SASS/**/*.scss',
+					'prototype/00-source-files/ZZ-Swordion-DO-NOT-EDIT/sass/import-maps/map-modules.scss': 'prototype/00-source-files/01-sass/05-modules-SASS/**/*.scss',
 				}
 			}
 		},
