@@ -188,9 +188,9 @@ module.exports = function (grunt) {
 		sprite:{
 			//Generates the double sized version of the retina sprite
 	        retina: {
-	            src: 'prototype/assets/images/auto-sprite/HD-retina-sourcefiles/*.png',
+	            src: 'prototype/00-source-files/auto-sprite-images/HD-retina-sourcefiles/*.png',
 	            dest: 'prototype/assets/images/auto-sprite/HD-retina-autosprite.png',
-	            destCss: 'prototype/assets/sass/01-config-SASS/sprite-sheets/HD-retina-sprites.scss',
+	            destCss: 'prototype/00-source-files/ZZ-Swordion-DO-NOT-EDIT/sass/01-sprite-sheets/HD-retina-sprites.scss',
 	            cssFormat: 'scss_maps',
 	            imgPath: '../images/auto-sprite/HD-retina-autosprite.png',
 	            padding: 4,
@@ -202,9 +202,9 @@ module.exports = function (grunt) {
 			//Generates a normal sized sprite that is used on both retina and non retina screens
 			//If you do not have a double sized version for an image, use this.
 			nonRetina: {
-	            src: 'prototype/assets/images/auto-sprite/LD-nonRetina-sourceFiles/*.png',
+	            src: 'prototype/00-source-files/auto-sprite-images/LD-nonRetina-sourceFiles/*.png',
 	            dest: 'prototype/assets/images/auto-sprite/LD-nonRetina-autosprite.png',
-	            destCss: 'prototype/assets/sass/01-config-SASS/sprite-sheets/LD-nonRetina-sprites.scss',
+	            destCss: 'prototype/00-source-files/ZZ-Swordion-DO-NOT-EDIT/sass/01-sprite-sheets/LD-nonRetina-sprites.scss',
 	            cssFormat: 'scss_maps',
 	            imgPath: '../images/auto-sprite/LD-nonRetina-autosprite.png',
 	            padding: 2,
