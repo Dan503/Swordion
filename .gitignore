@@ -18,3 +18,4 @@ prototype.zip
 prototype/assets/js/ZZ-merged-JS/
 prototype/assets/images/auto-sprite/HD-retina-autosprite.png
 prototype/assets/images/auto-sprite/LD-nonRetina-autosprite.png
+prototype/assets/js/generated-JS/*.js

@@ -17,15 +17,21 @@ var jsMerge = {
 			folder: '00-variables-global-JS',
 		}, {
 			folder: '01-functions-global-JS',
+			swordionFile: true,
+		}, {
+			folder: '01-functions-global-JS',
+			swordionFile: false,
 		}, {
 			folder: 'plugins--1stParty-JS',
 		}, {
 			file: 'doc.ready-open.js',
+			swordionFile: true,
 			//usedIn : 'all', //(default)// other option is an array eg. ['isHome', 'isModern']
 		}, {
 			folder : 'modules-JS',
 		}, {
 			file: 'doc.ready-close.js',
+			swordionFile: false,
 		}
 	]
 };
@@ -42,7 +48,7 @@ var JS_merge_files = {};
 //generates an array of files delegated to each split
 for (var x = 0; x < jsMerge.splits.length; x++){
 
-	var root = 'prototype/assets/js/';
+	var root = '';
 	var split = jsMerge.splits[x];
 
 	JS_merge_files[split] = [];
@@ -50,6 +56,14 @@ for (var x = 0; x < jsMerge.splits.length; x++){
 	for (var i = 0; i < jsMerge.components.length; i++){
 
 		var component = jsMerge.components[i];
+
+		//default "swordionFile" to "false"
+		component.swordionFile = component.swordionFile || false;
+
+		//sets the root folder depending on if it is a swordion file or not
+		root = component.swordionFile ?
+			'prototype/00-source-files/ZZ-Swordion-DO-NOT-EDIT/js/' : //true
+			'prototype/00-source-files/02-js/';
 
 		//if it's a file
 		if (typeof component.file !== 'undefined'){
@@ -64,6 +78,9 @@ for (var x = 0; x < jsMerge.splits.length; x++){
 		} else {
 			//default "isSplit" to "true"
 			component.isSplit = component.isSplit || true;
+
+
+
 			//if componenet is not split, only load it in the 'isConstant' set
 			if (component.isSplit || split == 'isConstant'){
 
@@ -77,7 +94,7 @@ for (var x = 0; x < jsMerge.splits.length; x++){
 	//formats the data into a form that grunt concat understands
 	JS_mergeConfig[split] = {
 		src : JS_merge_files[split],
-		dest : root + 'ZZ-merged-JS/' + split + '.js'
+		dest : root + 'generated-JS/' + split + '.js'
 	}
 
 }
@@ -91,7 +108,7 @@ var JS_minified_files = {};
 for (var key in JS_merge_files) {
   if (JS_merge_files.hasOwnProperty(key)) {
 
-  	JS_minified_files['prototype/assets/js/ZZ-merged-JS/'+key+'.min.js'] = ['prototype/assets/js/ZZ-merged-JS/'+key+'.js'];
+  	JS_minified_files['prototype/assets/js/generated-JS/'+key+'.min.js'] = ['prototype/assets/js/generated-JS/'+key+'.js'];
   }
 }
 //test grunt uglify syntax
