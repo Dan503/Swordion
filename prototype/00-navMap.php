@@ -28,7 +28,7 @@
 					'subnav' => array(
 						array(
 							'title' => 'example shortcut',
-							'link' => '/pages/1/2/3/'
+							'link' => '?location=1-2-3'
 						)
 					)
 				)
@@ -47,6 +47,7 @@
 							'subnav' => array(
 								array(
 									'title' => 'Enhancing digital productivity',
+									'linkGen' => 'override-siblings', //All generated links at this level will point to this page
 								),
 								array(
 									'title' => 'Expanding digital infrastructure',
@@ -73,6 +74,7 @@
 		), array(
 		// part 2
 			'title' => 'Performance reporting',
+			'linkGen' => 'first-child', //will link to first child page instead of this page
 			'subnav' => array(
 				array(
 					'title' => 'Outcome 1',
