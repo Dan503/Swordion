@@ -39,8 +39,6 @@ function generateDefaults($basePath, &$map, $index, $siblings){
 
     $map['link'] = generateLink($map['link'], $basePath, $index, $linkGenType, $siblings);
 
-		var_dump($map['link']);
-
 	$map = defaultTo($map, $GLOBALS['navMap__defaults']);
 
 	//if a subnav exists in item, generate defaults for it

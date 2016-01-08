@@ -1,4 +1,5 @@
 <?php
+	$location = [0];
 	$isHome = true;
 	include $head;
 ?>

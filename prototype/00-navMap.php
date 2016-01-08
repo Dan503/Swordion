@@ -16,6 +16,7 @@
 					'subnav' => array(
 						array (
 							'title' => '404: page not found',
+							'template' => '404',
 						), array (
 							'title' => 'Search',
 							'intro' => !empty($query) ? $pageTitle : 'Search the Department of Communications Annual Report 2014&ndash;15',

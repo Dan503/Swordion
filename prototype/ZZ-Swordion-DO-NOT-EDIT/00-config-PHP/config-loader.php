@@ -86,9 +86,9 @@
 
 		'/00-navMap.php',
 
-		'/ZZ-Swordion-DO-NOT-EDIT/00-config-PHP/config-files-PHP/02-navigation-PHP/',
-
 		'/PHP-includes/00-config-PHP/',
+
+		'/ZZ-Swordion-DO-NOT-EDIT/00-config-PHP/config-files-PHP/02-navigation-PHP/',
 
 		'/ZZ-Swordion-DO-NOT-EDIT/00-config-PHP/config-files-PHP/03-other-PHP/',
 
