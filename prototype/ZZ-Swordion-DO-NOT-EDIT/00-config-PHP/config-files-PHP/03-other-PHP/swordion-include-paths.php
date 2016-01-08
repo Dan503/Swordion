@@ -6,8 +6,8 @@
 	$swordion = array(
 		'root' => $swordion_root,
 		'base' => $swordion_root.'02-base-PHP/',
-		'template' => $main_root.'03-templates-PHP/',
-		'lightbox--root' => $include['module'].'01-lightboxes-PHP/',
+		'template' => $root.'03-templates-PHP/',
+		'lightbox--root' => $module.'01-lightboxes-PHP/',
 	);
 
 ?>

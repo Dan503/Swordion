@@ -4,6 +4,6 @@ include $_SERVER['DOCUMENT_ROOT'].'/ZZ-Swordion-DO-NOT-EDIT/00-config-PHP/config
 
 include $swordion['template'].$getCurrent['template'].'.php';
 
-include $include['base'].'foot.php';
+include $base.'foot.php';
 
 ?>

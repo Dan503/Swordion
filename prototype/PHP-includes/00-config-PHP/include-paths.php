@@ -3,19 +3,18 @@
 //Do not alter this file other than adding to the array if needed
 
 //Commonly used include paths
-	$root = $_SERVER['DOCUMENT_ROOT'].$root_location.'/';
+	$server_root = $_SERVER['DOCUMENT_ROOT'].$root_location.'/';
 
-	$main_root = $root.'PHP-includes/';
+	$root = $server_root.'PHP-includes/';
+
+	$base = $root.'01-base-PHP/';
+
+	$module = $root.'02-modules-PHP/';
+
+	$template = $root.'03-templates-PHP/';
 
 //holds the paths for user editable modules
-	$include = array(
-		'root' => $main_root,
 
-		'base' => $main_root.'01-base-PHP/',
-
-		'module' => $main_root.'02-modules-PHP/',
-	);
-
-	$head = $include['base'].'head.php';
+	$head = $base.'head.php';
 
 ?>

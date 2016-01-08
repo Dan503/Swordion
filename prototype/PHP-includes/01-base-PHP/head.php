@@ -106,7 +106,7 @@
     	<p>Please <a href="http://www.enable-javascript.com/">enable javascript</a> to access the full functionality of this site</p>
     </div>
 
-	<div class="screenFader" data-jshook="screenFader"></div>
+	<div class="screenFader TK-hide" data-jshook="screenFader"></div>
 
 	<?php /* prevents unwanted horizontal scroll bars caused by .grid--gutter-# classes */ ?>
 	<div class="TK-overflowHidden">

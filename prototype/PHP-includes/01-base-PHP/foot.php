@@ -3,7 +3,7 @@
 			<!-- @.siteMain -->
 
 			<?php
-				include $include['module'].'siteFooter.php';
+				include $module.'siteFooter.php';
 			?>
 
 		</div>
