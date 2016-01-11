@@ -40,10 +40,6 @@
 		<script>window.attachEvent("onload",function(){CFInstall.check({mode:"overlay"})})</script>
 	<![endif]-->
 
-	<script type="text/javascript">
-		var js_root = '<?php echo $rootLocation."/assets/js/"; ?>';
-	</script>
-
 	<?php
 
 		$baseJS = array(
@@ -56,7 +52,7 @@
 		foreach ($baseJS as $setName => $extras){
 			echo '
 			'.$extras['before'].
-				'<script src="'.$rootLocation.'/assets/js/'.$setName.$min.'.js"></script>'
+				'<script src="'.$rootLocation.'/assets/js/generated-JS/'.$setName.$min.'.js"></script>'
 			.$extras['after'].'
 			';
 		}
