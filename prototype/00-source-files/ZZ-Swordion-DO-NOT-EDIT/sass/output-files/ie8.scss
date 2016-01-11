@@ -13,18 +13,15 @@
 $modern: false;
 $ie9: false;
 $ie8: true;
+$gt-ie10: false;
 $gt-ie8: false;
 $lt-ie10: true;
 $lt-ie9: true;
 
-//Global functions that extend SASS functionality
-@import "../import-maps/map-functions.scss";
-
-//all global variables go in the files listed in here
-@import "../import-maps/map-config.scss";
+@import "../import-maps/configurations.scss";
 
 //Prevents media queries from being rendered in the css if they are for screen resolutions lower than this.
 //If the media query is for screens above this width, the css is outputted outside of a media query just appearing as normal css in the compiled style sheet
 $fix-mqs: bp('page');
 
-@import "../01-import-styles.scss";
+@import "../import-maps/main-files.scss";
