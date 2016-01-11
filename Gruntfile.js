@@ -17,21 +17,21 @@ var jsMerge = {
 			folder: '00-variables-global-JS',
 		}, {
 			folder: '01-functions-global-JS',
-			swordionFile: true,
+			isSwordionFile: true,
 		}, {
 			folder: '01-functions-global-JS',
-			swordionFile: false,
+			isSwordionFile: false,
 		}, {
 			folder: 'plugins--1stParty-JS',
 		}, {
 			file: 'doc.ready-open.js',
-			swordionFile: true,
+			isSwordionFile: true,
 			//usedIn : 'all', //(default)// other option is an array eg. ['isHome', 'isModern']
 		}, {
 			folder : 'modules-JS',
 		}, {
 			file: 'doc.ready-close.js',
-			swordionFile: false,
+			isSwordionFile: false,
 		}
 	]
 };
@@ -39,7 +39,7 @@ var jsMerge = {
 //configure grunt concat options here
 var JS_mergeConfig = {
 	options: {
-		banner: '/* This is a generated file. Do not edit */'
+		banner: '/* This is a generated file. DO NOT EDIT!!! */'
 	}
 };
 
@@ -57,11 +57,11 @@ for (var x = 0; x < jsMerge.splits.length; x++){
 
 		var component = jsMerge.components[i];
 
-		//default "swordionFile" to "false"
-		component.swordionFile = component.swordionFile || false;
+		//default "isSwordionFile" to "false"
+		component.isSwordionFile = component.isSwordionFile || false;
 
 		//sets the root folder depending on if it is a swordion file or not
-		root = component.swordionFile ?
+		root = component.isSwordionFile ?
 			'prototype/00-source-files/ZZ-Swordion-DO-NOT-EDIT/js/' : //true
 			'prototype/00-source-files/02-js/';
 
@@ -94,7 +94,7 @@ for (var x = 0; x < jsMerge.splits.length; x++){
 	//formats the data into a form that grunt concat understands
 	JS_mergeConfig[split] = {
 		src : JS_merge_files[split],
-		dest : root + 'generated-JS/' + split + '.js'
+		dest : 'prototype/assets/js/generated-JS/' + split + '.js'
 	}
 
 }
@@ -278,7 +278,7 @@ module.exports = function (grunt) {
 		      expand: true,
 		      cwd: 'prototype/assets/css/',
 		      src: ['modern.css','ie9.css','ie8.css'],
-		      //dest: 'prototype/assets/css/',
+		      dest: 'prototype/assets/css/',
 		      ext: '.min.css'
 		  }
 		},
@@ -474,8 +474,8 @@ module.exports = function (grunt) {
 		"sass",//compile CSS files for all browsers when running the grunt command
 		"postcss",//merge media queries and add auto prefixing
 		"csso",//minify css (css optimiser)
-		//"sync",//copy files to another location
-		"watch"//keep tabs on files looking out for changes
+			//"sync",//copy files to another location
+		//"watch"//keep tabs on files looking out for changes
 	]);
 
 };
