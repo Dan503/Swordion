@@ -31,7 +31,7 @@ var jsMerge = {
 			folder : 'modules-JS',
 		}, {
 			file: 'doc.ready-close.js',
-			isSwordionFile: false,
+			isSwordionFile: true,
 		}
 	]
 };
