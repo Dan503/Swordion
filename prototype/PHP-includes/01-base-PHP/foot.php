@@ -72,7 +72,7 @@
 				foreach ($JSextras as $setName => $extras){
 					echo '
 					'.$extras['before'].
-						'<script src="'.$rootLocation.'/assets/js/ZZ-merged-JS/'.$setName.$min.'.js"></script>'
+						'<script src="'.$rootLocation.'/assets/js/generated-JS/'.$setName.$min.'.js"></script>'
 					.$extras['after'].'
 					';
 				}
