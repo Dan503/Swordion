@@ -177,9 +177,9 @@ module.exports = function (grunt) {
 				},
 				files: {
 					//destination
-					'assets/images/auto-sprite/LD-retina-autosprite.png':
+					'prototype/assets/images/auto-sprite/LD-retina-autosprite.png':
 					//source
-					'assets/images/auto-sprite/HD-retina-autosprite.png'
+					'prototype/assets/images/auto-sprite/HD-retina-autosprite.png'
 				}
 			}
 		},
