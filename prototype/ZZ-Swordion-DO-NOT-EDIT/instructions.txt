@@ -1,0 +1,1 @@
+Do not edit anything in this folder unless you completely understand what you are doing. Files inside this folder are integral to how Swordion operates.

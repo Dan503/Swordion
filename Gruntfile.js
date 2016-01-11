@@ -17,15 +17,21 @@ var jsMerge = {
 			folder: '00-variables-global-JS',
 		}, {
 			folder: '01-functions-global-JS',
+			isSwordionFile: true,
+		}, {
+			folder: '01-functions-global-JS',
+			isSwordionFile: false,
 		}, {
 			folder: 'plugins--1stParty-JS',
 		}, {
 			file: 'doc.ready-open.js',
+			isSwordionFile: true,
 			//usedIn : 'all', //(default)// other option is an array eg. ['isHome', 'isModern']
 		}, {
 			folder : 'modules-JS',
 		}, {
 			file: 'doc.ready-close.js',
+			isSwordionFile: true,
 		}
 	]
 };
@@ -33,7 +39,7 @@ var jsMerge = {
 //configure grunt concat options here
 var JS_mergeConfig = {
 	options: {
-		banner: '/* This is a generated file. Do not edit */'
+		banner: '/* This is a generated file. DO NOT EDIT!!! */'
 	}
 };
 
@@ -42,7 +48,7 @@ var JS_merge_files = {};
 //generates an array of files delegated to each split
 for (var x = 0; x < jsMerge.splits.length; x++){
 
-	var root = 'prototype/assets/js/';
+	var root = '';
 	var split = jsMerge.splits[x];
 
 	JS_merge_files[split] = [];
@@ -50,6 +56,14 @@ for (var x = 0; x < jsMerge.splits.length; x++){
 	for (var i = 0; i < jsMerge.components.length; i++){
 
 		var component = jsMerge.components[i];
+
+		//default "isSwordionFile" to "false"
+		component.isSwordionFile = component.isSwordionFile || false;
+
+		//sets the root folder depending on if it is a swordion file or not
+		root = component.isSwordionFile ?
+			'prototype/00-source-files/ZZ-Swordion-DO-NOT-EDIT/js/' : //true
+			'prototype/00-source-files/02-js/';
 
 		//if it's a file
 		if (typeof component.file !== 'undefined'){
@@ -64,6 +78,9 @@ for (var x = 0; x < jsMerge.splits.length; x++){
 		} else {
 			//default "isSplit" to "true"
 			component.isSplit = component.isSplit || true;
+
+
+
 			//if componenet is not split, only load it in the 'isConstant' set
 			if (component.isSplit || split == 'isConstant'){
 
@@ -77,7 +94,7 @@ for (var x = 0; x < jsMerge.splits.length; x++){
 	//formats the data into a form that grunt concat understands
 	JS_mergeConfig[split] = {
 		src : JS_merge_files[split],
-		dest : root + 'ZZ-merged-JS/' + split + '.js'
+		dest : 'prototype/assets/js/generated-JS/' + split + '.js'
 	}
 
 }
@@ -91,7 +108,7 @@ var JS_minified_files = {};
 for (var key in JS_merge_files) {
   if (JS_merge_files.hasOwnProperty(key)) {
 
-  	JS_minified_files['prototype/assets/js/ZZ-merged-JS/'+key+'.min.js'] = ['prototype/assets/js/ZZ-merged-JS/'+key+'.js'];
+  	JS_minified_files['prototype/assets/js/generated-JS/'+key+'.min.js'] = ['prototype/assets/js/generated-JS/'+key+'.js'];
   }
 }
 //test grunt uglify syntax
@@ -160,9 +177,9 @@ module.exports = function (grunt) {
 				},
 				files: {
 					//destination
-					'assets/images/auto-sprite/LD-retina-autosprite.png':
+					'prototype/assets/images/auto-sprite/LD-retina-autosprite.png':
 					//source
-					'assets/images/auto-sprite/HD-retina-autosprite.png'
+					'prototype/assets/images/auto-sprite/HD-retina-autosprite.png'
 				}
 			}
 		},
@@ -171,9 +188,9 @@ module.exports = function (grunt) {
 		sprite:{
 			//Generates the double sized version of the retina sprite
 	        retina: {
-	            src: 'prototype/assets/images/auto-sprite/HD-retina-sourcefiles/*.png',
+	            src: 'prototype/00-source-files/auto-sprite-images/HD-retina-sourcefiles/*.png',
 	            dest: 'prototype/assets/images/auto-sprite/HD-retina-autosprite.png',
-	            destCss: 'prototype/assets/sass/01-config-SASS/sprite-sheets/HD-retina-sprites.scss',
+	            destCss: 'prototype/00-source-files/ZZ-Swordion-DO-NOT-EDIT/sass/01-sprite-sheets/HD-retina-sprites.scss',
 	            cssFormat: 'scss_maps',
 	            imgPath: '../images/auto-sprite/HD-retina-autosprite.png',
 	            padding: 4,
@@ -185,9 +202,9 @@ module.exports = function (grunt) {
 			//Generates a normal sized sprite that is used on both retina and non retina screens
 			//If you do not have a double sized version for an image, use this.
 			nonRetina: {
-	            src: 'prototype/assets/images/auto-sprite/LD-nonRetina-sourceFiles/*.png',
+	            src: 'prototype/00-source-files/auto-sprite-images/LD-nonRetina-sourceFiles/*.png',
 	            dest: 'prototype/assets/images/auto-sprite/LD-nonRetina-autosprite.png',
-	            destCss: 'prototype/assets/sass/01-config-SASS/sprite-sheets/LD-nonRetina-sprites.scss',
+	            destCss: 'prototype/00-source-files/ZZ-Swordion-DO-NOT-EDIT/sass/01-sprite-sheets/LD-nonRetina-sprites.scss',
 	            cssFormat: 'scss_maps',
 	            imgPath: '../images/auto-sprite/LD-nonRetina-autosprite.png',
 	            padding: 2,
@@ -200,16 +217,26 @@ module.exports = function (grunt) {
 
 		//allows sass to import a whole directory at a time
 		sass_globbing: {
-			all: {
+			phase_1: {
 				files: {
-					'prototype/assets/sass/import-maps/map-functions.scss': 'prototype/assets/sass/00-functions-SASS/**/*.scss',
-					'prototype/assets/sass/import-maps/map-config.scss': 'prototype/assets/sass/01-config-SASS/**/*.scss',
-					'prototype/assets/sass/import-maps/map-mixins.scss': 'prototype/assets/sass/02-mixins-SASS/**/*.scss',
-					'prototype/assets/sass/import-maps/map-plugins.scss': 'prototype/assets/sass/03-plugins-SASS/**/*.scss',
-					'prototype/assets/sass/import-maps/map-base.scss': 'prototype/assets/sass/04-base-SASS/**/*.scss',
-					'prototype/assets/sass/import-maps/map-modules.scss': 'prototype/assets/sass/05-modules-SASS/**/*.scss',
+					'prototype/00-source-files/ZZ-Swordion-DO-NOT-EDIT/sass/import-maps/configurations/01-map-functions.scss': 'prototype/00-source-files/ZZ-Swordion-DO-NOT-EDIT/sass/00-functions-SASS/**/*.scss',
+					'prototype/00-source-files/ZZ-Swordion-DO-NOT-EDIT/sass/import-maps/configurations/02-map-sprites.scss': 'prototype/00-source-files/ZZ-Swordion-DO-NOT-EDIT/sass/01-sprite-sheets-SASS/**/*.scss',
+					'prototype/00-source-files/ZZ-Swordion-DO-NOT-EDIT/sass/import-maps/configurations/03-map-config.scss': 'prototype/00-source-files/01-sass/01-config-SASS/**/*.scss',
+					'prototype/00-source-files/ZZ-Swordion-DO-NOT-EDIT/sass/import-maps/main-files/01-map-mixins.scss': 'prototype/00-source-files/ZZ-Swordion-DO-NOT-EDIT/sass/02-mixins-SASS/**/*.scss',
+					'prototype/00-source-files/ZZ-Swordion-DO-NOT-EDIT/sass/import-maps/main-files/02-map-plugins.scss': 'prototype/00-source-files/01-sass/03-plugins-SASS/**/*.scss',
+					'prototype/00-source-files/ZZ-Swordion-DO-NOT-EDIT/sass/import-maps/main-files/03-map-sw-base.scss': 'prototype/00-source-files/ZZ-Swordion-DO-NOT-EDIT/sass/04-base-SASS/**/*.scss',
+					'prototype/00-source-files/ZZ-Swordion-DO-NOT-EDIT/sass/import-maps/main-files/04-map-base.scss': 'prototype/00-source-files/01-sass/04-base-SASS/**/*.scss',
+					'prototype/00-source-files/ZZ-Swordion-DO-NOT-EDIT/sass/import-maps/main-files/05-map-forms.scss': 'prototype/00-source-files/01-sass/04-form-elements-SASS/**/*.scss',
+					'prototype/00-source-files/ZZ-Swordion-DO-NOT-EDIT/sass/import-maps/main-files/06-map-modules.scss': 'prototype/00-source-files/01-sass/05-modules-SASS/**/*.scss',
+					'prototype/00-source-files/ZZ-Swordion-DO-NOT-EDIT/sass/import-maps/main-files/07-map-extras.scss': 'prototype/00-source-files/01-sass/06-extras-SASS/**/*.scss',
 				}
-			}
+			},
+			phase_2: {
+				files: {
+					'prototype/00-source-files/ZZ-Swordion-DO-NOT-EDIT/sass/import-maps/configurations.scss' : 'prototype/00-source-files/ZZ-Swordion-DO-NOT-EDIT/sass/import-maps/configurations/*.scss',
+					'prototype/00-source-files/ZZ-Swordion-DO-NOT-EDIT/sass/import-maps/main-files.scss' : 'prototype/00-source-files/ZZ-Swordion-DO-NOT-EDIT/sass/import-maps/main-files/*.scss'
+				}
+			},
 		},
 
 
@@ -223,33 +250,19 @@ module.exports = function (grunt) {
 			modern: {//only compile the modern style sheet
 				files: {
 					//Modern style sheet
-					"prototype/assets/css/modern.css": "prototype/assets/sass/output-files/modern.scss",
+					"prototype/assets/css/modern.css": "prototype/00-source-files/ZZ-Swordion-DO-NOT-EDIT/sass/output-files/modern.scss",
 				}
 			},
 			ie9 : {
 				files : {
 					//IE9 style sheet
-					"prototype/assets/css/ie9.css": "prototype/assets/sass/output-files/ie9.scss",
+					"prototype/assets/css/ie9.css": "prototype/00-source-files/ZZ-Swordion-DO-NOT-EDIT/sass/output-files/ie9.scss",
 				}
 			},
 			ie8 : {
 				files : {
 					//IE8 style sheet
-					"prototype/assets/css/ie8.css": "prototype/assets/sass/output-files/ie8.scss",
-				}
-			}
-		},
-
-		//Merge similar media queries into single MQ's
-		//It isn't capable of generating css maps, so this is only used in the CSS minification process
-		cmq: {
-			your_target: {
-				files: {
-					'prototype/assets/css/media-merge/': [
-						'prototype/assets/css/modern.css',
-						'prototype/assets/css/ie9.css',
-						'prototype/assets/css/ie8.css',
-					]
+					"prototype/assets/css/ie8.css": "prototype/00-source-files/ZZ-Swordion-DO-NOT-EDIT/sass/output-files/ie8.scss",
 				}
 			}
 		},
@@ -263,7 +276,7 @@ module.exports = function (grunt) {
 		    },
 			//takes the current css files in the "media-merge" folder, minifies them, adds '.min.css' to the end of the file, and copies them back into the main css folder
 		      expand: true,
-		      cwd: 'prototype/assets/css/media-merge/',
+		      cwd: 'prototype/assets/css/',
 		      src: ['modern.css','ie9.css','ie8.css'],
 		      dest: 'prototype/assets/css/',
 		      ext: '.min.css'
@@ -278,10 +291,10 @@ module.exports = function (grunt) {
 
 		      processors: [
 		        require('autoprefixer')({browsers: 'last 2 versions'}), // add vendor prefixes
-				require("css-mqpacker")()
+				require("css-mqpacker")()//merge media queries
 		      ]
 		    },
-		    prefixMQ: {
+		    prefix_and_mergeMQs: {
 		      src: 'prototype/assets/css/*.css'
 		    }
 		},
@@ -293,8 +306,8 @@ module.exports = function (grunt) {
 					// includes files within path
 					{
 						cwd: 'prototype/assets/js/',
-						src: ['ZZ-merged-JS/*.js'],
-						dest: server_root + 'prototype/assets/js/',
+						src: ['generated-JS/*.js'],
+						dest: server_root + 'prototype/assets/js/generated-JS/',
 					}
 				],
 				//pretend: true, // Don't do any IO. Before you run the task with `updateAndDelete` PLEASE MAKE SURE it doesn't remove too much.
@@ -365,8 +378,8 @@ module.exports = function (grunt) {
 					'Gruntfile.js',
 					'package.json',
 					'.ftppass',
-					'**/**/*.js',
-					'!prototype/assets/js/ZZ-merged-JS/*.js',
+					'**/**/*.js',//optional
+					'!prototype/assets/js/generated-JS/*.js',
 					'**/**/*.scss'//optional
 
 					//UAT only
@@ -385,7 +398,7 @@ module.exports = function (grunt) {
 				livereload: true
 			},
 			scripts: {
-				files: ["prototype/assets/js/**/*.js", "!prototype/assets/js/ZZ-merged-JS/*.js"],
+				files: ["prototype/**/*.js", "!prototype/assets/js/generated-JS/*.js"],
 				tasks: [
 					"concat", //merges constant js files into one file
 					//"uglify", //minify JS
@@ -403,7 +416,8 @@ module.exports = function (grunt) {
 				options: { spawn: false }
 			},
 			scss: {
-				files: ["prototype/assets/sass/**/*.scss"],
+				files: [
+					"prototype/**/*.scss", "!prototype/00-source-files/ZZ-Swordion-DO-NOT-EDIT/sass/import-maps/**/*.scss"],
 				tasks: [
 					"sass_globbing",//generates import maps for SASS modules
 					"sass:modern", //compile the modern SASS (modern only by default for speed)
@@ -451,18 +465,17 @@ module.exports = function (grunt) {
 
 	//list the tasks in the order you want them done in
 	grunt.registerTask("default", [
-		'image_resize',
-		'sprite',
+		'image_resize',//create 1/2 sized sprite images
+		'sprite',//generate auto-sprite
 
 		"concat",//merge JS files
 		"uglify",//minify JS
 		"sass_globbing", //merge SASS files
 		"sass",//compile CSS files for all browsers when running the grunt command
 		"postcss",//merge media queries and add auto prefixing
-		//"cmq",//combine media queries
 		"csso",//minify css (css optimiser)
-		//"sync",//copy files to another location
-		"watch"
+			//"sync",//copy files to another location
+		"watch"//keep tabs on files looking out for changes
 	]);
 
 };

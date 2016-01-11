@@ -1,0 +1,22 @@
+
+/*================================================*\
+	MAIN CSS OUTPUT FILE (MODERN BROWSERS)
+//-----------------------------------------------
+//	This is the file that compiles the css for
+//	modern browsers
+\*================================================*/
+
+//Allows CSS3 in the compilation
+//prevents IE hacks appearing in outputted css
+$modern: true;
+$ie9: false;
+$ie8: false;
+$gt-ie10: true;
+$gt-ie8: true;
+$lt-ie10: false;
+$lt-ie9: false;
+
+//Global functions that extend SASS functionality
+@import "../import-maps/configurations.scss";
+
+@import "../import-maps/main-files.scss";

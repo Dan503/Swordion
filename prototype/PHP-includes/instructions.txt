@@ -1,0 +1,1 @@
+It is through these folders that you add HTML to the website. There are more details inside each folder.

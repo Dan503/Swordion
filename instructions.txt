@@ -1,0 +1,3 @@
+The grunt related stuff is kept outside of the root folder to make packaging up the site easier if the code ever need to be sent to the client.
+
+Only the grunt file would need any editing and it would just be very minor path directory based stuff.

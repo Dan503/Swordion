@@ -1,0 +1,5 @@
+Do not edit images in the "auto-sprite" folder. They are images generated through Grunt.
+
+The "content" folder is for images that would be handled through a content management system when the site goes into build phase.
+
+The "design" folder is for any images that are integral to the design of the project that aren't generated through the auto-sprite functionality.
