@@ -475,7 +475,7 @@ module.exports = function (grunt) {
 		"postcss",//merge media queries and add auto prefixing
 		"csso",//minify css (css optimiser)
 			//"sync",//copy files to another location
-		//"watch"//keep tabs on files looking out for changes
+		"watch"//keep tabs on files looking out for changes
 	]);
 
 };
