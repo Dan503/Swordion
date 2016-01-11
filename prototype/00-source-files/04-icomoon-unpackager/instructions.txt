@@ -1,3 +1,12 @@
 Drop all the contents of an icomoon package into this folder and it will automatically copy the font files to the correct locations for you
 
 (Doesn't actually work yet)
+
+
+The plan:
+
+- copy fonts to fonts folder
+- copy css to config folder but rename it to an scss file in the process
+- after copying use grunt string find/replace to remove the @font-face stuff at top of file and replace with the top bit of the sass syntax
+- use grunt regex find/replace to convert the css into the sass map format
+- use grunt banner (https://www.npmjs.com/package/grunt-banner) to add the closing brackets of the sass syntax at the bottom of the file
