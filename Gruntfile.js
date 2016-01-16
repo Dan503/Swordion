@@ -291,10 +291,15 @@ module.exports = function (grunt) {
 
 		      processors: [
 		        require('autoprefixer')({browsers: 'last 2 versions'}), // add vendor prefixes
-				require("css-mqpacker")()//merge media queries
+
+				//Media Query merging has been proven to be largly pointless esspecially after g-zipping and it causes far more problems than it fixes
+				//require("css-mqpacker")(),//merge media queries
+
+				//Helps to enable IE8/9 to read flexbox properties
+				require("postcss-flexibility")()//adds flexibitity prefixes to css
 		      ]
 		    },
-		    prefix_and_mergeMQs: {
+		    prefix: {
 		      src: 'prototype/assets/css/*.css'
 		    }
 		},
