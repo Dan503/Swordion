@@ -10,19 +10,6 @@
 //================================================*/
 
 
-//switches IE (and other non-flexbox friendly browsers) to using float mode
-@mixin M-ieFloat {
-	.no-flexbox & {
-		display: block;
-		@extend %clearfix;
-		& > .grid__cell {
-			float: left;
-			display: block;
-		}
-	}
-}
-
-
 //================================================*\
 /*				GRID WIDTHS						*/
 //----------------------------------------------------
@@ -79,7 +66,7 @@ $grid-bp-list: if(
 				}
 			}
 		}
-		.no-flexbox &.grid--enableWrapping > .grid__cell {
+		.no-flexbox &.grid--wrap > .grid__cell {
 			@if ($i > 2) {
 				&:nth-child(#{$i}n+1) { clear: left; }
 			}
@@ -91,24 +78,15 @@ $grid-bp-list: if(
 
 //base grid styling
 .grid {
+	flex-wrap: wrap;
 	@extend %noDots;
 	min-width: 100%;
 	border: 0 solid #000;
-	@if ($gt-ie8) {
-		@extend %flex;
-		@include MG-prefix(align-content, stretch, $flexPrefixes);
-
-		@if ($gridBreakPoints != false){
-			@include MG-mq(max,bp('page')){
-				@include MG-not('.grid--disableMQs', '.grid--noWrap'){
-					@include MG-flexWrap;
-				}
-			}
-		}
-	}
+	display: flex;
+	align-content: stretch;
 
 //grid-wrap styling... really only necessary for use with grid--gutter-#
-	&__wrap {
+	&__wrapper {
 		overflow: hidden;
 	}
 
@@ -121,18 +99,25 @@ $grid-bp-list: if(
 		margin: 0;
 		background-clip: padding-box!important;
 		border: 0 solid transparent;
-		@include MG-flexGrow;
+		flex-grow: 1;
 		outline-color: #000;
 		border-color: #000;
 
 		&--vAlign {
-			@include MG-prefix(align-self, center, $flexPrefixes);
+			align-self: center;
 		}
 		&.grid { display: flex; }
 		&, * > {
 			//helps fix IE10 word-wrap bug (elements need to not be display:inline for the fix to work though)
 			max-width: 100%;
 			flex-shrink: 1;
+		}
+
+		&--noGrowth {
+			flex-grow: 0;
+		}
+		&--noShrink {
+			flex-shrink: 0;
 		}
 	}
 
@@ -153,6 +138,18 @@ $grid-bp-list: if(
 				margin-left: 0;
 				margin-right: 0;
 			}
+			&-top {
+				margin-top: 0;
+			}
+			&-bottom {
+				margin-bottom: 0;
+			}
+			&-left {
+				margin-left: 0;
+			}
+			&-right {
+				margin-right: 0;
+			}
 		}
 
 		> .grid__cell, & {
@@ -161,10 +158,6 @@ $grid-bp-list: if(
 				border-color: $gutter-ieFallback;
 			}
 		}
-		/*@if($lt-ie10) {
-			border-left: 0;
-			margin-left: 0;
-		}*/
 	}
 
 	@mixin M-grid-cellGutter ($gutter){
@@ -175,10 +168,18 @@ $grid-bp-list: if(
 		}
 
 		//only apply the outer horizontal gutters if the screen size is smaller than the page width + gutter size
-		&.grid--outerGutters-delayedHorizontal {
+		&.grid--outerGutters {
 			@include MG-mq(max, (bp('page') + $gutter)){
-				margin-left: 0;
-				margin-right: 0;
+				&-h-delayed {
+					margin-left: 0;
+					margin-right: 0;
+				}
+				&-left-delayed {
+					margin-left: 0;
+				}
+				&-right-delayed {
+					margin-right: 0;
+				}
 			}
 		}
 	}
@@ -205,73 +206,90 @@ $grid-bp-list: if(
 
 	&--hasInners {
 		> .grid__cell {
-			@include MG-flex;
-			@include MG-flexValign(stretch);
+			display: flex;
+			align-items: stretch;
+
 			> .grid__inner {
 				display: block;
 				width: 100%;
+
+				&.grid {
+					display: flex;
+				}
 			}
 		}
 	}
 
 //vertical alignment code
-	@if ($gt-ie8) {
-		&--vAlign {
-			&:not(.grid--hasInners){
-				> .grid__cell {
-					@include MG-flex;
-					@include MG-flexValign;
-				}
+	&--vAlign {
+		&:not(.grid--hasInners){
+			> .grid__cell {
+				display: flex;
+				align-items: center;
 			}
-			&.grid--hasInners {
-				@include MG-flexValign(stretch);
-				> .grid__cell > .grid__inner {
-					@include MG-flex;
-					@include MG-flexValign;
-				}
+		}
+		&.grid--hasInners {
+			align-items: stretch;
+
+			> .grid__cell > .grid__inner {
+				display: flex;
+				align-items: center;
+			}
+		}
+		&-centered {
+			&.grid--hasInners > .grid__cell > .grid__inner,
+			&:not(.grid--hasInners) > .grid__cell {
+				justify-content: center;
 			}
 		}
 	}
+
 
 	&--vertical {
 		flex-direction: column;
 	}
 
+	&--noGrowth {
+		> .grid__cell { flex-grow: 0; }
+	}
 
-//tabular backup for IE9 and below
-	.no-flexbox & {
-		display: table;
-		width: 100%;
-		> .grid__cell { display: table-cell; vertical-align: top; }
-		&__inner { display: block; }
-	 	&--vAlign > .grid__cell { vertical-align: middle; }
-		&--vertical {
-			display: block;
-			@extend %clearfix;
-			& > .grid__cell {
-				float: left;
-				display: block;
-				width: 100%;
-			}
+	&--shrinkable {
+		min-width: 0;
+	}
+
+	&--space {
+		&-between, &-around {
+			> .grid__cell { flex-grow: 0; }
+		}
+		&-between {
+			justify-content: space-between;
+		}
+		&-around {
+			justify-content: space-around;
+		}
+	}
+
+	&--align {
+		&-left, &-center, &-right {
+			> .grid__cell { flex-grow: 0; }
+		}
+		&-left {
+			justify-content: flex-start;
+		}
+		&-left {
+			justify-content: center;
+		}
+		&-right {
+			justify-content: flex-end;
 		}
 	}
 
 
 //Unfortunately this is a necessity for IE compatibility
-	&--enableWrapping {
-		@include M-ieFloat;
-
-		@if ($gt-ie8) {
-			.flexbox & {
-				@include MG-flexWrap;
-			}
-		}
+	&--noWrap {
+		flex-wrap: nowrap;
 	}
 
-//allows IE to use floats instead of display table without affecting modern browsers
-	&--ieFloat {
-		@include M-ieFloat;
-	}
 }
 
 
