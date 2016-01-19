@@ -94,7 +94,10 @@ for (var x = 0; x < jsMerge.splits.length; x++){
 	//formats the data into a form that grunt concat understands
 	JS_mergeConfig[split] = {
 		src : JS_merge_files[split],
-		dest : 'prototype/assets/js/generated-JS/' + split + '.js'
+		dest : 'prototype/assets/js/generated-JS/' + split + '.js',
+		options: {
+			sourceMap: true,
+		 },
 	}
 
 }
