@@ -298,6 +298,36 @@ module.exports = function (grunt) {
 		      src: 'prototype/assets/css/*.css'
 		    }
 		},
+		copy: {
+			icon_fonts: {
+				cwd: 'prototype/00-source-files/04-icomoon-unpackager/',
+				//moves font files into correct directory
+				files: [{
+					expand: true,
+					src: ['fonts/*'],
+					dest: 'prototype/assets/fonts/icon-font/'
+				},{
+					//moves css into sass config then converts into a sass map
+					src: 'style.css',
+					dest: 'prototype/00-source-files/01-sass/01-config-SASS/',
+					rename : function(dest, src) {
+						return dest + src.replace("style.css", "icon-names.scss");
+					},
+					options: {
+						process: function (content, srcpath) {
+							return function(){
+								console.log(content);
+								content.replace(
+									/\.icon-([a-zA-Z0-9-_]*):before\s{\n(\t)content:\s("\\[a-zA-Z0-9]*");\n}(\n*)/g,
+									/\2\1: \3,\4/g
+								);
+							}
+						},
+					},
+					//
+				}],
+			},
+		},
 		// Keep files on server in sync with local copy
 		// Extreamly useful at build stage
 		sync: {
@@ -455,6 +485,18 @@ module.exports = function (grunt) {
 				],
 				files: [
 					"prototype/assets/fonts/**/**"
+				]
+			},
+
+			icons: {
+				options: {
+					livereload: true
+				},
+				tasks: [
+					"copy:icon_fonts",
+				],
+				files: [
+					"prototype/00-source-files/04-icomoon-unpackager/**/**"
 				]
 			}
 		}
