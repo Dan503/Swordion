@@ -533,11 +533,7 @@ module.exports = function (grunt) {
 					livereload: true
 				},
 				tasks: [
-					"csso:icon_minify",
-					"replace:icon_sassConversion",
-					"usebanner:icon_closeMap",
-					"usebanner:icon_warning",
-					"copy:icon_fonts",
+					"unpackage_icomoon",
 				],
 				files: [
 					"prototype/00-source-files/04-icomoon-unpackager/**/**"
@@ -548,20 +544,17 @@ module.exports = function (grunt) {
 	});
 
 	//don't bother with the grunt.loadNpmTasks('xxx'); commands. They are generated automatically
-
-	//list the tasks in the order you want them done in
-	grunt.registerTask("default", [
-		'image_resize',//create 1/2 sized sprite images
-		'sprite',//generate auto-sprite
-
-		//icon generation
+	grunt.registerTask('unpackage_icomoon', [
 		"csso:icon_minify",
 		"replace:icon_sassConversion",
 		"usebanner:icon_closeMap",
 		"usebanner:icon_warning",
 		"copy:icon_fonts",
-		//end icon generation
+	]);
 
+	//list the tasks in the order you want them done in
+	grunt.registerTask("default", [
+		'unpackage_icomoon',//generates the icon code based on files in icomoon unpackager folder
 		"concat",//merge JS files
 		"uglify",//minify JS
 		"sass_globbing", //merge SASS files
@@ -569,7 +562,6 @@ module.exports = function (grunt) {
 		"postcss",//merge media queries and add auto prefixing
 		"csso:minify",//minify css (css optimiser)
 			//"sync",//copy files to another location
-
 		"watch"//keep tabs on files looking out for changes
 	]);
 
