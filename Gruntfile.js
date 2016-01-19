@@ -142,6 +142,8 @@ module.exports = function (grunt) {
 		// task_name: "grunt_plugin_name",
 		watch: "grunt-contrib-watch",
 		sprite: "grunt-spritesmith",
+		replace: "grunt-text-replace",
+		usebanner: "grunt-banner",
 	});
 
 	grunt.initConfig({
@@ -280,6 +282,15 @@ module.exports = function (grunt) {
 		      src: ['modern.css','ie9.css','ie8.css'],
 		      dest: 'prototype/assets/css/',
 		      ext: '.min.css'
+		  },
+
+		  //needed for the icomoon unpackaging
+		  icon_minify: {
+		      expand: true,
+		      cwd: 'prototype/00-source-files/04-icomoon-unpackager/',
+		      src: 'style.css',
+		      dest: 'prototype/00-source-files/04-icomoon-unpackager/',
+		      ext: '.icon-sass-conversion.scss'
 		  }
 		},
 
@@ -308,26 +319,59 @@ module.exports = function (grunt) {
 			},
 
 			icon_css: {
-				//moves css into sass config file and renames it in the process
+				//moves css into sass config folder and renames it in the process
 				cwd: 'prototype/00-source-files/04-icomoon-unpackager/',
 				expand: true,
-				src: 'style.css',
+				src: 'style.icon-sass-conversion.scss',
 				dest: 'prototype/00-source-files/01-sass/01-config-SASS/',
 				rename : function(dest, src) {
-					return dest + src.replace("style.css", "icon-names.scss");
-				},
-				options: {
-					process: function (content, srcpath) {
-						content.replace(
-							(/\.icon-([a-zA-Z0-9-_]*):before\s{\n(\s\s\s\s)content:\s("\\[a-zA-Z0-9]*");\n}(\n*)/g),
-							('\2\1: \3,\4')
-						);
-						return content;
-
-					},
+					return dest + src.replace("style.icon-sass-conversion.scss", "icon-names.scss");
 				},
 			}
 		},
+
+		replace: {
+			icon_sassConversion: {
+				src: ['prototype/00-source-files/04-icomoon-unpackager/style.icon-sass-conversion.scss'],
+				dest: 'prototype/00-source-files/04-icomoon-unpackager/style.icon-sass-conversion.scss',
+				replacements: [{
+					from: /\.icon-([a-zA-Z0-9-_]*):before{content:("\\[a-zA-Z0-9]*")}/g,
+					to: '$1:$2,'
+				}, {
+					from: "'",      // regex replacement ('Fooo' to 'Mooo')
+					to: '"',
+				}, {
+					from: '@font-face{font-family:"icons";src:url("fonts/icons.eot?o9ap68");src:url("fonts/icons.eot?o9ap68#iefix") format("embedded-opentype"),url("fonts/icons.ttf?o9ap68") format("truetype"),url("fonts/icons.woff?o9ap68") format("woff"),url("fonts/icons.svg?o9ap68#icons") format("svg");font-weight:400;font-style:normal}[class^="icon-"],[class*=" icon-"]{font-family:"icons"!important;speak:none;font-style:normal;font-weight:400;font-variant:normal;text-transform:none;line-height:1;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}',
+					to: '$icons:(',
+				}]
+			}
+		},
+
+		usebanner: {
+			//need this to close the icon sass map
+			icon_closeMap: {
+				options: {
+					position: 'bottom',
+					banner: ');',
+					linebreak: false
+				},
+				files: {
+					src: 'prototype/00-source-files/04-icomoon-unpackager/style.icon-sass-conversion.scss'
+				}
+			},
+			//Warns users that the sass map for the icons is generated automatically
+			icon_warning: {
+				options: {
+					position: 'top',
+					banner: '//This is an automatically generated file. DO NOT EDIT! Update the icon font by dumping the contents of icomoon packages into the icomoon unpackager folder',
+					linebreak: true
+				},
+				files: {
+					src: 'prototype/00-source-files/04-icomoon-unpackager/style.icon-sass-conversion.scss'
+				}
+			}
+		},
+
 		// Keep files on server in sync with local copy
 		// Extreamly useful at build stage
 		sync: {
@@ -493,7 +537,12 @@ module.exports = function (grunt) {
 					livereload: true
 				},
 				tasks: [
+					"csso:icon_minify",
+					"replace:icon_sassConversion",
+					"usebanner:icon_closeMap",
+					"usebanner:icon_warning",
 					"copy:icon_fonts",
+					"copy:icon_css",
 				],
 				files: [
 					"prototype/00-source-files/04-icomoon-unpackager/**/**"
@@ -515,7 +564,7 @@ module.exports = function (grunt) {
 		"sass_globbing", //merge SASS files
 		"sass",//compile CSS files for all browsers when running the grunt command
 		"postcss",//merge media queries and add auto prefixing
-		"csso",//minify css (css optimiser)
+		"csso:minify",//minify css (css optimiser)
 			//"sync",//copy files to another location
 		"watch"//keep tabs on files looking out for changes
 	]);
