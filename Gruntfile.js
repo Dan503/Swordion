@@ -308,7 +308,7 @@ module.exports = function (grunt) {
 			},
 
 			icon_css: {
-				//moves css into sass config then converts into a sass map
+				//moves css into sass config file and renames it in the process
 				cwd: 'prototype/00-source-files/04-icomoon-unpackager/',
 				expand: true,
 				src: 'style.css',
@@ -316,17 +316,16 @@ module.exports = function (grunt) {
 				rename : function(dest, src) {
 					return dest + src.replace("style.css", "icon-names.scss");
 				},
-				/*options: {
+				options: {
 					process: function (content, srcpath) {
-						return function(){
-							console.log(content);
-							content.replace(
-								/\.icon-([a-zA-Z0-9-_]*):before\s{\n(\t)content:\s("\\[a-zA-Z0-9]*");\n}(\n*)/g,
-								/\2\1: \3,\4/g
-							);
-						}
+						content.replace(
+							(/\.icon-([a-zA-Z0-9-_]*):before\s{\n(\s\s\s\s)content:\s("\\[a-zA-Z0-9]*");\n}(\n*)/g),
+							('\2\1: \3,\4')
+						);
+						return content;
+
 					},
-				},*/
+				},
 			}
 		},
 		// Keep files on server in sync with local copy
