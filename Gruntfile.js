@@ -286,17 +286,6 @@ module.exports = function (grunt) {
 		      dest: 'prototype/assets/css/',
 		      ext: '.min.css'
 		  },
-
-		  //needed for the icomoon unpackaging
-		  icon_minify: {
-		      expand: true,
-		      cwd: 'prototype/00-source-files/04-icomoon-unpackager/',
-		      src: 'style.css',
-		      dest: 'prototype/00-source-files/ZZ-Swordion-DO-NOT-EDIT/sass/generated-files/configurations/',
-			  rename : function(dest, src) {
-			  	return dest + src.replace("style.css", "icon-names.scss");
-			  },
-		  }
 		},
 
 		postcss: {
@@ -321,7 +310,17 @@ module.exports = function (grunt) {
 				expand: true,
 				src: '*',
 				dest: 'prototype/assets/fonts/icon-font/',
-			}
+			},
+		  //needed for the icomoon unpackaging
+		  icon_css: {
+		      expand: true,
+		      cwd: 'prototype/00-source-files/04-icomoon-unpackager/',
+		      src: 'variables.scss',
+		      dest: 'prototype/00-source-files/ZZ-Swordion-DO-NOT-EDIT/sass/generated-files/configurations/',
+			  rename : function(dest, src) {
+			  	return dest + src.replace("variables.scss", "icon-names.scss");
+			  },
+		  }
 		},
 
 		replace: {
@@ -329,21 +328,35 @@ module.exports = function (grunt) {
 				src: 'prototype/00-source-files/ZZ-Swordion-DO-NOT-EDIT/sass/generated-files/configurations/icon-names.scss',
 				dest: 'prototype/00-source-files/ZZ-Swordion-DO-NOT-EDIT/sass/generated-files/configurations/icon-names.scss',
 				replacements: [{
-					//converts the class names into the sass map syntax
-					from: /\.icon-([a-zA-Z0-9-_]*):before{content:("\\[a-zA-Z0-9]*")}/g,
-					to: '$1:$2,'
-				}, {
-					from: "'",
-					to: '"',
-				}, {
 					//replaces the useless css at the top of the file with the opening of the sass map syntax
-					from: '@font-face{font-family:"icons";src:url("fonts/icons.eot?o9ap68");src:url("fonts/icons.eot?o9ap68#iefix") format("embedded-opentype"),url("fonts/icons.ttf?o9ap68") format("truetype"),url("fonts/icons.woff?o9ap68") format("woff"),url("fonts/icons.svg?o9ap68#icons") format("svg");font-weight:400;font-style:normal}[class^="icon-"],[class*=" icon-"]{font-family:"icons"!important;speak:none;font-style:normal;font-weight:400;font-variant:normal;text-transform:none;line-height:1;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}',
-					to: '$icons:(',
+					from: /\$icon-([A-z0-9\-_]*):\s(\"\\[A-z0-9]*");/g,
+					to: '\t$1: $2,'
 				}]
 			}
 		},
 
 		usebanner: {
+			//Warns users that the sass map for the icons is generated automatically
+			icon_warning: {
+				options: {
+					position: 'top',
+					banner: '//This is an automatically generated file. DO NOT EDIT! Update the icon font by dumping the contents of icomoon packages into the icomoon unpackager folder',
+					linebreak: true
+		    	},
+				files: {
+					src: 'prototype/00-source-files/ZZ-Swordion-DO-NOT-EDIT/sass/generated-files/configurations/icon-names.scss'
+				}
+		    },
+			icon_openMap: {
+				options: {
+					position: 'top',
+					banner: '$icons: (',
+					linebreak: true
+		    	},
+				files: {
+					src: 'prototype/00-source-files/ZZ-Swordion-DO-NOT-EDIT/sass/generated-files/configurations/icon-names.scss'
+				}
+		    },
 			//need this to close the icon sass map
 			icon_closeMap: {
 				options: {
@@ -355,19 +368,7 @@ module.exports = function (grunt) {
 					src: 'prototype/00-source-files/ZZ-Swordion-DO-NOT-EDIT/sass/generated-files/configurations/icon-names.scss'
 				}
 			},
-			//Warns users that the sass map for the icons is generated automatically
-			icon_warning: {
-				options: {
-					position: 'top',
-					banner: '//This is an automatically generated file. DO NOT EDIT! Update the icon font by dumping the contents of icomoon packages into the icomoon unpackager folder',
-					linebreak: true
-				},
-				files: {
-					src: 'prototype/00-source-files/ZZ-Swordion-DO-NOT-EDIT/sass/generated-files/configurations/icon-names.scss'
-				}
-			}
 		},
-
 		// Keep files on server in sync with local copy
 		// Extreamly useful at build stage
 		sync: {
@@ -544,11 +545,13 @@ module.exports = function (grunt) {
 	});
 
 	//don't bother with the grunt.loadNpmTasks('xxx'); commands. They are generated automatically
+
 	grunt.registerTask('unpackage_icomoon', [
-		"csso:icon_minify",
+		"copy:icon_css",
 		"replace:icon_sassConversion",
-		"usebanner:icon_closeMap",
+		"usebanner:icon_openMap",
 		"usebanner:icon_warning",
+		"usebanner:icon_closeMap",
 		"copy:icon_fonts",
 	]);
 
