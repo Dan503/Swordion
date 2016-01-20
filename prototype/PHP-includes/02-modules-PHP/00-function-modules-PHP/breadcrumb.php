@@ -1,7 +1,7 @@
 
 
 <?php
-	function getBreadcrumb($map, $currDepth, $hasLastItem) {
+	function getBreadcrumb($map, $currDepth, $settings) {
 
 		$location = $GLOBALS['location'];
 
@@ -29,10 +29,10 @@
 			print
 			'</li>';
 
-			getBreadcrumb($map['subnav'][$target], $currDepth + 1, $hasLastItem);
+			getBreadcrumb($map['subnav'][$target], $currDepth + 1, $settings);
 
 		} else {
-			if ($hasLastItem == true) {
+			if ($settings['hasLastItem'] == true) {
 				print
 				'<li class="breadcrumb__item breadcrumb__item--current">
 					<span class="breadcrumb__inner breadcrumb__span breadcrumb__current">
@@ -45,10 +45,21 @@
 
 	function breadcrumb($settings = 'defaults'){
 
+		//edit these to change how the breadcrumb displays by default
 		$defaultSettings = array(
+			//does the breadcrumb also show the current page?
 			'hasLastItem' => false,
-			'modifiers' => array(),
+
+			//Does the breadcrumb show a home link at all?
+			'hasHome' => true,
+
+			//If it does, is the home link just an icon? (alternative is text)
 			'homeIcon' => true,
+
+			//Does the breadcrumb have any modifier classes?
+			'modifiers' => array(),
+
+			//Does the breadcrumb have any extra regular classes?
 			'classes' => '',
 		);
 
@@ -64,19 +75,23 @@
 		if (is_array($GLOBALS['location'])){
 			echo
 			'<nav class="breadcrumb'.$modifier.' '.$settings['classes'].'">
-				<ul class="breadcrumb__list">
-					<li class="breadcrumb__item breadcrumb__item--home">';
-						if ($settings['homeIcon']){
-							echo '
-							<a class="icon-home breadcrumb__link breadcrumb__inner breadcrumb__home" href="/" title="Home"></a>';
-						} else {
-							echo '
-							<a class="breadcrumb__link breadcrumb__inner breadcrumb__home" href="/" title="Back to home page">
-								Home
-							</a>';
-						}
-					echo '
-					</li>';
+				<ul class="breadcrumb__list">';
+
+					if ($settings['hasHome']) {
+						echo '
+						<li class="breadcrumb__item breadcrumb__item--home">';
+							if ($settings['homeIcon']){
+								echo '
+								<a class="icon-home breadcrumb__link breadcrumb__inner breadcrumb__home" href="/" title="Home"></a>';
+							} else {
+								echo '
+								<a class="breadcrumb__link breadcrumb__inner breadcrumb__home" href="/" title="Back to home page">
+									Home
+								</a>';
+							}
+						echo '
+						</li>';
+					}
 
 					getBreadcrumb($map[$target], 1, $settings['hasLastItem']);
 
