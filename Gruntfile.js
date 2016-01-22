@@ -94,7 +94,10 @@ for (var x = 0; x < jsMerge.splits.length; x++){
 	//formats the data into a form that grunt concat understands
 	JS_mergeConfig[split] = {
 		src : JS_merge_files[split],
-		dest : 'prototype/assets/js/generated-JS/' + split + '.js'
+		dest : 'prototype/assets/js/generated-JS/' + split + '.js',
+		options: {
+			sourceMap: true,
+		 },
 	}
 
 }
@@ -142,6 +145,8 @@ module.exports = function (grunt) {
 		// task_name: "grunt_plugin_name",
 		watch: "grunt-contrib-watch",
 		sprite: "grunt-spritesmith",
+		replace: "grunt-text-replace",
+		usebanner: "grunt-banner",
 	});
 
 	grunt.initConfig({
@@ -219,22 +224,22 @@ module.exports = function (grunt) {
 		sass_globbing: {
 			phase_1: {
 				files: {
-					'prototype/00-source-files/ZZ-Swordion-DO-NOT-EDIT/sass/import-maps/configurations/01-map-functions.scss': 'prototype/00-source-files/ZZ-Swordion-DO-NOT-EDIT/sass/00-functions-SASS/**/*.scss',
-					'prototype/00-source-files/ZZ-Swordion-DO-NOT-EDIT/sass/import-maps/configurations/02-map-sprites.scss': 'prototype/00-source-files/ZZ-Swordion-DO-NOT-EDIT/sass/01-sprite-sheets-SASS/**/*.scss',
-					'prototype/00-source-files/ZZ-Swordion-DO-NOT-EDIT/sass/import-maps/configurations/03-map-config.scss': 'prototype/00-source-files/01-sass/01-config-SASS/**/*.scss',
-					'prototype/00-source-files/ZZ-Swordion-DO-NOT-EDIT/sass/import-maps/main-files/01-map-mixins.scss': 'prototype/00-source-files/ZZ-Swordion-DO-NOT-EDIT/sass/02-mixins-SASS/**/*.scss',
-					'prototype/00-source-files/ZZ-Swordion-DO-NOT-EDIT/sass/import-maps/main-files/02-map-plugins.scss': 'prototype/00-source-files/01-sass/03-plugins-SASS/**/*.scss',
-					'prototype/00-source-files/ZZ-Swordion-DO-NOT-EDIT/sass/import-maps/main-files/03-map-sw-base.scss': 'prototype/00-source-files/ZZ-Swordion-DO-NOT-EDIT/sass/04-base-SASS/**/*.scss',
-					'prototype/00-source-files/ZZ-Swordion-DO-NOT-EDIT/sass/import-maps/main-files/04-map-base.scss': 'prototype/00-source-files/01-sass/04-base-SASS/**/*.scss',
-					'prototype/00-source-files/ZZ-Swordion-DO-NOT-EDIT/sass/import-maps/main-files/05-map-forms.scss': 'prototype/00-source-files/01-sass/04-form-elements-SASS/**/*.scss',
-					'prototype/00-source-files/ZZ-Swordion-DO-NOT-EDIT/sass/import-maps/main-files/06-map-modules.scss': 'prototype/00-source-files/01-sass/05-modules-SASS/**/*.scss',
-					'prototype/00-source-files/ZZ-Swordion-DO-NOT-EDIT/sass/import-maps/main-files/07-map-extras.scss': 'prototype/00-source-files/01-sass/06-extras-SASS/**/*.scss',
+					'prototype/00-source-files/ZZ-Swordion-DO-NOT-EDIT/sass/generated-files/configurations/01-map-functions.scss': 'prototype/00-source-files/ZZ-Swordion-DO-NOT-EDIT/sass/00-functions-SASS/**/*.scss',
+					'prototype/00-source-files/ZZ-Swordion-DO-NOT-EDIT/sass/generated-files/configurations/02-map-sprites.scss': 'prototype/00-source-files/ZZ-Swordion-DO-NOT-EDIT/sass/01-sprite-sheets-SASS/**/*.scss',
+					'prototype/00-source-files/ZZ-Swordion-DO-NOT-EDIT/sass/generated-files/configurations/03-map-config.scss': 'prototype/00-source-files/01-sass/01-config-SASS/**/*.scss',
+					'prototype/00-source-files/ZZ-Swordion-DO-NOT-EDIT/sass/generated-files/main-files/01-map-mixins.scss': 'prototype/00-source-files/ZZ-Swordion-DO-NOT-EDIT/sass/02-mixins-SASS/**/*.scss',
+					'prototype/00-source-files/ZZ-Swordion-DO-NOT-EDIT/sass/generated-files/main-files/02-map-plugins.scss': 'prototype/00-source-files/01-sass/03-plugins-SASS/**/*.scss',
+					'prototype/00-source-files/ZZ-Swordion-DO-NOT-EDIT/sass/generated-files/main-files/03-map-sw-base.scss': 'prototype/00-source-files/ZZ-Swordion-DO-NOT-EDIT/sass/04-base-SASS/**/*.scss',
+					'prototype/00-source-files/ZZ-Swordion-DO-NOT-EDIT/sass/generated-files/main-files/04-map-base.scss': 'prototype/00-source-files/01-sass/04-base-SASS/**/*.scss',
+					'prototype/00-source-files/ZZ-Swordion-DO-NOT-EDIT/sass/generated-files/main-files/05-map-forms.scss': 'prototype/00-source-files/01-sass/04-form-elements-SASS/**/*.scss',
+					'prototype/00-source-files/ZZ-Swordion-DO-NOT-EDIT/sass/generated-files/main-files/06-map-modules.scss': 'prototype/00-source-files/01-sass/05-modules-SASS/**/*.scss',
+					'prototype/00-source-files/ZZ-Swordion-DO-NOT-EDIT/sass/generated-files/main-files/07-map-extras.scss': 'prototype/00-source-files/01-sass/06-extras-SASS/**/*.scss',
 				}
 			},
 			phase_2: {
 				files: {
-					'prototype/00-source-files/ZZ-Swordion-DO-NOT-EDIT/sass/import-maps/configurations.scss' : 'prototype/00-source-files/ZZ-Swordion-DO-NOT-EDIT/sass/import-maps/configurations/*.scss',
-					'prototype/00-source-files/ZZ-Swordion-DO-NOT-EDIT/sass/import-maps/main-files.scss' : 'prototype/00-source-files/ZZ-Swordion-DO-NOT-EDIT/sass/import-maps/main-files/*.scss'
+					'prototype/00-source-files/ZZ-Swordion-DO-NOT-EDIT/sass/generated-files/configurations.scss' : 'prototype/00-source-files/ZZ-Swordion-DO-NOT-EDIT/sass/generated-files/configurations/*.scss',
+					'prototype/00-source-files/ZZ-Swordion-DO-NOT-EDIT/sass/generated-files/main-files.scss' : 'prototype/00-source-files/ZZ-Swordion-DO-NOT-EDIT/sass/generated-files/main-files/*.scss'
 				}
 			},
 		},
@@ -280,7 +285,7 @@ module.exports = function (grunt) {
 		      src: ['modern.css','ie9.css','ie8.css'],
 		      dest: 'prototype/assets/css/',
 		      ext: '.min.css'
-		  }
+		  },
 		},
 
 		postcss: {
@@ -302,6 +307,72 @@ module.exports = function (grunt) {
 		    prefix: {
 		      src: 'prototype/assets/css/*.css'
 		    }
+		},
+		copy: {
+			//copies the font files into the correct directory
+			icon_fonts: {
+				cwd: 'prototype/00-source-files/04-icomoon-unpackager/fonts/',
+				expand: true,
+				src: '*',
+				dest: 'prototype/assets/fonts/icon-font/',
+			},
+		  //needed for the icomoon unpackaging
+		  icon_css: {
+		      expand: true,
+		      cwd: 'prototype/00-source-files/04-icomoon-unpackager/',
+		      src: 'variables.scss',
+		      dest: 'prototype/00-source-files/ZZ-Swordion-DO-NOT-EDIT/sass/generated-files/configurations/',
+			  rename : function(dest, src) {
+			  	return dest + src.replace("variables.scss", "icon-names.scss");
+			  },
+		  }
+		},
+
+		replace: {
+			icon_sassConversion: {
+				src: 'prototype/00-source-files/ZZ-Swordion-DO-NOT-EDIT/sass/generated-files/configurations/icon-names.scss',
+				dest: 'prototype/00-source-files/ZZ-Swordion-DO-NOT-EDIT/sass/generated-files/configurations/icon-names.scss',
+				replacements: [{
+					//replaces the useless css at the top of the file with the opening of the sass map syntax
+					from: /\$icon-([A-z0-9\-_]*):\s(\"\\[A-z0-9]*");/g,
+					to: '\t$1: $2,'
+				}]
+			}
+		},
+
+		usebanner: {
+			//Warns users that the sass map for the icons is generated automatically
+			icon_warning: {
+				options: {
+					position: 'top',
+					banner: '//This is an automatically generated file. DO NOT EDIT! Update the icon font by dumping the contents of icomoon packages into the icomoon unpackager folder',
+					linebreak: true
+		    	},
+				files: {
+					src: 'prototype/00-source-files/ZZ-Swordion-DO-NOT-EDIT/sass/generated-files/configurations/icon-names.scss'
+				}
+		    },
+			icon_openMap: {
+				options: {
+					position: 'top',
+					banner: '$icons: (',
+					linebreak: true
+		    	},
+				files: {
+					src: 'prototype/00-source-files/ZZ-Swordion-DO-NOT-EDIT/sass/generated-files/configurations/icon-names.scss'
+				}
+		    },
+			//need this to close the icon sass map
+			icon_closeMap: {
+				options: {
+					position: 'bottom',
+					banner: ');',
+					linebreak: false
+				},
+				files: {
+					src: 'prototype/00-source-files/ZZ-Swordion-DO-NOT-EDIT/sass/generated-files/configurations/icon-names.scss'
+				}
+			},
 		},
 		// Keep files on server in sync with local copy
 		// Extreamly useful at build stage
@@ -461,6 +532,18 @@ module.exports = function (grunt) {
 				files: [
 					"prototype/assets/fonts/**/**"
 				]
+			},
+
+			icons: {
+				options: {
+					livereload: true
+				},
+				tasks: [
+					"unpackage_icomoon",
+				],
+				files: [
+					"prototype/00-source-files/04-icomoon-unpackager/**/**"
+				]
 			}
 		}
 
@@ -468,17 +551,24 @@ module.exports = function (grunt) {
 
 	//don't bother with the grunt.loadNpmTasks('xxx'); commands. They are generated automatically
 
+	grunt.registerTask('unpackage_icomoon', [
+		"copy:icon_css",
+		"replace:icon_sassConversion",
+		"usebanner:icon_openMap",
+		"usebanner:icon_warning",
+		"usebanner:icon_closeMap",
+		"copy:icon_fonts",
+	]);
+
 	//list the tasks in the order you want them done in
 	grunt.registerTask("default", [
-		'image_resize',//create 1/2 sized sprite images
-		'sprite',//generate auto-sprite
-
+		'unpackage_icomoon',//generates the icon code based on files in icomoon unpackager folder
 		"concat",//merge JS files
 		"uglify",//minify JS
 		"sass_globbing", //merge SASS files
 		"sass",//compile CSS files for all browsers when running the grunt command
 		"postcss",//merge media queries and add auto prefixing
-		"csso",//minify css (css optimiser)
+		"csso:minify",//minify css (css optimiser)
 			//"sync",//copy files to another location
 		"watch"//keep tabs on files looking out for changes
 	]);

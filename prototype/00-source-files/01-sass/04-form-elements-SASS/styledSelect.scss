@@ -34,8 +34,8 @@ select {
 
 		//add the arrow with a css triangle
 		@include MG-after {
-			//@include MG-tri(down, CG-prominence(1), 7px);
-			content: 'v';
+			@include MG-tri(down, CG-prominence(1), 7px);
+			//content: 'v';
 			font-size: 12px;
 			height: 12px;
 			width: 30px;

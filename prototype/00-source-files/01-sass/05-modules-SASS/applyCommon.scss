@@ -1,0 +1,9 @@
+.applyCommon {
+	&__shadow {
+		box-shadow: $VG-common-shadow;
+	}
+	&__radius {
+		border-radius: $VG-common-radius;
+		overflow: hidden;
+	}
+}

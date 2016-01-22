@@ -17,6 +17,6 @@ $lt-ie10: false;
 $lt-ie9: false;
 
 //Global functions that extend SASS functionality
-@import "../import-maps/configurations.scss";
+@import "../generated-files/configurations.scss";
 
-@import "../import-maps/main-files.scss";
+@import "../generated-files/main-files.scss";

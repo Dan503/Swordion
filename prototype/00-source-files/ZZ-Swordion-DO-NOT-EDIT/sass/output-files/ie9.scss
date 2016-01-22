@@ -18,10 +18,10 @@ $gt-ie8: true;
 $lt-ie10: true;
 $lt-ie9: false;
 
-@import "../import-maps/configurations.scss";
+@import "../generated-files/configurations.scss";
 
 //Prevents media queries from being rendered in the css if they are for screen resolutions lower than this.
 //If the media query is for screens above this width, the css is outputted outside of a media query just appearing as normal css in the compiled style sheet
 $fix-mqs: bp('page');
 
-@import "../import-maps/main-files.scss";
+@import "../generated-files/main-files.scss";

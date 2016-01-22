@@ -1,0 +1,1 @@
+These font files update automatically when you dump the contents of an icomoon package into the icomoon unpackager file
