@@ -25,7 +25,7 @@ function accordion($accordion_array = array(
 			$id =  idSafe($item['title']);
 
 			echo '
-			<li class="accordion__item">
+			<li class="accordion__item" data-jshook="accordion__item">
 				<h2 class="accordion__heading TK-relative">
 					<a href="#accordion__'.$id.'" class="accordion__headLink grid" data-jshook="accordion__trigger--'.$settings['type'].'">
 						<span class="accordion__headText grid__cell">'.$item['title'].'</span>

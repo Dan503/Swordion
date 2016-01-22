@@ -18,6 +18,7 @@
 	<li class="layer tiltParallax__layer torch__body" data-depth="1.00"></li>
 </ul>
 
+<?php accordion(); ?>
 
 <div class="demo">
 	<div class="demo__div demo__mediaQuery">
