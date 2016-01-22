@@ -4,7 +4,11 @@ function accordion($accordion_array = array(
 	['title' => 'Heading 1'],
 	['title' => 'Heading 2'],
 	['title' => 'Heading 3'],
-)){
+), $settings = []){
+
+	$settings = defaultTo($settings, [
+		'type' => 'auto',
+	]);
 
 	echo '
 	<ul class="accordion TK-noDots" data-jshook="accordion__reference">
@@ -21,9 +25,9 @@ function accordion($accordion_array = array(
 			$id =  idSafe($item['title']);
 
 			echo '
-			<li class="accordion__item block block--noPadding" data-jshook="accordion__item">
+			<li class="accordion__item">
 				<h2 class="accordion__heading TK-relative">
-					<a href="#accordion__'.$id.'" class="accordion__headLink grid" data-jshook="accordion__trigger--auto">
+					<a href="#accordion__'.$id.'" class="accordion__headLink grid" data-jshook="accordion__trigger--'.$settings['type'].'">
 						<span class="accordion__headText grid__cell">'.$item['title'].'</span>
 						<span class="accordion__icon grid__cell grid__cell--noGrowth"></span>
 					</a>
