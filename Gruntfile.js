@@ -289,19 +289,37 @@ module.exports = function (grunt) {
 		},
 
 		postcss: {
-		    options: {
-		      map: {
-		          inline: false, // save all sourcemaps as separate files...
-		      },
+			options: {
+				map: {
+					inline: false, // save all sourcemaps as separate files...
+				},
+			},
 
-		      processors: [
-		        require('autoprefixer')({browsers: 'last 2 versions'}), // add vendor prefixes
-				require("css-mqpacker")()//merge media queries
-		      ]
-		    },
-		    prefix_and_mergeMQs: {
-		      src: 'prototype/assets/css/*.css'
-		    }
+			/*MQmerge: {
+				src: 'prototype/assets/css/*.css',
+				options: {
+					processors: [
+						//Media Query merging has been proven to be largly pointless esspecially after g-zipping and it causes far more problems than it solves
+						//require("css-mqpacker")(),//merge media queries
+					]
+				}
+			},*/
+			prefix: {
+				files: [{
+					expand: true,
+					cwd: 'prototype/assets/css/',
+					src: ['*.css', '!*.min.css'],
+					dest: 'prototype/assets/css/',
+				}],
+				options: {
+					processors: [
+						require('autoprefixer')({browsers: 'last 2 versions'}), // add vendor prefixes
+
+						//Helps to enable IE8/9 to read flexbox properties
+						require("postcss-flexibility")()//adds flexibitity prefixes to css
+					]
+				},
+			},
 		},
 		copy: {
 			//copies the font files into the correct directory
@@ -480,24 +498,16 @@ module.exports = function (grunt) {
 			images: {
 				files: ['prototype/assets/images/**'],
 				tasks: [
-					'image_resize',
-					'sprite',
+					'generate_sprite',
 					//"sync:images" //copy js to server
 				],
 				options: { spawn: false }
 			},
 			scss: {
 				files: [
-					"prototype/**/*.scss", "!prototype/00-source-files/ZZ-Swordion-DO-NOT-EDIT/sass/import-maps/**/*.scss"],
+					"prototype/**/*.scss", "!prototype/00-source-files/ZZ-Swordion-DO-NOT-EDIT/sass/generated-files/**/*.scss"],
 				tasks: [
-					"sass_globbing",//generates import maps for SASS modules
-					"sass:modern", //compile the modern SASS (modern only by default for speed)
-					//"sass:ie8", //compile the IE8 SASS
-					//"sass:ie9", //compile the IE9 SASS
-					"postcss"//merge media queries and add auto prefixing
-					//"cmq", //merge media queries
-					//"csso", //minify css
-					//"sync:css" //copy css to server
+					"sass_compile",
 				],
 				options: { spawn: false }
 			},
@@ -535,16 +545,37 @@ module.exports = function (grunt) {
 				},
 				tasks: [
 					"unpackage_icomoon",
+					"sass_compile",
 				],
 				files: [
 					"prototype/00-source-files/04-icomoon-unpackager/**/**"
 				]
 			}
 		}
+	})
 
-	});
+	//don't bother with the grunt.loadNpmTasks('xxx'); commands. They are generated automatically using jitGrunt
 
-	//don't bother with the grunt.loadNpmTasks('xxx'); commands. They are generated automatically
+	//for only compiling the sass for modern browsers
+	grunt.registerTask('sass_compile', [
+		"sass_globbing",//generates import maps for SASS modules
+		"sass:modern", //compile the modern SASS (modern only by default for speed)
+		//"sass:ie8", //compile the IE8 SASS
+		//"sass:ie9", //compile the IE9 SASS
+		"postcss:prefix",//add auto prefixing
+		//"sync:css" //copy css to server
+	]);
+
+	//compile the Sass for all browsers and minify it
+	grunt.registerTask('sass_full_compile', [
+		"sass_globbing",
+		"sass:modern",
+		"sass:ie8",
+		"sass:ie9",
+		"postcss:prefix",
+		"csso:minify",
+		//"sync:css" //copy css to server
+	]);
 
 	grunt.registerTask('unpackage_icomoon', [
 		"copy:icon_css",
@@ -555,15 +586,20 @@ module.exports = function (grunt) {
 		"copy:icon_fonts",
 	]);
 
+	grunt.registerTask('generate_sprite', [
+		"image_resize",
+		"sprite",
+	]);
+
+
 	//list the tasks in the order you want them done in
 	grunt.registerTask("default", [
-		'unpackage_icomoon',//generates the icon code based on files in icomoon unpackager folder
+		'generate_sprite',
+
+		'unpackage_icomoon',
 		"concat",//merge JS files
 		"uglify",//minify JS
-		"sass_globbing", //merge SASS files
-		"sass",//compile CSS files for all browsers when running the grunt command
-		"postcss",//merge media queries and add auto prefixing
-		"csso:minify",//minify css (css optimiser)
+		"sass_full_compile", //create all SASS files and minify them
 			//"sync",//copy files to another location
 		"watch"//keep tabs on files looking out for changes
 	]);
