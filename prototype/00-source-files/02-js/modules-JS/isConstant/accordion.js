@@ -11,6 +11,7 @@ moduleTargets[module] = {
 	trigger_auto: module+'__trigger--auto',
 	reference : module+'__reference',
 	content : module+'__content',
+	outClickSensor : module+'__outClickSensor',
 
 	//css classes
 	item_isOpen : module+'__item--isOpen-JS',
@@ -18,15 +19,17 @@ moduleTargets[module] = {
 
 if ($(Hook('content')).length) {
 
+	$(Hook('item')+'.active-trail').modAddClass('item_isOpen').children(Hook('content')).show();
+
 	$(Hook('trigger_manual')).on('click',function(e){
 		module = module_accordion;
 
 		preventDefault(e);//ie safe prevent default
 
 		var target = $(this).attr('href');
-		var this_item = $(this).closest(Hook('item'));
+		var this_item = $(target).closest(Hook('item'));
 
-		$(target).children(Hook('content')).slideToggle();
+		$(target).slideToggle();
 		this_item.modToggleClass('item_isOpen');
 	});
 
@@ -36,8 +39,8 @@ if ($(Hook('content')).length) {
 		preventDefault(e);//ie safe prevent default
 
 		var target = $(this).attr('href');
-		var targetContent = $(target).find(Hook('content'));
-		var this_item = $($(this).attr('href'));
+		var targetContent = $(target);
+		var this_item = $($(this).attr('href')).closest(Hook('item'));
 
 		var reference = $(this).closest(Hook('reference'));
 
@@ -48,24 +51,27 @@ if ($(Hook('content')).length) {
 		} else {
 			reference
 				.find(Hook('item'))
-					.not($(this))
+					.not(this_item)
 					.modRemoveClass('item_isOpen')
-					.end()
-				.find(Hook('content'))
+				.children(Hook('content'))
 					.filter(':visible')
 					.not(target)
-					.slideUp()
-					.end();
+					.slideUp();
 
-			this_item
-				.modAddClass('item_isOpen')
-				.find(Hook('content'))
-					.slideDown()
-					.end();
+			this_item.modAddClass('item_isOpen');
+
+			targetContent.slideDown();
 		}
 
 
 		//this_item.modToggleClass('item_isOpen');
 	});
+
+	$(Hook('outClickSensor')).outsideClick(function(){
+		module = module_accordion;
+		if ($(this).find(Hook('content')).eq(0).is(':visible')){
+			$(this).find(Hook(['trigger_auto', 'trigger_manual'])).eq(0).click();
+		}
+	})
 }
 
