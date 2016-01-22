@@ -29,7 +29,7 @@
 					'subnav' => array(
 						array(
 							'title' => 'example shortcut',
-							'link' => '?location=1-2-3'
+							'link' => '?location=1-1-2'
 						)
 					)
 				)
