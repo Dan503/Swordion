@@ -29,27 +29,16 @@ function getSpecificMap($map, $array){
 			throw new Exception($error);
 		}
 
-		//If the first round
-		if ($i == 0){
-			if (is_string($searchTerm)){
-				//if first item is a string, do a standard getTitleMap function on the search term
-				$returnMap = getTitleMap($map, $array[0]);
 
-			} elseif(is_int($searchTerm)) {
-				//if first item is a number, return the map at the specified index of the full navMap for the first item in the array
-				$returnMap = $map[$searchTerm];
-			}
+		if (is_string($searchTerm)){
+			//if item is a string, do a getTitleMap function on the search term
+			$returnMap = getTitleMap($map, $array[0]);
 
-		//For every other round
-		} else {
-			if (is_string($searchTerm)){
-				//use the previously filtered map to search by *title* for each string in the array (excluding first item)
-				$returnMap = getTitleMap($returnMap['subnav'], $searchTerm);
-			} elseif (is_int($searchTerm)){
-				//Use the previously filtered map to search by *number* for each number in the array (excluding first item)
-				$returnMap = $returnMap['subnav'][$searchTerm - 1];
-			}
+		} elseif(is_int($searchTerm)) {
+			//if first item is a number, return the map at the specified index of the full navMap
+			$returnMap = $map[$searchTerm];
 		}
+
 	}
 
 	return $returnMap;
