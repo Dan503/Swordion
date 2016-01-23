@@ -48,7 +48,7 @@
 							'subnav' => array(
 								array(
 									'title' => 'Enhancing digital productivity',
-									'linkGen' => 'override-siblings', //All generated links at this level will point to this page
+									//'linkGen' => 'override-siblings', //All generated links at this level will point to this page
 								),
 								array(
 									'title' => 'Expanding digital infrastructure',
