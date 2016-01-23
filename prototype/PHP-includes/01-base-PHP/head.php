@@ -22,7 +22,7 @@
 	?></title>
 
 	<?php
-		$socialDescription = strip_tags(defaultTo($getCurrent['intro'], $getCurrentSection['intro']));
+		$socialDescription = strip_tags(defaultTo($getCurrent['intro'], 'Social description text'));
 		echo '<meta name="description" content="'.$socialDescription.'" />';
 	?>
 
@@ -118,7 +118,7 @@
 			</div>
 
 			<?php
-				include $include['module'].'siteHeader.php';
+				include $module.'siteHeader.php';
 			?>
 
 
