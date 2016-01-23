@@ -52,7 +52,7 @@
 		foreach ($baseJS as $setName => $extras){
 			echo '
 			'.$extras['before'].
-				'<script src="'.$rootLocation.'/assets/js/generated-JS/'.$setName.$min.'.js"></script>'
+				'<script src="'.$rootLocation.'/assets/js/generated-JS/'.$setName.$min.'.js" async></script>'
 			.$extras['after'].'
 			';
 		}
@@ -68,7 +68,7 @@
 				foreach ($JSextras as $setName => $extras){
 					echo '
 					'.$extras['before'].
-						'<script src="'.$rootLocation.'/assets/js/generated-JS/'.$setName.$min.'.js"></script>'
+						'<script src="'.$rootLocation.'/assets/js/generated-JS/'.$setName.$min.'.js" async></script>'
 					.$extras['after'].'
 					';
 				}
