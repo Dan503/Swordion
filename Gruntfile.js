@@ -346,7 +346,7 @@ module.exports = function (grunt) {
 				src: 'prototype/00-source-files/ZZ-Swordion-DO-NOT-EDIT/sass/generated-files/configurations/icon-names.scss',
 				dest: 'prototype/00-source-files/ZZ-Swordion-DO-NOT-EDIT/sass/generated-files/configurations/icon-names.scss',
 				replacements: [{
-					//replaces the useless css at the top of the file with the opening of the sass map syntax
+					//replaces the sass variable syntax with sass map syntax
 					from: /\$icon-([A-z0-9\-_]*):\s(\"\\[A-z0-9]*");/g,
 					to: '\t$1: $2,'
 				}]
