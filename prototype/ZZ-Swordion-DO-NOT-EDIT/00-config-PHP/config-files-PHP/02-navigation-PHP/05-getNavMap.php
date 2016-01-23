@@ -19,6 +19,8 @@ function getTitleMap($map, $title) {
 //array accepts both numbers and titles
 //function not to be used in regular code
 function getSpecificMap($map, $array){
+    
+    $returnMap = $map;
 
 	foreach ($array as $i => $searchTerm){
 
@@ -29,18 +31,19 @@ function getSpecificMap($map, $array){
 			throw new Exception($error);
 		}
 
-
 		if (is_string($searchTerm)){
 			//if item is a string, do a getTitleMap function on the search term
-			$returnMap = getTitleMap($map, $array[0]);
+			$returnMap = getTitleMap($returnMap, $array[0]);
 
 		} elseif(is_int($searchTerm)) {
 			//if first item is a number, return the map at the specified index of the full navMap
-			$returnMap = $map[$searchTerm];
+			$returnMap = $returnMap[$searchTerm];
 		}
 
 	}
-
+    
+    var_dump($returnMap);
+    
 	return $returnMap;
 }
 
