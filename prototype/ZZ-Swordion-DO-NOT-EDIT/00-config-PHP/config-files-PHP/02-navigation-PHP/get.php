@@ -60,28 +60,12 @@ function getPrevLocation($location, $style){//[1,1,1]
                 $newIndex = count($prevNav) - 1;
                 array_push($locationCopy, $newIndex);
 
-				/*echo '<br>copy:<br>';
-				var_dump($locationCopy);
-				echo '<br>prevIndex:<br> '.$prevIndex;
-				echo '<br>prevNav:<br>';
-				var_dump($prevNav);
-				echo '<br>newIndex:<br>';
-				var_dump($newIndex);
-				echo '<br><br>';*/
-
 				//keep digging through subnavs until you can't dig any deeper
-				digForLastLocation('prev', $locationCopy);
+				return digForLastLocation('prev', $locationCopy);
 
-
-            } elseif ($prevIndex < 0){
-                //if prevIndex = -1, run this function again with the new array
-				getPrevLocation($locationCopy, $style);
-
-            } elseif (isset($prevNav)) {
-                //incase there are more sub items, run the function again
-                //getPrevLocation($locationCopy, $style);
             } else {
-                //if no subnav found on previous item, just return to parent directory like 'lazy' style
+            	//if prev item has no children, point to it as the new location
+				update_last($location, $prevIndex);
     			return $location;
             }
 		}
