@@ -55,9 +55,9 @@ function newLocation($location, $direction = 'forward', $style = 'deep'){
 		//will go up a level when hitting the edges and will skip over sub nav
 	}
 
-	if ($direction = 'forward'){
+	if ($direction == 'forward'){
 		//
-	} elseif ($direction = 'reverse'){
+	} elseif ($direction == 'reverse'){
 	    //reduce last location value by 1
 	    $prevLocationValue = end($location) - 1;
         
@@ -78,7 +78,7 @@ function newLocation($location, $direction = 'forward', $style = 'deep'){
 //var_dump($navMap);
 
 //work in progress, this will be an upgrade to the $getCurrent etc variables
-function get($option, $parameter = null){
+function get($option, $parameter = null, $style = 'deep'){
 
 	$location = $GLOBALS['location'];
 	$lastIndex = end($location);
@@ -90,10 +90,8 @@ function get($option, $parameter = null){
 
 		case 'prev' :
 			$lastIndex = $lastIndex - 1;
-            
-            update_last($location, $lastIndex);
 
-		    $location = newLocation($location, 'reverse');
+		    $location = newLocation($location, 'reverse', $style);
 
 			$returnValue = getNavMap($location);
 		break;
