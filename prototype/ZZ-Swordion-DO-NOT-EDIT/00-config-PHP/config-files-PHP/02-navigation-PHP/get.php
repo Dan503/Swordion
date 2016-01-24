@@ -1,44 +1,88 @@
 <?php
 
+function digForLastLocation($prevOrNext, $location){
+	$subNav = getNavMap($location, 'subnav');
+	if(isset($subNav)){
+		if ($prevOrNext == 'prev'){
+			array_push($location, count($subNav) - 1);
+		} else {
+			array_push($location, 0);
+		}
+		digForLastLocation($prevOrNext, $location);
+	} else {
+		echo '<br><br>digForLastPrev:<br>';
+		var_dump($location);
+		return $location;
+	}
+}
+
 //function for getting previous location when current location ends in 0
-function getPrevLocation($location, $style){
+function getPrevLocation($location, $style){//[1,1,1]
+
+     //creating a copy of location so I can retain access to the origional
+     $locationCopy = $location;
+
+	if ($location == [0]){
+		//basically if on the home page, return as NULL
+		return NULL;
+	}
+
+	echo '<br><br>
+	origional:<br>';
+	var_dump($location);
+
 	if ($style == 'strict'){
 		return null;
 	} else {
+		$lastDigit = end($location);
 	    //step 1
         //remove last value from the array
-		array_pop($location);
-		if ($style == 'lazy'){
-		    //if it's lazy style, return with the new location array
-			return $location;
+		array_pop($locationCopy);//[1,1]
+		if ($style == 'lazy' || $style == 'deep' && $lastDigit == 0){
+		    //if it's lazy style or it is deep style and it is the first nav item amongst it's siblings, return with the new reduced location array
+			return $locationCopy;
 		} else {
-		    //this is the code for "deep" style
-            
-            //creating a copy as I'll need this version of $location later
+		    //this is the code for the default "deep" style
+
+            //resetting locationCopy
             $locationCopy = $location;
-            
+
             //step 2
             //change last item in array to be 1 less
 			$prevIndex = end($locationCopy) - 1;
-            update_last($locationCopy, $prevIndex);
-            
-            //get
+            update_last($locationCopy, $prevIndex);//[1,1,0]
+
+            //get subnav for the previous section
             $prevNav = getNavMap($locationCopy, 'subnav');
-            
-            if ($prevIndex < 0){
-                //if prevIndex = -1, run this function again with the new array
-				getPrevLocation($locationCopy, $style);
-                
-            } elseif ($prevNav != null) {
-                //point location at the last sub item 
+
+            if (isset($prevNav)){
+                //point location at the last sub item
                 $newIndex = count($prevNav) - 1;
                 array_push($locationCopy, $newIndex);
-                
+
+				/*echo '<br>copy:<br>';
+				var_dump($locationCopy);
+				echo '<br>prevIndex:<br> '.$prevIndex;
+				echo '<br>prevNav:<br>';
+				var_dump($prevNav);
+				echo '<br>newIndex:<br>';
+				var_dump($newIndex);
+				echo '<br><br>';*/
+
+				//keep digging through subnavs until you can't dig any deeper
+				digForLastLocation('prev', $locationCopy);
+
+
+            } elseif ($prevIndex < 0){
+                //if prevIndex = -1, run this function again with the new array
+				getPrevLocation($locationCopy, $style);
+
+            } elseif (isset($prevNav)) {
                 //incase there are more sub items, run the function again
-                getPrevLocation($locationCopy, $style);
+                //getPrevLocation($locationCopy, $style);
             } else {
                 //if no subnav found on previous item, just return to parent directory like 'lazy' style
-    			return $location;                
+    			return $location;
             }
 		}
 	}
@@ -46,6 +90,9 @@ function getPrevLocation($location, $style){
 
 function newLocation($location, $direction = 'forward', $style = 'deep'){
 	$locationCopy = $location;
+	//[0,1,0]//current
+	//[0,1]//prev
+	//[0,0,1]//2x prev
 
 	if ($style == 'deep'){//default
 		//will go to every possible page in the order they appear in the navMap
@@ -58,19 +105,8 @@ function newLocation($location, $direction = 'forward', $style = 'deep'){
 	if ($direction == 'forward'){
 		//
 	} elseif ($direction == 'reverse'){
-	    //reduce last location value by 1
-	    $prevLocationValue = end($location) - 1;
-        
-        //if last location value is less than 0 (ie. -1)
-	    if ($prevLocationValue < 0){
-	        //run the complex prev location function
-    		return getPrevLocation($location, $style);	        
-	    } else {
-	        //change last value to the new value            
-            update_last($location, $prevLocationValue);
-	        
-	        return $location;
-	    }
+        //calculate what the previous location in relation to the nav map is
+		return getPrevLocation($location, $style);
 	}
 
 }
@@ -91,7 +127,13 @@ function get($option, $parameter = null, $style = 'deep'){
 		case 'prev' :
 			$lastIndex = $lastIndex - 1;
 
+echo '<br><br>before:<br>';
+            var_dump($location);
+
 		    $location = newLocation($location, 'reverse', $style);
+
+echo '<br><br>after:<br>';
+            var_dump($location);
 
 			$returnValue = getNavMap($location);
 		break;
