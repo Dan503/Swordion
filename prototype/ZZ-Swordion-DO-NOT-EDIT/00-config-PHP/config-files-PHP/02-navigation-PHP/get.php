@@ -2,13 +2,17 @@
 
 function digForLastLocation($prevOrNext, $location){
 	$subNav = getNavMap($location, 'subnav');
+
+	echo '<br><br>subnav:<br>';
+	var_dump($subNav);
+
 	if(isset($subNav)){
 		if ($prevOrNext == 'prev'){
 			array_push($location, count($subNav) - 1);
 		} else {
 			array_push($location, 0);
 		}
-		digForLastLocation($prevOrNext, $location);
+		return digForLastLocation($prevOrNext, $location);
 	} else {
 		echo '<br><br>digForLastPrev:<br>';
 		var_dump($location);
@@ -36,8 +40,10 @@ function getPrevLocation($location, $style){//[1,1,1]
 	} else {
 		$lastDigit = end($location);
 	    //step 1
-        //remove last value from the array
-		array_pop($locationCopy);//[1,1]
+        //remove last value from the array if not at root level
+		if (count($location) > 1){
+			array_pop($locationCopy);//[1,1]
+		}
 		if ($style == 'lazy' || $style == 'deep' && $lastDigit == 0){
 		    //if it's lazy style or it is deep style and it is the first nav item amongst it's siblings, return with the new reduced location array
 			return $locationCopy;
@@ -52,10 +58,13 @@ function getPrevLocation($location, $style){//[1,1,1]
 			$prevIndex = end($locationCopy) - 1;
             update_last($locationCopy, $prevIndex);//[1,1,0]
 
+
             //get subnav for the previous section
             $prevNav = getNavMap($locationCopy, 'subnav');
 
+
             if (isset($prevNav)){
+
                 //point location at the last sub item
                 $newIndex = count($prevNav) - 1;
                 array_push($locationCopy, $newIndex);
