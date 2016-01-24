@@ -1,6 +1,6 @@
 <?php
 
-	$swordion_root = $root.'ZZ-Swordion-DO-NOT-EDIT/';
+	$swordion_root = $server_root.'ZZ-Swordion-DO-NOT-EDIT/';
 
 //holds the paths for swordion system files that should not be edited
 	$swordion = array(
