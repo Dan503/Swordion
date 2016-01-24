@@ -24,6 +24,9 @@ function getPrevLocation($location, $style){//[1,1,1]
 	if ($location == [0]){
 		//basically if on the home page, return as NULL
 		return NULL;
+	} elseif ($location == [1]){
+		//prevents the user from pressing a prev button into miscellaneous pages
+		return [0];
 	}
 
 	if ($style == 'strict'){
