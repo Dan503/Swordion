@@ -16,47 +16,53 @@ function getNextLocation($location, $style){//[1,1,1]
 
 	$lastDigit = end($location);
 
+	//negative 1 to align it with index counting from 0 so code makes more sense
+	$siblingCount = count(get('parent','subnav')) - 1;
+
 	//if strict and no next items available, return NULL
-	if ($style == 'strict' && $lastDigit + 1 == count(get('parent','subnav'))){//get('parent') doesn't exist yet
+	if ($style == 'strict' && $lastDigit + 1 > $siblingCount){
 		return NULL;
 	} else {
 
-        //remove last value from the array if not at root level
-		if (count($location) > 1 && $lastDigit == 0){
-			array_pop($locationCopy);//[1,1]
-		} else {
-			update_last($locationCopy, $lastDigit - 1);//[1,1,0]
-		};
+		//keep digging through parents until you hit a page with a sibling after it
+		$locationDig = digForLastLocation('next', $locationCopy);
 
-		if ($style == 'lazy' || $style == 'deep' && $lastDigit == 0){
+		if ($locationDig == NULL){
+			return NULL;
+		}
+
+		if ($style == 'lazy'){
 		    //if it's lazy style or it is deep style and it is the first nav item amongst it's siblings, return with the new reduced location array
-			return $locationCopy;
+			return $locationDig;
 		} else {
 		    //this is the code for the default "deep" style
 
             //resetting locationCopy
             $locationCopy = $location;
 
-            //change last item in array to be 1 less
-			$prevIndex = end($locationCopy) - 1;
-            update_last($locationCopy, $prevIndex);//[1,1,0]
+            //change last item in array to be 1 higher
+			$nextIndex = end($locationCopy) + 1;
 
-            //get subnav for the previous section
-            $prevNav = getNavMap($locationCopy, 'subnav');
+			//check if current page has a navigable subnav
+            if (hasSubnav($location)){
 
-            if (isset($prevNav)){
+                //point location at the first sub item
+                array_push($locationCopy, 0);//[1,1,1,0]
 
-                //point location at the last sub item
-                $newIndex = count($prevNav) - 1;
-                array_push($locationCopy, $newIndex);
-
-				//keep digging through subnavs until you can't dig any deeper
-				return digForLastLocation('prev', $locationCopy);
+				return $locationCopy;
 
             } else {
-            	//if prev item has no children, point to it as the new location
-				update_last($location, $prevIndex);
-    			return $location;
+
+				update_last($locationCopy, $nextIndex);//[1,1,2]
+
+				$siblingNonExistant = end($locationCopy) > $siblingCount;
+
+				if ($siblingNonExistant){
+					return $locationDig;
+				} else {
+	    			return $locationCopy;
+				}
+
             }
 		}
 	}

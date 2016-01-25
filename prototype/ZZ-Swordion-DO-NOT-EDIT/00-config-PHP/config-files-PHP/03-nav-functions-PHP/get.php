@@ -60,6 +60,7 @@ function get($option, $parameter = null, $style = 'deep'){
 			//an alternate way to do the getNavMap() function
 			//get('navMap', [1,2,3], 'title');
 			return getNavMap($parameter, $style);
+		break;
 	}
 
     if (isset($parameter)){
