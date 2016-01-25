@@ -25,7 +25,7 @@
 					'link' => '#',
 					'subnav' => array(
 						['title' => 'example shortcut',
-							'link' => '?location=1-2-3'
+							//'link' => '?location=1-2-3'
 						]
 					)
 				]
@@ -60,7 +60,7 @@
 
 		// part 2
 		['title' => 'Performance reporting',
-			'linkGen' => 'first-child', //will link to first child page instead of this page
+			//'linkGen' => 'first-child', //will link to first child page instead of this page
 			'subnav' => array(
 				['title' => 'Outcome 1'],
 				['title' => '<strong>Programme 1.1:</strong> Digital Technologies and Communications Services',

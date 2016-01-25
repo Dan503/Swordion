@@ -2,6 +2,18 @@
 	include $head;
 ?>
 
+<?php
+
+echo '<br><br><b>final output of link:</b><br>';
+var_dump(get('prev', 'link'));
+echo '<br><br>';
+
+?>
+<?php
+    //[1,1,0,3]
+    //?location=1-1-0-3
+ ?>
+
 	<article class="standardContent">
 
 			<h1><?php echo $getCurrent['title']; ?></h1>
