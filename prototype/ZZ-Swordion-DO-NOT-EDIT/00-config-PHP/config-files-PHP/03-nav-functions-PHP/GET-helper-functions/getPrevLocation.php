@@ -1,20 +1,5 @@
 <?php
 
-function digForLastLocation($prevOrNext, $location){
-	$subNav = getNavMap($location, 'subnav');
-
-	if ($prevOrNext == 'prev'){
-		if(isset($subNav)){
-			array_push($location, count($subNav) - 1);
-			return digForLastLocation($prevOrNext, $location);
-		} else {
-			return $location;
-		}
-	} else {
-		//haven't written next code yet
-	}
-}
-
 //function for getting previous page location in relation to the navMap
 function getPrevLocation($location, $style){//[1,1,1]
 
@@ -74,64 +59,5 @@ function getPrevLocation($location, $style){//[1,1,1]
 		}
 	}
 }
-
-function newLocation($location, $direction = 'forward', $style){
-	$locationCopy = $location;
-
-	if ($direction == 'forward'){
-		//
-	} elseif ($direction == 'reverse'){
-        //calculate what the previous location in relation to the nav map is
-		return getPrevLocation($location, $style);
-	}
-}
-
-//work in progress, this will be an upgrade to the $getCurrent etc variables
-function get($option, $parameter = null, $style = 'deep'){
-
-	$location = $GLOBALS['location'];
-	$lastIndex = end($location);
-
-/*
-	if ($style == 'deep'){//default
-		//will go to every possible page in the order they appear in the navMap
-	} elseif ($style == 'strict'){
-		//will skip over subnav and return NULL if a nav item doesn't exist
-	} elseif ($style == 'lazy'){
-		//will go up a level when hitting the edges and will skip over sub nav
-	}
-*/
-
-	switch($option){
-		case 'depth' :
-			$returnValue = count($location);
-		break;
-
-		//prev is working
-		case 'prev' :
-			$lastIndex = $lastIndex - 1;
-		    $location = newLocation($location, 'reverse', $style);
-			$returnValue = getNavMap($location);
-			//Note, linkGen screws the system up. I need safe guards for when linkGens are enabled.
-		break;
-
-		//next not available yet
-		case 'next' :
-			$lastIndex = $lastIndex + 1;
-			$returnValue = getNavMap($location);
-		break;
-
-        case 'current':
-            $returnValue = getNavMap($location);
-        break;
-
-	}
-
-    if (isset($parameter)){
-        return $returnValue[$parameter];
-    } else {
-        return $returnValue;
-    }
-};
 
 ?>
