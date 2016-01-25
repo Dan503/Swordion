@@ -21,6 +21,22 @@ function get($option, $parameter = null, $style = 'deep'){
 			$returnValue = count($location);
 		break;
 
+		case 'parent' :
+			if (get('depth') <= 1){
+				return null;
+			} else {
+				$returnValue = getNavMap(array_pop($location));
+			}
+		break;
+
+		case 'grandParent' :
+			if (get('depth') <= 2){
+				return null;
+			} else {
+				$returnValue = getNavMap(array_pop(array_pop($location)));
+			}
+		break;
+
 		//prev is working
 		case 'prev' :
 	        //calculate what the previous location in relation to the nav map is
@@ -40,6 +56,10 @@ function get($option, $parameter = null, $style = 'deep'){
             $returnValue = getNavMap($location);
         break;
 
+		case 'navMap':
+			//an alternate way to do the getNavMap() function
+			//get('navMap', [1,2,3], 'title');
+			return getNavMap($parameter, $style);
 	}
 
     if (isset($parameter)){
