@@ -1,23 +1,25 @@
 <?php
 
 //function for getting previous page location in relation to the navMap
-function getPrevLocation($location, $style){//[1,1,1]
+function getNextLocation($location, $style){//[1,1,1]
 
      //creating a copy of location so I can retain access to the origional
      $locationCopy = $location;
 
-	if ($location == [0]){
+	if ($location == [end($location)]){//if location = [X] (X being the last item at the root level of the nav map)
 		//basically if on the home page, return as NULL
 		return NULL;
-	} elseif ($location == [1]){
-		//prevents the user from pressing a prev button into miscellaneous pages
-		return [0];
+	} elseif ($location == [0]){
+		//prevents the user from pressing a next button into miscellaneous pages
+		return [1];
 	}
 
-	if ($style == 'strict'){
+	$lastDigit = end($location);
+
+	//if strict and no next items available, return NULL
+	if ($style == 'strict' && $lastDigit + 1 == count(get('parent','subnav'))){//get('parent') doesn't exist yet
 		return NULL;
 	} else {
-		$lastDigit = end($location);
 
         //remove last value from the array if not at root level
 		if (count($location) > 1 && $lastDigit == 0){
