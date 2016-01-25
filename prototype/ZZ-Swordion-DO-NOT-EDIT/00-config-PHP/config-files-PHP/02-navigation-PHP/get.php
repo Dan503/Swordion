@@ -3,15 +3,15 @@
 function digForLastLocation($prevOrNext, $location){
 	$subNav = getNavMap($location, 'subnav');
 
-	if(isset($subNav)){
-		if ($prevOrNext == 'prev'){
+	if ($prevOrNext == 'prev'){
+		if(isset($subNav)){
 			array_push($location, count($subNav) - 1);
+			return digForLastLocation($prevOrNext, $location);
 		} else {
-			array_push($location, 0);
+			return $location;
 		}
-		return digForLastLocation($prevOrNext, $location);
 	} else {
-		return $location;
+		//haven't written next code yet
 	}
 }
 
