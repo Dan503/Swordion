@@ -112,6 +112,7 @@ function get($option, $parameter = null, $style = 'deep'){
 			$lastIndex = $lastIndex - 1;
 		    $location = newLocation($location, 'reverse', $style);
 			$returnValue = getNavMap($location);
+			//Note, linkGen screws the system up. I need safe guards for when linkGens are enabled.
 		break;
 
 		//next not available yet
