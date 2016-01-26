@@ -74,6 +74,13 @@ function getNavMap($searchTerm, $portion = NULL){
 
 	$returnMap = $GLOBALS['navMap'];
 
+	if ($searchTerm == []){
+		//if the search term is an empty array, it will return the full nav map
+		$returnMap['subnav'] = $returnMap;
+		$returnMap['title'] = "Navigation Map";
+		return $returnMap;
+	}
+
 	//code for when an array is given (filters results based on numbers and titles provided in array)
 	 if (is_array($searchTerm)){
     	$returnMap = getSpecificMap($returnMap, $searchTerm);

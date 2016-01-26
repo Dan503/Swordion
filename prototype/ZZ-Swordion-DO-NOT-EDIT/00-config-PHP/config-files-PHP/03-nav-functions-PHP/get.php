@@ -36,7 +36,12 @@ function get($option, $parameter = null, $style = 'deep'){
 				return null;
 			} else {
 				$locationCopy = $location;
-				array_pop(array_pop($locationCopy));
+				//use $style variable to tweak how far up the ancestry tree 'grandparent' goes
+				//it defaults to 2 levels
+				$style = $style == 'deep' ? 2 : $style;
+				for($i = 0; $i < $style; $i++){
+					array_pop($locationCopy);
+				}
 				$returnValue = getNavMap($locationCopy);
 			}
 		break;

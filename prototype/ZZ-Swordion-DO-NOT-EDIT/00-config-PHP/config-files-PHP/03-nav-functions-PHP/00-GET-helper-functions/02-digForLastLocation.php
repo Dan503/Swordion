@@ -15,24 +15,28 @@ function digForLastLocation($prevOrNext, $location){
 
 		$locationCopy = $location;
 
-		$siblingCount = count(get('parent','subnav')) - 1;
+		$atRootLevel = count($location) == 1;
 
-		$lastDigit = end($location);
+		$parentSibings = $atRootLevel ? $GLOBALS['navMap'] : get('grandParent','subnav');
 
-		$notRootLevel = count($location)  > 1;
+		$siblingCount = count($parentSibings) - 1;
+
+		if (!$atRootLevel){
+			array_pop($locationCopy);
+		}
+
+		$lastDigit = end($locationCopy);
+
 
 		$isLastSibling = $lastDigit == $siblingCount;
 
-		if ($notRootLevel && $isLastSibling){
-			array_pop($locationCopy);//[1,1]
-
+		if ($isLastSibling && !$atRootLevel){
 			return digForLastLocation($prevOrNext, $locationCopy);
 
 		} else {
 			$nextSiblingLocation = $locationCopy;
 
 			update_last($nextSiblingLocation, $lastDigit + 1);//[1,2]
-
 
 			return $nextSiblingLocation;
 

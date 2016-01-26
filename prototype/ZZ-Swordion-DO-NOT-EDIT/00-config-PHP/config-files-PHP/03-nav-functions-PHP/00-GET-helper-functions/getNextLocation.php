@@ -48,10 +48,8 @@ function getNextLocation($location, $style){//[1,1,1]
             //change last item in array to be 1 higher
 			$nextIndex = end($locationCopy) + 1;
 
-				var_dump('testing');
 			//check if current page has a navigable subnav
             if (hasSubnav($location)){
-
 
                 //point location at the first sub item
                 array_push($locationCopy, 0);//[1,1,1,0]
