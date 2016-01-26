@@ -7,11 +7,7 @@ function getNextLocation($location, $style){//[1,1,1]
      //creating a copy of location so I can retain access to the origional
      $locationCopy = $location;
 
-	//if location = [X] (X being the last item at the root level of the nav map)
-	if ($location == [end($location)]){
-		//basically if on the home page, return as NULL
-		return NULL;
-	} elseif ($location == [0]){
+	if ($location == [0]){
 		//prevents the user from pressing a next button into miscellaneous pages
 		return [1];
 	}
@@ -37,7 +33,6 @@ function getNextLocation($location, $style){//[1,1,1]
 		}
 
 		if ($style == 'lazy'){
-		    //if it's lazy style or it is deep style and it is the first nav item amongst it's siblings, return with the new reduced location array
 			return $locationDig;
 		} else {
 		    //this is the code for the default "deep" style
