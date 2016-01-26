@@ -25,7 +25,9 @@ function get($option, $parameter = null, $style = 'deep'){
 			if (get('depth') <= 1){
 				return null;
 			} else {
-				$returnValue = getNavMap(array_pop($location));
+				$locationCopy = $location;
+				array_pop($locationCopy);
+				$returnValue = getNavMap($locationCopy);
 			}
 		break;
 
@@ -33,7 +35,9 @@ function get($option, $parameter = null, $style = 'deep'){
 			if (get('depth') <= 2){
 				return null;
 			} else {
-				$returnValue = getNavMap(array_pop(array_pop($location)));
+				$locationCopy = $location;
+				array_pop(array_pop($locationCopy));
+				$returnValue = getNavMap($locationCopy);
 			}
 		break;
 

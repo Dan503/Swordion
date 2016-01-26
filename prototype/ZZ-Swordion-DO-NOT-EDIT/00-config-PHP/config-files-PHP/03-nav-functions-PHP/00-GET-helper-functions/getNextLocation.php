@@ -3,10 +3,12 @@
 //function for getting previous page location in relation to the navMap
 function getNextLocation($location, $style){//[1,1,1]
 
+
      //creating a copy of location so I can retain access to the origional
      $locationCopy = $location;
 
-	if ($location == [end($location)]){//if location = [X] (X being the last item at the root level of the nav map)
+	//if location = [X] (X being the last item at the root level of the nav map)
+	if ($location == [end($location)]){
 		//basically if on the home page, return as NULL
 		return NULL;
 	} elseif ($location == [0]){
@@ -24,8 +26,11 @@ function getNextLocation($location, $style){//[1,1,1]
 		return NULL;
 	} else {
 
+
 		//keep digging through parents until you hit a page with a sibling after it
 		$locationDig = digForLastLocation('next', $locationCopy);
+
+		//var_dump($locationDig);
 
 		if ($locationDig == NULL){
 			return NULL;
@@ -43,8 +48,10 @@ function getNextLocation($location, $style){//[1,1,1]
             //change last item in array to be 1 higher
 			$nextIndex = end($locationCopy) + 1;
 
+				var_dump('testing');
 			//check if current page has a navigable subnav
             if (hasSubnav($location)){
+
 
                 //point location at the first sub item
                 array_push($locationCopy, 0);//[1,1,1,0]

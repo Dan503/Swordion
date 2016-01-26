@@ -26,17 +26,16 @@ function digForLastLocation($prevOrNext, $location){
 		if ($notRootLevel && $isLastSibling){
 			array_pop($locationCopy);//[1,1]
 
+			return digForLastLocation($prevOrNext, $locationCopy);
+
+		} else {
 			$nextSiblingLocation = $locationCopy;
 
-			$nextSiblingLocation = update_last($nextSiblingLocation, $lastDigit + 1);//[1,2]
+			update_last($nextSiblingLocation, $lastDigit + 1);//[1,2]
 
-			$hasNextSibling = getNavMap($nextSiblingLocation) != NULL;
 
-			if ($hasNextSibling){
-				return $nextSiblingLocation;
-			} else {
-				return digForLastLocation($prevOrNext, $locationCopy)
-			}
+			return $nextSiblingLocation;
+
 		};
 	}
 }

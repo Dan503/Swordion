@@ -5,7 +5,7 @@
 <?php
 
 echo '<br><br><b>final output of link:</b><br>';
-var_dump(get('prev', 'link'));
+var_dump(get('next', 'link'));
 echo '<br><br>';
 
 ?>
