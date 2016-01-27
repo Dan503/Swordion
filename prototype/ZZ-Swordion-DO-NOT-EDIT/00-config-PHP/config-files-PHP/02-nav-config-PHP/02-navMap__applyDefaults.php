@@ -58,8 +58,6 @@ foreach ($navMap as $i => &$nm) {
     generateDefaults('?location=', $nm, $i, $nm['subnav'], [$i]);
 }
 
-var_dump($navMap);
-
 $GLOBALS['navMap'] = $navMap;
 
 //var_dump($navMap);
