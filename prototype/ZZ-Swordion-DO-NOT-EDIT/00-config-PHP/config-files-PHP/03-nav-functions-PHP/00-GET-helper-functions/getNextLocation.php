@@ -18,23 +18,22 @@ function getNextLocation($location, $style){//[1,1,1]
 	//negative 1 to align it with index counting from 0 so code makes more sense
 	$siblingCount = count($siblings) - 1;
 
-	if(hasLinkGen('override-siblings')){
-		if(hasSubNav($location)){
-			//var_dump(get('children', 0, 'location'));
-			return get('children', 0, 'location');
-		} else {
-			array_pop($locationCopy);
-			$newLastDigit = end($locationCopy);
-			update_last($locationCopy, $newLastDigit + 1);
-			return $locationCopy;
-		}
-	}
 
 
 	//if strict and no next items available, return NULL
 	if ($style == 'strict' && $lastDigit + 1 > $siblingCount){
 		return NULL;
 	} else {
+		if(hasLinkGen('override-siblings')){
+			if(hasSubNav($location) && $style == 'deep'){
+				return get('children', 0, 'location');
+			} else {
+				array_pop($locationCopy);
+				$newLastDigit = end($locationCopy);
+				update_last($locationCopy, $newLastDigit + 1);
+				return $locationCopy;
+			}
+		}
 
 		//keep digging through parents until you hit a page with a sibling after it
 		$locationDig = digForLastLocation('next', $locationCopy);
