@@ -7,6 +7,8 @@ function get($option, $parameter = null, $style = 'deep'){
 	$lastIndex = end($location);
 
 /*
+	In relation to previous and next...
+
 	if ($style == 'deep'){//default
 		//will go to every possible page in the order they appear in the navMap
 	} elseif ($style == 'strict'){
@@ -46,6 +48,34 @@ function get($option, $parameter = null, $style = 'deep'){
 			}
 		break;
 
+		case 'siblings' ://siblings does include the current nav item
+		//can be used like get('siblings', 1, 'title')
+			$siblings = get('parent','subnav');
+			if (is_int($parameter)){
+				if($style != 'deep'){
+					return $siblings[$parameter][$style];
+				} else {
+					return $siblings[$parameter];
+				}
+			} else {
+				return $siblings;
+			}
+		break;
+
+		case 'children' :
+		//can be used like get('siblings', 1, 'title')
+			$children = get('current','subnav');
+			if (is_int($parameter)){
+				if($style != 'deep'){
+					return $children[$parameter][$style];
+				} else {
+					return $children[$parameter];
+				}
+			} else {
+				return $children;
+			}
+		break;
+
 		//prev is working
 		case 'prev' :
 	        //calculate what the previous location in relation to the nav map is
@@ -59,6 +89,14 @@ function get($option, $parameter = null, $style = 'deep'){
 	        //calculate what the next location in relation to the nav map is
 			$location = getNextLocation($location, $style);
 			$returnValue = getNavMap($location);
+		break;
+
+		case 'nextParent':
+			$returnValue = getSiblingParent($location, 'next');
+		break;
+
+		case 'prevParent':
+			$returnValue = getSiblingParent($location, 'prev');
 		break;
 
         case 'current':
