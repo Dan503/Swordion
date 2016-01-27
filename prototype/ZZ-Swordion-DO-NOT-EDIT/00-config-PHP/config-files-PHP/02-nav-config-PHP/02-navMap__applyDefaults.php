@@ -32,26 +32,33 @@ function generateLink ($linkOveride, $basePath, $i, $linkGenType, $siblings){
 	}
 }
 
-function generateDefaults($basePath, &$map, $index, $siblings){
+function generateDefaults($basePath, &$map, $index, $siblings, $location){
 	$recursivePath = $basePath.$index;
 
 	$linkGenType = defaultTo($map['linkGen'], 'normal');
 
     $map['link'] = generateLink($map['link'], $basePath, $index, $linkGenType, $siblings);
 
+	$map['location'] = $location;
+
+
 	$map = defaultTo($map, $GLOBALS['navMap__defaults']);
 
 	//if a subnav exists in item, generate defaults for it
     if (isset ($map['subnav'])) {
         foreach ($map['subnav'] as $subIndex => &$subMap) {
-			generateDefaults($recursivePath, $subMap, '-'.$subIndex, $map['subnav']);
+	    	$locationCopy = $location;
+			array_push($locationCopy, $subIndex);
+			generateDefaults($recursivePath, $subMap, '-'.$subIndex, $map['subnav'], $locationCopy);
 		}
 	}
 }
 
 foreach ($navMap as $i => &$nm) {
-    generateDefaults('?location=', $nm, $i, $nm['subnav']);
+    generateDefaults('?location=', $nm, $i, $nm['subnav'], [$i]);
 }
+
+var_dump($navMap);
 
 $GLOBALS['navMap'] = $navMap;
 
