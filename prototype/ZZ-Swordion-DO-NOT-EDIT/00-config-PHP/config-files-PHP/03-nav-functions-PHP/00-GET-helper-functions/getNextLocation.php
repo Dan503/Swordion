@@ -13,8 +13,23 @@ function getNextLocation($location, $style){//[1,1,1]
 
 	$lastDigit = end($location);//1
 
+	$siblings = get('siblings');
+
 	//negative 1 to align it with index counting from 0 so code makes more sense
-	$siblingCount = count(get('parent','subnav')) - 1;
+	$siblingCount = count($siblings) - 1;
+
+	if(hasLinkGen('override-siblings')){
+		if(hasSubNav($location)){
+			//var_dump(get('children', 0, 'location'));
+			return get('children', 0, 'location');
+		} else {
+			array_pop($locationCopy);
+			$newLastDigit = end($locationCopy);
+			update_last($locationCopy, $newLastDigit + 1);
+			return $locationCopy;
+		}
+	}
+
 
 	//if strict and no next items available, return NULL
 	if ($style == 'strict' && $lastDigit + 1 > $siblingCount){
@@ -27,8 +42,11 @@ function getNextLocation($location, $style){//[1,1,1]
 		//var_dump($locationDig);
 
 		if ($locationDig == NULL){
+			//I'm a little worried about this causing unwanted edge cases
 			return NULL;
 		}
+
+		if (hasLinkGen){}
 
 		//resetting locationCopy
 		$locationCopy = $location;
