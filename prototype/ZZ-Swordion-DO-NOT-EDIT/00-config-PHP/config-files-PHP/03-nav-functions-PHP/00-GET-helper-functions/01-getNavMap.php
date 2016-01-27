@@ -28,8 +28,10 @@ function getTitleMap($map, $title) {
 function checkSearchTerm($searchTerm){
     //Throw an error if neither a string or an interval provided
     if (!is_int($searchTerm) && !is_string($searchTerm)){
-        trigger_error('"'.$searchTerm.'" is neither a string or an interval. It is:<br>');
+        trigger_error('');
+		echo ('"'.$searchTerm.'" is neither a string or an interval. It is:<br>');
         var_dump($searchTerm);
+		echo ('<br>enable errors to learn more');
     }
 };
 
@@ -95,8 +97,10 @@ function getNavMap($searchTerm, $portion = NULL){
 
 	//throws error if $searchTerm variable doesn't make sense
 	} else {
-		trigger_error($searchTerm.' is not a string, interval or an array. It is:<br>');
+        trigger_error('');
+		echo ($searchTerm.' is not a string, interval or an array. It is:<br>');
         var_dump($searchTerm);
+		echo ('<br>enable errors to learn more');
 	}
 
 	if (isset($portion)) {
