@@ -28,6 +28,11 @@ function getPrevLocation($location, $style){//[1,1,1]
 			update_last($locationCopy, $lastDigit - 1);//[1,1,0]
 		};
 
+		if(hasLinkGen('override-siblings') && $style != 'deep'){
+			array_pop($locationCopy);
+			return $locationCopy;
+		}
+
 		if ($style == 'lazy' || $style == 'deep' && $lastDigit == 0){
 		    //if it's lazy style or it is deep style and it is the first nav item amongst it's siblings, return with the new reduced location array
 			return $locationCopy;
