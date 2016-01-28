@@ -48,6 +48,18 @@ function get($option, $parameter = null, $style = 'deep'){
 			}
 		break;
 
+		//usage get('mapAtDepth', 0, 'title');
+		case 'mapAtDepth' :
+			$depthSelector = defaultTo($parameter, 0);//you can use $parameter to set a specific depth to target
+			$currentLocation = get('current','location');
+			$returnValue = getNavMap([$currentLocation[$depthSelector]]);
+			if ($style == 'deep') {
+				return $returnValue;
+			} else {
+				return $returnValue[$style];
+			}
+		break;
+
 		case 'siblings' ://siblings does include the current nav item
 		//can be used like get('siblings', 1, 'title')
 			$siblings = get('parent','subnav');
