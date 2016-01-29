@@ -1,6 +1,9 @@
 <?php
 
-	$navMap = array(
+$navMap = [
+	'title' => 'Root',
+	//'subTemplate' => 'home',//you can use this attribute to define a new default template for all direct subnav items
+	'subnav' => array(
 		['title' => 'Home',
 			'altTitle' => 'Welcome to Swordion',
 			'link' => '/',
@@ -81,9 +84,10 @@
 				],
 			)
 		]
-	);
+	)
+];
 
-	$GLOBALS['navMap'] = $navMap;
+$GLOBALS['navMap'] = $navMap;
 
 
 ?>
