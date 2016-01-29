@@ -2,6 +2,26 @@
 	include $head;
 ?>
 
+<?php
+
+$style = 'deep';
+
+echo '<br><br><b>final output of link: <a href="'.(get('prev','link',$style)).'">Previous</a> <a href="'.(get('next', 'link',$style)).'">Next</a></b><br><br>';
+
+var_dump(get('prev', 'link', $style));
+
+echo '<br><br>';
+
+var_dump(get('next', 'link', $style));
+
+echo '<br><br>';
+
+?>
+<?php
+    //[1,1,0,3]
+    //?location=1-1-0-3
+ ?>
+
 	<article class="standardContent">
 
 			<h1><?php echo $getCurrent['title']; ?></h1>

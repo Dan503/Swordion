@@ -88,9 +88,11 @@
 
 		'/PHP-includes/00-config-PHP/',
 
-		'/ZZ-Swordion-DO-NOT-EDIT/00-config-PHP/config-files-PHP/02-navigation-PHP/',
+		'/ZZ-Swordion-DO-NOT-EDIT/00-config-PHP/config-files-PHP/02-nav-config-PHP/',
 
-		'/ZZ-Swordion-DO-NOT-EDIT/00-config-PHP/config-files-PHP/03-other-PHP/',
+		'/ZZ-Swordion-DO-NOT-EDIT/00-config-PHP/config-files-PHP/03-nav-functions-PHP/',
+
+		'/ZZ-Swordion-DO-NOT-EDIT/00-config-PHP/config-files-PHP/04-other-PHP/',
 
 		'/ZZ-Swordion-DO-NOT-EDIT/01-functions-modules-PHP/',
 
