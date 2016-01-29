@@ -10,4 +10,4 @@ You can then attatch links to the lightbox like this:
 
 
 !!!!WARNING!!!
-The Lightbox code is powered by Remodal. It's excellent at showing information popups but it's terrible for galleries as it loads up all the content of all the lightboxes all at once on first page load. Don't use this for Gallaries!
+The Lightbox code is powered by Remodal. It's excellent at showing information popups but it's terrible for galleries as it loads up all the content of all the lightboxes all at once on first page load. Don't use this for Galleries!
