@@ -24,7 +24,7 @@ echo '<br><br>';
 
 	<article class="standardContent">
 
-			<h1><?php echo $getCurrent['title']; ?></h1>
+			<h1><?php echo $get['current']['title']; ?></h1>
 
 			<h2>Uberiora certe sunt - H2</h2>
 

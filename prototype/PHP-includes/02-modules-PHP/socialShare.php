@@ -2,7 +2,7 @@
 	<ul class="socialShare__list TK-noDots">
 	<?php
 
-		$shareTitle = urlencode(strip_tags($getCurrent['title']));
+		$shareTitle = urlencode(strip_tags($get['current']['title']));
 		$shareURL = 'http://annualreport.communications.gov.au/2015';
 
 		$items_array = array(
