@@ -57,7 +57,7 @@ function generateDefaults($basePath, &$map, $index, $parent, $location){
 
 foreach ($navMap['subnav'] as $i => &$nm) {
 	$navMap['subTemplate'] = defaultTo($navMap['subTemplate'], $GLOBALS['navMap__defaults']['subTemplate']);
-	$nm['template'] = defaultTo($map['template'], $navMap['subTemplate']);
+	$nm['template'] = defaultTo($nm['template'], $navMap['subTemplate']);
     generateDefaults('?location=', $nm, $i, $nm, [$i]);
 }
 
