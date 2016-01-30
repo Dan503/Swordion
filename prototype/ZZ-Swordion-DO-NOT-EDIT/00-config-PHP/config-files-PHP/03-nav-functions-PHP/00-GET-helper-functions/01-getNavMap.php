@@ -74,8 +74,6 @@ function getSpecificMap($map, $array){
 	return $returnMap;
 }
 
-var_dump('getNavMap defined');
-
 //function for looking up a specific portion of the navMap using a location array or a title
 //use this function in your code
 //usage: getNavMap([array of titles/numbers, a single title, or a single number], [*optional* portion to retrieve from return map]);
