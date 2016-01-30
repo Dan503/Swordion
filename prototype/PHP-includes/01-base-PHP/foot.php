@@ -64,7 +64,7 @@
 		);
 
 		foreach ($extraJS as $template => $JSextras) {
-			if ($getCurrent['template'] == $template) {
+			if ($get['current']['template'] == $template) {
 				foreach ($JSextras as $setName => $extras){
 					echo '
 					'.$extras['before'].

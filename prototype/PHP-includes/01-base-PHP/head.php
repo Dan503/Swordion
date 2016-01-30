@@ -15,14 +15,14 @@
 	<meta charset="utf-8">
 
     <title><?php
-		$title = defaultTo($getCurrent['altTitle'], $getCurrent['title']);
+		$title = defaultTo($get['current']['altTitle'], $get['current']['title']);
 		$titleText = $isHome ? strip_tags($title) : strip_tags($title) . ' | Website name goes here';
 
 		print $titleText;
 	?></title>
 
 	<?php
-		$socialDescription = strip_tags(defaultTo($getCurrent['intro'], 'Social description text'));
+		$socialDescription = strip_tags(defaultTo($get['current']['intro'], 'Social description text'));
 		echo '<meta name="description" content="'.$socialDescription.'" />';
 	?>
 
@@ -33,12 +33,12 @@
 	<!-- facebook meta data -->
 	<meta property="og:title" content="<?php echo $shareTitle; ?>" />
 	<meta property="og:type" content="article" />
-	<meta property="og:url" content="<?php echo $currentURL; ?>" />
+	<meta property="og:url" content="<?php echo $get['url']; ?>" />
 	<meta property="og:image" content="<?php echo $rootLocation; ?>/assets/images/design/share-thumbnail.jpg" />
 	<meta property="og:description" content="<?php echo $socialDescription; ?>" />
 
 	<!-- twitter meta data -->
-	<meta name="twitter:site" content="<?php $currentURL; ?>">
+	<meta name="twitter:site" content="<?php $get['url']; ?>">
 	<meta name="twitter:title" content="<?php echo $shareTitle; ?>">
 	<meta name="twitter:description" content="<?php echo $socialDescription; ?>">
 	<meta name="twitter:image" content="<?php echo $rootLocation; ?>/assets/images/design/share-thumbnail.jpg">
