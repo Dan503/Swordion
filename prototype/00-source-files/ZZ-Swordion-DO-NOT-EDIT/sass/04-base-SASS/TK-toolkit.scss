@@ -123,7 +123,7 @@
 	&-inlineBlock { @include MG-inline-block; }
 
 	//Styles the element to take up the max-width of the design
-	&-pageWidth { margin:0 auto; max-width:bp('page'); min-width: bp('large'); width: 100%; display: block; }
+	&-pageWidth { margin:0 auto; max-width:bp('page'); min-width: bp('minimum'); width: 100%; display: block; }
 
 	&-weight {
 		&--light { font-weight: $light; }
