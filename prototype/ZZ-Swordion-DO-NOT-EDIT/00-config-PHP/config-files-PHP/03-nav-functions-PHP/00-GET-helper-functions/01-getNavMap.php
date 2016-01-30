@@ -79,12 +79,10 @@ function getSpecificMap($map, $array){
 //usage: getNavMap([array of titles/numbers, a single title, or a single number], [*optional* portion to retrieve from return map]);
 function getNavMap($searchTerm, $portion = NULL){
 
-	$returnMap = $GLOBALS['navMap'];
+	$returnMap = $GLOBALS['navMap']['subnav'];
 
 	if ($searchTerm == []){
-		//if the search term is an empty array, it will return the full nav map
-		$returnMap['subnav'] = $returnMap;
-		$returnMap['title'] = "Navigation Map";
+		//if the search term is an empty array, it will return the full nav map (excluding ROOT)
 		return $returnMap;
 	}
 

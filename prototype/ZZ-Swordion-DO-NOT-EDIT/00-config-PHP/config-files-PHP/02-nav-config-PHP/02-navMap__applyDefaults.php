@@ -39,7 +39,6 @@ function generateDefaults($basePath, &$map, $index, $parent, $location){
 
     $map['link'] = generateLink($map['link'], $basePath, $index, $linkGenType, $parent['subnav']);
 
-
 	$map['location'] = $location;
 
 	$map = defaultTo($map, $GLOBALS['navMap__defaults']);
@@ -56,8 +55,9 @@ function generateDefaults($basePath, &$map, $index, $parent, $location){
 	}
 }
 
-foreach ($navMap as $i => &$nm) {
-	$nm['template'] = defaultTo($map['template'], $GLOBALS['navMap__defaults']['subTemplate']);
+foreach ($navMap['subnav'] as $i => &$nm) {
+	$navMap['subTemplate'] = defaultTo($navMap['subTemplate'], $GLOBALS['navMap__defaults']['subTemplate']);
+	$nm['template'] = defaultTo($nm['template'], $navMap['subTemplate']);
     generateDefaults('?location=', $nm, $i, $nm, [$i]);
 }
 
