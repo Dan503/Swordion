@@ -138,11 +138,6 @@
 	//Make element take up full screen height
 	&-fullScreen {
 		@include MG-fullScreen;
-		&--hasHeader {
-			@include MG-mq($MQG-home--is-scrollAnimated){
-				@include MG-fullScreen(70px);
-			}
-		}
 	}
 
 	&-willChange {
