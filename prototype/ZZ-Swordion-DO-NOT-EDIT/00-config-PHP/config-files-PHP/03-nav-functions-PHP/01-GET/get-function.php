@@ -1,5 +1,8 @@
 <?php
 
+var_dump('"get" function defined');
+
+
 //work in progress, this will be an upgrade to the $get['current'] etc variables
 function get($option, $parameter = null, $style = 'deep'){
 

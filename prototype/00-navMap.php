@@ -1,7 +1,7 @@
 <?php
 
 $navMap = [
-	'title' => 'Root',
+	'title' => 'ROOT',
 	//'subTemplate' => 'home',//you can use this attribute to define a new default template for all direct subnav items
 	'subnav' => array(
 		['title' => 'Home',
