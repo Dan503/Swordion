@@ -1,28 +1,15 @@
-﻿
-$C-inner-bg: $CB-grey-light;
+﻿.siteContainer {
+	overflow: hidden;
+	min-width: bp('minimum');//prevent site from shrinking bellow the minimum width
 
-$MQ-module--not-padded: (max, bp('small'));
-
-$MQ-module--disable-overflow: (max, bp('page'));
-
-//A div that wraps around the entire site
-.siteContainer {
-	position: relative;
-	background-color: $C-inner-bg;
-
+	//ensures that the site will always take the full height of the browser
+	//header will be at the top
+	//footer will be at the bottom (even if very little content and a tall screen)
+	//main content area will be centered in the middle of the screen if not much content is on the page
 	&__inner {
-		padding: $VG-siteContainer-padding;
-		&--gradient {
-			@if ($gt-ie8){ @include MG-grad($C-inner-bg, #fff); }
-		}
-
-		@include MG-mq($MQ-module--disable-overflow){
-			overflow: hidden;
-		}
+		min-height: 100vh;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
 	}
-
-	@include MG-mq($MQ-module--not-padded){
-		border: none;
-	}
-
 }
