@@ -6,11 +6,16 @@ function getTitleMap($map, $title) {
     $returnValue = [];
 
 	foreach ($map as $item){
-		if (strtolower($item['title']) == strtolower($title)){
-            //if provided title matches the current item title,
+		//removes any html in the strings before searching for a match
+		$itemTitle = strip_tags($item['title']);
+		$providedTitle = strip_tags($title);
+
+		//also converts strings to lowercase so they aren't case sensitive
+		if (strtolower($itemTitle) == strtolower($providedTitle)){
+            //if the provided title matches the current item title, set the return value to current item
 			$returnValue =  $item;
 		} elseif (isset($item['subnav'])){
-			$newMap = getTitleMap($item['subnav'], $title);
+			$newMap = getTitleMap($item['subnav'], $providedTitle);
 			if($newMap != NULL) {
                 $returnValue = $newMap;
 			}
