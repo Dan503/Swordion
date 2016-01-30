@@ -29,8 +29,8 @@ $module: 'styledBrowse';
 					& + , & + .#{$module}__display-JSadded + {
 						.#{$module}__btn-JSadded {
 							//button hover state styles
-							background-color: CG-prominence(1, 'hover');
-							color:  CG-prominence(1, 'text');
+							background-color: CG-brand(1, 'hover');
+							color:  CG-brand(1, 'text');
 						}
 					}
 				}
