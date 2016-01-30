@@ -52,7 +52,7 @@
 		foreach ($baseJS as $setName => $extras){
 			echo '
 			'.$extras['before'].
-				'<script src="'.$rootLocation.'/assets/js/generated-JS/'.$setName.$min.'.js"></script>'
+				'<script src="'.$rootLocation.'/assets/js/generated-JS/'.$setName.$min.'.js" async></script>'
 			.$extras['after'].'
 			';
 		}
@@ -64,11 +64,11 @@
 		);
 
 		foreach ($extraJS as $template => $JSextras) {
-			if ($getCurrent['template'] == $template) {
+			if ($get['current']['template'] == $template) {
 				foreach ($JSextras as $setName => $extras){
 					echo '
 					'.$extras['before'].
-						'<script src="'.$rootLocation.'/assets/js/generated-JS/'.$setName.$min.'.js"></script>'
+						'<script src="'.$rootLocation.'/assets/js/generated-JS/'.$setName.$min.'.js" async></script>'
 					.$extras['after'].'
 					';
 				}

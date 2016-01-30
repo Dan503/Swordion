@@ -2,19 +2,3 @@
 //$MQG = Media Query global
 
 $MQG-interactives--have-hoverState: (min, bp('tablet'));
-
-$MQG-headerTools--is-size-L: (min, $BPG-headerTools--size-1);
-$MQG-headerTools--is-size-M: (inside, $BPG-headerTools--size-1, $BPG-headerTools--size-2);
-$MQG-headerTools--is-size-S: (max, $BPG-headerTools--size-2);
-
-$MQG-headerTools--not-size-L: (max, $BPG-headerTools--size-1);
-$MQG-headerTools--not-size-M: (outside, $BPG-headerTools--size-1, $BPG-headerTools--size-2);
-$MQG-headerTools--not-size-S: (min, $BPG-headerTools--size-2);
-
-$MQG-landingTri--is-diagonalCut: (max, bp('tablet') + 200);
-
-$MQG-landingSiteName--has-droppedDown: (inside, 770px, bp('mobile'));
-$MQG-landingSiteName--not-droppedDown: (inside, bp('tablet'), 770px);
-
-$MQG-home--is-scrollAnimated: (min, $BPG-home--scrollAnimated);
-$MQG-home--not-scrollAnimated: (max, $BPG-home--scrollAnimated);

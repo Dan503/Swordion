@@ -1,7 +1,8 @@
 ﻿
-// Base font families
-$sans-serif:        Arial, sans-serif;
-$serif:             Times New Roman, Times, serif;
-
-// Project fonts
-$openSans: 'Open Sans', $sans-serif;
+//font families
+//Don't create variables like $openSans for custom fonts
+//Use generic variable names for better maintainability
+$sans-serif:	'Open Sans', Arial, sans-serif;
+$serif:			Times New Roman, Times, serif;
+$cursive:		cursive;
+$code:			"Courier New", Courier, monospace;

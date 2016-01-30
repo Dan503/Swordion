@@ -25,32 +25,40 @@ function generateLink ($linkOveride, $basePath, $i, $linkGenType, $siblings){
 	} else {
 		$link_generation_types = array(
 			'normal' => $basePath.$i, //Links directly to the associated page (default)
-			'first-child' => $basePath.$i.'-1', //Links to the first page 1 level down
+			'first-child' => $basePath.$i.'-0', //Links to the first page 1 level down
 		);
 
 		return $link_generation_types[$linkGenType];
 	}
 }
 
-function generateDefaults($basePath, &$map, $index, $siblings){
+function generateDefaults($basePath, &$map, $index, $parent, $location){
 	$recursivePath = $basePath.$index;
 
 	$linkGenType = defaultTo($map['linkGen'], 'normal');
 
-    $map['link'] = generateLink($map['link'], $basePath, $index, $linkGenType, $siblings);
+    $map['link'] = generateLink($map['link'], $basePath, $index, $linkGenType, $parent['subnav']);
+
+	$map['location'] = $location;
 
 	$map = defaultTo($map, $GLOBALS['navMap__defaults']);
+
+	$map['template'] = defaultTo($map['template'], $parent['subTemplate']);
 
 	//if a subnav exists in item, generate defaults for it
     if (isset ($map['subnav'])) {
         foreach ($map['subnav'] as $subIndex => &$subMap) {
-			generateDefaults($recursivePath, $subMap, '-'.($subIndex + 1), $map['subnav']);
+	    	$locationCopy = $location;
+			array_push($locationCopy, $subIndex);
+			generateDefaults($recursivePath, $subMap, '-'.$subIndex, $map, $locationCopy);
 		}
 	}
 }
 
-foreach ($navMap as $i => &$nm) {
-    generateDefaults('?location=', $nm, $i);
+foreach ($navMap['subnav'] as $i => &$nm) {
+	$navMap['subTemplate'] = defaultTo($navMap['subTemplate'], $GLOBALS['navMap__defaults']['subTemplate']);
+	$nm['template'] = defaultTo($nm['template'], $navMap['subTemplate']);
+    generateDefaults('?location=', $nm, $i, $nm, [$i]);
 }
 
 $GLOBALS['navMap'] = $navMap;

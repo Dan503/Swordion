@@ -15,14 +15,14 @@
 	<meta charset="utf-8">
 
     <title><?php
-		$title = defaultTo($getCurrent['altTitle'], $getCurrent['title']);
+		$title = defaultTo($get['current']['altTitle'], $get['current']['title']);
 		$titleText = $isHome ? strip_tags($title) : strip_tags($title) . ' | Website name goes here';
 
 		print $titleText;
 	?></title>
 
 	<?php
-		$socialDescription = strip_tags(defaultTo($getCurrent['intro'], $getCurrentSection['intro']));
+		$socialDescription = strip_tags(defaultTo($get['current']['intro'], 'Social description text'));
 		echo '<meta name="description" content="'.$socialDescription.'" />';
 	?>
 
@@ -33,12 +33,12 @@
 	<!-- facebook meta data -->
 	<meta property="og:title" content="<?php echo $shareTitle; ?>" />
 	<meta property="og:type" content="article" />
-	<meta property="og:url" content="<?php echo $currentURL; ?>" />
+	<meta property="og:url" content="<?php echo $get['url']; ?>" />
 	<meta property="og:image" content="<?php echo $rootLocation; ?>/assets/images/design/share-thumbnail.jpg" />
 	<meta property="og:description" content="<?php echo $socialDescription; ?>" />
 
 	<!-- twitter meta data -->
-	<meta name="twitter:site" content="<?php $currentURL; ?>">
+	<meta name="twitter:site" content="<?php $get['url']; ?>">
 	<meta name="twitter:title" content="<?php echo $shareTitle; ?>">
 	<meta name="twitter:description" content="<?php echo $socialDescription; ?>">
 	<meta name="twitter:image" content="<?php echo $rootLocation; ?>/assets/images/design/share-thumbnail.jpg">
@@ -109,16 +109,16 @@
 	<div class="screenFader TK-hide" data-jshook="screenFader"></div>
 
 	<?php /* prevents unwanted horizontal scroll bars caused by .grid--gutter-# classes */ ?>
-	<div class="TK-overflowHidden">
+	<div class="siteContainer">
+		<div class="skipLinks">
+			<a href="#contentStart-sideNav" class="skipLinks__link TK-skipLink" data-jshook="skipLinks__skipToNav skipLinks__link">Skip to side navigation</a>
+			<a href="#contentStart-1" class="skipLinks__link TK-skipLink" data-jshook="skipLinks__link">Skip to content</a>
+		</div>
 
-		<div class="siteContainer remodal-bg TK-clearFix" data-jshook="siteContainer">
-			<div class="skipLinks">
-				<a href="#contentStart-sideNav" class="skipLinks__link TK-skipLink" data-jshook="skipLinks__skipToNav skipLinks__link">Skip to side navigation</a>
-				<a href="#contentStart-1" class="skipLinks__link TK-skipLink" data-jshook="skipLinks__link">Skip to content</a>
-			</div>
+		<div class="siteContainer__inner remodal-bg" data-jshook="siteContainer">
 
 			<?php
-				include $include['module'].'siteHeader.php';
+				include $module.'siteHeader.php';
 			?>
 
 

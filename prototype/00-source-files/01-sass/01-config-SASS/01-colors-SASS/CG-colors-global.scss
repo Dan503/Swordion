@@ -7,8 +7,9 @@ $V-hoverModifier: 60%;
 //CG- for color-global-
 //C- for color- (modular)
 
-//lists prominent colors **IN ORDER OF PROMINENCE**
-$CG-prominence: (
+//lists the primary brand colors of the site.
+//Greys do not belong in this list unless it is a MAJOR brand color
+$CG-brand: (
 	//*Main color*/
 	color: $CB-blue-dim,
 
@@ -22,7 +23,7 @@ $CG-prominence: (
 	text: #fff,
 ),
 
-//*Second most prominent color etc. */
+//*Second most prominent brand color etc. */
 (
 	color: $CB-blue-dark,
 	hover: $CB-blue-dark--hover,
@@ -43,7 +44,6 @@ $CG-body-bg: #fff;
 $CG-border-1: $CB-grey-light;
 $CG-border-2: $CG-body-bg;
 $CG-border-3: #d2d2d2;
-
 
 $CG-links: $CB-blue-dim;
 

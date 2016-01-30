@@ -13,7 +13,7 @@
 //automatically adds lightboxes that are specific to the current page to the lightboxSets array
 
 	//adds the current page template to $lightboxSets
-	array_push($lightboxSets, $getCurrent['template']);
+	array_push($lightboxSets, $get['current']['template']);
 
 	//adds $locationString to $lightboxSets
 	//(expects 1-2-3 folder name for location array(1,2,3)

@@ -172,7 +172,7 @@ $mediaQuery: ();
 //*********************************/
 
 $BP-mobile: bp('mobile');
-$BP-tablet: $BPG-sidebar--fullWidth;
+$BP-tablet: bp('tablet');
 
 @mixin MG-mobileOnly {
 	@include MG-mq(min, $BP-mobile){

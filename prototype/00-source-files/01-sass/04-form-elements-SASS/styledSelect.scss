@@ -1,11 +1,11 @@
 ﻿/********* Custom select boxes **********/
 
-$C-display-border: CG-prominence(1);
+$C-display-border: CG-brand(1);
 $C-display-bg: #fff;
 $C-display-text: $CG-body-text;
 
-$C-arrowBox-bg:  CG-prominence(1);
-$C-arrowBox-arrow: CG-prominence(1, 'text');
+$C-arrowBox-bg:  CG-brand(1);
+$C-arrowBox-arrow: CG-brand(1, 'text');
 
 $V-display-class: '.styledSelect__display-JSadded';
 
@@ -34,7 +34,7 @@ select {
 
 		//add the arrow with a css triangle
 		@include MG-after {
-			@include MG-tri(down, CG-prominence(1), 7px);
+			@include MG-tri(down, CG-brand(1), 7px);
 			//content: 'v';
 			font-size: 12px;
 			height: 12px;
@@ -56,7 +56,7 @@ select {
 		}
 
 		//adding arrow with an icon instead
-		/*@include MG-icon('arrow--down', CG-prominence(1), 5px, 30px){
+		/*@include MG-icon('arrow--down', CG-brand(1), 5px, 30px){
 			@include MG-centered(v);
 			right: 0;
 			z-index: 1;
