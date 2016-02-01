@@ -145,8 +145,8 @@
 	}
 
 	&-flexValign {
-		@include MG-flex;
-		@include MG-flexValign;
+		display: flex;
+		align-items: center;
 	}
 
 	&-flex {
