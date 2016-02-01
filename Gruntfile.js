@@ -282,9 +282,10 @@ module.exports = function (grunt) {
 			//takes the current css files in the "media-merge" folder, minifies them, adds '.min.css' to the end of the file, and copies them back into the main css folder
 		      expand: true,
 		      cwd: 'prototype/assets/css/',
-		      src: ['modern.css','ie9.css','ie8.css'],
+			  //using .min css files as the source since it is adding further minification on top of cssnano minification
+		      src: ['*.min.css'],
 		      dest: 'prototype/assets/css/',
-		      ext: '.min.css'
+		      //ext: '.min.css'
 		  },
 		},
 
@@ -320,6 +321,21 @@ module.exports = function (grunt) {
 					]
 				},
 			},
+			minify: {
+				files: [{
+					expand: true,
+					cwd: 'prototype/assets/css/',
+					src: ['*.css', '!*.min.css'],
+					dest: 'prototype/assets/css/',
+					ext: '.min.css',
+				}],
+				options: {
+					map: false,
+					processors: [
+						require('cssnano')(), // minify the CSS
+					],
+				},
+			}
 		},
 		copy: {
 			//copies the font files into the correct directory
@@ -566,6 +582,12 @@ module.exports = function (grunt) {
 		//"sync:css" //copy css to server
 	]);
 
+	//cssnano does some things that csso doesn't and vice versa... so why not use both?
+	grunt.registerTask('minify_css', [
+		"postcss:minify",//cssnano minification
+		"csso:minify",//css optimiser minification
+	]);
+
 	//compile the Sass for all browsers and minify it
 	grunt.registerTask('sass_full_compile', [
 		"sass_globbing",
@@ -573,10 +595,11 @@ module.exports = function (grunt) {
 		"sass:ie8",
 		"sass:ie9",
 		"postcss:prefix",
-		"csso:minify",
+		"minify_css",
 		//"sync:css" //copy css to server
 	]);
 
+	//all the necessary functions in the correct order for icomoon unpackaging
 	grunt.registerTask('unpackage_icomoon', [
 		"copy:icon_css",
 		"replace:icon_sassConversion",
