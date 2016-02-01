@@ -109,7 +109,7 @@
 
 .navPrimary {
 	@include MG-mq(max,bp('tablet')){
-		@include MG-prefix(flex-wrap, wrap, $flexPrefixes);
+		flex-wrap: wrap;
 	}
 	&__item {
 		border-left: 1px solid #ccc;
