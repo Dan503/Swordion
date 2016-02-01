@@ -43,13 +43,6 @@ $rumble:rumble_generator(5);
 %rumble { @include MG-rumble; }
 %rumbleSingle { @include MG-rumble(rumble, 5, 0.5s, 1); }
 
-//classes for canned functionality
-.rumble,
-.rumble--onHover:hover { @extend %rumble !optional; }
-
-.rumbleSingle,
-.rumbleSingle--onHover:hover { @extend %rumbleSingle !optional; }
-
 
 /*******************************************\
 	SPIN EFFECT
@@ -79,13 +72,6 @@ $spin--anticlockwise:
 //@extend for base functionality
 %spin { @include MG-spin; }
 %spinSingle { @include MG-spin(1s, 1) }
-
-//classes for canned functionality
-.spin,
-.spin--onHover:hover { @extend %spin !optional; }
-
-.spinSingle,
-.spinSingle--onHover:hover { @extend %spinSingle !optional; }
 
 
 /*******************************************\
@@ -155,13 +141,6 @@ $pulse: pulse_generator(1.1);
 %pulse { @include MG-pulse; }
 %pulseSingle { @include MG-pulse(pulse,1s,1); }
 
-
-//classes for canned functionality
-.pulse,
-.pulse--onHover:hover { @extend %pulse !optional; }
-
-.pulseSingle,
-.pulseSingle--onHover:hover { @extend %pulseSingle !optional; }
 
 /*******************************************\
 	RADAR PULSE EFFECT
