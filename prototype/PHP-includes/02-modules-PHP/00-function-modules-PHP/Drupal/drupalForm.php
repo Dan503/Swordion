@@ -4,17 +4,10 @@ function drupalForm ($formData){
 
 $settings = defaultTo($formData['settings'], array(
 	'submit' => 'Submit',
-	'hasWrapper' => true,
 	'action' => '#',
 ));
 
 $formFields = $formData['fields'];
-
-if ($settings['hasWrapper']){
-	echo '
-	<div class="block block--transparent basicForm TK-clearFix">';
-}
-
 
 echo '
 <form class="webform-client-form" enctype="multipart/form-data" action="'.$settings['action'].'" method="post" id="webform-client-form-3" accept-charset="UTF-8" name="webform-client-form-3">
@@ -90,11 +83,6 @@ echo '
 		</div>
 	</div>
 </form>';
-
-if ($settings['hasWrapper']){
-	echo '
-	</div>';
-}
 
 }
 ?>
