@@ -3,6 +3,7 @@
 //function that retrieves a map from the navMap variable based on the title attribute
 //function not to be used in regular code
 function getTitleMap($map, $title) {
+
     $returnValue = [];
 
 	foreach ($map as $item){
@@ -69,8 +70,6 @@ function getSpecificMap($map, $array){
 
 	}
 
-    //var_dump($returnMap);
-    
 	return $returnMap;
 }
 
@@ -102,7 +101,6 @@ function getNavMap($searchTerm, $portion = NULL){
 	} else {
         trigger_error('');
 		echo ($searchTerm.' is not a string, interval or an array. It is:<br>');
-        var_dump($searchTerm);
 		echo ('<br>enable errors to learn more');
 	}
 

@@ -38,13 +38,8 @@ function generateDefaults($basePath, &$map, $index, $parent, $location){
 
 	$linkGenType = defaultTo($map['linkGen'], 'normal');
 
-	if (isset($map['link']) && is_array($map['link'])){
-		var_dump($map['link']);
-		$searchObject = $map['link'];
-		$map['link'] = getNavMap(['Performance reporting'],'link');
-		echo '<br>';
-		var_dump($map['link']);
-	} else {
+	//if not already set to something generate a link for it
+	if (!isset($map['link'])){
 	    $map['link'] = generateLink($map['link'], $basePath, $index, $linkGenType, $parent['subnav']);
 	}
 
@@ -64,14 +59,30 @@ function generateDefaults($basePath, &$map, $index, $parent, $location){
 	}
 }
 
+function generateSearchObjectLinks(&$map){
+	if (isset($map['link']) && is_array($map['link'])){
+		$map['link'] = getNavMap($map['link'],'link');
+	}
+
+    if (isset ($map['subnav'])) {
+        foreach ($map['subnav'] as &$subMap) {
+			generateSearchObjectLinks($subMap);
+		}
+	}
+}
+
+//Go through the whole nav map and apply all the default values
 foreach ($navMap['subnav'] as $i => &$nm) {
 	$navMap['subTemplate'] = defaultTo($navMap['subTemplate'], $GLOBALS['navMap__defaults']['subTemplate']);
 	$nm['template'] = defaultTo($nm['template'], $navMap['subTemplate']);
     generateDefaults('?location=', $nm, $i, $nm, [$i]);
 }
 
-$GLOBALS['navMap'] = $navMap;
+//Go through the whole navMap again and convert all search array objects into links
+foreach ($navMap['subnav'] as $i => &$nm) {
+	generateSearchObjectLinks($nm);
+}
 
-//var_dump($navMap);
+$GLOBALS['navMap'] = $navMap;
 
 ?>
