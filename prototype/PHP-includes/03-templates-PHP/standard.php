@@ -6,18 +6,18 @@
 
 $style = 'deep';
 
-echo '<br><br><b>final output of link: <a href="'.(get('prev','link',$style)).'">Previous</a> <a href="'.(get('next', 'link',$style)).'">Next</a></b><br><br>';
+echo '<br><br><b>final output of link: <a href="'.(get('prev','link',$style)).'">Previous</a> <a href="'.(get('next', 'link',$style)).'">Next</a></b>';
 
-echo "prev Link:<br>"
+echo "<br><br>
+prev Link:<br>";
 var_dump(get('prev', 'link', $style));
 
 echo '<br><br>
 Next link:<br>';
-
 var_dump(get('next', 'link', $style));
 
 echo '<br><br>
-Example shortcut link:';
+Example shortcut link:<br>';
 
 //var_dump(get(['overview'], 'link'));
 
