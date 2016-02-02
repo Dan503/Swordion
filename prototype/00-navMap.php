@@ -28,7 +28,8 @@ $navMap = [
 					'link' => '#',
 					'subnav' => array(
 						['title' => 'example shortcut',
-							//'link' => '?location=1-2-3'
+							//parse in a navMap search array object to point the link at that page
+							'link' => ['Performance reporting'],
 						]
 					)
 				]
@@ -88,6 +89,5 @@ $navMap = [
 ];
 
 $GLOBALS['navMap'] = $navMap;
-
 
 ?>
