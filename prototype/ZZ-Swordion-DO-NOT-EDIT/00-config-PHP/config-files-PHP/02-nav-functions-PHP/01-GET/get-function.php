@@ -115,11 +115,10 @@ function get($option, $parameter = null, $style = 'deep'){
             $returnValue = getNavMap($location);
         break;
 
-		case 'navMap':
+		default:
 			//an alternate way to do the getNavMap() function
 			//get('navMap', [1,2,3], 'title');
-			$style = $style == 'deep' ? NULL : $style;
-			return getNavMap($parameter, $style);
+			return getNavMap($option, $parameter);
 		break;
 	}
 

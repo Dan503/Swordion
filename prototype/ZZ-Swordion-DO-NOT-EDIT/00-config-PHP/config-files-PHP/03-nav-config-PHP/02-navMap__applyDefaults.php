@@ -4,6 +4,7 @@
 function set_link($isActive, $link, $generatedLink){
 	//use the value for 'link' if provided
 	//else use the generated link
+	$link = getNavMap($link,'link');
 	return defaultTo($link, $generatedLink);
 }
 
@@ -37,7 +38,15 @@ function generateDefaults($basePath, &$map, $index, $parent, $location){
 
 	$linkGenType = defaultTo($map['linkGen'], 'normal');
 
-    $map['link'] = generateLink($map['link'], $basePath, $index, $linkGenType, $parent['subnav']);
+	if (isset($map['link']) && is_array($map['link'])){
+		var_dump($map['link']);
+		$searchObject = $map['link'];
+		$map['link'] = getNavMap(['Performance reporting'],'link');
+		echo '<br>';
+		var_dump($map['link']);
+	} else {
+	    $map['link'] = generateLink($map['link'], $basePath, $index, $linkGenType, $parent['subnav']);
+	}
 
 	$map['location'] = $location;
 

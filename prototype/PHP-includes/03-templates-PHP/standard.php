@@ -16,6 +16,10 @@ var_dump(get('next', 'link', $style));
 
 echo '<br><br>';
 
+//var_dump(get(['overview'], 'link'));
+
+var_dump(get(['example shortcut'],'link'));
+
 ?>
 <?php
     //[1,1,0,3]

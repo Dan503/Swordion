@@ -28,6 +28,7 @@ $navMap = [
 					'link' => '#',
 					'subnav' => array(
 						['title' => 'example shortcut',
+							'link' => ['Performance reporting'],//parse in a navMap search string/location-combo
 							//'link' => '?location=1-2-3'
 						]
 					)
@@ -88,6 +89,5 @@ $navMap = [
 ];
 
 $GLOBALS['navMap'] = $navMap;
-
 
 ?>
