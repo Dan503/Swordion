@@ -2,8 +2,8 @@
 
 function isActive($item){
 	return
-	$GLOBALS['getCurrent']['link'] == $item['link'] &&
-	$GLOBALS['getCurrent']['title'] == $item['title'];
+	$GLOBALS['get']['current']['link'] == $item['link'] &&
+	$GLOBALS['get']['current']['title'] == $item['title'];
 }
 
 ?>

@@ -1,6 +1,5 @@
 <?php
 
-//work in progress, this will be an upgrade to the $get['current'] etc variables
 function get($option, $parameter = null, $style = 'deep'){
 
 	$location = $GLOBALS['location'];
@@ -117,7 +116,7 @@ function get($option, $parameter = null, $style = 'deep'){
 
 		default:
 			//an alternate way to do the getNavMap() function
-			//get('navMap', [1,2,3], 'title');
+			//get([1,2,3], 'title');
 			return getNavMap($option, $parameter);
 		break;
 	}
