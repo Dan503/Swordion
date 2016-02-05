@@ -230,9 +230,9 @@ module.exports = function (grunt) {
 					'prototype/00-source-files/ZZ-Swordion-DO-NOT-EDIT/sass/generated-files/main-files/00-map-mixins.scss': 'prototype/00-source-files/ZZ-Swordion-DO-NOT-EDIT/sass/02-mixins-SASS/**/*.scss',
 					'prototype/00-source-files/ZZ-Swordion-DO-NOT-EDIT/sass/generated-files/main-files/01-map-project-mixins.scss': 'prototype/00-source-files/01-sass/02-project-mixins-SASS/**/*.scss',
 					'prototype/00-source-files/ZZ-Swordion-DO-NOT-EDIT/sass/generated-files/main-files/02-map-plugins.scss': 'prototype/00-source-files/01-sass/03-plugins-SASS/**/*.scss',
-					'prototype/00-source-files/ZZ-Swordion-DO-NOT-EDIT/sass/generated-files/main-files/03-map-sw-base.scss': 'prototype/00-source-files/ZZ-Swordion-DO-NOT-EDIT/sass/04-base-SASS/**/*.scss',
+					'prototype/00-source-files/ZZ-Swordion-DO-NOT-EDIT/sass/generated-files/main-files/03-map-sw-plugins.scss': 'prototype/00-source-files/ZZ-Swordion-DO-NOT-EDIT/sass/03-plugins-SASS/**/*.scss',
 					'prototype/00-source-files/ZZ-Swordion-DO-NOT-EDIT/sass/generated-files/main-files/04-map-base.scss': 'prototype/00-source-files/01-sass/04-base-SASS/**/*.scss',
-					'prototype/00-source-files/ZZ-Swordion-DO-NOT-EDIT/sass/generated-files/main-files/05-map-forms.scss': 'prototype/00-source-files/01-sass/04-form-elements-SASS/**/*.scss',
+					'prototype/00-source-files/ZZ-Swordion-DO-NOT-EDIT/sass/generated-files/main-files/05-map-sw-base.scss': 'prototype/00-source-files/ZZ-Swordion-DO-NOT-EDIT/sass/04-base-SASS/**/*.scss',
 					'prototype/00-source-files/ZZ-Swordion-DO-NOT-EDIT/sass/generated-files/main-files/06-map-modules.scss': 'prototype/00-source-files/01-sass/05-modules-SASS/**/*.scss',
 					'prototype/00-source-files/ZZ-Swordion-DO-NOT-EDIT/sass/generated-files/main-files/07-map-extras.scss': 'prototype/00-source-files/01-sass/06-extras-SASS/**/*.scss',
 				}
