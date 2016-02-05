@@ -69,7 +69,7 @@
 
 		$modifier = count($settings['modifiers']) > 0 ? modifiers($settings['modifiers'], 'breadcrumb') : '';
 
-		$map = $GLOBALS['navMap'];
+		$map = $GLOBALS['navMap']['subnav'];
 		$target = $GLOBALS['location'][0];
 
 		if (is_array($GLOBALS['location'])){
