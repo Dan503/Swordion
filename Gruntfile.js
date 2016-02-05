@@ -365,6 +365,10 @@ module.exports = function (grunt) {
 					//replaces the sass variable syntax with sass map syntax
 					from: /\$icon-([A-z0-9\-_]*):\s(\"\\[A-z0-9]*");/g,
 					to: '\t$1: $2,'
+				}, {
+					//remove "$icomoon-font-path: "fonts" !default;" bit
+					from: /\$icomoon-font-path: \"([A-z0-9]*)\" \!default\;/g,
+					to: ''
 				}]
 			}
 		},
