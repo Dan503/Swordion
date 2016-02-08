@@ -14,6 +14,13 @@ $MQ-test-multiple:
 
 	&__searchIcon {
 		@include MG-searchIcon(#000, 20px, 15px, 2px);
+		&:hover {
+			@include MG-searchIcon('hover');
+		}
+		&:focus {
+			outline: none;
+			@include MG-searchIcon('toCross', #000, 2px);
+		}
 	}
 
 	&__mediaQuery {

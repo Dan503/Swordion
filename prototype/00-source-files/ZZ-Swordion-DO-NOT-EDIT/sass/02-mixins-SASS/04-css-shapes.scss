@@ -110,38 +110,75 @@
 //	PURE CSS SEARCH ICON
 //*******************/
 @mixin MG-searchIcon($color: #000, $glassDiameter: 20px, $handleLength: 15px, $lineWidth: 2px, $handleWidth: $lineWidth, $transition: all 0.5s ease-in-out){
-	$iconSize: ceil(($glassDiameter + $handleLength) * 0.75);
 
-	height: $iconSize;
-	width: $iconSize;
-	display: block;
+	//main functionality for creating the icon
+	@if (type-of($color) == 'color'){
+		$iconSize: ceil(($glassDiameter + $handleLength) * 0.75);
 
-	@include MG-before-after {
-		position: absolute;
+		height: $iconSize;
+		width: $iconSize;
+		display: block;
 		transition: $transition;
+
+		@include MG-before-after {
+			position: absolute;
+			transition: $transition;
+		}
+
+		//glass
+		&:before {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: $glassDiameter;
+			height: $glassDiameter;
+			border-radius: 50%;
+			border: $lineWidth solid $color;
+			transform: rotate(45deg);
+		}
+
+		//handle
+		&:after {
+			bottom: 0;
+			right: 0;
+			width: $handleLength;
+			height: $lineWidth;
+			background-color: $color;
+			transform: rotate(45deg) translateY(50%);
+			transform-origin: bottom right;
+			border-radius: $lineWidth * 2;
+		}
 	}
 
-	//glass
-	&:before {
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: $glassDiameter;
-		height: $glassDiameter;
-		border-radius: 50%;
-		border: $lineWidth solid $color;
-	}
+	//turns the search icon into a cross icon
+	@if ($color == 'toCross'){
 
-	//handle
-	&:after {
-		bottom: 0;
-		right: 0;
-		width: $handleLength;
-		height: $lineWidth;
-		background-color: $color;
-		transform: rotate(45deg) translateY(50%);
-		transform-origin: bottom right;
-		border-radius: $lineWidth * 2;
+		//$glassDiameter turns into a colour setting variable
+		//$handleLength turns into line width setting variable
+		@if(type-of($glassDiameter) == number){
+			$glassDiameter: #000;
+			$handleLength: 2px;
+		}
+		$crossColor: $glassDiameter;
+		$crossWidth: $handleLength;
+
+		transform: rotate(180deg);
+
+		//glass
+		&:before {
+			border-radius: 0;
+			width: $crossWidth;
+			border-width: 0;
+			left: 45%;
+			height: 140%;
+			top: -15%;
+			background-color: $crossColor;
+		}
+		//handle
+		&:after {
+			width: 140%;
+			border-radius: 0;
+		}
 	}
 };
 
