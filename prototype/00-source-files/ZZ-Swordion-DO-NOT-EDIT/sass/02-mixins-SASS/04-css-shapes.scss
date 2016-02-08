@@ -111,6 +111,13 @@
 //*******************/
 @mixin MG-searchIcon($color: #000, $glassDiameter: 20px, $lineWidth: 2px, $handleLength: if($color == 'toCross', false, round($glassDiameter * 0.75)), $handleWidth: $lineWidth){
 
+	$invalidString: type-of($color) == 'string' and $color != 'toCross' and $color != 'toEye';
+	$notColor: type-of($color) != 'color' and type-of($color) != 'string';
+
+	@if ($invalidString or $notColor){
+		@error 'The first parameter "#{$color}" must either be either a color or one of these strings: "toCross", "toEye"';
+	}
+
 	//main functionality for creating the icon
 	@if (type-of($color) == 'color'){
 		$iconSize: ceil(($glassDiameter + $handleLength) * 0.75);
