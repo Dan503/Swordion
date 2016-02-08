@@ -106,6 +106,44 @@
 		}
 }
 
+///*******************\
+//	PURE CSS SEARCH ICON
+//*******************/
+@mixin MG-searchIcon($color: #000, $glassDiameter: 20px, $handleLength: 15px, $lineWidth: 2px, $handleWidth: $lineWidth, $transition: all 0.5s ease-in-out){
+	$iconSize: ceil(($glassDiameter + $handleLength) * 0.75);
+
+	height: $iconSize;
+	width: $iconSize;
+	display: block;
+
+	@include MG-before-after {
+		position: absolute;
+		transition: $transition;
+	}
+
+	//glass
+	&:before {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: $glassDiameter;
+		height: $glassDiameter;
+		border-radius: 50%;
+		border: $lineWidth solid $color;
+	}
+
+	//handle
+	&:after {
+		bottom: 0;
+		right: 0;
+		width: $handleLength;
+		height: $lineWidth;
+		background-color: $color;
+		transform: rotate(45deg) translateY(50%);
+		transform-origin: bottom right;
+		border-radius: $lineWidth * 2;
+	}
+};
 
 ///*******************\
 //	CSS TRIANGLES

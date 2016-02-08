@@ -4,6 +4,7 @@
 	include $head;
 ?>
 
+
 <ul class="tiltParallax__scene torch" data-jshook="tiltParallax__scene">
 	<li class="layer tiltParallax__layer torch__light" data-depth="-4.00"></li>
 	<li class="layer tiltParallax__layer torch__body" data-depth="-0.80"></li>
@@ -21,6 +22,11 @@
 <?php accordion(); ?>
 
 <div class="demo">
+
+	<div class="demo__div TK-relative">
+		<i class="demo__searchIcon TK-centered" tabindex="0"></i>
+	</div>
+
 	<div class="demo__div demo__mediaQuery">
 		<p>Media Query example</p>
 		<p class="TK-desktopOnly">Desktop only</p>

@@ -12,6 +12,10 @@ $MQ-test-multiple:
 		max-width: 500px;
 	}
 
+	&__searchIcon {
+		@include MG-searchIcon(#000, 20px, 15px, 2px);
+	}
+
 	&__mediaQuery {
 		color: #fff;
 		@include MG-mq($MQ-test-single){
