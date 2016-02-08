@@ -1,30 +1,28 @@
 
-@mixin MG-dotted-border($sides: 'all', $color: grey) {
+@mixin MG-dotted-border($sides: 'all', $color: dark) {
 
 $borderSettings: map-get((
-    grey : (
-		img : 'dotted-border.png',
-		border : 2px dotted $CB-grey-light,
+    dark : (
+		img : 'dotted-border--dark.png',
+		backup : 2px dotted $CB-grey-light,
 	),
-    white : (
-		img : 'dotted-border--white.png',
-		border : 2px dotted #fff,
+    light : (
+		img : 'dotted-border--light.png',
+		backup : 2px dotted #fff,
 	),
 ), $color);
 
 	$img: map-get($borderSettings, img);
-	$border: map-get($borderSettings, border);
+	$backup: map-get($borderSettings, backup);
 
-	border: $border;
+	border: $backup;
 	border-image: url(../images/design/#{$img}) 2 repeat;
 	@if ($sides == 'all'){
 		.no-borderimage & { border-width: 2px; }
 	} @else {
 		border-width: 0;
 		@each $side in $sides {
-			border: {
-				#{$side}-width: 2px;
-			}
+			border-#{$side}-width: 2px;
 			.no-borderimage & { border-#{$side}-width: 2px; }
 		}
 	}
