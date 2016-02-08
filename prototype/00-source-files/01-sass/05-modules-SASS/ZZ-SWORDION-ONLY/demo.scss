@@ -20,6 +20,7 @@ $MQ-test-multiple:
 		&:focus {
 			outline: none;
 			@include MG-searchIcon('toCross', #000, 5px);
+			&:hover { @include MG-searchIcon('toCross', grey, 5px); }
 		}
 	}
 
