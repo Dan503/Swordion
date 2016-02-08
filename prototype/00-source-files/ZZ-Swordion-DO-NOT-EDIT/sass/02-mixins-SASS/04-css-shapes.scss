@@ -135,12 +135,14 @@
 			border-radius: 50%;
 			border: $lineWidth solid $color;
 			transform: rotate(45deg);
+			box-shadow: 0 0 0 transparent;//needed for hover
 		}
 
 		//handle
 		&:after {
 			bottom: 0;
 			right: 0;
+			margin: auto;
 			width: $handleLength;
 			height: $lineWidth;
 			background-color: $color;
@@ -172,14 +174,35 @@
 			left: 45%;
 			height: 140%;
 			top: -15%;
+			bottom: 0;
 			background-color: $crossColor;
 		}
 		//handle
 		&:after {
+			height: $crossWidth;
 			width: 140%;
 			border-radius: 0;
+			bottom: 0;
+			right: 0;
 		}
 	}
+
+	@if ($color == 'toEye'){
+		transform: rotate(90deg);
+		//glass
+		&:before {
+			height: 100%;
+			width: 100%;
+		}
+		&:after {
+			height: 60%;
+			width: 60%;
+			bottom: 20%;
+			right: 20%;
+			border-radius: 50%;
+		}
+	}
+
 };
 
 ///*******************\
