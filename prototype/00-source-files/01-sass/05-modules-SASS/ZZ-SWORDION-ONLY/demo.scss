@@ -13,7 +13,7 @@ $MQ-test-multiple:
 	}
 
 	&__searchIcon {
-		@include MG-searchIcon(#000, 20px, 15px, 2px);
+		@include MG-searchIcon(#000, 20px, 2px);
 		&:hover {
 			@include MG-searchIcon('toEye');
 		}

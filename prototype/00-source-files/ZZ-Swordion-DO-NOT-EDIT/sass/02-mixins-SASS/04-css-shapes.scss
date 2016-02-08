@@ -109,7 +109,7 @@
 ///*******************\
 //	PURE CSS SEARCH ICON
 //*******************/
-@mixin MG-searchIcon($color: #000, $glassDiameter: 20px, $handleLength: 15px, $lineWidth: 2px, $handleWidth: $lineWidth, $transition: all 0.5s ease-in-out){
+@mixin MG-searchIcon($color: #000, $glassDiameter: 20px, $lineWidth: 2px, $handleLength: if($color == 'toCross', false, round($glassDiameter * 0.75)), $handleWidth: $lineWidth, $transition: all 0.5s ease-in-out){
 
 	//main functionality for creating the icon
 	@if (type-of($color) == 'color'){
@@ -120,7 +120,9 @@
 		display: block;
 		transition: $transition;
 
-		@include MG-before-after {
+		&:before, &:after {
+			display: block;
+			content: '';
 			position: absolute;
 			transition: $transition;
 		}
@@ -156,20 +158,17 @@
 	@if ($color == 'toCross'){
 
 		//$glassDiameter turns into a colour setting variable
-		//$handleLength turns into line width setting variable
 		@if(type-of($glassDiameter) == number){
 			$glassDiameter: #000;
-			$handleLength: 2px;
 		}
 		$crossColor: $glassDiameter;
-		$crossWidth: $handleLength;
 
 		transform: rotate(180deg);
 
 		//glass
 		&:before {
 			border-radius: 0;
-			width: $crossWidth;
+			width: $lineWidth;
 			border-width: 0;
 			left: 45%;
 			height: 140%;
@@ -179,7 +178,7 @@
 		}
 		//handle
 		&:after {
-			height: $crossWidth;
+			height: $lineWidth;
 			width: 140%;
 			border-radius: 0;
 			bottom: 0;
