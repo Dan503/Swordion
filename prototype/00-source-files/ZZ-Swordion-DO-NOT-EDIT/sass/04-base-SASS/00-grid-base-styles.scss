@@ -39,7 +39,7 @@ $grid-bp-list: if(
 
 $highestColumnCount: length($grid-bp-list);
 
-@mixin M-grid-cellGutter($gutter, $width, $colCount){
+@mixin M-grid-cellGutter($gutter, $width, $colCount, $alteredWidth){
 	> .grid__cell {
 		$modifier: $gutter / $colCount;
 
@@ -105,12 +105,25 @@ $highestColumnCount: length($grid-bp-list);
 //Applies the media queries for the break points
 		&:not(.grid--disableMQs) {
 			@if ($breaks != false) {
-				@for $y from 1 through length($breaks) {
-					$MQ-breakData : nth($breaks, $y);
-					$MQ-screenWidth : nth($MQ-breakData, 1);
-					$MQ-columnWidth : nth($MQ-breakData, 2);
-					@include MG-mq(max,$MQ-screenWidth){
+				@each $breakData in $breaks {
+					$BP-widthChange : nth($breakData, 1);
+					$V-columnWidth : nth($breakData, 2);
+					@include MG-mq(max,$BP-widthChange){
 						> .grid__cell { width: $MQ-columnWidth; }
+
+						&[class*="grid--gutter-"]{
+							> .grid__cell {
+								@if ($V-columnWidth == 50%){
+									&:nth-child(2n) {
+										margin-right: 0;
+									}
+								} @else if ($V-columnWidth == 33.33%){
+									&:nth-child(3n) {
+										margin-right: 0;
+									}
+								}
+							}
+						}
 					}
 				}
 			}
