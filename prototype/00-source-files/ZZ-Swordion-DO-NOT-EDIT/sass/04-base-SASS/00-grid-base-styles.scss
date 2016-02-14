@@ -30,13 +30,38 @@
 //	</ul>
 //================================================*/
 
+
 $grid-bp-list: if(
-	$gridBreakPoints == false,
+	$gridBreakPoints == false,//*enable or disable media queries easily*/
 	false false false false false false,
 	$gridBreakPoints
 );
 
-@for $i from 1 through length($grid-bp-list) {
+$highestColumnCount: length($grid-bp-list);
+
+@mixin M-grid-cellGutter($gutter, $width, $colCount){
+	> .grid__cell {
+		$modifier: $gutter / $colCount;
+
+		@if (unit($gutter) == 'px'){
+			//width: $width;
+			width: calc(#{$width} + #{$modifier} - #{$gutter});
+			margin-bottom: $gutter;
+		} @else if (unit($gutter) == '%'){
+			$newWidth: $width + $modifier - $gutter;
+			width: $newWidth;//*($width - $gutter) +*/
+		}
+		margin-right: $gutter;
+		&:nth-child(n + #{$colCount}) {
+			margin-right: 0;
+		}
+		&:nth-last-child(-n + #{$colCount}) {
+			margin-bottom: 0;
+		}
+	}
+}
+
+@for $i from 1 through $highestColumnCount {
 	$columnWidth: percentage(1/$i);
 	$breaks: nth($grid-bp-list, $i);
 
@@ -49,6 +74,26 @@ $grid-bp-list: if(
 			@if ($i > 1){
 				@for $x from 2 through $i {
 					&--span-#{$x} { width: $columnWidth * $x; }
+				}
+			}
+		}
+
+		@each $class, $gutter in $cellGutters {
+			&.grid--gutter-#{$class} {
+				@if (type-of($gutter) == 'list') {
+					@each $value in $gutter {
+						@if (length($value) > 1){
+							$gutterSize: nth($value,1);
+							$mediaQuery: nth($value,2);
+							@include MG-mq($mediaQuery){
+								@include M-grid-cellGutter($gutterSize, $columnWidth, $i);
+							}
+						} @else {
+							@include M-grid-cellGutter($value, $columnWidth, $i);
+						}
+					}
+				} @else {
+					@include M-grid-cellGutter($gutter, $columnWidth, $i);
 				}
 			}
 		}
@@ -76,6 +121,7 @@ $grid-bp-list: if(
 
 
 
+
 //base grid styling
 .grid {
 	flex-wrap: wrap;
@@ -88,6 +134,13 @@ $grid-bp-list: if(
 //grid-wrap styling... really only necessary for use with grid--gutter-#
 	&__wrapper {
 		overflow: hidden;
+	}
+
+	&[class*="grid--gutter-"] {
+		justify-content: space-between;
+		> .grid__cell {
+			flex-grow: 0;
+		}
 	}
 
 //base grid__cell styling
@@ -125,84 +178,6 @@ $grid-bp-list: if(
 		&__inner {
 			//
 		}
-
-//grid--gutter-# styling
-	&[class*="grid--gutter-"] {
-		&.grid--outerGutters {
-			margin: 0;
-			&-v {
-				margin-top: 0;
-				margin-bottom: 0;
-			}
-			&-h {
-				margin-left: 0;
-				margin-right: 0;
-			}
-			&-top {
-				margin-top: 0;
-			}
-			&-bottom {
-				margin-bottom: 0;
-			}
-			&-left {
-				margin-left: 0;
-			}
-			&-right {
-				margin-right: 0;
-			}
-		}
-
-		> .grid__cell, & {
-			border-color: transparent;
-			@if ($ie8) {
-				border-color: $gutter-ieFallback;
-			}
-		}
-	}
-
-	@mixin M-grid-cellGutter ($gutter){
-		margin: -$gutter;
-		border-width: $gutter 0 0 $gutter;
-		> .grid__cell {
-			border-width: 0 $gutter $gutter 0;
-		}
-
-		//only apply the outer horizontal gutters if the screen size is smaller than the page width + gutter size
-		&.grid--outerGutters {
-			@include MG-mq(max, (bp('page') + $gutter)){
-				&-h-delayed {
-					margin-left: 0;
-					margin-right: 0;
-				}
-				&-left-delayed {
-					margin-left: 0;
-				}
-				&-right-delayed {
-					margin-right: 0;
-				}
-			}
-		}
-	}
-
-	@each $class, $gutter in $cellGutters {
-		&--gutter-#{$class} {
-			@if (type-of($gutter) == 'list') {
-				@each $value in $gutter {
-					@if (length($value) > 1){
-						$gutterSize: nth($value,1);
-						$mediaQuery: nth($value,2);
-						@include MG-mq($mediaQuery){
-							@include M-grid-cellGutter($gutterSize);
-						}
-					} @else {
-						@include M-grid-cellGutter($value);
-					}
-				}
-			} @else {
-				@include M-grid-cellGutter($gutter);
-			}
-		}
-	}
 
 	&--hasInners {
 		> .grid__cell {

@@ -147,26 +147,11 @@ stages test
 
 <div class="rapidTest">
 rapid stages test
-<ul>
+<ul class="rapidTest__list grid grid--cols-6 grid--gutter-moduleName">
 	<?php
-		$items_array = array(
-			'item0_0',
-			'xxxxxxx',
-			'xxxxxxx',
-			'xxxxxxx',
-			'xxxxxxx',
-			'xxxxxxx',
-			'xxxxxxx',
-			'xxxxxxx',
-			'xxxxxxx',
-			'xxxxxxx',
-			'xxxxxxx',
-		);
-
-		for ($i = 0; $i < count($items_array); $i++) {
-			$text = $items_array[$i];
+		for ($i = 0; $i < 12; $i++) {
 			echo
-			'<li class="rapidTest__element">'.$text.'</li>';
+			'<li class="rapidTest__element grid__cell">test '.$i.'</li>';
 		}
 	?>
 </ul>

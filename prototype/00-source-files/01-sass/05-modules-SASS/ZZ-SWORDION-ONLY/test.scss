@@ -6,10 +6,14 @@
 
 .rapidTest {
 	@include MG-clearfix;
+	&__list {
+		border: 1px solid #000;
+	}
+
 	&__element {
 		height: 100px;
-		width: 100px;
-		margin: 10px;
+		//width: 100px;
+		//margin: 10px;
 		float: left;
 		background: red;
 	}
