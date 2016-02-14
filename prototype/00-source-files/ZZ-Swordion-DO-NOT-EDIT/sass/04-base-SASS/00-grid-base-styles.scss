@@ -52,7 +52,7 @@ $highestColumnCount: length($grid-bp-list);
 			width: $newWidth;//*($width - $gutter) +*/
 		}
 		margin-right: $gutter;
-		&:nth-child(n + #{$colCount}) {
+		&:nth-child(#{$colCount}n) {
 			margin-right: 0;
 		}
 		&:nth-last-child(-n + #{$colCount}) {
