@@ -46,15 +46,19 @@ $highestColumnCount: length($grid-bp-list);
 		@if (unit($gutter) == 'px'){
 			//width: $width;
 			width: calc(#{$width} + #{$modifier} - #{$gutter});
-			margin-bottom: $gutter;
 		} @else if (unit($gutter) == '%'){
 			$newWidth: $width + $modifier - $gutter;
 			width: $newWidth;//*($width - $gutter) +*/
 		}
 		margin-right: $gutter;
+		margin-bottom: $gutter;
+
+		//last column
 		&:nth-child(#{$colCount}n) {
 			margin-right: 0;
 		}
+
+		//last row
 		&:nth-last-child(-n + #{$colCount}) {
 			margin-bottom: 0;
 		}
@@ -137,9 +141,10 @@ $highestColumnCount: length($grid-bp-list);
 	}
 
 	&[class*="grid--gutter-"] {
-		justify-content: space-between;
 		> .grid__cell {
-			flex-grow: 0;
+			&:last-child {
+				margin-right: 0;
+			}
 		}
 	}
 
