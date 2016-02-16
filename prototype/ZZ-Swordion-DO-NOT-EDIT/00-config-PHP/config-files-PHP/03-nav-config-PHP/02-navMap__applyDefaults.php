@@ -38,14 +38,15 @@ function generateDefaults($basePath, &$map, $index, $parent, $location){
 
 	$linkGenType = defaultTo($map['linkGen'], 'normal');
 
+	$map = defaultTo($map, $GLOBALS['navMap__defaults']);
+
 	//if not already set to something generate a link for it
 	if (!isset($map['link'])){
 	    $map['link'] = generateLink($map['link'], $basePath, $index, $linkGenType, $parent['subnav']);
 	}
 
 	$map['location'] = $location;
-
-	$map = defaultTo($map, $GLOBALS['navMap__defaults']);
+	$map['locationString'] = implode('-', $location);
 
 	$map['template'] = defaultTo($map['template'], $parent['subTemplate']);
 
@@ -60,8 +61,8 @@ function generateDefaults($basePath, &$map, $index, $parent, $location){
 }
 
 function generateSearchObjectLinks(&$map){
-	if (isset($map['link']) && is_array($map['link'])){
-		$map['link'] = getNavMap($map['link'],'link');
+	if (is_array($map['link'])){
+		$map['link'] = '?location='.(getNavMap($map['link'],'locationString'));
 	}
 
     if (isset ($map['subnav'])) {
