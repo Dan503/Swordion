@@ -60,9 +60,23 @@ function generateDefaults($basePath, &$map, $index, $parent, $location){
 	}
 }
 
+function getTargetLink($searchObject){
+	return '?location='.(getNavMap($searchObject,'locationString'));
+}
+
 function generateSearchObjectLinks(&$map){
 	if (is_array($map['link'])){
-		$map['link'] = '?location='.(getNavMap($map['link'],'locationString'));
+		$map['link'] = getTargetLink($map['link']);
+	}
+
+	foreach (['next', 'prev'] as $direction){
+		if (isset($map[$direction])) {
+			if (is_array($map[$direction])){
+				$map[$direction] = getTargetLink($map[$direction]);
+			} else {
+				trigger_error('"'.$direction.'" in navMap should be a location array of indexes and/or titles');
+			}
+		}
 	}
 
     if (isset ($map['subnav'])) {

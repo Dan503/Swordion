@@ -90,16 +90,26 @@ function get($option, $parameter = null, $style = 'deep'){
 		//prev is working
 		case 'prev' :
 	        //calculate what the previous location in relation to the nav map is
-			$location = getPrevLocation($location, $style);
-			$returnValue = getNavMap($location);
+			$getPrev = get('current','prev');
+			if (isset($getPrev)){
+				return $getPrev;
+			} else {
+				$location = getPrevLocation($location, $style);
+				$returnValue = getNavMap($location);
+			}
 			//Note, linkGen screws the system up. I need safe guards for when linkGens are enabled.
 		break;
 
 		//next not available yet
 		case 'next' :
 	        //calculate what the next location in relation to the nav map is
-			$location = getNextLocation($location, $style);
-			$returnValue = getNavMap($location);
+			$getNext = get('current','next');
+			if (isset($getNext)){
+				return $getNext;
+			} else {
+				$location = getNextLocation($location, $style);
+				$returnValue = getNavMap($location);
+			}
 		break;
 
 		case 'nextParent':
