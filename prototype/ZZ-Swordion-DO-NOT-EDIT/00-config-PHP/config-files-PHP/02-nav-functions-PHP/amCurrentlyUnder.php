@@ -29,7 +29,7 @@ function amCurrentlyUnder ($locationArray){
 	}
 
 	//if any of the location tests returned as false, this whole function returns as false
-	return in_array(false, $testResults) ? false : true;
+	return !in_array(false, $testResults);
 }
 
 ?>
