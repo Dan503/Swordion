@@ -31,15 +31,13 @@
 
 			getBreadcrumb($map['subnav'][$target], $currDepth + 1, $settings);
 
-		} else {
-			if ($settings['hasLastItem'] == true) {
-				print
-				'<li class="breadcrumb__item breadcrumb__item--current">
-					<span class="breadcrumb__inner breadcrumb__span breadcrumb__current">
-						'.$map['title'].'
-					</span>
-				</li>';
-			}
+		} elseif ($settings['hasCurrent']) {
+			print
+			'<li class="breadcrumb__item breadcrumb__item--current">
+				<span class="breadcrumb__inner breadcrumb__span breadcrumb__current">
+					'.$map['title'].'
+				</span>
+			</li>';
 		}
 	};
 
@@ -48,7 +46,7 @@
 		//edit these to change how the breadcrumb displays by default
 		$defaultSettings = array(
 			//does the breadcrumb also show the current page?
-			'hasLastItem' => false,
+			'hasCurrent' => true,
 
 			//Does the breadcrumb show a home link at all?
 			'hasHome' => true,
@@ -75,7 +73,7 @@
 		if (is_array($GLOBALS['location'])){
 			echo
 			'<nav class="breadcrumb'.$modifier.' '.$settings['classes'].'">
-				<ul class="breadcrumb__list">';
+				<ol class="breadcrumb__list">';
 
 					if ($settings['hasHome']) {
 						echo '
@@ -93,10 +91,10 @@
 						</li>';
 					}
 
-					getBreadcrumb($map[$target], 1, $settings['hasLastItem']);
+					getBreadcrumb($map[$target], 1, $settings);
 
 				echo
-				'</ul>
+				'</ol>
 			</nav>';
 		}
 	};
