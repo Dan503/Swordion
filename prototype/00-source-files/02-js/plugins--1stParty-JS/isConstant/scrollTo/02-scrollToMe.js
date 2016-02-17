@@ -20,24 +20,15 @@ jQuery.fn.scrollToMe = function(settings) {
 	return this;
 };
 
-jQuery.fn.scrollToTarget = function(settings) {
-	this.click(function(){
-		$($(this).attr('href')).scrollToMe(settings);
-	});
-	return this;
-}
-
-$('a[href^="#"]').not('[data-jshook]').scrollToTarget();
-
 var hash = window.location.hash;
 if (hash.length){
 	if (hash.indexOf('lightbox__') < 1){
-		$(window.location.hash).scrollToMe();
+		jQuery(window.location.hash).scrollToMe();
 	}
 }
 
 //stops scroll animation if user uses scroll wheel
-$(window).on('mousewheel', function(){
-	$('html, body').stop();
+jQuery(window).on('mousewheel', function(){
+	jQuery('html, body').stop();
 	G_autoScroll__isPlaying = false;
 });

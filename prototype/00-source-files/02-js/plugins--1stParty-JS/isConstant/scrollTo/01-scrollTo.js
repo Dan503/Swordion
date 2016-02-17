@@ -4,7 +4,7 @@ function scrollTo(targetScrollPos, settings) {
 		duration : 0.5,
 		callback : function(){},
 		offset : 75,
-		target : $('html, body'),
+		target : jQuery('html, body'),
 		ease : 'swing'//ease in and out
 	});
 
@@ -12,7 +12,7 @@ function scrollTo(targetScrollPos, settings) {
 			G_page_height - G_screen_height :
 			targetScrollPos;
 
-	$('html, body').animate(
+	jQuery('html, body').animate(
 		{scrollTop: finalScrollPos - settings.offset},
 		settings.duration * 1000,
 		settings.ease,
