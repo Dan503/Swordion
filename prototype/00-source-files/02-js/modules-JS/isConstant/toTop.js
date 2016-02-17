@@ -52,6 +52,7 @@ $(Hook('trigger')).click(function(e){
 
 	$(target).scrollToMe({
 		callback: function(){
+			module = module_toTop;
 			_pos.modRemoveClass('isScrolling');
 		}
 	});
