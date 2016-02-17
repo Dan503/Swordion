@@ -45,26 +45,35 @@ if ($(Hook('content')).length) {
 		var reference = $(this).closest(Hook('reference'));
 
 		if (targetContent.is(':visible')){
+			//hide this item
 			targetContent.slideUp();
-			this_item.modRemoveClass('item_isOpen');
+			this_item
+				.modRemoveClass('item_isOpen')
+
+				//hide it's children
+				.find(Hook('item'))
+					.filter(Class('item_isOpen'))
+					.modRemoveClass('item_isOpen')
+					.find(Hook('content'))
+						.filter(':visible')
+						.slideUp();
 
 		} else {
+			//hide other items
 			reference
 				.find(Hook('item'))
 					.not(this_item)
+					.not(this_item.parentsUntil(reference))
 					.modRemoveClass('item_isOpen')
 				.children(Hook('content'))
 					.filter(':visible')
 					.not(target)
 					.slideUp();
 
+			//show this item
 			this_item.modAddClass('item_isOpen');
-
 			targetContent.slideDown();
 		}
-
-
-		//this_item.modToggleClass('item_isOpen');
 	});
 
 	$(Hook('outClickSensor')).outsideClick(function(){
