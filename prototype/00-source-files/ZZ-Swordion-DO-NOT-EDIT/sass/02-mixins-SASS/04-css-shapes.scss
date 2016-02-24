@@ -30,29 +30,58 @@
 	$translation: (
 		up: (
 			x: 0,
-			y: 50%,
+			y: 25%,
+			origin: left top,
+			offsets: (
+				top: $size * 0.8,
+			)
 		),
 		right: (
-			x: -50%,
+			x: -25%,
 			y: 0,
+			origin: right bottom,
+			offsets: (
+				right: $size * 0.1,
+				bottom: $size * 0.3,
+			)
 		),
 		down: (
-			x: 50%,
+			x: 25%,
 			y: 0,
+			origin: left top,
+			offsets: (
+				top: $size * 0.1,
+			)
 		),
 		left: (
 			x: 0,
-			y: 50%,
+			y: 25%,
+			origin: top right,
+			offsets: (
+				right: $size * 0.2,
+			)
 		),
 	);
-	$x-translate: round(map-get(map-get($translation, $direction), x));
-	$y-translate: round(map-get(map-get($translation, $direction), y));
 
-	border: 1px solid $mustard;
+	$transforms: map-get($translation, $direction);
+
+	$x-translate: round(map-get($transforms, x));
+	$y-translate: round(map-get($transforms, y));
+	$origin: map-get($transforms, origin);
+	$offsetter: map-get($transforms, offsetter);
+	$offsets: map-get($transforms, offsets);
+
+	border: 1px solid $color;
 	border-width: $appliedBorder;
-	transform: rotate(-45deg) translateX($x-translate) translateY($y-translate);
+	transition: all 0.2s ease-in-out;
+	transform: rotate(-45deg); //translateX($x-translate) translateY($y-translate);
+	transform-origin: $origin;
 	height: $size;
 	width: $size;
+	position: relative;
+	@each $attribute, $value in $offsets {
+		#{$attribute}: $value;
+	}
 }
 
 ///*******************\
