@@ -27,24 +27,22 @@
 	);
 	$appliedBorder: map-get($borderOptions, $direction);
 
-	$half: $size / 2;
-
 	$translation: (
 		up: (
-			x: -$half,
-			y: $half,
+			x: 0,
+			y: 50%,
 		),
 		right: (
-			x: -$half,
-			y: -$half,
+			x: -50%,
+			y: 0,
 		),
 		down: (
-			x: $half,
-			y: -$half,
+			x: 50%,
+			y: 0,
 		),
 		left: (
-			x: $half,
-			y: $half,
+			x: 0,
+			y: 50%,
 		),
 	);
 	$x-translate: round(map-get(map-get($translation, $direction), x));
