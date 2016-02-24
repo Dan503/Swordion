@@ -16,6 +16,47 @@
 	}
 }
 
+//Create a right angle chevron shape with pure CSS
+//uses ems by default so that it can scale with text making it more versatile
+@mixin MG-chevron($direction: right, $color: $mustard, $size: 0.5em, $borderWidth: $size / 5){
+	$borderOptions: (
+		up: $borderWidth $borderWidth 0 0,
+		right: 0 $borderWidth $borderWidth 0,
+		down: 0 0 $borderWidth $borderWidth,
+		left: $borderWidth 0 0 $borderWidth,
+	);
+	$appliedBorder: map-get($borderOptions, $direction);
+
+	$half: $size / 2;
+
+	$translation: (
+		up: (
+			x: -$half,
+			y: $half,
+		),
+		right: (
+			x: -$half,
+			y: -$half,
+		),
+		down: (
+			x: $half,
+			y: -$half,
+		),
+		left: (
+			x: $half,
+			y: $half,
+		),
+	);
+	$x-translate: round(map-get(map-get($translation, $direction), x));
+	$y-translate: round(map-get(map-get($translation, $direction), y));
+
+	border: 1px solid $mustard;
+	border-width: $appliedBorder;
+	transform: rotate(-45deg) translateX($x-translate) translateY($y-translate);
+	height: $size;
+	width: $size;
+}
+
 ///*******************\
 //	PURE CSS MENU ICON
 //*******************/
