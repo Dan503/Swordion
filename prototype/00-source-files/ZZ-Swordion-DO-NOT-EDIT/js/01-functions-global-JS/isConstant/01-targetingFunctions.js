@@ -119,4 +119,42 @@ var id = function (key,classSet){
 	return selectorFull;
 };
 
+//FUNCTION DOESN'T WORK :(
+//A quick way of filtering the media query object
+//@param path = array of strings
 
+/*
+function mq(path){
+	var query = moduleTargets[module].mq;
+	$.each(path, function(i, d){
+		query = query[d];
+	});
+	console.log(query());
+	return query();
+}
+*/
+
+/*
+usage example:
+
+moduleTargets[module] = {
+    //js hooks
+	//css classes
+
+	//media querys
+	mq : {
+		//elements
+		btn: {
+			//states
+			is_hidden: function(){ max(bp['mobile']) },
+			not_hidden: function(){ min(bp['mobile']) },
+		}
+	}
+};
+
+module = module_name;
+if (mq(['btn', 'is_hidden'])){
+	//code
+}
+
+*/
