@@ -24,7 +24,12 @@
 
 //Quick and easy icon reference function
 @function icon($icon_name, $iconSet: $icons){
-	@return map-get($iconSet, $icon_name)
+	$character: map-get($iconSet, $icon_name);
+	@return $character;
+
+	//Need to convert icon names so that they don't have a back slash in front of them for this to work;
+	//It will output the unicodes into the css instead of the computed unicode value
+	//@return if($icon_name == "", "", unquote("\"")+unquote(str-insert($character,"\\", 1))+unquote("\""));
 }
 
 
