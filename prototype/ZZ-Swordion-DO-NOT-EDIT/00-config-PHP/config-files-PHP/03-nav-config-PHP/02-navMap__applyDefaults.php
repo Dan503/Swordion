@@ -1,6 +1,10 @@
 <?php
 	//set default links for all nav items based on the $navMap variable
 
+//for catching template hits as it reads the nav map
+$GLOBALS['templateHits'] = [];
+$GLOBALS['templateMap'] = [];
+
 function set_link($isActive, $link, $generatedLink){
 	//use the value for 'link' if provided
 	//else use the generated link
@@ -40,15 +44,29 @@ function generateDefaults($basePath, &$map, $index, $parent, $location){
 
 	$map = defaultTo($map, $GLOBALS['navMap__defaults']);
 
+	$map['template'] = defaultTo($map['template'], $parent['subTemplate']);
+
 	//if not already set to something generate a link for it
 	if (!isset($map['link'])){
 	    $map['link'] = generateLink($map['link'], $basePath, $index, $linkGenType, $parent['subnav']);
 	}
 
+	//generate the template quick links
+	if(!in_array($map['template'], $GLOBALS['templateHits'])){
+		//add current template to templat hits so it doesn't add it again
+		array_push($GLOBALS['templateHits'], $map['template']);
+
+		//Add current template to templateMap
+		array_push($GLOBALS['templateMap'], [
+			'title' => $map['template'],
+			'link' =>  $map['link'],
+		]);
+
+	}
+
 	$map['location'] = $location;
 	$map['locationString'] = implode('-', $location);
 
-	$map['template'] = defaultTo($map['template'], $parent['subTemplate']);
 
 	//if a subnav exists in item, generate defaults for it
     if (isset ($map['subnav'])) {
@@ -60,23 +78,9 @@ function generateDefaults($basePath, &$map, $index, $parent, $location){
 	}
 }
 
-function getTargetLink($searchObject){
-	return '?location='.(getNavMap($searchObject,'locationString'));
-}
-
 function generateSearchObjectLinks(&$map){
 	if (is_array($map['link'])){
-		$map['link'] = getTargetLink($map['link']);
-	}
-
-	foreach (['next', 'prev'] as $direction){
-		if (isset($map[$direction])) {
-			if (is_array($map[$direction])){
-				$map[$direction] = getTargetLink($map[$direction]);
-			} else {
-				trigger_error('"'.$direction.'" in navMap should be a location array of indexes and/or titles');
-			}
-		}
+		$map['link'] = '?location='.(getNavMap($map['link'],'locationString'));
 	}
 
     if (isset ($map['subnav'])) {
@@ -97,6 +101,12 @@ foreach ($navMap['subnav'] as $i => &$nm) {
 foreach ($navMap['subnav'] as $i => &$nm) {
 	generateSearchObjectLinks($nm);
 }
+
+//adds the template map to the nav map
+array_push($navMap['subnav'][0]['subnav'], [
+	'title' => 'templateList',
+	'subnav' => $GLOBALS['templateMap'],
+]);
 
 $GLOBALS['navMap'] = $navMap;
 
