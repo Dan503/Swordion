@@ -56,10 +56,10 @@ var Hook = function(key,classSet){
 
 	var hookPart = function(number, key){
 		switch(number){
-			case 0: var partial = '[data-jshook^="'+classSet[key]+' "]'; break;
+			/*case 0: var partial = '[data-jshook^="'+classSet[key]+' "]'; break;
 			case 1: var partial = '[data-jshook*=" '+classSet[key]+' "]'; break;
 			case 2: var partial = '[data-jshook$=" '+classSet[key]+'"]'; break;
-			case 3: var partial = '[data-jshook="'+classSet[key]+'"]'; break;
+			case 3: var partial = '[data-jshook="'+classSet[key]+'"]'; break;*/
 
 			//simplified but less strict
 			case 4: var partial = '[data-jshook*="'+classSet[key]+'"]'; break;
@@ -69,7 +69,7 @@ var Hook = function(key,classSet){
 	}
 
 	var singleHook = function (key) {
-		return hookPart(0,key)+','+hookPart(1,key)+','+hookPart(2,key)+','+hookPart(3,key);
+		return hookPart(4,key);//hookPart(0,key)+','+hookPart(1,key)+','+hookPart(2,key)+','+hookPart(3,key);
 	}
 
 //if an array, merge into a single selector as an "or" statement
