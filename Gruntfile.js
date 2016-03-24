@@ -567,7 +567,7 @@ module.exports = function (grunt) {
 				},
 				tasks: [
 					"unpackage_icomoon",
-					"sass_compile",
+					//"sass_compile",
 				],
 				files: [
 					"prototype/00-source-files/04-icomoon-unpackager/**/**"
