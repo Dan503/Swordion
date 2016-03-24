@@ -7,10 +7,10 @@
 			?>
 
 		</div>
-		<!-- @.siteContainer-->
+		<!-- /.siteContainer__inner-->
 
 	</div>
-	<!-- @.TK-overflowHidden -->
+	<!-- /.siteContainer -->
 
 	<?php include $swordion['base'].'autoload-lightboxes.php'; ?>
 
@@ -44,6 +44,7 @@
 
 		$baseJS = array(
 			'isConstant' => $loadIn['all'],
+			'prototypeOnly' => $loadIn['all'],
 			'isModern' => $loadIn['modern'],
 			'isLegacy' => $loadIn['legacy'],
 		);

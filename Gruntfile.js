@@ -3,6 +3,7 @@ var jsMerge = {
 	splits : [
 		//base splits
 		'isConstant',
+		'prototypeOnly',
 		'isLegacy',
 		'isModern',
 

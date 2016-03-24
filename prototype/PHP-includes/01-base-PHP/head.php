@@ -111,9 +111,33 @@
 	<?php /* prevents unwanted horizontal scroll bars caused by .grid--gutter-# classes */ ?>
 	<div class="siteContainer">
 		<div class="skipLinks">
+			<!-- prototype only -->
+			<a href="#" class="skipLinks__link TK-skipLink" data-jshook="protoTemplates__trigger">Show template shortcuts</a>
+			<!-- end prototype only -->
+
 			<a href="#contentStart-sideNav" class="skipLinks__link TK-skipLink" data-jshook="skipLinks__skipToNav skipLinks__link">Skip to side navigation</a>
 			<a href="#contentStart-1" class="skipLinks__link TK-skipLink" data-jshook="skipLinks__link">Skip to content</a>
 		</div>
+
+		<!-- prototype only -->
+		<div class="protoTemplates" data-jshook="protoTemplates__target protoTemplates__closer">
+			<h2 class="protoTemplates__heading">Templates</h2>
+			<span tabindex="0" class="protoTemplates__focus" data-jshook="protoTemplates__focus"></span>
+			<ul class="protoTemplates__list TK-noDots">
+				<?php
+					foreach(get('templateList', 'subnav') as $item){
+						$activeClass = $get['current']['template'] == $item['title'] ?
+							' protoTemplates__link--isActive' : '';
+						echo '
+						<li class="protoTemplates__item">
+							<a href="'.$item['link'].'" class="btn protoTemplates__link'.$activeClass.'" data-jshook="protoTemplates__link">'.$item['title'].'</a>
+						</li>
+						';
+					}
+				?>
+			</ul>
+		</div>
+		<!-- end prototype only -->
 
 		<div class="siteContainer__inner remodal-bg" data-jshook="siteContainer">
 
