@@ -1,0 +1,1 @@
+This folder shouldn't hold anything other than the head and foot php files.

@@ -1,0 +1,14 @@
+﻿.skipLinks {
+	&__link:focus {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		background: CG-brand(2);
+		color: #fff;
+		text-decoration: underline;
+		z-index: 99999999;
+		text-align: center;
+		padding: 10px;
+	}
+}

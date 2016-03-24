@@ -1,0 +1,15 @@
+.btn {
+	@include MG-font-size(14px);
+	background-color: CG-brand(1);
+	color: CG-brand(1, 'text');
+	@include MG-animate;
+	padding: 5px 10px;
+	display: inline-block;
+	border-radius: 3px!important;
+	font-weight: $semi-bold;
+	text-align: center;
+	@include MG-hover {
+		text-decoration: none;
+		background-color: CG-brand(1, 'hover');
+	}
+}

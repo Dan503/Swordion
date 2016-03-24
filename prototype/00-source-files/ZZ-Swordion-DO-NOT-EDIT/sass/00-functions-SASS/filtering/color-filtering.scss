@@ -1,0 +1,13 @@
+
+//Get prominent colors easily
+//    usage standard: CG-brand(1);
+//    usage for hover state: CG-brand(1, 'hover')
+//    usage for partner: CG-brand(1, 'partner')
+@function CG-brand($prominance, $type: color){
+	$colorGroup: nth($CG-brand,$prominance);
+	@if (not map-has-key($colorGroup, $type)){
+		$type: color;
+		@warn '"#{$type}" is not a valid color type for "CG-brand(#{$prominance})"';
+	}
+	@return map-get($colorGroup, $type);
+}

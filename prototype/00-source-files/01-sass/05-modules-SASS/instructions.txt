@@ -1,0 +1,1 @@
+This folder holds the majority of your sites custom styles. All your BEM module styling goes in this folder.

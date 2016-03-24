@@ -1,0 +1,11 @@
+//easily apply customizable background colors based on brand colors
+.color {
+	@for $i from 1 through length($CG-brand) {
+		 &-#{$i} {
+			background-color: CG-brand($i);
+			color: CG-brand($i, 'text');
+
+			* { color: CG-brand($i, 'text'); }
+		 }
+	}
+}

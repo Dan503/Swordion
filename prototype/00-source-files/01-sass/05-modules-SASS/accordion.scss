@@ -1,0 +1,62 @@
+
+$C-icon: CG-brand(1);
+
+$V-content-padding: 15px;
+
+$V-border: 1px solid $CB-grey-light;
+
+$module: 'accordion';
+
+.#{$module} {
+	margin-top: 15px;
+
+		&__item {
+			margin: 0;
+			margin-top: 10px;
+			box-shadow: $VG-common-shadow;
+
+			&--isOpen-JS {
+				.#{$module} {
+					&__icon {
+						@include MG-plus('toMinus', $pos: absolute);
+						//background-color: $C-icon;
+					}
+				}
+			}
+		}
+
+			&__heading {
+				margin: 0;
+				border: $V-border;
+			}
+
+				&__headLink {
+					text-transform: uppercase;
+					@include MG-font-size(18px);
+					font-weight: $bold;
+					padding: $V-content-padding 0;
+					padding-right: $V-content-padding;
+					color: $CB-grey-dark;
+					line-height: 1;
+					@include MG-animate;
+					text-decoration: none!important;
+
+					@include MG-hover {
+						background-color: $CB-grey-pale;
+						outline: none;
+					}
+
+				}
+
+					&__icon {
+						@include MG-animate(0.5s);
+						@include MG-plus($C-icon, 12px);
+						width: 40px;
+					}
+
+			&__content {
+				padding: $V-content-padding;
+				border: $V-border;
+				border-top: none;
+			}
+}

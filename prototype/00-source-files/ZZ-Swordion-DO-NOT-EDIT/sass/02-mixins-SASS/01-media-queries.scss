@@ -1,0 +1,221 @@
+// ******************************************************\
+// * DEVICE WIDTHS
+// ******************************************************/
+$fix-mqs: false !default;
+
+$mediaQuery: ();
+
+
+@function calculateMQ ($range, $setting1: null, $setting2: 0){
+
+	$setting2: if($setting2 == null, 0, $setting2);
+
+	$mediaString: '';
+
+	$errorMessage: '"#{$range}" range requires the first width setting (#{$setting1}) to be higher than the second width setting (#{$setting2})';
+	$errorMessage--ratios: '"#{$range}" range requires the settings (#{$setting1} #{$setting2}) to be strings in this format "4/3" (width ratio / height ratio).';
+
+	@if (str-index($range, 'ratio') == null){
+		//if a standard media query
+		@if (($setting2 != 0) and ($setting1 < $setting2)){
+			//if setting 2 is higher than setting 1
+			@error $errorMessage;
+		}
+	} @else {
+		//else if it's a ratio...
+		@if ((type-of($setting1) != string) or (($setting2 != 0) and (type-of($setting2) != string))){
+			@error $errorMessage--ratios;
+		}
+	}
+
+
+	$mediaString: map-get((
+	//*single value given*/
+		min : 'screen and (min-width: #{$setting1 + 1})',
+		max : 'screen and (max-width: #{$setting1})',
+
+		min-height : 'screen and (min-height: #{$setting1 + 1})',
+		max-height : 'screen and (max-height: #{$setting1})',
+
+		ratio : 'screen and (aspect-ratio: #{$setting1})',
+		min-ratio : 'screen and (min-aspect-ratio: #{$setting1})',
+		max-ratio : 'screen and (max-aspect-ratio: #{$setting1})',
+
+		device-ratio : 'screen and (device-aspect-ratio: #{$setting1})',
+		min-device-ratio : 'screen and (min-device-aspect-ratio: #{$setting1})',
+		max-device-ratio : 'screen and (max-device-aspect-ratio: #{$setting1})',
+
+	//*2 values given*/
+		inside : 'screen and (max-width: #{$setting1}) and (min-width: #{$setting2 + 1})',
+		outside : 'not screen and (max-width: #{$setting1}) and (min-width: #{$setting2 + 1})',
+
+		inside-height : 'screen and (max-height: #{$setting1}) and (min-height: #{$setting2 + 1})',
+		outside-height : 'not screen and (max-height: #{$setting1}) and (min-height: #{$setting2 + 1})',
+
+		inside-ratio : 'screen and (max-aspect-ratio: #{$setting1}) and (min-aspect-ratio: #{$setting2})',
+		outside-ratio : 'not screen and (max-aspect-ratio: #{$setting1}) and (min-aspect-ratio: #{$setting2})',
+
+		inside-device-ratio : 'screen and (max-device-aspect-ratio: #{$setting1}) and (min-device-aspect-ratio: #{$setting2})',
+		outside-device-ratio : 'not screen and (max-device-aspect-ratio: #{$setting1}) and (min-device-aspect-ratio: #{$setting2})',
+	), $range);
+
+	@return $mediaString;
+}
+
+@function ieMQtest ($range, $width1: null, $width2: null) {
+	//if IE8 and not a ratio, test to see if the styles should be output directly to the style sheet
+	@if ($ie8 and (str-index($range, 'ratio') == null)){
+		$test: (
+			(($fix-mqs >= $width1) and ($range == 'min')) or
+			(($width2 != null) and ($fix-mqs >= $width1) and ($range == 'outside')) or
+			(($width2 != null) and ($fix-mqs < $width1) and ($fix-mqs >= $width2) and ($range == 'inside'))
+		);
+		//@debug "mq(#{$range}, #{$width1}, #{$width2}) = #{$test}";
+		@return $test;
+	} @else {
+		@return false;
+	}
+}
+
+@mixin MG-mq($range, $setting1: null, $setting2: null) {
+
+	@if (length($range) > 1) {
+
+		//Uses this functionality if using a single level MQ variable
+		//eg:
+		//$MQ-example--single: inside, bp('large'), bp('tablet'));
+		//@include MG-mq($MQ-example--single){}
+		@if (type-of(nth($range,1)) == string){
+
+			$newRange: nth($range,1);
+			$newWidth1: nth($range,2);
+			$newWidth2: null;
+			@if (length($range) == 3){
+				$newWidth2: nth($range,3);
+			}
+
+
+			@if (ieMQtest($newRange, $newWidth1, $newWidth2)) {
+				@content;
+			} @else {
+				@media #{calculateMQ($newRange, $newWidth1, $newWidth2)} {
+					@content;
+				}
+			}
+
+		//Uses this functionality if using a multi level MQ variable
+		//eg:
+		//$MQ-example--multiple:
+		//	(inside, bp('large'), bp('tablet')),
+		//	(min, bp('page'))
+		//;
+		//@include MG-mq($MQ-example--multiple){}
+		} @else {
+			$mediaQuery: ();
+
+			@each $mqSet in $range {
+
+				$newRange: nth($mqSet,1);
+				$newWidth1: nth($mqSet,2);
+				$newWidth2: null;
+				@if (length($mqSet) == 3){
+					$newWidth2: nth($mqSet,3);
+				}
+
+				@if (($lt-ie9 == true) and (ieMQtest($newRange, $newWidth1, $newWidth2))) {
+					@content;
+				} @else {
+					$mediaQuery: append($mediaQuery, calculateMQ($newRange, $newWidth1, $newWidth2), 'comma');
+				}
+			}//end @each
+
+			@if ($lt-ie9 == false) {
+				@media #{$mediaQuery} {
+					@content;
+				}
+			}
+		}
+
+	//Uses this functionality if placing MQ data inline
+	//eg:
+	//@include MG-mq(inside, bp('large'), bp('tablet'));
+	} @else {
+
+		@if (ieMQtest($range, $setting1, $setting2)) {
+			@content;
+		} @else {
+			@if ($lt-ie9 == false) {
+				@media #{calculateMQ($range, $setting1, $setting2)} {
+					@content;
+				}
+			}
+		}
+
+	}
+}
+
+
+@mixin MG-retina {
+	@if ($lt-ie9 == false) {
+	  	@media
+			only screen and (-webkit-min-device-pixel-ratio: 2),
+			only screen and (        min-device-pixel-ratio: 2),
+			only screen and (           min-resolution: 192ppi),
+			only screen and (            min-resolution: 2dppx) {
+				@content;
+		}
+	}
+}
+
+//**********************************\
+//	Resolution specific elements
+//*********************************/
+
+$BP-mobile: bp('mobile');
+$BP-tablet: bp('tablet');
+
+@mixin MG-mobileOnly {
+	@include MG-mq(min, $BP-mobile){
+		display: none!important;
+	}
+}
+
+@mixin MG-tabletOnly {
+	@include MG-mq(outside, $BP-tablet, $BP-mobile){
+		display: none!important;
+	}
+}
+
+@mixin MG-desktopOnly {
+	@include MG-mq(max,$BP-tablet){
+		display: none!important;
+	}
+}
+
+@mixin MG-nonMobile {
+	@include MG-mq(max, $BP-mobile){
+		display: none!important;
+	}
+}
+
+@mixin MG-nonTablet {
+	@include MG-mq(inside, $BP-tablet, $BP-mobile){
+		display: none!important;
+	}
+}
+
+@mixin MG-nonDesktop {
+	@include MG-mq(min, $BP-tablet){
+		display: none!important;
+	}
+}
+
+
+// ******************************************************\
+// * PRINT
+// ******************************************************/
+@mixin MG-print {
+	@media print {
+		@content;
+	}
+}

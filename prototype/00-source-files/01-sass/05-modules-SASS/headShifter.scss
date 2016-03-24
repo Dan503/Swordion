@@ -1,0 +1,8 @@
+.headShifter {
+	&__shifter {
+		@include MG-animate(0.5s);
+		&--isShifted-JS {
+			transform: translateY(-100%);
+		}
+	}
+}
