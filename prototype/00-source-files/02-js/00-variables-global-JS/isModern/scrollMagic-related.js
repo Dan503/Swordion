@@ -7,7 +7,7 @@ var progress = 0;
 
 var phase = 0;
 
-G_onResize.push(refreshAllScenes());
+G_onResizeStop.push(refreshAllScenes());
 
 var G_ctrl = new ScrollMagic.Controller();
 
