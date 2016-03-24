@@ -84,7 +84,7 @@
 
 		'/ZZ-Swordion-DO-NOT-EDIT/00-config-PHP/config-files-PHP/00-functions-PHP/',
 
-		'/PHP-includes/00-config-PHP/',
+		'/00-config-PHP/',
 
 		'/ZZ-Swordion-DO-NOT-EDIT/00-config-PHP/config-files-PHP/02-nav-functions-PHP/',
 
@@ -96,11 +96,11 @@
 
 		'/ZZ-Swordion-DO-NOT-EDIT/01-functions-modules-PHP/',
 
-		'/PHP-includes/02-modules-PHP/00-function-modules-PHP/',
+		'/02-modules-PHP/00-function-modules-PHP/',
 	];
 
 	foreach ($loadOrder as $path){
-		$configFiles = globFiles($path, 'array');
+		$configFiles = globFiles('/PHP-includes'.$path, 'array');
 
 		//var_dump($configFiles);
 		//echo '<br><br>';

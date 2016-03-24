@@ -11,6 +11,11 @@
 
 	$module = $root.'02-modules-PHP/';
 
+	$layout = $root.'03-layouts-PHP/';
+
+	$template = $root.'04-templates-PHP/';
+
+
 //holds the paths for user editable modules
 
 	$head = $base.'head.php';

@@ -4,7 +4,9 @@
 
 	$get = [
 		'depth' => get('depth'),
-		'current' => get('current'),
+
+		//allows custom 'current' attributes to be saved outside of the nav map
+		'current' => defaultTo($get['current'], get('current')),
 
 		'prev' => get('prev'),
 		'strictPrev' => get('prev', null, 'strict'),

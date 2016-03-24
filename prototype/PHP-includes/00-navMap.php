@@ -8,12 +8,13 @@ $navMap = [
 			'altTitle' => 'Welcome to Swordion',
 			'link' => '/',
 			'template' => 'home',
+			'subNavigable' => false,
 			'subnav' => array(
 			//sub nav items of the home page are for miscellaneous extra navigation arrays that aren't part of the main site structure
 				['title' => 'miscellaneous',
+					//this is the page the template list uses for it's "standard" template link, link it to a standard content page.
+					//'link' => ['Place a standard page title here'],
 					'isNavigable' => false,
-					'subNavigable' => false,
-					'link' => '#',
 					'subnav' => array(
 						['title' => '404: page not found',
 							'template' => '404',
@@ -25,7 +26,6 @@ $navMap = [
 				],
 				['title' => 'Shortcut Links',
 					'isNavigable' => false,
-					'link' => '#',
 					'subnav' => array(
 						['title' => 'example shortcut',
 							//parse in a navMap search array object to point the link at that page

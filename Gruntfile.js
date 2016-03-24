@@ -3,6 +3,7 @@ var jsMerge = {
 	splits : [
 		//base splits
 		'isConstant',
+		'prototypeOnly',
 		'isLegacy',
 		'isModern',
 
@@ -318,7 +319,8 @@ module.exports = function (grunt) {
 						require('autoprefixer')({browsers: 'last 2 versions'}), // add vendor prefixes
 
 						//Helps to enable IE8/9 to read flexbox properties
-						require("postcss-flexibility")()//adds flexibitity prefixes to css
+						//adds flexibitity prefixes to css
+						require("postcss-flexibility")()
 					]
 				},
 			},
@@ -566,7 +568,7 @@ module.exports = function (grunt) {
 				},
 				tasks: [
 					"unpackage_icomoon",
-					"sass_compile",
+					//"sass_compile",
 				],
 				files: [
 					"prototype/00-source-files/04-icomoon-unpackager/**/**"
