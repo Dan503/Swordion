@@ -8,6 +8,7 @@
 	border-radius: 3px!important;
 	font-weight: $semi-bold;
 	text-align: center;
+	transition: all 0.25s ease-in-out;
 	@include MG-hover {
 		text-decoration: none;
 		background-color: CG-brand(1, 'hover');
