@@ -49,6 +49,8 @@ var jsMerge = {
 	]
 };
 
+var JS_merge_files = {};
+
 //generates an array of files delegated to each split
 //you shouldn't need to edit this
 for (var x = 0; x < jsMerge.splits.length; x++){
@@ -85,7 +87,7 @@ for (var x = 0; x < jsMerge.splits.length; x++){
 }
 
 //use this to test the concat source files input
-console.log(JS_merge_files);
+//console.log(JS_merge_files);
 
 function mergeJS(splitName){
     return gulp.src(JS_merge_files[splitName])
