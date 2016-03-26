@@ -3,17 +3,17 @@
 # Grunt to Gulp conversion check list: #
 ########################################
 
-- done - js-merge
-- x - copy to server
-- done - js-minify
-- x - auto-sprite
 - partial - sass-globbing (need to create the @import paths)
 - done - compile sass
 - x - auto-prefix sass (post-css)
 - x - minify sass (css-nano)
+- done - js-merge
+- done - js-minify
 - x - icomoon unpackager
 - x - copy assets to build folder
+- x - copy to server
 - x - ftp upload
+- x - auto-sprite
 - partial - watch function
 
 */
