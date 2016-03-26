@@ -15,12 +15,10 @@ var postcss = require('gulp-postcss');
 var autoprefixer = require('autoprefixer');
 //adds the flexibility JS polyfill -js-display: flex; css
 var flexibility = require('postcss-flexibility');
-
-gulp.task('css', function () {
-    return gulp.src('./src/*.css')
-        .pipe(postcss(processors))
-        .pipe(gulp.dest('./dest'));
-});
+//required for renaming during minification stage
+var rename = require('gulp-rename');
+//css minification
+var cssnano = require('cssnano');
 
 // Compile the Sass
 var sass_output_files = 'prototype/00-source-files/ZZ-Swordion-DO-NOT-EDIT/sass/output-files/';
@@ -41,13 +39,47 @@ function compileSass(src){
 		.pipe(gulp.dest('prototype/assets/css'));
 }
 
-gulp.task('sass', function() {
-	var sourceFiles = [
-		'modern',
-		'ie9',
-		'ie8'
-	];
-	for (file of sourceFiles) {
-		compileSass(file);
-	}
+
+var browsers = [
+	'modern',
+	'ie9',
+	'ie8'
+];
+
+var scssTasks = [];
+
+for (var i = 0; i < browsers.length; i++) {
+	var browser = browsers[i];
+	scssTasks.push('sass-compile-'+browser);
+
+	/*This doesn't work :(
+	gulp.task(scssTasks[i], function() {
+		return compileSass(browser);
+	});
+	*/
+};
+
+//have to use this ugly way instead
+gulp.task(scssTasks[0], function() {
+	return compileSass(browsers[0]);
 });
+gulp.task(scssTasks[1], function() {
+	return compileSass(browsers[1]);
+});
+gulp.task(scssTasks[2], function() {
+	return compileSass(browsers[2]);
+});
+
+
+//minifies the css
+gulp.task('sass-compile-minify', scssTasks, function() {
+    return gulp
+		.src([
+			'prototype/assets/css/*.css',
+			'!prototype/assets/css/*.min.css'
+		])
+        .pipe(rename({suffix: '.min'}))
+        .pipe(postcss([cssnano()]))
+        .pipe(gulp.dest('prototype/assets/css/'));
+});
+
