@@ -36,7 +36,7 @@
     "jit-grunt": "~0.9.0",
     "jshint": "^2.9.1",
     "postcss-flexibility": "^1.0.1",
-    "require-dir": "^0.3.0",
+    "require-dir": "^0.3.0"
   },
   "description": "A feature rich website framework that makes life easy for front end developers. It supports IE8+ and all major browsers.",
   "repository": {
