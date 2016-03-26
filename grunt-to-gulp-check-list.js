@@ -3,10 +3,10 @@
 # Grunt to Gulp conversion check list: #
 ########################################
 
-- partial - sass-globbing (need to create the @import paths)
+- done - sass-globbing (need to create the @import paths)
 - done - compile sass
-- x - auto-prefix sass (post-css)
-- x - minify sass (css-nano)
+- done - auto-prefix sass (post-css)
+- done - minify sass (css-nano)
 - done - js-merge
 - done - js-minify
 - x - icomoon unpackager
