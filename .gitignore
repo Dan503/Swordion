@@ -13,3 +13,5 @@ prototype/assets/js/generated-JS/
 prototype/00-source-files/ZZ-Swordion-DO-NOT-EDIT/sass/generated-files/**/*.scss
 prototype/00-source-files/ZZ-Swordion-DO-NOT-EDIT/sass/01-sprite-sheets/
 prototype/00-source-files/02-js/generated-JS/
+prototype/00-source-files/ZZ-Swordion-DO-NOT-EDIT/sass/icon-names.scss
+gulp-start-up.txt

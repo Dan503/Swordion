@@ -16,7 +16,43 @@ $gt-ie8: true;
 $lt-ie10: false;
 $lt-ie9: false;
 
-//Global functions that extend SASS functionality
-@import "../generated-files/configurations.scss";
+//CONFIG FILES
 
-@import "../generated-files/main-files.scss";
+//for icon mixins and functions (generated)
+@import "../icon-names.scss";
+
+//variables for sprite mixins
+@import "../01-sprite-sheets-SASS/**/*.scss";
+
+//Swordion sass functions
+@import "../00-functions-SASS/**/*.scss";
+
+//user editable config files
+@import "../../../01-sass/01-config-SASS/**/*.scss";
+
+
+//MAIN FILES
+
+//Swordion mixins
+@import "../02-mixins-SASS/**/*.scss";
+
+//user mixins
+@import "../../../01-sass/02-project-mixins-SASS/**/*.scss";
+
+//user 3rd party plugin css
+@import "../../../01-sass/03-plugins-SASS/**/*.scss";
+
+//swordion 3rd party plugin css
+@import "../03-plugins-SASS/**/*.scss";
+
+//user styles that should be easy to overwrite
+@import "../../../01-sass/04-base-SASS/**/*.scss";
+
+//Swordion system styles that are typically functional in some way (eg. grid system)
+@import "../04-base-SASS/**/*.scss";
+
+//modular styles
+@import "../../../01-sass/05-modules-SASS/**/*.scss";
+
+//things like print and theme styles
+@import "../../../01-sass/06-extras-SASS/**/*.scss";
