@@ -5,6 +5,10 @@ var gulp = require('gulp');
 var concat = require('gulp-concat');
 var sourcemaps = require('gulp-sourcemaps');
 
+//for minification
+var uglify = require('gulp-uglify');
+var rename = require('gulp-rename');
+
 var jsMerge = {
 	//this is the only thing you might want to edit
 	//it determines what file names are generated
@@ -93,8 +97,17 @@ function mergeJS(splitName){
     return gulp.src(JS_merge_files[splitName])
 		.pipe(sourcemaps.init())
 	        .pipe(concat(splitName+'.js'))
-		.pipe(sourcemaps.write())
+		.pipe(sourcemaps.write('./source-maps'))
         .pipe(gulp.dest('prototype/assets/js/generated-JS'))
+}
+
+//minify all files
+function minifyJS(splitName){
+    return gulp.src(JS_merge_files[splitName])
+		.pipe(concat(splitName+'.js'))
+        .pipe(rename(splitName+'.min.js'))
+        .pipe(uglify())
+        .pipe(gulp.dest('prototype/assets/js/generated-JS'));
 }
 
 // Gulp task for merging the JS
@@ -103,3 +116,11 @@ gulp.task('js-merge', function() {
 		mergeJS(split);
 	}
 });
+
+//merges AND minifies the JS
+gulp.task('js-compile', ['js-merge'], function() {
+	for (split of jsMerge.splits) {
+		minifyJS(split);
+	}
+
+})
