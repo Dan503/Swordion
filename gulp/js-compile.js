@@ -8,7 +8,6 @@ var sourcemaps = require('gulp-sourcemaps');
 //for minification
 var uglify = require('gulp-uglify');
 var rename = require('gulp-rename');
-var copy = require('gulp-copy');
 
 var jsMerge = {
 	//this is the only thing you might want to edit
@@ -135,8 +134,7 @@ gulp.task(mergeTasks[4], function() {
 
 
 //minifies the JS
-gulp.task('js-compile', mergeTasks, function() {
-	console.log(mergeTasks[0]);
+gulp.task('js-compile-minify', mergeTasks, function() {
     return gulp
 		.src([
 			'prototype/assets/js/generated-JS/*.js',
