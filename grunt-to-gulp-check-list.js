@@ -9,11 +9,13 @@
 - done - minify sass (css-nano)
 - done - js-merge
 - done - js-minify
+- x - add browser-sync with npm php server:
+		https://www.npmjs.com/package/gulp-connect-php
 - x - icomoon unpackager
 - x - copy assets to build folder
 - x - copy to server
 - x - ftp upload
 - x - auto-sprite
-- partial - watch function
+- partial - watch function (won't be done until all is done)
 
 */
