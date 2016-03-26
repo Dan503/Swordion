@@ -8,6 +8,7 @@ var sourcemaps = require('gulp-sourcemaps');
 //for minification
 var uglify = require('gulp-uglify');
 var rename = require('gulp-rename');
+var copy = require('gulp-copy');
 
 var jsMerge = {
 	//this is the only thing you might want to edit
@@ -90,9 +91,10 @@ for (var x = 0; x < jsMerge.splits.length; x++){
 	};
 }
 
-//use this to test the concat source files input
+//use this to test the output array
 //console.log(JS_merge_files);
 
+// Gulp task for merging the JS
 function mergeJS(splitName){
     return gulp.src(JS_merge_files[splitName])
 		.pipe(sourcemaps.init())
@@ -101,26 +103,46 @@ function mergeJS(splitName){
         .pipe(gulp.dest('prototype/assets/js/generated-JS'))
 }
 
-//minify all files
-function minifyJS(splitName){
-    return gulp.src(JS_merge_files[splitName])
-		.pipe(concat(splitName+'.js'))
-        .pipe(rename(splitName+'.min.js'))
-        .pipe(uglify())
-        .pipe(gulp.dest('prototype/assets/js/generated-JS'));
-}
+var mergeTasks = [];
 
-// Gulp task for merging the JS
-gulp.task('js-merge', function() {
-	for (split of jsMerge.splits) {
-		mergeJS(split);
-	}
+for (var i = 0; i < jsMerge.splits.length; i++) {
+	var split = jsMerge.splits[i];
+	mergeTasks.push('js-merge-'+split);
+
+	/*This doesn't work :(
+	gulp.task(mergeTasks[i], function() {
+		return mergeJS(split);
+	});
+	*/
+};
+
+//have to use this ugly way instead
+gulp.task(mergeTasks[0], function() {
+	return mergeJS(jsMerge.splits[0]);
+});
+gulp.task(mergeTasks[1], function() {
+	return mergeJS(jsMerge.splits[1]);
+});
+gulp.task(mergeTasks[2], function() {
+	return mergeJS(jsMerge.splits[2]);
+});
+gulp.task(mergeTasks[3], function() {
+	return mergeJS(jsMerge.splits[3]);
+});
+gulp.task(mergeTasks[4], function() {
+	return mergeJS(jsMerge.splits[4]);
 });
 
-//merges AND minifies the JS
-gulp.task('js-compile', ['js-merge'], function() {
-	for (split of jsMerge.splits) {
-		minifyJS(split);
-	}
 
-})
+//minifies the JS
+gulp.task('js-compile', mergeTasks, function() {
+	console.log(mergeTasks[0]);
+    return gulp
+		.src([
+			'prototype/assets/js/generated-JS/*.js',
+			'!prototype/assets/js/generated-JS/*.min.js'
+		])
+        .pipe(rename({suffix: '.min'}))
+        .pipe(uglify())
+        .pipe(gulp.dest('prototype/assets/js/generated-JS/'));
+});
