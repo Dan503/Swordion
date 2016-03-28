@@ -19,6 +19,8 @@ var flexibility = require('postcss-flexibility');
 var rename = require('gulp-rename');
 //css minification
 var cssnano = require('cssnano');
+//allows for css injection without full browser refresh
+var browserSync = require('browser-sync');
 
 // Compile the Sass
 var sass_output_files = 'prototype/00-source-files/ZZ-Swordion-DO-NOT-EDIT/sass/output-files/';
@@ -80,6 +82,7 @@ gulp.task('sass-compile-minify', scssTasks, function() {
 		])
         .pipe(rename({suffix: '.min'}))
         .pipe(postcss([cssnano()]))
-        .pipe(gulp.dest('prototype/assets/css/'));
+        .pipe(gulp.dest('prototype/assets/css/'))
+		.pipe(browserSync.reload({stream: true}));
 });
 
