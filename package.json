@@ -4,6 +4,7 @@
   "author": "Daniel Tonon",
   "devDependencies": {
     "autoprefixer": "^6.3.4",
+    "browser-sync": "^2.11.2",
     "css-mqpacker": "^4.0.0",
     "cssnano": "^3.5.2",
     "grunt": "~0.4.5",
@@ -26,6 +27,7 @@
     "grunt-text-replace": "^0.4.0",
     "gulp": "^3.9.1",
     "gulp-concat": "^2.6.0",
+    "gulp-connect-php": "0.0.7",
     "gulp-copy": "0.0.2",
     "gulp-debug": "^2.1.2",
     "gulp-jshint": "^2.0.0",
