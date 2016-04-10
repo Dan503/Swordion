@@ -1,5 +1,7 @@
 <?php
 	include $head;
+
+	breadcrumb();
 ?>
 
 <article class="standardContent">
