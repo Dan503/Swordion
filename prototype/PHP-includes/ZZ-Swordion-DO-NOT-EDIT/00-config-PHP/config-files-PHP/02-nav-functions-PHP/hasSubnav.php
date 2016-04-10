@@ -1,6 +1,8 @@
 <?php
 function hasSubnav($navItem_or_location){
 
+	$navItem_or_location = defaultTo($navItem_or_location, $GLOBALS['get']['current']['location']);
+
 	if (!is_array($navItem_or_location)){
         trigger_error('');
 		echo ('"'.$navItem_or_location.'" must be either a navMap item or a getNavMap friendly array (array of titles, indexes or both). It is currently:');

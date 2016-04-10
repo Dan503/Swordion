@@ -30,7 +30,7 @@ function lightbox($file, $settings = array()) {
 //Renders the lightbox
 	print '
 	<div class="remodal lightbox '.$modifiers.$classes.'" data-remodal-id="lightbox__'.$filename.'">
-		<a href="javascript: void(0)" data-remodal-action="close" class="lightbox__close closeBtn"><span class="TK-visHid">Close</span></a>';
+		<a href="javascript: void(0)" data-remodal-action="close" class="lightbox__close btn icon-cross"><span class="TK-visHid">Close</span></a>';
 
 		//includes the content
 		include $file;

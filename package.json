@@ -19,6 +19,7 @@
     "grunt-csso": "~0.7.0",
     "grunt-ftpush": "^0.3.3",
     "grunt-image-resize": "~1.0.0",
+    "grunt-modernizr": "^1.0.2",
     "grunt-postcss": "^0.7.0",
     "grunt-sass-globbing": "~1.0.3",
     "grunt-spritesmith": "~3.6.0",

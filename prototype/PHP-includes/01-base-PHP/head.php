@@ -83,13 +83,8 @@
 		*/
 	</script>
 
-	<!--Modernizr-->
-	<script src="<?php echo $rootLocation; ?>/assets/js/vendor-JS/modernizr.2.8.3.min.js"></script>
-
-	<!-- Allows IE8 to style HTML5 elements -->
-	<!--[if lt IE 9]>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
-	<![endif]-->
+	<!--Modernizr (includes HTML Shiv)-->
+	<script src="<?php echo $rootLocation; ?>/assets/js/generated-JS/modernizr.min.js"></script>
 
 </head>
 
@@ -119,25 +114,7 @@
 			<a href="#contentStart-1" class="skipLinks__link TK-skipLink" data-jshook="skipLinks__link">Skip to content</a>
 		</div>
 
-		<!-- prototype only -->
-		<div class="protoTemplates" data-jshook="protoTemplates__target protoTemplates__closer">
-			<h2 class="protoTemplates__heading">Templates</h2>
-			<span tabindex="0" class="protoTemplates__focus" data-jshook="protoTemplates__focus"></span>
-			<ul class="protoTemplates__list TK-noDots">
-				<?php
-					foreach(get('templateList', 'subnav') as $item){
-						$activeClass = $get['current']['template'] == $item['title'] ?
-							' protoTemplates__link--isActive' : '';
-						echo '
-						<li class="protoTemplates__item">
-							<a href="'.$item['link'].'" class="btn protoTemplates__link'.$activeClass.'" data-jshook="protoTemplates__link">'.$item['title'].'</a>
-						</li>
-						';
-					}
-				?>
-			</ul>
-		</div>
-		<!-- end prototype only -->
+		<?php include $module.'protoTemplates.php'; ?>
 
 		<div class="siteContainer__inner remodal-bg" data-jshook="siteContainer">
 
