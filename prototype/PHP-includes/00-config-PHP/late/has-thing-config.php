@@ -6,6 +6,7 @@ $has_test_defaults = array(
 	'sidebar' => true, //will always appear by default unless otherwise stated
 	'related' => 'random',//randomly decides if it should appear by default
 	'accordion' => false,//will never appear by default unless otherwise stated
+	'breadcrumb' => true,
 );
 
 //"has" variables are configured late so that the navMap is complete before running the code
