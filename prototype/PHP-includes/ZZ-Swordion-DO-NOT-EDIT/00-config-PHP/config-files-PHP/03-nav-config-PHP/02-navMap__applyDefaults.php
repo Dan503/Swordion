@@ -51,22 +51,9 @@ function generateDefaults($basePath, &$map, $index, $parent, $location){
 	    $map['link'] = generateLink($map['link'], $basePath, $index, $linkGenType, $parent['subnav']);
 	}
 
-	//generate the template quick links
-	if(!in_array($map['template'], $GLOBALS['templateHits'])){
-		//add current template to templat hits so it doesn't add it again
-		array_push($GLOBALS['templateHits'], $map['template']);
-
-		//Add current template to templateMap
-		array_push($GLOBALS['templateMap'], [
-			'title' => $map['template'],
-			'link' =>  $map['link'],
-		]);
-
-	}
-
 	$map['location'] = $location;
 	$map['locationString'] = implode('-', $location);
-
+	$map['queryLocation'] = '?location='.$map['locationString'];
 
 	//if a subnav exists in item, generate defaults for it
     if (isset ($map['subnav'])) {
@@ -78,19 +65,54 @@ function generateDefaults($basePath, &$map, $index, $parent, $location){
 	}
 }
 
+//generate the list for the template quick links
+function generateTemplateList($map, $location, $arrayLink = null){
+	if(!in_array($map['template'], $GLOBALS['templateHits'])){
 
-function generateSearchObjectLinks(&$map){
-	if (is_array($map['link'])){
-		$map['link'] = '?location='.(getNavMap($map['link'],'locationString'));
-	}
+		//Uses the links template instead of the current page template
+		if (isset($arrayLink)){
+			$map['template'] = get($arrayLink,'template');
+		}
 
-    if (isset ($map['subnav'])) {
-        foreach ($map['subnav'] as &$subMap) {
-			generateSearchObjectLinks($subMap);
+		//avoid adding standard template to list until out of the miscellaneous section of the navMap
+		if (!($location[0] == 0 && $map['template'] == $GLOBALS['defaultTemplate'])){
+
+			//add current template to template hits so it doesn't add it again
+			array_push($GLOBALS['templateHits'], $map['template']);
+
+			//ensures the link is not in array format
+			convertLink($map['link']);
+
+			//Ensures locations are set from the home page (404 screws it up otherwise)
+			$openingSlash = substr($map['link'], 0, 9 ) === "?location" ? '/' : '';
+
+			//Add current template to templateMap
+			array_push($GLOBALS['templateMap'], [
+				'title' => $map['template'],
+				'link' =>  /*$openingSlash.*/ $map['link'],
+			]);
 		}
 	}
 }
 
+
+function generateSearchObjectLinks(&$map, $location, $subIndex){
+	if (is_array($map['link'])){
+		$arrayLink = $map['link'];
+		$map['link'] = '?location='.(getNavMap($map['link'],'locationString'));
+	}
+
+	generateTemplateList($map, $location, $arrayLink);
+
+    if (isset ($map['subnav'])) {
+    	$newLocation = $location;
+		array_push($newLocation, $subIndex);
+
+        foreach ($map['subnav'] as $i => &$subMap) {
+			generateSearchObjectLinks($subMap, $newLocation, $i);
+		}
+	}
+}
 
 //Go through the whole nav map and apply all the default values
 foreach ($navMap['subnav'] as $i => &$nm) {
@@ -99,16 +121,16 @@ foreach ($navMap['subnav'] as $i => &$nm) {
     generateDefaults('?location=', $nm, $i, $nm, [$i]);
 };
 
-//adds the template map to the nav map
+//Go through the whole navMap again and convert all search array objects into links
+foreach ($navMap['subnav'] as $i => &$nm) {
+	generateSearchObjectLinks($nm, [$i]);
+}
+
+//adds the generated template map and the extra templates map to the main nav map
 array_push($navMap['subnav'][0]['subnav'], [
 	'title' => 'templateList',
 	'subnav' => $GLOBALS['templateMap'],
 ]);
-
-//Go through the whole navMap again and convert all search array objects into links
-foreach ($navMap['subnav'] as $i => &$nm) {
-	generateSearchObjectLinks($nm);
-}
 
 $GLOBALS['navMap'] = $navMap;
 

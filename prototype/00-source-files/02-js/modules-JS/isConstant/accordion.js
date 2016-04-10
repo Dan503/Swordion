@@ -7,11 +7,12 @@ moduleTargets[module] = {
 
 	//JS hooks
 	item : module+'__item',
+	trigger: module+'__trigger',
 	trigger_manual : module+'__trigger--manual',
 	trigger_auto: module+'__trigger--auto',
+	trigger_hover: module+'__trigger--hover',
 	reference : module+'__reference',
 	content : module+'__content',
-	outClickSensor : module+'__outClickSensor',
 
 	//css classes
 	item_isOpen : module+'__item--isOpen-JS',
@@ -19,7 +20,40 @@ moduleTargets[module] = {
 
 if ($(Hook('content')).length) {
 
-	$(Hook('item')+'.active-trail').modAddClass('item_isOpen').children(Hook('content')).show();
+	$(Hook('reference')).each(function(){
+		module = module_accordion;
+
+		var ref = $(this);
+
+		var showMode = ref.attr('data-accordion-show');
+
+		if (typeof showMode !== 'undefined'){
+
+			var setUp = {
+				first : function(){
+					//"first" Opens the first accordion item
+					ref.find(Hook('item'))
+						.filter(':first-child')
+							.modAddClass('item_isOpen')
+							.children(Hook('content'))
+								.css('display','block');
+				},
+				all : function(){
+					//"all" opens all accordion items
+					ref.find(Hook('item'))
+						.modAddClass('item_isOpen')
+						.children(Hook('content'))
+							.css('display','block');
+				},
+				none : function(){
+					//"none" opens no accordion items
+				}
+			};
+
+			//applies the set up functionality
+			setUp[showMode]();
+		}
+	});
 
 	$(Hook('trigger_manual')).on('click',function(e){
 		module = module_accordion;
@@ -27,10 +61,10 @@ if ($(Hook('content')).length) {
 		preventDefault(e);//ie safe prevent default
 
 		var target = $(this).attr('href');
-		var this_item = $(target).closest(Hook('item'));
+		var _this_item = $(this).closest(Hook('item'));
 
-		$(target).slideToggle();
-		this_item.modToggleClass('item_isOpen');
+		$(target).children(Hook('content')).slideToggle();
+		_this_item.modToggleClass('item_isOpen');
 	});
 
 	$(Hook('trigger_auto')).click(function(e){
@@ -38,41 +72,65 @@ if ($(Hook('content')).length) {
 
 		preventDefault(e);//ie safe prevent default
 
-		var target = $(this).attr('href');
-		var targetContent = $(target);
-		var this_item = $($(this).attr('href')).closest(Hook('item'));
+		var _this = $(this);
+		var target = _this.attr('href');
+		var _targetContent = $(target).find(Hook('content')).first();
+		var _this_item = $(_this.attr('href'));
 
-		var reference = $(this).closest(Hook('reference'));
+		var reference = _this.closest(Hook('reference'));
 
-		if (targetContent.is(':visible')){
-			//hide this item
-			targetContent.slideUp();
-			this_item
-				.modRemoveClass('item_isOpen')
-
-				//hide it's children
-				.find(Hook('item'))
-					.filter(Class('item_isOpen'))
-					.modRemoveClass('item_isOpen')
-					.find(Hook('content'))
-						.filter(':visible')
-						.slideUp();
+		if (_targetContent.is(':visible')){
+			_targetContent.slideUp();
+			_this_item.modRemoveClass('item_isOpen');
 
 		} else {
-			//hide other items
-			reference
-				.find(Hook('item'))
-					.not(this_item)
-					.not(this_item.parentsUntil(reference))
-					.modRemoveClass('item_isOpen')
-				.children(Hook('content'))
-					.filter(':visible')
-					.not(target)
-					.slideUp();
+			var _allItems = reference.find(Hook('item'));
 
-			//show this item
-			this_item.modAddClass('item_isOpen');
-			targetContent.slideDown();
+
+			_allItems
+				.not(_this_item.parents())
+				.not(_this_item)
+					.modRemoveClass('item_isOpen')
+						.find(Hook('content'))
+							.filter(':visible')
+							.not(target)
+							.slideUp();
+
+			_this_item.modAddClass('item_isOpen');
+			_targetContent.slideDown();
+		}
+
+		//automatically scroll the page to the top of the segment after it has finished opening
+		setTimeout(function(){
+			//add data-accordion-autoscroll="true" to activate
+			//automatically enables page scrolling on mobile unless cancelled with data-accordion-autoscroll="false"
+			var hasAutoScroll =
+				max(bp['mobile']) &&
+				reference.attr('data-accordion-autoscroll') != 'false'
+				||
+				reference.attr('data-accordion-autoscroll') == 'true';
+
+			if (hasAutoScroll) $(target).scrollToMe();
+		}, 400);
+
+
+		//_this_item.modToggleClass('item_isOpen');
+	});
+
+	$(Hook('trigger_hover')).hoverIntent(function(){
+		if (min(bp['tablet'])){
+			module = module_accordion;
+			if (!$(this).modHasClass('item_isOpen')){
+				$(this).find(Hook(['trigger_auto', 'trigger_manual'])).eq(0).click();
+			}
+		}
+	}, function(){
+		if (min(bp['tablet'])){
+			$(this).find(Hook('trigger_manual')).eq(0).click();
+			//if no auto-trigger present in
+			if (!$(Hook('item') + ':hover').find(Hook('trigger_auto')).length){
+				$(this).find(Hook('trigger_auto')).eq(0).click();
+			}
 		}
 	});
 
@@ -81,6 +139,6 @@ if ($(Hook('content')).length) {
 		if ($(this).find(Hook('content')).eq(0).is(':visible')){
 			$(this).find(Hook(['trigger_auto', 'trigger_manual'])).eq(0).click();
 		}
-	})
+	});
 }
 
