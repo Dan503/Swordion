@@ -1,4 +1,5 @@
-<h1><?php echo $get['current']['title']; ?></h1>
+<?php /* Read the instructions in the "content" folder to understaned this function */ ?>
+<p><img src="<?php loadContent('profile.img'); ?>" alt="Profile pic" /></p>
 
 <h2>Uberiora certe sunt - H2</h2>
 

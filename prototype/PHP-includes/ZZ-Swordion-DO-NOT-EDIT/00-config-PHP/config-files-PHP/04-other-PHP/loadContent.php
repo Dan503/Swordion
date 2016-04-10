@@ -26,7 +26,6 @@ function loadContent($providedFileName, $override = null, $returnType = 'auto'){
 		$getCurrent = $GLOBALS['get']['current'];
 	}
 
-
 	$fileInfo = pathinfo($providedFileName);
 	$fileType = $fileInfo['extension'];
 	$fileName = $fileInfo['filename'];
@@ -37,8 +36,8 @@ function loadContent($providedFileName, $override = null, $returnType = 'auto'){
 		$possibleMatches = [
 			$fileName.'.jpg',
 			$fileName.'.png',
-			$fileName.'.gif',
 			$fileName.'.svg',
+			$fileName.'.gif',
 		];
 	}
 
@@ -75,9 +74,10 @@ function loadContent($providedFileName, $override = null, $returnType = 'auto'){
 		}
 	}
 
+
 	//We only want to use the first match
 	//this allows for a cascade effect of specificity
-	$content = $content[0];
+	$content = is_array($content) ? $content[0] : null;
 
 	//After going through all the content files once and not finding any matches, use the default version of the file
 	foreach ($GLOBALS['contentFiles'] as $contentFile){
@@ -97,6 +97,11 @@ function loadContent($providedFileName, $override = null, $returnType = 'auto'){
 		//if content has been set, use that, else use the default content
 		$return = file_exists($content) ? $content : $default;
 		include $return;
+
+	//if it's an image file it will be echoed by default
+	} elseif ($fileType == 'img' && $returnType == 'auto' || $returnType == 'echo'){
+		$return = file_exists($content) ? $content : $default;
+		echo $return;
 
 	//else just return with the path to the file (useful for images)
 	} else {

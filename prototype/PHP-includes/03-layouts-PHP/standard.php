@@ -4,7 +4,7 @@
 
 <article class="standardContent">
 
-	<p><img src="<?php echo loadContent('profile.img'); ?>" alt="Profile pic" /></p>
+	<h1><?php echo $get['current']['title']; ?></h1>
 
 	<?php
 		//read the instructions in the "content" folder to understaned this function
