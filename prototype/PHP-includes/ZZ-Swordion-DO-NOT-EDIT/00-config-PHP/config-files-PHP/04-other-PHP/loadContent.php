@@ -77,11 +77,12 @@ function loadContent($providedFileName, $override = null, $returnType = 'auto'){
 
 	//We only want to use the first match
 	//this allows for a cascade effect of specificity
-	$content = is_array($content) ? $content[0] : null;
+	$content = $content[0];
 
 	//After going through all the content files once and not finding any matches, use the default version of the file
 	foreach ($GLOBALS['contentFiles'] as $contentFile){
-		$isDefaultFolder = $contentFile['folderPath'] == '/content/ZZ-default/';
+		$isDefaultFolder = $contentFile['folderPath'] == '/content/3-default/';
+
 		foreach($possibleMatches as $file){
 			$isCorrectFile = $contentFile['fullName'] == $file;
 
