@@ -31,73 +31,77 @@
 
 			getBreadcrumb($map['subnav'][$target], $currDepth + 1, $settings);
 
-		} elseif ($settings['hasCurrent']) {
-			print
-			'<li class="breadcrumb__item breadcrumb__item--current">
-				<span class="breadcrumb__inner breadcrumb__span breadcrumb__current">
-					'.$map['title'].'
-				</span>
-			</li>';
+		} else {
+			if ($settings['hasLastItem'] == true) {
+				print
+				'<li class="breadcrumb__item breadcrumb__item--current">
+					<span class="breadcrumb__inner breadcrumb__span breadcrumb__current">
+						'.$map['title'].'
+					</span>
+				</li>';
+			}
 		}
 	};
 
 	function breadcrumb($settings = 'defaults'){
+		if (has('breadcrumb')){
 
-		//edit these to change how the breadcrumb displays by default
-		$defaultSettings = array(
-			//does the breadcrumb also show the current page?
-			'hasCurrent' => true,
+			//edit these to change how the breadcrumb displays by default
+			$defaultSettings = array(
+				//does the breadcrumb also show the current page?
+				'hasLastItem' => true,
 
-			//Does the breadcrumb show a home link at all?
-			'hasHome' => true,
+				//Does the breadcrumb show a home link at all?
+				'hasHome' => true,
 
-			//If it does, is the home link just an icon? (alternative is text)
-			'homeIcon' => true,
+				//If it does, is the home link just an icon? (alternative is text)
+				'homeIcon' => false,
 
-			//Does the breadcrumb have any modifier classes?
-			'modifiers' => array(),
+				//Does the breadcrumb have any modifier classes?
+				'modifiers' => array(),
 
-			//Does the breadcrumb have any extra regular classes?
-			'classes' => '',
-		);
+				//Does the breadcrumb have any extra regular classes?
+				'classes' => '',
+			);
 
-		$settings = ($settings == 'defaults') ?
-			$defaultSettings :
-			defaultTo($settings, $defaultSettings);
+			$settings = ($settings == 'defaults') ?
+				$defaultSettings :
+				defaultTo($settings, $defaultSettings);
 
-		$modifier = count($settings['modifiers']) > 0 ? modifiers($settings['modifiers'], 'breadcrumb') : '';
+			$modifier = count($settings['modifiers']) > 0 ? modifiers($settings['modifiers'], 'breadcrumb') : '';
 
-		$map = $GLOBALS['navMap']['subnav'];
-		$target = $GLOBALS['location'][0];
+			$map = $GLOBALS['navMap']['subnav'];
+			$target = $GLOBALS['location'][0];
 
-		if (is_array($GLOBALS['location'])){
-			echo
-			'<nav class="breadcrumb'.$modifier.' '.$settings['classes'].'">
-				<ol class="breadcrumb__list">';
-
-					if ($settings['hasHome']) {
-						echo '
-						<li class="breadcrumb__item breadcrumb__item--home">';
-							if ($settings['homeIcon']){
-								echo '
-								<a class="icon-home breadcrumb__link breadcrumb__inner breadcrumb__home" href="/" title="Home"></a>';
-							} else {
-								echo '
-								<a class="breadcrumb__link breadcrumb__inner breadcrumb__home" href="/" title="Back to home page">
-									Home
-								</a>';
-							}
-						echo '
-						</li>';
-					}
-
-					getBreadcrumb($map[$target], 1, $settings);
-
+			if (is_array($GLOBALS['location'])){
 				echo
-				'</ol>
-			</nav>';
-		}
-	};
+				'<nav class="breadcrumb pageLayout__indent'.$modifier.' '.$settings['classes'].'">
+					<ul class="breadcrumb__list">';
+
+						if ($settings['hasHome']) {
+							echo '
+							<li class="breadcrumb__item breadcrumb__item--home">';
+								if ($settings['homeIcon']){
+									echo '
+									<a class="icon-home breadcrumb__link breadcrumb__inner breadcrumb__home" href="/" title="Home"></a>';
+								} else {
+									echo '
+									<a class="breadcrumb__link breadcrumb__inner breadcrumb__home" href="/" title="Back to home page">
+										Home
+									</a>';
+								}
+							echo '
+							</li>';
+						}
+
+						getBreadcrumb($map[$target], 1, $settings);
+
+					echo
+					'</ul>
+				</nav>';
+			}
+		};
+	}
 
 ?>
 

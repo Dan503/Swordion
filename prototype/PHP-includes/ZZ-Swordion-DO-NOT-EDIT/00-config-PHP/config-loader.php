@@ -64,10 +64,10 @@
 						$fileObject = array(
 							'fileName' => pathinfo($file)['filename'],//excludes extension
 							'extension' => pathinfo($file)['extension'],
-							'baseName' => $baseName,//includes extension
+							'fullName' => $baseName,//includes extension
 							'fullPath' => $file, //includes site domain name as well (good for php includes)
-							'path' => $path.'/'.$baseName, //path from the root directory (good for img src)
-							'partialPath' => $path.'/',//path without file at the end
+							'filePath' => $path.'/'.$baseName, //path from the root directory (good for img src)
+							'folderPath' => $path.'/',//path without file at the end
 						);
 						array_push($fileObjects, $fileObject);
 					}
@@ -84,11 +84,9 @@
 
 		'/ZZ-Swordion-DO-NOT-EDIT/00-config-PHP/config-files-PHP/00-functions-PHP/',
 
-		'/00-config-PHP/',
+		'/00-config-PHP/early',//late is loaded in template.php under swordion base files
 
 		'/ZZ-Swordion-DO-NOT-EDIT/00-config-PHP/config-files-PHP/02-nav-functions-PHP/',
-
-		'/00-navMap.php',
 
 		'/ZZ-Swordion-DO-NOT-EDIT/00-config-PHP/config-files-PHP/03-nav-config-PHP/',
 

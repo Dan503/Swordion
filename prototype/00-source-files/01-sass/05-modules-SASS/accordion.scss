@@ -1,48 +1,44 @@
 
-$C-icon: CG-brand(1);
+$C-icon: $CB-grey-dark;
 
-$V-content-padding: 15px;
+$V-content-padding: 20px;
 
-$V-border: 1px solid $CB-grey-light;
+$CL-module: '.accordion';
 
-$module: 'accordion';
-
-.#{$module} {
+#{$CL-module} {
 	margin-top: 15px;
+
+	&:first-child {
+		margin-top: 0;
+	}
 
 		&__item {
 			margin: 0;
-			margin-top: 10px;
-			box-shadow: $VG-common-shadow;
 
 			&--isOpen-JS {
-				.#{$module} {
+				#{$CL-module} {
 					&__icon {
 						@include MG-plus('toMinus', $pos: absolute);
-						//background-color: $C-icon;
+						background-color: $C-icon;
+						&:before, &:after {
+							background-color: #fff;
+						}
 					}
 				}
 			}
 		}
 
-			&__heading {
-				margin: 0;
-				border: $V-border;
-			}
+			&__heading { margin: 0; @include MG-font-size(20px); }
 
 				&__headLink {
-					text-transform: uppercase;
-					@include MG-font-size(18px);
-					font-weight: $bold;
-					padding: $V-content-padding 0;
-					padding-right: $V-content-padding;
+					display: block;
+					padding: $V-content-padding;
+					padding-right: 60px;
 					color: $CB-grey-dark;
 					line-height: 1;
-					@include MG-animate;
-					text-decoration: none!important;
-
 					@include MG-hover {
 						background-color: $CB-grey-pale;
+						text-decoration: none;
 						outline: none;
 					}
 
@@ -50,13 +46,13 @@ $module: 'accordion';
 
 					&__icon {
 						@include MG-animate(0.5s);
-						@include MG-plus($C-icon, 12px);
-						width: 40px;
+						@include MG-plus($C-icon);
+						@include MG-circle(stroke, $C-icon, 20px);
+						@include MG-centered(v);
+						right: 30px;
 					}
 
 			&__content {
 				padding: $V-content-padding;
-				border: $V-border;
-				border-top: none;
 			}
 }

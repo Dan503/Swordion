@@ -6,7 +6,11 @@
 	$swordion = array(
 		'root' => $swordion_root,
 		'base' => $swordion_root.'02-base-PHP/',
+		'layout' => $root.'03-layouts-PHP/',
+		'template' => $root.'04-templates-PHP/',
 		'lightbox--root' => $module.'01-lightboxes-PHP/',
 	);
+
+	$GLOBALS['swordion'] = $swordion;
 
 ?>
