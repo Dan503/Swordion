@@ -4,7 +4,7 @@
 	breadcrumb();
 ?>
 
-<article class="standardContent">
+<?php pageLayout('top'); ?>
 
 	<h1><?php echo $get['current']['title']; ?></h1>
 
@@ -13,4 +13,11 @@
 		loadContent('main.php');
 	?>
 
-</article>
+<?php pageLayout('mid'); ?>
+
+<?php
+ //you can place a sidebar here ;)
+ // include $module.'sidebar.php';
+?>
+
+<?php pageLayout('bottom'); ?>
