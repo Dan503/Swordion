@@ -7,5 +7,5 @@ $navSegment = [
 		['title' => 'Duo Reges'],
 		['title' => 'Summum a vobis bonum voluptas dicitur'],
 	)
-],
+];
 ?>
