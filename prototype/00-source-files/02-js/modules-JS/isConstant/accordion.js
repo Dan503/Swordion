@@ -127,11 +127,17 @@ if ($(Hook('content')).length) {
 	}, function(){
 		if (min(bp['tablet'])){
 			$(this).find(Hook('trigger_manual')).eq(0).click();
-				console.log('fsdhfsdh');
 			//if no auto-trigger present in
 			if (!$(Hook('item') + ':hover').find(Hook('trigger_auto')).length){
 				$(this).find(Hook('trigger_auto')).eq(0).click();
 			}
+		}
+	});
+
+	$(Hook('outClickSensor')).outsideClick(function(){
+		module = module_accordion;
+		if ($(this).find(Hook('content')).eq(0).is(':visible')){
+			$(this).find(Hook(['trigger_auto', 'trigger_manual'])).eq(0).click();
 		}
 	});
 }
