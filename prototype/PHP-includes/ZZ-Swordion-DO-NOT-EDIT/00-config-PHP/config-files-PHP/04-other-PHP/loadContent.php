@@ -35,6 +35,7 @@ function loadContent($providedFileName, $override = null, $returnType = 'auto'){
 	if ($fileType == 'img') {
 		$possibleMatches = [
 			$fileName.'.jpg',
+			$fileName.'.jpeg',
 			$fileName.'.png',
 			$fileName.'.svg',
 			$fileName.'.gif',

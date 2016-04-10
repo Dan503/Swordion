@@ -2,7 +2,8 @@ You call on content from these folders with the loadContent('filename.extension'
 
 For php files it will include the contents of the specified file straight away (this can be overridden in the 3rd parameter, I'll get to that).
 
-If you give it a ".img" extension (eg loadContent('intro.img');) then it will look for all of these file types before giving up: .jpg, .png, .svg, .gif. By default, it will try to echo the image src path out to the page instantly.
+If you give it a ".img" extension (eg loadContent('intro.img');) then it will look for all of these file types before giving up: .jpg, .jpeg, .png, .svg, .gif.
+By default, it will try to echo the image src path out to the page instantly.
 
 For all other types of file, the function will just return with the file path from the root folder and not try to include it on the page.
 
