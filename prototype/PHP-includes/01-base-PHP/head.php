@@ -83,13 +83,8 @@
 		*/
 	</script>
 
-	<!--Modernizr-->
-	<script src="<?php echo $rootLocation; ?>/assets/js/vendor-JS/modernizr.2.8.3.min.js"></script>
-
-	<!-- Allows IE8 to style HTML5 elements -->
-	<!--[if lt IE 9]>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
-	<![endif]-->
+	<!--Modernizr (includes HTML Shiv)-->
+	<script src="<?php echo $rootLocation; ?>/assets/js/generated-JS/modernizr.min.js"></script>
 
 </head>
 
