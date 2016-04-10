@@ -1,11 +1,17 @@
 <?php
 
-function accordion($accordion_array){
+function accordion($accordion_array = [
+	['title' => 'Heading 1'],
+	['title' => 'Heading 2'],
+	['title' => 'Heading 3'],
+]){
 
 	if (has('accordion')){
 
 		$tempSets = $GLOBALS['template_settings']['accordion'];
 
+		//By default, the accordion will scroll the open segment to the top of the screen when opening and closing segments
+		//Replace "true" with "false" if you don't want this to happen by default (it can be overidden in the template/page settings though)
 		$willAutoscroll = templateDefault(['accordion', 'autoscroll'], true);
 		$autoscroll =  $willAutoscroll ? ' data-accordion-autoscroll="true"' : '';
 		$showType = defaultTo($tempSets['show'], 'first');
