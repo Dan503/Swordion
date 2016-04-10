@@ -1,0 +1,14 @@
+.bgImg {
+	height: 100%;//if set to position absolute, it will fill it's container
+	width: 100%;
+	position: relative;
+	padding-bottom: 56.25%; //16:9 ratio by default (so the image has a base height to work with if no other height is provided)
+
+	> img {
+		@include MG-fill;
+		object-fit: cover;
+		opacity: 1;
+		margin: 0;
+		padding: 0;
+	}
+}
