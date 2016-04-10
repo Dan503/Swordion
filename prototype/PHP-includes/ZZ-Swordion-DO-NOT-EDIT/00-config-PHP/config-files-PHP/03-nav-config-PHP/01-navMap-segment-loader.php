@@ -1,6 +1,6 @@
 <?php
 
-$navSegments = globFiles('/navMap-segments','array');
+$navSegments = globFiles('PHP-includes/00-navMap-segments','array');
 
 $navMap = [
 	'title' => 'ROOT',
