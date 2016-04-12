@@ -1,20 +1,24 @@
 <?php
 
-function accordion($accordion_array = [
-	['title' => 'Heading 1'],
-	['title' => 'Heading 2'],
-	['title' => 'Heading 3'],
-]){
+function accordion($settings = []){
 
 	if (has('accordion')){
 
 		$tempSets = $GLOBALS['template_settings']['accordion'];
 
-		//By default, the accordion will scroll the open segment to the top of the screen when opening and closing segments
-		//Replace "true" with "false" if you don't want this to happen by default (it can be overidden in the template/page settings though)
-		$willAutoscroll = templateDefault(['accordion', 'autoscroll'], true);
-		$autoscroll =  $willAutoscroll ? ' data-accordion-autoscroll="true"' : '';
-		$showType = defaultTo($tempSets['show'], 'first');
+		//if settings are defined in the function, use them, else use ['accordion'] attribute in order of (strongest to weakest): navMap item > template setting > layout setting
+		$settings = defaultTo($settings,
+			templateDefault(['accordion'], [
+				'show' => 'first',
+				'standardContent' => true,
+				'autoscroll' => true,
+				'headings' => ['Heading 1', 'Heading 2', 'Heading 3'],
+			])
+		);
+
+		$autoscroll = $settings['autoscroll'] ? ' data-accordion-autoscroll="true"' : '';
+		$showType = $settings['show'];
+		$standardClass = $settings['standardContent'] ? ' standardConent' : '';
 
 //Main accordion HTML starts here
 
@@ -22,10 +26,8 @@ function accordion($accordion_array = [
 		<ul class="accordion TK-noDots" data-jshook="accordion__reference" data-accordion-show="'.$showType.'"'.$autoscroll.'>
 		';
 
-			for ($i = 0; $i < count($accordion_array); $i++) {
-				$item = $accordion_array[$i];
-				$heading = $item['title'];
-				$id =  idSafe($item['title']);
+			foreach ($settings['headings'] as $heading) {
+				$id =  idSafe($heading);
 
 				echo
 				'<li id="accordion__'.$id.'" class="accordion__item block block--noPadding" data-jshook="accordion__item">
@@ -35,14 +37,11 @@ function accordion($accordion_array = [
 							<span class="accordion__icon"></span>
 						</a>
 					</h2>
-					<div class="accordion__content TK-jsHide" data-jshook="accordion__content">';
+					<div class="accordion__content TK-jsHide'.$standardClass.'" data-jshook="accordion__content">';
 						loadContent('accordion-content.php');
 					echo '
 					</div>
 				</li>';
-
-	//close button HTML
-	//<a href="#accordion__'.$id.'" data-jshook="accordion__close" title="close"></a>
 			}
 
 		echo '
