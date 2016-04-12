@@ -1,6 +1,8 @@
 <?php
 	$location = [0];
-	$isHome = true;
+	$GLOBALS['layout_settings'] = [
+		'isHome' => true,
+	];
 	include $head;
 ?>
 

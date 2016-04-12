@@ -16,6 +16,7 @@
 
     <title><?php
 		$title = defaultTo($get['current']['altTitle'], $get['current']['title']);
+		$isHome = $GLOBALS['layout_settings']['isHome'];
 		$titleText = $isHome ? strip_tags($title) : strip_tags($title) . ' | Website name goes here';
 
 		print $titleText;

@@ -9,37 +9,37 @@
 
 function templateDefault($settings, $default){
 
-	$currentPageSetting = $GLOBALS['get']['current'];
-	foreach($settings as $nextSetting) {
-		$currentPageSetting = $currentPageSetting[$nextSetting];
+	//looks through layout settings first, then in the template settings then in the navMap item,
+	//each one able to overwrite the last
+	$order = ['layout', 'template', 'navMap'];
+
+	$settingTypes = [
+		$order[0] => $GLOBALS['layout_settings'],
+		$order[1] => $GLOBALS['template_settings'],
+		$order[2] => $GLOBALS['get']['current'],
+	];
+
+	$returnValue = $default;
+
+	foreach ($order as $i => $settingType) {
+		$setting = $settingTypes[$settingType];
+
+		//turns array from [1,2,3] to $var[1][2][3]
+		foreach($settings as $nextSetting) {
+			$setting = $setting[$nextSetting];
+		}
+
+		//If settings are found, apply those settings
+		if (isset($setting)){
+			//defaultTo enables the ability to not fully replace arrays allowing you to set only the settings you need to set
+			$returnValue = defaultTo($setting, $default);
+		}
+
+		//Ensures that settings are retained through the cascade
+		$default = $returnValue;
 	}
 
-	$currentTemplateSetting = $GLOBALS['template_settings'];
-	foreach($settings as $nextSetting) {
-		$currentTemplateSetting = $currentTemplateSetting[$nextSetting];
-	}
-
-	//convert array links into standard links safely
-	//(messes with stuff when trying to default to an array though)
-	/*
-	convertLink($currentPageSetting);
-	convertLink($currentTemplateSetting);
-	convertLink($default);
-	*/
-
-	//look for the nav map setting in the current page navMap first and use that if found
-	if (isset($currentPageSetting)){
-		//defaultTo enables the ability to not fully replace arrays
-		return defaultTo($currentPageSetting, $default);
-
-	//if not in the nav map, look in the template settings and use that
-	} elseif (isset($currentTemplateSetting)){
-		return defaultTo($currentTemplateSetting, $default);
-
-	//if still not found, use the provided default value
-	} else {
-		return $default;
-	}
+	return $returnValue;
 }
 
 ?>

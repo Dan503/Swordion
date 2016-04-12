@@ -1,4 +1,8 @@
-<?php include $head; ?>
+<?php
+	$GLOBALS['layout_settings'] = [
+	];
+	include $head;
+?>
 
 <article class="standardContent">
 
