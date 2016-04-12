@@ -33,6 +33,7 @@
 /*
 @if (variable-exists(testing)){
 	//code that fires if $testing variable is defined
+	//(note that there is no "$" at the front of "testing")
 } @else {
 	//code that fires if $testing variable is undefined
 }
