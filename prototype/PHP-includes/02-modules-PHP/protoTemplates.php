@@ -11,9 +11,13 @@
 				foreach(get(['templateList'], 'subnav') as $item){
 					$activeClass = strtolower($get['current']['template']) == strtolower($item['title']) ?
 						' protoTemplates__link--isActive' : '';
+
+					//Replaces dashes and underscores with spaces for a slightly more human friendly list
+					$templateName = str_replace("_"," ", str_replace("-"," ",$item['title']));
+
 					echo '
 					<li class="protoTemplates__item">
-						<a href="'.$item['link'].'" class="btn protoTemplates__link'.$activeClass.'" data-jshook="protoTemplates__link">'.$item['title'].'</a>
+						<a href="'.$item['link'].'" class="btn protoTemplates__link'.$activeClass.'" data-jshook="protoTemplates__link">'.$templateName.'</a>
 					</li>
 					';
 				}
