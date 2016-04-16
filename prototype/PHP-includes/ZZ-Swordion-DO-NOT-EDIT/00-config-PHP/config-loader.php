@@ -31,6 +31,9 @@
 				globArray($path, '**/', $fileType),
 				globArray($path, '**/**/', $fileType),
 				globArray($path, '**/**/**/', $fileType),
+				globArray($path, '**/**/**/**/', $fileType),
+				globArray($path, '**/**/**/**/**/', $fileType),
+				globArray($path, '**/**/**/**/**/**/', $fileType),
 			);
 
 			$files = array();

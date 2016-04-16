@@ -6,39 +6,30 @@
 //setting the variable outside the function to improve performance
 $GLOBALS['contentFiles'] = globFiles('/content','objects','*');
 
-//$providedFileName needs to include extension eg. loadContent('main.php');
+//$fileName needs to include extension eg. loadContent('main.php');
 //$override can be an array or a string. If a string, it will refer  that forces it to look at another pages content
 
 function loadContent($providedFileName, $override = null, $returnType = 'auto'){
 
-	//The override parameter can be used to use content from a specific page or template
-	if (isset($override)){
-
-		//arrays are for pointing at specific pages
-		if (is_array($override)){
-			$getCurrent = get($override);
-
-		//strings are for pointing at templates
-		} elseif(is_string($override)){
-			$getCurrent = ['template' => $override];
-		}
-	} else {
-		$getCurrent = $GLOBALS['get']['current'];
-	}
+	//The override parameter can be used to use content from a differnt page
+	$getCurrent = isset($override) ? get($override) : $GLOBALS['get']['current'];
 
 	$fileInfo = pathinfo($providedFileName);
 	$fileType = $fileInfo['extension'];
 	$fileName = $fileInfo['filename'];
+	$fullFileName = $fileInfo['basename'];
+	$filePath = $fileInfo['dirname'] == '.' ? '' : $fileInfo['dirname'].'/';
 
-	$possibleMatches = [$providedFileName];
+	$possibleMatches = [$fullFileName];
 
 	if ($fileType == 'img') {
+		//ordered from most likely to least likely for best performance
 		$possibleMatches = [
 			$fileName.'.jpg',
-			$fileName.'.jpeg',
 			$fileName.'.png',
 			$fileName.'.svg',
 			$fileName.'.gif',
+			$fileName.'.jpeg',
 		];
 	}
 
@@ -46,55 +37,53 @@ function loadContent($providedFileName, $override = null, $returnType = 'auto'){
 	$root = $fileType == 'php' ? $_SERVER['DOCUMENT_ROOT'] : '';
 
 	$content = [];
+	$ext = [];
+
+	$isTntervalFile = is_numeric($fileName);
 
 	//for each file in the folder
 	foreach ($GLOBALS['contentFiles'] as $contentFile){
-		$folder = $contentFile['folderPath'];
+		foreach($possibleMatches as $fileMatchName){
 
-		foreach($possibleMatches as $file){
+			$folder = $contentFile['folderPath'];
+			$file = $root.$folder.$fileMatchName;
 
-			$filePath = $root.$folder.$file;
+			$isCorrectFolder = isCorrectFolder($folder, $getCurrent, $filePath);
 
+			$isCorrectFileName = $contentFile['fullName'] == $fileMatchName;
 
 			//if looking at the correct file name
-			if ($contentFile['fullName'] == $file){
-
-				//if name of folder = current location string, use that file
-				if ($folder == '/content/0-pages/'.$getCurrent['locationString'].'/'){
-					array_push($content, $filePath);
-
-				//else if name of file = current template name, use that file
-				} elseif ($folder == '/content/1-templates/'.$getCurrent['template'].'/' ){
-					array_push($content, $filePath);
-
-				//else if name of file = current layout name, use that file
-				} elseif ($folder == '/content/2-layouts/'.$getCurrent['layout'].'/' ){
-					array_push($content, $filePath);
-				}
+			if ($isCorrectFileName && $isCorrectFolder){
+				array_push($content, $file);
 			}
 		}
 	}
-
 
 	//We only want to use the first match
 	//this allows for a cascade effect of specificity
 	$content = $content[0];
 
-	//After going through all the content files once and not finding any matches, use the default version of the file
+	$defaultPath = '/content/ZZ-default/';
+	//After going through all the content files once, look through the default files
 	foreach ($GLOBALS['contentFiles'] as $contentFile){
-		$isDefaultFolder = $contentFile['folderPath'] == '/content/3-default/';
+		$isDefaultFolder = $contentFile['folderPath'] == $defaultPath.$filePath;
+		$isCorrectFolder = isCorrectFolder($contentFile['folderPath'], $getCurrent, $filePath);
 
-		foreach($possibleMatches as $file){
-			$isCorrectFile = $contentFile['fullName'] == $file;
+		foreach($possibleMatches as $fileMatchName){
+			$isCorrectFile = $contentFile['fullName'] == $fileMatchName;
 
-			if ($isCorrectFile && $isDefaultFolder){
-				$default = $root.$contentFile['folderPath'].$file;
+			if ($isTntervalFile && $isCorrectFolder) {
+				$ext = pathinfo($fileMatchName)['extension'];
+				$zeroFile = $root.$contentFile['folderPath'].'0.'.$ext;
+			} elseif ($isCorrectFile && $isDefaultFolder){
+				$defaultFile = $root.$contentFile['folderPath'].$fileMatchName;
 			}
 		}
 	}
 
+	$default = defaultTo($zeroFile, $defaultFile);
 
-	//if it's a php file output it as a page include
+	//if it's a php file, output it as a page include by default
 	if ($fileType == 'php' && $returnType == 'auto' || $returnType == 'include'){
 		//if content has been set, use that, else use the default content
 		$return = file_exists($content) ? $content : $default;
@@ -114,6 +103,14 @@ function loadContent($providedFileName, $override = null, $returnType = 'auto'){
 		}
 	}
 
+}
+
+function isCorrectFolder($folder, $getCurrent, $filePath){
+	$isPageFolder = $folder == '/content/0-pages/'.$getCurrent['locationString'].'/'.$filePath;
+	$isTemplateFolder = $folder == '/content/1-templates/'.$getCurrent['template'].'/'.$filePath;
+	$isLayoutFolder = $folder == '/content/2-layouts/'.$getCurrent['layout'].'/'.$filePath;
+
+	return $isPageFolder || $isTemplateFolder || $isLayoutFolder;
 }
 
  ?>

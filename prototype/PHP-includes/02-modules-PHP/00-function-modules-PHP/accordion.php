@@ -12,21 +12,20 @@ function accordion($settings = []){
 				'show' => 'first',
 				'standardContent' => true,
 				'autoscroll' => true,
-				'headings' => ['Heading 1', 'Heading 2', 'Heading 3'],
+				'headings' => ['Heading 1', 'Heading 2', 'Heading 3', 'Heading 4', 'Heading 5'],
 			])
 		);
 
 		$autoscroll = $settings['autoscroll'] ? ' data-accordion-autoscroll="true"' : '';
 		$showType = $settings['show'];
-		$standardClass = $settings['standardContent'] ? ' standardConent' : '';
+		$standardClass = $settings['standardContent'] ? ' standardContent' : '';
 
 //Main accordion HTML starts here
 
 		echo '
 		<ul class="accordion TK-noDots" data-jshook="accordion__reference" data-accordion-show="'.$showType.'"'.$autoscroll.'>
 		';
-
-			foreach ($settings['headings'] as $heading) {
+			foreach ($settings['headings'] as $i => $heading) {
 				$id =  idSafe($heading);
 
 				echo
@@ -38,7 +37,7 @@ function accordion($settings = []){
 						</a>
 					</h2>
 					<div class="accordion__content TK-jsHide'.$standardClass.'" data-jshook="accordion__content">';
-						loadContent('accordion-content.php');
+						loadContent('accordion/'.$i.'.php');
 					echo '
 					</div>
 				</li>';
