@@ -1,5 +1,5 @@
 <?php
-function hasSubnav($navItem_or_location){
+function hasSubnav($navItem_or_location = null){
 
 	$navItem_or_location = defaultTo($navItem_or_location, $GLOBALS['get']['current']['location']);
 
