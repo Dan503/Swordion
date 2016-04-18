@@ -66,11 +66,11 @@ loadContent('intro.php', ['news', 0]);
 
 That example above would look for a page in the nav map called "news" (not case sensitive) and then load the content related to the first subnav item instead of the content related to the current page. Note that this won't work if the page only has something in the layout folder. it will only work for content in the pages, templates and default folders.
 
-The easiest way to retrive the content for a listing item would be by using $get['current'] since the child items would be in the navMap as subItems for this page:
+The easiest way to retrive the content for a listing item would be by using "subnav" in the first array slot. this restricts the search to only sub items  (and sub sub items etc.) of the current page. Then apply the index to the second slot since the child items would most likely be in the navMap as subItems for this page:
 
 ```````````
 //$i = index of the listing item
-loadContent('intro.php', $get['current']['subnav'][$i]['location']);
+loadContent('intro.php', ['subnav', $i]);
 ``````````
 
 ## THE THIRD PARAMETER
