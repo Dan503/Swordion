@@ -46,3 +46,37 @@ The documentation for Swordion is incomplete however there are at least some asp
 ##Please note
 
 The documentation (and this whole thing in general) is a **work in progress**. I also like to experiment with new ideas often in an attempt to improve the functionality. This often leads to drastic changes in how the kit works.
+
+##Common errors and how to fix them:
+
+*The Error:*
+
+`````````````
+Fatal error: Only variables can be passed by reference in [root folder directory]\ZZ-Swordion-DO-NOT-EDIT\00-config-PHP\config-files-PHP\03-nav-config-PHP\02-navMap__applyDefaults.php on line 84
+`````````````
+
+*The issue:*
+
+You have not wrapped subnav items in individual arrays. 
+
+````````````
+	['title' => 'Parent',
+		'subnav' => array(
+			'title' => 'Child 1',
+			'title' => 'Child 2',
+		),
+	],
+````````````
+
+*The fix:*
+
+Ensure nav items are wrapped in individual array brackets like this:
+
+````````````
+	['title' => 'Parent',
+		'subnav' => array(
+			['title' => 'Child 1'],
+			['title' => 'Child 2'],
+		),
+	],
+````````````
