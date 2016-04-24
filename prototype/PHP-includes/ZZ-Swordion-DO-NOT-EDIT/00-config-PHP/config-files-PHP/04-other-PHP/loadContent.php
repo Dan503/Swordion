@@ -23,14 +23,10 @@ function loadContent($providedFileName, $override = null, $returnType = 'auto'){
 	$possibleMatches = [$fullFileName];
 
 	if ($fileType == 'img') {
-		//ordered from most likely to least likely for best performance
-		$possibleMatches = [
-			$fileName.'.jpg',
-			$fileName.'.png',
-			$fileName.'.svg',
-			$fileName.'.gif',
-			$fileName.'.jpeg',
-		];
+
+		foreach($GLOBALS['supportedImgFormats'] as $i => $ext){
+			$possibleMatches[$i] = $fileName.'.'.$ext;
+		}
 	}
 
 	//only include the server root if it is a php file
