@@ -97,7 +97,8 @@ function loadContent($providedFileName, $override = null, $returnType = 'auto'){
 	//else just return with the path to the file (useful for images)
 	} else {
 		if (isset($content)){
-			return file_exists($_SERVER['DOCUMENT_ROOT'].$content) ? $content : $default;
+			$contentFile = $fileType == 'php' ? $content : $_SERVER['DOCUMENT_ROOT'].$content;
+			return file_exists($contentFile) ? $content : $default;
 		} else {
 			return $default;
 		}
