@@ -13,8 +13,13 @@ function randomImg($path = '', $fileTypes = null) {
 //need to filter down the images to those that match the correct path into this variable
 	$finalImages = [];
 
+	$standardBasePath = '/assets/images/content/';
+	$pathStartsWithRoot = $path[0] === '/';
+	$isStandardPath = substr($path,23) === $standardBasePath || !$pathStartsWithRoot;
+
+
 	//if $path starts with "/" create a new set of files to search through
-	if ($path[0] == '/'){
+	if ($pathStartsWithRoot && !$isStandardPath){
 		$imgFiles = [];
 		foreach($fileTypes as $ext){
 			$imgFiles[$ext] = globFiles($path,'objects','*.'.$ext);
@@ -22,8 +27,7 @@ function randomImg($path = '', $fileTypes = null) {
 	//else assume the images are in the content folder
 	} else {
 		$imgFiles = $GLOBALS['contentImages'];
-		$path = '/assets/images/content/'.$path;
-
+		$path = $pathStartsWithRoot ? $path : $standardBasePath.$path;
 	}
 
 	//adds only the images with the correct file types to the list of images that need searching
@@ -42,7 +46,8 @@ function randomImg($path = '', $fileTypes = null) {
 
 	$imgObject = $finalImages[rand(0, count($finalImages))];
 
-	return $imgObject['filePath'];
+	//it was still failing :( had to check again before output
+	return file_exists($imgObject['fullPath']) ? $imgObject['filePath'] : randomImg($path, $fileTypes);
 }
 
 ?>
