@@ -21,6 +21,10 @@
 	<li class="layer tiltParallax__layer torch__body" data-depth="1.00"></li>
 </ul>
 
+<p>This image randomly loads from the "/content/4-random-images/example" folder on every page refresh.</p>
+
+<p><img src="<?php echo randomImg('example'); ?>" alt="" /> </p>
+
 <?php accordion(); ?>
 
 <div class="demo">

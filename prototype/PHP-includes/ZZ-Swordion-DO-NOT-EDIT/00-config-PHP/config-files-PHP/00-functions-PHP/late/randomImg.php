@@ -1,7 +1,7 @@
 <?php
 
 foreach($GLOBALS['supportedImgFormats'] as $ext){
-	$GLOBALS['contentImages'][$ext] = globFiles('/assets/images/content','objects','*.'.$ext);
+	$GLOBALS['contentImages'][$ext] = globFiles('/content/4-random-images','objects','*.'.$ext);
 }
 
 //returns with a random image from the /assets/images/content folder
@@ -13,9 +13,9 @@ function randomImg($path = '', $fileTypes = null) {
 //need to filter down the images to those that match the correct path into this variable
 	$finalImages = [];
 
-	$standardBasePath = '/assets/images/content/';
+	$standardBasePath = '/content/4-random-images/';
 	$pathStartsWithRoot = $path[0] === '/';
-	$isStandardPath = substr($path,23) === $standardBasePath || !$pathStartsWithRoot;
+	$isStandardPath = substr($path,count($standardBasePath)) === $standardBasePath || !$pathStartsWithRoot;
 
 
 	//if $path starts with "/" create a new set of files to search through
