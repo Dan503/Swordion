@@ -66,6 +66,7 @@ function generateDefaults($basePath, &$map, $index, $parent, $location){
 }
 
 //generate the list for the template quick links
+$GLOBALS['tempMapKey'] = 'A';
 function generateTemplateList($map, $location, $arrayLink = null){
 	if(!in_array($map['template'], $GLOBALS['templateHits'])){
 
@@ -87,10 +88,12 @@ function generateTemplateList($map, $location, $arrayLink = null){
 			$openingSlash = substr($map['link'], 0, 9 ) === "?location" ? '/' : '';
 
 			//Add current template to templateMap
-			array_push($GLOBALS['templateMap'], [
+			$GLOBALS['templateMap'][$GLOBALS['tempMapKey']] = [
 				'title' => $map['template'],
-				'link' =>  /*$openingSlash.*/ $map['link'],
-			]);
+				'link' =>  $map['link'],
+			];
+
+			$GLOBALS['tempMapKey'] ++;
 		}
 	}
 }
@@ -126,12 +129,29 @@ foreach ($navMap['subnav'] as $i => &$nm) {
 	generateSearchObjectLinks($nm, [$i]);
 }
 
-//adds the generated template map and the extra templates map to the main nav map
+//creates a list of only the template titles for simple sorting
+$templateList = [];
+foreach ($GLOBALS['templateMap'] as $key => $templateItem){
+	$templateList[$key] = $templateItem['title'];
+	$key ++;
+}
+//sorts the list into alphabetical order while retaining key values
+asort($templateList);
+
+//generates a new templateMap list now sorted into alphabetical order
+$finalTemplateMap = [];
+foreach ($templateList as $key => $tempItem){
+	array_push($finalTemplateMap, $GLOBALS['templateMap'][$key]);
+}
+$GLOBALS['templateMap'] = $finalTemplateMap;
+
+//adds the generated template map to the main nav map
 array_push($navMap['subnav'][0]['subnav'], [
 	'title' => 'templateList',
 	'subnav' => $GLOBALS['templateMap'],
 ]);
 
+//save all changes in the nav map to the global version of the navMap
 $GLOBALS['navMap'] = $navMap;
 
 ?>

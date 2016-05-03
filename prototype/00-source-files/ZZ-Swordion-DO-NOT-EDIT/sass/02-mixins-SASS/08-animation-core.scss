@@ -4,7 +4,6 @@
 
 @mixin MG-3d {
 	@if ($gt-ie8) {
-	    -webkit-transform-style: preserve-3d;
 		transform-style: preserve-3d;
 	}
 }
@@ -81,8 +80,6 @@
 		}
 
 		//@debug $rule;
-
-	    -webkit-transition: $rule;
 	    transition: $rule;
 
 		@if ($style == '3D'){

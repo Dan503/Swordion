@@ -27,10 +27,13 @@
 		} else {
 
 			$allLevels = array(
-				globArray($path, '', $fileType),
-				globArray($path, '**/', $fileType),
-				globArray($path, '**/**/', $fileType),
+				globArray($path, '**/**/**/**/**/**/', $fileType),
+				globArray($path, '**/**/**/**/**/', $fileType),
+				globArray($path, '**/**/**/**/', $fileType),
 				globArray($path, '**/**/**/', $fileType),
+				globArray($path, '**/**/', $fileType),
+				globArray($path, '**/', $fileType),
+				globArray($path, '', $fileType),
 			);
 
 			$files = array();
@@ -82,13 +85,15 @@
 	$loadOrder = [
 		'/01-error-reporting.php',
 
-		'/ZZ-Swordion-DO-NOT-EDIT/00-config-PHP/config-files-PHP/00-functions-PHP/',
+		'/ZZ-Swordion-DO-NOT-EDIT/00-config-PHP/config-files-PHP/00-functions-PHP/early/',
 
 		'/00-config-PHP/early',//late is loaded in template.php under swordion base files
 
 		'/ZZ-Swordion-DO-NOT-EDIT/00-config-PHP/config-files-PHP/02-nav-functions-PHP/',
 
 		'/ZZ-Swordion-DO-NOT-EDIT/00-config-PHP/config-files-PHP/03-nav-config-PHP/',
+
+		'/ZZ-Swordion-DO-NOT-EDIT/00-config-PHP/config-files-PHP/00-functions-PHP/late/',
 
 		'/ZZ-Swordion-DO-NOT-EDIT/00-config-PHP/config-files-PHP/04-other-PHP/',
 

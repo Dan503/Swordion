@@ -83,6 +83,13 @@ function getNavMap($searchTerm, $portion = NULL){
 	if ($searchTerm == []){
 		//if the search term is an empty array, it will return the full nav map (excluding ROOT)
 		return $returnMap;
+
+	//if 'subnav' is the first item in the array, it will restrict the search to only sub items (and sub sub items etc.) of the current page
+	} elseif ($searchTerm[0] === 'subnav'){
+		//replaces "subnav" with the current page location array values
+		//outputs a flat array starting with the current location then continuing with the other values in the array
+		//eg. ['subnav', 0] is equivelent to [3, 1, 2, 0] if you were on page ?location=3-1-2
+		array_splice($searchTerm, 0, 1, $GLOBALS['get']['current']['location']);
 	}
 
 	//code for when an array is given (filters results based on numbers and titles provided in array)
