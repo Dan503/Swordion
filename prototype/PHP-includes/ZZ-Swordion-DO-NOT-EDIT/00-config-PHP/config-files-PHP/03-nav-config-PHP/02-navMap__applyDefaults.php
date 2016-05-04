@@ -20,7 +20,6 @@ function generateLink ($linkOveride, $basePath, $i, $linkGenType, $siblings){
 		}
 	}
 
-
 	if (isset($linkOveride)){
 		return $linkOveride;//Links to the defined link from the nav map file
 
@@ -65,8 +64,27 @@ function generateDefaults($basePath, &$map, $index, $parent, $location){
 	}
 }
 
+//reads all template files
+$templateFiles = globFiles('/PHP-includes/04-templates-PHP/', 'objects');
+$defaultTemplateMap = [];
+
+$templateListIndex = count($navMap['subnav'][0]['subnav']);
+foreach ($templateFiles as $i => $templateFile){
+	$locationString = '0-'.$templateListIndex.'-'.$i;
+	//Add current template to templateMap
+	$GLOBALS['templateMap'][$templateFile['fileName']] = [
+		'title' => $templateFile['fileName'],
+		'link' =>  '?location='.$locationString,
+		'template' => $templateFile['fileName'],
+		'subNavigable' => true,
+		'subTemplate' => 'standard',
+		'location' => [0, $templateListIndex, $i],
+		'locationString' => $locationString,
+		'queryLocation' => '?location='.$locationString,
+	];
+}
+
 //generate the list for the template quick links
-$GLOBALS['tempMapKey'] = 'A';
 function generateTemplateList($map, $location, $arrayLink = null){
 	if(!in_array($map['template'], $GLOBALS['templateHits'])){
 
@@ -76,7 +94,7 @@ function generateTemplateList($map, $location, $arrayLink = null){
 		}
 
 		//avoid adding standard template to list until out of the miscellaneous section of the navMap
-		if (!($location[0] == 0 && $map['template'] == $GLOBALS['defaultTemplate'])){
+		if (!($location[0] == 0 && $map['template'] === $GLOBALS['defaultTemplate'])){
 
 			//add current template to template hits so it doesn't add it again
 			array_push($GLOBALS['templateHits'], $map['template']);
@@ -88,16 +106,13 @@ function generateTemplateList($map, $location, $arrayLink = null){
 			$openingSlash = substr($map['link'], 0, 9 ) === "?location" ? '/' : '';
 
 			//Add current template to templateMap
-			$GLOBALS['templateMap'][$GLOBALS['tempMapKey']] = [
+			$GLOBALS['templateMap'][$map['template']] = [
 				'title' => $map['template'],
 				'link' =>  $map['link'],
 			];
-
-			$GLOBALS['tempMapKey'] ++;
 		}
 	}
 }
-
 
 function generateSearchObjectLinks(&$map, $location, $subIndex){
 	if (is_array($map['link'])){
@@ -135,6 +150,7 @@ foreach ($GLOBALS['templateMap'] as $key => $templateItem){
 	$templateList[$key] = $templateItem['title'];
 	$key ++;
 }
+
 //sorts the list into alphabetical order while retaining key values
 asort($templateList);
 
