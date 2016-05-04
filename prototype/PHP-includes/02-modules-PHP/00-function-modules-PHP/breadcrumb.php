@@ -5,42 +5,50 @@
 
 		$location = $GLOBALS['location'];
 
+		//Prevents an unwanted "home" link from showing up on miscellaneous pages that have a bread crumb
+		if ($location[0] === 0 && $currDepth > 1 || $location[0] !== 0) {
 
-		if (isset($location[$currDepth])){
+			if (isset($location[$currDepth])){
 
-			$target = $location[$currDepth];
-			$text = $map['title'];
-			$link = defaultTo($map['link'],'#');
+				$target = $location[$currDepth];
+				$text = $map['title'];
+				$link = defaultTo($map['link'],'#');
 
-			print
-			'<li class="breadcrumb__item">';
+				print
+				'<li class="breadcrumb__item">';
 
-				if ($link != false) {
-					print '
-					<a class="breadcrumb__inner breadcrumb__link" href="'.$link.'" title="Go to '.$text.'">
-						'.$text.'
-					</a>';
-				} else {
-					print '
-					<span class="breadcrumb__inner breadcrumb__span">
-						'.$text.'
-					</a>';
+					if ($link != false) {
+						print '
+						<a class="breadcrumb__inner breadcrumb__link" href="'.$link.'" title="Go to '.$text.'">
+							'.$text.'
+						</a>';
+					} else {
+						print '
+						<span class="breadcrumb__inner breadcrumb__span">
+							'.$text.'
+						</span>';
+					}
+				print
+				'</li>';
+
+				getBreadcrumb($map['subnav'][$target], $currDepth + 1, $settings);
+
+			} else {
+				if ($settings['hasLastItem'] == true) {
+					print
+					'<li class="breadcrumb__item breadcrumb__item--current">
+						<span class="breadcrumb__inner breadcrumb__span breadcrumb__current">
+							'.$map['title'].'
+						</span>
+					</li>';
 				}
-			print
-			'</li>';
-
-			getBreadcrumb($map['subnav'][$target], $currDepth + 1, $settings);
+			}
 
 		} else {
-			if ($settings['hasLastItem'] == true) {
-				print
-				'<li class="breadcrumb__item breadcrumb__item--current">
-					<span class="breadcrumb__inner breadcrumb__span breadcrumb__current">
-						'.$map['title'].'
-					</span>
-				</li>';
-			}
+			$target = $location[$currDepth];
+			getBreadcrumb($map['subnav'][$target], $currDepth + 1, $settings);
 		}
+
 	};
 
 	function breadcrumb($settings = 'defaults'){
@@ -77,7 +85,6 @@
 				echo
 				'<nav class="breadcrumb pageLayout__indent'.$modifier.' '.$settings['classes'].'">
 					<ul class="breadcrumb__list">';
-
 						if ($settings['hasHome']) {
 							echo '
 							<li class="breadcrumb__item breadcrumb__item--home">';
