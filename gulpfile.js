@@ -1,3 +1,9 @@
+
+//Use this instead for gulp task loading
+//It follows similar sensibilities to how the rest of swordion works
+//https://www.npmjs.com/package/gulp-task-loader
+
+
 // Include gulp
 var gulp = require('gulp');
 
