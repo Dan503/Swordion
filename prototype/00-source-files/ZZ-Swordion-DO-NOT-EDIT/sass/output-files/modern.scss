@@ -18,8 +18,8 @@ $lt-ie9: false;
 
 //CONFIG FILES
 
-//for icon mixins and functions (generated)
-@import "../icon-names.scss";
+//particularly for icon map variable (generated)
+@import "../generated-files/**/*.scss";
 
 //variables for sprite mixins
 @import "../01-sprite-sheets-SASS/**/*.scss";
