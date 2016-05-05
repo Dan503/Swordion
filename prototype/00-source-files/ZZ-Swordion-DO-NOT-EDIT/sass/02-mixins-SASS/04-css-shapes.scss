@@ -16,6 +16,74 @@
 	}
 }
 
+//Create a right angle chevron shape with pure CSS
+//uses ems by default so that it can scale with text making it more versatile
+@mixin MG-chevron($direction: right, $color: $mustard, $size: 0.5em, $borderWidth: $size / 5){
+	$borderOptions: (
+		up: $borderWidth $borderWidth 0 0,
+		right: 0 $borderWidth $borderWidth 0,
+		down: 0 0 $borderWidth $borderWidth,
+		left: $borderWidth 0 0 $borderWidth,
+	);
+	$appliedBorder: map-get($borderOptions, $direction);
+
+	$translation: (
+		up: (
+			x: 0,
+			y: 25%,
+			origin: left top,
+			offsets: (
+				top: $size * 0.8,
+			)
+		),
+		right: (
+			x: -25%,
+			y: 0,
+			origin: right bottom,
+			offsets: (
+				right: $size * 0.1,
+				bottom: $size * 0.3,
+			)
+		),
+		down: (
+			x: 25%,
+			y: 0,
+			origin: left top,
+			offsets: (
+				top: $size * 0.1,
+			)
+		),
+		left: (
+			x: 0,
+			y: 25%,
+			origin: top right,
+			offsets: (
+				right: $size * 0.2,
+			)
+		),
+	);
+
+	$transforms: map-get($translation, $direction);
+
+	$x-translate: round(map-get($transforms, x));
+	$y-translate: round(map-get($transforms, y));
+	$origin: map-get($transforms, origin);
+	$offsetter: map-get($transforms, offsetter);
+	$offsets: map-get($transforms, offsets);
+
+	border: 1px solid $color;
+	border-width: $appliedBorder;
+	transition: all 0.2s ease-in-out;
+	transform: rotate(-45deg); //translateX($x-translate) translateY($y-translate);
+	transform-origin: $origin;
+	height: $size;
+	width: $size;
+	position: relative;
+	@each $attribute, $value in $offsets {
+		#{$attribute}: $value;
+	}
+}
+
 ///*******************\
 //	PURE CSS MENU ICON
 //*******************/

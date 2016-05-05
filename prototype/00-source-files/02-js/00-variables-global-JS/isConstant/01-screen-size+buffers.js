@@ -22,9 +22,9 @@ var G_buffer_low = parseInt(G_screen_height * 0.66);
 var G_buffer_lower = parseInt(G_screen_height * 0.75);
 
 //Holds functions that fire on resize/scroll
-//use G_onResize.push(function(){...}); anywhere to fire functions after user has resized screen
+//use G_onResizeStop.push(function(){...}); anywhere to fire functions after user has resized screen
 //use G_onScrollStop.push(function(){...}); anywhere to fire functions at end of scroll
-var G_onResize = [];
+var G_onResizeStop = [];
 var G_onScrollStop = [];
 
 $(window).resize(function(){
@@ -38,8 +38,8 @@ $(window).resize(function(){
 	G_buffer_lower = parseInt(G_screen_height * 0.75);
 
 	clearTimeout(window.resizedFinished);
-    window.resizedFinished = setTimeout(function(i, resizeFunction){
-    	$.each(G_onResize, function(){
+    window.resizedFinished = setTimeout(function(){
+    	$.each(G_onResizeStop, function(i, resizeFunction){
     		//calls functions that fire after user resizes the screen
 			if (typeof resizeFunction !== 'undefined') {
 	    		resizeFunction.call();

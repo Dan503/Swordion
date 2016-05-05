@@ -3,6 +3,7 @@ var jsMerge = {
 	splits : [
 		//base splits
 		'isConstant',
+		'prototypeOnly',
 		'isLegacy',
 		'isModern',
 
@@ -318,7 +319,8 @@ module.exports = function (grunt) {
 						require('autoprefixer')({browsers: 'last 2 versions'}), // add vendor prefixes
 
 						//Helps to enable IE8/9 to read flexbox properties
-						require("postcss-flexibility")()//adds flexibitity prefixes to css
+						//adds flexibitity prefixes to css
+						require("postcss-flexibility")()
 					]
 				},
 			},
@@ -407,6 +409,49 @@ module.exports = function (grunt) {
 					src: 'prototype/00-source-files/ZZ-Swordion-DO-NOT-EDIT/sass/generated-files/configurations/icon-names.scss'
 				}
 			},
+		},
+		modernizr: {
+			dist: {
+			  "tests": [
+				    //"backgroundblendmode",
+				    "backgroundsize",
+				    "bgsizecover",
+				    "borderimage",
+				    "boxsizing",
+				    "csscalc",
+				    //"csscolumns",
+				    //"cssfilters",
+				    "flexbox",
+				    "flexwrap",
+				    "cssgradients",
+				    "objectfit",
+				    "csspointerevents",
+				    "csstransforms",
+				    "cssvhunit",
+					"cssanimations",
+					"svg",
+					"touch",
+					"postmessage",
+				],
+				options : [
+				    "testStyles",
+			        "setClasses",
+			        //"addTest",
+			        "html5printshiv",
+			        "testProp",
+			        "fnBind"
+			    ],
+				dest : "prototype/assets/js/generated-JS/modernizr.min.js",
+				crawl: true,
+				useBuffers: true,
+				files : {
+					src : [
+						"prototype/assets/css/modern.css",
+						"prototype/assets/js/generated-JS/*.js",
+						"!prototype/assets/js/generated-JS/modernizr.min.js"
+					]
+				}
+			}
 		},
 		// Keep files on server in sync with local copy
 		// Extreamly useful at build stage
@@ -566,7 +611,7 @@ module.exports = function (grunt) {
 				},
 				tasks: [
 					"unpackage_icomoon",
-					"sass_compile",
+					//"sass_compile",
 				],
 				files: [
 					"prototype/00-source-files/04-icomoon-unpackager/**/**"
@@ -628,6 +673,7 @@ module.exports = function (grunt) {
 		"concat",//merge JS files
 		"uglify",//minify JS
 		"sass_full_compile", //create all SASS files and minify them
+		"modernizr",//generate modernizr js file
 			//"sync",//copy files to another location
 		"watch"//keep tabs on files looking out for changes
 	]);

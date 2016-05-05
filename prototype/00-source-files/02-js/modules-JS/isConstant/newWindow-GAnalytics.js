@@ -58,7 +58,10 @@ $('a:not([href^="javascript"])').each(function(i){
 			href.match("^http") &&
 			href.indexOf(window.location.host) === -1 &&
 			!$(this).hasClass('shareLink-JS') &&
-			!$(this).hasClass('podcastLink-JS')
+			!$(this).hasClass('podcastLink-JS') &&
+
+			//add data-jshook="newWindow__exclusion" to an external link to prevent it opening in a new window
+			!$(this).is('[data-jshook*="newWindow__exclusion"]')
 		){
 			$(this).addClass('externalLink-JS');
 		};

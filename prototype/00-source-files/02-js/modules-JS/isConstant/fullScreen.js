@@ -23,6 +23,6 @@ var subtractor = $(Hook('fullScreen_subtractor', globals));
 
 filler.fillScreen(subtractor);
 
-G_onResize.push(function(){
+G_onResizeStop.push(function(){
 	filler.fillScreen(subtractor);
 });

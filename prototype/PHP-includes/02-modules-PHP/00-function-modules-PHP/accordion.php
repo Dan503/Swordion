@@ -1,47 +1,53 @@
 <?php
 
-function accordion($accordion_array = array(
-	['title' => 'Heading 1'],
-	['title' => 'Heading 2'],
-	['title' => 'Heading 3'],
-), $settings = []){
+function accordion($settings = []){
 
-	$settings = defaultTo($settings, [
-		'type' => 'auto',
-	]);
+	if (has('accordion')){
 
-	echo '
-	<ul class="accordion TK-noDots" data-jshook="accordion__reference">
-	';
+		$tempSets = $GLOBALS['template_settings']['accordion'];
 
+		//if settings are defined in the function, use them, else use ['accordion'] attribute in order of (strongest to weakest): navMap item > template setting > layout setting
+		$settings = defaultTo($settings,
+			templateDefault(['accordion'], [
+				'show' => 'first',
+				'standardContent' => true,
+				'autoscroll' => true,
+				'headings' => ['Heading 1', 'Heading 2', 'Heading 3', 'Heading 4', 'Heading 5'],
+			])
+		);
 
-		foreach ($accordion_array as $i => $item) {
-			$item = defaultTo($item, [
-				'title' => 'Heading '.($i+1),
-				'content' => '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed emolumenta communia esse dicuntur, recte autem facta et peccata non habentur communia. Audio equidem philosophi vocem, Epicure, sed quid tibi dicendum sit oblitus es. Satisne ergo pudori consulat, si quis sine teste libidini pareat? Tu autem negas fortem esse quemquam posse, qui dolorem malum putet. Qua tu etiam inprudens utebare non numquam. Expectoque quid ad id, quod quaerebam, respondeas. Rhetorice igitur, inquam, nos mavis quam dialectice disputare? </p>
+		$autoscroll = $settings['autoscroll'] ? ' data-accordion-autoscroll="true"' : '';
+		$showType = $settings['show'];
+		$standardClass = $settings['standardContent'] ? ' standardContent' : '';
 
-<p>Duo Reges: constructio interrete. Isto modo, ne si avia quidem eius nata non esset. Serpere anguiculos, nare anaticulas, evolare merulas, cornibus uti videmus boves, nepas aculeis. Num igitur eum postea censes anxio animo aut sollicito fuisse? Laelius clamores sofòw ille so lebat Edere compellans gumias ex ordine nostros. Tum Torquatus: Prorsus, inquit, assentior; Igitur neque stultorum quisquam beatus neque sapientium non beatus. Eadem nunc mea adversum te oratio est. </p>',
-			]);
-			$id =  idSafe($item['title']);
+//Main accordion HTML starts here
 
-			echo '
-			<li class="accordion__item" data-jshook="accordion__item">
-				<h2 class="accordion__heading TK-relative">
-					<a href="#accordion__'.$id.'" class="accordion__headLink grid" data-jshook="accordion__trigger--'.$settings['type'].'">
-						<span class="accordion__headText grid__cell">'.$item['title'].'</span>
-						<span class="accordion__icon grid__cell grid__cell--noGrowth"></span>
-					</a>
-				</h2>
-				<div id="accordion__'.$id.'" class="accordion__content TK-jsHide" data-jshook="accordion__content">
-					'.$item['content'].'
-				</div>
-			</li>';
+		echo '
+		<ul class="accordion TK-noDots" data-jshook="accordion__reference" data-accordion-show="'.$showType.'"'.$autoscroll.'>
+		';
+			foreach ($settings['headings'] as $i => $heading) {
+				$id =  idSafe($heading);
 
-		}
+				echo
+				'<li id="accordion__'.$id.'" class="accordion__item block block--noPadding" data-jshook="accordion__item">
+					<h2 class="accordion__heading TK-relative">
+						<a href="#accordion__'.$id.'" class="accordion__headLink" data-jshook="accordion__trigger--auto">
+							<span class="accordion__headText">'.$heading.'</span>
+							<span class="accordion__icon"></span>
+						</a>
+					</h2>
+					<div class="accordion__content TK-jsHide'.$standardClass.'" data-jshook="accordion__content">';
+						loadContent('accordion/'.$i.'.php');
+					echo '
+					</div>
+				</li>';
+			}
 
-	echo '
-	</ul>
-	';
+		echo '
+		</ul>
+		';
+
+	}
 }
 
 	?>
