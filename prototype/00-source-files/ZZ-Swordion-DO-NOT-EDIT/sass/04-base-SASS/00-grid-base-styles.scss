@@ -39,7 +39,7 @@ $grid-bp-list: if(
 
 $highestColumnCount: length($grid-bp-list);
 
-@mixin M-grid-cellGutter($gutter, $width, $colCount, $alteredWidth){
+@mixin M-grid-cellGutter($gutter, $width, $colCount){//, $alteredWidth
 	> .grid__cell {
 		$modifier: $gutter / $colCount;
 
@@ -109,7 +109,7 @@ $highestColumnCount: length($grid-bp-list);
 					$BP-widthChange : nth($breakData, 1);
 					$V-columnWidth : nth($breakData, 2);
 					@include MG-mq(max,$BP-widthChange){
-						> .grid__cell { width: $MQ-columnWidth; }
+						> .grid__cell { width: $V-columnWidth; }
 
 						&[class*="grid--gutter-"]{
 							> .grid__cell {
