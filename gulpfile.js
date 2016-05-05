@@ -25,5 +25,5 @@ gulp.task('default', gulpSequence(
 
 //files outside arrays will run one after the other in order
 	'watch'
-	//watch takes a REALLY long time to finish activating due to the large number of files it is watching. It won't track any changes until the "Finished 'watch'" message appears in the console. Please be patient while watch is starting, you only need to run it once per session and it can't start until all other tasks have finished
+	//watch can take a REALLY long time to finish activating due to the large number of files it is watching. It won't track any changes until the "Finished 'watch'" message appears in the console. Please be patient while watch is starting, you only need to run it once per session and it can't start until all other tasks have finished
 ));
