@@ -20,10 +20,10 @@ gulp.task('default', gulpSequence(
 		'js-compile-minify',
 		'icomoon-unpackager',//includes sass compilation
 		//'sass-compile-minify',
-		'start-sync-server'
+		'start-php-server'
 	],
 
 //files outside arrays will run one after the other in order
-	'start-sync-server'
-	//watch takes a while to activate unfortunatly. It won't track changes until the "Finished 'watch'" message appears. Be patient, you only need to run it once per session
+	'watch'
+	//watch takes a REALLY long time to finish activating due to the large number of files it is watching. It won't track any changes until the "Finished 'watch'" message appears in the console. Please be patient while watch is starting, you only need to run it once per session and it can't start until all other tasks have finished
 ));

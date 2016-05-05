@@ -38,7 +38,8 @@ function compileSass(src){
 			.pipe(sass().on('error', sass.logError))
 	        .pipe(postcss(processors))
 		.pipe(sourcemaps.write('./source-maps'))
-		.pipe(gulp.dest('prototype/assets/css'));
+		.pipe(gulp.dest('prototype/assets/css'))
+		.pipe(browserSync.reload({stream: true}));
 }
 
 
@@ -83,6 +84,5 @@ gulp.task('sass-compile-minify', scssTasks, function() {
         .pipe(rename({suffix: '.min'}))
         .pipe(postcss([cssnano()]))
         .pipe(gulp.dest('prototype/assets/css/'))
-		.pipe(browserSync.reload({stream: true}));
 });
 
