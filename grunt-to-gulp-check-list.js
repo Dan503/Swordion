@@ -11,7 +11,8 @@
 //- done - js-minify
 //- done - add browser-sync with npm php server:
 //- done - icomoon unpackager
-- x - get browser-sync to inject css instead of doing full page reloads
+- x - get browser-sync to fully reload the page on icon unpackaging
+- x - fix icommon unpackage bug that kills browsersync sometimes
 - x - copy assets to build folder
 - x - copy to server
 - x - ftp upload
