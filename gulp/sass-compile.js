@@ -31,15 +31,19 @@ function compileSass(src){
 		flexibility()
     ];
 
-    return gulp
-		.src(sass_output_files+src+'.scss')
+    gulp.src(sass_output_files+src+'.scss')
 		.pipe(sassGlob())
 		.pipe(sourcemaps.init())
 			.pipe(sass().on('error', sass.logError))
 	        .pipe(postcss(processors))
 		.pipe(sourcemaps.write('./source-maps'))
 		.pipe(gulp.dest('prototype/assets/css'))
-		.pipe(browserSync.reload({stream: true}));
+		.on('end', function(){
+			if (src === 'modern'){
+				gulp.src('prototype/assets/css/modern.css')
+					.pipe(browserSync.stream());
+			}
+		});
 }
 
 
