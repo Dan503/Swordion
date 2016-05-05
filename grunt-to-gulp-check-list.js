@@ -9,9 +9,9 @@
 //- done - minify sass (css-nano)
 //- done - js-merge
 //- done - js-minify
-- x - add browser-sync with npm php server:
-		https://www.npmjs.com/package/gulp-connect-php
-- x - icomoon unpackager
+//- done - add browser-sync with npm php server:
+//- done - icomoon unpackager
+- x - get browser-sync to inject css instead of doing full page reloads
 - x - copy assets to build folder
 - x - copy to server
 - x - ftp upload
