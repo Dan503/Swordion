@@ -63,11 +63,6 @@ $MQ-test-multiple:
 		//left: 20px;
 	}
 
-	&__autoSprite {
-		@include MG-sprite($word);
-		display: inline-block;
-	}
-
 	&__icon {
 		@include MG-icon(word,blue,20px){
 			margin-right: 10px;
