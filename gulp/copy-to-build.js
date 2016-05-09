@@ -52,7 +52,7 @@ gulp.task('clean-build:other', function(){
 });
 
 gulp.task('copy-to-build:css', ['clean-build:css'], function(){
-	gulp.src(root.proto+paths.css)
+	gulp.src(root.proto+paths.css+'**/*')
 		.pipe(gulp.dest(root.build+paths.css));
 });
 
