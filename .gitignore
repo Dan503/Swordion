@@ -1,17 +1,17 @@
 .sass-cache/**/*
 node_modules/**/*
-prototype/assets/images/auto-sprite/*.png
-prototype/assets/css/**/*.css
-prototype/assets/css/**/*.map
+prototype-site/assets/images/auto-sprite/*.png
+prototype-site/assets/css/**/*.css
+prototype-site/assets/css/**/*.map
 grunt-start-up.txt
 00-creating new git.txt
 .ftppass
 grunt-first-time.txt
 .grunt/ftpush/uat.json
-prototype.zip
-prototype/assets/js/generated-JS/
-prototype/00-source-files/ZZ-Swordion-DO-NOT-EDIT/sass/generated-files/**/*.scss
-prototype/00-source-files/ZZ-Swordion-DO-NOT-EDIT/sass/01-sprite-sheets/
-prototype/00-source-files/02-js/generated-JS/
-prototype/00-source-files/ZZ-Swordion-DO-NOT-EDIT/sass/icon-names.scss
+prototype-site.zip
+prototype-site/assets/js/generated-JS/
+prototype-site/00-source-files/ZZ-Swordion-DO-NOT-EDIT/sass/generated-files/**/*.scss
+prototype-site/00-source-files/ZZ-Swordion-DO-NOT-EDIT/sass/01-sprite-sheets/
+prototype-site/00-source-files/02-js/generated-JS/
+prototype-site/00-source-files/ZZ-Swordion-DO-NOT-EDIT/sass/icon-names.scss
 gulp-start-up.txt

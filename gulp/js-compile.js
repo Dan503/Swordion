@@ -67,8 +67,8 @@ for (var x = 0; x < jsMerge.splits.length; x++){
 		component.isSwordionFile = component.isSwordionFile || false;
 		//sets the root folder depending on if it is a swordion file or not
 		root = component.isSwordionFile ?
-			'prototype/00-source-files/ZZ-Swordion-DO-NOT-EDIT/js/' : //true
-			'prototype/00-source-files/02-js/';
+			'prototype-site/00-source-files/ZZ-Swordion-DO-NOT-EDIT/js/' : //true
+			'prototype-site/00-source-files/02-js/';
 		//if it's a file
 		if (typeof component.file !== 'undefined'){
 			//default "usedIn" to "all"
@@ -99,7 +99,7 @@ function mergeJS(splitName){
 		.pipe(sourcemaps.init())
 	        .pipe(concat(splitName+'.js'))
 		.pipe(sourcemaps.write('./source-maps'))
-        .pipe(gulp.dest('prototype/assets/js/generated-JS'))
+        .pipe(gulp.dest('prototype-site/assets/js/generated-JS'))
 }
 
 var mergeTasks = [];
@@ -137,10 +137,10 @@ gulp.task(mergeTasks[4], function() {
 gulp.task('js-compile-minify', mergeTasks, function() {
     return gulp
 		.src([
-			'prototype/assets/js/generated-JS/*.js',
-			'!prototype/assets/js/generated-JS/*.min.js'
+			'prototype-site/assets/js/generated-JS/*.js',
+			'!prototype-site/assets/js/generated-JS/*.min.js'
 		])
         .pipe(rename({suffix: '.min'}))
         .pipe(uglify())
-        .pipe(gulp.dest('prototype/assets/js/generated-JS/'));
+        .pipe(gulp.dest('prototype-site/assets/js/generated-JS/'));
 });

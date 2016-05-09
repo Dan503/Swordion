@@ -16,7 +16,7 @@ require('require-dir')('./gulp');
 //define the order gulp tasks run in when running default gulp task
 gulp.task('default', gulpSequence(
 	[//files in array run simultaniously unless they have dependencies
-		//'js-hint',
+		'js-hint',
 		'js-compile-minify',
 		'icomoon-unpackager',//includes sass compilation
 		//'sass-compile-minify',

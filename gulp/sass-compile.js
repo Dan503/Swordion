@@ -23,7 +23,7 @@ var cssnano = require('cssnano');
 var browserSync = require('browser-sync');
 
 // Compile the Sass
-var sass_output_files = 'prototype/00-source-files/ZZ-Swordion-DO-NOT-EDIT/sass/output-files/';
+var sass_output_files = 'prototype-site/00-source-files/ZZ-Swordion-DO-NOT-EDIT/sass/output-files/';
 
 function compileSass(src){
     var processors = [
@@ -37,10 +37,10 @@ function compileSass(src){
 			.pipe(sass().on('error', sass.logError))
 	        .pipe(postcss(processors))
 		.pipe(sourcemaps.write('./source-maps'))
-		.pipe(gulp.dest('prototype/assets/css'))
+		.pipe(gulp.dest('prototype-site/assets/css'))
 		.on('end', function(){
 			if (src === 'modern'){
-				gulp.src('prototype/assets/css/modern.css')
+				gulp.src('prototype-site/assets/css/modern.css')
 					.pipe(browserSync.stream());
 			}
 		});
@@ -82,11 +82,11 @@ gulp.task(scssTasks[2], function() {
 gulp.task('sass-compile-minify', scssTasks, function() {
     return gulp
 		.src([
-			'prototype/assets/css/*.css',
-			'!prototype/assets/css/*.min.css'
+			'prototype-site/assets/css/*.css',
+			'!prototype-site/assets/css/*.min.css'
 		])
         .pipe(rename({suffix: '.min'}))
         .pipe(postcss([cssnano()]))
-        .pipe(gulp.dest('prototype/assets/css/'))
+        .pipe(gulp.dest('prototype-site/assets/css/'))
 });
 
