@@ -55,28 +55,13 @@ var browsers = [
 
 var scssTasks = [];
 
-for (var i = 0; i < browsers.length; i++) {
-	var browser = browsers[i];
+browsers.forEach(function(browser, i){
 	scssTasks.push('sass-compile-'+browser);
 
-	/*This doesn't work :(
 	gulp.task(scssTasks[i], function() {
 		return compileSass(browser);
 	});
-	*/
-};
-
-//have to use this ugly way instead
-gulp.task(scssTasks[0], function() {
-	return compileSass(browsers[0]);
 });
-gulp.task(scssTasks[1], function() {
-	return compileSass(browsers[1]);
-});
-gulp.task(scssTasks[2], function() {
-	return compileSass(browsers[2]);
-});
-
 
 //minifies the css
 gulp.task('sass-compile-minify', scssTasks, function() {

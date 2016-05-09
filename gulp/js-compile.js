@@ -104,34 +104,13 @@ function mergeJS(splitName){
 
 var mergeTasks = [];
 
-for (var i = 0; i < jsMerge.splits.length; i++) {
-	var split = jsMerge.splits[i];
+jsMerge.splits.forEach(function(split, i){
 	mergeTasks.push('js-merge-'+split);
 
-	/*This doesn't work :(
 	gulp.task(mergeTasks[i], function() {
 		return mergeJS(split);
 	});
-	*/
-};
-
-//have to use this ugly way instead
-gulp.task(mergeTasks[0], function() {
-	return mergeJS(jsMerge.splits[0]);
 });
-gulp.task(mergeTasks[1], function() {
-	return mergeJS(jsMerge.splits[1]);
-});
-gulp.task(mergeTasks[2], function() {
-	return mergeJS(jsMerge.splits[2]);
-});
-gulp.task(mergeTasks[3], function() {
-	return mergeJS(jsMerge.splits[3]);
-});
-gulp.task(mergeTasks[4], function() {
-	return mergeJS(jsMerge.splits[4]);
-});
-
 
 //minifies the JS
 gulp.task('js-compile-minify', mergeTasks, function() {
