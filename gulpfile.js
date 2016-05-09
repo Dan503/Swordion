@@ -20,7 +20,8 @@ gulp.task('default', gulpSequence(
 		'js-compile-minify',
 		'icomoon-unpackager',//includes sass compilation
 		//'sass-compile-minify',
-		'start-php-server'
+		'start-php-server',
+		'copy-to-build:other',
 	],
 
 //files outside arrays will run one after the other in order

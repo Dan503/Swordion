@@ -142,5 +142,8 @@ gulp.task('js-compile-minify', mergeTasks, function() {
 		])
         .pipe(rename({suffix: '.min'}))
         .pipe(uglify())
-        .pipe(gulp.dest('prototype-site/assets/js/generated-JS/'));
+        .pipe(gulp.dest('prototype-site/assets/js/generated-JS/'))
+		.on('end', function(){
+			gulp.start('copy-to-build:js');
+		});
 });

@@ -88,5 +88,8 @@ gulp.task('sass-compile-minify', scssTasks, function() {
         .pipe(rename({suffix: '.min'}))
         .pipe(postcss([cssnano()]))
         .pipe(gulp.dest('prototype-site/assets/css/'))
+		.on('end', function(){
+			gulp.start('copy-to-build:css');
+		});
 });
 
