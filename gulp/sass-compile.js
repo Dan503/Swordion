@@ -1,7 +1,7 @@
-// Load gulp
+// LOAD GULP
 var gulp = require('gulp');
 
-// load plugins
+// LOAD PLUGINS
 
 //compiles sass using libSASS
 var sass = require('gulp-sass');
@@ -24,7 +24,7 @@ var browserSync = require('browser-sync');
 //convert px values to rem values
 var pxtorem = require('postcss-pxtorem');
 
-// Sass compilation variables
+// SASS COMPILATION VARIABLES
 
 var sass_output_files = 'prototype-site/00-source-files/ZZ-Swordion-DO-NOT-EDIT/sass/output-files/';
 
@@ -46,6 +46,9 @@ var remConversionOptions = {
 }
 
 var scssTasks = [];
+
+
+// SASS COMPILATION TASKS
 
 browsers.forEach(function(browser, i){
 	scssTasks.push('sass-compile:'+browser);
