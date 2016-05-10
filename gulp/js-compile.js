@@ -4,6 +4,7 @@ var gulp = require('gulp');
 // plugins
 var concat = require('gulp-concat');
 var sourcemaps = require('gulp-sourcemaps');
+var browserSync = require('browser-sync');
 
 //for minification
 var uglify = require('gulp-uglify');
@@ -125,6 +126,7 @@ gulp.task('js-minify', function() {
         .pipe(uglify())
         .pipe(gulp.dest('prototype-site/assets/js/generated-JS/'))
 		.on('end', function(){
+			browserSync.reload()
 			gulp.start('copy-to-build:js');
 		});
 });
