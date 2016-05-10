@@ -93,27 +93,29 @@ for (var x = 0; x < jsMerge.splits.length; x++){
 //use this to test the output array
 //console.log(JS_merge_files);
 
-// Gulp task for merging the JS
-function mergeJS(splitName){
-    return gulp.src(JS_merge_files[splitName])
-		.pipe(sourcemaps.init())
-	        .pipe(concat(splitName+'.js'))
-		.pipe(sourcemaps.write('./source-maps'))
-        .pipe(gulp.dest('prototype-site/assets/js/generated-JS'))
-}
-
 var mergeTasks = [];
 
 jsMerge.splits.forEach(function(split, i){
-	mergeTasks.push('js-merge-'+split);
+	mergeTasks.push('js-compile:'+split);
 
 	gulp.task(mergeTasks[i], function() {
-		return mergeJS(split);
+	    gulp.src(JS_merge_files[split])
+			.pipe(sourcemaps.init())
+		        .pipe(concat(split+'.js'))
+			.pipe(sourcemaps.write('./source-maps'))
+	        .pipe(gulp.dest('prototype-site/assets/js/generated-JS'))
+			.on('end', function(){
+				if (i == mergeTasks.length - 1){
+					setTimeout(function(){
+						gulp.start(['js-minify']);
+					}, 100);
+				}
+			})
 	});
 });
 
 //minifies the JS
-gulp.task('js-compile-minify', mergeTasks, function() {
+gulp.task('js-minify', function() {
     return gulp
 		.src([
 			'prototype-site/assets/js/generated-JS/*.js',
@@ -126,3 +128,5 @@ gulp.task('js-compile-minify', mergeTasks, function() {
 			gulp.start('copy-to-build:js');
 		});
 });
+
+gulp.task('js-compile', mergeTasks);

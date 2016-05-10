@@ -25,26 +25,6 @@ var browserSync = require('browser-sync');
 // Compile the Sass
 var sass_output_files = 'prototype-site/00-source-files/ZZ-Swordion-DO-NOT-EDIT/sass/output-files/';
 
-function compileSass(src){
-    var processors = [
-        autoprefixer({browsers: ['last 2 versions']}),
-		flexibility()
-    ];
-
-    gulp.src(sass_output_files+src+'.scss')
-		.pipe(sassGlob())
-		.pipe(sourcemaps.init())
-			.pipe(sass().on('error', sass.logError))
-	        .pipe(postcss(processors))
-		.pipe(sourcemaps.write('./source-maps'))
-		.pipe(gulp.dest('prototype-site/assets/css'))
-		.on('end', function(){
-			if (src === 'modern'){
-				gulp.src('prototype-site/assets/css/modern.css')
-					.pipe(browserSync.stream());
-			}
-		});
-}
 
 
 var browsers = [
@@ -56,15 +36,38 @@ var browsers = [
 var scssTasks = [];
 
 browsers.forEach(function(browser, i){
-	scssTasks.push('sass-compile-'+browser);
+	scssTasks.push('sass-compile:'+browser);
 
 	gulp.task(scssTasks[i], function() {
-		return compileSass(browser);
+	    var processors = [
+	        autoprefixer({browsers: ['last 2 versions']}),
+			flexibility()
+	    ];
+
+	    gulp.src(sass_output_files+browser+'.scss')
+			.pipe(sassGlob())
+			.pipe(sourcemaps.init())
+				.pipe(sass().on('error', sass.logError))
+		        .pipe(postcss(processors))
+			.pipe(sourcemaps.write('./source-maps'))
+			.pipe(gulp.dest('prototype-site/assets/css'))
+			.on('end', function(){
+				if (browser === 'modern'){
+					gulp.src('prototype-site/assets/css/modern.css')
+						.pipe(browserSync.stream());
+				}
+
+				if (i == browsers.length - 1){
+					setTimeout(function(){
+						gulp.start('css-minify');
+					}, 100);
+				}
+			});
 	});
 });
 
 //minifies the css
-gulp.task('sass-compile-minify', scssTasks, function() {
+gulp.task('css-minify', function() {
     return gulp
 		.src([
 			'prototype-site/assets/css/*.css',
@@ -78,3 +81,4 @@ gulp.task('sass-compile-minify', scssTasks, function() {
 		});
 });
 
+gulp.task('sass-compile', scssTasks);

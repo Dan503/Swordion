@@ -25,7 +25,7 @@ gulp.task('icomoon-scss', function(){
 		.pipe(rename('icon-names.scss'))
         .pipe(gulp.dest('prototype-site/00-source-files/ZZ-Swordion-DO-NOT-EDIT/sass/generated-files/'))
 		.on('end', function(){
-			gulp.start(['sass-compile-minify', 'copy-to-build:fonts']);
+			gulp.start(['sass-compile', 'copy-to-build:fonts']);
 		});
 });
 
