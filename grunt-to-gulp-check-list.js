@@ -21,3 +21,25 @@
 - x - ftp upload
 
 
+
+//Code for checking if OS is windows or mac.
+//Needed for network upload functionality when it eventually gets added
+
+//needed for the sync function
+var server_root;
+
+//Use this to discover what platform your computer uses
+//console.log(process.platform);
+switch (process.platform) {
+// Windows
+	case 'win32':
+		server_root =  '//CAN1DEV012/webs/folderName/';
+		break;
+
+// Mac OSX
+	case 'darwin' :
+		server_root =  '/Volumes/webs/folderName/';
+		break;
+}
+
+console.log(server_root);
