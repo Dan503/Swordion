@@ -43,3 +43,10 @@ switch (process.platform) {
 }
 
 console.log(server_root);
+
+
+
+//I may want to use this instead for gulp task loading
+//It follows similar sensibilities to how the rest of swordion works
+//https://www.npmjs.com/package/gulp-task-loader
+
