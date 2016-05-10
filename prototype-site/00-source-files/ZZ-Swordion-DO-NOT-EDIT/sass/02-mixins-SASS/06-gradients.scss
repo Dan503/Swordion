@@ -6,11 +6,11 @@
 
 
 $gradTypes: (
-	v : (linear, to bottom),
-	h : (linear, to right),
+	v : (linear, 'to bottom'),
+	h : (linear, 'to right'),
 	diag-down : (linear, 135deg),
 	diag-up : (linear, 45deg),
-	radial : (radial, ellipse at center),/*gets overwritten*/
+	radial : (radial, 'ellipse at center'),/*gets overwritten*/
 );
 
 
@@ -113,25 +113,26 @@ $validStrings: map-keys($gradTypes);
 						@if ($type == radial){
 							$bgString: #{$repeater}radial-gradient($radialSettings, $colorSet);
 						} @else if($type == $gradType){
-							$bgString: #{$repeater}#{$cssGradType}-gradient($direction, $colorSet);
+							$bgString: '#{$repeater}#{$cssGradType}-gradient(#{$direction}, #{$colorSet})';
 						}
 					} @else {
 						@if ($type == radial){
-							$bgString: #{$repeater}radial-gradient($radialSettings, $color1, $color2);
+							$bgString: '#{$repeater}radial-gradient(#{$radialSettings}, #{$color1}, #{$color2})';
 						} @else if($type == $gradType){
-							$bgString: #{$repeater}#{$cssGradType}-gradient($direction, $color1, $color2);
+							$bgString: '#{$repeater}#{$cssGradType}-gradient(#{$direction}, #{$color1}, #{$color2})';
 						}
 					}
 				}
 			}
 		} @else if (type-of($type) == 'number'){
 			@if($isMultiGrad){
-				$bgString: #{$repeater}linear-gradient($type, $colorSet);
+				$bgString: '#{$repeater}linear-gradient(#{$type}, #{$colorSet})';
 			} @else {
-				$bgString: #{$repeater}linear-gradient($type, $color1, $color2);
+				$bgString: '#{$repeater}linear-gradient(#{$type}, #{$color1}, #{$color2})';
 			}
 		}
-		background: $bgString;
+		@debug $bgString;
+		background: unquote($bgString);
 	} @else if(($type == v or $type == h) and map-get($settings, ie-polyfill)){
 		@include MG-ie-grad($pureColor1,$pureColor2,$type);
 	}
