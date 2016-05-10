@@ -734,7 +734,8 @@
 				"baseline": 6.25,
 				"whitespace": 50
 			},
-			"embed": false
+			"embed": false,
+			"cssVars": true
 		},
 		"imagePref": {},
 		"historySize": 100,
