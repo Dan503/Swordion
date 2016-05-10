@@ -21,17 +21,29 @@ var rename = require('gulp-rename');
 var cssnano = require('cssnano');
 //allows for css injection without full browser refresh
 var browserSync = require('browser-sync');
+//convert px values to rem values
+var pxtorem = require('postcss-pxtorem');
 
-// Compile the Sass
+// Sass compilation variables
+
 var sass_output_files = 'prototype-site/00-source-files/ZZ-Swordion-DO-NOT-EDIT/sass/output-files/';
-
-
 
 var browsers = [
 	'modern',
 	'ie9',
 	'ie8'
 ];
+
+//https://www.npmjs.com/package/postcss-pxtorem
+var remConversionOptions = {
+    rootValue: 10,
+    unitPrecision: 5,
+    propWhiteList: ['font', 'font-size', 'letter-spacing'],
+    selectorBlackList: [],
+    replace: false,
+    mediaQuery: false,
+    minPixelValue: 0
+}
 
 var scssTasks = [];
 
@@ -41,7 +53,8 @@ browsers.forEach(function(browser, i){
 	gulp.task(scssTasks[i], function() {
 	    var processors = [
 	        autoprefixer({browsers: ['last 2 versions']}),
-			flexibility()
+			flexibility(),
+			pxtorem(remConversionOptions)
 	    ];
 
 	    gulp.src(sass_output_files+browser+'.scss')

@@ -28,7 +28,7 @@ $CL-module: '.accordion';
 			}
 		}
 
-			&__heading { margin: 0; @include MG-font-size(20px); }
+			&__heading { margin: 0; font-size: 20px; }
 
 				&__headLink {
 					display: block;

@@ -1,5 +1,5 @@
 .btn {
-	@include MG-font-size(14px);
+	font-size: 14px;
 	background-color: CG-brand(1);
 	color: CG-brand(1, 'text');
 	@include MG-animate;

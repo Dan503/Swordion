@@ -104,37 +104,6 @@
 	}
 }
 
-//Allows you to use rem fontsize instead of ems (much easier to develop with)
-//font size given to mixin in pixels or rem, the mixin then converts it to the other value
-@mixin MG-font-size($sizeValue, $lineHeight: false) {
-
-	//If using pixels for the base unit
-	@if (unit($sizeValue) == 'px'){
-		font-size: $sizeValue; //fallback for browsers that don't support REM
-		@if ($lt-ie9 == false){
-			font-size: (strip-units($sizeValue) / 10) * 1rem;//only renders rem in modern style sheet
-		}
-
-	//If using REM as your base unit
-	} @else if (unit($sizeValue) == 'rem') {
-		font-size: strip-units($sizeValue) * 10; //fallback for browsers that don't support REM
-		@if ($lt-ie9 == false){
-			font-size: ($sizeValue / 10);//only renders rem in modern style sheet
-		}
-
-	//If no unit given
-	} @else if (unitless($sizeValue)){
-		@warn "#{$sizeValue} is assumed to be in pixels";
-		font-size: $sizeValue * 1px; //fallback for browsers that don't support REM
-		@if ($lt-ie9 == false){
-			font-size: ($sizeValue / 10) * 1rem;//only renders rem in modern style sheet
-		}
-	}
-	@if ($lineHeight != false){
-		line-height: $lineHeight;//use unitless values eg. (1.3) for the best results
-	}
-}
-
 @mixin MG-box-sizing ($type: border-box) {
 	box-sizing: $type;
 	*behavior: url(../htc/boxsizing.htc);

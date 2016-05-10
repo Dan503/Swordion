@@ -76,7 +76,7 @@ $module: 'tooltip';
 		color: $C-text;
 		width: 300px;
 		border-radius: 3px;
-		@include MG-font-size(13px);
+		font-size: 13px;
 		padding: 10px;
 		z-index: 5;
 		line-height: 1;

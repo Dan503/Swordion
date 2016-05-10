@@ -13,13 +13,13 @@ table{
 	&:first-child {
 		margin-top: 0;
 	}
-	th, td { padding: 5px; border: 1px solid #fff; padding: 10px; @include MG-font-size(15px); text-align: left; }
+	th, td { padding: 5px; border: 1px solid #fff; padding: 10px; font-size: 15px; text-align: left; }
 	th {
 		font-weight: $normal;
 	}
 	thead {
 		th {
-			//@include MG-font-size(18px);
+			//font-size: 18px;
 			//background-color: rgba($C-thead-th,0.8);
 		}
 		tr:first-child {
