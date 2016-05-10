@@ -131,4 +131,7 @@ gulp.task('js-minify', function() {
 		});
 });
 
-gulp.task('js-compile', mergeTasks);
+var compileTasks = mergeTasks;
+compileTasks.push('js-hint');
+
+gulp.task('js-compile', compileTasks);
