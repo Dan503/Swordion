@@ -49,7 +49,12 @@
 		@extend %file-static-styles;
 		color: $color;
 		border-color: $color;
-		@include MG-grad(desaturate(lighten($color,$lighten),$desaturation),desaturate(lighten($color,$lighten + 30),$desaturation), v, (backup: #fff));
+		@include MG-grad(
+			desaturate(lighten($color,$lighten),$desaturation),
+			desaturate(lighten($color,$lighten + 30),$desaturation),
+			v,
+			(backup: #fff)
+		);
 	}
 }
 
