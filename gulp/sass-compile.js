@@ -55,6 +55,7 @@ browsers.forEach(function(browser, i){
 				if (browser === 'modern'){
 					gulp.src('prototype-site/assets/css/modern.css')
 						.pipe(browserSync.stream());
+					gulp.start('modernizr');
 				}
 
 				if (i == browsers.length - 1){

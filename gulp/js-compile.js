@@ -107,7 +107,7 @@ jsMerge.splits.forEach(function(split, i){
 			.on('end', function(){
 				if (i == mergeTasks.length - 1){
 					setTimeout(function(){
-						gulp.start(['js-minify']);
+						gulp.start(['js-minify', 'modernizr']);
 					}, 100);
 				}
 			})
