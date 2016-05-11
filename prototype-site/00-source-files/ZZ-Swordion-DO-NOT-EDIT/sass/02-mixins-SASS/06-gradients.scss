@@ -131,7 +131,6 @@ $validStrings: map-keys($gradTypes);
 				$bgString: '#{$repeater}linear-gradient(#{$type}, #{$color1}, #{$color2})';
 			}
 		}
-		@debug $bgString;
 		background: unquote($bgString);
 	} @else if(($type == v or $type == h) and map-get($settings, ie-polyfill)){
 		@include MG-ie-grad($pureColor1,$pureColor2,$type);
