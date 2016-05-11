@@ -10,6 +10,19 @@
 //================================================*/
 
 
+//switches IE (and other non-flexbox friendly browsers) to using float mode
+@mixin M-ieFloat {
+	.no-flexbox.no-flexwrap & {
+		display: block;
+		@include MG-clearfix;
+		& > .grid__cell {
+			float: left;
+			display: block;
+		}
+	}
+}
+
+
 //================================================*\
 /*				GRID WIDTHS						*/
 //----------------------------------------------------
@@ -122,9 +135,7 @@ $grid-bp-list: if(
 	}
 
 //base grid__inner styling
-		&__inner {
-			//
-		}
+	&__inner { display: block; }
 
 //grid--gutter-# styling
 	&[class*="grid--gutter-"] {
@@ -257,6 +268,14 @@ $grid-bp-list: if(
 		min-width: 0;
 	}
 
+//Unfortunately this is a necessity for IE compatibility
+	&--wrap {
+		flex-wrap: wrap;
+		@include M-ieFloat;
+	}
+	&--noWrap {
+		flex-wrap: nowrap;
+	}
 	&--space {
 		&-between, &-around {
 			> .grid__cell { flex-grow: 0; }
@@ -284,10 +303,27 @@ $grid-bp-list: if(
 		}
 	}
 
+//tabular backup for IE9 and below
+	.no-flexbox & {
+		display: table;
+		width: 100%;
+		> .grid__cell { display: table-cell; vertical-align: top; }
 
-//Unfortunately this is a necessity for IE compatibility
-	&--noWrap {
-		flex-wrap: nowrap;
+		&--vAlign > .grid__cell { vertical-align: middle; }
+		&--vertical {
+			display: block;
+			@include M-clearfix;
+			& > .grid__cell {
+				float: left;
+				display: block;
+				width: 100%;
+			}
+		}
+	}
+
+//allows IE to use floats instead of display table without affecting modern browsers
+	&--ieFloat {
+		@include M-ieFloat;
 	}
 
 }
