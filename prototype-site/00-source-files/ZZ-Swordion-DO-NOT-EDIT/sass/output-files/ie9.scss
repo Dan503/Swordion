@@ -1,0 +1,62 @@
+
+/*================================================*\
+	MAIN CSS OUTPUT FILE (IE9)
+//-----------------------------------------------
+//	This is the file that compiles the css for
+//	IE9
+\*================================================*/
+
+//prevents CSS3 from appearing in the compilation (drastically reducing file size)
+//allows IE hacks to appearing in the outputted css
+$modern: false;
+$ie9: true;
+$ie8: false;
+$gt-ie10: false;
+$gt-ie8: true;
+$lt-ie10: true;
+$lt-ie9: false;
+
+//CONFIG FILES
+
+//particularly for icon map variable (generated)
+@import "../generated-files/**/*.scss";
+
+//variables for sprite mixins
+@import "../01-sprite-sheets-SASS/**/*.scss";
+
+//Swordion sass functions
+@import "../00-functions-SASS/**/*.scss";
+
+//user editable config files
+@import "../../../01-sass/01-config-SASS/**/*.scss";
+
+//Prevents media queries from being rendered in the css if they are for screen resolutions lower than this.
+//If the media query is for screens above this width, the css is outputted outside of a media query just appearing as normal css in the compiled style sheet
+$fix-mqs: bp('page');
+
+
+//MAIN FILES
+
+//Swordion mixins
+@import "../02-mixins-SASS/**/*.scss";
+
+//user mixins
+@import "../../../01-sass/02-project-mixins-SASS/**/*.scss";
+
+//user 3rd party plugin css
+@import "../../../01-sass/03-plugins-SASS/**/*.scss";
+
+//swordion 3rd party plugin css
+@import "../03-plugins-SASS/**/*.scss";
+
+//user styles that should be easy to overwrite
+@import "../../../01-sass/04-base-SASS/**/*.scss";
+
+//Swordion system styles that are typically functional in some way (eg. grid system)
+@import "../04-base-SASS/**/*.scss";
+
+//modular styles
+@import "../../../01-sass/05-modules-SASS/**/*.scss";
+
+//things like print and theme styles
+@import "../../../01-sass/06-extras-SASS/**/*.scss";
