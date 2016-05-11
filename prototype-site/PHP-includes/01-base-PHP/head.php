@@ -23,7 +23,7 @@
 	?></title>
 
 	<?php
-		$socialDescription = strip_tags(defaultTo($get['current']['intro'], 'Social description text'));
+		$socialDescription = strip_tags(templateDefault(['intro','text'], 'Social description text'));
 		echo '<meta name="description" content="'.$socialDescription.'" />';
 	?>
 
