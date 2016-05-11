@@ -60,15 +60,34 @@
 		$styleSheets = array(
 			'modern',
 			'ie9',
-			'ie8'
+			'ie8',
+			'prototype-modern',
+			'prototype-ie9',
+			'prototype-ie8',
 		);
 
+		$prototypeOnlyStart = true;
+
 		foreach ($styleSheets as $browser) {
+			$prototypeOnly = substr($browser,0,10) == 'prototype-';
+			if ($prototypeOnly && $prototypeOnlyStart){
+				$prototypeOnlyStart = false;
+				echo '
+
+				<!-- Prototype Only -->
+				';
+			}
+
 			echo '
 			'.$loadIn[$browser]['before'].'
 				<link rel="stylesheet" type="text/css" href="'.$rootLocation.'/assets/css/'.$browser.$min.'.css" />
 			'.$loadIn[$browser]['after'];
+
 		}
+				echo '
+
+				<!-- end Prototype Only -->
+				';
  	?>
 
 	<!--Google analytics-->

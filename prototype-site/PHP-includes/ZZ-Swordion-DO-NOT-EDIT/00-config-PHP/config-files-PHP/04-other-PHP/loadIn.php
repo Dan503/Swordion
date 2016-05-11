@@ -19,6 +19,18 @@
 		'ie9' => array(
 			'before' => '<!--[if IE 9]>',
 			'after' => '<![endif]-->',
+		),
+		'prototype-modern' => array(
+			'before' => '<!--[if gt IE 9]><!-->',
+			'after' => '<!--<![endif]-->',
+		),
+		'prototype-ie8' => array(
+			'before' => '<!--[if lt IE 9]>',
+			'after' => '<![endif]-->',
+		),
+		'prototype-ie9' => array(
+			'before' => '<!--[if IE 9]>',
+			'after' => '<![endif]-->',
 		)
 	);
 ?>

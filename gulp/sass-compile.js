@@ -31,7 +31,10 @@ var sass_output_files = 'prototype-site/00-source-files/ZZ-Swordion-DO-NOT-EDIT/
 var browsers = [
 	'modern',
 	'ie9',
-	'ie8'
+	'ie8',
+	'prototype-modern',
+	'prototype-ie9',
+	'prototype-ie8',
 ];
 
 //https://www.npmjs.com/package/postcss-pxtorem

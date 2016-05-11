@@ -1,0 +1,44 @@
+
+/*================================================*\
+	MAIN CSS OUTPUT FILE (IE9)
+//-----------------------------------------------
+//	This is the file that compiles the css for
+//	IE9
+\*================================================*/
+
+//prevents CSS3 from appearing in the compilation (drastically reducing file size)
+//allows IE hacks to appearing in the outputted css
+$modern: false;
+$ie9: true;
+$ie8: false;
+$gt-ie10: false;
+$gt-ie8: true;
+$lt-ie10: true;
+$lt-ie9: false;
+
+//CONFIG FILES
+
+//particularly for icon map variable (generated)
+@import "../generated-files/**/*.scss";
+
+//Swordion sass functions
+@import "../00-functions-SASS/**/*.scss";
+
+//user editable config files
+@import "../../../01-sass/01-config-SASS/**/*.scss";
+
+//Prevents media queries from being rendered in the css if they are for screen resolutions lower than this.
+//If the media query is for screens above this width, the css is outputted outside of a media query just appearing as normal css in the compiled style sheet
+$fix-mqs: bp('page');
+
+
+//MAIN FILES
+
+//Swordion mixins
+@import "../02-mixins-SASS/**/*.scss";
+
+//user mixins
+@import "../../../01-sass/02-project-mixins-SASS/**/*.scss";
+
+//prototype only styles
+@import "../../../01-sass/prototype-only-SASS/**/*.scss"
