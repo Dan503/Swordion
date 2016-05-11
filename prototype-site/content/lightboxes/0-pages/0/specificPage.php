@@ -1,0 +1,1 @@
+<p>Example of a lightbox for a specific page</p>

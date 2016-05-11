@@ -1,0 +1,1 @@
+The images in this folder are for images that are integral to the design of the project that. Images that will be controlled by the CMS should be handled through the content folder instead with the loadContent() and randomImg() php functions.

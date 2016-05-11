@@ -12,7 +12,7 @@
 
 //switches IE (and other non-flexbox friendly browsers) to using float mode
 @mixin M-ieFloat {
-	.no-flexbox.no-flexwrap & {
+	.no-flexwrap & {
 		display: block;
 		@include MG-clearfix;
 		& > .grid__cell {
@@ -313,7 +313,7 @@ $grid-bp-list: if(
 		&--vAlign > .grid__cell { vertical-align: middle; }
 		&--vertical {
 			display: block;
-			@include M-clearfix;
+			@include MG-clearfix;
 			& > .grid__cell {
 				float: left;
 				display: block;

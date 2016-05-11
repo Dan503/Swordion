@@ -11,6 +11,7 @@
 //*================================================*/
 
 var bp = {
+	'minimum': 300, //*The smallest width that the site is able to shrink to */
 	'tiny': 350, //*essentially iphones in portrait view only*/
 	'small': 480,
 	'mobile': 600, ///*!MAJOR BREAK POINT!*//*Maximum for strict mobile view*/

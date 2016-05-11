@@ -20,10 +20,6 @@ var jsMerge = {
 		'prototypeOnly',
 		'isLegacy',
 		'isModern',
-
-		//extra splits
-		//you can get rid of this if you also remove it in the base-PHP/foot.php file
-		'isHome',
 	],
 
 	//don't edit this bit

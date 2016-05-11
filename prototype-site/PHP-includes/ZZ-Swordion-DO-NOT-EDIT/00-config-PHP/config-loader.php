@@ -64,6 +64,8 @@
 
 						$baseName = basename($file);
 
+						$lastSlashIndex = strrpos ($path , '/');
+
 						$fileObject = array(
 							'fileName' => pathinfo($file)['filename'],//excludes extension
 							'extension' => pathinfo($file)['extension'],
@@ -71,6 +73,7 @@
 							'fullPath' => $file, //includes site domain name as well (good for php includes)
 							'filePath' => $path.'/'.$baseName, //path from the root directory (good for img src)
 							'folderPath' => $path.'/',//path without file at the end
+							'parentFolders' => explode ('/', substr($path,1)),//exports an array of all the parent folders
 						);
 						array_push($fileObjects, $fileObject);
 					}

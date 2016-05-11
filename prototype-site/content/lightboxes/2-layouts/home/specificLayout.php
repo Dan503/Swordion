@@ -1,0 +1,1 @@
+<p>specific layout light-box example</p>
