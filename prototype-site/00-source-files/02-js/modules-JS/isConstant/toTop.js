@@ -1,13 +1,16 @@
+
+//allows a fixed back to top button to appear and disapear based on a user scrolling
+
 var module_toTop = 'toTop';
 
 //required for the targeting funcitions
 module = module_toTop;
 
 moduleTargets[module] = {
-	trigger : module+'__trigger',
-	pos : module+'__positioner',
-	activationPoint : module+'__activationPoint',
-	stateSwitcher : module+'__stateSwitchPoint',
+	trigger : module+'__trigger',//the button that scrolls page
+	pos : module+'__positioner',//manipulates how the button appears on the page
+	activationPoint : module+'__activationPoint',//after scrolling past this point, the button will appear
+	stateSwitcher : module+'__stateSwitchPoint',//switches between fixed and static states when scrolling bast this element 
 
 	//classes
 	pos_isStatic : module+'__positioner--isStatic-JS',

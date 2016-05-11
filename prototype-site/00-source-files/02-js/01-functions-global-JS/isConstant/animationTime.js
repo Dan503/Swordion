@@ -1,11 +1,11 @@
 ﻿/****************************************\
    Allow time for css animations
    but only in browsers that support
-   CSS3 animation
+   CSS animations
 \****************************************/
 
 function animationTime(time){
-	if ($('html.csstransitions').length){
+	if (Modernizr.csstransitions){
 		return time;
 	} else {
 		return 0;
@@ -15,5 +15,5 @@ function animationTime(time){
 /*
 	setTimeout(function(){
 		//script to carry out after css animation
-	}, animation_time(500));
+	}, animationTime(500));
 */
