@@ -25,6 +25,7 @@
 
 <p><img src="<?php echo randomImg('example'); ?>" alt="" /> </p>
 
+<p>Content in the accordion is loaded from the content folder using loadContent() function</p>
 <?php accordion(); ?>
 
 <div class="demo">
@@ -171,94 +172,48 @@
 ?>
 </ul>
 
-<h2>Form styles</h2>
-
-<form method="get" action="#">
-	<fieldset>
-		<div class="form__row">
-			<ul>
-				<?php
-					$radio_array = array(
-						'radio1',
-						'radio2',
-						'radio3'
-					);
-					for ($i = 0; $i < count($radio_array); $i++) {
-						$radio_id = preg_replace("/[^A-Za-z0-9]/", "", $radio_array[$i]);
-						echo
-						'<li>
-							<input id="'.$radio_id.'" type="radio" name="radio_name" />
-							<label for="'.$radio_id.'">'.$radio_array[$i].'</label>
-						</li>';
-					}
-				?>
-			</ul>
-		</div>
-		<div class="form__row">
-			<ul>
-				<?php
-					$checkbox_array = array(
-						'checkbox1',
-						'checkbox2',
-						'checkbox3'
-					);
-					for ($i = 0; $i < count($checkbox_array); $i++) {
-						$checkbox_id = preg_replace("/[^A-Za-z0-9]/", "", $checkbox_array[$i]);
-						echo
-						'<li>
-							<input id="'.$checkbox_id.'" type="checkbox" />
-							<label for="'.$checkbox_id.'">'.$checkbox_array[$i].'</label>
-						</li>';
-					}
-				?>
-			</ul>
-		</div>
+<h2>Form example</h2>
+<p>An example of a basic form. the html and extra options can be seen in the basicForm.php function module file</p>
 <?php
-	$input_array = array(
-		array(
-			'label' => 'xxxxxxxxx1',
-			'placeholder' => 'Enter text here'
-		),
-		array(
-			'label' => 'xxxxxxxxx2',
-			'placeholder' => 'Enter text here'
-		),
-		array(
-			'label' => 'xxxxxxxxx3',
-			'placeholder' => 'Enter text here'
-		),
-	);
-	for ($i = 0; $i < count($input_array); $i++) {
-
-		$label = $input_array[$i]['label'];
-		$id = idSafe($label);
-		$placeholder = $input_array[$i]['placeholder'];
-
-		echo
-		'<div class="from__row">
-			<label for="'.$id.'">'.$label.'</label>
-			<input id="'.$id.'" placeholder="'.$placeholder.'" type="text"/>
-		</div>';
-	}
+	basicForm([
+		['label' => 'Basic text field'],
+		['label' => 'Select box',
+			'type' => 'select',
+			'options' => [
+				'option 1',
+				'option 2',
+				'option 3',
+			]
+		],
+		['label' => 'Text area',
+			'type' => 'textarea',
+		],
+		['label' => 'Check boxes',
+			'type' => 'checkbox',
+			'options' => [
+				'option 1',
+				'option 2',
+				'option 3',
+			]
+		],
+		['label' => 'Radio buttons',
+			'type' => 'radio',
+			'options' => [
+				'option 1',
+				'option 2',
+				'option 3',
+			]
+		],
+		['label' => 'Browse button',
+			'type' => 'file',
+		],
+		['label' => 'Email',
+			'type' => 'email',
+		]
+	], [
+		'submit' => 'Custom submit text',
+	]);
 ?>
-		<div class="form__row">
-			<label for="styledBrowse">Styled browse button</label>
-			<!-- default position is to the right -->
-			<input id="styledBrowse" type="file" title="Customisable browse button text" data-display-pos="right" />
-		</div>
-		<div class="form__row">
-			<label for="styledSelect">Styled select</label>
-			<select id="styledSelect">
-				<option>Select box</option>
-				<option>xxxxxx</option>
-				<option>xxxxxx</option>
-			</select>
-		</div>
-		<div class="form__row">
-			<input type="submit" class="btn" />
-		</div>
-	</fieldset>
-</form>
 
 
 <div class="hyphenTest">
