@@ -91,12 +91,16 @@ gulp.task('css-minify', function() {
     return gulp
 		.src([
 			'prototype-site/assets/css/*.css',
-			'!prototype-site/assets/css/*.min.css'
+			'!prototype-site/assets/css/*.min.css',
+			'!prototype-site/assets/css/prototype-modern.css',
+			'!prototype-site/assets/css/prototype-ie8.css',
+			'!prototype-site/assets/css/prototype-ie9.css',
 		])
         .pipe(rename({suffix: '.min'}))
         .pipe(postcss([cssnano()]))
-        .pipe(gulp.dest('prototype-site/assets/css/'))
+        .pipe(gulp.dest('build-site/assets/css/'))
 		.on('end', function(){
+			//just for any extra bits
 			gulp.start('copy-to-build:css');
 		});
 });

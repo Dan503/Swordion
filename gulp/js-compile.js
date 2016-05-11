@@ -120,11 +120,12 @@ gulp.task('js-minify', function() {
     return gulp
 		.src([
 			'prototype-site/assets/js/generated-JS/*.js',
-			'!prototype-site/assets/js/generated-JS/*.min.js'
+			'!prototype-site/assets/js/generated-JS/*.min.js',
+			'!prototype-site/assets/js/prototypeOnly.js'
 		])
         .pipe(rename({suffix: '.min'}))
         .pipe(uglify())
-        .pipe(gulp.dest('prototype-site/assets/js/generated-JS/'))
+        .pipe(gulp.dest('build-site/assets/js/generated-JS/'))
 		.on('end', function(){
 			browserSync.reload()
 			gulp.start('copy-to-build:js');

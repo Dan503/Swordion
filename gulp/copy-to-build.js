@@ -3,7 +3,7 @@
 var gulp = require('gulp');
 
 // load plugins
-var _delete = require('del');
+//var _delete = require('del');
 
 var root = {
 	build : 'build-site',
@@ -29,44 +29,32 @@ function exclusions(siteType){
 	]
 }
 
-gulp.task('clean-build:css', function(){
-	return _delete([
-		root.build+paths.css+'**/*'
-	]);
-});
-
-gulp.task('clean-build:js', function(){
-	return _delete([
-		root.build+paths.js+'**/*'
-	]);
-});
-
-gulp.task('clean-build:fonts', function(){
-	return _delete([
-		root.build+paths.fonts+'**/*'
-	]);
-});
-
-gulp.task('clean-build:other', function(){
-	return _delete(exclusions('build'));
-});
-
-gulp.task('copy-to-build:css', ['clean-build:css'], function(){
-	gulp.src(root.proto+paths.css+'**/*')
+//Doesn't copy css or source maps, just copies any other non-css things in the css folder
+gulp.task('copy-to-build:css', function(){
+	gulp.src([
+		root.proto+paths.css+'**/*',
+		'!'+root.proto+paths.css+'**/*.css',
+		'!'+root.proto+paths.css+'source-maps/*',
+	])
 		.pipe(gulp.dest(root.build+paths.css));
 });
 
-gulp.task('copy-to-build:js', ['clean-build:js'], function(){
-	gulp.src(root.proto+paths.js+'**/*')
+//Only copies the non-generated stuff in the js folder (not source maps though)
+gulp.task('copy-to-build:js', function(){
+	gulp.src([
+		root.proto+paths.js+'**/*',
+		'!'+root.proto+paths.js+'generated-JS/**/*.js',
+		'!'+root.proto+paths.js+'generated-JS/source-maps/*',
+	])
 		.pipe(gulp.dest(root.build+paths.js));
 });
 
-gulp.task('copy-to-build:fonts', ['clean-build:fonts'], function(){
+gulp.task('copy-to-build:fonts', function(){
 	gulp.src(root.proto+paths.fonts+'**/*')
 		.pipe(gulp.dest(root.build+paths.fonts));
 });
 
-gulp.task('copy-to-build:other', ['clean-build:other'], function(){
+gulp.task('copy-to-build:other', function(){
 	gulp.src(exclusions('prototype'))
 	.pipe(gulp.dest(root.build+paths.assets));
 });
