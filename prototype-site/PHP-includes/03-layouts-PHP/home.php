@@ -169,16 +169,25 @@
 	<div>mjsdfkl</div>
 </div>
 
-			<ul class="downloads">
-				<li><a href="downloads/sample.pdf">PDF</a> <small>(2MB)</small></li>
-				<li><a href="downloads/sample.docx">Word</a> <small>(2.5MB)</small></li>
-				<li><a href="downloads/sample.xls">Excel</a> <small>(2MB)</small></li>
-				<li class="exclude"><a href="downloads/sample.pptx">Powerpoint</a> <small>(3MB)</small></li>
-				<li><a href="downloads/sample.txt">Text</a> <small>(100KB)</small></li>
-				<li><a href="downloads/sample.mp3">Audio</a> <small>(10MB)</small></li>
-				<li><a href="http://www.itunes.com">Podcast</a></li>
-				<li><a href="#" class="htmlDownload">For the rare instances when a html icon is necessary</a></li>
-				<li><a href="http://www.example.com" title="example of an external link">External link</a></li>
-			</ul>
+<h2>Downloads example links</h2>
+<ul class="downloads">
+	<li><?php echo fileLink('download', '/downloads/sample.pdf'); ?></li>
+	<li><?php echo fileLink('download', '/downloads/sample.docx'); ?></li>
+	<li><?php echo fileLink('download', '/downloads/sample.xls'); ?></li>
+	<li><?php echo fileLink('download', '/downloads/sample.pptx'); ?></li>
+	<li><?php echo fileLink('download', '/downloads/sample.txt'); ?></li>
+	<li><?php echo fileLink('audio', '/downloads/sample.mp3'); ?></li>
+	<li><a href="http://www.itunes.com">Podcast</a></li>
+	<li><a href="#" class="htmlDownload">For the rare instances when a html icon is necessary</a></li>
+	<li><a href="http://www.example.com" title="example of an external link">External link</a></li>
+</ul>
+
+<h2>Lightbox example links</h2>
+<ul>
+	<li><a href="#"  data-remodal-target="specificPage">specific page lightbox</a></li>
+	<li><a href="#" data-remodal-target="specificTemplate">specific template lightbox</a></li>
+	<li><a href="#" data-remodal-target="specificLayout">specific layout lightbox</a></li>
+	<li><a href="#" data-remodal-target="constantExample">Constant lightbox</a></li>
+</ul>
 
 			</div>
