@@ -34,16 +34,17 @@ select {
 
 		//add the arrow with a css triangle
 		@include MG-after {
-			@include MG-tri(down, CG-brand(1), 7px);
+			@include MG-tri(down, CG-brand(1,'text'), 7px);
 			//content: 'v';
+			//height: 12px;
+			//width: 30px;
+			//right: 0;
 			font-size: 12px;
-			height: 12px;
-			width: 30px;
-			right: 0;
 			line-height: 0.8;
 			text-align: center;
 			color: $C-arrowBox-arrow;
 			@include MG-centered(v);
+			right: 10px;
 		}
 
 		@include MG-before {
