@@ -59,7 +59,7 @@ $grid-bp-list: if(
 	border: 0 solid #000;
 
 	@if ($gt-ie8) {
-		@extend %flex;
+		display: flex;
 		align-content: stretch;
 		@if ($direction != row){
 			flex-direction: $direction;
@@ -158,7 +158,7 @@ $grid-bp-list: if(
 	}
 
 //tabular backup for IE9 and below
-	.no-flexbox & {
+	.no-flexbox.no-flexwrap & {
 		display: table;
 		width: 100%;
 		> * { display: table-cell; vertical-align: top;
