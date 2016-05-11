@@ -6,21 +6,6 @@
 	include $head;
 ?>
 
-
-<ul class="tiltParallax__scene torch" data-jshook="tiltParallax__scene">
-	<li class="layer tiltParallax__layer torch__light" data-depth="-4.00"></li>
-	<li class="layer tiltParallax__layer torch__body" data-depth="-0.80"></li>
-	<li class="layer tiltParallax__layer torch__body" data-depth="-0.60"></li>
-	<li class="layer tiltParallax__layer torch__body" data-depth="-0.40"></li>
-	<li class="layer tiltParallax__layer torch__body" data-depth="-0.20"></li>
-	<li class="layer tiltParallax__layer torch__body" data-depth="0.00"></li>
-	<li class="layer tiltParallax__layer torch__body" data-depth="0.20"></li>
-	<li class="layer tiltParallax__layer torch__body" data-depth="0.40"></li>
-	<li class="layer tiltParallax__layer torch__body" data-depth="0.60"></li>
-	<li class="layer tiltParallax__layer torch__body" data-depth="0.80"></li>
-	<li class="layer tiltParallax__layer torch__body" data-depth="1.00"></li>
-</ul>
-
 <p>This image randomly loads from the "/content/4-random-images/example" folder on every page refresh.</p>
 
 <p><img src="<?php echo randomImg('example'); ?>" alt="" /> </p>
@@ -65,12 +50,6 @@
 		<p class="demo__kfAnimate">KF Animation example</p>
 		<p class="demo__kfAnimate--multi">KF Animation example</p>
 	</div>
-
-	<div class="demo__themes">
-		<p class="demo__div theme__header">Themed header</p>
-		<p class="demo__div theme__nav">Themed nav</p>
-		<p class="demo__div theme__footer">Themed footer</p>
-	</div>
 </div>
 
 <?php
@@ -83,21 +62,7 @@
 	));
 ?>
 
-<div class="full-screen-div-example" data-jshook="fullScreen__filler">
-	<h2>Full screen div example</h2>
-	<p>Scroll down to see more content</p>
-</div>
-
-				<div class="content">
-
-						<h2>To do list:</h2>
-						<ol>
-							<li>Fix the form example styles</li>
-							<li>Create a multi-background Sass mixin</li>
-							<li>Change the styling for the select boxes to the type that requires a little bit of JS</li>
-							<li>Make the media query mixin automatically convert pixel values to rem values</li>
-							<li>Make a zip download icon</li>
-						</ol>
+				<div class="standardContent">
 
 						<h2>Test list</h2>
 						<ul>
@@ -125,7 +90,7 @@
 						</ol>
 
 						<h2>Heading</h2>
-						<p>Quae qui non vident, nihil umquam magnum ac cognitione dignum amaverunt. Itaque nostrum est-quod nostrum dico, artis est-ad ea principia, quae accepimus. Duo Reges: constructio interrete. Sed quanta sit alias, nunc tantum possitne esse tanta. Id est enim, de quo quaerimus. Varietates autem iniurasque fortunae facile veteres <a href="http://www.googl.com" title="">philosophorum</a> praeceptis instituta vita superabat. Quamquam in hac divisione rem ipsam prorsus probo, elegantiam desidero. Hos contra singulos dici est melius. Sed tamen enitar et, si minus multa mihi occurrent, non fugiam ista popularia. An vero, inquit, quisquam potest probare, quod perceptfum, quod. Quod autem meum munus dicis non equidem recuso, sed te adiungo socium.</p>
+						<p>Quae qui non vident, nihil umquam magnum ac cognitione dignum amaverunt. Itaque nostrum est-quod nostrum dico, artis est-ad ea principia, quae accepimus. Duo Reges: constructio interrete. Sed quanta sit alias, nunc tantum possitne esse tanta. Id est enim, de quo quaerimus. Varietates autem iniurasque fortunae facile veteres <a href="http://www.google.com" title="">philosophorum</a> praeceptis instituta vita superabat. Quamquam in hac divisione rem ipsam prorsus probo, elegantiam desidero. Hos contra singulos dici est melius. Sed tamen enitar et, si minus multa mihi occurrent, non fugiam ista popularia. An vero, inquit, quisquam potest probare, quod perceptfum, quod. Quod autem meum munus dicis non equidem recuso, sed te adiungo socium.</p>
 
 <h2>Pure CSS pointing arrows !</h2>
 
@@ -136,40 +101,6 @@
 		<li>Right arrow <span class="arrow right"></span></li>
 	</ul>
 
-
-
-<h2>Animations</h2>
-
-<h3>Simple re-usable pop-in animation</h3>
-
-<ul class="popinDemo grid grid--wrap grid--vAlign grid--cols-3 grid--hasInners grid--gutter-demo" data-jshook="popins">
-<?php
-	for ($i = 0; $i < 6; $i++) {
-		$extra = '';
-		if ($i==2){
-			$extra = ' extra text for testing';
-		}
-		echo
-		'<li class="popinDemo__piece grid__cell animationDemoItem">
-			<div class="grid__inner">
-				<div class="grid__vAlignHelper">Pop-in item '.($i+1).$extra.'</div>
-			</div>
-		</li>';
-	};
-?>
-</ul>
-
-<h3>Simple multistage animation</h3>
-<ul id="js-simpleExampleElement" class="grid grid--cols-2 grid--wrap grid--gutter-demo simpleAnimationExample">
-<?php
-	for ($i = 0; $i < 4; $i++) {
-		echo
-		'<li class="simple'.($i+1).' simpleAnimationExample__piece grid__cell animationDemoItem">'.
-			'Staged animation item '.($i+1).
-		'</li>';
-	}
-?>
-</ul>
 
 <h2>Form styles</h2>
 
