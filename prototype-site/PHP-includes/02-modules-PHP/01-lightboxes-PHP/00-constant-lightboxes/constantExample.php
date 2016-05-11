@@ -1,0 +1,1 @@
+<p>Constant across entire website light-box example</p>
