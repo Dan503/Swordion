@@ -21,20 +21,6 @@
 		echo "<script>window.jQuery || document.write('<script src=".$local_jQuery."><\/script>')</script>";
 	?>
 
-	<!--[if gt IE 9 ]>
-
-		<!-- GSAP -->
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.0/TweenMax.min.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.0/jquery.gsap.min.js"></script>
-
-		<!-- scrollMagic -->
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/ScrollMagic.min.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/plugins/animation.gsap.min.js"></script>
-		<?php /*scrollMagic add indicators debugger tool
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/plugins/debug.addIndicators.min.js"></script>*/ ?>
-
-	<!-- <![endif]-->
-
 	<!--[if lt IE 7 ]>
 		<script src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.2/CFInstall.min.js"></script>
 		<script>window.attachEvent("onload",function(){CFInstall.check({mode:"overlay"})})</script>
