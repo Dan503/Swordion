@@ -250,4 +250,12 @@
 				<li><a href="http://www.example.com" title="example of an external link">External link</a></li>
 			</ul>
 
+<h2>Lightbox example links</h2>
+<ul>
+	<li><a href="#"  data-remodal-target="specificPage">specific page lightbox</a></li>
+	<li><a href="#" data-remodal-target="specificTemplate">specific template lightbox</a></li>
+	<li><a href="#" data-remodal-target="specificLayout">specific layout lightbox</a></li>
+	<li><a href="#" data-remodal-target="constantExample">Constant lightbox</a></li>
+</ul>
+
 			</div>

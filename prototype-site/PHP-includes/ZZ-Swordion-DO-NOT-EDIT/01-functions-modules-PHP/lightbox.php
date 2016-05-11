@@ -29,7 +29,7 @@ function lightbox($file, $settings = array()) {
 
 //Renders the lightbox
 	print '
-	<div class="remodal lightbox '.$modifiers.$classes.'" data-remodal-id="lightbox__'.$filename.'">
+	<div class="remodal lightbox '.$modifiers.$classes.'" data-remodal-id="'.$filename.'">
 		<a href="javascript: void(0)" data-remodal-action="close" class="lightbox__close btn icon-cross"><span class="TK-visHid">Close</span></a>';
 
 		//includes the content
