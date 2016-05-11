@@ -140,41 +140,9 @@
 
 <h2>Animations</h2>
 
-<h3>Test animation</h3>
-<div class="testAnimation">
-stages test
-</div>
-
-<div class="rapidTest">
-rapid stages test
-<ul>
-	<?php
-		$items_array = array(
-			'item0_0',
-			'xxxxxxx',
-			'xxxxxxx',
-			'xxxxxxx',
-			'xxxxxxx',
-			'xxxxxxx',
-			'xxxxxxx',
-			'xxxxxxx',
-			'xxxxxxx',
-			'xxxxxxx',
-			'xxxxxxx',
-		);
-
-		for ($i = 0; $i < count($items_array); $i++) {
-			$text = $items_array[$i];
-			echo
-			'<li class="rapidTest__element">'.$text.'</li>';
-		}
-	?>
-</ul>
-</div>
-
 <h3>Simple re-usable pop-in animation</h3>
 
-<ul class="popinDemo grid grid--enableWrapping grid--vAlign grid--cols-3 grid--hasInners grid--gutter-20 grid--padding-10 grid--border-3" data-jshook="popins">
+<ul class="popinDemo grid grid--wrap grid--vAlign grid--cols-3 grid--hasInners grid--gutter-demo" data-jshook="popins">
 <?php
 	for ($i = 0; $i < 6; $i++) {
 		$extra = '';
@@ -192,7 +160,7 @@ rapid stages test
 </ul>
 
 <h3>Simple multistage animation</h3>
-<ul id="js-simpleExampleElement" class="grid grid--cols-2 grid--enableWrapping grid--gutter-10 simpleAnimationExample">
+<ul id="js-simpleExampleElement" class="grid grid--cols-2 grid--wrap grid--gutter-demo simpleAnimationExample">
 <?php
 	for ($i = 0; $i < 4; $i++) {
 		echo

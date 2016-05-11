@@ -5,12 +5,7 @@
 }
 
 .rapidTest {
-	@include MG-clearfix;
 	&__element {
-		height: 100px;
-		width: 100px;
-		margin: 10px;
-		float: left;
 		background: red;
 	}
 }

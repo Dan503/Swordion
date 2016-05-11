@@ -13,6 +13,7 @@ $gutter-ieFallback: $CG-body-bg;
 //usage: class="grid grid--gutter-moduleName"
 $cellGutters: (
 	'moduleName' : 20px,
+	'demo' : 10px,
 	'mediaQueryFriendly' : (
 		50px, //*default*/
 		25px (max, bp('tablet')), //*affected by media query*/
