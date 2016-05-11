@@ -57,8 +57,6 @@ $themes: (
 	),
 );
 
-@debug $themes;
-
 @each $theme, $elements in $themes {
 	body.theme--#{$theme} {
 		@each $class, $attributes in $elements {
