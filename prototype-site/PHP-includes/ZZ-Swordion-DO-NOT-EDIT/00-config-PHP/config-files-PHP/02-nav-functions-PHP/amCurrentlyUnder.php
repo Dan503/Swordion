@@ -5,6 +5,15 @@
 
 function amCurrentlyUnder ($locationArray){
 
+	//for if a nvMap item is given
+	if (isset($locationArray['location'])){
+		$locationArray = $locationArray['location'];
+
+	//for if a navMap search array is given
+	} elseif (array_has_string($locationArray)){
+		$locationArray = get($locationArray, 'location');
+	}
+
 	$testResults = [];
 
 	foreach ($locationArray as $depth => $locale) {

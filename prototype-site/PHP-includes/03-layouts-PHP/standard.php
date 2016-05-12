@@ -8,6 +8,8 @@
 
 <?php pageLayout('top'); ?>
 
+<?php pageLayout('upper'); ?>
+
 	<h1><?php echo $get['current']['title']; ?></h1>
 
 	<div class="standardContent">
@@ -17,7 +19,7 @@
 		?>
 	</div>
 
-<?php pageLayout('mid'); ?>
+<?php pageLayout('lower'); ?>
 
 <?php
  //you can place a sidebar here ;)

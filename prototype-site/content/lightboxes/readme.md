@@ -9,10 +9,16 @@ If you want the lightbox to appear on every page using a particular template, gi
 
 If you want a lightbox to be available on every page, save it into the "constant" folder
 
-You can then call on lightboxes by targeting them with hash tag links like this:
+<span style="text-decoration: line-through">You can then call on lightboxes by targeting them with hash tag links like this:</span>
 
 ``````HTML
 <a href="#lightbox__lightboxFileName">Link text</a>
+``````
+
+... Sorry, the hash tag links don't seem to be working for the lightboxes. You can call on them instead like this
+
+``````HTML
+<a href="#" data-remodal-target="lightboxFileName">Link text</a>
 ``````
 
 Basically, the folder determines what lightboxes are loaded onto the page and the file name is how the code knows what lightbox the link is targeting

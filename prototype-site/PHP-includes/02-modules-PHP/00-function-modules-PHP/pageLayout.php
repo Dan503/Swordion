@@ -5,10 +5,13 @@ function pageLayout($portion){
 
 'top' => '
 	<div class="breadcrumb__neighbor pageLayout">
+',
+
+'upper' => '
 		<article class="pageLayout__mainArea standardContent">
 ',
 
-'mid' => '
+'lower' => '
 		</article>
 ',
 
