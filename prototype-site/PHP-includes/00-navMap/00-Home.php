@@ -20,7 +20,7 @@ $navSegment = [
 		['title' => 'Shortcut Links',
 			'subnav' => array(
 				['title' => 'example shortcut',
-					//parse in a navMap object to point the link at that page
+					//parse in a navMap search array to point the link at that page
 					'link' => ['About us'],
 				]
 			)

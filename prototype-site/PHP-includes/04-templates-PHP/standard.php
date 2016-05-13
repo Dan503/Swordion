@@ -10,7 +10,7 @@
 $GLOBALS['template_settings'] = [
 	//overides the default 'has'
 	'has' => [
-		'sidebar' => false,
+		//'sidebar' => false,
 	]
 ];
 
