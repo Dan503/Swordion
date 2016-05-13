@@ -30,24 +30,34 @@ if ($(Hook('revealer')).length) {
 
 		if (typeof showMode !== 'undefined'){
 
-			//using a number will open the accordion at the specified index (starting at 1)
-			if (typeof parseInt(showMode) === 'number'){
-				ref.find(Hook('item'))
-					.eq(parseInt(showMode) - 1)
-						.modAddClass('item_isOpen')
-						.children(Hook('revealer'))
-							.css('display','block');
+		console.log(!isNaN(showMode));
 
 			//"all" opens all accordion items
-			} else if (showMode === 'all') {
+			if (showMode === 'all') {
 				ref.find(Hook('item'))
 					.modAddClass('item_isOpen')
 					.children(Hook('revealer'))
 						.css('display','block');
+
+			//"none" hides all items
+			} else if (showMode === 'none') {
+				ref.children(Hook('item'))
+					.children(Hook('revealer'))
+						.css('display','none');
+
+			//using a number will open the accordion at the specified index (starting at 1)
+			} else if (!isNaN(showMode)){
+				var items = ref.find(Hook('item'));
+				var item = items.eq(parseInt(showMode) - 1);
+
+					items.not(item)
+						.children(Hook('revealer'))
+						.css('display','none');
+
+					item.modAddClass('item_isOpen')
+						.children(Hook('revealer'))
+							.css('display','block');
 			}
-
-			//by default, all accordion items are closed
-
 		}
 	});
 

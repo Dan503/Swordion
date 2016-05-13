@@ -14,6 +14,7 @@ $gutter-ieFallback: $CG-body-bg;
 $cellGutters: (
 	'moduleName' : 20px,
 	'demo' : 10px,
+	'pageLayout' : 30px,
 	'mediaQueryFriendly' : (
 		50px, //*default*/
 		25px (max, bp('tablet')), //*affected by media query*/
