@@ -5,6 +5,7 @@
 $GLOBALS['template_settings'] = [
 	'has' => [
 		'breadcrumb' => false,
+		'sidebar' => false,
 	]
 ];
 
