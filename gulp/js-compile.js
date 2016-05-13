@@ -5,6 +5,7 @@ var gulp = require('gulp');
 var concat = require('gulp-concat');
 var sourcemaps = require('gulp-sourcemaps');
 var browserSync = require('browser-sync');
+var babel = require('gulp-babel');
 
 //for minification
 var uglify = require('gulp-uglify');
@@ -103,6 +104,10 @@ jsMerge.splits.forEach(function(split, i){
 	    gulp.src(JS_merge_files[split])
 			.pipe(sourcemaps.init())
 		        .pipe(concat(split+'.js'))
+				.pipe(babel({
+					presets: ['es2015'],
+					compact: false,
+				}))
 			.pipe(sourcemaps.write('./source-maps'))
 	        .pipe(gulp.dest('prototype-site/assets/js/generated-JS'))
 			.on('end', function(){
