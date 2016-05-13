@@ -1,11 +1,17 @@
 <?php
 $navSegment = [
-'title' => 'About us',
+'title' => 'Nested nav structure',
 	'subnav' => array(
-		['title' => 'Lorem ipsum dolor sit emet',
+		['title' => 'level 1 example',
 			'subnav' => array(
-				['title' => 'fdhsj fdsjkfhs'],
 				['title' => 'skj skdefjhs esf'],
+				['title' => 'level 2 example',
+					'subnav' => array(
+						['title' => 'level 3 example'],
+						['title' => 'skj skdefjhs esf'],
+						['title' => 'psdln oswkd bsuisk'],
+					)
+				],
 				['title' => 'psdln oswkd bsuisk'],
 			)
 		],
