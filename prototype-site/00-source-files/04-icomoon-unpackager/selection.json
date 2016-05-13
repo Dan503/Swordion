@@ -53,7 +53,7 @@
 				"id": 17,
 				"prevSize": 32,
 				"code": 58896,
-				"name": "arrow--down"
+				"name": "arrow-down"
 			},
 			"setIdx": 0,
 			"setId": 2,
@@ -82,7 +82,7 @@
 				"id": 16,
 				"prevSize": 32,
 				"code": 58897,
-				"name": "arrow--left"
+				"name": "arrow-left"
 			},
 			"setIdx": 0,
 			"setId": 2,
@@ -111,7 +111,7 @@
 				"id": 15,
 				"prevSize": 32,
 				"code": 58898,
-				"name": "arrow--right"
+				"name": "arrow-right"
 			},
 			"setIdx": 0,
 			"setId": 2,
@@ -140,7 +140,7 @@
 				"id": 14,
 				"prevSize": 32,
 				"code": 58899,
-				"name": "arrow--up"
+				"name": "arrow-up"
 			},
 			"setIdx": 0,
 			"setId": 2,
@@ -537,7 +537,7 @@
 				"order": 11,
 				"prevSize": 32,
 				"ligatures": "star-empty, rate",
-				"name": "star--empty",
+				"name": "star-empty",
 				"code": 58890
 			},
 			"setIdx": 1,
@@ -564,7 +564,7 @@
 				"order": 12,
 				"prevSize": 32,
 				"ligatures": "star-half, rate2",
-				"name": "star--half",
+				"name": "star-half",
 				"code": 58891
 			},
 			"setIdx": 1,
@@ -593,7 +593,7 @@
 				"order": 13,
 				"prevSize": 32,
 				"ligatures": "star-full, rate3",
-				"name": "star--full",
+				"name": "star-full",
 				"code": 58892
 			},
 			"setIdx": 1,
