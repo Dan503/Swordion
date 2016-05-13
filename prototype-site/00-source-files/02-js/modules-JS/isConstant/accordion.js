@@ -30,8 +30,6 @@ if ($(Hook('revealer')).length) {
 
 		if (typeof showMode !== 'undefined'){
 
-		console.log(!isNaN(showMode));
-
 			//"all" opens all accordion items
 			if (showMode === 'all') {
 				ref.find(Hook('item'))
