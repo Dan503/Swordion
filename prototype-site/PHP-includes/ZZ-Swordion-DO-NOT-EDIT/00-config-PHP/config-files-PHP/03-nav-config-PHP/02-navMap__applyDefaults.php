@@ -24,7 +24,7 @@ function generateLink ($linkOveride, $basePath, $i, $linkGenType, $siblings){
 		return $linkOveride;//Links to the defined link from the nav map file
 
 	} elseif (isset($sibOveride)) {
-		return $sibOveride;//Links to the last sibling page that has 'linkGen' set to "override-siblings"
+		return '/'.$sibOveride;//Links to the last sibling page that has 'linkGen' set to "override-siblings"
 
 	} else {
 		$link_generation_types = array(
@@ -32,7 +32,7 @@ function generateLink ($linkOveride, $basePath, $i, $linkGenType, $siblings){
 			'first-child' => $basePath.$i.'-0', //Links to the first page 1 level down
 		);
 
-		return $link_generation_types[$linkGenType];
+		return '/'.$link_generation_types[$linkGenType];
 	}
 }
 
@@ -52,7 +52,7 @@ function generateDefaults($basePath, &$map, $index, $parent, $location){
 
 	$map['location'] = $location;
 	$map['locationString'] = implode('-', $location);
-	$map['queryLocation'] = '?location='.$map['locationString'];
+	$map['queryLocation'] = '/?location='.$map['locationString'];
 
 	//if a subnav exists in item, generate defaults for it
     if (isset ($map['subnav'])) {
@@ -74,13 +74,13 @@ foreach ($templateFiles as $i => $templateFile){
 	//Add current template to templateMap
 	$GLOBALS['templateMap'][$templateFile['fileName']] = [
 		'title' => $templateFile['fileName'],
-		'link' =>  '?location='.$locationString,
+		'link' =>  '/?location='.$locationString,
 		'template' => $templateFile['fileName'],
 		'subNavigable' => true,
 		'subTemplate' => 'standard',
 		'location' => [0, $templateListIndex, $i],
 		'locationString' => $locationString,
-		'queryLocation' => '?location='.$locationString,
+		'queryLocation' => '/?location='.$locationString,
 	];
 }
 
@@ -117,7 +117,7 @@ function generateTemplateList($map, $location, $arrayLink = null){
 function generateSearchObjectLinks(&$map, $location, $subIndex){
 	if (is_array($map['link'])){
 		$arrayLink = $map['link'];
-		$map['link'] = '?location='.(getNavMap($map['link'],'locationString'));
+		$map['link'] = '/?location='.(getNavMap($map['link'],'locationString'));
 	}
 
 	generateTemplateList($map, $location, $arrayLink);
